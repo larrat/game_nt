@@ -10,6 +10,10 @@ import Graduacoes from './pages/Graduacoes';
 import Tarefas from './pages/Tarefas';
 import Clas from './pages/Clas';
 import Tecnicas from './pages/Tecnicas';
+import Equipamentos from './pages/Equipamentos';
+import Ranking from './pages/Ranking';
+import Vila from './pages/Vila';
+import Hospital from './pages/Hospital';
 
 // Novas telas Fullscreen (Lote 1)
 import Login from './pages/Login';
@@ -105,9 +109,13 @@ function App() {
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<Dashboard player={playerState} />} />
           <Route path="/tecnicas" element={<Tecnicas player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/equipamentos" element={<Equipamentos player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/graduacoes" element={<Graduacoes player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/tarefas" element={<Tarefas player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/clas" element={<Clas player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/vila" element={<Vila player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/hospital" element={<Hospital player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/ranking" element={<Ranking player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </MainLayout>

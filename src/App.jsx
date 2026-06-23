@@ -9,6 +9,19 @@ import Dashboard from './pages/Dashboard';
 import Graduacoes from './pages/Graduacoes';
 import Tarefas from './pages/Tarefas';
 import Clas from './pages/Clas';
+import Tecnicas from './pages/Tecnicas';
+
+// Novas telas Fullscreen (Lote 1)
+import Login from './pages/Login';
+import Selecionar from './pages/Selecionar';
+import Criar from './pages/Criar';
+
+const MainLayout = ({ children, playerState }) => (
+  <div className="app">
+    <Sidebar player={playerState} />
+    <main className="main">{children}</main>
+  </div>
+);
 
 function App() {
   const [session, setSession] = useState(null);
@@ -18,29 +31,27 @@ function App() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      if (session) loadPlayerState(session.user.id);
-      else setLoading(false);
+      setLoading(false);
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      if (session) loadPlayerState(session.user.id);
-      else {
+      if (!session) {
         setPlayerState(null);
-        setLoading(false);
       }
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  async function loadPlayerState(userId) {
-    const { data: dbPlayer, error } = await supabase
+  async function updatePlayer(userId) {
+    if (!playerState) return;
+    const { data: dbPlayer } = await supabase
       .from('players')
       .select('*')
-      .eq('user_id', userId)
+      .eq('id', playerState.id)
       .single();
 
     if (dbPlayer) {
@@ -52,35 +63,54 @@ function App() {
         activeJutsus: []
       });
     }
-    setLoading(false);
   }
 
   if (loading) {
     return <div className="app"><div className="main" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Carregando Kurokage...</div></div>;
   }
 
-  // Se não estiver logado, por enquanto redireciona para login (legacy)
-  // Até migrarmos o Login para React.
+  // ESTADO 1: Não Logado
   if (!session) {
-    window.location.href = '/legacy/login.html';
-    return null;
+    return (
+      <Router>
+        <div className="grain"></div>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </Router>
+    );
   }
 
+  // ESTADO 2: Logado, mas sem personagem selecionado
+  if (session && !playerState) {
+    return (
+      <Router>
+        <div className="grain"></div>
+        <Routes>
+          <Route path="/selecionar" element={<Selecionar session={session} setPlayerState={setPlayerState} />} />
+          <Route path="/criar" element={<Criar session={session} setPlayerState={setPlayerState} />} />
+          <Route path="*" element={<Navigate to="/selecionar" replace />} />
+        </Routes>
+      </Router>
+    );
+  }
+
+  // ESTADO 3: Jogando (Personagem selecionado)
   return (
     <Router>
       <div className="grain"></div>
-      <div className="app">
-        <Sidebar player={playerState} />
-        <main className="main">
-          <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            <Route path="/dashboard" element={<Dashboard player={playerState} />} />
-            <Route path="/graduacoes" element={<Graduacoes player={playerState} updatePlayer={loadPlayerState} />} />
-            <Route path="/tarefas" element={<Tarefas player={playerState} updatePlayer={loadPlayerState} />} />
-            <Route path="/clas" element={<Clas player={playerState} updatePlayer={loadPlayerState} />} />
-          </Routes>
-        </main>
-      </div>
+      <MainLayout playerState={playerState}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/dashboard" element={<Dashboard player={playerState} />} />
+          <Route path="/tecnicas" element={<Tecnicas player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/graduacoes" element={<Graduacoes player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/tarefas" element={<Tarefas player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/clas" element={<Clas player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      </MainLayout>
     </Router>
   );
 }

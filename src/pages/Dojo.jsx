@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../supabaseClient';
+import { calculateHP, calculateChakra, calculateAtkFisico, calculateDefesa } from '../utils/engine';
 import '../styles/main.css';
 
 const NPCS = [
@@ -46,11 +48,53 @@ const NPCS = [
 
 export default function Dojo({ player }) {
   const navigate = useNavigate();
+  const [loadingId, setLoadingId] = useState(null);
 
   if (!player) return null;
 
-  const handleChallenge = (npc) => {
-    navigate('/combate', { state: { npc } });
+  const handleChallenge = async (npc) => {
+    setLoadingId(npc.id);
+    
+    // Rola o dado para Invasão Espelho (25% chance)
+    const isInvasion = Math.random() < 0.25;
+    
+    if (isInvasion) {
+      // Busca um player rival com level próximo (+- 3)
+      const { data: rivals } = await supabase
+        .from('players')
+        .select('*')
+        .neq('id', player.id)
+        .gte('level', Math.max(1, player.level - 3))
+        .lte('level', player.level + 3)
+        .limit(5);
+        
+      if (rivals && rivals.length > 0) {
+        // Escolhe um rival aleatório
+        const rival = rivals[Math.floor(Math.random() * rivals.length)];
+        
+        // Monta o NPC falso baseado no rival
+        const mirrorNpc = {
+          id: `rival_${rival.id}`,
+          name: rival.name,
+          avatar: '👤', // Silhueta de player
+          level: rival.level,
+          hp: calculateHP(rival),
+          chakra: calculateChakra(rival),
+          atk: calculateAtkFisico(rival),
+          def: calculateDefesa(rival),
+          xpReward: npc.xpReward * 2, // Recompensa em dobro
+          ryouReward: npc.ryouReward * 2,
+          desc: 'ALERTA! Um Ninja Rival interceptou seu treinamento!'
+        };
+        
+        setLoadingId(null);
+        return navigate('/combate', { state: { npc: mirrorNpc, isMirror: true } });
+      }
+    }
+    
+    // Caso normal (sem invasão ou sem rival encontrado)
+    setLoadingId(null);
+    navigate('/combate', { state: { npc, isMirror: false } });
   };
 
   return (
@@ -96,8 +140,13 @@ export default function Dojo({ player }) {
                 <div style={{ color: '#4ade80' }}>+{npc.xpReward} XP</div>
                 <div style={{ color: '#3b82f6' }}>+{npc.ryouReward} RY</div>
               </div>
-              <button className="btn-ghost" style={{ padding: '8px 16px', border: '1px solid var(--seal-bright)' }} onClick={() => handleChallenge(npc)}>
-                Desafiar
+              <button 
+                className="btn-ghost" 
+                style={{ padding: '8px 16px', border: '1px solid var(--seal-bright)', opacity: loadingId === npc.id ? 0.5 : 1 }} 
+                onClick={() => handleChallenge(npc)}
+                disabled={loadingId !== null}
+              >
+                {loadingId === npc.id ? 'Buscando...' : 'Desafiar'}
               </button>
             </div>
           </div>

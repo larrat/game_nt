@@ -9,6 +9,7 @@ export default function Combate({ player, updatePlayer }) {
   const location = useLocation();
   const navigate = useNavigate();
   const npcInit = location.state?.npc;
+  const isMirror = location.state?.isMirror;
 
   // Se não tiver NPC (ex: acessou URL direta), volta pro Dojo
   useEffect(() => {
@@ -32,7 +33,9 @@ export default function Combate({ player, updatePlayer }) {
   const [npcHP, setNpcHP] = useState(npcInit.hp);
   const [npcCP, setNpcCP] = useState(npcInit.chakra);
 
-  const [logs, setLogs] = useState([`Um combate se inicia contra ${npcInit.name}!`]);
+  const [logs, setLogs] = useState([
+    isMirror ? `⚠️ INVASÃO! Você foi emboscado pelo ninja rival ${npcInit.name}!` : `Um combate se inicia contra ${npcInit.name}!`
+  ]);
   const [isPlayerTurn, setIsPlayerTurn] = useState(true);
   const [battleResult, setBattleResult] = useState(null); // 'win', 'lose', 'flee'
   const [loading, setLoading] = useState(false);
@@ -157,12 +160,14 @@ export default function Combate({ player, updatePlayer }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', maxWidth: '800px', margin: '0 auto' }}>
         
         {/* INIMIGO */}
-        <div className="card" style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-          <div style={{ width: '80px', height: '80px', background: 'var(--ink-raised)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '40px', border: '1px solid var(--seal-bright)' }}>
+        <div className="card" style={{ display: 'flex', gap: '24px', alignItems: 'center', border: isMirror ? '1px solid #ef4444' : '1px solid var(--line)' }}>
+          <div style={{ width: '80px', height: '80px', background: 'var(--ink-raised)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '40px', border: isMirror ? '1px solid #ef4444' : '1px solid var(--seal-bright)' }}>
             {npcInit.avatar}
           </div>
           <div style={{ flex: 1 }}>
-            <h3 style={{ fontSize: '18px', color: 'var(--seal-bright)', marginBottom: '8px' }}>{npcInit.name} (Lvl. {npcInit.level})</h3>
+            <h3 style={{ fontSize: '18px', color: isMirror ? '#ef4444' : 'var(--seal-bright)', marginBottom: '8px' }}>
+              {isMirror && '⚠️ '}{npcInit.name} (Lvl. {npcInit.level})
+            </h3>
             
             <div style={{ marginBottom: '8px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'var(--muted)', marginBottom: '4px' }}>

@@ -32,3 +32,30 @@ export const calculateVillageLevelFromXP = (totalXp) => {
   }
   return level;
 };
+
+// --- FÓRMULAS DE COMBATE (Status Baseados na Ficha) ---
+
+export const calculateHP = (player) => {
+  if (!player) return 100;
+  return 100 + ((player.level || 1) * 20) + ((player.stamina_pts || 0) * 2);
+};
+
+export const calculateChakra = (player) => {
+  if (!player) return 50;
+  return 50 + ((player.level || 1) * 10) + ((player.stamina_pts || 0) * 1);
+};
+
+export const calculateAtkFisico = (player) => {
+  if (!player) return 5;
+  return Math.floor((player.tai || 0) / 2) + 5;
+};
+
+export const calculateAtkMagico = (player) => {
+  if (!player) return 15;
+  return Math.floor((player.nin || 0) / 2) + 15;
+};
+
+export const calculateDefesa = (player) => {
+  if (!player) return 0;
+  return Math.floor((player.def || 0) / 2);
+};

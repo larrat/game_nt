@@ -45,24 +45,49 @@
 </div>
 
 <script>
+  let currentFilter = 'geral';
+
   // Simple inline script for filters toggle
   document.querySelectorAll('.filter').forEach(f => {
     f.addEventListener('click', () => {
       document.querySelectorAll('.filter').forEach(fl => fl.classList.remove('active'));
       f.classList.add('active');
+      
+      const filterText = f.innerText.toLowerCase();
+      if (filterText.includes('geral')) currentFilter = 'geral';
+      else if (filterText.includes('clã') || filterText.includes('vila')) currentFilter = 'vila';
+      else currentFilter = 'geral'; // Semanal fallback to geral for now
+      
+      loadRanking();
     });
   });
 
   async function loadRanking() {
     if (!window.supabaseClient) return;
+
+    // Se estiver filtrando por vila, precisa saber a vila do usuário logado
+    let userVillageId = null;
+    if (currentFilter === 'vila') {
+      const { data: authData } = await window.supabaseClient.auth.getSession();
+      const userId = authData?.session?.user?.id;
+      if (userId) {
+        const { data: dbPlayer } = await window.supabaseClient.from('players').select('village_id').eq('user_id', userId).single();
+        if (dbPlayer) userVillageId = dbPlayer.village_id;
+      }
+    }
     
-    // Fetch top 50 players
-    const { data: players, error } = await window.supabaseClient
+    let query = window.supabaseClient
       .from('players')
       .select('name, class, level, xp, villages(name)')
       .order('level', { ascending: false })
       .order('xp', { ascending: false })
       .limit(50);
+
+    if (currentFilter === 'vila' && userVillageId) {
+      query = query.eq('village_id', userVillageId);
+    }
+
+    const { data: players, error } = await query;
 
     if (error || !players) return console.error(error);
 

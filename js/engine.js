@@ -66,14 +66,34 @@ async function loadGameState() {
           user_id: dbPlayer.user_id,
           name: dbPlayer.name,
           level: dbPlayer.level,
+          xp: dbPlayer.xp,
+          village_id: dbPlayer.village_id,
           classe: dbPlayer.class,
           baseStats: { 
             tai: dbPlayer.tai, nin: dbPlayer.nin, gen: dbPlayer.gen, buk: dbPlayer.buk, stamina_pts: dbPlayer.stamina_pts 
           },
           bonusStats: { tai: 0, nin: 0, gen: 0, buk: 0, vel: 0, hp_cost: 0, b_tai: 0, b_nin: 0 },
           equipmentStats: { tai: 0, nin: 0, gen: 0, buk: 0, vel: 0, def: 0 },
-          activeJutsus: []
+          activeJutsus: [],
+          isKage: false
         };
+
+        // Verifica se é o Kage (Top 1 da Vila)
+        if (dbPlayer.village_id) {
+           const { data: topNinja } = await window.supabaseClient
+            .from('players')
+            .select('id')
+            .eq('village_id', dbPlayer.village_id)
+            .order('level', { ascending: false })
+            .order('xp', { ascending: false })
+            .limit(1)
+            .single();
+            
+           if (topNinja && topNinja.id === dbPlayer.id) {
+               window.PlayerState.isKage = true;
+           }
+        }
+
         window.VillageState = {
           id: dbPlayer.villages?.id || 1,
           level: dbPlayer.villages?.level || 0,
@@ -236,7 +256,14 @@ window.Engine = {
       if (PlayerState.level >= 25) rankTitle = "Chunin";
       if (PlayerState.level >= 50) rankTitle = "Jonin";
       if (PlayerState.level >= 80) rankTitle = "ANBU";
-      if (PlayerState.level >= 100) rankTitle = "Kage das Sombras";
+      if (PlayerState.level >= 100) rankTitle = "Sannin"; // Lenda
+      
+      if (PlayerState.isKage) {
+        // Título especial para o Kage
+        const kageTitles = { 1: "Hokage", 2: "Kazekage", 3: "Mizukage", 4: "Tsuchikage", 5: "Raikage", 6: "Otokage", 7: "Amekage" };
+        rankTitle = kageTitles[PlayerState.village_id] || "Kage";
+      }
+
       heroRank.innerText = rankTitle;
     }
     

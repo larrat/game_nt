@@ -1,10 +1,11 @@
 import React from 'react';
+import { calculateXPForLevel } from '../utils/engine';
 
 export default function Dashboard({ player }) {
   if (!player) return null;
 
-  const maxXP = player.level * 1000;
-  const xpPercent = Math.min(100, (player.xp / maxXP) * 100);
+  const nextLevelXP = calculateXPForLevel(player.level + 1);
+  const xpPercent = Math.min(100, (player.xp / nextLevelXP) * 100);
   
   const hp = 100 + (player.level * 20) + ((player.stamina_pts || 0) * 2);
   const chakra = 50 + (player.level * 10) + ((player.stamina_pts || 0) * 1);
@@ -37,7 +38,7 @@ export default function Dashboard({ player }) {
 
           <div className="xp-bar">
             <div className="meta" style={{ display: 'flex', justifyContent: 'space-between', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: 'var(--muted)', marginBottom: '6px' }}>
-              <span>XP</span><span>{player.xp} / {maxXP}</span>
+              <span>XP</span><span>{player.xp} / {nextLevelXP}</span>
             </div>
             <div className="track" style={{ height: '6px', background: 'var(--ink-raised)', position: 'relative' }}>
               <div className="fill" style={{ width: `${xpPercent}%`, height: '100%', background: 'var(--seal-bright)', transition: 'width 0.3s' }}></div>

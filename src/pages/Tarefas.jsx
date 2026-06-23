@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
+import { calculateLevelFromXP } from '../utils/engine';
 
 const TAREFAS = [
   { id: 1, title: "Primeira Lição", desc: "Seja bem vindo estudante. Hoje vamos dar início a sua vida como ninja...", reqLevel: 1, xp: 1782, ryous: 200, time: 15 },
@@ -49,12 +50,7 @@ export default function Tarefas({ player, updatePlayer }) {
     const newXp = player.xp + activeTask.xp;
     const newRyous = player.ryous + activeTask.ryous;
     const newTasksCount = player.tasks_completed + 1;
-    let newLevel = player.level;
-
-    // Check level up (1000 xp per level rule)
-    while (newXp >= newLevel * 1000) {
-      newLevel++;
-    }
+    const newLevel = calculateLevelFromXP(newXp);
 
     const { error } = await supabase
       .from('players')

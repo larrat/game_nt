@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/main.css';
 import { useNavigate } from 'react-router-dom';
+import { calculateVillageLevelFromXP, calculateVillageXPForLevel } from '../utils/engine';
 
 const VILLAGES = {
   1: 'Folha',
@@ -19,15 +20,13 @@ export default function Vila({ player }) {
 
   if (!player) return null;
 
-  const maxXP = villageLevel * 1000;
+  const maxXP = calculateVillageXPForLevel(villageLevel + 1);
   const xpPercent = Math.min(100, (villageXP / maxXP) * 100);
 
   const addXP = (amount) => {
     let newXp = villageXP + amount;
-    let newLevel = villageLevel;
-    while (newXp >= newLevel * 1000) {
-      newLevel++;
-    }
+    let newLevel = calculateVillageLevelFromXP(newXp);
+    
     setVillageXP(newXp);
     setVillageLevel(newLevel);
   };

@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 
+import { calculateLevelFromXP } from '../utils/engine';
+
 export default function Combate({ player, updatePlayer }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -50,11 +52,7 @@ export default function Combate({ player, updatePlayer }) {
     setLoading(true);
     const newXp = player.xp + npcInit.xpReward;
     const newRyous = player.ryous + npcInit.ryouReward;
-    let newLevel = player.level;
-
-    while (newXp >= newLevel * 1000) {
-      newLevel++;
-    }
+    const newLevel = calculateLevelFromXP(newXp);
 
     await supabase
       .from('players')

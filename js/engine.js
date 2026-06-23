@@ -228,6 +228,17 @@ window.Engine = {
     if(heroTitle) heroTitle.innerText = `${PlayerState.name}, ${vilaNome}`;
     if(heroName) heroName.innerText = PlayerState.name;
     if(heroLevel) heroLevel.innerText = PlayerState.level;
+
+    const heroRank = document.getElementById('ui-hero-rank');
+    if (heroRank) {
+      let rankTitle = "Estudante da Academia";
+      if (PlayerState.level >= 10) rankTitle = "Genin";
+      if (PlayerState.level >= 25) rankTitle = "Chunin";
+      if (PlayerState.level >= 50) rankTitle = "Jonin";
+      if (PlayerState.level >= 80) rankTitle = "ANBU";
+      if (PlayerState.level >= 100) rankTitle = "Kage das Sombras";
+      heroRank.innerText = rankTitle;
+    }
     
     if(heroXp) {
       let maxXP = PlayerState.level * 1000;

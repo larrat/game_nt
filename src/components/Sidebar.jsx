@@ -23,6 +23,13 @@ export default function Sidebar({ player }) {
       </div>
 
       <div className="navgroup">
+        <div className="label">Sangue e Linhagem</div>
+        <NavLink to="/clas" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
+          <div className="dot"></div>Clãs
+        </NavLink>
+      </div>
+
+      <div className="navgroup">
         <div className="label">Academia</div>
         <NavLink to="/tarefas" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
           <div className="dot"></div>Tarefas Iniciais

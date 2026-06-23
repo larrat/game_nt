@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Graduacoes from './pages/Graduacoes';
 import Tarefas from './pages/Tarefas';
+import Clas from './pages/Clas';
 
 function App() {
   const [session, setSession] = useState(null);
@@ -76,6 +77,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard player={playerState} />} />
             <Route path="/graduacoes" element={<Graduacoes player={playerState} updatePlayer={loadPlayerState} />} />
             <Route path="/tarefas" element={<Tarefas player={playerState} updatePlayer={loadPlayerState} />} />
+            <Route path="/clas" element={<Clas player={playerState} updatePlayer={loadPlayerState} />} />
           </Routes>
         </main>
       </div>

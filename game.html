@@ -24,11 +24,11 @@
     <div class="topbar">
       <div>
         <div class="eyebrow">Ficha do personagem</div>
-        <h1>Renka, da Névoa Silenciosa</h1>
-        <div class="sub">Última atividade: há 12 minutos</div>
+        <h1 id="ui-hero-title">Nome do Personagem</h1>
+        <div class="sub">Última atividade: agora mesmo</div>
       </div>
       <div class="seal-badge">
-        <div class="ring">14</div>
+        <div class="ring" id="ui-hero-level">1</div>
         <div class="txt">Rank atual<strong>Sábio das Sombras</strong></div>
       </div>
     </div>
@@ -37,13 +37,13 @@
       <!-- LEFT COLUMN: AVATAR & STATS -->
       <div class="card">
         <div class="avatar-block">
-          <div class="avatar">廉</div>
-          <h2>Renka</h2>
-          <div class="clan">Clã da Névoa Silenciosa</div>
+          <div class="avatar" id="ui-hero-avatar">忍</div>
+          <h2 id="ui-hero-name">Nome</h2>
+          <div class="clan" id="ui-hero-clan">Sem Clã</div>
         </div>
 
         <div class="xp-bar">
-          <div class="meta"><span>XP</span><span>6.840 / 10.000</span></div>
+          <div class="meta"><span>XP</span><span id="ui-hero-xp">0 / 1.000</span></div>
           <div class="track"><div class="fill"></div></div>
         </div>
 
@@ -69,18 +69,9 @@
 
         <!-- QUESTS / MISSIONS -->
         <div class="card">
-          <div class="card-head"><h3>Missões em andamento</h3><span class="tag">3 ATIVAS</span></div>
-          <div class="quest-item">
-            <span class="qname">Vigiar a fronteira norte</span>
-            <span class="qreward">+450 XP</span>
-          </div>
-          <div class="quest-item">
-            <span class="qname">Recuperar o pergaminho perdido</span>
-            <span class="qreward">+800 XP</span>
-          </div>
-          <div class="quest-item">
-            <span class="qname">Treinar com o mestre do clã</span>
-            <span class="qreward">+220 XP</span>
+          <div class="card-head"><h3>Missões em andamento</h3><span class="tag" id="active-missions-count">0 ATIVAS</span></div>
+          <div id="ui-missions-container" style="color: var(--text-muted); font-size: 13px; text-align: center; padding: 20px 0;">
+            Nenhuma missão ativa no momento. Vá ao painel de Missões para iniciar.
           </div>
         </div>
       </div>

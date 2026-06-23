@@ -215,6 +215,28 @@ window.Engine = {
 
   // === UPDATE UI ===
   updateUI() {
+    // 1. DADOS BASE DO JOGADOR
+    const heroTitle = document.getElementById('ui-hero-title');
+    const heroName = document.getElementById('ui-hero-name');
+    const heroLevel = document.getElementById('ui-hero-level');
+    const heroXp = document.getElementById('ui-hero-xp');
+    
+    // Mapeamento simples de vilas para texto
+    const vilasMap = { 1: "da Folha", 2: "da Areia", 3: "da Névoa", 4: "da Pedra", 5: "da Nuvem", 6: "do Som", 7: "da Chuva" };
+    const vilaNome = vilasMap[PlayerState.village_id || window.VillageState?.id] || "Desconhecida";
+
+    if(heroTitle) heroTitle.innerText = `${PlayerState.name}, ${vilaNome}`;
+    if(heroName) heroName.innerText = PlayerState.name;
+    if(heroLevel) heroLevel.innerText = PlayerState.level;
+    
+    if(heroXp) {
+      let maxXP = PlayerState.level * 1000;
+      heroXp.innerText = `${PlayerState.xp || 0} / ${maxXP}`;
+      // Atualizar a barra de xp se ela existir
+      const xpFill = document.querySelector('.xp-bar .fill');
+      if (xpFill) xpFill.style.width = `${((PlayerState.xp || 0) / maxXP) * 100}%`;
+    }
+
     // Procura elementos na tela com data-engine="..."
     const elHP = document.getElementById('val-hp');
     if (elHP) {

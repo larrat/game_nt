@@ -38,23 +38,60 @@ window.VillageState = {
   xp: 0
 };
 
-// Carregar estado salvo (se houver) para não perder ao mudar de tela
-const savedState = localStorage.getItem('kurokage_state');
-if (savedState) {
+// ==========================================
+// SISTEMA DE CARREGAMENTO (NUVEM / LOCAL)
+// ==========================================
+async function loadGameState() {
+  // 1. Tenta carregar do Banco de Dados (Nuvem Vercel)
   try {
-    const parsed = JSON.parse(savedState);
-    if(parsed.player) window.PlayerState = parsed.player;
-    if(parsed.village) window.VillageState = parsed.village;
-  } catch(e) {}
+    const res = await fetch('/api/player?id=1');
+    if (res.ok) {
+      const dbData = await res.json();
+      if (dbData && dbData.player) {
+        window.PlayerState = dbData.player;
+        window.VillageState = dbData.village;
+        if(window.Engine) window.Engine.updateUI();
+        console.log("🔥 Dados carregados do Banco Supabase!");
+        return; // Sucesso na nuvem!
+      }
+    }
+  } catch(e) {
+    console.log("Servidor inativo. Tentando carregar memória local...");
+  }
+
+  // 2. Fallback: Se estiver rodando sem backend, carrega LocalStorage
+  const savedState = localStorage.getItem('kurokage_state');
+  if (savedState) {
+    try {
+      const parsed = JSON.parse(savedState);
+      if(parsed.player) window.PlayerState = parsed.player;
+      if(parsed.village) window.VillageState = parsed.village;
+    } catch(e) {}
+  }
+  if(window.Engine) window.Engine.updateUI();
 }
+
+// Dispara o carregamento ao iniciar a página
+document.addEventListener('DOMContentLoaded', loadGameState);
 
 window.Engine = {
   // === PERSISTÊNCIA ===
   saveState() {
-    localStorage.setItem('kurokage_state', JSON.stringify({
+    const payload = {
+      id: 1, // Fixado para o jogador teste
       player: window.PlayerState,
       village: window.VillageState
-    }));
+    };
+
+    // 1. Salva no Cache Local (para evitar perda imediata de tela)
+    localStorage.setItem('kurokage_state', JSON.stringify(payload));
+
+    // 2. Dispara pro Banco de Dados na Nuvem silenciosamente
+    fetch('/api/player', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(e => console.log("Aguardando servidor..."));
   },
 
   // === FÓRMULAS ===

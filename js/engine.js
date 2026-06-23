@@ -42,24 +42,61 @@ window.VillageState = {
 // SISTEMA DE CARREGAMENTO (NUVEM / LOCAL)
 // ==========================================
 async function loadGameState() {
-  // 1. Tenta carregar do Banco de Dados (Nuvem Vercel)
-  try {
-    const res = await fetch('/api/player?id=1');
-    if (res.ok) {
-      const dbData = await res.json();
-      if (dbData && dbData.player) {
-        window.PlayerState = dbData.player;
-        window.VillageState = dbData.village;
-        if(window.Engine) window.Engine.updateUI();
-        console.log("🔥 Dados carregados do Banco Supabase!");
-        return; // Sucesso na nuvem!
-      }
-    }
-  } catch(e) {
-    console.log("Servidor inativo. Tentando carregar memória local...");
+  if (!window.supabaseClient) {
+    console.warn("Supabase não carregado, usando modo Local/Offline.");
+    return fallbackLocalLoad();
   }
 
-  // 2. Fallback: Se estiver rodando sem backend, carrega LocalStorage
+  // 1. Tenta carregar a sessão autenticada
+  const { data: authData } = await window.supabaseClient.auth.getSession();
+  const user = authData?.session?.user;
+
+  if (user) {
+    try {
+      // Busca o jogador do banco conectado a esse usuário
+      const { data: dbPlayer, error } = await window.supabaseClient
+        .from('players')
+        .select('*, villages(*)')
+        .eq('user_id', user.id)
+        .single();
+
+      if (dbPlayer) {
+        window.PlayerState = {
+          id: dbPlayer.id,
+          user_id: dbPlayer.user_id,
+          name: dbPlayer.name,
+          level: dbPlayer.level,
+          classe: dbPlayer.class,
+          baseStats: { 
+            tai: dbPlayer.tai, nin: dbPlayer.nin, gen: dbPlayer.gen, buk: dbPlayer.buk, stamina_pts: dbPlayer.stamina_pts 
+          },
+          bonusStats: { tai: 0, nin: 0, gen: 0, buk: 0, vel: 0, hp_cost: 0, b_tai: 0, b_nin: 0 },
+          equipmentStats: { tai: 0, nin: 0, gen: 0, buk: 0, vel: 0, def: 0 },
+          activeJutsus: []
+        };
+        window.VillageState = {
+          id: dbPlayer.villages?.id || 1,
+          level: dbPlayer.villages?.level || 0,
+          xp: dbPlayer.villages?.xp || 0
+        };
+        if(window.Engine) window.Engine.updateUI();
+        console.log("🔥 Dados carregados do Banco Supabase Autenticado!");
+        return;
+      }
+    } catch(e) {
+      console.log("Erro ao buscar no banco, tentando fallback local...");
+    }
+  } else {
+    // Se não estiver logado, redireciona pro login se não estiver na tela de login
+    if (!window.location.pathname.includes('login.html') && !window.location.pathname.includes('criar.html')) {
+       console.log("Usuário não logado, modo visitante ativo.");
+    }
+  }
+
+  fallbackLocalLoad();
+}
+
+function fallbackLocalLoad() {
   const savedState = localStorage.getItem('kurokage_state');
   if (savedState) {
     try {
@@ -76,9 +113,8 @@ document.addEventListener('DOMContentLoaded', loadGameState);
 
 window.Engine = {
   // === PERSISTÊNCIA ===
-  saveState() {
+  async saveState() {
     const payload = {
-      id: 1, // Fixado para o jogador teste
       player: window.PlayerState,
       village: window.VillageState
     };
@@ -86,12 +122,24 @@ window.Engine = {
     // 1. Salva no Cache Local (para evitar perda imediata de tela)
     localStorage.setItem('kurokage_state', JSON.stringify(payload));
 
-    // 2. Dispara pro Banco de Dados na Nuvem silenciosamente
-    fetch('/api/player', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(e => console.log("Aguardando servidor..."));
+    if (window.supabaseClient && window.PlayerState.id) {
+      // Atualiza o banco Supabase diretamente
+      await window.supabaseClient.from('players').update({
+        level: window.PlayerState.level,
+        stamina_pts: window.PlayerState.baseStats.stamina_pts,
+        tai: window.PlayerState.baseStats.tai,
+        nin: window.PlayerState.baseStats.nin,
+        gen: window.PlayerState.baseStats.gen,
+        buk: window.PlayerState.baseStats.buk
+      }).eq('id', window.PlayerState.id);
+      
+      if (window.VillageState.id) {
+        await window.supabaseClient.from('villages').update({
+          level: window.VillageState.level,
+          xp: window.VillageState.xp
+        }).eq('id', window.VillageState.id);
+      }
+    }
   },
 
   // === FÓRMULAS ===

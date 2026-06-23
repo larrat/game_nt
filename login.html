@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="styles/main.css">
 </head>
 <body class="login-body">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
 
 <div class="grain"></div>
 
@@ -34,11 +36,11 @@
 
   <div class="field">
     <label>E-mail</label>
-    <input type="email" placeholder="seu@email.com">
+    <input type="email" id="email" placeholder="seu@email.com">
   </div>
   <div class="field">
     <label>Senha</label>
-    <input type="password" placeholder="••••••••">
+    <input type="password" id="password" placeholder="••••••••">
   </div>
 
   <div class="row-between">
@@ -46,12 +48,35 @@
     <span class="forgot">Esqueci minha senha</span>
   </div>
 
-  <button class="btn-primary" onclick="window.location.href='game.html'"><span>Acessar</span><div class="stamp"></div></button>
+  <button class="btn-primary" onclick="handleLogin()"><span>Acessar</span><div class="stamp"></div></button>
 
   <div class="divider"><div class="line"></div><span>OU</span><div class="line"></div></div>
 
-  <div class="switch">Ainda não tem conta? <span style="color:var(--seal-bright); cursor:pointer; font-weight:600;">Forje seu personagem</span></div>
+  <div class="switch">Ainda não tem conta? <span style="color:var(--seal-bright); cursor:pointer; font-weight:600;" onclick="window.location.href='criar.html'">Forje seu personagem</span></div>
 </div>
+
+<script>
+  async function handleLogin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    if(!email || !password) return alert('Preencha os campos!');
+
+    if (!window.supabaseClient) {
+      return alert("Cliente Supabase não inicializado!");
+    }
+
+    const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+      email, password
+    });
+
+    if(error) {
+      alert("Erro ao logar: " + error.message);
+    } else {
+      window.location.href = 'game.html';
+    }
+  }
+</script>
 
 </body>
 </html>

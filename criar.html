@@ -10,6 +10,8 @@
 <script src="js/main.js" defer></script>
 </head>
 <body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
 
 <div class="grain"></div>
 
@@ -63,14 +65,24 @@
           <img src="https://placehold.co/400x600/1c1c22/b3232d?text=Personagem" id="main-character-img" alt="Naruto Uzumaki" style="width: 100%; height: auto; object-fit: cover; filter: sepia(0.3) contrast(1.1);">
         </div>
         <button class="btn-ghost" data-target="#img-modal" style="text-align: center; display: block; width: 100%;">Veja mais imagens</button>
-        <button class="btn-primary" style="width: 100%;" onclick="window.location.href='game.html'"><span>Criar Personagem</span><div class="stamp"></div></button>
+        <button class="btn-primary" style="width: 100%;" onclick="handleSignup()"><span>Criar Personagem</span><div class="stamp"></div></button>
       </div>
 
       <!-- COLUMN 2: INFO & VILLAGES -->
       <div class="info-block">
-        <div class="field" style="margin-bottom: 0;">
+        <div class="field" style="margin-bottom: 16px;">
           <label style="color: var(--gold);">Nome do Personagem</label>
-          <input type="text" placeholder="Digite seu nome ninja">
+          <input type="text" id="char-name" placeholder="Digite seu nome ninja">
+        </div>
+        
+        <div class="field" style="margin-bottom: 16px;">
+          <label>E-mail (Login)</label>
+          <input type="email" id="email" placeholder="seu@email.com">
+        </div>
+
+        <div class="field" style="margin-bottom: 0;">
+          <label>Senha</label>
+          <input type="password" id="password" placeholder="••••••••">
         </div>
 
         <!-- Village Selector -->
@@ -193,6 +205,57 @@
     </div>
   </div>
 </div>
+
+<script>
+  async function handleSignup() {
+    const name = document.getElementById('char-name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    // Find active class
+    const activeTab = document.querySelector('.stat-tab.active');
+    const className = activeTab ? activeTab.innerText.trim() : 'TAI';
+
+    if(!name || !email || !password) return alert('Preencha todos os campos!');
+
+    if (!window.supabaseClient) return alert('Supabase não inicializado!');
+
+    // 1. Criar usuário no Supabase Auth
+    const { data: authData, error: authError } = await window.supabaseClient.auth.signUp({
+      email, password
+    });
+
+    if (authError) return alert('Erro ao criar conta: ' + authError.message);
+
+    const userId = authData.user.id;
+
+    // 2. Inserir a ficha inicial do jogador na tabela public.players
+    const { data: dbData, error: dbError } = await window.supabaseClient
+      .from('players')
+      .insert([
+        {
+          user_id: userId,
+          name: name,
+          class: className,
+          level: 1,
+          xp: 0,
+          ryous: 500,
+          stamina_pts: 20,
+          tai: className === 'Taijutsu' ? 30 : 10,
+          nin: className === 'Ninjutsu' ? 30 : 10,
+          gen: className === 'Genjutsu' ? 30 : 10,
+          buk: className === 'Bukijutsu' ? 30 : 10,
+          village_id: 1 // Folha padrão para o protótipo
+        }
+      ]);
+
+    if (dbError) {
+      alert('Conta criada, mas erro ao criar ficha: ' + dbError.message);
+    } else {
+      alert('Personagem criado com sucesso! Redirecionando...');
+      window.location.href = 'game.html';
+    }
+  }
 
   function switchTab(e, tabName) {
     // Hide all tabs

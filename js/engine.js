@@ -39,12 +39,12 @@ window.VillageState = {
 };
 
 // ==========================================
-// SISTEMA DE CARREGAMENTO (NUVEM / LOCAL)
+// SISTEMA DE CARREGAMENTO (NUVEM)
 // ==========================================
 async function loadGameState() {
   if (!window.supabaseClient) {
-    console.warn("Supabase não carregado, usando modo Local/Offline.");
-    return fallbackLocalLoad();
+    console.error("Supabase não carregado! O jogo requer conexão com o banco de dados.");
+    return;
   }
 
   // 1. Tenta carregar a sessão autenticada
@@ -81,31 +81,17 @@ async function loadGameState() {
         };
         if(window.Engine) window.Engine.updateUI();
         console.log("🔥 Dados carregados do Banco Supabase Autenticado!");
-        return;
       }
     } catch(e) {
-      console.log("Erro ao buscar no banco, tentando fallback local...");
+      console.error("Erro ao buscar dados do jogador no banco:", e);
     }
   } else {
     // Se não estiver logado, redireciona pro login se não estiver na tela de login
     if (!window.location.pathname.includes('login.html') && !window.location.pathname.includes('criar.html')) {
-       console.log("Usuário não logado, modo visitante ativo.");
+       console.log("Usuário não logado. Redirecionando para login...");
+       window.location.href = 'login.html';
     }
   }
-
-  fallbackLocalLoad();
-}
-
-function fallbackLocalLoad() {
-  const savedState = localStorage.getItem('kurokage_state');
-  if (savedState) {
-    try {
-      const parsed = JSON.parse(savedState);
-      if(parsed.player) window.PlayerState = parsed.player;
-      if(parsed.village) window.VillageState = parsed.village;
-    } catch(e) {}
-  }
-  if(window.Engine) window.Engine.updateUI();
 }
 
 // Dispara o carregamento ao iniciar a página
@@ -114,14 +100,6 @@ document.addEventListener('DOMContentLoaded', loadGameState);
 window.Engine = {
   // === PERSISTÊNCIA ===
   async saveState() {
-    const payload = {
-      player: window.PlayerState,
-      village: window.VillageState
-    };
-
-    // 1. Salva no Cache Local (para evitar perda imediata de tela)
-    localStorage.setItem('kurokage_state', JSON.stringify(payload));
-
     if (window.supabaseClient && window.PlayerState.id) {
       // Atualiza o banco Supabase diretamente
       await window.supabaseClient.from('players').update({

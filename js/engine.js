@@ -69,6 +69,7 @@ async function loadGameState() {
           xp: dbPlayer.xp,
           village_id: dbPlayer.village_id,
           rank: dbPlayer.rank || 'Estudante da Academia',
+          ryous: dbPlayer.ryous || 0,
           npc_wins: dbPlayer.npc_wins || 0,
           pvp_wins: dbPlayer.pvp_wins || 0,
           tasks_completed: dbPlayer.tasks_completed || 0,

@@ -238,7 +238,7 @@
     // Incrementar XP e Ryous e Tasks no BD
     const newXP = PlayerState.xp + activeTask.xp;
     const newTasks = (PlayerState.tasks_completed || 0) + 1;
-    // const newRyous = (PlayerState.ryous || 0) + activeTask.ryous;
+    const newRyous = (PlayerState.ryous || 0) + activeTask.ryous;
 
     // Calcular Level up
     let newLevel = PlayerState.level;
@@ -256,7 +256,8 @@
       .update({ 
         xp: xpRestante,
         level: newLevel,
-        tasks_completed: newTasks
+        tasks_completed: newTasks,
+        ryous: newRyous
       })
       .eq('id', PlayerState.id);
 
@@ -268,6 +269,7 @@
     PlayerState.xp = xpRestante;
     PlayerState.level = newLevel;
     PlayerState.tasks_completed = newTasks;
+    PlayerState.ryous = newRyous;
 
     // Volta pra lista
     document.getElementById('timer-view').style.display = 'none';

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUROKAGE — Inventário</title>
+<link rel="stylesheet" href="styles/main.css">
+<script src="js/engine.js" defer></script>
+<script src="js/sidebar.js" defer></script>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="app">
+  
+
+  <main class="main" style="max-width: 1400px; margin: 0 auto;">
+    <div class="topbar" style="margin-bottom: 48px; flex-direction: column; gap: 8px;">
+      <div class="eyebrow">Renka · Névoa Silenciosa</div>
+      <h1 style="font-family:'Shippori Mincho', serif; font-size:30px; font-weight:600;">Equipamentos Ninja</h1>
+    </div>
+
+    <div class="equip-layout">
+      <!-- Coluna Esquerda -->
+      <div class="equip-col">
+        <div class="equip-slot equipped">
+          <div class="glyph">額</div>
+          <div class="lbl">Cabeça</div>
+        </div>
+        <div class="equip-slot">
+          <div class="glyph">腕</div>
+          <div class="lbl">Braços</div>
+        </div>
+        <div class="equip-slot">
+          <div class="glyph">飾</div>
+          <div class="lbl">Acessório</div>
+        </div>
+      </div>
+
+      <!-- Centro (Avatar/Silhueta) -->
+      <div class="equip-center">
+        廉
+      </div>
+
+      <!-- Coluna Direita -->
+      <div class="equip-col">
+        <div class="equip-slot equipped">
+          <div class="glyph">胴</div>
+          <div class="lbl">Tronco</div>
+        </div>
+        <div class="equip-slot">
+          <div class="glyph">脚</div>
+          <div class="lbl">Pernas</div>
+        </div>
+        <div class="equip-slot equipped">
+          <div class="glyph">刀</div>
+          <div class="lbl">Arma</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inventory List -->
+    <div style="margin-top:48px;">
+      <h3 style="font-family:'Shippori Mincho', serif; color:var(--gold); border-bottom:1px solid var(--line); padding-bottom:8px; margin-bottom:24px;">Bolsa de Equipamentos</h3>
+      <div class="inventory-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:16px;">
+        <div class="card" style="padding:16px;">
+           <h4 style="color:var(--seal-bright); margin-bottom:8px;">Kunai de Combate</h4>
+           <div style="font-size:11px; color:var(--muted); margin-bottom:16px; font-family:'JetBrains Mono', monospace;">+15 Ataque (Tai)<br>+5 Velocidade</div>
+           <button class="btn-ghost" onclick="window.Engine.equipItem({tai: 15, vel: 5}); alert('Kunai Equipada! O motor atualizou seus status.');" style="width:100%; padding:8px; border:1px solid var(--line);">Equipar Arma</button>
+        </div>
+        <div class="card" style="padding:16px;">
+           <h4 style="color:var(--seal-bright); margin-bottom:8px;">Colete Tático ANBU</h4>
+           <div style="font-size:11px; color:var(--muted); margin-bottom:16px; font-family:'JetBrains Mono', monospace;">+40 Defesa<br>+10 Stamina</div>
+           <button class="btn-ghost" onclick="window.Engine.equipItem({def: 40}); alert('Colete Equipado! Sua defesa subiu.');" style="width:100%; padding:8px; border:1px solid var(--line);">Equipar Tronco</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

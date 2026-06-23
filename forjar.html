@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUROKAGE — Forjar Personagem</title>
+<meta name="description" content="Forje seu destino no universo de KUROKAGE.">
+<link rel="stylesheet" href="styles/main.css">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div class="app" style="flex-direction: column;">
+  <!-- TOP NAVIGATION -->
+  <header class="header" style="position: relative; border-bottom: 1px solid var(--line);">
+    <nav class="nav">
+      <div class="brand"><div class="mark"></div>KUROKAGE</div>
+      <ul class="menu">
+        <li><a href="#">VIP</a></li>
+        <li><a href="#">USUÁRIO</a></li>
+        <li class="dropdown">
+          <a href="#" style="color: var(--paper);">PERSONAGEM ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="selecionar.html">Selecionar</a></li>
+            <li><a href="forjar.html">Criar Personagem</a></li>
+          </ul>
+        </li>
+        <li><a href="#">ACADEMIA</a></li>
+        <li><a href="#">SENSEI</a></li>
+        <li><a href="#">TEMPLO</a></li>
+        <li><a href="#">MISSÃO ATUAL</a></li>
+        <li><a href="#">VILA ATUAL</a></li>
+        <li><a href="#">HOSPITAL</a></li>
+        <li><a href="#">COMBATES</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="icon-btn">☀️</button>
+        <button class="icon-btn">🇧🇷</button>
+        <button class="icon-btn logout-btn">⏻</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main" style="max-width:1100px; margin:0 auto; padding:48px 32px 80px; width: 100%;">
+    <div class="stepper">
+      <div class="step done"><div class="circ">✓</div><span class="label">Conta</span></div>
+      <div class="step-line"></div>
+      <div class="step active"><div class="circ">2</div><span class="label">Clã &amp; Nome</span></div>
+      <div class="step-line"></div>
+      <div class="step"><div class="circ">3</div><span class="label">Confirmação</span></div>
+    </div>
+
+    <div class="head">
+      <div class="eyebrow">Forja do personagem</div>
+      <h1 style="font-family:'Shippori Mincho', serif; font-size:34px; font-weight:600; margin-bottom:10px;">Escolha sua linhagem</h1>
+      <p>A linhagem define seus atributos iniciais e as primeiras técnicas disponíveis. Você poderá especializar-se mais conforme sobe de nível.</p>
+    </div>
+
+    <div class="clan-select">
+      <div class="clan-opt">
+        <div class="glyph">刃</div>
+        <h3>Lâmina Negra</h3>
+        <p>Combate corpo a corpo implacável, golpes decisivos.</p>
+        <div class="attr-row">
+          <div class="attr"><div class="lbl">FORÇA</div><div class="track"><div class="fill" style="width:85%"></div></div></div>
+          <div class="attr"><div class="lbl">ASTÚCIA</div><div class="track"><div class="fill" style="width:35%"></div></div></div>
+        </div>
+      </div>
+      <div class="clan-opt selected">
+        <div class="glyph">霧</div>
+        <h3>Névoa Silenciosa</h3>
+        <p>Furtividade e ilusão, vitórias antes do combate começar.</p>
+        <div class="attr-row">
+          <div class="attr"><div class="lbl">FORÇA</div><div class="track"><div class="fill" style="width:30%"></div></div></div>
+          <div class="attr"><div class="lbl">ASTÚCIA</div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+        </div>
+      </div>
+      <div class="clan-opt">
+        <div class="glyph">炎</div>
+        <h3>Chama Eterna</h3>
+        <p>Dano em área e longo alcance, alto risco e retorno.</p>
+        <div class="attr-row">
+          <div class="attr"><div class="lbl">FORÇA</div><div class="track"><div class="fill" style="width:55%"></div></div></div>
+          <div class="attr"><div class="lbl">ASTÚCIA</div><div class="track"><div class="fill" style="width:60%"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="card">
+        <h3 style="font-family:'Shippori Mincho', serif; font-size:17px; margin-bottom:20px;">Identidade</h3>
+        <div class="field">
+          <label>Nome do personagem</label>
+          <input type="text" placeholder="Ex: Renka" value="Renka">
+          <div class="hint">Entre 3 e 16 caracteres, sem espaços.</div>
+        </div>
+        <div class="field">
+          <label>Aparência (placeholder)</label>
+          <input type="text" placeholder="Selecionar avatar — etapa futura" disabled>
+        </div>
+      </div>
+
+      <div class="card preview-card">
+        <div class="avatar">廉</div>
+        <div class="pname">Renka</div>
+        <div class="pclan">Clã da Névoa Silenciosa</div>
+        <div class="preview-stat"><span>Vida inicial</span><span class="v">320</span></div>
+        <div class="preview-stat"><span>Chakra inicial</span><span class="v">260</span></div>
+        <div class="preview-stat"><span>Astúcia</span><span class="v">28</span></div>
+        <div class="preview-stat"><span>Velocidade</span><span class="v">24</span></div>
+        <div class="preview-stat"><span>Defesa</span><span class="v">14</span></div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <span class="btn-ghost">Voltar</span>
+      <button class="btn-primary" onclick="window.location.href='game.html'"><span>Confirmar e jogar</span><div class="stamp"></div></button>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Simple inline script for clan selection demo
+  document.querySelectorAll('.clan-opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.clan-opt').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      // Update preview card based on selection if needed
+    });
+  });
+</script>
+</body>
+</html>

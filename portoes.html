@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUROKAGE — Os 8 Portões de Chakra</title>
+<link rel="stylesheet" href="styles/main.css">
+<script src="js/main.js" defer></script>
+<script src="js/engine.js" defer></script>
+<style>
+  /* Local overrides for the demo */
+  .demo-stats {
+    background: var(--ink-soft); border: 1px solid var(--seal-bright); padding: 16px; margin-bottom: 32px;
+    display: flex; gap: 24px; justify-content: center;
+  }
+  .demo-stats div { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--paper); }
+  .demo-stats span { color: #4ade80; }
+  .demo-stats span.neg { color: var(--seal-bright); }
+  .btn.active { background: var(--seal-bright); color: var(--paper); border-color: var(--seal-bright); }
+</style>
+<script src="js/sidebar.js" defer></script>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="app">
+  
+
+  <main class="main" style="max-width: 1400px; margin: 0 auto; overflow: hidden;">
+    <div class="topbar" style="margin-bottom: 24px; flex-direction: column; gap: 8px;">
+      <div class="eyebrow">Poder Proibido</div>
+      <h1 style="font-family:'Shippori Mincho', serif; font-size:30px; font-weight:600;">Os 8 Portões de Chakra</h1>
+    </div>
+
+    <!-- Demo Status Display -->
+    <div class="demo-stats" id="playerStats">
+      <div>Taijutsu: <span id="s-tai">0</span></div>
+      <div>Ninjutsu: <span id="s-nin">0</span></div>
+      <div>Velocidade: <span id="s-vel">0</span></div>
+      <div>Bônus Tai%: <span id="s-btai">0%</span></div>
+      <div>Dano Fixo: <span id="s-dano">0</span></div>
+      <div>Custo HP: <span id="s-hp" class="neg">0</span></div>
+    </div>
+
+    <div class="gates-container" id="gatesContainer">
+      <!-- Gates injected by JS -->
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // Regra completa dos portões
+  const gatesData = [
+    { id: 1, name: "1º portão - Portão Inicial", icon: "開", tai: 5, nin: 1, vel: 1, b_tai: 2, dano: 0, hp: 0,
+      req: ["Requer graduação: Genin", "Requer Level 5 ou maior", "Você não pode ter Clã", "Você não pode ter o Selo Amaldiçoado", "Você não pode ter Karma", "Você não pode ter o Modo Sennin"] },
+    { id: 2, name: "2º portão - Portão da Energia", icon: "休", tai: 11, nin: 2, vel: 2, b_tai: 4, dano: 0, hp: 0,
+      req: ["Requer graduação: Chuunin", "Requer Level 15 ou maior", "Requer o item: 1º portão", "Você não pode ter Clã", "Você não pode ter o Selo Amaldiçoado", "Você não pode ter Karma", "Você não pode ter o Modo Sennin"] },
+    { id: 3, name: "3º portão - Portão da Vida", icon: "生", tai: 27, nin: 4, vel: 3, b_tai: 4, dano: 0, hp: 0,
+      req: ["Requer graduação: Jounin", "Requer Level 25 ou maior", "Requer o item: 2º portão", "Você não pode ter Clã", "Você não pode ter o Selo Amaldiçoado", "Você não pode ter Karma", "Você não pode ter o Modo Sennin"] },
+    { id: 4, name: "4º portão - Portão do Ferimento", icon: "傷", tai: 33, nin: 5, vel: 5, b_tai: 6, dano: 2, hp: -10,
+      req: ["Requer graduação: Jounin", "Requer Level 25 ou maior", "Requer o item: 3º portão", "Você não pode ter Clã", "Você não pode ter o Selo Amaldiçoado", "Você não pode ter Karma", "Você não pode ter o Modo Sennin"] },
+    { id: 5, name: "5º portão - Portão da Floresta", icon: "杜", tai: 40, nin: 7, vel: 6, b_tai: 8, dano: 4, hp: -20,
+      req: ["Requer graduação: ANBU", "Requer Level 35 ou maior", "Requer o item: 4º portão", "Você não pode ter Clã", "Você não pode ter o Selo Amaldiçoado", "Você não pode ter Karma", "Você não pode ter o Modo Sennin"] },
+    { id: 6, name: "6º portão - Portão da Visão", icon: "景", tai: 48, nin: 10, vel: 6, b_tai: 8, dano: 6, hp: -30,
+      req: ["Requer graduação: ANBU", "Requer Level 35 ou maior", "Requer o item: 5º portão", "Você não pode ter Clã", "Você não pode ter o Selo Amaldiçoado", "Você não pode ter Karma", "Você não pode ter o Modo Sennin"] },
+    { id: 7, name: "7º portão - Portão da Insanidade", icon: "驚", tai: 54, nin: 11, vel: 7, b_tai: 10, dano: 8, hp: -40,
+      req: ["Requer graduação: Sannin da Folha", "Requer Level 45 ou maior", "Requer o item: 6º portão", "Você não pode ter Clã", "Você não pode ter o Selo Amaldiçoado", "Você não pode ter Karma", "Você não pode ter o Modo Sennin"] },
+    { id: 8, name: "8º portão - Portão da Morte", icon: "死", tai: 65, nin: 15, vel: 9, b_tai: 10, dano: 10, hp: -50,
+      req: ["Requer graduação: Sannin da Folha", "Requer Level 45 ou maior", "Requer o item: 7º portão", "Você não pode ter Clã", "Você não pode ter o Selo Amaldiçoado", "Você não pode ter Karma", "Você não pode ter o Modo Sennin"] },
+  ];
+
+  let currentGate = 0; // 0 means no gate active
+
+  function renderGates() {
+    const container = document.getElementById('gatesContainer');
+    container.innerHTML = '';
+
+    gatesData.forEach(gate => {
+      // Build Requerimentos HTML
+      let reqHTML = gate.req.map((r, i) => {
+        let isRed = i >= 3 || r.includes('não pode'); // Just simulating the red text from images for negative requirements
+        if(i < 3) isRed = true; // Actually the first 3 (graduation, level, item) are red in the images when not met. Let's make them red for aesthetic.
+        return `<div class="req-item ${isRed ? 'red' : ''}">${r}</div>`;
+      }).join('');
+
+      let isActive = currentGate === gate.id;
+
+      let html = `
+        <div class="gate-card">
+          <div class="gate-icon" style="${gate.id === 8 ? 'color:#b3232d;' : ''}">${gate.icon}</div>
+          <div class="gate-title">${gate.name}</div>
+          
+          <div class="gate-stats">
+            <div class="gs-item"><span class="gs-icon">👊</span><span class="gs-val">+${gate.tai}</span></div>
+            <div class="gs-item"><span class="gs-icon">📜</span><span class="gs-val">+${gate.nin}</span></div>
+            <div class="gs-item"><span class="gs-icon">🏃</span><span class="gs-val">+${gate.vel}</span></div>
+            <div class="gs-item"><span class="gs-icon">🔥</span><span class="gs-val">+${gate.b_tai}%</span></div>
+            ${gate.dano ? `<div class="gs-item"><span class="gs-icon">💥</span><span class="gs-val">+${gate.dano}</span></div>` : '<div></div>'}
+            ${gate.hp ? `<div class="gs-item"><span class="gs-icon">❤️</span><span class="gs-val neg">${gate.hp}</span></div>` : '<div></div>'}
+          </div>
+
+          <button class="btn-ghost ${isActive ? 'active' : ''}" style="width:100%; border:1px solid var(--line); padding: 12px; margin-top: 8px; ${isActive ? 'background:var(--seal-bright); border-color:var(--seal-bright);' : ''}" onclick="toggleGate(${gate.id})">
+            ${isActive ? 'Desativar' : 'Treinar / Ativar'}
+          </button>
+
+          <div class="gate-req-list">
+            ${reqHTML}
+          </div>
+        </div>
+      `;
+      container.innerHTML += html;
+    });
+  }
+
+  function toggleGate(id) {
+    if (currentGate === id) {
+      currentGate = 0; // Turn off
+    } else {
+      currentGate = id; // Turn on
+    }
+    updateStats();
+    renderGates();
+  }
+
+  function updateStats() {
+    const sTai = document.getElementById('s-tai');
+    const sNin = document.getElementById('s-nin');
+    const sVel = document.getElementById('s-vel');
+    const sBtai = document.getElementById('s-btai');
+    const sDano = document.getElementById('s-dano');
+    const sHp = document.getElementById('s-hp');
+
+    if (currentGate === 0) {
+      sTai.innerText = "0"; sNin.innerText = "0"; sVel.innerText = "0";
+      sBtai.innerText = "0%"; sDano.innerText = "0"; sHp.innerText = "0";
+      if(window.PlayerState) {
+        window.PlayerState.bonusStats = { tai: 0, nin: 0, gen: 0, buk: 0, vel: 0, hp_cost: 0, b_tai: 0, b_nin: 0 };
+      }
+    } else {
+      const gate = gatesData.find(g => g.id === currentGate);
+      sTai.innerText = "+" + gate.tai;
+      sNin.innerText = "+" + gate.nin;
+      sVel.innerText = "+" + gate.vel;
+      sBtai.innerText = "+" + gate.b_tai + "%";
+      sDano.innerText = "+" + gate.dano;
+      sHp.innerText = gate.hp;
+      if(window.PlayerState) {
+         window.PlayerState.bonusStats.tai = gate.tai;
+         window.PlayerState.bonusStats.nin = gate.nin;
+         window.PlayerState.bonusStats.vel = gate.vel;
+         window.PlayerState.bonusStats.b_tai = gate.b_tai;
+         window.PlayerState.bonusStats.hp_cost = gate.hp || 0;
+      }
+    }
+    if(window.Engine) {
+      window.Engine.saveState();
+      window.Engine.updateUI();
+    }
+  }
+
+  // Init
+  renderGates();
+
+</script>
+</body>
+</html>

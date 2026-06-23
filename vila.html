@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUROKAGE — Status da Vila</title>
+<link rel="stylesheet" href="styles/main.css">
+<script src="js/main.js" defer></script>
+<script src="js/sidebar.js" defer></script>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="app">
+  
+
+  <main class="main" style="max-width: 1400px; margin: 0 auto;">
+    <div class="topbar" style="margin-bottom: 32px; flex-direction: column; gap: 8px;">
+      <div class="eyebrow">Progresso & Edifícios</div>
+      <h1 style="font-family:'Shippori Mincho', serif; font-size:30px; font-weight:600;">Vila da Folha</h1>
+    </div>
+
+    <div class="village-banner">
+      <div>
+        <h3 style="font-family:'Shippori Mincho', serif; font-size:19px; color:var(--gold); margin-bottom:12px;">Melhorando sua Vila</h3>
+        <p>Os Kages precisam escolher as melhorias básicas para sua Vila. Para fazer essas melhorias, a Vila vai precisar subir de Level e ganhar pontos requeridos.</p>
+        <ul>
+          <li>Completar um Objetivo da Vila: 500 EXP</li>
+          <li>Vencer um inimigo invasor na sua Vila: 10 EXP</li>
+          <li>Completar um Evento de Vila: 1000 EXP</li>
+          <li>Derrotar um NPC Guardião: 250 EXP</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Liderança -->
+    <div class="village-leaders">
+      <div class="leader-card">
+        <div class="leader-role">Hokage</div>
+        <div class="leader-avatar">獅</div>
+        <div class="leader-name">Leo</div>
+        <div class="leader-lvl">Herói - Lvl. 67</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-role">Conselheiro da Guerra</div>
+        <div class="leader-avatar">剣</div>
+        <div class="leader-name">Fakuart</div>
+        <div class="leader-lvl">Herói - Lvl. 56</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-role">Conselheiro da Defesa</div>
+        <div class="leader-avatar">盾</div>
+        <div class="leader-name">Kotula</div>
+        <div class="leader-lvl">Herói - Lvl. 56</div>
+      </div>
+      <div class="leader-card">
+        <div class="leader-role">Conselheiro de Vila</div>
+        <div class="leader-avatar">智</div>
+        <div class="leader-name">SichirHoshi</div>
+        <div class="leader-lvl">Herói - Lvl. 67</div>
+      </div>
+    </div>
+
+    <!-- Barra de Progresso da Vila -->
+    <div class="village-progress">
+      <div class="vp-top">
+        <div>
+          <div class="vp-label">LEVEL ATUAL</div>
+          <div class="vp-val" id="val-village-lvl">0</div>
+        </div>
+        <div style="text-align: right;">
+          <div class="vp-label">PRÓXIMO LEVEL</div>
+          <div class="vp-val" style="color:var(--gold);" id="val-village-maxlvl">1</div>
+        </div>
+      </div>
+      <div class="vp-track">
+        <div class="vp-fill" id="val-village-xpfill" style="width: 0%;"></div>
+        <div class="vp-txt" id="val-village-xptext">0 Exp de / 1000 Exp</div>
+      </div>
+    </div>
+
+    <!-- Ações Simuladas para Ganho de XP -->
+    <div style="margin-bottom:48px; display:flex; gap:16px; align-items:center;">
+      <h3 style="font-size:13px; color:var(--muted); font-family:'Inter', sans-serif;">Simular Ganho de Exp:</h3>
+      <button class="btn-ghost" onclick="window.Engine.addVillageXP(100)" style="padding:8px 16px;">Doar Recursos (+100 XP)</button>
+      <button class="btn-ghost" onclick="window.Engine.addVillageXP(500)" style="padding:8px 16px;">Missão de Vila (+500 XP)</button>
+    </div>
+
+    <!-- Edifícios (Tooltips) -->
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h3 style="font-family:'Shippori Mincho', serif; font-size:22px; margin-bottom: 8px;">Edifícios da Vila</h3>
+      <p style="color:var(--muted); font-size: 13px;">Passe o mouse sobre as estruturas para ver os bônus ativos.</p>
+    </div>
+
+    <div class="buildings-row">
+      <div class="building-card">
+        <div class="building-icon">🍜</div>
+        <div class="stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <div class="tooltip-panel">
+          <div class="tt-title">Ramen Ichiraku</div>
+          <div class="tt-section">
+            <div class="tt-lbl">Requerimentos</div>
+            <div class="tt-txt">Requer que a Vila suba de Level.</div>
+          </div>
+          <div class="tt-section">
+            <div class="tt-lbl">Bônus</div>
+            <div class="tt-txt">Mais 10% de bônus de Ryou em Missões.</div>
+          </div>
+          <div class="tt-section">
+            <div class="tt-lbl">Melhoria por</div>
+            <div class="tt-txt">[GM] Carlos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="building-card">
+        <div class="building-icon">🏯</div>
+        <div class="stars">
+          <span class="active">★</span><span class="active">★</span><span class="active">★</span><span class="active">★</span><span>★</span>
+        </div>
+        <div class="tooltip-panel">
+          <div class="tt-title">Academia Ninja</div>
+          <div class="tt-section">
+            <div class="tt-lbl">Requerimentos</div>
+            <div class="tt-txt">Requer level 15.</div>
+          </div>
+          <div class="tt-section">
+            <div class="tt-lbl">Bônus</div>
+            <div class="tt-txt">Missões levam menos 3 minutos.</div>
+          </div>
+          <div class="tt-section">
+            <div class="tt-lbl">Melhoria por</div>
+            <div class="tt-txt">Leo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="building-card">
+        <div class="building-icon">⚔️</div>
+        <div class="stars">
+          <span class="active">★</span><span class="active">★</span><span class="active">★</span><span>★</span><span>★</span>
+        </div>
+        <div class="tooltip-panel">
+          <div class="tt-title">Loja de Armas</div>
+          <div class="tt-section">
+            <div class="tt-lbl">Bônus</div>
+            <div class="tt-txt">Desconto de 5% em equipamentos.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="building-card">
+        <div class="building-icon">🏥</div>
+        <div class="stars">
+          <span class="active">★</span><span class="active">★</span><span class="active">★</span><span class="active">★</span><span>★</span>
+        </div>
+        <div class="tooltip-panel">
+          <div class="tt-title">Hospital</div>
+          <div class="tt-section">
+            <div class="tt-lbl">Bônus</div>
+            <div class="tt-txt">Acelera recuperação de Vida em 20%.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

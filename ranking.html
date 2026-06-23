@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUROKAGE — Hall da Fama</title>
+<meta name="description" content="Ranking dos melhores ninjas da Temporada IV de KUROKAGE.">
+<link rel="stylesheet" href="styles/main.css">
+<script src="js/main.js" defer></script>
+<script src="js/sidebar.js" defer></script>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="app">
+  
+
+  <main class="main" style="max-width: 1400px; margin: 0 auto;">
+    <div class="topbar" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <div class="eyebrow">Temporada IV</div>
+        <h1 style="font-family:'Shippori Mincho', serif; font-size:30px; font-weight:600;">Hall da Fama</h1>
+      </div>
+      <div class="filters">
+        <div class="filter active">Geral</div>
+        <div class="filter">Por clã</div>
+        <div class="filter">Semanal</div>
+      </div>
+    </div>
+
+    <div class="podium">
+      <div class="pod-card silver">
+        <div class="pod-rank">2º LUGAR</div>
+        <div class="pod-avatar">蓮</div>
+        <div class="pod-name">Hiroshi</div>
+        <div class="pod-clan">Chama Eterna</div>
+        <div class="pod-xp">48.200 XP</div>
+      </div>
+      <div class="pod-card gold">
+        <div class="pod-rank">GRÃO-MESTRE</div>
+        <div class="pod-avatar">凱</div>
+        <div class="pod-name">Kairos</div>
+        <div class="pod-clan">Lâmina Negra</div>
+        <div class="pod-xp">61.450 XP</div>
+      </div>
+      <div class="pod-card bronze">
+        <div class="pod-rank">3º LUGAR</div>
+        <div class="pod-avatar">柊</div>
+        <div class="pod-name">Suzu</div>
+        <div class="pod-clan">Névoa Silenciosa</div>
+        <div class="pod-xp">44.870 XP</div>
+      </div>
+    </div>
+
+    <div class="list-head">
+      <div>Pos.</div><div>Personagem</div><div>Clã</div><div>Nível</div><div>XP</div>
+    </div>
+
+    <div class="row">
+      <div class="pos">04</div>
+      <div class="who"><div class="mini-avatar">廉</div><div><div class="name">Renka</div><div class="clan">Você</div></div></div>
+      <div class="clan">Névoa Silenciosa</div>
+      <div class="lvl">14</div>
+      <div class="xp">38.940</div>
+    </div>
+    <div class="row">
+      <div class="pos">05</div>
+      <div class="who"><div class="mini-avatar">蛍</div><div><div class="name">Keigo</div></div></div>
+      <div class="clan">Lâmina Negra</div>
+      <div class="lvl">13</div>
+      <div class="xp">36.110</div>
+    </div>
+    <div class="row">
+      <div class="pos">06</div>
+      <div class="who"><div class="mini-avatar">楓</div><div><div class="name">Fuko</div></div></div>
+      <div class="clan">Chama Eterna</div>
+      <div class="lvl">12</div>
+      <div class="xp">31.580</div>
+    </div>
+    <div class="row">
+      <div class="pos">07</div>
+      <div class="who"><div class="mini-avatar">陣</div><div><div class="name">Jin</div></div></div>
+      <div class="clan">Névoa Silenciosa</div>
+      <div class="lvl">11</div>
+      <div class="xp">28.020</div>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Simple inline script for filters toggle
+  document.querySelectorAll('.filter').forEach(f => {
+    f.addEventListener('click', () => {
+      document.querySelectorAll('.filter').forEach(fl => fl.classList.remove('active'));
+      f.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

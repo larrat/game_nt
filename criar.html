@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUROKAGE — Criar Personagem</title>
+<meta name="description" content="Crie seu personagem no universo KUROKAGE e comece sua jornada shinobi.">
+<meta name="keywords" content="criar personagem, kurokage, rpg ninja, naruto game">
+<link rel="stylesheet" href="styles/main.css">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div class="app" style="flex-direction: column;">
+  
+  <!-- TOP NAVIGATION -->
+  <header class="header" style="position: relative; border-bottom: 1px solid var(--line);">
+    <nav class="nav">
+      <div class="brand"><div class="mark"></div>KUROKAGE</div>
+      <ul class="menu">
+        <li><a href="#">VIP</a></li>
+        <li><a href="#">USUÁRIO</a></li>
+        <li class="dropdown">
+          <a href="#" style="color: var(--paper);">PERSONAGEM ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="selecionar.html">Selecionar</a></li>
+            <li><a href="forjar.html">Criar Personagem</a></li>
+          </ul>
+        </li>
+        <li><a href="#">ACADEMIA</a></li>
+        <li><a href="#">SENSEI</a></li>
+        <li><a href="#">TEMPLO</a></li>
+        <li><a href="#">MISSÃO ATUAL</a></li>
+        <li><a href="#">VILA ATUAL</a></li>
+        <li><a href="#">HOSPITAL</a></li>
+        <li><a href="#">COMBATES</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="icon-btn">☀️</button>
+        <button class="icon-btn">🇧🇷</button>
+        <button class="icon-btn logout-btn">⏻</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main" style="max-width: 1200px; margin: 0 auto; width: 100%; padding-top: 60px;">
+    
+    <div class="topbar" style="justify-content: center; text-align: center; margin-bottom: 60px;">
+      <div>
+        <div class="eyebrow" style="justify-content: center;"><div class="dash"></div><span>Forja de Heróis</span><div class="dash"></div></div>
+        <h1 style="letter-spacing: 4px; text-transform: uppercase;">Criar Personagem</h1>
+      </div>
+    </div>
+
+    <div class="showcase-grid">
+      <!-- COLUMN 1: PORTRAIT & ACTIONS -->
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="char-portrait">
+          <!-- Placeholder for Naruto image. -->
+          <img src="https://placehold.co/400x600/1c1c22/b3232d?text=Personagem" id="main-character-img" alt="Naruto Uzumaki" style="width: 100%; height: auto; object-fit: cover; filter: sepia(0.3) contrast(1.1);">
+        </div>
+        <button class="btn-ghost" data-target="#img-modal" style="text-align: center; display: block; width: 100%;">Veja mais imagens</button>
+        <button class="btn-primary" style="width: 100%;" onclick="window.location.href='game.html'"><span>Criar Personagem</span><div class="stamp"></div></button>
+      </div>
+
+      <!-- COLUMN 2: INFO & VILLAGES -->
+      <div class="info-block">
+        <div class="field" style="margin-bottom: 0;">
+          <label style="color: var(--gold);">Nome do Personagem</label>
+          <input type="text" placeholder="Digite seu nome ninja">
+        </div>
+
+        <!-- Village Selector -->
+        <div class="village-selector">
+          <div class="v-icon active" title="Folha">🍃</div>
+          <div class="v-icon" title="Areia">⏳</div>
+          <div class="v-icon" title="Névoa">🌫️</div>
+          <div class="v-icon" title="Pedra">🪨</div>
+          <div class="v-icon" title="Nuvem">☁️</div>
+          <div class="v-icon" title="Som">🎵</div>
+          <div class="v-icon" title="Chuva">🌧️</div>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Personagem Base</span>
+          <span class="info-val">Naruto Uzumaki</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Versão</span>
+          <span class="info-val">Clássico</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Vila Oculta</span>
+          <span class="info-val" style="color: var(--gold);">Folha</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Estatísticas</span>
+          <span class="info-val">112</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">População</span>
+          <span class="info-val">369.552</span>
+        </div>
+      </div>
+
+      <!-- COLUMN 3: ATTRIBUTES & TABS -->
+      <div class="stats-panel">
+        <div class="stat-tabs">
+          <div class="stat-tab active">Taijutsu</div>
+          <div class="stat-tab">Ninjutsu</div>
+          <div class="stat-tab">Genjutsu</div>
+          <div class="stat-tab">Bukijutsu</div>
+        </div>
+
+        <!-- TAIJUTSU TAB -->
+        <div id="tab-taijutsu" class="tab-content active">
+          <div class="stat-bar-group"><div class="stat-icon">🥋</div><div class="stat-name">Taijutsu</div><div class="stat-track"><div class="stat-fill" style="width: 50%;"></div><span class="stat-val">5</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🗡️</div><div class="stat-name">Bukijutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🌀</div><div class="stat-name">Ninjutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">👁️</div><div class="stat-name">Genjutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">📚</div><div class="stat-name">Inteligência</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">💪</div><div class="stat-name">Força</div><div class="stat-track"><div class="stat-fill" style="width: 50%;"></div><span class="stat-val">5</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">📜</div><div class="stat-name">Selo</div><div class="stat-track"><div class="stat-fill" style="width: 30%;"></div><span class="stat-val">3</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🏃</div><div class="stat-name">Agilidade</div><div class="stat-track"><div class="stat-fill" style="width: 30%;"></div><span class="stat-val">3</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🛡️</div><div class="stat-name">Resistência</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">⚡</div><div class="stat-name">Energia</div><div class="stat-track"><div class="stat-fill gold" style="width: 100%;"></div><span class="stat-val">10</span></div></div>
+        </div>
+
+        <!-- NINJUTSU TAB -->
+        <div id="tab-ninjutsu" class="tab-content">
+          <div class="stat-bar-group"><div class="stat-icon">🥋</div><div class="stat-name">Taijutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🗡️</div><div class="stat-name">Bukijutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🌀</div><div class="stat-name">Ninjutsu</div><div class="stat-track"><div class="stat-fill blue" style="width: 80%;"></div><span class="stat-val">8</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">👁️</div><div class="stat-name">Genjutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">📚</div><div class="stat-name">Inteligência</div><div class="stat-track"><div class="stat-fill" style="width: 40%;"></div><span class="stat-val">4</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">💪</div><div class="stat-name">Força</div><div class="stat-track"><div class="stat-fill" style="width: 20%;"></div><span class="stat-val">2</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">📜</div><div class="stat-name">Selo</div><div class="stat-track"><div class="stat-fill" style="width: 60%;"></div><span class="stat-val">6</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🏃</div><div class="stat-name">Agilidade</div><div class="stat-track"><div class="stat-fill" style="width: 20%;"></div><span class="stat-val">2</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🛡️</div><div class="stat-name">Resistência</div><div class="stat-track"><div class="stat-fill" style="width: 20%;"></div><span class="stat-val">2</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">⚡</div><div class="stat-name">Energia</div><div class="stat-track"><div class="stat-fill gold" style="width: 80%;"></div><span class="stat-val">8</span></div></div>
+        </div>
+
+        <!-- GENJUTSU TAB -->
+        <div id="tab-genjutsu" class="tab-content">
+          <div class="stat-bar-group"><div class="stat-icon">🥋</div><div class="stat-name">Taijutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🗡️</div><div class="stat-name">Bukijutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🌀</div><div class="stat-name">Ninjutsu</div><div class="stat-track"><div class="stat-fill" style="width: 20%;"></div><span class="stat-val">2</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">👁️</div><div class="stat-name">Genjutsu</div><div class="stat-track"><div class="stat-fill" style="background:#800080; width: 90%;"></div><span class="stat-val">9</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">📚</div><div class="stat-name">Inteligência</div><div class="stat-track"><div class="stat-fill" style="width: 70%;"></div><span class="stat-val">7</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">💪</div><div class="stat-name">Força</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">📜</div><div class="stat-name">Selo</div><div class="stat-track"><div class="stat-fill" style="width: 50%;"></div><span class="stat-val">5</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🏃</div><div class="stat-name">Agilidade</div><div class="stat-track"><div class="stat-fill" style="width: 20%;"></div><span class="stat-val">2</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🛡️</div><div class="stat-name">Resistência</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">⚡</div><div class="stat-name">Energia</div><div class="stat-track"><div class="stat-fill gold" style="width: 60%;"></div><span class="stat-val">6</span></div></div>
+        </div>
+
+        <!-- BUKIJUTSU TAB -->
+        <div id="tab-bukijutsu" class="tab-content">
+          <div class="stat-bar-group"><div class="stat-icon">🥋</div><div class="stat-name">Taijutsu</div><div class="stat-track"><div class="stat-fill" style="width: 40%;"></div><span class="stat-val">4</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🗡️</div><div class="stat-name">Bukijutsu</div><div class="stat-track"><div class="stat-fill" style="background:#555; width: 80%;"></div><span class="stat-val">8</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🌀</div><div class="stat-name">Ninjutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">👁️</div><div class="stat-name">Genjutsu</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">📚</div><div class="stat-name">Inteligência</div><div class="stat-track"><div class="stat-fill" style="width: 20%;"></div><span class="stat-val">2</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">💪</div><div class="stat-name">Força</div><div class="stat-track"><div class="stat-fill" style="width: 60%;"></div><span class="stat-val">6</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">📜</div><div class="stat-name">Selo</div><div class="stat-track"><div class="stat-fill" style="width: 10%;"></div><span class="stat-val">1</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🏃</div><div class="stat-name">Agilidade</div><div class="stat-track"><div class="stat-fill" style="width: 50%;"></div><span class="stat-val">5</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">🛡️</div><div class="stat-name">Resistência</div><div class="stat-track"><div class="stat-fill" style="width: 30%;"></div><span class="stat-val">3</span></div></div>
+          <div class="stat-bar-group"><div class="stat-icon">⚡</div><div class="stat-name">Energia</div><div class="stat-track"><div class="stat-fill gold" style="width: 70%;"></div><span class="stat-val">7</span></div></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- IMAGE SELECTION MODAL -->
+<div class="modal-overlay" id="img-modal">
+  <div class="modal-content">
+    <button class="modal-close">×</button>
+    <h3 style="font-family: 'Shippori Mincho', serif; color: var(--gold); border-bottom: 1px solid var(--line); padding-bottom: 12px;">Trocar Imagem</h3>
+    
+    <div class="modal-grid">
+      <!-- Placeholders for the alternate images -->
+      <img src="https://placehold.co/400x600/1c1c22/b3232d?text=Avatar" class="modal-img-opt selected">
+      <img src="https://placehold.co/400x600/1c1c22/b3232d?text=Avatar" class="modal-img-opt" style="filter: hue-rotate(90deg);">
+      <img src="https://placehold.co/400x600/1c1c22/b3232d?text=Avatar" class="modal-img-opt" style="filter: hue-rotate(180deg);">
+      <img src="https://placehold.co/400x600/1c1c22/b3232d?text=Avatar" class="modal-img-opt" style="filter: grayscale(1);">
+      <img src="https://placehold.co/400x600/1c1c22/b3232d?text=Avatar" class="modal-img-opt" style="filter: invert(1);">
+      <img src="https://placehold.co/400x600/1c1c22/b3232d?text=Avatar" class="modal-img-opt" style="filter: sepia(1);">
+    </div>
+  </div>
+</div>
+
+  function switchTab(e, tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.stat-tab').forEach(t => t.classList.remove('active'));
+    
+    // Show selected
+    document.getElementById('tab-' + tabName).classList.add('active');
+    e.target.classList.add('active');
+  }
+
+  function selectImage(element) {
+    document.querySelectorAll('.modal-img-opt').forEach(img => img.classList.remove('selected'));
+    element.classList.add('selected');
+    // In a real app, this would update the main image source:
+    // document.getElementById('main-character-img').src = element.src;
+  }
+
+  // Village Selector logic
+  document.querySelectorAll('.v-icon').forEach(icon => {
+    icon.addEventListener('click', (e) => {
+      document.querySelectorAll('.v-icon').forEach(i => i.classList.remove('active'));
+      e.target.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

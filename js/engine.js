@@ -68,6 +68,16 @@ async function loadGameState() {
           level: dbPlayer.level,
           xp: dbPlayer.xp,
           village_id: dbPlayer.village_id,
+          rank: dbPlayer.rank || 'Estudante da Academia',
+          npc_wins: dbPlayer.npc_wins || 0,
+          pvp_wins: dbPlayer.pvp_wins || 0,
+          tasks_completed: dbPlayer.tasks_completed || 0,
+          missions_d: dbPlayer.missions_d || 0,
+          missions_c: dbPlayer.missions_c || 0,
+          missions_b: dbPlayer.missions_b || 0,
+          missions_a: dbPlayer.missions_a || 0,
+          missions_s: dbPlayer.missions_s || 0,
+          bingo_book_kills: dbPlayer.bingo_book_kills || 0,
           classe: dbPlayer.class,
           baseStats: { 
             tai: dbPlayer.tai, nin: dbPlayer.nin, gen: dbPlayer.gen, buk: dbPlayer.buk, stamina_pts: dbPlayer.stamina_pts 
@@ -251,15 +261,10 @@ window.Engine = {
 
     const heroRank = document.getElementById('ui-hero-rank');
     if (heroRank) {
-      let rankTitle = "Estudante da Academia";
-      if (PlayerState.level >= 10) rankTitle = "Genin";
-      if (PlayerState.level >= 25) rankTitle = "Chunin";
-      if (PlayerState.level >= 50) rankTitle = "Jonin";
-      if (PlayerState.level >= 80) rankTitle = "ANBU";
-      if (PlayerState.level >= 100) rankTitle = "Sannin"; // Lenda
+      let rankTitle = PlayerState.rank; // Puxa direto do banco
       
+      // Override apenas se for o Kage
       if (PlayerState.isKage) {
-        // Título especial para o Kage
         const kageTitles = { 1: "Hokage", 2: "Kazekage", 3: "Mizukage", 4: "Tsuchikage", 5: "Raikage", 6: "Otokage", 7: "Amekage" };
         rankTitle = kageTitles[PlayerState.village_id] || "Kage";
       }

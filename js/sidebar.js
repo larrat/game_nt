@@ -18,6 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <div class="navgroup">
+      <div class="label">Academia</div>
+      <a href="tarefas.html" class="navitem ${isActive('tarefas.html')}"><div class="dot"></div>Tarefas Iniciais</a>
+      <a href="graduacoes.html" class="navitem ${isActive('graduacoes.html')}"><div class="dot"></div>Graduações</a>
+    </div>
+
+    <div class="navgroup">
       <div class="label">Mundo</div>
       <a href="objetivos.html" class="navitem ${isActive('objetivos.html')}"><div class="dot"></div>Missões</a>
       <a href="ranking.html" class="navitem ${isActive('ranking.html')}"><div class="dot"></div>Ranking</a>

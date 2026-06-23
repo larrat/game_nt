@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <!-- SEO -->
+  <title>Naruto Game - Jogo Online de Naruto RPG</title>
+  <meta name="keywords" content="naruto online, naruto rpg online, naruto rpg, jogo de naruto, naruto game, game naruto, jogo naruto, naruto jogos online" />
+  <meta name="description" content="Crie seu personagem no jogo Naruto Game e participe online das aventuras RPG de Naruto com seus amigos. O melhor browser game de Naruto." />
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://narutogame.com.br/favicon.ico" type="image/x-icon" />
+
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles/main.css" />
+
+  <!-- Vanilla JS -->
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <nav class="nav" aria-label="Navegação Principal">
+      <div class="logo">
+        <a href="/" aria-label="Ir para a página inicial">
+          <img src="https://narutogame.com.br/assets/images/logo/logo.png" alt="Logo Naruto Game" />
+        </a>
+      </div>
+      
+      <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="?secao=noticias">Notícias</a></li>
+        <li><a href="?secao=halldafama">Hall da Fama</a></li>
+        <li><a href="?secao=fale_conosco">Contato</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="langIcons flag" aria-label="Seletor de Idioma">
+          <a href="#" aria-label="Português"><img src="https://narutogame.com.br/assets/images/social/brazil.svg" alt="Português" style="opacity: 1; height: 24px; cursor:pointer;" /></a>
+          <a href="#" aria-label="English"><img src="https://narutogame.com.br/assets/images/social/usa.svg" alt="English" style="opacity: 0.3; height: 24px; cursor:pointer; margin-left: 8px;" /></a>
+        </div>
+        <button class="login-btn" data-target="#modal-login" data-toggle="modal" aria-label="Fazer Login">
+          LOGIN
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero" aria-label="Destaque Principal">
+      <video autoplay loop muted playsinline>
+        <source src="https://narutogame.com.br/assets/images/home/topos/topo.webm" type="video/webm" />
+      </video>
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-content">
+        <h1>Torne-se uma Lenda</h1>
+        <button class="cta-btn" data-target="#modal-cadastro" data-toggle="modal">Crie sua Conta</button>
+      </div>
+    </section>
+
+    <!-- NEWS SECTION -->
+    <section class="section" id="noticias">
+      <h2 class="section-title">Últimas <span>Notícias</span></h2>
+      <div class="news-grid">
+        <article class="news-card">
+          <a href="?secao=ler_noticia&id=634">
+            <img src="https://narutogame.com.br/assets/images/home/news/634.png" alt="Copa do Mundo 2026" class="news-img" />
+          </a>
+          <div class="news-content">
+            <p class="news-date">06/06/2026</p>
+            <h3 class="news-title"><a href="?secao=ler_noticia&id=634">Copa do Mundo 2026</a></h3>
+          </div>
+        </article>
+        <article class="news-card">
+          <a href="?secao=ler_noticia&id=633">
+            <img src="https://narutogame.com.br/assets/images/home/news/633.png" alt="Novos Temas XII" class="news-img" />
+          </a>
+          <div class="news-content">
+            <p class="news-date">03/05/2026</p>
+            <h3 class="news-title"><a href="?secao=ler_noticia&id=633">Novos Temas XII</a></h3>
+          </div>
+        </article>
+        <article class="news-card">
+          <a href="?secao=ler_noticia&id=632">
+            <img src="https://narutogame.com.br/assets/images/home/news/632.png" alt="Tokens de Personagens" class="news-img" />
+          </a>
+          <div class="news-content">
+            <p class="news-date">22/04/2026</p>
+            <h3 class="news-title"><a href="?secao=ler_noticia&id=632">Tokens de Personagens</a></h3>
+          </div>
+        </article>
+        <article class="news-card">
+          <a href="?secao=ler_noticia&id=631">
+            <img src="https://narutogame.com.br/assets/images/home/news/631.png" alt="Tudo sobre Equipamentos" class="news-img" />
+          </a>
+          <div class="news-content">
+            <p class="news-date">21/04/2026</p>
+            <h3 class="news-title"><a href="?secao=ler_noticia&id=631">Tudo sobre Equipamentos</a></h3>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- INTRO SECTION -->
+    <section class="section">
+      <div class="feature-split">
+        <div class="feature-text">
+          <h2>Bem-vindo ao<br/><span>Naruto Game</span></h2>
+          <p>Aventure-se nessa jornada ninja épica. O NARUTO GAME é um dos mais populares RPGs de browser. Sua missão é desenvolver habilidades, traçar seu próprio caminho ninja e tornar-se o Kage da sua vila.</p>
+          <button class="cta-btn" data-target="#modal-cadastro" data-toggle="modal" style="font-size: 1rem; padding: 0.8rem 2rem;">Começar Agora</button>
+        </div>
+        <div class="feature-img">
+          <img src="https://narutogame.com.br/assets/images/home/destaques/img-1.png" alt="Ninjas em combate" />
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMIZE SECTION -->
+    <section class="section">
+      <div class="feature-split reverse">
+        <div class="feature-text">
+          <h2>Escolha Seu<br/><span>Personagem</span></h2>
+          <p>Você é livre para personalizar seu personagem e criar suas próprias combinações de habilidades, invocações, clãs e elementos.</p>
+          <button class="cta-btn" style="background: transparent; border: 2px solid var(--primary); font-size: 1rem; padding: 0.8rem 2rem;">Ver Todos</button>
+        </div>
+        <div class="feature-img">
+          <img src="https://narutogame.com.br/assets/images/home/destaques/img-2.png" alt="Personagens de Naruto" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="social-links">
+      <a href="https://twitter.com/narutogame" target="_blank" aria-label="Twitter"><img src="https://narutogame.com.br/assets/images/social/twitter.png" alt="Twitter" /></a>
+      <a href="https://www.facebook.com/narutogamebr" target="_blank" aria-label="Facebook"><img src="https://narutogame.com.br/assets/images/social/facebook.png" alt="Facebook" /></a>
+      <a href="https://www.youtube.com/@NarutoGameOficial" target="_blank" aria-label="YouTube"><img src="https://narutogame.com.br/assets/images/social/youtube.png" alt="YouTube" /></a>
+      <a href="https://www.instagram.com/narutogameoficial/" target="_blank" aria-label="Instagram"><img src="https://narutogame.com.br/assets/images/social/instagram.png" alt="Instagram" /></a>
+      <a href="https://discord.gg/GkzxUrkFQX" target="_blank" aria-label="Discord"><img src="https://narutogame.com.br/assets/images/social/discord.png" alt="Discord" /></a>
+    </div>
+    
+    <ul class="footer-menu">
+      <li><a href="?secao=termos_uso">Termos de Uso</a></li>
+      <li><a href="?secao=politica_privacidade">Política de Privacidade</a></li>
+      <li><a href="?secao=regras_punicoes">Regras e Punições</a></li>
+      <li><a href="?secao=aviso_legal">Aviso Legal</a></li>
+    </ul>
+
+    <p class="footer-copy">
+      ©2021 NARUTO GAME - TODOS OS DIREITOS RESERVADOS<br/>
+      Personagens e ilustrações originais © Copyright 2002 por Masashi Kishimoto.
+    </p>
+  </footer>
+
+  <!-- MODAL LOGIN -->
+  <div class="modal-overlay" id="modal-login" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="login-title">
+      <button class="modal-close" aria-label="Fechar modal">&times;</button>
+      <div class="modal-header">
+        <h3 id="login-title">Acessar Conta</h3>
+      </div>
+      <form id="form-login" onsubmit="return false;">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" class="form-control" placeholder="Seu email" required />
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" class="form-control" placeholder="Sua senha" required />
+        </div>
+        <button type="submit" class="login-btn btn-block" style="justify-content: center; margin-top: 1rem;">ACESSAR</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL CADASTRO -->
+  <div class="modal-overlay" id="modal-cadastro" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="cadastro-title">
+      <button class="modal-close" aria-label="Fechar modal">&times;</button>
+      <div class="modal-header">
+        <h3 id="cadastro-title">Criar Conta</h3>
+      </div>
+      <form id="form-cadastro" onsubmit="return false;">
+        <div class="form-group">
+          <label for="cad-email">E-mail</label>
+          <input type="email" id="cad-email" class="form-control" placeholder="E-mail" required />
+        </div>
+        <div class="form-group">
+          <label for="cad-senha">Senha</label>
+          <input type="password" id="cad-senha" class="form-control" placeholder="Senha" required />
+        </div>
+        <button type="submit" class="cta-btn btn-block" style="font-size: 1rem; padding: 0.8rem; margin-top: 1rem;">JOGAR AGORA</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

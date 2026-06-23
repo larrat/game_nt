@@ -31,7 +31,7 @@
 <div class="panel-form">
   <div class="tabs">
     <div class="tab active">Entrar</div>
-    <div class="tab">Criar conta</div>
+    <div class="tab" onclick="window.location.href='criar.html'" style="cursor: pointer;">Criar conta</div>
   </div>
 
   <div class="field">
@@ -73,7 +73,8 @@
     if(error) {
       alert("Erro ao logar: " + error.message);
     } else {
-      window.location.href = 'game.html';
+      alert('Login bem-sucedido!');
+      window.location.href = '/'; // Redireciona para o App React
     }
   }
 </script>

@@ -14,6 +14,8 @@ import Equipamentos from './pages/Equipamentos';
 import Ranking from './pages/Ranking';
 import Vila from './pages/Vila';
 import Hospital from './pages/Hospital';
+import Dojo from './pages/Dojo';
+import Combate from './pages/Combate';
 
 // Novas telas Fullscreen (Lote 1)
 import Login from './pages/Login';
@@ -115,6 +117,8 @@ function App() {
           <Route path="/clas" element={<Clas player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/vila" element={<Vila player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/hospital" element={<Hospital player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/dojo" element={<Dojo player={playerState} />} />
+          <Route path="/combate" element={<Combate player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/ranking" element={<Ranking player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>

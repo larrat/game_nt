@@ -41,6 +41,9 @@ export default function Sidebar({ player }) {
 
       <div className="navgroup">
         <div className="label">Mundo</div>
+        <NavLink to="/dojo" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
+          <div className="dot"></div>Dojo (Combates)
+        </NavLink>
         <NavLink to="/objetivos" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
           <div className="dot"></div>Missões
         </NavLink>

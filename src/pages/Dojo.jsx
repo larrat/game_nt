@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
-import { calculateHP, calculateChakra, calculateAtkFisico, calculateDefesa } from '../utils/engine';
+import { useNavigate } from 'react-router-dom';
+import { calculateHP, calculateChakra, calculateAtkTaiBuk, calculateDefTaiBuk } from '../utils/engine';
 import '../styles/main.css';
 
 const NPCS = [
@@ -14,6 +14,7 @@ const NPCS = [
     chakra: 60,
     atk: 10,
     def: 5,
+    element: null,
     xpReward: 150,
     ryouReward: 50,
     desc: 'Um estudante da academia que sempre falta nas aulas.'
@@ -27,6 +28,7 @@ const NPCS = [
     chakra: 100,
     atk: 25,
     def: 15,
+    element: 'Futon',
     xpReward: 400,
     ryouReward: 120,
     desc: 'Um mercenário de nível baixo roubando segredos da vila.'
@@ -40,6 +42,7 @@ const NPCS = [
     chakra: 300,
     atk: 60,
     def: 40,
+    element: 'Katon',
     xpReward: 1200,
     ryouReward: 450,
     desc: 'Um ninja experiente que abandonou sua lealdade.'
@@ -76,12 +79,13 @@ export default function Dojo({ player }) {
         const mirrorNpc = {
           id: `rival_${rival.id}`,
           name: rival.name,
-          avatar: '👤', // Silhueta de player
+          avatar: rival.avatar || '👤',
           level: rival.level,
           hp: calculateHP(rival),
           chakra: calculateChakra(rival),
-          atk: calculateAtkFisico(rival),
-          def: calculateDefesa(rival),
+          atk: calculateAtkTaiBuk(rival),
+          def: calculateDefTaiBuk(rival),
+          element: rival.element,
           xpReward: npc.xpReward * 2, // Recompensa em dobro
           ryouReward: npc.ryouReward * 2,
           desc: 'ALERTA! Um Ninja Rival interceptou seu treinamento!'

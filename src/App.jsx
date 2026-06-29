@@ -6,6 +6,8 @@ import './styles/main.css';
 // Componentes
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
+import Treino from './pages/Treino';
+import Elementos from './pages/Elementos';
 import Graduacoes from './pages/Graduacoes';
 import Tarefas from './pages/Tarefas';
 import Clas from './pages/Clas';
@@ -14,6 +16,7 @@ import Equipamentos from './pages/Equipamentos';
 import Ranking from './pages/Ranking';
 import Vila from './pages/Vila';
 import Hospital from './pages/Hospital';
+import Mapa from './pages/Mapa';
 import Dojo from './pages/Dojo';
 import Combate from './pages/Combate';
 
@@ -102,14 +105,16 @@ function App() {
     );
   }
 
-  // ESTADO 3: Jogando (Personagem selecionado)
+  // ESTADO 3: Jogo (Personagem selecionado)
   return (
     <Router>
       <div className="grain"></div>
       <MainLayout playerState={playerState}>
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/" element={<Dashboard player={playerState} updatePlayer={updatePlayer} session={session} setPlayerState={setPlayerState} />} />
           <Route path="/dashboard" element={<Dashboard player={playerState} />} />
+          <Route path="/treino" element={<Treino player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/elementos" element={<Elementos player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/tecnicas" element={<Tecnicas player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/equipamentos" element={<Equipamentos player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/graduacoes" element={<Graduacoes player={playerState} updatePlayer={updatePlayer} />} />
@@ -117,6 +122,7 @@ function App() {
           <Route path="/clas" element={<Clas player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/vila" element={<Vila player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/hospital" element={<Hospital player={playerState} updatePlayer={updatePlayer} />} />
+          <Route path="/mapa" element={<Mapa player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/dojo" element={<Dojo player={playerState} />} />
           <Route path="/combate" element={<Combate player={playerState} updatePlayer={updatePlayer} />} />
           <Route path="/ranking" element={<Ranking player={playerState} updatePlayer={updatePlayer} />} />

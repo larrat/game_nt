@@ -825,3 +825,55 @@ body {
   .gates-container { gap: 16px; padding: 16px 0; }
   .gate-card { min-width: 240px; }
 }
+
+/* Modal Avatar Overlay */
+.avatar-overlay { position:fixed; inset:0; background: rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; padding:24px; z-index: 1000; }
+.avatar-modal {
+  background: var(--ink-soft); border:1px solid var(--line); width:100%; max-width:760px;
+  max-height:84vh; display:flex; flex-direction:column;
+}
+.avatar-modal-head {
+  display:flex; justify-content:space-between; align-items:center; padding:20px 28px;
+  border-bottom:1px solid var(--line); flex-shrink:0;
+}
+.avatar-modal-head h3 { font-family:'Shippori Mincho', serif; font-size:17px; font-weight:600; }
+.avatar-modal-head .close {
+  width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+  color:var(--muted); cursor:pointer; font-size:16px; transition:.2s;
+}
+.avatar-modal-head .close:hover { color:var(--seal-bright); }
+
+.avatar-modal-sub {
+  padding:14px 28px 0; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold);
+  letter-spacing:1px; text-transform:uppercase;
+}
+
+.avatar-grid {
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; padding:20px 28px 28px;
+  overflow-y:auto;
+}
+.avatar-opt {
+  background: var(--ink-raised); border:2px solid var(--line); aspect-ratio: 3/4;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+  cursor:pointer; transition:.2s; position:relative;
+}
+.avatar-opt:hover { border-color: var(--seal-bright); transform: translateY(-2px); }
+.avatar-opt.selected { border-color: var(--gold); }
+.avatar-opt.selected::after {
+  content:'✓'; position:absolute; top:8px; right:8px; width:20px; height:20px; border-radius:50%;
+  background:var(--gold); color:var(--ink); font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+.avatar-opt .glyph { font-family:'Shippori Mincho', serif; font-size:36px; color:var(--seal-bright); }
+.avatar-opt .tag { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; }
+
+.avatar-modal-foot {
+  display:flex; justify-content:flex-end; gap:14px; padding:18px 28px; border-top:1px solid var(--line);
+  flex-shrink:0;
+}
+.btn-ghost { font-size:13px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; cursor:pointer; padding:14px 8px; border:none; background:transparent; }
+.btn-ghost:hover { color:var(--paper); }
+
+@media (max-width: 640px){
+  .avatar-grid{ grid-template-columns: repeat(2, 1fr); }
+}

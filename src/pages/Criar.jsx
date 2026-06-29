@@ -12,9 +12,41 @@ const VILLAGES = [
   { id: 7, name: 'Chuva', icon: '🌧️' },
 ];
 
+const AVATARS = [
+  { id: '/images/avatares/sasuke_01_kunai.png', tag: 'Sasuke - Kunai' },
+  { id: '/images/avatares/sasuke_02_selagem.png', tag: 'Sasuke - Selagem' },
+  { id: '/images/avatares/sasuke_03_flauta.png', tag: 'Sasuke - Flauta' },
+  { id: '/images/avatares/sasuke_04_corrida.png', tag: 'Sasuke - Corrida' },
+  { id: '/images/avatares/sasuke_05_costas_katana.png', tag: 'Sasuke - Katana' },
+  { id: '/images/avatares/sasuke_06_kunais.png', tag: 'Sasuke - Kunais' },
+  { id: '/images/avatares/sasuke_07_sharingan.png', tag: 'Sasuke - Sharingan' },
+  { id: '/images/avatares/sasuke_08_chidori.png', tag: 'Sasuke - Chidori' },
+  { id: '/images/avatares/sasuke_09_roupa_preta.png', tag: 'Sasuke - Som' },
+  { id: '/images/avatares/sasuke_10_chidori_preto.png', tag: 'Sasuke - Chidori II' },
+  { id: '/images/avatares/sasuke_11_kunai_boca.png', tag: 'Sasuke - Furtivo' },
+  { id: '/images/avatares/sasuke_12_maldição.png', tag: 'Sasuke - Maldição' },
+  { id: '/images/avatares/sasuke_13_combate.png', tag: 'Sasuke - Combate' },
+  { id: '/images/avatares/sasuke_14_sorrindo.png', tag: 'Sasuke - Sorrindo' },
+  { id: '/images/avatares/sasuke_15_velocidade.png', tag: 'Sasuke - Velocidade' },
+  { id: '/images/avatares/sasuke_16_sharingan_preto.png', tag: 'Sasuke - Sharingan II' },
+  { id: '/images/avatares/sasuke_17_fogo.png', tag: 'Sasuke - Fogo' },
+  { id: '/images/avatares/sasuke_18_jovem.png', tag: 'Sasuke - Jovem' },
+  { id: '/images/avatares/sasuke_19_hebi.png', tag: 'Sasuke - Hebi' },
+  { id: '/images/avatares/sasuke_20_sharingan_adulto.png', tag: 'Sasuke - Adulto' },
+  { id: '/images/avatares/sasuke_21_folhas.png', tag: 'Sasuke - Folhas' },
+  { id: '/images/avatares/sasuke_22_neji_like.png', tag: 'Sasuke - Bandanas' },
+  { id: '/images/avatares/sasuke_23_susanoo.png', tag: 'Sasuke - Susanoo' },
+  { id: '/images/avatares/sasuke_24_eletrico.png', tag: 'Sasuke - Elétrico' },
+  { id: '/images/avatares/sasuke_25_chidori_adulto.png', tag: 'Sasuke - Chidori III' },
+  { id: '/images/avatares/sasuke_26_voo.png', tag: 'Sasuke - Voo' },
+  { id: '/images/avatares/sasuke_27_adulto_full.png', tag: 'Sasuke - Full Art' },
+  { id: '/images/avatares/sasuke_28_espada.png', tag: 'Sasuke - Espada' },
+];
+
 export default function Criar({ session, setPlayerState }) {
   const [name, setName] = useState('');
   const [selectedVillage, setSelectedVillage] = useState(1);
+  const [selectedAvatar, setSelectedAvatar] = useState(AVATARS[0].id);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -25,13 +57,25 @@ export default function Criar({ session, setPlayerState }) {
     const newPlayer = {
       user_id: session.user.id,
       name: name,
+      avatar: selectedAvatar,
       village_id: selectedVillage,
       level: 1,
       xp: 0,
       ryous: 1000, // Dinheiro inicial
       rank: 'Estudante da Academia',
       classe: 'NIN', // Base class
-      tai: 0, nin: 0, gen: 0, buk: 0, vel: 0, def: 0, stamina_pts: 100
+      // Novos 10 Atributos
+      taijutsu: 0,
+      ninjutsu: 0,
+      genjutsu: 0,
+      bukijutsu: 0,
+      forca: 0,
+      agilidade: 0,
+      inteligencia: 0,
+      selo: 0,
+      resistencia: 0,
+      energia: 0,
+      pontos_atributos: 5
     };
 
     const { data, error } = await supabase
@@ -54,8 +98,8 @@ export default function Criar({ session, setPlayerState }) {
   };
 
   return (
-    <div className="login-body" style={{ minHeight: '100vh', display: 'flex', width: '100%', position: 'absolute', top: 0, left: 0, background: 'var(--ink)', flexDirection: 'column' }}>
-      <header className="header" style={{ position: 'relative', borderBottom: '1px solid var(--line)' }}>
+    <div className="login-body" style={{ minHeight: '100vh', display: 'flex', width: '100%', position: 'absolute', top: 0, left: 0, background: 'var(--ink)', flexDirection: 'column', overflowY: 'auto' }}>
+      <header className="header" style={{ position: 'relative', borderBottom: '1px solid var(--line)', flexShrink: 0 }}>
         <nav className="nav">
           <div className="brand"><div className="mark"></div>KUROKAGE</div>
           <div className="nav-right">
@@ -64,7 +108,7 @@ export default function Criar({ session, setPlayerState }) {
         </nav>
       </header>
 
-      <main className="main" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', paddingTop: '60px' }}>
+      <main className="main" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', padding: '60px 24px', flexShrink: 0 }}>
         <div className="topbar" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '60px' }}>
           <div>
             <div className="eyebrow" style={{ justifyContent: 'center' }}><div className="dash"></div><span>Forja de Heróis</span><div className="dash"></div></div>
@@ -72,11 +116,11 @@ export default function Criar({ session, setPlayerState }) {
           </div>
         </div>
 
-        <div className="showcase-grid" style={{ display: 'flex', gap: '48px', justifyContent: 'center' }}>
+        <div className="showcase-grid" style={{ display: 'flex', gap: '48px', justifyContent: 'center', flexWrap: 'wrap' }}>
           {/* COLUMN 1: PORTRAIT */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '400px' }}>
-            <div className="char-portrait">
-              <img src="https://placehold.co/400x600/1c1c22/b3232d?text=Personagem" alt="Base" style={{ width: '100%', height: 'auto', objectFit: 'cover', filter: 'sepia(0.3) contrast(1.1)' }} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '320px' }}>
+            <div className="char-portrait" style={{ height: '400px', overflow: 'hidden' }}>
+              <img src={selectedAvatar} alt="Base" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <button className="btn-primary" style={{ width: '100%' }} onClick={handleCreate} disabled={loading}>
               <span>{loading ? 'Forjando...' : 'Criar Personagem'}</span>
@@ -85,10 +129,31 @@ export default function Criar({ session, setPlayerState }) {
           </div>
 
           {/* COLUMN 2: INFO */}
-          <div className="info-block" style={{ flex: 1, maxWidth: '500px' }}>
+          <div className="info-block" style={{ flex: 1, minWidth: '320px', maxWidth: '500px' }}>
             <div className="field" style={{ marginBottom: '24px' }}>
               <label style={{ color: 'var(--gold)' }}>Nome do Personagem</label>
               <input type="text" placeholder="Digite seu nome ninja" value={name} onChange={e => setName(e.target.value)} />
+            </div>
+
+            <div style={{ marginBottom: '24px' }}>
+              <label style={{ display: 'block', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '1px', color: 'var(--muted)', textTransform: 'uppercase', marginBottom: '12px' }}>
+                Selecione seu Avatar
+              </label>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '6px', maxHeight: '240px', overflowY: 'auto' }}>
+                {AVATARS.map(av => (
+                  <div 
+                    key={av.id}
+                    onClick={() => setSelectedAvatar(av.id)}
+                    style={{ 
+                      aspectRatio: '1/1', background: 'var(--ink-raised)', border: '2px solid',
+                      borderColor: selectedAvatar === av.id ? 'var(--gold)' : 'var(--line)',
+                      cursor: 'pointer', overflow: 'hidden', transition: 'all 0.2s'
+                    }}
+                  >
+                    <img src={av.id} alt={av.tag} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div style={{ marginBottom: '24px' }}>
@@ -123,6 +188,11 @@ export default function Criar({ session, setPlayerState }) {
               <span style={{ color: 'var(--muted)', fontSize: '13px' }}>Ryous Iniciais</span>
               <span style={{ color: 'var(--gold)' }}>1000</span>
             </div>
+            <div className="info-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+              <span style={{ color: 'var(--muted)', fontSize: '13px' }}>Pontos Atributos Extras</span>
+              <span style={{ color: 'var(--seal-bright)' }}>5</span>
+            </div>
+          </div>
           </div>
         </div>
       </main>

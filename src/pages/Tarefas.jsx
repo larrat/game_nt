@@ -51,6 +51,8 @@ export default function Tarefas({ player, updatePlayer }) {
     const newRyous = player.ryous + activeTask.ryous;
     const newTasksCount = player.tasks_completed + 1;
     const newLevel = calculateLevelFromXP(newXp);
+    const levelsGained = newLevel > player.level ? newLevel - player.level : 0;
+    const newPontos = (player.pontos_atributos || 0) + levelsGained;
 
     const { error } = await supabase
       .from('players')
@@ -58,7 +60,8 @@ export default function Tarefas({ player, updatePlayer }) {
         xp: newXp,
         level: newLevel,
         ryous: newRyous,
-        tasks_completed: newTasksCount
+        tasks_completed: newTasksCount,
+        pontos_atributos: newPontos
       })
       .eq('id', player.id);
 

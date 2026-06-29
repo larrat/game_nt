@@ -3,7 +3,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 
-import { calculateLevelFromXP } from '../utils/engine';
+import { 
+  calculateLevelFromXP,
+  calculateHP,
+  calculateChakra,
+  calculateAtkTaiBuk,
+  calculateDefTaiBuk,
+  getElementalMultiplier
+} from '../utils/engine';
 
 export default function Combate({ player, updatePlayer }) {
   const location = useLocation();
@@ -21,10 +28,10 @@ export default function Combate({ player, updatePlayer }) {
   if (!npcInit || !player) return null;
 
   // Calculando os status máximos do Jogador
-  const maxPlayerHP = 100 + (player.level * 20) + ((player.stamina_pts || 0) * 2);
-  const maxPlayerCP = 50 + (player.level * 10) + ((player.stamina_pts || 0) * 1);
-  const playerAtk = Math.floor((player.tai || 0) / 2) + 5;
-  const playerDef = Math.floor((player.def || 0) / 2);
+  const maxPlayerHP = calculateHP(player);
+  const maxPlayerCP = calculateChakra(player);
+  const playerAtk = calculateAtkTaiBuk(player);
+  const playerDef = calculateDefTaiBuk(player);
 
   // Estados da Batalha
   const [playerHP, setPlayerHP] = useState(maxPlayerHP);
@@ -56,10 +63,12 @@ export default function Combate({ player, updatePlayer }) {
     const newXp = player.xp + npcInit.xpReward;
     const newRyous = player.ryous + npcInit.ryouReward;
     const newLevel = calculateLevelFromXP(newXp);
+    const levelsGained = newLevel > player.level ? newLevel - player.level : 0;
+    const newPontos = (player.pontos_atributos || 0) + levelsGained;
 
     await supabase
       .from('players')
-      .update({ xp: newXp, level: newLevel, ryous: newRyous })
+      .update({ xp: newXp, level: newLevel, ryous: newRyous, pontos_atributos: newPontos })
       .eq('id', player.id);
 
     await updatePlayer(player.user_id);
@@ -76,11 +85,18 @@ export default function Combate({ player, updatePlayer }) {
     setTimeout(() => {
       addLog(`${npcInit.name} está atacando...`);
       setTimeout(() => {
-        const damage = Math.max(1, npcInit.atk - playerDef);
+        // Multiplicador do Elemento do NPC vs Player
+        const mult = getElementalMultiplier(npcInit.element, player.element);
+        const baseDamage = Math.max(1, npcInit.atk - playerDef);
+        const damage = Math.floor(baseDamage * mult);
         const newPlayerHP = Math.max(0, playerHP - damage);
         
         setPlayerHP(newPlayerHP);
-        addLog(`${npcInit.name} causou ${damage} de dano!`);
+        let elementalMsg = '';
+        if (mult > 1.0) elementalMsg = ' (Dano Efetivo!)';
+        if (mult < 1.0) elementalMsg = ' (Dano Reduzido)';
+
+        addLog(`${npcInit.name} causou ${damage} de dano!${elementalMsg}`);
 
         if (newPlayerHP <= 0) {
           addLog('Você foi derrotado...');
@@ -96,6 +112,7 @@ export default function Combate({ player, updatePlayer }) {
     if (!isPlayerTurn || battleResult) return;
     setIsPlayerTurn(false);
 
+    // Ataque básico de Taijutsu NÃO tem vantagem elemental
     const damage = Math.max(1, playerAtk - Math.floor(npcInit.def / 2));
     const newNpcHP = Math.max(0, npcHP - damage);
     
@@ -122,13 +139,20 @@ export default function Combate({ player, updatePlayer }) {
     setIsPlayerTurn(false);
     setPlayerCP(prev => prev - cost);
     
-    // Dano mágico básico
-    const magicDmg = Math.floor((player.nin || 0) / 2) + 15;
-    const damage = Math.max(1, magicDmg - Math.floor(npcInit.def / 2));
-    const newNpcHP = Math.max(0, npcHP - damage);
+    // Dano mágico básico com Multiplicador Elemental do Player vs NPC
+    const mult = getElementalMultiplier(player.element, npcInit.element);
+    const magicDmg = Math.floor((player.ninjutsu || player.nin || 0) / 2) + 15;
+    const baseDamage = Math.max(1, magicDmg - Math.floor(npcInit.def / 2));
+    const damage = Math.floor(baseDamage * mult);
 
+    const newNpcHP = Math.max(0, npcHP - damage);
     setNpcHP(newNpcHP);
-    addLog(`Você usou [${jutsu.name}] e causou ${damage} de dano elemental! (Custou ${cost} CP)`);
+
+    let elementalMsg = '';
+    if (mult > 1.0) elementalMsg = ' (Vantagem Elemental! Dano Crítico!)';
+    if (mult < 1.0) elementalMsg = ' (Desvantagem Elemental. Dano Reduzido)';
+
+    addLog(`Você usou [${jutsu.name}] e causou ${damage} de dano elemental!${elementalMsg} (Custou ${cost} CP)`);
 
     if (newNpcHP <= 0) {
       addLog(`Vitória magistral! Você derrotou ${npcInit.name}.`);

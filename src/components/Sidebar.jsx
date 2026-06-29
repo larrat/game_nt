@@ -11,6 +11,12 @@ export default function Sidebar({ player }) {
         <NavLink to="/dashboard" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
           <div className="dot"></div>Ficha
         </NavLink>
+        <NavLink to="/treino" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
+          <div className="dot"></div>Treinamento
+        </NavLink>
+        <NavLink to="/elementos" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
+          <div className="dot"></div>Elementos
+        </NavLink>
         <NavLink to="/tecnicas" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
           <div className="dot"></div>Técnicas
         </NavLink>
@@ -52,6 +58,9 @@ export default function Sidebar({ player }) {
         </NavLink>
         <NavLink to="/vila" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
           <div className="dot"></div>Vila Atual
+        </NavLink>
+        <NavLink to="/mapa" className={({ isActive }) => `navitem ${isActive ? 'active' : ''}`}>
+          <div className="dot"></div>Mapa-múndi
         </NavLink>
       </div>
 

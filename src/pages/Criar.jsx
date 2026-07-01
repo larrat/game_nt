@@ -33,13 +33,11 @@ export default function Criar({ session, setPlayerState }) {
         setSelectedAvatar(chars[0].base_avatar_url);
       }
 
-      const { data: playerData } = await supabase.from('players').select('unlocked_avatars').eq('user_id', session.user.id);
-      if (playerData) {
+      const { data: accData } = await supabase.from('players').select('avatar').eq('user_id', session.user.id);
+      if (accData) {
         const aggregated = new Set();
-        playerData.forEach(p => {
-          if (Array.isArray(p.unlocked_avatars)) {
-            p.unlocked_avatars.forEach(av => aggregated.add(av));
-          }
+        accData.forEach(p => {
+          if (p.avatar) aggregated.add(p.avatar);
         });
         setAccountUnlocked(Array.from(aggregated));
       }
@@ -75,8 +73,7 @@ export default function Criar({ session, setPlayerState }) {
       xp: 0,
       ryous: 1000,
       pontos_atributos: 5,
-      ...baseStats,
-      unlocked_avatars: accountUnlocked
+      ...baseStats
     };
 
     const { data, error } = await supabase

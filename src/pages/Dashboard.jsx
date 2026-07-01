@@ -239,7 +239,7 @@ export default function Dashboard({ player, updatePlayer }) {
         <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: '32px', alignItems: 'center', flex: '1 1 400px' }}>
 
           {/* Moldura da Imagem */}
-          <div style={{ width: '160px', height: '160px', borderRadius: '12px', border: '2px solid var(--gold)', overflow: 'hidden', boxShadow: '0 0 30px rgba(0,0,0,0.6)', background: 'var(--ink)' }}>
+          <div style={{ width: '160px', height: '160px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 0 40px rgba(0,0,0,0.8)', background: 'var(--ink)' }}>
             {player.avatar?.startsWith('/') ? (
               <img src={player.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             ) : (
@@ -261,18 +261,7 @@ export default function Dashboard({ player, updatePlayer }) {
         </div>
 
         {/* 2. Direita: Barras de Status e Level */}
-        <div className="flex-col" style={{ position: 'relative', zIndex: 1, gap: '20px', minWidth: '320px', flex: '1 1 320px', background: 'rgba(10,10,15,0.6)', padding: '24px', borderRadius: '16px', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.05)' }}>
-
-          <div className="flex-between" style={{ alignItems: 'flex-end', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '16px' }}>
-            <div className="flex-col">
-              <span className="muted uppercase mono" style={{ fontSize: '11px', letterSpacing: '2px', marginBottom: '4px' }}>Level</span>
-              <span className="gold mono" style={{ fontSize: '42px', lineHeight: '1' }}>{player.level}</span>
-            </div>
-            <div className="flex-col" style={{ alignItems: 'flex-end' }}>
-              <span className="muted uppercase mono" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '4px' }}>Poder Ninja</span>
-              <span className="paper mono" style={{ fontSize: '20px' }}>{(player.level * 150) + (player.pontos_atributos * 50)}</span>
-            </div>
-          </div>
+        <div className="flex-col" style={{ position: 'relative', zIndex: 1, gap: '20px', minWidth: '320px', flex: '1 1 320px', padding: '24px', borderRadius: '16px' }}>
 
           {/* FICHA TÉCNICA */}
           <div style={{ marginTop: '4px' }}>
@@ -300,6 +289,36 @@ export default function Dashboard({ player, updatePlayer }) {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CALENDÁRIO DE EVENTOS */}
+      <div className="card-glass" style={{ marginBottom: '24px' }}>
+        <div className="flex-between" style={{ marginBottom: '16px', borderBottom: '1px solid var(--line)', paddingBottom: '12px' }}>
+          <h3 className="paper" style={{ fontFamily: 'Shippori Mincho', fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '16px' }}>📅</span> Próximos Eventos
+          </h3>
+          <span className="muted mono" style={{ fontSize: '11px' }}>Cronograma Oficial</span>
+        </div>
+        <div className="grid-4">
+          <div style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)', borderLeft: '3px solid var(--gold)' }}>
+            <div className="gold mono" style={{ fontSize: '10px', marginBottom: '6px' }}>Sexta-feira, 20:00</div>
+            <div className="paper" style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>Torneio Chunin</div>
+            <div className="muted" style={{ fontSize: '11px' }}>PvP Rankeado. Prove seu valor e avance de patente.</div>
+          </div>
+          <div style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)', borderLeft: '3px solid #ef4444' }}>
+            <div className="danger mono" style={{ fontSize: '10px', marginBottom: '6px' }}>Sábado, 14:00</div>
+            <div className="paper" style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>Invasão Akatsuki</div>
+            <div className="muted" style={{ fontSize: '11px' }}>Proteja os portões da vila contra os renegados.</div>
+          </div>
+          <div style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)', borderLeft: '3px solid #3b82f6' }}>
+            <div className="info mono" style={{ fontSize: '10px', marginBottom: '6px' }}>Domingo, 16:00</div>
+            <div className="paper" style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>Boss Global: Besta de Cauda</div>
+            <div className="muted" style={{ fontSize: '11px' }}>Tente sobreviver e colete caixas do colapso.</div>
+          </div>
+          <div style={{ background: 'rgba(0,0,0,0.2)', padding: '16px', borderRadius: '8px', border: '1px dashed var(--line-bright)', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+            <div className="muted" style={{ fontSize: '12px' }}>Mais eventos serão anunciados em breve.</div>
           </div>
         </div>
       </div>

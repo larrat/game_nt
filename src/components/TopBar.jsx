@@ -1,5 +1,5 @@
 import React from 'react';
-import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
+import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP } from '../utils/engine';
 
 export default function TopBar({ player }) {
   if (!player) return null;
@@ -15,6 +15,18 @@ export default function TopBar({ player }) {
   const maxSp = calculateStamina(player);
   const currentSp = player.stamina !== undefined && player.stamina !== null ? Math.min(player.stamina, maxSp) : maxSp;
   const spPercent = Math.max(0, Math.min(100, (currentSp / maxSp) * 100));
+
+  let xpPercent = 0;
+  let currentXp = 0;
+  let requiredXp = 100;
+  if (player.xp !== undefined) {
+    const currentLvl = calculateLevelFromXP(player.xp);
+    const startXp = calculateXPForLevel(currentLvl);
+    const nextLvlXp = calculateXPForLevel(currentLvl + 1);
+    requiredXp = nextLvlXp - startXp;
+    currentXp = player.xp - startXp;
+    xpPercent = Math.min(100, Math.max(0, (currentXp / requiredXp) * 100));
+  }
 
   return (
     <div className="topbar-global" style={{
@@ -47,21 +59,36 @@ export default function TopBar({ player }) {
           )}
         </div>
         <div>
-          <div className="gold mono uppercase" style={{ fontSize: '10px', letterSpacing: '1px' }}>
-            Nível {player.level || 1} • {player.rank || 'Estudante'}
+          <div className="flex-row" style={{ gap: '8px', alignItems: 'baseline', marginBottom: '2px' }}>
+            <div className="gold mono uppercase" style={{ fontSize: '10px', letterSpacing: '1px' }}>
+              Nível {player.level || 1} • {player.rank || 'Estudante'}
+            </div>
+            <div className="muted mono" style={{ fontSize: '9px' }}>
+              ({Math.floor(xpPercent)}%)
+            </div>
           </div>
-          <div className="paper" style={{ fontFamily: 'Shippori Mincho', fontSize: '16px', fontWeight: 'bold' }}>
+          <div className="paper" style={{ fontFamily: 'Shippori Mincho', fontSize: '16px', fontWeight: 'bold', marginBottom: '4px' }}>
             {player.name}
+          </div>
+          <div className="progress-track" style={{ height: '3px', width: '100%', background: 'rgba(0,0,0,0.5)', border: '1px solid var(--line-bright)' }}>
+            <div className="progress-fill green" style={{ width: `${xpPercent}%` }}></div>
           </div>
         </div>
       </div>
 
-        <div className="flex-row" style={{ gap: '24px', alignItems: 'center' }}>
+      <div className="flex-row" style={{ gap: '24px', alignItems: 'center' }}>
         
-        {/* Kuro Coins */}
-        <div className="flex-row" style={{ alignItems: 'center', gap: '8px', background: 'rgba(212,162,42,0.1)', border: '1px solid var(--gold)', borderRadius: '20px', padding: '4px 12px', marginRight: '16px' }}>
-          <span style={{ fontSize: '14px' }}>🪙</span>
-          <span className="gold mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.vip_coins || 0}</span>
+        {/* Ryous & Kuro Coins */}
+        <div className="flex-row" style={{ alignItems: 'center', gap: '12px', background: 'rgba(212,162,42,0.1)', border: '1px solid var(--gold)', borderRadius: '20px', padding: '4px 16px' }}>
+          <div className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>
+            <span style={{ fontSize: '14px' }}>💴</span>
+            <span className="paper mono" style={{ fontSize: '12px' }}>{player.ryous || 0}</span>
+          </div>
+          <div style={{ width: '1px', height: '12px', background: 'var(--gold)', opacity: 0.5 }}></div>
+          <div className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>
+            <span style={{ fontSize: '14px' }}>🪙</span>
+            <span className="gold mono" style={{ fontSize: '12px', fontWeight: 'bold' }}>{player.vip_coins || 0}</span>
+          </div>
         </div>
 
         {/* HP */}
@@ -101,6 +128,11 @@ export default function TopBar({ player }) {
               <img src="/images/imgi_10_stamina.png" alt="SP" style={{ position: 'absolute', right: '-8px', top: '-6px', width: '20px' }} />
             </div>
           </div>
+        </div>
+
+        {/* Mochila / Inventário Rápido */}
+        <div style={{ marginLeft: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '36px', height: '36px', borderRadius: '50%', background: 'var(--ink-raised)', border: '1px solid var(--line-bright)', transition: 'all 0.2s' }} title="Inventário de Consumíveis">
+          <span style={{ fontSize: '16px' }}>🎒</span>
         </div>
 
       </div>

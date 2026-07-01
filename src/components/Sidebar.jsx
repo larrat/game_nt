@@ -74,18 +74,7 @@ export default function Sidebar({ player }) {
     playHoverSound();
   };
 
-  // Cálculos de XP para a barra global
-  let xpPercent = 0;
-  let nextLvlXp = 100;
-  let currentXp = 0;
-  if (player && player.xp !== undefined) {
-    const currentLvl = calculateLevelFromXP(player.xp);
-    const startXp = calculateXPForLevel(currentLvl);
-    nextLvlXp = calculateXPForLevel(currentLvl + 1);
-    const requiredXp = nextLvlXp - startXp;
-    currentXp = player.xp - startXp;
-    xpPercent = Math.min(100, Math.max(0, (currentXp / requiredXp) * 100));
-  }
+  // XP logic moved to TopBar
 
   return (
     <aside className="sidebar">
@@ -135,22 +124,7 @@ export default function Sidebar({ player }) {
 
       <div className="sidebar-footer" style={{ borderTop: '1px solid var(--line)', padding: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
         
-        {player && (
-          <div className="flex-col" style={{ gap: '4px' }}>
-            <div className="flex-between" style={{ fontSize: '12px' }}>
-              <span className="mono gold">Lvl. {player.level || 1}</span>
-              <span className="mono muted" style={{ fontSize: '10px' }}>{Math.floor(xpPercent)}%</span>
-            </div>
-            <div className="progress-track" style={{ height: '4px' }}>
-              <div className="progress-fill green" style={{ width: `${xpPercent}%` }}></div>
-            </div>
-            <div className="mono muted" style={{ fontSize: '10px', textAlign: 'right' }}>
-              {currentXp} / {nextLvlXp - calculateXPForLevel(player.level || 1)} XP
-            </div>
-          </div>
-        )}
-
-        <div className="flex-between" style={{ marginTop: '8px' }}>
+        <div className="flex-between" style={{ marginTop: '0' }}>
           <div className="flex-col">
             <div style={{ color: 'var(--gold)', marginBottom: '4px', fontWeight: 600, fontSize: '12px' }}>S1 · {player?.name || '---'}</div>
             <div style={{ opacity: 0.5, fontSize: '11px' }}>v2.0 Kurokage</div>

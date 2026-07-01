@@ -9,6 +9,16 @@ const VILLAGES = {
 
 export default function TopBar({ player, updatePlayer }) {
   const [isInventoryOpen, setIsInventoryOpen] = useState(false);
+  const [ryousFlash, setRyousFlash] = useState(false);
+  const [prevRyous, setPrevRyous] = useState(player?.ryous || 0);
+
+  React.useEffect(() => {
+    if (player && player.ryous > prevRyous) {
+      setRyousFlash(true);
+      setTimeout(() => setRyousFlash(false), 1000);
+    }
+    setPrevRyous(player?.ryous || 0);
+  }, [player?.ryous]);
 
   if (!player) return null;
 
@@ -87,10 +97,15 @@ export default function TopBar({ player, updatePlayer }) {
       <div className="flex-row" style={{ gap: '24px', alignItems: 'center' }}>
         
         {/* Ryous & Kuro Coins */}
-        <div className="flex-row" style={{ alignItems: 'center', gap: '12px', background: 'rgba(212,162,42,0.1)', border: '1px solid var(--gold)', borderRadius: '20px', padding: '4px 16px' }}>
+        <div className="flex-row" style={{ 
+          alignItems: 'center', gap: '12px', background: 'rgba(212,162,42,0.1)', border: '1px solid var(--gold)', borderRadius: '20px', padding: '4px 16px',
+          boxShadow: ryousFlash ? '0 0 15px var(--gold)' : 'none',
+          transform: ryousFlash ? 'scale(1.05)' : 'scale(1)',
+          transition: 'all 0.3s ease'
+        }}>
           <div className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>
             <span style={{ fontSize: '14px' }}>💴</span>
-            <span className="paper mono" style={{ fontSize: '12px' }}>{player.ryous || 0}</span>
+            <span className="mono" style={{ fontSize: '12px', color: ryousFlash ? '#4ade80' : 'var(--paper)', transition: 'color 0.3s' }}>{player.ryous || 0}</span>
           </div>
           <div style={{ width: '1px', height: '12px', background: 'var(--gold)', opacity: 0.5 }}></div>
           <div className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>

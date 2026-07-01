@@ -284,30 +284,51 @@ export default function Tarefas({ player, updatePlayer }) {
           <tbody>
             {tarefas.filter(t => t.type === activeTab).map((t, idx) => {
               const reqMet = player.level >= t.reqLevel;
-              let isCompleted = false;
-              if (t.type === 'tarefa_academia') isCompleted = (player.tasks_completed || 0) >= 10;
+              
+              let playerCounter = 0;
+              if (t.type === 'tarefa_academia') playerCounter = player.tasks_completed || 0;
+              else if (t.type === 'D') playerCounter = player.missions_d || 0;
+              else if (t.type === 'C') playerCounter = player.missions_c || 0;
+              else if (t.type === 'B') playerCounter = player.missions_b || 0;
+              else if (t.type === 'A') playerCounter = player.missions_a || 0;
+              else if (t.type === 'S') playerCounter = player.missions_s || 0;
+
+              const isCompleted = idx < playerCounter;
+              const isLockedBySequence = idx > playerCounter;
               
               const isRunning = activeMissions.some(m => m.mission_id === t.id);
 
               return (
-                <tr key={t.id} style={{ background: idx % 2 === 0 ? 'transparent' : 'var(--ink-soft)', opacity: isCompleted ? 0.6 : 1 }}>
+                <tr key={t.id} style={{ background: idx % 2 === 0 ? 'transparent' : 'var(--ink-soft)', opacity: (isCompleted || isLockedBySequence) ? 0.6 : 1 }}>
                   <td style={{ padding: '16px', borderBottom: '1px solid var(--line)' }}>
-                    <div className={isCompleted ? 'success' : 'paper'} style={{ fontSize: '14px', fontWeight: 600, marginBottom: '4px' }}>{t.title}</div>
-                    <div className="muted" style={{ fontSize: '12px', lineHeight: 1.4 }}>{t.desc}</div>
-                    <div style={{ marginTop: '8px', fontSize: '11px', color: reqMet ? 'var(--gold)' : 'var(--danger)' }}>Requisito: Level {t.reqLevel}</div>
+                    <div className={isCompleted ? 'success' : (isLockedBySequence ? 'muted' : 'paper')} style={{ fontSize: '14px', fontWeight: 600, marginBottom: '4px' }}>
+                      {isLockedBySequence ? '???' : t.title}
+                    </div>
+                    <div className="muted" style={{ fontSize: '12px', lineHeight: 1.4 }}>
+                      {isLockedBySequence ? 'Conclua a missão anterior para desbloquear.' : t.desc}
+                    </div>
+                    {!isLockedBySequence && (
+                      <div style={{ marginTop: '8px', fontSize: '11px', color: reqMet ? 'var(--gold)' : 'var(--danger)' }}>Requisito: Level {t.reqLevel}</div>
+                    )}
                   </td>
                   <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center' }}>
-                    <span className="muted mono" style={{ fontSize: '12px' }}>{formatTime(t.time)}</span>
+                    {!isLockedBySequence && <span className="muted mono" style={{ fontSize: '12px' }}>{formatTime(t.time)}</span>}
                   </td>
                   <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center', fontSize: '12px' }}>
-                    <div className="success">+{t.xp} XP</div>
-                    <div className="info">+{t.ryous} RY</div>
+                    {!isLockedBySequence && (
+                      <>
+                        <div className="success">+{t.xp} XP</div>
+                        <div className="info">+{t.ryous} RY</div>
+                      </>
+                    )}
                   </td>
                   <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center' }}>
                     {isRunning ? (
                       <span className="badge badge-blue">Em Andamento</span>
                     ) : isCompleted ? (
                       <span className="badge badge-green">✓ Concluída</span>
+                    ) : isLockedBySequence ? (
+                      <span className="badge badge-muted">🔒 Bloqueada</span>
                     ) : reqMet ? (
                       <button className="btn-ghost" onClick={() => startTask(t)} disabled={loading || activeMissions.length >= slots}>Iniciar</button>
                     ) : (

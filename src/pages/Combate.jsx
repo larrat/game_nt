@@ -263,6 +263,7 @@ export default function Combate({ player, updatePlayer }) {
 
     await updatePlayer(player.user_id);
     if (location.state?.isBetrayal) {
+      await supabase.from('players').update({ village_id: 8, clan: null, rank: 'Nukenin' }).eq('id', player.id);
       addToast("Você traiu sua vila e agora faz parte da Akatsuki!", "success");
     } else if (location.state?.isBijuuHunt) {
       addToast("Caçada concluída! Chakra da Bijuu extraído para a Organização!", "success");

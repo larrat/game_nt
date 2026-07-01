@@ -145,20 +145,23 @@ export default function Criar({ session, setPlayerState }) {
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                 {characters.map(char => (
                   <div 
-                    key={char.id}
-                    onClick={() => {
-                      setSelectedCharacter(char.id);
-                      setSelectedAvatar(char.base_avatar_url);
-                    }}
+                    key={char.id} 
+                    className="flex-col" 
+                    style={{ alignItems: 'center', gap: '8px', cursor: 'pointer', width: '72px' }} 
+                    onClick={() => { setSelectedCharacter(char.id); setSelectedAvatar(char.base_avatar_url); }}
                     title={char.name}
-                    style={{
-                      width: '72px', height: '72px', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer',
-                      border: selectedCharacter === char.id ? '2px solid var(--gold)' : '1px solid rgba(255,255,255,0.1)',
+                  >
+                    <div style={{
+                      width: '72px', height: '72px', borderRadius: '8px', overflow: 'hidden',
+                      border: selectedCharacter === char.id ? '2px solid var(--gold)' : '1px solid var(--line)',
                       opacity: selectedCharacter === char.id ? 1 : 0.5,
                       transition: 'all 0.2s ease', background: 'var(--ink)'
-                    }}
-                  >
-                    <img src={char.base_avatar_url} alt={char.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    }}>
+                      <img src={char.base_avatar_url} alt={char.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <span className={selectedCharacter === char.id ? 'gold' : 'muted'} style={{ fontSize: '11px', textAlign: 'center', lineHeight: '1.2' }}>
+                      {char.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -172,16 +175,25 @@ export default function Criar({ session, setPlayerState }) {
                     key={c.id}
                     onClick={() => setSelectedClass(c.id)}
                     style={{ 
-                      padding: '12px', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px',
+                      padding: '12px', borderRadius: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '12px',
                       background: selectedClass === c.id ? 'rgba(234, 179, 8, 0.1)' : 'var(--ink-raised)',
                       border: selectedClass === c.id ? '1px solid var(--gold)' : '1px solid var(--line)',
                       transition: 'all 0.2s ease'
                     }}
                   >
-                    <div style={{ fontSize: '24px' }}>{c.icon}</div>
-                    <div>
-                      <div className="paper" style={{ fontSize: '14px', fontWeight: 'bold' }}>{c.name}</div>
-                      <div className="muted" style={{ fontSize: '11px' }}>{c.desc}</div>
+                    <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
+                      <div style={{ fontSize: '24px' }}>{c.icon}</div>
+                      <div>
+                        <div className="paper" style={{ fontSize: '14px', fontWeight: 'bold' }}>{c.name}</div>
+                        <div className="muted" style={{ fontSize: '11px' }}>{c.desc}</div>
+                      </div>
+                    </div>
+                    <div className="flex-row" style={{ flexWrap: 'wrap', gap: '4px' }}>
+                      {Object.entries(c.stats).filter(([k, v]) => v > 0).map(([k, v]) => (
+                         <span key={k} className="badge badge-muted" style={{ fontSize: '10px', padding: '2px 4px' }}>
+                           <span className="gold">{k.substring(0,3).toUpperCase()}</span>: {v}
+                         </span>
+                      ))}
                     </div>
                   </div>
                 ))}
@@ -191,7 +203,7 @@ export default function Criar({ session, setPlayerState }) {
             <div style={{ marginBottom: '32px' }}>
               <label className="gold mono uppercase" style={{ fontSize: '12px', letterSpacing: '1px', marginBottom: '16px', display: 'block' }}>Vila de Origem</label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: '12px' }}>
-                {VILLAGES_LIST.map(v => (
+                {VILLAGES_LIST.filter(v => v.id !== 8).map(v => (
                   <div 
                     key={v.id}
                     onClick={() => setSelectedVillage(v.id)}
@@ -204,6 +216,7 @@ export default function Criar({ session, setPlayerState }) {
                   >
                     <div style={{ fontSize: '24px' }}>{v.icon}</div>
                     <div className="paper" style={{ fontSize: '12px', textAlign: 'center' }}>{v.name}</div>
+                    <div className="muted mono" style={{ fontSize: '10px' }}>Pop: {villageStats[v.id] || 0}</div>
                   </div>
                 ))}
               </div>

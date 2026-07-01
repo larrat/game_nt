@@ -125,10 +125,12 @@ export default function Combate({ player, updatePlayer }) {
     checkGlobalDebuffs();
   }, [location.state, npcInit]);
 
-  const logsEndRef = useRef(null);
+  const logsContainerRef = useRef(null);
 
   useEffect(() => {
-    logsEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (logsContainerRef.current) {
+      logsContainerRef.current.scrollTop = logsContainerRef.current.scrollHeight;
+    }
   }, [logs]);
 
   useEffect(() => {
@@ -782,13 +784,12 @@ export default function Combate({ player, updatePlayer }) {
           </div>
         </div>
 
-        <div className="card mono" style={{ background: '#121216', height: '250px', overflowY: 'auto', padding: '16px', fontSize: '13px', lineHeight: '1.6' }}>
+        <div className="card mono" ref={logsContainerRef} style={{ background: '#121216', height: '250px', overflowY: 'auto', padding: '16px', fontSize: '13px', lineHeight: '1.6' }}>
           {logs.map((log, idx) => (
             <div key={idx} style={{ marginBottom: '8px', color: log.includes('derrotado') || log.includes('causou') ? (log.includes('Você usou') ? '#4ade80' : '#ef4444') : 'var(--muted)' }}>
               &gt; {log}
             </div>
           ))}
-          <div ref={logsEndRef} />
         </div>
 
         {!battleResult ? (

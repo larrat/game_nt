@@ -67,7 +67,6 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
     await supabase.from('players').update({
       hp: newHp,
       chakra: newCp,
-      stamina: newSp,
       is_fainted: false // Revive se estiver desmaiado e usar um item (opcional, pode ser util para a Pilula de Renascimento)
     }).eq('id', player.id);
 

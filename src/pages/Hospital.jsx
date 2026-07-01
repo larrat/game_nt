@@ -64,8 +64,7 @@ export default function Hospital({ player, updatePlayer }) {
       is_fainted: false, 
       fainted_at: null,
       hp: calculateHP(player),
-      chakra: calculateChakra(player),
-      stamina: calculateStamina(player)
+      chakra: calculateChakra(player)
     };
 
     if (paid) {

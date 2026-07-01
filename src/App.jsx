@@ -84,14 +84,16 @@ function App() {
 
       const equippedItems = invData ? invData.map(i => i.items) : [];
 
-      const { data: jutsuData } = await supabase
-        .from('player_jutsus')
-        .select('*, jutsus(*, jutsu_effects(*, status_effects(*)))')
-        .eq('player_id', dbPlayer.id)
-        .eq('is_equipped', true);
-
-      // Extract the nested jutsu data
-      const activeJutsus = jutsuData ? jutsuData.map(j => j.jutsus) : [];
+      let activeJutsus = [];
+      if (dbPlayer.jutsus_learned && dbPlayer.jutsus_learned.length > 0) {
+        const { data: jutsuData } = await supabase
+          .from('jutsus')
+          .select('*')
+          .in('id', dbPlayer.jutsus_learned)
+          .eq('is_active', true);
+        
+        if (jutsuData) activeJutsus = jutsuData;
+      }
 
       setPlayerState({
         ...dbPlayer,

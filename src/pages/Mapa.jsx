@@ -87,7 +87,6 @@ export default function Mapa({ player, updatePlayer }) {
 
     // 4. Mistura 5 Fantasmas
     if (topPlayers && topPlayers.length > 0) {
-      // Shuffle and slice
       const shuffled = [...topPlayers];
       for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -153,6 +152,8 @@ export default function Mapa({ player, updatePlayer }) {
       addToast('Erro ao viajar: ' + error.message, 'error');
     } else {
       await updatePlayer(player.user_id);
+      addToast(`Chegou na Vila da ${villages[targetId]?.name}!`, 'success');
+      navigate('/vila'); // auto-redirect to vila
     }
 
     setLoadingId(null);
@@ -160,7 +161,6 @@ export default function Mapa({ player, updatePlayer }) {
   };
 
   const handleMove = (newX, newY) => {
-    // Para o mockup, teleporta direto
     setPlayerX(newX);
     setPlayerY(newY);
   };
@@ -174,9 +174,6 @@ export default function Mapa({ player, updatePlayer }) {
         addToast(`Você atingiu o limite de ${maxBeginnerBattles} lutas livres de mapa por dia (Para Iniciantes).`, "error");
         return;
       }
-    } else {
-      // Future logic for level 10+: e.g., require stamina or ticket
-      // We will allow for now, but maybe add a warning later.
     }
     navigate('/combate', { state: { npc: npc, isMirror: false, fromMap: true, isGhost: npc.is_ghost } });
   };
@@ -186,7 +183,7 @@ export default function Mapa({ player, updatePlayer }) {
   return (
     <div className="page" style={{ paddingBottom: '60px' }}>
       <div className="topbar flex-between" style={{ marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
-        <PageHeader eyebrow="Exploração Global" title="Mapa-múndi" />
+        <PageHeader eyebrow="Exploração Global" title="Mapa-múndi" subtitle="Navegue pelas fronteiras, encontre batalhas e viaje para outras vilas." />
         
         <div className="flex-row" style={{ gap: '12px' }}>
           <label className="flex-row" style={{ gap: '8px', cursor: 'pointer', fontSize: '12px' }}>
@@ -201,15 +198,7 @@ export default function Mapa({ player, updatePlayer }) {
       </div>
 
       <div className="card" style={{ marginBottom: '32px' }}>
-        <p className="muted" style={{ fontSize: '14px', marginBottom: '16px', lineHeight: '1.6' }}>
-          O mundo shinobi é vasto e dividido por fronteiras perigosas. Cace alvos do Bingo Book, interaja com NPCs da História ou viaje para outras nações.
-          {player.level <= (Number(gameConfig?.beginner_max_level) || 9) && (
-            <span className="gold" style={{ display: 'block', marginTop: '8px' }}>
-              🔰 Iniciante: Lutas Livres Hoje ({player.daily_map_battles || 0}/{Number(gameConfig?.beginner_daily_battles) || 20})
-            </span>
-          )}
-        </p>
-        <div className="flex-row" style={{ flexWrap: 'wrap' }}>
+        <div className="flex-row" style={{ flexWrap: 'wrap', gap: '16px' }}>
           <div className="card-glass" style={{ flex: 1, minWidth: '200px' }}>
             <div className="muted uppercase" style={{ fontSize: '12px', marginBottom: '8px', letterSpacing: '1px' }}>LOCALIZAÇÃO ATUAL</div>
             <div className="paper" style={{ fontSize: '18px', fontFamily: "'Shippori Mincho', serif" }}>
@@ -226,21 +215,37 @@ export default function Mapa({ player, updatePlayer }) {
       </div>
 
       <div className="grid-sidebar">
-              }}>
-                {npc.avatar}
-              </div>
-              <div className="pin-label" style={{ 
-                color: npc.is_bingo_book ? 'var(--danger)' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? 'var(--gold)' : 'var(--muted)',
-                fontWeight: npc.is_bingo_book || npc.is_ghost ? 'bold' : 'normal'
-              }}>
-                {npc.name}
-              </div>
-            </div>
-          ))}
-        </div>
+        
+        {/* GRID MAP */}
+        <MapGrid 
+          playerX={playerX}
+          playerY={playerY}
+          onMove={handleMove}
+          villages={villages}
+          npcs={visibleNpcs}
+          currentLoc={currentLoc}
+          onEnterVillage={(vId) => {
+            requestTravel(parseInt(vId));
+          }}
+          onAttackNpc={attackNpc}
+        />
 
         {/* Radar Sidebar */}
         <div className="flex-col" style={{ gap: '16px' }}>
+          
+          {confirmTarget && (
+            <div className="card" style={{ border: '2px solid var(--gold)', animation: 'fadeIn 0.3s ease' }}>
+              <h3 className="gold" style={{ marginBottom: '8px' }}>Confirmar Entrada</h3>
+              <p className="paper" style={{ fontSize: '14px', marginBottom: '16px' }}>Você está no portão da Vila da {villages[confirmTarget]?.name}.</p>
+              <div className="flex-col" style={{ gap: '12px' }}>
+                <button className="btn-primary" style={{ width: '100%' }} onClick={handleTravel} disabled={loadingId !== null}>
+                  {loadingId === confirmTarget ? 'Entrando...' : 'Entrar (100 Ryous)'}
+                </button>
+                <button className="btn-ghost" style={{ width: '100%' }} onClick={cancelTravel}>Cancelar</button>
+              </div>
+            </div>
+          )}
+
           <h3 className="section-title gold" style={{ borderBottom: 'none' }}>Radar de Ameaças</h3>
           
           {loadingMap ? (
@@ -248,7 +253,7 @@ export default function Mapa({ player, updatePlayer }) {
           ) : visibleNpcs.length === 0 ? (
              <div className="card-glass muted">O mapa está seguro... por enquanto.</div>
           ) : (
-            <div className="flex-col" style={{ gap: '12px' }}>
+            <div className="flex-col" style={{ gap: '12px', maxHeight: '500px', overflowY: 'auto' }}>
               {visibleNpcs.map(npc => (
                 <div key={npc.id} className="card-glass flex-row" style={{ 
                   justifyContent: 'space-between', 
@@ -259,7 +264,7 @@ export default function Mapa({ player, updatePlayer }) {
                     <div className="flex-col">
                       <div className="paper" style={{ fontWeight: 600 }}>{npc.name}</div>
                       <div className="muted" style={{ fontSize: '11px' }}>
-                        Nv. {npc.level} • {npc.is_bingo_book ? 'ALVO BINGO BOOK' : npc.is_ghost ? 'Fantasma de Jogador' : npc.is_story_mode ? 'Modo História' : 'Ameaça Local'}
+                        Nv. {npc.level} • {npc.is_bingo_book ? 'ALVO BINGO BOOK' : npc.is_ghost ? 'Fantasma' : npc.is_story_mode ? 'Modo História' : 'Ameaça Local'}
                       </div>
                     </div>
                   </div>
@@ -270,25 +275,6 @@ export default function Mapa({ player, updatePlayer }) {
           )}
         </div>
       </div>
-
-      {/* Confirmation Modal */}
-      {confirmTarget && (
-        <div className="modal-overlay">
-          <div className="modal-content card">
-            <h3 className="card-title" style={{ fontSize: '20px', marginBottom: '16px' }}>Confirmar Viagem</h3>
-            <p className="muted" style={{ marginBottom: '24px', lineHeight: '1.5' }}>
-              Deseja viajar para a <strong>Vila da {villages[confirmTarget]?.name}</strong>?<br/>
-              O custo da viagem será de <span className="gold">{TRAVEL_COST} Ryous</span>.
-            </p>
-            <div className="flex-row" style={{ justifyContent: 'flex-end' }}>
-              <button className="btn-ghost" onClick={cancelTravel} disabled={loadingId !== null}>Cancelar</button>
-              <button className="btn-primary" onClick={handleTravel} disabled={loadingId !== null}>
-                {loadingId === confirmTarget ? 'Viajando...' : 'Viajar'}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

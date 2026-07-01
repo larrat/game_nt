@@ -35,8 +35,7 @@ export default function Combate({ player, updatePlayer }) {
     }
   }, [npcInit, player, navigate]);
 
-  if (!npcInit || !player) return null;
-
+  // Early return removido daqui para respeitar as regras dos hooks.
   // Clãs
   const clanBonus = player.clan ? (player.clan_bonus || { name: player.clan, critChance: 0, armorPen: 0, paralyzeChance: 0 }) : { critChance: 0, armorPen: 0, paralyzeChance: 0 };
   if (player.clan === 'Hyuga') clanBonus.armorPen = 0.2;
@@ -53,8 +52,8 @@ export default function Combate({ player, updatePlayer }) {
   const playerPrecision = player.precisao || player.pre || 0;
   const playerArmorPen = (player.tai || 0) / 10;
 
-  const npcMaxHP = npcInit.hp;
-  const npcMaxCP = npcInit.chakra;
+  const npcMaxHP = npcInit?.hp || 1;
+  const npcMaxCP = npcInit?.chakra || 1;
   const npcMaxSt = 100;
 
   // Estados da Batalha
@@ -62,8 +61,8 @@ export default function Combate({ player, updatePlayer }) {
   const [playerCP, setPlayerCP] = useState(maxPlayerCP);
   const [playerSt, setPlayerSt] = useState(maxPlayerSt);
   
-  const [npcHP, setNpcHP] = useState(npcInit.hp);
-  const [npcCP, setNpcCP] = useState(npcInit.chakra);
+  const [npcHP, setNpcHP] = useState(npcInit?.hp || 1);
+  const [npcCP, setNpcCP] = useState(npcInit?.chakra || 1);
   const [npcSt, setNpcSt] = useState(npcMaxSt);
 
   const [playerStatus, setPlayerStatus] = useState([]);
@@ -102,8 +101,8 @@ export default function Combate({ player, updatePlayer }) {
   useEffect(() => { cooldownsRef.current = cooldowns; }, [cooldowns]);
 
   const [logs, setLogs] = useState([
-    location.state?.isWorldBoss ? `🔥 O céu escurece... ${npcInit.name} surgiu! Prepare-se!` :
-    isMirror ? `⚠️ INVASÃO! Você foi emboscado pelo ninja rival ${npcInit.name}!` : `Um combate se inicia contra ${npcInit.name}!`
+    location.state?.isWorldBoss ? `🔥 O céu escurece... ${npcInit?.name} surgiu! Prepare-se!` :
+    isMirror ? `⚠️ INVASÃO! Você foi emboscado pelo ninja rival ${npcInit?.name}!` : `Um combate se inicia contra ${npcInit?.name}!`
   ]);
   const [isPlayerTurn, setIsPlayerTurn] = useState(!isAltAutoBattle);
   const [battleResult, setBattleResult] = useState(null); // 'win', 'lose', 'flee', 'world_boss_end'
@@ -279,15 +278,30 @@ export default function Combate({ player, updatePlayer }) {
     setLoading(true);
     if (accumulatedDamage > 0) {
       const newBossHp = Math.max(0, npcInit.hp - accumulatedDamage);
+      const isDead = newBossHp <= 0;
       await supabase.from('global_events').update({ boss_hp: newBossHp }).eq('id', npcInit.eventId);
       
-      const xpReward = Math.floor(accumulatedDamage / 2);
-      const ryouReward = Math.floor(accumulatedDamage / 5);
-      await supabase.from('players').update({
-        xp: player.xp + xpReward,
-        ryous: player.ryous + ryouReward
-      }).eq('id', player.id);
-      addToast(`Sua contribuição de ${accumulatedDamage} de dano foi registrada! Ganhou ${xpReward} XP.`, 'success');
+      // Rastrear Dano (UPSERT com Soma)
+      const { data: currentDmg } = await supabase.from('world_boss_damage')
+        .select('total_damage').eq('player_id', player.id).eq('event_id', npcInit.eventId).single();
+      
+      const newTotalDamage = (currentDmg?.total_damage || 0) + accumulatedDamage;
+      
+      await supabase.from('world_boss_damage').upsert({
+        player_id: player.id,
+        event_id: npcInit.eventId,
+        total_damage: newTotalDamage,
+        is_last_hit: isDead
+      }, { onConflict: 'player_id,event_id' });
+      
+      if (isDead) {
+        addLog(`O Boss Mundial foi derrotado! Você deu o golpe final! As recompensas estão sendo distribuídas...`);
+        // Chama a RPC de distribuição
+        await supabase.rpc('distribute_boss_rewards', { p_event_id: npcInit.eventId });
+        addToast(`A Raposa de Nove Caudas foi selada! Verifique seu inventário.`, 'success');
+      } else {
+        addToast(`Sua contribuição de ${accumulatedDamage} de dano foi registrada para o evento!`, 'info');
+      }
     }
     await setPlayerFainted();
     navigate('/hospital');

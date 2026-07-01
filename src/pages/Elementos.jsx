@@ -18,8 +18,7 @@ export default function Elementos({ player, updatePlayer }) {
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
 
-  if (!player) return null;
-
+  // early return movido
   useEffect(() => {
     async function fetchElements() {
       const { data } = await supabase.from('elements').select('*');
@@ -62,6 +61,8 @@ export default function Elementos({ player, updatePlayer }) {
     }
     setLoading(false);
   };
+
+  if (!player) return null;
 
   return (
     <div className="page flex-col" style={{ minHeight: '100vh' }}>

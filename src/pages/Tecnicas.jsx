@@ -26,10 +26,9 @@ export default function Tecnicas({ player, updatePlayer }) {
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
 
-  if (!player) return null;
-
+  // Early return moved below hooks
   // Jutsus já aprendidos (salvos como array JSON no campo player.jutsus_learned)
-  const learnedIds = Array.isArray(player.jutsus_learned) ? player.jutsus_learned : [];
+  const learnedIds = Array.isArray(player?.jutsus_learned) ? player.jutsus_learned : [];
 
   useEffect(() => {
     async function fetchJutsus() {
@@ -71,12 +70,13 @@ export default function Tecnicas({ player, updatePlayer }) {
       return;
     }
     // Trava de Maestria (Lote 4)
-    const playerMastery = player[jutsu.category.toLowerCase()] || 0;
+    // Trava de Maestria (Lote 4)
+    const playerMastery = player?.[jutsu.category.toLowerCase()] || 0;
     if (jutsu.reqAttrValue && playerMastery < jutsu.reqAttrValue) {
       addToast(`Maestria insuficiente! Você precisa de ${jutsu.reqAttrValue} em ${jutsu.category}.`, 'error');
       return;
     }
-    if (player.ryous < jutsu.cost) {
+    if (player?.ryous < jutsu.cost) {
       addToast(`Ryous insuficientes! Precisa de RY$ ${jutsu.cost}.`, 'error');
       return;
     }
@@ -141,6 +141,8 @@ export default function Tecnicas({ player, updatePlayer }) {
     }
     setLoading(false);
   };
+
+  if (!player) return null;
 
   return (
     <div className="page">

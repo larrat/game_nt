@@ -94,14 +94,14 @@ export default function Portoes({ player, updatePlayer }) {
   const [activePortao, setActivePortao] = useState(null);
   const [cooldownLeft, setCooldownLeft] = useState(0);
 
-  if (!player) return null;
+  // Early return removido (movido para o final dos hooks)
 
-  const maxHP = calculateHP(player);
-  const baseAtk = calculateAtkTaiBuk(player);
+  const maxHP = calculateHP(player || {});
+  const baseAtk = calculateAtkTaiBuk(player || {});
 
   // Verifica cooldown (usa campo portoes_used_at no player)
   useEffect(() => {
-    if (!player.portoes_used_at) return;
+    if (!player?.portoes_used_at) return;
     const COOLDOWN_MS = 30 * 60 * 1000; // 30 minutos
     const usedAt = new Date(player.portoes_used_at).getTime();
     const interval = setInterval(() => {
@@ -174,6 +174,7 @@ export default function Portoes({ player, updatePlayer }) {
     setActivePortao(null);
   };
 
+  if (!player) return null;
   const currentHP = player.hp !== undefined && player.hp !== null ? player.hp : maxHP;
   const hpPercent = Math.max(0, Math.min(100, (currentHP / maxHP) * 100));
 

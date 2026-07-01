@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { calculateXPForLevel, calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateAtkNinGen, getGlobalDebuffs } from '../utils/engine';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
+import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import AvatarModal from '../components/AvatarModal';
 import '../styles/main.css';
 
@@ -144,6 +145,58 @@ export default function Dashboard({ player, updatePlayer }) {
       addToast(`Baú Aberto! Você encontrou 🪙 ${rewardCoins} Kuro Coins!`, "success");
       updatePlayer(player.user_id);
     }
+    setClaiming(false);
+  };
+
+  // Abrir Baús do World Boss (Loteria Justa)
+  const handleOpenBossChest = async () => {
+    if (!player || !player.pending_boss_boxes || player.pending_boss_boxes <= 0) return;
+    setClaiming(true);
+
+    const boxesToOpen = player.pending_boss_boxes;
+    const customRates = { common_chance: 60, rare_chance: 25, epic_chance: 10, legendary_chance: 4, unique_chance: 1 };
+    
+    const { data: baseItems } = await supabase.from('items').select('*');
+    if (!baseItems || baseItems.length === 0) {
+      addToast('Erro: Nenhum item base cadastrado no sistema.', 'error');
+      setClaiming(false);
+      return;
+    }
+
+    let openedItems = [];
+    let gotUnique = false;
+    
+    for (let i = 0; i < boxesToOpen; i++) {
+      const randomBaseItem = baseItems[Math.floor(Math.random() * baseItems.length)];
+      const rarity = await rollRarity(player.rank || 'Genin', customRates);
+      const rolledStats = await generateLootStats(rarity, player.rank || 'Genin', '');
+      
+      if (rarity === 'Único') gotUnique = true;
+
+      openedItems.push({
+        player_id: player.id,
+        item_id: randomBaseItem.id,
+        is_equipped: false,
+        is_favorite: false,
+        rarity: rarity,
+        rolled_stats: rolledStats
+      });
+    }
+
+    const { error: insertError } = await supabase.from('player_inventory').insert(openedItems);
+    
+    if (!insertError) {
+      await supabase.from('players').update({ pending_boss_boxes: 0 }).eq('id', player.id);
+      if (gotUnique) {
+        addToast(`🔥 IMPRESSIONANTE! Você abriu ${boxesToOpen} baús e conseguiu um Equipamento ÚNICO!`, 'success');
+      } else {
+        addToast(`🎉 Você abriu ${boxesToOpen} Baús do Colapso! Os itens foram enviados para o seu inventário.`, 'success');
+      }
+      updatePlayer(player.user_id);
+    } else {
+      addToast('Erro ao abrir baús: ' + insertError.message, 'error');
+    }
+    
     setClaiming(false);
   };
 
@@ -365,6 +418,24 @@ export default function Dashboard({ player, updatePlayer }) {
           </div>
         </div>
       </div>
+
+      {player.pending_boss_boxes > 0 && (
+        <div className="card-glass" style={{ marginBottom: '24px', border: '1px solid var(--seal-bright)', background: 'rgba(255,107,107,0.05)' }}>
+          <div className="flex-between" style={{ flexWrap: 'wrap', gap: '16px' }}>
+            <div>
+              <h3 className="gold" style={{ fontSize: '18px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                🦊 Recompensa do Evento!
+              </h3>
+              <p className="muted" style={{ fontSize: '12px' }}>
+                Você tem <strong className="danger">{player.pending_boss_boxes} Baús do Colapso</strong> prontos para serem abertos. Podem conter itens Comuns, Raros, Épicos, Lendários e até mesmo os míticos itens <strong>Únicos</strong>!
+              </p>
+            </div>
+            <button className="btn-primary" onClick={handleOpenBossChest} disabled={claiming} style={{ minWidth: '150px' }}>
+              {claiming ? 'Abrindo...' : 'Abrir Baús agora!'}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── PAINEL DE OBJETIVOS DIÁRIOS ── */}
       <div className="grid-2" style={{ marginTop: '24px' }}>

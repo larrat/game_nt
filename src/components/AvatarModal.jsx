@@ -1,41 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
-
-const AVATARS = [
-  { id: '/images/avatares/sasuke_01_kunai.png', tag: 'Kunai' },
-  { id: '/images/avatares/sasuke_02_selagem.png', tag: 'Selagem' },
-  { id: '/images/avatares/sasuke_03_flauta.png', tag: 'Flauta' },
-  { id: '/images/avatares/sasuke_04_corrida.png', tag: 'Corrida' },
-  { id: '/images/avatares/sasuke_05_costas_katana.png', tag: 'Katana' },
-  { id: '/images/avatares/sasuke_06_kunais.png', tag: 'Kunais' },
-  { id: '/images/avatares/sasuke_07_sharingan.png', tag: 'Sharingan' },
-  { id: '/images/avatares/sasuke_08_chidori.png', tag: 'Chidori' },
-  { id: '/images/avatares/sasuke_09_roupa_preta.png', tag: 'Som' },
-  { id: '/images/avatares/sasuke_10_chidori_preto.png', tag: 'Chidori II' },
-  { id: '/images/avatares/sasuke_11_kunai_boca.png', tag: 'Furtivo' },
-  { id: '/images/avatares/sasuke_12_maldição.png', tag: 'Maldição' },
-  { id: '/images/avatares/sasuke_13_combate.png', tag: 'Combate' },
-  { id: '/images/avatares/sasuke_14_sorrindo.png', tag: 'Sorrindo' },
-  { id: '/images/avatares/sasuke_15_velocidade.png', tag: 'Velocidade' },
-  { id: '/images/avatares/sasuke_16_sharingan_preto.png', tag: 'Sharingan II' },
-  { id: '/images/avatares/sasuke_17_fogo.png', tag: 'Fogo' },
-  { id: '/images/avatares/sasuke_18_jovem.png', tag: 'Jovem' },
-  { id: '/images/avatares/sasuke_19_hebi.png', tag: 'Hebi' },
-  { id: '/images/avatares/sasuke_20_sharingan_adulto.png', tag: 'Adulto' },
-  { id: '/images/avatares/sasuke_21_folhas.png', tag: 'Folhas' },
-  { id: '/images/avatares/sasuke_22_neji_like.png', tag: 'Bandanas' },
-  { id: '/images/avatares/sasuke_23_susanoo.png', tag: 'Susanoo' },
-  { id: '/images/avatares/sasuke_24_eletrico.png', tag: 'Elétrico' },
-  { id: '/images/avatares/sasuke_25_chidori_adulto.png', tag: 'Chidori III' },
-  { id: '/images/avatares/sasuke_26_voo.png', tag: 'Voo' },
-  { id: '/images/avatares/sasuke_27_adulto_full.png', tag: 'Full Art' },
-  { id: '/images/avatares/sasuke_28_espada.png', tag: 'Espada' },
-];
 
 export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
   const [selectedAvatar, setSelectedAvatar] = useState(player?.avatar || '/images/avatares/sasuke_01_kunai.png');
   const [loading, setLoading] = useState(false);
+  const [allAvatars, setAllAvatars] = useState([]);
+
+  useEffect(() => {
+    async function fetchAvatars() {
+      if (!player.character_id) return;
+      const { data } = await supabase
+        .from('avatars')
+        .select('*')
+        .eq('character_id', player.character_id)
+        .order('id');
+      if (data) setAllAvatars(data);
+    }
+    if (isOpen) fetchAvatars();
+  }, [isOpen]);
 
   if (!isOpen || !player) return null;
 
@@ -53,10 +36,17 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
 
     if (!error) {
       await updatePlayer(player.user_id);
+      onClose();
+    } else {
+      alert("Erro ao salvar: " + error.message);
     }
     setLoading(false);
-    onClose();
   };
+
+  const unlocked = Array.isArray(player.unlocked_avatars) ? player.unlocked_avatars : [];
+
+  // is_base is true means it's the base skin for THIS character, so it's always available
+  const availableAvatars = allAvatars.filter(av => av.is_base || unlocked.includes(av.id));
 
   return (
     <div className="avatar-overlay" onClick={onClose}>
@@ -68,14 +58,14 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
         <div className="avatar-modal-sub">Clã: {player.clan_id ? 'Vincular Nome do Clã' : 'Sem clã'}</div>
 
         <div className="avatar-grid">
-          {AVATARS.map((av) => (
+          {availableAvatars.map((av) => (
             <div 
               key={av.id} 
               className={`avatar-opt ${selectedAvatar === av.id ? 'selected' : ''}`}
               onClick={() => setSelectedAvatar(av.id)}
             >
-              <img src={av.id} alt={av.tag} style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
-              <div className="tag">{av.tag}</div>
+              <img src={av.id} alt={av.name} style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
+              <div className="tag" style={{ fontSize: '10px' }}>{av.name}</div>
             </div>
           ))}
         </div>

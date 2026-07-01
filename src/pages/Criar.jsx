@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,43 +12,54 @@ const VILLAGES = [
   { id: 7, name: 'Chuva', icon: '🌧️' },
 ];
 
-const AVATARS = [
-  { id: '/images/avatares/sasuke_01_kunai.png', tag: 'Sasuke - Kunai' },
-  { id: '/images/avatares/sasuke_02_selagem.png', tag: 'Sasuke - Selagem' },
-  { id: '/images/avatares/sasuke_03_flauta.png', tag: 'Sasuke - Flauta' },
-  { id: '/images/avatares/sasuke_04_corrida.png', tag: 'Sasuke - Corrida' },
-  { id: '/images/avatares/sasuke_05_costas_katana.png', tag: 'Sasuke - Katana' },
-  { id: '/images/avatares/sasuke_06_kunais.png', tag: 'Sasuke - Kunais' },
-  { id: '/images/avatares/sasuke_07_sharingan.png', tag: 'Sasuke - Sharingan' },
-  { id: '/images/avatares/sasuke_08_chidori.png', tag: 'Sasuke - Chidori' },
-  { id: '/images/avatares/sasuke_09_roupa_preta.png', tag: 'Sasuke - Som' },
-  { id: '/images/avatares/sasuke_10_chidori_preto.png', tag: 'Sasuke - Chidori II' },
-  { id: '/images/avatares/sasuke_11_kunai_boca.png', tag: 'Sasuke - Furtivo' },
-  { id: '/images/avatares/sasuke_12_maldição.png', tag: 'Sasuke - Maldição' },
-  { id: '/images/avatares/sasuke_13_combate.png', tag: 'Sasuke - Combate' },
-  { id: '/images/avatares/sasuke_14_sorrindo.png', tag: 'Sasuke - Sorrindo' },
-  { id: '/images/avatares/sasuke_15_velocidade.png', tag: 'Sasuke - Velocidade' },
-  { id: '/images/avatares/sasuke_16_sharingan_preto.png', tag: 'Sasuke - Sharingan II' },
-  { id: '/images/avatares/sasuke_17_fogo.png', tag: 'Sasuke - Fogo' },
-  { id: '/images/avatares/sasuke_18_jovem.png', tag: 'Sasuke - Jovem' },
-  { id: '/images/avatares/sasuke_19_hebi.png', tag: 'Sasuke - Hebi' },
-  { id: '/images/avatares/sasuke_20_sharingan_adulto.png', tag: 'Sasuke - Adulto' },
-  { id: '/images/avatares/sasuke_21_folhas.png', tag: 'Sasuke - Folhas' },
-  { id: '/images/avatares/sasuke_22_neji_like.png', tag: 'Sasuke - Bandanas' },
-  { id: '/images/avatares/sasuke_23_susanoo.png', tag: 'Sasuke - Susanoo' },
-  { id: '/images/avatares/sasuke_24_eletrico.png', tag: 'Sasuke - Elétrico' },
-  { id: '/images/avatares/sasuke_25_chidori_adulto.png', tag: 'Sasuke - Chidori III' },
-  { id: '/images/avatares/sasuke_26_voo.png', tag: 'Sasuke - Voo' },
-  { id: '/images/avatares/sasuke_27_adulto_full.png', tag: 'Sasuke - Full Art' },
-  { id: '/images/avatares/sasuke_28_espada.png', tag: 'Sasuke - Espada' },
-];
-
 export default function Criar({ session, setPlayerState }) {
   const [name, setName] = useState('');
   const [selectedVillage, setSelectedVillage] = useState(1);
-  const [selectedAvatar, setSelectedAvatar] = useState(AVATARS[0].id);
+  const [selectedAvatar, setSelectedAvatar] = useState('');
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [accountUnlocked, setAccountUnlocked] = useState([]);
+  const [characters, setCharacters] = useState([]);
+  const [charStats, setCharStats] = useState({});
+  const [villageStats, setVillageStats] = useState({});
   const navigate = useNavigate();
+
+  // Busca todos os personagens disponíveis no banco
+  useEffect(() => {
+    async function loadData() {
+      const { data: chars } = await supabase.from('characters').select('*').order('id');
+      if (chars && chars.length > 0) {
+        setCharacters(chars);
+        setSelectedCharacter(chars[0].id);
+        setSelectedAvatar(chars[0].base_avatar_url);
+      }
+
+      // Procura históricos na conta
+      const { data: playerData } = await supabase.from('players').select('unlocked_avatars').eq('user_id', session.user.id);
+      if (playerData) {
+        const aggregated = new Set();
+        playerData.forEach(p => {
+          if (Array.isArray(p.unlocked_avatars)) {
+            p.unlocked_avatars.forEach(av => aggregated.add(av));
+          }
+        });
+        setAccountUnlocked(Array.from(aggregated));
+      }
+      // Busca estatísticas globais
+      const { data: statsData } = await supabase.from('players').select('character_id, village_id');
+      if (statsData) {
+        const cStats = {};
+        const vStats = {};
+        statsData.forEach(p => {
+          if (p.character_id) cStats[p.character_id] = (cStats[p.character_id] || 0) + 1;
+          if (p.village_id) vStats[p.village_id] = (vStats[p.village_id] || 0) + 1;
+        });
+        setCharStats(cStats);
+        setVillageStats(vStats);
+      }
+    }
+    loadData();
+  }, [session.user.id]);
 
   const handleCreate = async () => {
     if (!name) return alert('Digite um nome para o personagem!');
@@ -56,26 +67,25 @@ export default function Criar({ session, setPlayerState }) {
 
     const newPlayer = {
       user_id: session.user.id,
-      name: name,
-      avatar: selectedAvatar,
+      name: name.trim(),
       village_id: selectedVillage,
+      character_id: selectedCharacter,
+      avatar: selectedAvatar,
       level: 1,
       xp: 0,
-      ryous: 1000, // Dinheiro inicial
-      rank: 'Estudante da Academia',
-      classe: 'NIN', // Base class
-      // Novos 10 Atributos
+      ryous: 1000,
+      pontos_atributos: 5,
       taijutsu: 0,
+      bukijutsu: 0,
       ninjutsu: 0,
       genjutsu: 0,
-      bukijutsu: 0,
       forca: 0,
       agilidade: 0,
       inteligencia: 0,
       selo: 0,
       resistencia: 0,
       energia: 0,
-      pontos_atributos: 5
+      unlocked_avatars: accountUnlocked
     };
 
     const { data, error } = await supabase
@@ -89,7 +99,6 @@ export default function Criar({ session, setPlayerState }) {
       setLoading(false);
     } else {
       alert("Personagem criado com sucesso!");
-      // Automatically select the new character
       setPlayerState({
         ...data,
         activeJutsus: []
@@ -98,101 +107,137 @@ export default function Criar({ session, setPlayerState }) {
   };
 
   return (
-    <div className="login-body" style={{ minHeight: '100vh', display: 'flex', width: '100%', position: 'absolute', top: 0, left: 0, background: 'var(--ink)', flexDirection: 'column', overflowY: 'auto' }}>
-      <header className="header" style={{ position: 'relative', borderBottom: '1px solid var(--line)', flexShrink: 0 }}>
-        <nav className="nav">
-          <div className="brand"><div className="mark"></div>KUROKAGE</div>
+    <div className="page" style={{ 
+      backgroundImage: `url(/images/bg_login.jpg)`, // Fundo imersivo
+      backgroundSize: 'cover', 
+      backgroundPosition: 'center', 
+      minHeight: '100vh', 
+      padding: 0,
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
+      {/* OVERLAY ESCURO PARA IMERSÃO */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to right, rgba(10,10,15,0.95) 30%, rgba(10,10,15,0.7) 100%)', pointerEvents: 'none' }} />
+
+      <header style={{ position: 'relative', zIndex: 10, padding: '24px 48px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+        <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="nav-left gold mono" style={{ fontSize: '20px', letterSpacing: '2px', textTransform: 'uppercase' }}>Kurokage</div>
           <div className="nav-right">
-            <button className="icon-btn" onClick={() => navigate('/selecionar')}>Voltar</button>
+            <button className="btn-ghost" onClick={() => navigate('/selecionar')}>Voltar para Seleção</button>
           </div>
         </nav>
       </header>
 
-      <main className="main" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', padding: '60px 24px', flexShrink: 0 }}>
-        <div className="topbar" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '60px' }}>
-          <div>
-            <div className="eyebrow" style={{ justifyContent: 'center' }}><div className="dash"></div><span>Forja de Heróis</span><div className="dash"></div></div>
-            <h1 style={{ letterSpacing: '4px', textTransform: 'uppercase' }}>Criar Personagem</h1>
+      <main style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexWrap: 'wrap', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+        
+        {/* LADO ESQUERDO: SHOWCASE DO PERSONAGEM */}
+        <div style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '48px' }}>
+          <div style={{ position: 'relative', width: '100%', maxWidth: '450px', height: '600px' }}>
+            {/* Efeito de brilho atrás do personagem */}
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(234, 179, 8, 0.2) 0%, rgba(0,0,0,0) 70%)', pointerEvents: 'none' }}></div>
+            
+            <img src={selectedAvatar} alt="Herói" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 20px rgba(0,0,0,0.8))', transition: 'all 0.3s ease' }} />
           </div>
         </div>
 
-        <div className="showcase-grid" style={{ display: 'flex', gap: '48px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          {/* COLUMN 1: PORTRAIT */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '320px' }}>
-            <div className="char-portrait" style={{ height: '400px', overflow: 'hidden' }}>
-              <img src={selectedAvatar} alt="Base" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
-            <button className="btn-primary" style={{ width: '100%' }} onClick={handleCreate} disabled={loading}>
-              <span>{loading ? 'Forjando...' : 'Criar Personagem'}</span>
-              <div className="stamp"></div>
-            </button>
+        {/* LADO DIREITO: PAINEL DE CRIAÇÃO */}
+        <div style={{ flex: '1 1 600px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px' }}>
+          
+          <div style={{ marginBottom: '40px' }}>
+            <h1 className="paper" style={{ fontSize: '48px', margin: '0 0 16px 0', textTransform: 'uppercase', letterSpacing: '2px' }}>Forja de Heróis</h1>
+            <p className="muted" style={{ fontSize: '16px', lineHeight: '1.6', maxWidth: '500px' }}>
+              Seu caminho ninja começa aqui. Escolha o herói que deseja encarnar e a vila que irá defender.
+            </p>
           </div>
 
-          {/* COLUMN 2: INFO */}
-          <div className="info-block" style={{ flex: 1, minWidth: '320px', maxWidth: '500px' }}>
-            <div className="field" style={{ marginBottom: '24px' }}>
-              <label style={{ color: 'var(--gold)' }}>Nome do Personagem</label>
-              <input type="text" placeholder="Digite seu nome ninja" value={name} onChange={e => setName(e.target.value)} />
-            </div>
-
-            <div style={{ marginBottom: '24px' }}>
-              <label style={{ display: 'block', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '1px', color: 'var(--muted)', textTransform: 'uppercase', marginBottom: '12px' }}>
-                Selecione seu Avatar
-              </label>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '6px', maxHeight: '240px', overflowY: 'auto' }}>
-                {AVATARS.map(av => (
+          <div style={{ background: 'rgba(15,15,20,0.8)', padding: '32px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}>
+            
+            {/* SELEÇÃO DE PERSONAGEM */}
+            <div style={{ marginBottom: '32px' }}>
+              <label className="gold mono uppercase" style={{ fontSize: '12px', letterSpacing: '1px', marginBottom: '16px', display: 'block' }}>Selecione o Herói</label>
+              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                {characters.map(char => (
                   <div 
-                    key={av.id}
-                    onClick={() => setSelectedAvatar(av.id)}
-                    style={{ 
-                      aspectRatio: '1/1', background: 'var(--ink-raised)', border: '2px solid',
-                      borderColor: selectedAvatar === av.id ? 'var(--gold)' : 'var(--line)',
-                      cursor: 'pointer', overflow: 'hidden', transition: 'all 0.2s'
+                    key={char.id}
+                    onClick={() => {
+                      setSelectedCharacter(char.id);
+                      setSelectedAvatar(char.base_avatar_url);
+                    }}
+                    title={char.name}
+                    style={{
+                      width: '72px', height: '72px', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer',
+                      border: selectedCharacter === char.id ? '2px solid var(--gold)' : '1px solid rgba(255,255,255,0.1)',
+                      opacity: selectedCharacter === char.id ? 1 : 0.5,
+                      transition: 'all 0.2s ease', background: 'var(--ink)'
                     }}
                   >
-                    <img src={av.id} alt={av.tag} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={char.base_avatar_url} alt={char.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                 ))}
               </div>
+              
+              {/* LORE E ESTATÍSTICAS DO HERÓI */}
+              {characters.find(c => c.id === selectedCharacter) && (
+                <div style={{ marginTop: '24px', padding: '16px', background: 'rgba(0,0,0,0.4)', borderRadius: '8px', borderLeft: '4px solid var(--gold)' }}>
+                  <div className="flex-between" style={{ marginBottom: '8px' }}>
+                    <div className="paper" style={{ fontSize: '18px', fontWeight: 'bold' }}>
+                      {characters.find(c => c.id === selectedCharacter).name}
+                    </div>
+                    <div className="badge badge-gold" style={{ fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <img src="/images/imgi_126_star.png" style={{ width: '12px', height: '12px' }} />
+                      {charStats[selectedCharacter] || 0} Escolheram
+                    </div>
+                  </div>
+                  <div className="muted" style={{ fontSize: '14px', lineHeight: '1.5' }}>
+                    {characters.find(c => c.id === selectedCharacter).description}
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div style={{ marginBottom: '24px' }}>
-              <label style={{ display: 'block', fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', letterSpacing: '1px', color: 'var(--muted)', textTransform: 'uppercase', marginBottom: '12px' }}>
-                Vila de Origem
-              </label>
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {/* SELEÇÃO DE VILA COM POPULAÇÃO */}
+            <div style={{ marginBottom: '32px' }}>
+              <label className="gold mono uppercase" style={{ fontSize: '12px', letterSpacing: '1px', marginBottom: '16px', display: 'block' }}>Vila de Origem</label>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '12px' }}>
                 {VILLAGES.map(v => (
                   <div 
-                    key={v.id} 
-                    title={v.name}
+                    key={v.id}
                     onClick={() => setSelectedVillage(v.id)}
-                    style={{
-                      width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '24px', cursor: 'pointer', border: '1px solid',
-                      borderColor: selectedVillage === v.id ? 'var(--seal-bright)' : 'var(--line)',
-                      background: selectedVillage === v.id ? 'var(--ink-raised)' : 'transparent',
-                      transition: 'all 0.2s'
+                    style={{ 
+                      padding: '12px', borderRadius: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
+                      background: selectedVillage === v.id ? 'rgba(234, 179, 8, 0.1)' : 'var(--ink-raised)',
+                      border: selectedVillage === v.id ? '1px solid var(--gold)' : '1px solid var(--line)',
+                      transition: 'all 0.2s ease'
                     }}
                   >
-                    {v.icon}
+                    <div style={{ fontSize: '24px' }}>{v.icon}</div>
+                    <div className="paper" style={{ fontSize: '14px' }}>{v.name}</div>
+                    <div className="muted mono" style={{ fontSize: '11px' }}>{villageStats[v.id] || 0} Ninjas</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="info-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <span style={{ color: 'var(--muted)', fontSize: '13px' }}>Personagem Base</span>
-              <span>Nível 1 (Estudante)</span>
+            {/* NOME DO JOGADOR */}
+            <div style={{ marginBottom: '40px' }}>
+              <label className="gold mono uppercase" style={{ fontSize: '12px', letterSpacing: '1px', marginBottom: '8px', display: 'block' }}>Identidade</label>
+              <input 
+                type="text" 
+                placeholder="Digite seu nome ninja" 
+                value={name} 
+                onChange={e => setName(e.target.value)} 
+                style={{ width: '100%', padding: '16px', fontSize: '16px', background: 'rgba(0,0,0,0.5)', border: '1px solid var(--line)', borderRadius: '8px', color: '#fff' }}
+              />
             </div>
-            <div className="info-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <span style={{ color: 'var(--muted)', fontSize: '13px' }}>Ryous Iniciais</span>
-              <span style={{ color: 'var(--gold)' }}>1000</span>
-            </div>
-            <div className="info-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <span style={{ color: 'var(--muted)', fontSize: '13px' }}>Pontos Atributos Extras</span>
-              <span style={{ color: 'var(--seal-bright)' }}>5</span>
-            </div>
-          </div>
+
+            {/* BOTÃO CRIAR */}
+            <button className="btn-primary" style={{ width: '100%', padding: '18px', fontSize: '16px', textTransform: 'uppercase', letterSpacing: '2px', position: 'relative', overflow: 'hidden' }} onClick={handleCreate} disabled={loading}>
+              <span style={{ position: 'relative', zIndex: 2 }}>{loading ? 'Forjando Destino...' : 'Despertar Personagem'}</span>
+              <div className="stamp" style={{ position: 'absolute', zIndex: 1, top: '50%', right: '20px', transform: 'translateY(-50%)', opacity: 0.2 }}>
+                <img src="/images/imgi_126_star.png" style={{ width: '32px', height: '32px' }} />
+              </div>
+            </button>
+            
           </div>
         </div>
       </main>

@@ -1,89 +1,127 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
-import { useNavigate } from 'react-router-dom';
-import '../styles/main.css';
+import PageHeader from '../components/PageHeader';
+import { useToast } from '../context/ToastContext';
+import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 
 export default function Hospital({ player, updatePlayer }) {
+  const { addToast } = useToast();
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const [timeLeft, setTimeLeft] = useState(0);
 
-  if (!player) return null;
+  const RECOVERY_TIME_MINUTES = 5;
+  const RECOVERY_TIME_MS = RECOVERY_TIME_MINUTES * 60 * 1000;
+  
+  // O custo de cura escala com o nível (ex: 50 Ryous por nível)
+  const cureCost = Math.max(50, player?.level * 50);
 
-  // Assuming max HP/Chakra is calculated similarly to the Dashboard
-  const maxHP = 100 + (player.level * 20) + ((player.stamina_pts || 0) * 2);
-  const maxChakra = 50 + (player.level * 10) + ((player.stamina_pts || 0) * 1);
+  useEffect(() => {
+    if (!player || !player.fainted_at) return;
 
-  // We don't have current_hp or current_chakra in DB yet for this prototype,
-  // so we'll just simulate the action.
-  const healCost = player.level * 10; // 10 Ryous per level to full heal
+    const faintedTime = new Date(player.fainted_at).getTime();
+    const targetTime = faintedTime + RECOVERY_TIME_MS;
 
-  const handleHeal = async () => {
-    if (player.ryous < healCost) {
-      return alert("Você não tem Ryous suficientes para pagar o tratamento!");
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const diff = targetTime - now;
+      if (diff <= 0) {
+        setTimeLeft(0);
+      } else {
+        setTimeLeft(Math.ceil(diff / 1000));
+      }
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
+  }, [player]);
+
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
+
+  const handleCure = async (paid) => {
+    if (paid && player.ryous < cureCost) {
+      addToast('Ryous insuficientes!', 'error');
+      return;
     }
-    
+
     setLoading(true);
     
+    let updates = { 
+      is_fainted: false, 
+      fainted_at: null,
+      hp: calculateHP(player),
+      chakra: calculateChakra(player),
+      stamina: calculateStamina(player)
+    };
+
+    if (paid) {
+      updates.ryous = player.ryous - cureCost;
+    }
+
     const { error } = await supabase
       .from('players')
-      .update({
-        ryous: player.ryous - healCost,
-        // current_hp: maxHP, current_chakra: maxChakra 
-      })
+      .update(updates)
       .eq('id', player.id);
 
     if (error) {
-      alert("Erro no tratamento: " + error.message);
-    } else {
-      alert("Tratamento concluído! Você está com HP e Chakra cheios.");
-      updatePlayer(player.user_id);
+      addToast('Erro ao sair do hospital: ' + error.message, 'error');
+      setLoading(false);
+      return;
     }
+
+    await updatePlayer(player.user_id);
+    addToast(paid ? 'Você pagou pelo tratamento e recebeu alta!' : 'Você se recuperou totalmente!', 'success');
     setLoading(false);
   };
 
-  return (
-    <div>
-      <div className="topbar" style={{ marginBottom: '32px', flexDirection: 'column', gap: '8px' }}>
-        <div className="eyebrow" onClick={() => navigate('/vila')} style={{ cursor: 'pointer' }}>❮ Voltar para Vila</div>
-        <h1 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '30px', fontWeight: 600 }}>Hospital da Vila</h1>
-      </div>
+  if (!player) return null;
 
-      <div style={{ display: 'flex', gap: '48px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
-        {/* INFO COLUMN */}
-        <div style={{ flex: '1', minWidth: '300px' }}>
-          <img src="https://placehold.co/800x400/1c1c22/4ade80?text=Hospital" alt="Hospital" style={{ width: '100%', height: 'auto', objectFit: 'cover', filter: 'sepia(0.3) contrast(1.1)', marginBottom: '24px', border: '1px solid var(--line)' }} />
-          <h2 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '24px', marginBottom: '16px' }}>Pronto Atendimento Ninja</h2>
-          <p style={{ color: 'var(--muted)', lineHeight: '1.6', marginBottom: '24px' }}>
-            Os combates e missões deixam cicatrizes e esgotam suas reservas de chakra. Nossa equipe médica especializada está pronta para tratar seus ferimentos instantaneamente... mediante o pagamento de uma taxa de serviço.
-          </p>
+  return (
+    <div className="page" style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      alignItems: 'center', 
+      justifyContent: 'center', 
+      minHeight: '100vh',
+      background: 'rgba(224, 54, 63, 0.05)'
+    }}>
+      <div className="card-glass" style={{ maxWidth: '480px', width: '100%', textAlign: 'center', padding: '40px 24px' }}>
+        <div style={{ fontSize: '48px', marginBottom: '16px' }}>🏥</div>
+        <h1 className="page-title danger" style={{ fontSize: '28px', marginBottom: '8px' }}>Hospital da Vila</h1>
+        <p className="muted" style={{ marginBottom: '24px' }}>
+          Você desmaiou de exaustão ou ferimentos graves em sua última batalha. 
+          As ninjas médicas estão cuidando de você.
+        </p>
+
+        <div className="card" style={{ background: 'var(--ink-raised)', borderColor: 'var(--seal-bright)', marginBottom: '24px' }}>
+          <div className="eyebrow danger" style={{ marginBottom: '8px' }}>Tempo para Alta Médica</div>
+          <div className="mono" style={{ fontSize: '32px', color: timeLeft === 0 ? 'var(--green)' : 'var(--paper)' }}>
+            {timeLeft > 0 ? formatTime(timeLeft) : 'Recuperado!'}
+          </div>
         </div>
 
-        {/* ACTION COLUMN */}
-        <div className="card" style={{ flex: '1', minWidth: '300px' }}>
-          <h3 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '18px', marginBottom: '24px', borderBottom: '1px solid var(--line)', paddingBottom: '12px' }}>Tratamento Intensivo</h3>
-          
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', fontSize: '14px' }}>
-            <span style={{ color: 'var(--muted)' }}>Vida Máxima Restaurada</span>
-            <span style={{ color: '#4ade80', fontFamily: "'JetBrains Mono', monospace" }}>{maxHP} HP</span>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px', fontSize: '14px' }}>
-            <span style={{ color: 'var(--muted)' }}>Chakra Máximo Restaurado</span>
-            <span style={{ color: '#3b82f6', fontFamily: "'JetBrains Mono', monospace" }}>{maxChakra} CP</span>
-          </div>
-
-          <div style={{ background: 'var(--ink)', border: '1px solid var(--line)', padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-            <span style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', color: 'var(--muted)' }}>Custo do Tratamento</span>
-            <span style={{ fontSize: '18px', color: 'var(--gold)', fontWeight: 'bold' }}>RY$ {healCost}</span>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', fontSize: '13px' }}>
-            <span style={{ color: 'var(--muted)' }}>Seus fundos:</span>
-            <span style={{ color: player.ryous >= healCost ? 'var(--paper)' : '#ef4444' }}>RY$ {player.ryous}</span>
-          </div>
-
-          <button className="btn-primary" style={{ width: '100%', padding: '16px' }} onClick={handleHeal} disabled={loading || player.ryous < healCost}>
-            <span>{loading ? 'Curando...' : 'Pagar e Curar'}</span>
+        <div className="flex-col" style={{ gap: '12px' }}>
+          <button 
+            className="btn-primary" 
+            onClick={() => handleCure(false)} 
+            disabled={timeLeft > 0 || loading}
+            style={{ opacity: timeLeft > 0 ? 0.5 : 1 }}
+          >
+            <span>{loading ? 'Saindo...' : 'Receber Alta Gratuita'}</span>
             <div className="stamp"></div>
+          </button>
+
+          <button 
+            className="btn-ghost" 
+            onClick={() => handleCure(true)} 
+            disabled={timeLeft === 0 || loading}
+            style={{ borderColor: 'var(--gold)', color: 'var(--gold)' }}
+          >
+            Pagar Tratamento Vip ({cureCost} Ryous)
           </button>
         </div>
       </div>

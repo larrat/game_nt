@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
+import PageHeader from '../components/PageHeader';
+import { useToast } from '../context/ToastContext';
 import { 
   calculateHP, 
   calculateChakra, 
@@ -19,145 +21,132 @@ import {
 
 export default function Treino({ player, updatePlayer }) {
   const [loading, setLoading] = useState(false);
+  const [attrsData, setAttrsData] = useState([]);
+  const [ranksData, setRanksData] = useState([]);
+  const { addToast } = useToast();
 
-  if (!player) return null;
+  React.useEffect(() => {
+    async function loadData() {
+      const [attrsRes, ranksRes] = await Promise.all([
+        supabase.from('attributes').select('*').order('id', { ascending: true }),
+        supabase.from('ranks').select('*')
+      ]);
+      if (attrsRes.data) setAttrsData(attrsRes.data);
+      if (ranksRes.data) setRanksData(ranksRes.data);
+    }
+    loadData();
+  }, []);
 
-  // Fórmulas
-  const f_hp = calculateHP(player);
-  const f_chakra = calculateChakra(player);
-  const f_stamina = calculateStamina(player);
-  const f_atk_tai_buk = calculateAtkTaiBuk(player);
-  const f_atk_nin_gen = calculateAtkNinGen(player);
-  const f_def_tai_buk = calculateDefTaiBuk(player);
-  const f_def_nin_gen = calculateDefNinGen(player);
-  const f_perfuracao = calculatePerfuracao(player);
-  const f_precisao = calculatePrecisao(player);
-  const f_concentracao = calculateConcentracao(player);
-  const f_percepcao = calculatePercepcao(player);
-  const f_conviccao = calculateConviccao(player);
-  const f_determinacao = calculateDeterminacao(player);
+  if (!player || attrsData.length === 0 || ranksData.length === 0) return null;
 
-  const handleAddAttribute = async (attrName) => {
-    if (player.pontos_atributos <= 0) return;
+  const playerRank = player.rank || 'Genin';
+  const playerRankData = ranksData.find(r => r.name_id === playerRank) || ranksData.find(r => r.name_id === 'Genin');
+  
+  const rankMultiplier = {
+    minMult: playerRankData.train_min_mult,
+    maxMult: playerRankData.train_max_mult,
+    bonus: playerRankData.train_bonus
+  };
+
+  const getRange = (heroMin, heroMax) => {
+    const min = Math.max(1, Math.floor(heroMin * rankMultiplier.minMult));
+    const max = Math.max(1, Math.floor(heroMax * rankMultiplier.maxMult));
+    return { min, max, bonus: rankMultiplier.bonus };
+  };
+
+  const handleTrain = async (field, label, heroMin, heroMax) => {
+    if (player.pontos_atributos <= 0) {
+      addToast('Você não tem Pontos de Atributo disponíveis!', 'error');
+      return;
+    }
+    
     setLoading(true);
+    
+    const { min, max, bonus } = getRange(heroMin, heroMax);
+    const roll = Math.floor(Math.random() * (max - min + 1)) + min;
+    const totalGained = roll + bonus;
 
-    const newVal = (player[attrName] || 0) + 1;
-    const newPts = player.pontos_atributos - 1;
+    const newDailyTrainings = (player.daily_trainings || 0) + 1;
 
     const { error } = await supabase
       .from('players')
-      .update({ [attrName]: newVal, pontos_atributos: newPts })
+      .update({ 
+        [field]: (player[field] || 0) + totalGained, 
+        pontos_atributos: player.pontos_atributos - 1,
+        daily_trainings: newDailyTrainings
+      })
       .eq('id', player.id);
 
-    if (!error) {
+    if (error) {
+      addToast('Erro no treinamento: ' + error.message, 'error');
+    } else {
+      addToast(`Treinamento concluído! Você ganhou +${totalGained} em ${label} (Rolou ${roll} + ${bonus} Bônus)`, 'success');
       await updatePlayer(player.user_id);
     }
     setLoading(false);
   };
 
-  const renderAttrRow = (icon, label, dbField) => {
-    return (
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: '1px solid var(--line)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span>{icon}</span>
-          <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--paper)' }}>{label}</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", color: 'var(--muted)' }}>+ {player[dbField] || 0}</span>
-          {player.pontos_atributos > 0 && (
-            <button 
-              onClick={() => handleAddAttribute(dbField)} 
-              disabled={loading}
-              style={{ background: 'var(--seal-bright)', color: 'black', border: 'none', borderRadius: '4px', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontWeight: 'bold' }}
-            >
-              +
-            </button>
-          )}
-        </div>
-      </div>
-    );
-  };
-
-  const renderFormulaRow = (icon, label, value, tooltip) => {
-    return (
-      <div title={tooltip} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: '1px solid var(--line)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span>{icon}</span>
-          <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--muted)' }}>{label}</span>
-        </div>
-        <span style={{ fontFamily: "'JetBrains Mono', monospace", color: 'var(--paper)' }}>{value}</span>
-      </div>
-    );
-  };
-
   return (
-    <div style={{ paddingBottom: '60px' }}>
-      <div className="topbar" style={{ marginBottom: '32px', flexDirection: 'column', gap: '8px' }}>
-        <div className="eyebrow">Atributos e Fórmulas</div>
-        <h1 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '30px', fontWeight: 600 }}>Treinamento Ninja</h1>
+    <div className="page">
+      <PageHeader 
+        eyebrow={`Graduação: ${playerRank}`} 
+        title='Centro de Treinamento' 
+        subtitle='Gaste seus pontos de atributo para rolar os dados. O valor ganho depende da sua Graduação atual!' 
+      />
+
+      <div className="flex-between" style={{ background: 'var(--ink-raised)', padding: '16px 24px', borderRadius: '8px', border: '1px solid var(--seal-bright)', marginBottom: '24px' }}>
+        <span className="muted uppercase mono" style={{ fontSize: '13px', letterSpacing: '1px' }}>Pontos Disponíveis para Treino</span>
+        <span className="gold mono" style={{ fontSize: '32px' }}>{player.pontos_atributos || 0}</span>
       </div>
 
-      <div style={{ background: 'var(--ink)', padding: '24px', border: '1px solid var(--line)', marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div>
-          <div style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '1px' }}>PONTOS DISPONÍVEIS</div>
-          <div style={{ fontSize: '32px', fontFamily: "'JetBrains Mono', monospace", color: 'var(--gold)' }}>{player.pontos_atributos || 0}</div>
-        </div>
-        <div style={{ textAlign: 'right' }}>
-          <div style={{ fontSize: '12px', color: 'var(--muted)', letterSpacing: '1px' }}>STATUS</div>
-          <div style={{ color: player.pontos_atributos > 0 ? 'var(--seal-bright)' : 'var(--muted)' }}>
-            {player.pontos_atributos > 0 ? 'Pontos para distribuir!' : 'Nenhum ponto disponível'}
-          </div>
-        </div>
-      </div>
-
-      <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-        <div className="card" style={{ flex: 1, minWidth: '300px' }}>
-          <h3 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '18px', borderBottom: '1px solid var(--line)', paddingBottom: '12px', marginBottom: '16px' }}>Atributos Base</h3>
-          
-          <div style={{ marginBottom: '24px' }}>
-            {renderAttrRow('🥋', 'Taijutsu', 'taijutsu')}
-            {renderAttrRow('⚔️', 'Bukijutsu', 'bukijutsu')}
-            {renderAttrRow('🔥', 'Ninjutsu', 'ninjutsu')}
-            {renderAttrRow('👁️', 'Genjutsu', 'genjutsu')}
-          </div>
-
-          <div style={{ marginBottom: '24px' }}>
-            {renderAttrRow('💪', 'Força', 'forca')}
-            {renderAttrRow('⚡', 'Agilidade', 'agilidade')}
-            {renderAttrRow('🧠', 'Inteligência', 'inteligencia')}
-          </div>
-
-          <div>
-            {renderAttrRow('📜', 'Selo', 'selo')}
-            {renderAttrRow('🛡️', 'Resistência', 'resistencia')}
-            {renderAttrRow('🔋', 'Energia', 'energia')}
-          </div>
+      <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+        {/* Título da Tabela parecido com a imagem */}
+        <div style={{ background: 'var(--ink-soft)', padding: '12px 24px', borderBottom: '1px solid var(--line)', textAlign: 'center' }}>
+          <h3 className="gold mono uppercase" style={{ letterSpacing: '2px', fontSize: '14px', margin: 0 }}>
+            Tabela de Treinamento — {playerRank}
+          </h3>
         </div>
 
-        <div className="card" style={{ flex: 1, minWidth: '300px' }}>
-          <h3 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '18px', borderBottom: '1px solid var(--line)', paddingBottom: '12px', marginBottom: '16px' }}>Fórmulas Derivadas</h3>
-          
-          <div style={{ marginBottom: '24px' }}>
-            {renderFormulaRow('❤️', 'Vida', f_hp, 'HP Máximo')}
-            {renderFormulaRow('🌀', 'Chakra', f_chakra, 'Chakra Máximo')}
-            {renderFormulaRow('⚡', 'Stamina', f_stamina, 'Energia Física')}
-          </div>
+        {/* Linhas da Tabela */}
+        <div className="flex-col">
+          {attrsData.map(({ icon, label, field, hero_min, hero_max }) => {
+            const { min, max, bonus } = getRange(hero_min, hero_max);
+            
+            return (
+              <div key={field} className="flex-between" style={{ padding: '12px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', alignItems: 'center' }}>
+                
+                {/* Ícone e Nome */}
+                <div className="flex-row" style={{ flex: 1, gap: '12px', alignItems: 'center' }}>
+                  <span style={{ fontSize: '20px' }}>{icon}</span>
+                  <span className="paper uppercase" style={{ fontSize: '13px', fontWeight: 'bold' }}>{label}</span>
+                </div>
 
-          <div style={{ marginBottom: '24px' }}>
-            {renderFormulaRow('⚔️', 'Ataque (Físico)', f_atk_tai_buk, 'Ataque de Taijutsu/Bukijutsu')}
-            {renderFormulaRow('🔥', 'Ataque (Mágico)', f_atk_nin_gen, 'Ataque de Ninjutsu/Genjutsu')}
-            {renderFormulaRow('🛡️', 'Defesa (Física)', f_def_tai_buk, 'Defesa contra Taijutsu/Bukijutsu')}
-            {renderFormulaRow('🔮', 'Defesa (Mágica)', f_def_nin_gen, 'Defesa contra Ninjutsu/Genjutsu')}
-          </div>
+                {/* Range e Bonus */}
+                <div className="flex-row" style={{ flex: 1, justifyContent: 'center', gap: '8px', alignItems: 'center' }}>
+                  <span className="muted mono uppercase" style={{ fontSize: '11px' }}>Range ({min} até {max} pts)</span>
+                  <span className="danger mono" style={{ fontSize: '12px', fontWeight: 'bold' }}>+{bonus} 🔥</span>
+                </div>
 
-          <div>
-            {renderFormulaRow('🎯', 'Perfuração', f_perfuracao, 'Ignora defesas físicas')}
-            {renderFormulaRow('👁️', 'Precisão', f_precisao, 'Ignora defesas mágicas')}
-            {renderFormulaRow('🧘', 'Concentração', f_concentracao, 'Bônus de dano extra em jutsus')}
-            {renderFormulaRow('🦅', 'Percepção', f_percepcao, 'Reduz chance de acerto crítico inimigo')}
-            {renderFormulaRow('🔥', 'Convicção', f_conviccao, 'Aumenta acerto crítico de magias')}
-            {renderFormulaRow('✊', 'Determinação', f_determinacao, 'Aumenta acerto crítico de físicos')}
-          </div>
+                {/* Valor Atual e Botão */}
+                <div className="flex-row" style={{ flex: 1, justifyContent: 'flex-end', gap: '24px', alignItems: 'center' }}>
+                  <div className="flex-col" style={{ alignItems: 'flex-end' }}>
+                    <span className="muted mono" style={{ fontSize: '10px' }}>TOTAL</span>
+                    <span className="gold mono" style={{ fontSize: '18px' }}>{player[field] || 0}</span>
+                  </div>
+                  
+                  <button 
+                    className="btn-primary" 
+                    onClick={() => handleTrain(field, label, hero_min, hero_max)}
+                    disabled={loading || player.pontos_atributos <= 0}
+                    style={{ padding: '8px 24px', fontSize: '12px' }}
+                  >
+                    TREINAR
+                  </button>
+                </div>
+
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

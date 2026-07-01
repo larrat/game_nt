@@ -1,82 +1,281 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
+import { useToast } from '../context/ToastContext';
 import '../styles/main.css';
-
-const INVENTORY = [
-  { id: 1, name: 'Kunai de Combate', type: 'Arma', stats: { tai: 15, vel: 5 }, desc: '+15 Ataque (Tai), +5 Velocidade' },
-  { id: 2, name: 'Colete Tático ANBU', type: 'Tronco', stats: { def: 40, stamina: 10 }, desc: '+40 Defesa, +10 Stamina' }
-];
+import PageHeader from '../components/PageHeader';
 
 export default function Equipamentos({ player, updatePlayer }) {
+  const { addToast } = useToast();
+  const [inventory, setInventory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('Todos');
+
   if (!player) return null;
 
-  const handleEquip = (item) => {
-    // Para simplificar o protótipo: avisar que equipou
-    alert(`${item.name} equipado com sucesso! Seus status seriam atualizados no banco de dados.`);
+  const loadInventory = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from('player_inventory')
+      .select('*, items(*)')
+      .eq('player_id', player.id);
+
+    if (error) {
+      addToast('Erro ao carregar equipamentos: ' + error.message, 'error');
+    } else {
+      setInventory(data || []);
+    }
+    setLoading(false);
   };
 
-  return (
-    <div>
-      <div className="topbar" style={{ marginBottom: '48px', flexDirection: 'column', gap: '8px' }}>
-        <div className="eyebrow">{player.name} · {player.clan ? `Clã ${player.clan}` : 'Sem Clã'}</div>
-        <h1 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '30px', fontWeight: 600 }}>Equipamentos Ninja</h1>
-      </div>
+  useEffect(() => {
+    loadInventory();
+  }, [player.id]);
 
-      <div className="equip-layout" style={{ display: 'flex', gap: '48px', justifyContent: 'center', marginBottom: '64px', flexWrap: 'wrap' }}>
-        {/* Coluna Esquerda */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div style={{ background: 'var(--ink-soft)', border: '1px solid var(--seal-bright)', padding: '24px', textAlign: 'center', width: '120px' }}>
-            <div style={{ fontSize: '32px', marginBottom: '8px' }}>額</div>
-            <div style={{ fontSize: '11px', color: 'var(--paper)', textTransform: 'uppercase', letterSpacing: '1px' }}>Cabeça</div>
-          </div>
-          <div style={{ background: 'transparent', border: '1px dashed var(--line)', padding: '24px', textAlign: 'center', width: '120px' }}>
-            <div style={{ fontSize: '32px', marginBottom: '8px', color: 'var(--muted)' }}>腕</div>
-            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Braços</div>
-          </div>
-          <div style={{ background: 'transparent', border: '1px dashed var(--line)', padding: '24px', textAlign: 'center', width: '120px' }}>
-            <div style={{ fontSize: '32px', marginBottom: '8px', color: 'var(--muted)' }}>飾</div>
-            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Acessório</div>
-          </div>
+  const handleEquip = async (invItem) => {
+    if (player.level < invItem.items.req_level) {
+      addToast(`Nível insuficiente! Requer Nível ${invItem.items.req_level}`, 'error');
+      return;
+    }
+
+    const typeToEquip = invItem.items.type;
+    const currentlyEquipped = inventory.find(i => i.is_equipped && i.items.type === typeToEquip);
+
+    // Desequipa o atual se existir
+    if (currentlyEquipped) {
+      await supabase.from('player_inventory').update({ is_equipped: false }).eq('id', currentlyEquipped.id);
+    }
+
+    // Equipa o novo
+    const { error } = await supabase.from('player_inventory').update({ is_equipped: true }).eq('id', invItem.id);
+
+    if (error) {
+      addToast('Erro ao equipar: ' + error.message, 'error');
+      return;
+    }
+
+    addToast(`${invItem.items.name} equipado com sucesso!`, 'success');
+    loadInventory();
+    updatePlayer(player.user_id); // Atualiza os stats do player na root
+  };
+
+  const handleUnequip = async (invItem) => {
+    const { error } = await supabase.from('player_inventory').update({ is_equipped: false }).eq('id', invItem.id);
+    if (error) {
+      addToast('Erro ao remover equipamento: ' + error.message, 'error');
+      return;
+    }
+    addToast(`${invItem.items.name} removido.`, 'info');
+    loadInventory();
+    updatePlayer(player.user_id);
+  };
+
+  const handleFavorite = async (invItem) => {
+    const newVal = !invItem.is_favorite;
+    const { error } = await supabase.from('player_inventory').update({ is_favorite: newVal }).eq('id', invItem.id);
+    if (error) {
+      addToast('Erro ao atualizar favorito: ' + error.message, 'error');
+      return;
+    }
+    addToast(newVal ? 'Item adicionado aos favoritos.' : 'Item removido dos favoritos.', 'success');
+    loadInventory();
+  };
+
+  // Helper para agrupar os slots equipados
+  const getEquipped = (type) => inventory.find(i => i.is_equipped && i.items.type === type);
+
+  const getRarityColor = (rarity) => {
+    switch (rarity) {
+      case 'Único': return 'var(--danger)';
+      case 'Épico': return 'var(--gold)';
+      case 'Raro': return 'var(--info)';
+      case 'Incomum': return 'var(--success)';
+      default: return 'var(--paper)';
+    }
+  };
+
+  const renderSlot = (title, kanji, type) => {
+    const equipped = getEquipped(type);
+    
+    return (
+      <div className={equipped ? "card-glass" : "card"} style={{ 
+        textAlign: 'center', width: '130px', 
+        background: equipped ? 'var(--ink-card)' : 'transparent', 
+        borderStyle: equipped ? 'solid' : 'dashed',
+        borderColor: equipped ? getRarityColor(equipped.items.rarity) : 'var(--seal)'
+      }}>
+        <div className={equipped ? "page-title" : "page-title muted"} style={{ 
+          color: equipped ? getRarityColor(equipped.items.rarity) : undefined 
+        }}>
+          {kanji}
         </div>
-
-        {/* Centro (Avatar/Silhueta) */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '180px', color: 'var(--ink-raised)', textShadow: '0 0 40px rgba(0,0,0,0.5)' }}>
-          廉
-        </div>
-
-        {/* Coluna Direita */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div style={{ background: 'var(--ink-soft)', border: '1px solid var(--seal-bright)', padding: '24px', textAlign: 'center', width: '120px' }}>
-            <div style={{ fontSize: '32px', marginBottom: '8px' }}>胴</div>
-            <div style={{ fontSize: '11px', color: 'var(--paper)', textTransform: 'uppercase', letterSpacing: '1px' }}>Tronco</div>
-          </div>
-          <div style={{ background: 'transparent', border: '1px dashed var(--line)', padding: '24px', textAlign: 'center', width: '120px' }}>
-            <div style={{ fontSize: '32px', marginBottom: '8px', color: 'var(--muted)' }}>脚</div>
-            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Pernas</div>
-          </div>
-          <div style={{ background: 'var(--ink-soft)', border: '1px solid var(--seal-bright)', padding: '24px', textAlign: 'center', width: '120px' }}>
-            <div style={{ fontSize: '32px', marginBottom: '8px' }}>刀</div>
-            <div style={{ fontSize: '11px', color: 'var(--paper)', textTransform: 'uppercase', letterSpacing: '1px' }}>Arma</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Inventory List */}
-      <div>
-        <h3 style={{ fontFamily: "'Shippori Mincho', serif", color: 'var(--gold)', borderBottom: '1px solid var(--line)', paddingBottom: '8px', marginBottom: '24px', fontSize: '20px' }}>Bolsa de Equipamentos</h3>
+        <div className={equipped ? "uppercase paper" : "uppercase muted"}>{title}</div>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '24px' }}>
-          {INVENTORY.map(item => (
-            <div key={item.id} className="card" style={{ padding: '24px' }}>
-               <h4 style={{ color: 'var(--seal-bright)', marginBottom: '12px', fontSize: '16px' }}>{item.name}</h4>
-               <div style={{ fontSize: '12px', color: 'var(--muted)', marginBottom: '24px', fontFamily: "'JetBrains Mono', monospace", lineHeight: '1.5' }}>
-                 {item.desc.split(', ').map((d, i) => <div key={i}>{d}</div>)}
-               </div>
-               <button className="btn-ghost" onClick={() => handleEquip(item)} style={{ width: '100%', padding: '10px', border: '1px solid var(--line)' }}>
-                 Equipar {item.type}
-               </button>
+        {equipped && (
+          <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <span style={{ fontSize: '11px', color: 'var(--muted-bright)' }}>{equipped.items.name}</span>
+            <button className="btn-ghost" onClick={() => handleUnequip(equipped)} style={{ padding: '4px', fontSize: '10px' }}>Remover</button>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const bagItems = inventory.filter(i => !i.is_equipped);
+  const displayedItems = bagItems.filter(i => {
+    if (filter === 'Todos') return true;
+    if (filter === 'Favoritos') return i.is_favorite;
+    return i.items.type === filter;
+  });
+
+  const calculateTotalBonus = () => {
+    const totals = {};
+    inventory.filter(i => i.is_equipped).forEach(invItem => {
+      const b = invItem.rolled_stats || invItem.items?.bonus_stats || {};
+      Object.keys(b).forEach(stat => {
+        totals[stat] = (totals[stat] || 0) + parseInt(b[stat] || 0, 10);
+      });
+    });
+    return totals;
+  };
+
+  const totalBonus = calculateTotalBonus();
+
+  return (
+    <div className="page">
+      <PageHeader 
+        eyebrow={`${player.name} · ${player.clan_id ? `Clã ID ${player.clan_id}` : 'Sem Clã'}`} 
+        title='Arsenal e Arsenal Ninja' 
+        subtitle='Gerencie seus equipamentos e veja o impacto nos seus atributos gerais.' 
+      />
+
+      <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+        
+        {/* LADO ESQUERDO: HERÓI & STATUS TOTAIS */}
+        <div className="flex-col" style={{ flex: '1 1 350px', gap: '24px', maxWidth: '400px' }}>
+          
+          <div className="card-glass flex-col" style={{ alignItems: 'center', padding: '48px 24px', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at top, rgba(212,162,42,0.1) 0%, transparent 60%)', pointerEvents: 'none' }} />
+            
+            <div style={{ fontSize: '140px', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.8))', zIndex: 1, marginBottom: '24px' }}>
+              {player.avatar || '🥷'}
             </div>
-          ))}
+            
+            <h2 className="gold uppercase" style={{ letterSpacing: '2px', zIndex: 1, textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>{player.name}</h2>
+            <div className="badge badge-gold" style={{ zIndex: 1, marginTop: '8px' }}>Nível {player.level}</div>
+          </div>
+
+          <div className="card flex-col">
+            <h3 className="section-title gold" style={{ borderBottom: '1px solid var(--line)', paddingBottom: '12px', marginBottom: '16px' }}>Bônus de Equipamentos</h3>
+            {Object.keys(totalBonus).length === 0 ? (
+              <div className="muted" style={{ textAlign: 'center', padding: '24px 0' }}>Nenhum bônus provido pelo equipamento atual.</div>
+            ) : (
+              <div className="grid-2" style={{ gap: '16px' }}>
+                {Object.entries(totalBonus).map(([stat, val]) => (
+                  <div key={stat} className="flex-between" style={{ background: 'var(--ink-raised)', padding: '12px', borderRadius: '6px', border: '1px solid var(--line)' }}>
+                    <span className="muted uppercase" style={{ fontSize: '11px', letterSpacing: '1px' }}>{stat}</span>
+                    <span className="success mono" style={{ fontWeight: 'bold' }}>+{val}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* LADO DIREITO: INVENTÁRIO */}
+        <div className="flex-col" style={{ flex: '2 1 600px', gap: '32px' }}>
+          
+          {/* SLOTS EQUIPADOS */}
+          <div className="card">
+            <h3 className="section-title gold" style={{ borderBottom: '1px solid var(--line)', paddingBottom: '12px', marginBottom: '24px' }}>Equipamentos Ativos</h3>
+            <div className="flex-row" style={{ gap: '16px', overflowX: 'auto', paddingBottom: '16px' }}>
+              {renderSlot('Cabeça', '額', 'Cabeça')}
+              {renderSlot('Tronco', '胴', 'Tronco')}
+              {renderSlot('Braços', '腕', 'Braços')}
+              {renderSlot('Pernas', '脚', 'Pernas')}
+              {renderSlot('Arma', '刀', 'Arma')}
+              {renderSlot('Acessório', '飾', 'Acessório')}
+            </div>
+          </div>
+
+          {/* MOCHILA */}
+          <div className="card">
+            <div className="flex-between" style={{ marginBottom: '24px', borderBottom: '1px solid var(--line)', paddingBottom: '16px' }}>
+              <h3 className="section-title" style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: 0 }}>Mochila</h3>
+              
+              <div className="flex-row" style={{ gap: '8px', overflowX: 'auto' }}>
+                {['Todos', 'Favoritos', 'Cabeça', 'Tronco', 'Braços', 'Pernas', 'Arma', 'Acessório'].map(f => (
+                  <button 
+                    key={f} 
+                    onClick={() => setFilter(f)}
+                    className={filter === f ? 'btn-attr' : 'btn-ghost'}
+                    style={{ fontSize: '11px', padding: '6px 12px', whiteSpace: 'nowrap' }}
+                  >
+                    {f === 'Favoritos' ? '⭐' : f}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            {loading ? (
+              <div className="muted" style={{ textAlign: 'center', padding: '40px' }}>Vasculhando a mochila...</div>
+            ) : displayedItems.length === 0 ? (
+              <div className="muted" style={{ textAlign: 'center', padding: '40px', border: '1px dashed var(--line)' }}>
+                {filter === 'Favoritos' ? 'Nenhum equipamento favoritado.' : 'Sua mochila está vazia para este filtro.'}
+              </div>
+            ) : (
+              <div className="grid-auto" style={{ gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
+                {displayedItems.map(invItem => (
+                  <div key={invItem.id} className="card-glass flex-col" style={{ 
+                    position: 'relative', 
+                    borderTop: `3px solid ${getRarityColor(invItem.rarity || invItem.items.rarity)}`,
+                    padding: '16px',
+                    gap: '12px'
+                  }}>
+                    
+                    <button 
+                        onClick={() => handleFavorite(invItem)}
+                        style={{ position: 'absolute', top: '12px', right: '12px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '14px', opacity: invItem.is_favorite ? 1 : 0.2, transition: 'all 0.2s' }}
+                    >
+                        ⭐
+                    </button>
+
+                    <div>
+                      <h4 style={{ color: getRarityColor(invItem.rarity || invItem.items.rarity), paddingRight: '24px', fontSize: '14px', marginBottom: '4px' }}>
+                          {invItem.items.name}
+                      </h4>
+                      <div className="muted" style={{ fontSize: '11px' }}>{invItem.rarity || invItem.items.rarity}</div>
+                    </div>
+                    
+                    <div className="flex-row" style={{ gap: '8px' }}>
+                      <span className="badge badge-muted" style={{ fontSize: '10px' }}>{invItem.items.type}</span>
+                      <span className="badge badge-gold" style={{ fontSize: '10px' }}>Nv. {invItem.items.req_level}</span>
+                    </div>
+
+                    <div className="card" style={{ background: 'var(--ink)', padding: '8px', border: '1px solid var(--line)', marginTop: 'auto' }}>
+                      <div className="mono" style={{ fontSize: '11px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        {Object.entries(invItem.rolled_stats || invItem.items.bonus_stats || {}).map(([stat, val]) => (
+                          <div key={stat} className="flex-between">
+                            <span className="muted uppercase">{stat}</span>
+                            <span className="success">+{val}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <button 
+                      className={player.level >= invItem.items.req_level ? "btn-primary" : "btn-danger"} 
+                      onClick={() => handleEquip(invItem)} 
+                      style={{ width: '100%', padding: '8px', fontSize: '12px', opacity: player.level >= invItem.items.req_level ? 1 : 0.5 }}
+                      disabled={player.level < invItem.items.req_level}
+                    >
+                      {player.level >= invItem.items.req_level ? 'Equipar Item' : 'Nível Muito Baixo'}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
         </div>
       </div>
     </div>

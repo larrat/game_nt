@@ -1,29 +1,47 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../context/ToastContext';
 
 export default function Login() {
+  const [mode, setMode] = useState('login'); // 'login', 'signup', 'forgot'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const { addToast } = useToast();
   
-  const handleLogin = async () => {
-    if (!email || !password) return alert('Preencha os campos!');
+  const handleAction = async () => {
+    if (!email) {
+      addToast('Preencha o e-mail!', 'error');
+      return;
+    }
+    if (mode !== 'forgot' && !password) {
+      addToast('Preencha a senha!', 'error');
+      return;
+    }
+
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email, password
-    });
-
-    if (error) {
-      alert("Erro ao logar: " + error.message);
-      setLoading(false);
+    if (mode === 'login') {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) addToast('Erro ao logar: ' + error.message, 'error');
+    } 
+    else if (mode === 'signup') {
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) addToast('Erro ao criar conta: ' + error.message, 'error');
+      else addToast('Conta criada! Você já pode fazer login ou confirmar o e-mail (se necessário).', 'success');
     }
-    // Note: If successful, App.jsx's onAuthStateChange will trigger and redirect automatically.
+    else if (mode === 'forgot') {
+      const { error } = await supabase.auth.resetPasswordForEmail(email);
+      if (error) addToast('Erro: ' + error.message, 'error');
+      else addToast('E-mail de recuperação enviado! Cheque sua caixa de entrada.', 'success');
+    }
+
+    setLoading(false);
   };
 
   return (
-    <div className="login-body" style={{ minHeight: '100vh', display: 'flex', width: '100%', position: 'absolute', top: 0, left: 0, background: 'var(--ink)' }}>
+    <div className="login-body page" style={{ minHeight: '100vh', display: 'flex', width: '100%', position: 'absolute', top: 0, left: 0 }}>
       <div className="panel-brand">
         <div className="strokes">
           <svg viewBox="0 0 500 700" preserveAspectRatio="xMidYMid slice">
@@ -42,33 +60,56 @@ export default function Login() {
 
       <div className="panel-form">
         <div className="tabs">
-          <div className="tab active">Entrar</div>
-          <div className="tab" style={{ cursor: 'pointer' }} onClick={() => alert("Ainda precisamos migrar Criar Conta. Use /legacy/criar.html por enquanto.")}>Criar conta</div>
+          <div className={`tab ${mode === 'login' ? 'active' : ''}`} onClick={() => { setMode('login'); }}>Entrar</div>
+          <div className={`tab ${mode === 'signup' ? 'active' : ''}`} onClick={() => { setMode('signup'); }}>Criar conta</div>
         </div>
+
+        {mode === 'forgot' && (
+          <div className="section-title paper" style={{ marginBottom: '24px', fontSize: '18px' }}>
+            Recuperação de Senha
+          </div>
+        )}
 
         <div className="field">
           <label>E-mail</label>
           <input type="email" placeholder="seu@email.com" value={email} onChange={e => setEmail(e.target.value)} />
         </div>
-        <div className="field">
-          <label>Senha</label>
-          <input type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} />
-        </div>
+        
+        {mode !== 'forgot' && (
+          <div className="field">
+            <label>Senha</label>
+            <input type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} />
+          </div>
+        )}
 
-        <div className="row-between">
-          <label className="checkbox"><input type="checkbox" /> Manter conectado</label>
-          <span className="forgot">Esqueci minha senha</span>
-        </div>
+        {mode === 'login' && (
+          <div className="row-between flex-between">
+            <label className="checkbox"><input type="checkbox" /> Manter conectado</label>
+            <span className="forgot gold" onClick={() => { setMode('forgot'); }} style={{ cursor: 'pointer' }}>Esqueci minha senha</span>
+          </div>
+        )}
+        
+        {mode === 'forgot' && (
+          <div className="row-between flex-between">
+            <span className="forgot muted" onClick={() => { setMode('login'); }} style={{ cursor: 'pointer' }}>Voltar para o Login</span>
+          </div>
+        )}
 
-        <button className="btn-primary" onClick={handleLogin} disabled={loading}>
-          <span>{loading ? 'Acessando...' : 'Acessar'}</span>
+        <button className="btn-primary" onClick={handleAction} disabled={loading}>
+          <span>
+            {loading ? 'Processando...' : mode === 'login' ? 'Acessar' : mode === 'signup' ? 'Registrar' : 'Enviar E-mail'}
+          </span>
           <div className="stamp"></div>
         </button>
 
         <div className="divider"><div className="line"></div><span>OU</span><div className="line"></div></div>
 
         <div className="switch">
-          Ainda não tem conta? <span style={{ color: 'var(--seal-bright)', cursor: 'pointer', fontWeight: 600 }} onClick={() => window.location.href = '/legacy/criar.html'}>Forje seu personagem</span>
+          {mode === 'login' ? (
+            <>Ainda não tem conta? <span className="gold" style={{ cursor: 'pointer', fontWeight: 600 }} onClick={() => { setMode('signup'); }}>Forje seu personagem</span></>
+          ) : (
+            <>Já é um ninja? <span className="gold" style={{ cursor: 'pointer', fontWeight: 600 }} onClick={() => { setMode('login'); }}>Faça Login</span></>
+          )}
         </div>
       </div>
     </div>

@@ -2,51 +2,52 @@ import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 
-const Ranks = [
-  { id: "Estudante da Academia", next: "Genin" },
-  {
-    id: "Genin",
-    icon: "🥷",
-    title: "Genin",
-    desc: "Seu primeiro dia depois da academia ninja. Você receberá sua bandana e poderá explorar o que está além dos portões da Vila.",
-    reqs: [
-      { label: "Nível 5 ou superior", check: (p) => p.level >= 5, progress: (p) => `${p.level}/5` },
-      { label: "Completar 10 Tarefas Iniciais", check: (p) => p.tasks_completed >= 10, progress: (p) => `${p.tasks_completed}/10` },
-      { label: "Ter 1 Jutsu Aprendido", check: (p) => p.activeJutsus?.length >= 1, progress: (p) => `${p.activeJutsus?.length || 0}/1` },
-      { label: "Ter 5 Vitórias contra NPC", check: (p) => p.npc_wins >= 5, progress: (p) => `${p.npc_wins}/5` }
-    ]
-  },
-  {
-    id: "Chuunin",
-    icon: "⚔️",
-    title: "Chuunin",
-    desc: "Ninja graduado e com elevado nível de confiança na Vila. Pode participar de equipes e torneios ninjas.",
-    reqs: [
-      { label: "Nível 15 ou superior", check: (p) => p.level >= 15, progress: (p) => `${p.level}/15` },
-      { label: "Completar 10 Missões Rank D", check: (p) => p.missions_d >= 10, progress: (p) => `${p.missions_d}/10` },
-      { label: "Ter 9 Jutsus Aprendidos", check: (p) => false, progress: () => `0/9` },
-      { label: "Ter 75 Vitórias NPC", check: (p) => p.npc_wins >= 75, progress: (p) => `${p.npc_wins}/75` }
-    ]
-  }
-];
-
 export default function Graduacoes({ player, updatePlayer }) {
+  const [ranksData, setRanksData] = useState([]);
   const [isCeremonyActive, setIsCeremonyActive] = useState(false);
   const [newRank, setNewRank] = useState('');
 
-  if (!player) return <div>Carregando...</div>;
+  React.useEffect(() => {
+    async function fetchRanks() {
+      const { data } = await supabase.from('ranks').select('*').order('id', { ascending: true });
+      if (data) {
+        const mappedRanks = data.map(r => {
+          const reqs = [];
+          if (r.req_level > 0) reqs.push({ label: `Nível ${r.req_level} ou superior`, check: (p) => p.level >= r.req_level, progress: (p) => `${p.level}/${r.req_level}` });
+          if (r.req_tasks > 0) reqs.push({ label: `Completar ${r.req_tasks} Tarefas`, check: (p) => (p.tasks_completed || 0) >= r.req_tasks, progress: (p) => `${p.tasks_completed || 0}/${r.req_tasks}` });
+          if (r.req_jutsus > 0) reqs.push({ label: `Ter ${r.req_jutsus} Jutsus Aprendidos`, check: (p) => (p.jutsus_learned?.length || 0) >= r.req_jutsus, progress: (p) => `${p.jutsus_learned?.length || 0}/${r.req_jutsus}` });
+          if (r.req_npc_wins > 0) reqs.push({ label: `Ter ${r.req_npc_wins} Vitórias contra NPC`, check: (p) => (p.npc_wins || 0) >= r.req_npc_wins, progress: (p) => `${p.npc_wins || 0}/${r.req_npc_wins}` });
+          if (r.req_missions_d > 0) reqs.push({ label: `Completar ${r.req_missions_d} Missões Rank D`, check: (p) => (p.missions_d || 0) >= r.req_missions_d, progress: (p) => `${p.missions_d || 0}/${r.req_missions_d}` });
+          if (r.req_missions_c > 0) reqs.push({ label: `Completar ${r.req_missions_c} Missões Rank C`, check: (p) => (p.missions_c || 0) >= r.req_missions_c, progress: (p) => `${p.missions_c || 0}/${r.req_missions_c}` });
+          if (r.req_missions_b > 0) reqs.push({ label: `Completar ${r.req_missions_b} Missões Rank B`, check: (p) => (p.missions_b || 0) >= r.req_missions_b, progress: (p) => `${p.missions_b || 0}/${r.req_missions_b}` });
+          if (r.req_missions_a > 0) reqs.push({ label: `Completar ${r.req_missions_a} Missões Rank A`, check: (p) => (p.missions_a || 0) >= r.req_missions_a, progress: (p) => `${p.missions_a || 0}/${r.req_missions_a}` });
+          if (r.req_missions_s > 0) reqs.push({ label: `Completar ${r.req_missions_s} Missões Rank S`, check: (p) => (p.missions_s || 0) >= r.req_missions_s, progress: (p) => `${p.missions_s || 0}/${r.req_missions_s}` });
+          
+          return {
+            id: r.name_id,
+            iconSrc: r.icon_src,
+            title: r.title,
+            desc: r.description,
+            reqs: reqs
+          };
+        });
+        setRanksData(mappedRanks);
+      }
+    }
+    fetchRanks();
+  }, []);
 
-  const currentIndex = Ranks.findIndex(r => r.id === player.rank);
-  const nextRank = Ranks[currentIndex + 1];
+  if (!player || ranksData.length === 0) return <div>Carregando...</div>;
+
+  const currentIndex = ranksData.findIndex(r => r.id === player.rank);
+  const nextRank = ranksData[currentIndex + 1];
 
   let canGraduate = true;
 
   async function graduarPara(novoRank) {
-    // Inicia a cerimônia de graduação (Modal tela cheia escurecido)
     setNewRank(novoRank);
     setIsCeremonyActive(true);
 
-    // Faz o update no banco silenciosamente enquanto a animação rola
     const { error } = await supabase
       .from('players')
       .update({ rank: novoRank })
@@ -58,11 +59,10 @@ export default function Graduacoes({ player, updatePlayer }) {
       return;
     }
 
-    // Espera a animação terminar para atualizar o estado global
     setTimeout(() => {
       updatePlayer(player.user_id);
       setIsCeremonyActive(false);
-    }, 5000); // 5 segundos de animação
+    }, 5000);
   }
 
   return (
@@ -84,7 +84,13 @@ export default function Graduacoes({ player, updatePlayer }) {
           </div>
         ) : (
           <div className="grad-card active" style={{ padding: '32px', textAlign: 'center', border: '1px solid var(--seal-bright)', borderRadius: '8px', maxWidth: '400px' }}>
-            <div className="grad-icon" style={{ fontSize: '64px' }}>{nextRank.icon}</div>
+            <div className="grad-icon" style={{ fontSize: '64px', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80px' }}>
+              {nextRank.iconSrc ? (
+                <img src={nextRank.iconSrc} alt={nextRank.title} style={{ maxWidth: '80px', maxHeight: '80px', objectFit: 'contain' }} />
+              ) : (
+                <span>🥷</span>
+              )}
+            </div>
             <div className="grad-title" style={{ color: 'var(--seal-bright)', fontSize: '24px', margin: '16px 0' }}>{nextRank.title}</div>
             <div className="grad-desc" style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>{nextRank.desc}</div>
             
@@ -114,7 +120,6 @@ export default function Graduacoes({ player, updatePlayer }) {
         )}
       </div>
 
-      {/* CERIMÔNIA MODAL */}
       {isCeremonyActive && (
         <div style={{
           position: 'fixed', inset: 0, zIndex: 9999,
@@ -124,10 +129,15 @@ export default function Graduacoes({ player, updatePlayer }) {
         }}>
           <div style={{
             fontSize: '100px',
+            marginBottom: '24px',
             animation: 'zoomIn 2s forwards',
             filter: 'drop-shadow(0 0 30px rgba(230, 57, 70, 0.8))'
           }}>
-            {Ranks.find(r => r.id === newRank)?.icon || '🥷'}
+            {ranksData.find(r => r.id === newRank)?.iconSrc ? (
+              <img src={ranksData.find(r => r.id === newRank).iconSrc} alt={newRank} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+            ) : (
+              <span>🥷</span>
+            )}
           </div>
           <h1 style={{
             fontFamily: "'Shippori Mincho', serif", 

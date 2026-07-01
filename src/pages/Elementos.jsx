@@ -1,20 +1,42 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
+import PageHeader from '../components/PageHeader';
 
-const ELEMENTS = [
-  { id: 'Katon', icon: '火', color: '#ff5252', name: 'Fogo (Katon)', desc: 'Usuários deste elemento são mestres do Fogo. Esse elemento tem grande vantagem contra o Fuuton (Vento), porém tem fraqueza ao elemento Suiton (Água).', pos: { top: '10%', left: '50%' } },
-  { id: 'Futon', icon: '風', color: '#4caf50', name: 'Vento (Fuuton)', desc: 'Técnicas de alto poder destrutivo utilizando o Vento. Tem grande vantagem contra o Raiton (Trovão), porém fraqueza ao elemento Katon (Fogo).', pos: { top: '38%', left: '85%' } },
-  { id: 'Raiton', icon: '雷', color: '#ffeb3b', name: 'Trovão (Raiton)', desc: 'O poder de rasgar os céus com o Trovão. Tem grande vantagem contra o Doton (Terra), porém fraqueza ao elemento Fuuton (Vento).', pos: { top: '85%', left: '70%' } },
-  { id: 'Doton', icon: '土', color: '#ff9800', name: 'Terra (Doton)', desc: 'Técnicas a base da força da Terra. Tem grande vantagem contra o Suiton (Água), porém fraqueza ao elemento Raiton (Trovão).', pos: { top: '85%', left: '30%' } },
-  { id: 'Suiton', icon: '水', color: '#2196f3', name: 'Água (Suiton)', desc: 'As técnicas que usam o elemento primordial a vida, água. Tem grande vantagem contra o Katon (Fogo), porém fraqueza ao elemento Doton (Terra).', pos: { top: '38%', left: '15%' } },
-];
+const ELEMENT_POS = {
+  'Katon': { top: '10%', left: '50%' },
+  'Futon': { top: '38%', left: '85%' },
+  'Raiton': { top: '85%', left: '70%' },
+  'Doton': { top: '85%', left: '30%' },
+  'Suiton': { top: '38%', left: '15%' }
+};
 
 export default function Elementos({ player, updatePlayer }) {
+  const [elementsData, setElementsData] = useState([]);
   const [hoveredElement, setHoveredElement] = useState(null);
   const [loading, setLoading] = useState(false);
 
   if (!player) return null;
+
+  useEffect(() => {
+    async function fetchElements() {
+      const { data } = await supabase.from('elements').select('*');
+      if (data) {
+        const mapped = data.map(e => ({
+          id: e.name_id,
+          icon: e.icon,
+          color: e.color_hex,
+          name: e.name,
+          desc: e.description,
+          pos: ELEMENT_POS[e.name_id] || { top: '50%', left: '50%' },
+          strong_against: e.strong_against,
+          weak_against: e.weak_against
+        }));
+        setElementsData(mapped);
+      }
+    }
+    fetchElements();
+  }, []);
 
   // Lógica de Requerimentos
   const isLevel5 = player.level >= 5;
@@ -37,61 +59,64 @@ export default function Elementos({ player, updatePlayer }) {
   };
 
   return (
-    <div style={{ paddingBottom: '60px', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <div className="topbar" style={{ marginBottom: '32px', flexDirection: 'column', gap: '8px' }}>
-        <div className="eyebrow">Naturezas de Chakra</div>
-        <h1 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '30px', fontWeight: 600 }}>Elementos</h1>
-      </div>
+    <div className="page flex-col" style={{ minHeight: '100vh' }}>
+      <PageHeader eyebrow='Naturezas de Chakra' title='Elementos' subtitle='Descubra e domine sua natureza de chakra elementar.' />
 
-      <div style={{ flex: 1, display: 'flex', gap: '32px', position: 'relative' }}>
+      <div className="flex-row" style={{ flex: 1, gap: '32px', position: 'relative', alignItems: 'stretch' }}>
         
         {/* ÁREA DO CÍRCULO ELEMENTAL */}
-        <div style={{ 
-          flex: 1, background: 'var(--ink-soft)', border: '1px solid var(--line)', 
-          position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          overflow: 'hidden', minHeight: '600px'
+        <div className="card flex-row" style={{ 
+          flex: 1, position: 'relative', justifyContent: 'center', alignItems: 'center',
+          overflow: 'hidden', minHeight: '600px', padding: 0
         }}>
-          {/* Fundo decorativo */}
-          <div style={{ position: 'absolute', width: '400px', height: '400px', border: '1px solid var(--line)', borderRadius: '50%', opacity: 0.2 }}></div>
-          <div style={{ position: 'absolute', width: '250px', height: '250px', border: '1px solid var(--line)', borderRadius: '50%', opacity: 0.1 }}></div>
+          <div className="element-wheel-container">
+            {/* SVG para desenhar as linhas de vantagem (Estrela) */}
+            <svg className="element-wheel-svg">
+              <line x1="160" y1="20" x2="293" y2="116" className={hoveredElement?.id === 'Katon' ? 'advantage-line' : hoveredElement?.id === 'Futon' ? 'disadvantage-line' : ''} /> {/* Fogo -> Vento */}
+              <line x1="293" y1="116" x2="242" y2="274" className={hoveredElement?.id === 'Futon' ? 'advantage-line' : hoveredElement?.id === 'Raiton' ? 'disadvantage-line' : ''} /> {/* Vento -> Raio */}
+              <line x1="242" y1="274" x2="78" y2="274" className={hoveredElement?.id === 'Raiton' ? 'advantage-line' : hoveredElement?.id === 'Doton' ? 'disadvantage-line' : ''} /> {/* Raio -> Terra */}
+              <line x1="78" y1="274" x2="27" y2="116" className={hoveredElement?.id === 'Doton' ? 'advantage-line' : hoveredElement?.id === 'Suiton' ? 'disadvantage-line' : ''} /> {/* Terra -> Água */}
+              <line x1="27" y1="116" x2="160" y2="20" className={hoveredElement?.id === 'Suiton' ? 'advantage-line' : hoveredElement?.id === 'Katon' ? 'disadvantage-line' : ''} /> {/* Água -> Fogo */}
+            </svg>
 
-          {/* SVG para desenhar as linhas de vantagem (Estrela) */}
-          <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', opacity: 0.3 }}>
-            {/* Linhas conectando os elementos em ordem de vantagem */}
-            <line x1="50%" y1="10%" x2="85%" y2="38%" stroke="#ff5252" strokeWidth="2" /> {/* Fogo -> Vento */}
-            <line x1="85%" y1="38%" x2="70%" y2="85%" stroke="#4caf50" strokeWidth="2" /> {/* Vento -> Raio */}
-            <line x1="70%" y1="85%" x2="30%" y2="85%" stroke="#ffeb3b" strokeWidth="2" /> {/* Raio -> Terra */}
-            <line x1="30%" y1="85%" x2="15%" y2="38%" stroke="#ff9800" strokeWidth="2" /> {/* Terra -> Água */}
-            <line x1="15%" y1="38%" x2="50%" y2="10%" stroke="#2196f3" strokeWidth="2" /> {/* Água -> Fogo */}
-          </svg>
+            {/* Centro */}
+            <div className="element-wheel-center">
+              {player.element ? (
+                <>
+                  <div className="current-el" style={{ color: elementsData.find(e => e.id === player.element)?.color }}>
+                    {elementsData.find(e => e.id === player.element)?.icon}
+                  </div>
+                  <div className="current-label">Dominado</div>
+                </>
+              ) : (
+                <div className="current-label" style={{ color: 'var(--muted)', marginTop: '0' }}>Vazio</div>
+              )}
+            </div>
 
-          {/* Nós (Elementos) */}
-          <div style={{ position: 'absolute', width: '100%', height: '100%', maxWidth: '600px', maxHeight: '600px' }}>
-            {ELEMENTS.map(el => {
+            {/* Nós (Elementos) */}
+            {elementsData.map(el => {
               const isSelected = player.element === el.id;
+              const isHovered = hoveredElement?.id === el.id;
+              
+              // Define Vantagens e Desvantagens dinâmicas
+              let nodeClass = `element-node node-${el.id.toLowerCase()}`;
+              if (isSelected || isHovered) nodeClass += ' active';
+              
+              if (hoveredElement) {
+                if (hoveredElement.strong_against === el.id) nodeClass += ' advantage';
+                if (hoveredElement.weak_against === el.id) nodeClass += ' disadvantage';
+              }
+
               return (
                 <div 
                   key={el.id}
+                  className={nodeClass}
                   onMouseEnter={() => setHoveredElement(el)}
                   onMouseLeave={() => setHoveredElement(null)}
-                  style={{
-                    position: 'absolute',
-                    top: el.pos.top,
-                    left: el.pos.left,
-                    transform: 'translate(-50%, -50%)',
-                    width: '64px', height: '64px',
-                    borderRadius: '50%',
-                    background: 'var(--ink-raised)',
-                    border: `3px solid ${el.color}`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontFamily: "'Shippori Mincho', serif", fontSize: '28px', color: el.color,
-                    cursor: 'pointer',
-                    boxShadow: isSelected ? `0 0 20px ${el.color}` : 'none',
-                    transition: 'all 0.3s',
-                    zIndex: 2
-                  }}
+                  style={{ color: el.color }}
                 >
                   {el.icon}
+                  <div className="el-label">{el.name.split(' ')[0]}</div>
                 </div>
               );
             })}
@@ -99,38 +124,38 @@ export default function Elementos({ player, updatePlayer }) {
         </div>
 
         {/* TOOLTIP FIXA NA DIREITA (INFORMAÇÕES) */}
-        <div style={{ width: '360px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div className="flex-col" style={{ width: '360px', flexShrink: 0 }}>
           
-          <div style={{ background: 'var(--ink)', border: '1px solid var(--line)', padding: '24px' }}>
-            <h3 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '18px', color: 'var(--gold)', marginBottom: '8px' }}>Seu Elemento Atual</h3>
+          <div className="card">
+            <h3 className="card-title gold" style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: '8px' }}>Seu Elemento Atual</h3>
             {player.element ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '16px' }}>
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>
+              <div className="flex-row" style={{ marginTop: '16px' }}>
+                <div className="flex-row" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--gold)', justifyContent: 'center', fontSize: '24px' }}>
                   {ELEMENTS.find(e => e.id === player.element)?.icon}
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 'bold' }}>{player.element}</div>
-                  <div style={{ fontSize: '12px', color: 'var(--muted)' }}>Natureza de Chakra Dominada</div>
+                  <div className="mono" style={{ fontWeight: 'bold' }}>{player.element}</div>
+                  <div className="muted" style={{ fontSize: '12px' }}>Natureza de Chakra Dominada</div>
                 </div>
               </div>
             ) : (
-              <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Você ainda não descobriu sua Natureza de Chakra. Passe o mouse sobre o círculo para estudar os elementos.</div>
+              <div className="muted" style={{ fontSize: '13px' }}>Você ainda não descobriu sua Natureza de Chakra. Passe o mouse sobre o círculo para estudar os elementos.</div>
             )}
           </div>
 
           {hoveredElement && (
-            <div style={{ background: 'var(--ink-raised)', border: `1px solid ${hoveredElement.color}`, padding: '24px', position: 'relative', overflow: 'hidden' }}>
+            <div className="card" style={{ background: 'var(--ink-raised)', borderColor: hoveredElement.color, position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: '-20px', right: '-20px', fontSize: '120px', opacity: 0.05, pointerEvents: 'none', color: hoveredElement.color }}>{hoveredElement.icon}</div>
-              <h3 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '20px', color: hoveredElement.color, marginBottom: '16px' }}>{hoveredElement.name}</h3>
-              <p style={{ fontSize: '13px', lineHeight: '1.6', color: 'var(--paper)', marginBottom: '24px' }}>
+              <h3 className="page-title" style={{ color: hoveredElement.color, marginBottom: '16px', fontSize: '20px' }}>{hoveredElement.name}</h3>
+              <p className="paper" style={{ fontSize: '13px', lineHeight: '1.6', marginBottom: '24px' }}>
                 {hoveredElement.desc}
               </p>
 
               <div style={{ borderTop: '1px dotted var(--line)', paddingTop: '16px' }}>
-                <div style={{ fontSize: '12px', color: '#ff9800', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>Requerimentos</div>
-                <div style={{ fontSize: '12px', fontFamily: "'JetBrains Mono', monospace", display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                  <div style={{ color: isLevel5 ? '#4caf50' : '#f44336' }}>• Ser Level 5</div>
-                  <div style={{ color: isGenin ? '#4caf50' : '#f44336' }}>• Ser Genin</div>
+                <div className="uppercase" style={{ color: '#ff9800', marginBottom: '8px' }}>Requerimentos</div>
+                <div className="mono flex-col" style={{ gap: '4px', fontSize: '12px' }}>
+                  <div style={{ color: isLevel5 ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Level 5</div>
+                  <div style={{ color: isGenin ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Genin</div>
                 </div>
               </div>
 

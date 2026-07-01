@@ -2,79 +2,158 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import { calculateLevelFromXP } from '../utils/engine';
-
-const TAREFAS = [
-  { id: 1, title: "Primeira Lição", desc: "Seja bem vindo estudante. Hoje vamos dar início a sua vida como ninja...", reqLevel: 1, xp: 1782, ryous: 200, time: 15 },
-  { id: 2, title: "Segunda Lição", desc: "Quem disse que sua caminhada para se tornar um Shinobi seria fácil?", reqLevel: 1, xp: 1800, ryous: 200, time: 15 },
-  { id: 3, title: "Terceira Lição", desc: "Você esta indo bem! Mais algumas lições e você pode se tornar um Genin.", reqLevel: 2, xp: 1900, ryous: 200, time: 15 },
-  { id: 4, title: "Quarta Lição", desc: "Parabéns, você esta aprendendo rápido e logo se tornará um grande ninja!", reqLevel: 2, xp: 1950, ryous: 200, time: 15 },
-  { id: 5, title: "Quinta Lição", desc: "Sua vida vai começar a ficar mais perigosa, então tome mais cuidado.", reqLevel: 3, xp: 2000, ryous: 200, time: 15 },
-  { id: 6, title: "Sexta Lição", desc: "Um verdadeiro ninja nunca foge de um combate.", reqLevel: 3, xp: 2200, ryous: 200, time: 15 },
-  { id: 7, title: "Sétima Lição", desc: "Nunca perca o controle sobre seus sentimentos durante uma batalha.", reqLevel: 4, xp: 2500, ryous: 200, time: 15 },
-  { id: 8, title: "Oitava Lição", desc: "O controle do chakra é o mais importante para o uso de qualquer jutsu.", reqLevel: 4, xp: 2800, ryous: 200, time: 15 },
-  { id: 9, title: "Nona Lição", desc: "Você já está pronto para ir lutar.", reqLevel: 5, xp: 3000, ryous: 200, time: 15 },
-  { id: 10, title: "Décima Lição", desc: "Esta é a sua prova final. Onde você terá que mostrar tudo o que aprendeu.", reqLevel: 5, xp: 3500, ryous: 200, time: 15 },
-];
+import { useToast } from '../context/ToastContext';
+import { useGameConfig } from '../context/GameConfigContext';
 
 export default function Tarefas({ player, updatePlayer }) {
-  const [activeTask, setActiveTask] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(0);
-  const [isDone, setIsDone] = useState(false);
+  const [tarefas, setTarefas] = useState([]);
+  const [timers, setTimers] = useState({});
   const [loading, setLoading] = useState(false);
+  const { addToast } = useToast();
+  const gameConfig = useGameConfig();
+
+  const activeMissions = Array.isArray(player?.active_missions) ? player.active_missions : [];
+  const slots = player?.mission_slots || 1;
+  const vipCoins = player?.vip_coins || 0;
+  const SLOT_COST = Number(gameConfig?.mission_slot_cost) || 50; // Custo do novo Slot em Kuro Coins
 
   useEffect(() => {
-    let timer = null;
-    if (activeTask && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft(t => t - 1);
-      }, 1000);
-    } else if (activeTask && timeLeft === 0) {
-      setIsDone(true);
-      clearInterval(timer);
+    async function fetchMissions() {
+      const { data } = await supabase.from('missions').select('*').eq('mission_type', 'tarefa_academia').order('id', { ascending: true });
+      if (data) {
+        // Map database columns back to what the frontend expects
+        const formatted = data.map(m => ({
+          id: m.id,
+          title: m.title,
+          desc: m.description,
+          reqLevel: m.req_level,
+          xp: m.xp,
+          ryous: m.ryous,
+          time: m.time_seconds
+        }));
+        setTarefas(formatted);
+      }
     }
-    return () => clearInterval(timer);
-  }, [activeTask, timeLeft]);
+    fetchMissions();
+  }, []);
+
+  // Temporizador para múltiplas missões
+  useEffect(() => {
+    if (activeMissions.length === 0) return;
+
+    const interval = setInterval(() => {
+      const now = new Date();
+      const newTimers = {};
+      
+      activeMissions.forEach(m => {
+        const endTime = new Date(m.end_time);
+        const diff = Math.floor((endTime - now) / 1000);
+        newTimers[m.mission_id] = diff > 0 ? diff : 0;
+      });
+
+      setTimers(newTimers);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [activeMissions]);
 
   if (!player) return null;
+  const tasksCompleted = player.tasks_completed || 0;
 
-  const startTask = (task) => {
-    setActiveTask(task);
-    setTimeLeft(task.time);
-    setIsDone(false);
+  const buySlot = async () => {
+    if (vipCoins < SLOT_COST) {
+      addToast('Kuro Coins insuficientes. (Custa ' + SLOT_COST + ' 🪙)', 'error');
+      return;
+    }
+    const confirmBuy = window.confirm(`Deseja comprar um novo Slot de Missão por ${SLOT_COST} Kuro Coins?`);
+    if (!confirmBuy) return;
+
+    setLoading(true);
+    const { error } = await supabase.from('players').update({
+      vip_coins: vipCoins - SLOT_COST,
+      mission_slots: slots + 1
+    }).eq('id', player.id);
+
+    if (error) {
+      addToast('Erro ao comprar slot.', 'error');
+    } else {
+      await updatePlayer(player.user_id);
+      addToast('Novo Slot desbloqueado com sucesso!', 'success');
+    }
+    setLoading(false);
   };
 
-  const finishTask = async () => {
-    if (!activeTask) return;
+  const startTask = async (task) => {
+    if (activeMissions.length >= slots) {
+      addToast('Todos os seus Slots estão ocupados. Espere terminar ou compre mais!', 'error');
+      return;
+    }
+    if (activeMissions.some(m => m.mission_id === task.id)) {
+      addToast('Você já está realizando essa missão!', 'error');
+      return;
+    }
+
+    setLoading(true);
+    const endTime = new Date(Date.now() + task.time * 1000).toISOString();
+    
+    const newMission = { mission_id: task.id, end_time: endTime };
+    const newActive = [...activeMissions, newMission];
+
+    const { error } = await supabase.from('players').update({
+      active_missions: newActive
+    }).eq('id', player.id);
+
+    if (error) {
+      addToast('Erro ao iniciar missão.', 'error');
+    } else {
+      await updatePlayer(player.user_id);
+      addToast(`A missão "${task.title}" começou!`, 'success');
+    }
+    setLoading(false);
+  };
+
+  const abortTask = async (missionId) => {
+    setLoading(true);
+    const newActive = activeMissions.filter(m => m.mission_id !== missionId);
+
+    const { error } = await supabase.from('players').update({
+      active_missions: newActive
+    }).eq('id', player.id);
+
+    if (!error) {
+      await updatePlayer(player.user_id);
+      addToast('Missão abortada.', 'info');
+    }
+    setLoading(false);
+  };
+
+  const finishTask = async (taskDef) => {
     setLoading(true);
 
-    const newXp = player.xp + activeTask.xp;
-    const newRyous = player.ryous + activeTask.ryous;
-    const newTasksCount = player.tasks_completed + 1;
+    const newXp = player.xp + taskDef.xp;
+    const newRyous = player.ryous + taskDef.ryous;
+    const newTasksCount = player.tasks_completed + 1; // Para Tarefas Lineares
     const newLevel = calculateLevelFromXP(newXp);
     const levelsGained = newLevel > player.level ? newLevel - player.level : 0;
     const newPontos = (player.pontos_atributos || 0) + levelsGained;
 
-    const { error } = await supabase
-      .from('players')
-      .update({
-        xp: newXp,
-        level: newLevel,
-        ryous: newRyous,
-        tasks_completed: newTasksCount,
-        pontos_atributos: newPontos
-      })
-      .eq('id', player.id);
+    const newActive = activeMissions.filter(m => m.mission_id !== taskDef.id);
+
+    const { error } = await supabase.from('players').update({
+      xp: newXp,
+      ryous: newRyous,
+      tasks_completed: newTasksCount,
+      level: newLevel,
+      pontos_atributos: newPontos,
+      active_missions: newActive
+    }).eq('id', player.id);
 
     if (error) {
-      alert("Erro ao salvar: " + error.message);
-      setLoading(false);
-      return;
+      addToast('Erro ao concluir missão.', 'error');
+    } else {
+      await updatePlayer(player.user_id);
+      addToast(`Missão concluída! +${taskDef.xp} XP / +${taskDef.ryous} RY`, 'success');
     }
-
-    // Refresh and close
-    await updatePlayer(player.user_id);
-    setActiveTask(null);
-    setIsDone(false);
     setLoading(false);
   };
 
@@ -84,87 +163,118 @@ export default function Tarefas({ player, updatePlayer }) {
     return `00:${m}:${s}`;
   };
 
-  // ACTIVE TASK VIEW
-  if (activeTask) {
-    return (
-      <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-        <h2 style={{ color: 'var(--muted)', marginBottom: '16px', fontSize: '14px', letterSpacing: '2px' }}>STATUS DA MISSÃO</h2>
-        <div style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '32px', marginBottom: '24px', textTransform: 'uppercase' }}>
-          {activeTask.title}
-        </div>
-
-        {!isDone ? (
-          <div>
-            <p style={{ color: 'var(--muted)' }}>Sua caminhada ninja está indo bem. O treinamento está em andamento...</p>
-            <div style={{ fontSize: '48px', color: 'var(--seal-bright)', fontWeight: 'bold', margin: '20px 0', fontFamily: "'JetBrains Mono', monospace" }}>
-              {formatTime(timeLeft)}
-            </div>
-          </div>
-        ) : (
-          <div>
-            <p style={{ color: 'var(--muted)' }}>Sua caminhada ninja está indo bem. Parabéns, a lição está finalizada!</p>
-            <p style={{ marginTop: '8px' }}>Como recompensa você receberá:</p>
-            <div style={{ background: 'var(--ink-soft)', border: '1px solid var(--line)', padding: '24px', borderRadius: '8px', display: 'inline-block', textAlign: 'left', marginTop: '20px' }}>
-              <div style={{ color: '#4ade80', fontWeight: 'bold', marginBottom: '8px' }}>+ {activeTask.xp} Pontos de Experiência</div>
-              <div style={{ color: '#3b82f6', fontWeight: 'bold' }}>+ RY$ {activeTask.ryous.toFixed(2)}</div>
-            </div>
-            <br /><br />
-            <button className="btn-primary" onClick={finishTask} disabled={loading}>
-              <span>{loading ? 'Recebendo...' : 'Finalizar e Receber'}</span>
-              <div className="stamp"></div>
-            </button>
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  // LIST VIEW
   return (
-    <div>
+    <div className="page">
       <div className="topbar">
         <div>
           <div className="eyebrow">Academia</div>
-          <h1 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '30px', fontWeight: 600 }}>Tarefas Iniciais</h1>
-          <div className="sub">Complete o treinamento básico da sua Vila.</div>
+          <h1 className="page-title">Tarefas Ninja</h1>
+          <div className="sub">Suas missões em andamento e missões disponíveis.</div>
         </div>
       </div>
 
+      {/* Slots & Missões Ativas */}
+      <div className="card" style={{ marginBottom: '24px', background: 'var(--ink-soft)', border: '1px solid var(--gold)' }}>
+        <div className="flex-between" style={{ marginBottom: '16px', flexWrap: 'wrap', gap: '16px' }}>
+          <h3 className="gold flex-row" style={{ alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '18px' }}>👥</span> Slots de Times em Missão: {activeMissions.length} / {slots}
+          </h3>
+          <button className="btn-attr" onClick={buySlot} disabled={loading} style={{ background: 'rgba(212,162,42,0.1)', borderColor: 'var(--gold)', color: 'var(--gold)' }}>
+            + Comprar Novo Slot (🪙 {SLOT_COST})
+          </button>
+        </div>
+
+        <div className="grid-3" style={{ gap: '16px' }}>
+          {/* Renderiza as missões ativas */}
+          {activeMissions.map((activeM, idx) => {
+            const tDef = tarefas.find(t => t.id === activeM.mission_id);
+            if (!tDef) return null;
+            
+            const timeLeft = timers[activeM.mission_id] !== undefined ? timers[activeM.mission_id] : 0;
+            const isDone = timeLeft <= 0;
+            const progress = isDone ? 100 : ((tDef.time - timeLeft) / tDef.time) * 100;
+
+            return (
+              <div key={idx} style={{ background: 'var(--ink-card)', padding: '16px', borderRadius: '8px', border: isDone ? '1px solid #4ade80' : '1px solid var(--seal-bright)', position: 'relative', overflow: 'hidden' }}>
+                <div className="flex-between" style={{ marginBottom: '8px', position: 'relative', zIndex: 2 }}>
+                  <div className="paper uppercase" style={{ fontSize: '12px', fontWeight: 'bold' }}>{tDef.title}</div>
+                  {isDone ? (
+                    <span className="success mono" style={{ fontSize: '12px' }}>CONCLUÍDO</span>
+                  ) : (
+                    <span className="mono" style={{ color: 'var(--seal-bright)', fontSize: '14px', textShadow: '0 0 8px rgba(99,102,241,0.8)' }}>{formatTime(timeLeft)}</span>
+                  )}
+                </div>
+
+                <div className="progress-track" style={{ height: '4px', marginBottom: '16px', position: 'relative', zIndex: 2, background: 'rgba(0,0,0,0.5)' }}>
+                  <div className={`progress-fill ${isDone ? 'green' : 'blue'}`} style={{ width: `${progress}%`, transition: 'width 1s linear' }} />
+                </div>
+
+                <div className="flex-row" style={{ gap: '8px', position: 'relative', zIndex: 2 }}>
+                  {isDone ? (
+                    <button className="btn-primary" onClick={() => finishTask(tDef)} disabled={loading} style={{ flex: 1, padding: '6px' }}>
+                      Resgatar Recompensa
+                    </button>
+                  ) : (
+                    <button className="btn-ghost" onClick={() => abortTask(activeM.mission_id)} disabled={loading} style={{ flex: 1, padding: '6px', fontSize: '12px' }}>
+                      Abortar
+                    </button>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Renderiza Slots Vazios (se existirem) */}
+          {Array.from({ length: Math.max(0, slots - activeMissions.length) }).map((_, i) => (
+            <div key={`empty-${i}`} className="flex-col" style={{ background: 'rgba(0,0,0,0.3)', border: '1px dashed rgba(255,255,255,0.1)', padding: '16px', borderRadius: '8px', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)' }}>
+              <span style={{ fontSize: '24px', marginBottom: '8px', opacity: 0.5 }}>🏕️</span>
+              <span className="mono" style={{ fontSize: '12px', letterSpacing: '1px' }}>SLOT LIVRE</span>
+              <span style={{ fontSize: '10px', textAlign: 'center', marginTop: '4px' }}>Escolha uma missão abaixo para iniciar.</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Lista de Missões */}
       <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
+          <thead className="muted uppercase" style={{ fontSize: '11px', background: 'var(--ink)' }}>
             <tr>
-              <th style={{ background: 'var(--ink)', color: 'var(--muted)', fontSize: '11px', textTransform: 'uppercase', padding: '12px 16px', textAlign: 'left', borderBottom: '1px solid var(--line)' }}>Descrição</th>
-              <th style={{ background: 'var(--ink)', color: 'var(--muted)', fontSize: '11px', textTransform: 'uppercase', padding: '12px 16px', textAlign: 'center', borderBottom: '1px solid var(--line)' }}>Duração</th>
-              <th style={{ background: 'var(--ink)', color: 'var(--muted)', fontSize: '11px', textTransform: 'uppercase', padding: '12px 16px', textAlign: 'center', borderBottom: '1px solid var(--line)' }}>Recompensa</th>
-              <th style={{ background: 'var(--ink)', color: 'var(--muted)', fontSize: '11px', textTransform: 'uppercase', padding: '12px 16px', textAlign: 'center', borderBottom: '1px solid var(--line)' }}>Level</th>
-              <th style={{ background: 'var(--ink)', color: 'var(--muted)', fontSize: '11px', textTransform: 'uppercase', padding: '12px 16px', textAlign: 'center', borderBottom: '1px solid var(--line)' }}>Status</th>
+              <th style={{ padding: '12px 16px', textAlign: 'left', borderBottom: '1px solid var(--line)' }}>Descrição</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center', borderBottom: '1px solid var(--line)' }}>Duração</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center', borderBottom: '1px solid var(--line)' }}>Recompensa</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center', borderBottom: '1px solid var(--line)' }}>Status</th>
             </tr>
           </thead>
           <tbody>
-            {TAREFAS.map((t, idx) => {
+            {tarefas.map((t, idx) => {
               const reqMet = player.level >= t.reqLevel;
+              const isCompleted = tasksCompleted >= t.id;
+              const isRunning = activeMissions.some(m => m.mission_id === t.id);
+
               return (
-                <tr key={t.id} style={{ background: idx % 2 === 0 ? 'transparent' : 'var(--ink-soft)' }}>
-                  <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', verticalAlign: 'top' }}>
-                    <div style={{ color: 'var(--seal-bright)', fontSize: '14px', fontWeight: 600, marginBottom: '4px' }}>{t.title}</div>
-                    <div style={{ color: 'var(--muted)', fontSize: '12px', lineHeight: 1.4 }}>{t.desc}</div>
+                <tr key={t.id} style={{ background: idx % 2 === 0 ? 'transparent' : 'var(--ink-soft)', opacity: isCompleted ? 0.6 : 1 }}>
+                  <td style={{ padding: '16px', borderBottom: '1px solid var(--line)' }}>
+                    <div className={isCompleted ? 'success' : 'paper'} style={{ fontSize: '14px', fontWeight: 600, marginBottom: '4px' }}>{t.title}</div>
+                    <div className="muted" style={{ fontSize: '12px', lineHeight: 1.4 }}>{t.desc}</div>
+                    <div style={{ marginTop: '8px', fontSize: '11px', color: reqMet ? 'var(--gold)' : 'var(--danger)' }}>Requisito: Level {t.reqLevel}</div>
                   </td>
-                  <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center', verticalAlign: 'middle' }}>
-                    <span style={{ fontSize: '12px', color: 'var(--muted)' }}>00:00:{t.time}</span>
+                  <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center' }}>
+                    <span className="muted mono" style={{ fontSize: '12px' }}>00:00:{t.time}</span>
                   </td>
-                  <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center', verticalAlign: 'middle', fontSize: '12px' }}>
-                    <div style={{ color: '#4ade80' }}>+{t.xp} XP</div>
-                    <div style={{ color: '#3b82f6' }}>+{t.ryous} RY</div>
+                  <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center', fontSize: '12px' }}>
+                    <div className="success">+{t.xp} XP</div>
+                    <div className="info">+{t.ryous} RY</div>
                   </td>
-                  <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center', verticalAlign: 'middle', fontSize: '13px' }}>
-                    <span style={{ color: reqMet ? 'var(--paper)' : '#ef4444' }}>{t.reqLevel}</span>
-                  </td>
-                  <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center', verticalAlign: 'middle' }}>
-                    {reqMet ? (
-                      <button className="btn-ghost" onClick={() => startTask(t)}>Aceitar Missão</button>
+                  <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center' }}>
+                    {isRunning ? (
+                      <span className="badge badge-blue">Em Andamento</span>
+                    ) : isCompleted ? (
+                      <span className="badge badge-green">✓ Concluída</span>
+                    ) : reqMet ? (
+                      <button className="btn-ghost" onClick={() => startTask(t)} disabled={loading || activeMissions.length >= slots}>Iniciar</button>
                     ) : (
-                      <span style={{ color: '#ef4444', fontSize: '12px' }}>Level Insuficiente</span>
+                      <span className="danger" style={{ fontSize: '12px' }}>Nível Insuf.</span>
                     )}
                   </td>
                 </tr>

@@ -743,48 +743,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
   };
 
-  const handleItem = async (item) => {
-    if (!isPlayerTurn || battleResult) return;
-    
-    setIsPlayerTurn(false);
-    
-    // Atualizar no banco e estado local
-    if (item.quantity > 1) {
-       supabase.from('player_consumables').update({ quantity: item.quantity - 1 }).eq('id', item.pc_id).then();
-    } else {
-       supabase.from('player_consumables').delete().eq('id', item.pc_id).then();
-    }
-    
-    if (setPlayerState) {
-      setPlayerState(prev => {
-        if (!prev || !prev.consumables) return prev;
-        const newCons = prev.consumables.map(c => c.pc_id === item.pc_id ? { ...c, quantity: c.quantity - 1 } : c).filter(c => c.quantity > 0);
-        return { ...prev, consumables: newCons };
-      });
-    }
-
-    const healVal = item.value;
-    if (item.type === 'hp') {
-      setPlayerHP(prev => Math.min(maxPlayerHP, prev + healVal));
-      addLog(`🍙 Você usou [${item.name}] e recuperou ${healVal} de HP!`);
-      spawnFct('player', `+${healVal} HP`, 'heal');
-    } else if (item.type === 'cp' || item.type === 'chakra') {
-      setPlayerCP(prev => Math.min(maxPlayerCP, prev + healVal));
-      addLog(`🍙 Você usou [${item.name}] e recuperou ${healVal} de Chakra!`);
-      spawnFct('player', `+${healVal} CP`, 'chakra');
-    } else if (item.type === 'st' || item.type === 'stamina') {
-      setPlayerSt(prev => Math.min(maxPlayerSt, prev + healVal));
-      addLog(`🍙 Você usou [${item.name}] e recuperou ${healVal} de Stamina!`);
-      spawnFct('player', `+${healVal} ST`, 'heal');
-    }
-
-    playJutsuSound();
-    
-    setTimeout(() => {
-      npcTurn(npcHP);
-    }, 1000);
-  };
-
   const handleSurrender = async () => {
     if (!surrenderConfirm) {
       addToast('Clique novamente em Desistir para confirmar.', 'info');
@@ -1008,23 +966,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 </button>
                );
             })}
-
-            {player.consumables?.map((item, idx) => (
-              <button
-                key={`item-${idx}`}
-                className="btn-ghost flex-col"
-                style={{ flex: 1, minWidth: '150px', padding: '12px', border: '1px dashed #4ade80', opacity: isPlayerTurn ? 1 : 0.4, gap: '4px', alignItems: 'center' }}
-                disabled={!isPlayerTurn}
-                onClick={() => handleItem(item)}
-              >
-                <div className="flex-row" style={{ alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 'bold' }}>
-                  <span style={{ fontSize: '16px' }}>{item.icon}</span> {item.name} <span className="gold mono" style={{ fontSize: '10px' }}>x{item.quantity}</span>
-                </div>
-                <div className="mono" style={{ fontSize: '11px', color: '#4ade80' }}>
-                  +{item.value} {item.type.toUpperCase()}
-                </div>
-              </button>
-            ))}
 
             <button 
               className="btn-ghost flex-row" 

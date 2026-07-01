@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
+import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 
 export default function Ichiraku({ player, updatePlayer }) {
   const [consumables, setConsumables] = useState([]);
@@ -86,6 +87,43 @@ export default function Ichiraku({ player, updatePlayer }) {
     await updatePlayer(player.user_id);
     addToast(`Você comprou 1x ${item.name}! Foi enviado para sua mochila.`, 'success');
     setBuyingId(null);
+  };
+
+  const [usingId, setUsingId] = useState(null);
+
+  const handleUse = async (item) => {
+    if (!player) return;
+    setUsingId(item.id);
+
+    const healVal = item.value;
+    let updates = {};
+
+    if (item.type === 'hp') {
+      const maxHP = calculateHP(player);
+      updates.hp = Math.min(maxHP, (player.hp || maxHP) + healVal);
+    } else if (item.type === 'cp' || item.type === 'chakra') {
+      const maxCP = calculateChakra(player);
+      updates.chakra = Math.min(maxCP, (player.chakra || maxCP) + healVal);
+    } else if (item.type === 'st' || item.type === 'stamina') {
+      const maxSt = calculateStamina(player);
+      updates.stamina = Math.min(maxSt, (player.stamina || maxSt) + healVal);
+    }
+
+    // 1. Consumir item
+    if (item.quantity > 1) {
+       await supabase.from('player_consumables').update({ quantity: item.quantity - 1 }).eq('id', item.pc_id);
+    } else {
+       await supabase.from('player_consumables').delete().eq('id', item.pc_id);
+    }
+
+    // 2. Atualizar jogador
+    if (Object.keys(updates).length > 0) {
+       await supabase.from('players').update(updates).eq('id', player.id);
+    }
+
+    await updatePlayer(player.user_id);
+    addToast(`Você consumiu ${item.name}!`, 'success');
+    setUsingId(null);
   };
 
   if (!player) return null;
@@ -217,9 +255,14 @@ export default function Ichiraku({ player, updatePlayer }) {
                     {item.description}
                   </div>
                   
-                  <div className="muted mono" style={{ fontSize: '10px', textAlign: 'center' }}>
-                    Equipamento automático. Pode ser usado em combate.
-                  </div>
+                  <button 
+                    className="btn-primary" 
+                    style={{ width: '100%', padding: '10px', fontSize: '14px' }}
+                    onClick={() => handleUse(item)}
+                    disabled={usingId === item.id}
+                  >
+                    {usingId === item.id ? 'Usando...' : 'Usar Item'}
+                  </button>
                 </div>
               ))
             )}

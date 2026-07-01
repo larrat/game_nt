@@ -113,10 +113,16 @@ export default function Ranking({ player }) {
           </div>
 
           <div id="ranking-list">
-            {ranking.map((p, index) => (
-              <div key={index} className="attr-row-item" style={{ display: 'grid', gridTemplateColumns: '60px 2fr 1fr 1fr 1fr', gap: '16px', alignItems: 'center' }}>
+            {ranking.map((p, index) => {
+              const isMe = player && player.name === p.name;
+              return (
+              <div key={index} className="attr-row-item" style={{ 
+                display: 'grid', gridTemplateColumns: '60px 2fr 1fr 1fr 1fr', gap: '16px', alignItems: 'center',
+                borderLeft: isMe ? '3px solid var(--gold)' : 'none',
+                background: isMe ? 'rgba(212,162,42,0.1)' : 'transparent'
+              }}>
                 <div className={index < 3 ? 'gold' : 'muted'} style={{ fontWeight: index < 3 ? 'bold' : 'normal' }}>#{index + 1}</div>
-                <div style={{ fontWeight: 600 }}>
+                <div style={{ fontWeight: 600, color: isMe ? 'var(--gold)' : 'inherit' }}>
                   {p.name} <span className="muted" style={{ fontSize: '11px', fontWeight: 'normal', margin: '0 8px' }}>[{p.class || 'NIN'}]</span>
                   {p.name === kages[p.village_id] && (
                     <span className="badge badge-gold" style={{ marginLeft: '8px' }}>{KAGES[p.village_id] || 'KAGE'}</span>
@@ -126,7 +132,8 @@ export default function Ranking({ player }) {
                 <div className="mono">{p.level}</div>
                 <div className="mono" style={{ color: 'var(--seal-bright)' }}>{p.xp}</div>
               </div>
-            ))}
+              );
+            })}
             {ranking.length === 0 && <div className="muted" style={{ textAlign: 'center', padding: '24px' }}>Nenhum ninja encontrado.</div>}
           </div>
         </>

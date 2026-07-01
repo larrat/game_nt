@@ -5,6 +5,7 @@ import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import MapGrid from '../components/MapGrid';
 
 const TRAVEL_COST = 100;
 
@@ -20,6 +21,10 @@ export default function Mapa({ player, updatePlayer }) {
   const [villages, setVillages] = useState({});
   const [hideStory, setHideStory] = useState(false);
   const [loadingMap, setLoadingMap] = useState(true);
+  
+  // Coordenadas mockadas locais para testar a exploração 2D
+  const [playerX, setPlayerX] = useState(5);
+  const [playerY, setPlayerY] = useState(5);
 
   useEffect(() => {
     if (player && player.is_fainted) {
@@ -83,8 +88,13 @@ export default function Mapa({ player, updatePlayer }) {
     // 4. Mistura 5 Fantasmas
     if (topPlayers && topPlayers.length > 0) {
       // Shuffle and slice
-      const shuffled = topPlayers.sort(() => 0.5 - Math.random()).slice(0, 5);
-      const ghosts = shuffled.map((p, idx) => ({
+      const shuffled = [...topPlayers];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      const top5Ghost = shuffled.slice(0, 5);
+      const ghosts = top5Ghost.map((p, idx) => ({
         id: `ghost_${p.id}`,
         name: p.name,
         level: p.level,
@@ -149,6 +159,12 @@ export default function Mapa({ player, updatePlayer }) {
     setConfirmTarget(null);
   };
 
+  const handleMove = (newX, newY) => {
+    // Para o mockup, teleporta direto
+    setPlayerX(newX);
+    setPlayerY(newY);
+  };
+
   const attackNpc = (npc) => {
     const maxBeginnerLevel = Number(gameConfig?.beginner_max_level) || 9;
     const maxBeginnerBattles = Number(gameConfig?.beginner_daily_battles) || 20;
@@ -210,44 +226,6 @@ export default function Mapa({ player, updatePlayer }) {
       </div>
 
       <div className="grid-sidebar">
-        {/* Interactive Map Container */}
-        <div className="world-map-container" style={{ position: 'relative' }}>
-          <img src="/images/mapa.png" alt="Mapa Múndi" className="world-map-image" />
-          
-          {/* Plotar Vilas */}
-          {Object.entries(villages).map(([idStr, v]) => {
-            const id = parseInt(idStr);
-            const isCurrent = id === currentLoc;
-            const isTarget = confirmTarget === id;
-            return (
-              <div 
-                key={`village_${id}`} 
-                className={`map-pin ${isCurrent ? 'current' : ''} ${isTarget ? 'selected' : ''}`}
-                style={{ left: `${v.x}%`, top: `${v.y}%` }}
-                onClick={() => requestTravel(id)}
-                title={isCurrent ? `Você está na Vila da ${v.name}` : `Viajar para Vila da ${v.name}`}
-              >
-                {isCurrent && <div className="pin-pulse"></div>}
-                <div className="pin-icon" style={{ borderColor: v.color }}>{v.icon}</div>
-                <div className="pin-label" style={{ background: 'var(--ink)' }}>{v.name}</div>
-              </div>
-            );
-          })}
-
-          {/* Plotar NPCs e Fantasmas */}
-          {!loadingMap && visibleNpcs.map(npc => (
-            <div 
-              key={`npc_${npc.id}`} 
-              className="map-pin npc-pin"
-              style={{ left: `${npc.x}%`, top: `${npc.y}%`, zIndex: npc.is_bingo_book ? 10 : npc.is_ghost ? 8 : 5 }}
-              onClick={() => attackNpc(npc)}
-              title={`Atacar ${npc.name}`}
-            >
-              {npc.is_bingo_book && <div className="pin-pulse" style={{ borderColor: 'var(--danger)' }}></div>}
-              {npc.is_ghost && <div className="pin-pulse" style={{ borderColor: '#ab47bc' }}></div>}
-              <div className="pin-icon" style={{ 
-                borderColor: npc.is_bingo_book ? 'var(--danger)' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? 'var(--gold)' : 'var(--seal)',
-                background: 'var(--ink-card)', fontSize: '14px'
               }}>
                 {npc.avatar}
               </div>

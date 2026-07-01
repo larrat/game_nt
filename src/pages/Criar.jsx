@@ -21,7 +21,6 @@ export default function Criar({ session, setPlayerState }) {
   const [loading, setLoading] = useState(false);
   const [accountUnlocked, setAccountUnlocked] = useState([]);
   const [characters, setCharacters] = useState([]);
-  const [charStats, setCharStats] = useState({});
   const [villageStats, setVillageStats] = useState({});
   const navigate = useNavigate();
 
@@ -45,17 +44,16 @@ export default function Criar({ session, setPlayerState }) {
         setAccountUnlocked(Array.from(aggregated));
       }
       
-      const { data: statsData } = await supabase.from('players').select('character_id, village_id');
-      if (statsData) {
-        const cStats = {};
-        const vStats = {};
-        statsData.forEach(p => {
-          if (p.character_id) cStats[p.character_id] = (cStats[p.character_id] || 0) + 1;
-          if (p.village_id) vStats[p.village_id] = (vStats[p.village_id] || 0) + 1;
-        });
-        setCharStats(cStats);
-        setVillageStats(vStats);
+      const vStats = {};
+      for (const v of VILLAGES_LIST) {
+        if (v.id === 8) continue;
+        const { count } = await supabase
+          .from('players')
+          .select('id', { count: 'exact', head: true })
+          .eq('village_id', v.id);
+        vStats[v.id] = count || 0;
       }
+      setVillageStats(vStats);
     }
     loadData();
   }, [session.user.id]);

@@ -168,14 +168,19 @@ export default function Elementos({ player, updatePlayer }) {
               </div>
 
               {!player.element && (
-                <button 
-                  className="btn-primary" 
-                  style={{ width: '100%', marginTop: '24px', background: hoveredElement.color, opacity: canLearn ? 1 : 0.5, cursor: canLearn ? 'pointer' : 'not-allowed' }}
-                  onClick={() => handleLearnElement(hoveredElement.id)}
-                  disabled={!canLearn || loading}
-                >
-                  {loading ? 'Aprendendo...' : canLearn ? 'Aprender Elemento' : 'Requisitos Incompletos'}
-                </button>
+                <>
+                  <div style={{ marginTop: '16px', padding: '8px', background: 'rgba(239, 68, 68, 0.1)', border: '1px dashed #ef4444', borderRadius: '4px', textAlign: 'center' }}>
+                    <span className="mono" style={{ color: '#ef4444', fontSize: '11px', letterSpacing: '1px' }}>⚠️ AVISO: Esta escolha é permanente!</span>
+                  </div>
+                  <button 
+                    className="btn-primary" 
+                    style={{ width: '100%', marginTop: '12px', background: hoveredElement.color, opacity: canLearn ? 1 : 0.5, cursor: canLearn ? 'pointer' : 'not-allowed' }}
+                    onClick={() => handleLearnElement(hoveredElement.id)}
+                    disabled={!canLearn || loading}
+                  >
+                    {loading ? 'Aprendendo...' : canLearn ? 'Aprender Elemento' : 'Requisitos Incompletos'}
+                  </button>
+                </>
               )}
             </div>
           )}

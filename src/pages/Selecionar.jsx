@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import { VILLAGES } from '../constants';
 
 export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   const [characters, setCharacters] = useState([]);
@@ -100,7 +101,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
                   </div>
                   <div className="info-row flex-between">
                     <span className="muted" style={{ fontSize: '12px' }}>Vila Oculta</span>
-                    <span style={{ fontSize: '12px' }}>{char.village_id === 1 ? 'Folha' : `ID: ${char.village_id}`}</span>
+                    <span style={{ fontSize: '12px' }}>{VILLAGES[char.village_id] || `ID: ${char.village_id}`}</span>
                   </div>
                 </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { getJutsuEnhancementBonus } from '../utils/engine';
+import PageHeader from '../components/PageHeader';
 import '../styles/main.css';
 
 export default function AprimorarJutsus({ player, updatePlayer }) {
@@ -160,13 +161,11 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
 
   return (
     <div className="page">
-      <div className="topbar">
-        <div>
-          <div className="eyebrow">Treinamento</div>
-          <h1 className="page-title">Aprimorar Jutsus</h1>
-          <div className="sub">Personalize suas habilidades com Essências Marciais.</div>
-        </div>
-      </div>
+      <PageHeader
+        eyebrow="Treinamento"
+        title="Aprimorar Jutsus"
+        subtitle="Personalize suas habilidades com Essências Marciais."
+      />
 
       <div className="grid-2">
         {/* Lista de Jutsus */}
@@ -214,9 +213,19 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
         {/* Painel do Jutsu Selecionado */}
         {selectedJutsu ? (
           <div className="card" style={{ position: 'sticky', top: '24px' }}>
-            <h2 className="card-title flex-row" style={{ alignItems: 'center', gap: '8px' }}>
+            <h2 className="card-title flex-row" style={{ alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
               <span className="gold">Nível {selectedJutsu.level}</span>
             </h2>
+            <div className="flex-row" style={{ gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
+              {selectedJutsu.absorbed_stats && (
+                <>
+                  {selectedJutsu.absorbed_stats.dano > 0 && <span className="badge badge-gold">+{selectedJutsu.absorbed_stats.dano} Dano</span>}
+                  {selectedJutsu.absorbed_stats.custo < 0 && <span className="badge badge-muted">{selectedJutsu.absorbed_stats.custo} Chakra</span>}
+                  {selectedJutsu.absorbed_stats.letalidade > 0 && <span className="badge badge-gold">+{selectedJutsu.absorbed_stats.letalidade}% Crítico</span>}
+                  {selectedJutsu.absorbed_stats.protecao > 0 && <span className="badge badge-muted">+{selectedJutsu.absorbed_stats.protecao} Proteção</span>}
+                </>
+              )}
+            </div>
             <p className="muted" style={{ marginBottom: '24px' }}>Preencha os 3 slots com Pergaminhos de Aprimoramento. Eles darão bônus imediatos no combate. Ao encher os 3, você pode evoluir a habilidade.</p>
 
             <div className="flex-row" style={{ gap: '16px', justifyContent: 'center', marginBottom: '32px' }}>

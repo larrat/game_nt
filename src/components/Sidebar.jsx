@@ -42,6 +42,7 @@ const NAV = [
       { to: '/ranking', icon: '/images/imgi_11_round46.png', label: 'Ranking' },
       { to: '/vila', icon: '/images/imgi_108_Noticias.png', label: 'Vila' },
       { to: '/mapa', icon: '/images/imgi_135_shield.png', label: 'Mapa-múndi' },
+      { to: '/ichiraku', icon: '/images/imgi_21_Mochila.png', label: 'Ichiraku Ramen' },
     ]
   }
 ];

@@ -25,17 +25,18 @@ import Vip from './pages/Vip';
 import Templo from './pages/Templo';
 import Evento from './pages/Evento';
 import Portoes from './pages/Portoes';
+import Ichiraku from './pages/Ichiraku';
 
 // Novas telas Fullscreen (Lote 1)
 import Login from './pages/Login';
 import Selecionar from './pages/Selecionar';
 import Criar from './pages/Criar';
 
-const MainLayout = ({ children, playerState }) => (
+const MainLayout = ({ children, playerState, updatePlayer }) => (
   <div className="app">
     <Sidebar player={playerState} />
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-      <TopBar player={playerState} />
+      <TopBar player={playerState} updatePlayer={updatePlayer} />
       <main className="main">{children}</main>
     </div>
   </div>
@@ -158,7 +159,7 @@ function App() {
     <ToastProvider>
       <Router>
         <div className="grain"></div>
-        <MainLayout playerState={playerState}>
+        <MainLayout playerState={playerState} updatePlayer={updatePlayer}>
           <Routes>
             <Route path="/" element={<Dashboard player={playerState} updatePlayer={updatePlayer} session={session} setPlayerState={setPlayerState} />} />
             <Route path="/dashboard" element={<Dashboard player={playerState} updatePlayer={updatePlayer} />} />
@@ -179,6 +180,7 @@ function App() {
             <Route path="/vip" element={<Vip player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/templo" element={<Templo player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/evento" element={<Evento player={playerState} updatePlayer={updatePlayer} />} />
+            <Route path="/ichiraku" element={<Ichiraku player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </MainLayout>

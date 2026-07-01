@@ -1,11 +1,14 @@
 import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP } from '../utils/engine';
+import InventoryModal from './InventoryModal';
 
 const VILLAGES = {
   1: 'Folha', 2: 'Areia', 3: 'Névoa',
   4: 'Pedra', 5: 'Nuvem', 6: 'Som', 7: 'Chuva', 8: 'Akatsuki'
 };
 
-export default function TopBar({ player }) {
+export default function TopBar({ player, updatePlayer }) {
+  const [isInventoryOpen, setIsInventoryOpen] = useState(false);
+
   if (!player) return null;
 
   const maxHp = calculateHP(player);

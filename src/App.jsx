@@ -176,7 +176,7 @@ function App() {
             <Route path="/hospital" element={<Hospital player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/mapa" element={<Mapa player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/dojo" element={<Dojo player={playerState} />} />
-            <Route path="/combate" element={<Combate player={playerState} updatePlayer={updatePlayer} />} />
+            <Route path="/combate" element={<Combate player={playerState} updatePlayer={updatePlayer} setPlayerState={setPlayerState} />} />
             <Route path="/ranking" element={<Ranking player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/portoes" element={<Portoes player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/vip" element={<Vip player={playerState} updatePlayer={updatePlayer} />} />

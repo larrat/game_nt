@@ -20,7 +20,7 @@ import { playHitSound, playCritSound, playJutsuSound } from '../utils/audioEngin
 // Constante de precisão básica física
 const BASE_PHYSICAL_ACCURACY = 80;
 
-export default function Combate({ player, updatePlayer }) {
+export default function Combate({ player, updatePlayer, setPlayerState }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { addToast } = useToast();
@@ -132,6 +132,12 @@ export default function Combate({ player, updatePlayer }) {
       logsContainerRef.current.scrollTop = logsContainerRef.current.scrollHeight;
     }
   }, [logs]);
+
+  useEffect(() => {
+    if (setPlayerState) {
+      setPlayerState(prev => prev ? { ...prev, hp: playerHP, chakra: playerCP } : prev);
+    }
+  }, [playerHP, playerCP, setPlayerState]);
 
   useEffect(() => {
     if (isPlayerTurn && !battleResult && !isAltAutoBattle) {

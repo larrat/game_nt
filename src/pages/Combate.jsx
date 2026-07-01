@@ -8,12 +8,14 @@ import {
   calculateHP,
   calculateChakra,
   calculateAtkTaiBuk,
-  calculateDefTaiBuk,
-  getElementalMultiplier
+  calculateDefNinGen,
+  getElementalMultiplier,
+  getGlobalDebuffs
 } from '../utils/engine';
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
+import { playHitSound, playCritSound, playJutsuSound } from '../utils/audioEngine';
 
 // Constante de precisão básica física
 const BASE_PHYSICAL_ACCURACY = 80;
@@ -73,6 +75,27 @@ export default function Combate({ player, updatePlayer }) {
   const playerHPRef = useRef(playerHP);
   const cooldownsRef = useRef(cooldowns);
   
+  // Efeitos Visuais (Lote 5)
+  const [fcts, setFcts] = useState([]);
+  const [playerShake, setPlayerShake] = useState(false);
+  const [npcShake, setNpcShake] = useState(false);
+
+  const spawnFct = (target, text, type) => {
+    const id = Date.now() + Math.random();
+    setFcts(prev => [...prev, { id, target, text, type }]);
+    setTimeout(() => setFcts(prev => prev.filter(f => f.id !== id)), 1200);
+  };
+
+  const triggerShake = (target) => {
+    if (target === 'player') {
+      setPlayerShake(true);
+      setTimeout(() => setPlayerShake(false), 300);
+    } else {
+      setNpcShake(true);
+      setTimeout(() => setNpcShake(false), 300);
+    }
+  };
+  
   useEffect(() => { playerStatusRef.current = playerStatus; }, [playerStatus]);
   useEffect(() => { npcStatusRef.current = npcStatus; }, [npcStatus]);
   useEffect(() => { playerHPRef.current = playerHP; }, [playerHP]);
@@ -88,6 +111,19 @@ export default function Combate({ player, updatePlayer }) {
   const [timeLeft, setTimeLeft] = useState(30);
   const [turnCount, setTurnCount] = useState(1);
   const [accumulatedDamage, setAccumulatedDamage] = useState(0);
+  const [globalDebuffs, setGlobalDebuffs] = useState(getGlobalDebuffs(null));
+
+  useEffect(() => {
+    async function checkGlobalDebuffs() {
+      if (location.state?.isWorldBoss) {
+        setGlobalDebuffs(getGlobalDebuffs(npcInit));
+        return;
+      }
+      const { data } = await supabase.from('global_events').select('*').eq('is_active', true).eq('is_world_boss', true).single();
+      if (data) setGlobalDebuffs(getGlobalDebuffs(data));
+    }
+    checkGlobalDebuffs();
+  }, [location.state, npcInit]);
 
   const logsEndRef = useRef(null);
 
@@ -166,8 +202,10 @@ export default function Combate({ player, updatePlayer }) {
 
   const handleWin = async () => {
     setLoading(true);
+    const baseRyous = npcInit.ryouReward || 0;
+    const gainedRyous = Math.floor(baseRyous * globalDebuffs.ryouGainMultiplier);
     const newXp = player.xp + (npcInit.xpReward || 0);
-    const newRyous = player.ryous + (npcInit.ryouReward || 0);
+    const newRyous = player.ryous + gainedRyous;
     const newLevel = calculateLevelFromXP(newXp);
     const levelsGained = newLevel > player.level ? newLevel - player.level : 0;
     const newPontos = (player.pontos_atributos || 0) + levelsGained;
@@ -299,6 +337,9 @@ export default function Combate({ player, updatePlayer }) {
            const damage = Math.floor(bossBaseDamage * mult);
            const newPlayerHP = Math.max(0, playerHP - damage);
            setPlayerHP(newPlayerHP);
+           playHitSound();
+           triggerShake('player');
+           spawnFct('player', `-${damage}`, 'damage');
            addLog(`${npcInit.name} causou ${damage} de dano! (Turno ${turnCount}/10)`);
            setTurnCount(t => t + 1);
 
@@ -408,6 +449,14 @@ export default function Combate({ player, updatePlayer }) {
 
         const newPlayerHP = Math.max(0, playerHPRef.current - damage);
         setPlayerHP(newPlayerHP);
+        if (usedJutsu) {
+          playJutsuSound();
+          spawnFct('player', `-${damage} MAG`, 'magic');
+        } else {
+          playHitSound();
+          spawnFct('player', `-${damage}`, 'damage');
+        }
+        triggerShake('player');
 
         if (newPlayerHP <= 0) {
           addLog('Você foi derrotado e caiu inconsciente...');
@@ -423,11 +472,12 @@ export default function Combate({ player, updatePlayer }) {
   const handleBasicAttack = () => {
     if (!isPlayerTurn || battleResult) return;
     
-    if (playerSt < 15) { addToast('Stamina insuficiente para atacar!', 'error'); return; }
+    const staminaCost = Math.floor(15 * globalDebuffs.staminaCostMultiplier);
+    if (playerSt < staminaCost) { addToast(`Stamina insuficiente (${staminaCost}) para atacar!`, 'error'); return; }
 
     setIsPlayerTurn(false);
     
-    const newSt = playerSt - 15;
+    const newSt = playerSt - staminaCost;
     setPlayerSt(newSt);
 
     if (newSt <= maxPlayerSt * 0.1) {
@@ -437,7 +487,7 @@ export default function Combate({ player, updatePlayer }) {
       return;
     }
 
-    const totalAccuracy = BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2);
+    const totalAccuracy = BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty;
     const didHit = Math.random() * 100 <= totalAccuracy;
 
     if (!didHit) {
@@ -456,7 +506,16 @@ export default function Combate({ player, updatePlayer }) {
     setNpcHP(newNpcHP);
 
     let msg = `Você usou Ataque Básico e causou ${damage} de dano!`;
-    if (isCrit) msg += ` 👁️ CRÍTICO!`;
+    if (isCrit) {
+      msg += ` 👁️ CRÍTICO!`;
+      playCritSound();
+      spawnFct('npc', `-${damage} CRIT!`, 'crit');
+    } else {
+      playHitSound();
+      spawnFct('npc', `-${damage}`, 'damage');
+    }
+    triggerShake('npc');
+
     if (clanBonus.armorPen > 0) msg += ` [Byakugan: ignorou def]`;
     addLog(msg);
 
@@ -503,7 +562,7 @@ export default function Combate({ player, updatePlayer }) {
     supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
     
     const jutsuAccuracy = jutsu.accuracy || 100;
-    const totalAccuracy = jutsuAccuracy + (playerPrecision / 2);
+    const totalAccuracy = jutsuAccuracy + (playerPrecision / 2) - globalDebuffs.accuracyPenalty;
     const didHit = Math.random() * 100 <= totalAccuracy;
 
     if (!didHit) {
@@ -521,6 +580,10 @@ export default function Combate({ player, updatePlayer }) {
 
     const newNpcHP = Math.max(0, npcHP - damage);
     setNpcHP(newNpcHP);
+
+    playJutsuSound();
+    triggerShake('npc');
+    spawnFct('npc', `-${damage} MAG`, mult > 1 ? 'crit' : 'magic');
 
     let elementalMsg = '';
     if (mult > 1.0) elementalMsg = ' (Vantagem Elemental! Dano Crítico!)';
@@ -579,7 +642,10 @@ export default function Combate({ player, updatePlayer }) {
         
         <div className="flex-row" style={{ alignItems: 'stretch', gap: '24px' }}>
           
-          <div className="card flex-col" style={{ flex: 1, borderColor: clanBonus.name ? 'rgba(212,162,42,0.3)' : 'var(--line)' }}>
+          <div className={`card flex-col ${playerShake ? 'shake' : ''}`} style={{ flex: 1, borderColor: clanBonus.name ? 'rgba(212,162,42,0.3)' : 'var(--line)', position: 'relative' }}>
+            {fcts.filter(f => f.target === 'player').map(f => (
+              <div key={f.id} className={`fct fct-${f.type}`}>{f.text}</div>
+            ))}
             <div className="flex-row">
               <div className="flex-row" style={{ width: '64px', height: '64px', background: 'var(--ink-raised)', justifyContent: 'center', fontSize: '32px', border: '1px solid var(--line)', borderRadius: '6px', overflow: 'hidden' }}>
                 {player.avatar?.startsWith('/') ? <img src={player.avatar} alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : '忍'}
@@ -625,7 +691,10 @@ export default function Combate({ player, updatePlayer }) {
             <div className="page-title gold" style={{ fontSize: '24px' }}>VS</div>
           </div>
 
-          <div className="card flex-col" style={{ flex: 1, border: isMirror ? '1px solid #ef4444' : '1px solid var(--line)' }}>
+          <div className={`card flex-col ${npcShake ? 'shake' : ''}`} style={{ flex: 1, border: isMirror ? '1px solid #ef4444' : '1px solid var(--line)', position: 'relative' }}>
+            {fcts.filter(f => f.target === 'npc').map(f => (
+              <div key={f.id} className={`fct fct-${f.type}`}>{f.text}</div>
+            ))}
             <div className="flex-row" style={{ flexDirection: 'row-reverse', textAlign: 'right' }}>
               <div className="flex-row" style={{ width: '64px', height: '64px', background: 'var(--ink-raised)', justifyContent: 'center', fontSize: '32px', border: isMirror ? '1px solid #ef4444' : '1px solid var(--seal-bright)', borderRadius: '6px' }}>
                 {npcInit.avatar}

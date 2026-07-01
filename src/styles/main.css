@@ -1382,3 +1382,46 @@ body {
   stroke-width: 3;
   stroke-dasharray: none;
 }
+
+/* =========================================
+   COMBAT VISUALS (Lote 5)
+   ========================================= */
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.shake {
+  animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes fct-float {
+  0% { opacity: 0; transform: translateY(0) scale(0.8); }
+  15% { opacity: 1; transform: translateY(-20px) scale(1.2); }
+  30% { transform: translateY(-30px) scale(1); }
+  80% { opacity: 1; transform: translateY(-50px); }
+  100% { opacity: 0; transform: translateY(-70px); }
+}
+.fct {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  text-shadow: 0 0 5px rgba(0,0,0,1), 2px 2px 0px rgba(0,0,0,1);
+  z-index: 100;
+  animation: fct-float 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.fct-damage { color: #fff; font-size: 24px; }
+.fct-crit { color: #ef4444; font-size: 32px; text-shadow: 0 0 10px rgba(239, 68, 68, 0.8), 2px 2px 0px rgba(0,0,0,1); }
+.fct-magic { color: #3b82f6; font-size: 26px; }

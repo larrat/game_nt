@@ -315,11 +315,11 @@ const jutsus = [
     cooldown: 4
   },
 
-  // --- RANK 6: Kage (Dano 600, CP 300, RY 25000, Req 150, Selo 150, CD 5) ---
+  // --- RANK 6: Sannin (Dano 600, CP 300, RY 25000, Req 150, Selo 150, CD 5) ---
   {
     name: 'Arte Sábia: Super Rasengan',
     description: 'O auge do chakra condensado, capaz de pulverizar montanhas. (Foco em Buff)',
-    req_rank: 'Kage',
+    req_rank: 'Sannin',
     req_level: 45,
     category: 'Ninjutsu',
     type: 'Ataque',
@@ -334,7 +334,7 @@ const jutsus = [
   {
     name: 'Tsukuyomi (Adaptação Livre)',
     description: 'Dimensão de tortura mental controlada pelo usuário, quebra espiritual completa. (Foco em Debuff)',
-    req_rank: 'Kage',
+    req_rank: 'Sannin',
     req_level: 45,
     category: 'Genjutsu',
     type: 'Ilusão',
@@ -349,7 +349,7 @@ const jutsus = [
   {
     name: 'Oitavo Portão: Elefante do Anoitecer',
     description: 'Golpes que distorcem o próprio ar. Exige sacrifício físico extremo. (Foco em Buff)',
-    req_rank: 'Kage',
+    req_rank: 'Sannin',
     req_level: 45,
     category: 'Taijutsu',
     type: 'Corpo-a-Corpo',
@@ -364,7 +364,7 @@ const jutsus = [
   {
     name: 'Arsenal Infinito: Marionete Mestra',
     description: 'Invocação e controle de cem armamentos pesados selando totalmente o inimigo. (Foco em Debuff)',
-    req_rank: 'Kage',
+    req_rank: 'Sannin',
     req_level: 45,
     category: 'Bukijutsu',
     type: 'Armas',

@@ -42,8 +42,8 @@ VALUES
 ('Lótus Oculta', 'Velocidade além da percepção visual desferindo golpes fatais. (Foco em Buff)', 'ANBU', 35, 'Taijutsu', 'Corpo-a-Corpo', 350, 160, 10000, 100, 100, 100, 4, true),
 ('Tempestade de Pergaminhos', 'Desencela milhares de armas simultaneamente destruindo a área. (Foco em Debuff)', 'ANBU', 35, 'Bukijutsu', 'Armas', 350, 160, 10000, 100, 100, 100, 4, true),
 
--- RANK 6: Kage
-('Arte Sábia: Super Rasengan', 'O auge do chakra condensado, capaz de pulverizar montanhas. (Foco em Buff)', 'Kage', 45, 'Ninjutsu', 'Ataque', 600, 300, 25000, 100, 150, 150, 5, true),
-('Tsukuyomi (Adaptação Livre)', 'Dimensão de tortura mental controlada pelo usuário, quebra espiritual completa. (Foco em Debuff)', 'Kage', 45, 'Genjutsu', 'Ilusão', 600, 300, 25000, 100, 150, 150, 5, true),
-('Oitavo Portão: Elefante do Anoitecer', 'Golpes que distorcem o próprio ar. Exige sacrifício físico extremo. (Foco em Buff)', 'Kage', 45, 'Taijutsu', 'Corpo-a-Corpo', 600, 300, 25000, 100, 150, 150, 5, true),
-('Arsenal Infinito: Marionete Mestra', 'Invocação e controle de cem armamentos pesados selando totalmente o inimigo. (Foco em Debuff)', 'Kage', 45, 'Bukijutsu', 'Armas', 600, 300, 25000, 100, 150, 150, 5, true);
+-- RANK 6: Sannin
+('Arte Sábia: Super Rasengan', 'O auge do chakra condensado, capaz de pulverizar montanhas. (Foco em Buff)', 'Sannin', 45, 'Ninjutsu', 'Ataque', 600, 300, 25000, 100, 150, 150, 5, true),
+('Tsukuyomi (Adaptação Livre)', 'Dimensão de tortura mental controlada pelo usuário, quebra espiritual completa. (Foco em Debuff)', 'Sannin', 45, 'Genjutsu', 'Ilusão', 600, 300, 25000, 100, 150, 150, 5, true),
+('Oitavo Portão: Elefante do Anoitecer', 'Golpes que distorcem o próprio ar. Exige sacrifício físico extremo. (Foco em Buff)', 'Sannin', 45, 'Taijutsu', 'Corpo-a-Corpo', 600, 300, 25000, 100, 150, 150, 5, true),
+('Arsenal Infinito: Marionete Mestra', 'Invocação e controle de cem armamentos pesados selando totalmente o inimigo. (Foco em Debuff)', 'Sannin', 45, 'Bukijutsu', 'Armas', 600, 300, 25000, 100, 150, 150, 5, true);

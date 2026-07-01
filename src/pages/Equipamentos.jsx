@@ -80,6 +80,43 @@ export default function Equipamentos({ player, updatePlayer }) {
     loadInventory();
   };
 
+  const handleMassSell = async () => {
+    const junkItems = inventory.filter(i => 
+      !i.is_equipped && 
+      !i.is_favorite && 
+      (i.rarity === 'Comum' || i.items.rarity === 'Comum' || i.rarity === 'Incomum' || i.items.rarity === 'Incomum')
+    );
+
+    if (junkItems.length === 0) {
+      addToast('Você não tem itens Comuns/Incomuns destrancados na mochila.', 'info');
+      return;
+    }
+
+    let totalRyous = 0;
+    const idsToDelete = junkItems.map(i => {
+      const r = i.rarity || i.items.rarity;
+      if (r === 'Comum') totalRyous += 50;
+      if (r === 'Incomum') totalRyous += 150;
+      return i.id;
+    });
+
+    if (!window.confirm(`Deseja vender ${junkItems.length} itens lixo por RY$ ${totalRyous}? (Isso irá apagar seus itens Brancos e Verdes não-favoritados)`)) return;
+
+    setLoading(true);
+    const { error } = await supabase.from('player_inventory').delete().in('id', idsToDelete);
+    if (error) {
+      addToast('Erro ao vender: ' + error.message, 'error');
+      setLoading(false);
+      return;
+    }
+
+    await supabase.from('players').update({ ryous: (player.ryous || 0) + totalRyous }).eq('id', player.id);
+    
+    addToast(`Vendido com sucesso! Você ganhou RY$ ${totalRyous}.`, 'success');
+    loadInventory();
+    updatePlayer(player.user_id);
+  };
+
   // Helper para agrupar os slots equipados
   const getEquipped = (type) => inventory.find(i => i.is_equipped && i.items.type === type);
 
@@ -202,17 +239,23 @@ export default function Equipamentos({ player, updatePlayer }) {
             <div className="flex-between" style={{ marginBottom: '24px', borderBottom: '1px solid var(--line)', paddingBottom: '16px' }}>
               <h3 className="section-title" style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: 0 }}>Mochila</h3>
               
-              <div className="flex-row" style={{ gap: '8px', overflowX: 'auto' }}>
-                {['Todos', 'Favoritos', 'Cabeça', 'Tronco', 'Braços', 'Pernas', 'Arma', 'Acessório'].map(f => (
-                  <button 
-                    key={f} 
-                    onClick={() => setFilter(f)}
-                    className={filter === f ? 'btn-attr' : 'btn-ghost'}
-                    style={{ fontSize: '11px', padding: '6px 12px', whiteSpace: 'nowrap' }}
-                  >
-                    {f === 'Favoritos' ? '⭐' : f}
-                  </button>
-                ))}
+              <div className="flex-row" style={{ gap: '8px', overflowX: 'auto', flexWrap: 'wrap' }}>
+                <div className="flex-row" style={{ gap: '8px' }}>
+                  {['Todos', 'Favoritos', 'Cabeça', 'Tronco', 'Braços', 'Pernas', 'Arma', 'Acessório'].map(f => (
+                    <button 
+                      key={f} 
+                      onClick={() => setFilter(f)}
+                      className={filter === f ? 'btn-attr' : 'btn-ghost'}
+                      style={{ fontSize: '11px', padding: '6px 12px', whiteSpace: 'nowrap' }}
+                    >
+                      {f === 'Favoritos' ? '⭐' : f}
+                    </button>
+                  ))}
+                </div>
+                
+                <button onClick={handleMassSell} className="btn-ghost" style={{ fontSize: '11px', padding: '6px 12px', border: '1px solid #ef4444', color: '#ef4444', marginLeft: 'auto' }}>
+                  🗑️ Vender Lixo
+                </button>
               </div>
             </div>
             

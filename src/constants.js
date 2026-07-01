@@ -41,7 +41,8 @@ export const RANK_ORDER = [
   'Chunin',
   'Jounin',
   'ANBU',
-  'Kage',
+  'Sanin',
+  'Heroi'
 ];
 
 export const ELEMENTS = ['Katon', 'Futon', 'Raiton', 'Doton', 'Suiton'];

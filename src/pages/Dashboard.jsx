@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { calculateXPForLevel, calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
+import { calculateXPForLevel, calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateAtkNinGen, getGlobalDebuffs } from '../utils/engine';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import AvatarModal from '../components/AvatarModal';
@@ -219,19 +219,31 @@ export default function Dashboard({ player, updatePlayer }) {
             </div>
           </div>
 
-          {/* Removido as barras HP/CP/SP do Dashboard, agora centralizadas no TopBar Global */}
-
-          {/* EXP Bar */}
+          {/* FICHA TÉCNICA (Substitui antiga XP bar) */}
           <div style={{ marginTop: '4px' }}>
-            <div className="flex-between" style={{ marginBottom: '6px', fontSize: '12px' }}>
-              <span className="mono muted flex-row" style={{ gap: '6px', alignItems: 'center' }}>
-                <img src="/images/imgi_126_star.png" style={{ width: '12px', height: '12px' }} />
-                EXP: {player.xp} / {nextLevelXP}
-              </span>
-              <span className="mono gold">{Math.floor(xpPercent)}%</span>
-            </div>
-            <div className="progress-track" style={{ height: '6px', background: 'rgba(0,0,0,0.5)' }}>
-              <div className="progress-fill green" style={{ width: `${xpPercent}%` }} />
+            <div className="muted uppercase mono" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '12px' }}>Ficha de Combate</div>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', borderLeft: '2px solid #ef4444' }}>
+                <div className="muted mono" style={{ fontSize: '10px', marginBottom: '4px' }}>Dano Físico</div>
+                <div className="paper mono" style={{ fontSize: '14px' }}>{calculateAtkTaiBuk(player)}</div>
+              </div>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', borderLeft: '2px solid #3b82f6' }}>
+                <div className="muted mono" style={{ fontSize: '10px', marginBottom: '4px' }}>Dano Mágico</div>
+                <div className="paper mono" style={{ fontSize: '14px' }}>{calculateAtkNinGen(player)}</div>
+              </div>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
+                <div className="muted mono" style={{ fontSize: '10px', marginBottom: '4px' }}>Selos Místicos</div>
+                <div className="paper mono" style={{ fontSize: '14px' }}>{player.precisao || player.pre || 0} pts</div>
+              </div>
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', borderLeft: '2px solid var(--success)' }}>
+                <div className="muted mono" style={{ fontSize: '10px', marginBottom: '4px' }}>Vantagem do Clã</div>
+                <div className="paper mono" style={{ fontSize: '14px', color: 'var(--success)' }}>
+                  {player.clan === 'Uchiha' ? '+15% Crítico' : 
+                   player.clan === 'Hyuga' ? 'Ignora Armadura' : 
+                   player.clan === 'Nara' ? '+10% Paralisia' : '---'}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -357,7 +369,29 @@ export default function Dashboard({ player, updatePlayer }) {
         {/* ── PAINEL DE OBJETIVOS DIÁRIOS ── */}
         <div className="grid-2" style={{ marginTop: '24px' }}>
           
-          {/* Fidelidade */}
+        {/* 3. Coluna Principal: Atividades Diárias (100% no mobile, preenche espaço no desktop) */}
+        <div className="flex-col" style={{ flex: '2 1 400px', gap: '24px' }}>
+          
+          {/* AVISO DE DEBUFF GLOBAL */}
+          {activeEvents.filter(e => e.is_world_boss).map(boss => {
+            const debuffs = getGlobalDebuffs(boss);
+            if (debuffs.currentPhase === 0) return null;
+            return (
+              <div key={boss.id} className="card" style={{ borderLeft: '4px solid #ef4444' }}>
+                <h4 className="card-title danger" style={{ marginBottom: '8px' }}>⚠️ Alerta Global: {boss.name}</h4>
+                <div className="muted" style={{ fontSize: '13px', marginBottom: '12px' }}>A fúria deste evento está desestabilizando a economia e o chakra de todos os ninjas.</div>
+                <div className="grid-2" style={{ gap: '8px' }}>
+                  <div className="badge badge-muted">Fase Atual: {debuffs.currentPhase}/4</div>
+                  {debuffs.currentPhase >= 1 && <div className="badge badge-danger">Stamina +30% (Combate)</div>}
+                  {debuffs.currentPhase >= 2 && <div className="badge badge-danger">Precisão -15% (Combate)</div>}
+                  {debuffs.currentPhase >= 3 && <div className="badge badge-danger">Custo do Hospital Dobrado</div>}
+                  {debuffs.currentPhase >= 4 && <div className="badge badge-danger">Ryous ganhos -50%</div>}
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Fidelidade Diária */}
           <div className="card" style={{ border: fidelityClaimed ? '1px solid var(--line)' : '1px solid var(--seal-bright)', background: fidelityClaimed ? 'var(--ink)' : 'var(--seal-glow)' }}>
             <h4 className="card-title flex-row" style={{ marginBottom: '8px', alignItems: 'center', gap: '8px' }}>
               <img src="/images/imgi_16_fidelidade.png" style={{ width: '18px' }} /> Bônus de Fidelidade

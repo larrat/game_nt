@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { calculateXPForLevel, calculateLevelFromXP } from '../utils/engine';
+import { playHoverSound, playClickSound } from '../utils/audioEngine';
 
 const NAV = [
   {
@@ -45,18 +47,45 @@ const NAV = [
 ];
 
 export default function Sidebar({ player }) {
-  // By default, open 'Personagem' and 'Mundo'
-  const [expanded, setExpanded] = React.useState({
+  const [expanded, setExpanded] = useState({
     'Personagem': true,
     'Mundo': true,
   });
 
+  const [audioOn, setAudioOn] = useState(window.kurokageAudioEnabled);
+
+  useEffect(() => {
+    window.kurokageAudioEnabled = audioOn;
+  }, [audioOn]);
+
   const toggleGroup = (groupName) => {
+    playClickSound();
     setExpanded(prev => ({
       ...prev,
       [groupName]: !prev[groupName]
     }));
   };
+
+  const handleLinkClick = () => {
+    playClickSound();
+  };
+
+  const handleMouseEnter = () => {
+    playHoverSound();
+  };
+
+  // Cálculos de XP para a barra global
+  let xpPercent = 0;
+  let nextLvlXp = 100;
+  let currentXp = 0;
+  if (player && player.xp !== undefined) {
+    const currentLvl = calculateLevelFromXP(player.xp);
+    const startXp = calculateXPForLevel(currentLvl);
+    nextLvlXp = calculateXPForLevel(currentLvl + 1);
+    const requiredXp = nextLvlXp - startXp;
+    currentXp = player.xp - startXp;
+    xpPercent = Math.min(100, Math.max(0, (currentXp / requiredXp) * 100));
+  }
 
   return (
     <aside className="sidebar">
@@ -67,42 +96,76 @@ export default function Sidebar({ player }) {
         </div>
       </div>
 
-      {NAV.map((group) => {
-        const isOpen = expanded[group.group];
-        return (
-          <div className="navgroup" key={group.group}>
-            <div 
-              className={`navgroup-header ${isOpen ? 'open' : ''}`} 
-              onClick={() => toggleGroup(group.group)}
-            >
-              <div className="label" style={{ color: group.group === 'Premium' ? 'var(--gold)' : 'var(--muted)' }}>
-                {group.group}
+      <div style={{ flex: 1, overflowY: 'auto' }}>
+        {NAV.map((group) => {
+          const isOpen = expanded[group.group];
+          return (
+            <div className="navgroup" key={group.group}>
+              <div 
+                className={`navgroup-header ${isOpen ? 'open' : ''}`} 
+                onClick={() => toggleGroup(group.group)}
+                onMouseEnter={handleMouseEnter}
+              >
+                <div className="label" style={{ color: group.group === 'Premium' ? 'var(--gold)' : 'var(--muted)' }}>
+                  {group.group}
+                </div>
+                <div className="arrow">▼</div>
               </div>
-              <div className="arrow">▼</div>
+              
+              <div className={`navgroup-content ${isOpen ? 'open' : ''}`}>
+                {group.items.map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    onClick={handleLinkClick}
+                    onMouseEnter={handleMouseEnter}
+                    className={({ isActive }) => `navitem${isActive ? ' active' : ''} ${group.group === 'Premium' ? 'premium' : ''}`}
+                  >
+                    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', flexShrink: 0 }}>
+                      <img src={item.icon} alt={item.label} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    </span>
+                    {item.label}
+                  </NavLink>
+                ))}
+              </div>
             </div>
-            
-            <div className={`navgroup-content ${isOpen ? 'open' : ''}`}>
-              {group.items.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) => `navitem${isActive ? ' active' : ''} ${group.group === 'Premium' ? 'premium' : ''}`}
-                >
-                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', flexShrink: 0 }}>
-                    <img src={item.icon} alt={item.label} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                  </span>
-                  {item.label}
-                </NavLink>
-              ))}
+          );
+        })}
+      </div>
+
+      <div className="sidebar-footer" style={{ borderTop: '1px solid var(--line)', padding: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        
+        {player && (
+          <div className="flex-col" style={{ gap: '4px' }}>
+            <div className="flex-between" style={{ fontSize: '12px' }}>
+              <span className="mono gold">Lvl. {player.level || 1}</span>
+              <span className="mono muted" style={{ fontSize: '10px' }}>{Math.floor(xpPercent)}%</span>
+            </div>
+            <div className="progress-track" style={{ height: '4px' }}>
+              <div className="progress-fill green" style={{ width: `${xpPercent}%` }}></div>
+            </div>
+            <div className="mono muted" style={{ fontSize: '10px', textAlign: 'right' }}>
+              {currentXp} / {nextLvlXp - calculateXPForLevel(player.level || 1)} XP
             </div>
           </div>
-        );
-      })}
+        )}
 
-      <div className="sidebar-footer">
-        <div style={{ color: 'var(--gold)', marginBottom: '4px', fontWeight: 600 }}>TEMPORADA IV</div>
-        <div>S1 · {player?.name || '---'}</div>
-        <div style={{ marginTop: '4px', opacity: 0.5 }}>v2.0 Kurokage</div>
+        <div className="flex-between" style={{ marginTop: '8px' }}>
+          <div className="flex-col">
+            <div style={{ color: 'var(--gold)', marginBottom: '4px', fontWeight: 600, fontSize: '12px' }}>S1 · {player?.name || '---'}</div>
+            <div style={{ opacity: 0.5, fontSize: '11px' }}>v2.0 Kurokage</div>
+          </div>
+          
+          <button 
+            className="btn-ghost" 
+            style={{ padding: '6px', fontSize: '16px', borderRadius: '4px', border: '1px solid var(--line)' }}
+            onClick={() => { playClickSound(); setAudioOn(!audioOn); }}
+            title={audioOn ? 'Desativar Som' : 'Ativar Som'}
+          >
+            {audioOn ? '🔊' : '🔇'}
+          </button>
+        </div>
+
       </div>
     </aside>
   );

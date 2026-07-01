@@ -156,13 +156,63 @@ export const getPvPMatchRules = (playerRank, playerLevel) => {
   if (rank === 'Sanin') {
     if (lvl <= 55) return { minLvl: 45, maxLvl: 55, targetRanks: ['Sanin'] };
     // Level 56+ (Estagnado)
-    return { minLvl: 55, maxLvl: 999, targetRanks: ['Herói'] };
+    return { minLvl: 55, maxLvl: 999, targetRanks: ['Heroi'] };
   }
 
-  if (rank === 'Herói') {
-    return { minLvl: 55, maxLvl: 999, targetRanks: ['Herói'] };
+  if (rank === 'Heroi') {
+    return { minLvl: 55, maxLvl: 999, targetRanks: ['Heroi'] };
   }
 
   // Fallback seguro
   return { minLvl: Math.max(1, lvl - 3), maxLvl: lvl + 3, targetRanks: null };
+};
+
+// ==========================================
+// SISTEMA DE DEBUFFS GLOBAIS (World Boss)
+// ==========================================
+export const getGlobalDebuffs = (activeBoss) => {
+  const debuffs = {
+    staminaCostMultiplier: 1, // Fase 1
+    accuracyPenalty: 0,       // Fase 2
+    hospitalCostMultiplier: 1,// Fase 3
+    ryouGainMultiplier: 1,    // Fase 4
+    currentPhase: 0
+  };
+
+  if (!activeBoss || !activeBoss.is_world_boss || !activeBoss.boss_stats) return debuffs;
+
+  const hpStr = activeBoss.boss_stats.hp;
+  if (!hpStr) return debuffs;
+
+  const hpMatch = hpStr.match(/^(\d+)\/(\d+)$/);
+  if (!hpMatch) return debuffs;
+
+  const currentHP = parseInt(hpMatch[1], 10);
+  const maxHP = parseInt(hpMatch[2], 10);
+  if (maxHP <= 0) return debuffs;
+
+  const hpPercent = (currentHP / maxHP) * 100;
+
+  // Fase 1: 100% ~ 76% (Atmosfera Pesada)
+  if (hpPercent <= 100) {
+    debuffs.currentPhase = 1;
+    debuffs.staminaCostMultiplier = 1.30;
+  }
+  // Fase 2: 75% ~ 51% (Instabilidade de Chakra)
+  if (hpPercent <= 75) {
+    debuffs.currentPhase = 2;
+    debuffs.accuracyPenalty = 15;
+  }
+  // Fase 3: 50% ~ 26% (Hospitais Superlotados)
+  if (hpPercent <= 50) {
+    debuffs.currentPhase = 3;
+    debuffs.hospitalCostMultiplier = 2.0;
+  }
+  // Fase 4: 25% ~ 1% (Pânico Econômico)
+  if (hpPercent <= 25) {
+    debuffs.currentPhase = 4;
+    debuffs.ryouGainMultiplier = 0.5;
+  }
+
+  return debuffs;
 };

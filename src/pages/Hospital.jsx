@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
-import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
+import { calculateHP, calculateChakra, calculateStamina, getGlobalDebuffs } from '../utils/engine';
 
 export default function Hospital({ player, updatePlayer }) {
   const { addToast } = useToast();
@@ -12,8 +12,18 @@ export default function Hospital({ player, updatePlayer }) {
   const RECOVERY_TIME_MINUTES = 5;
   const RECOVERY_TIME_MS = RECOVERY_TIME_MINUTES * 60 * 1000;
   
-  // O custo de cura escala com o nível (ex: 50 Ryous por nível)
-  const cureCost = Math.max(50, player?.level * 50);
+  const [globalDebuffs, setGlobalDebuffs] = useState(getGlobalDebuffs(null));
+
+  useEffect(() => {
+    async function checkDebuffs() {
+      const { data } = await supabase.from('global_events').select('*').eq('is_active', true).eq('is_world_boss', true).single();
+      if (data) setGlobalDebuffs(getGlobalDebuffs(data));
+    }
+    checkDebuffs();
+  }, []);
+
+  // O custo de cura escala com o nível e pode dobrar se o debuff de fase 3 da Bijuu estiver ativo
+  const cureCost = Math.max(50, player?.level * 50) * globalDebuffs.hospitalCostMultiplier;
 
   useEffect(() => {
     if (!player || !player.fainted_at) return;

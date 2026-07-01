@@ -40,7 +40,7 @@ export default function Selecionar({ session, setPlayerState }) {
 
   return (
     <div className="page login-body flex-col" style={{ 
-      minHeight: '100vh', width: '100%', position: 'absolute', top: 0, left: 0, 
+      height: '100vh', width: '100%', position: 'absolute', top: 0, left: 0, overflow: 'auto',
       background: 'linear-gradient(to bottom, rgba(11, 11, 13, 0.85) 0%, rgba(11, 11, 13, 0.6) 100%), url(/images/bg_selecao.jpg) center/cover no-repeat'
     }}>
       <header className="header" style={{ position: 'relative', borderBottom: '1px solid var(--line)' }}>
@@ -52,8 +52,8 @@ export default function Selecionar({ session, setPlayerState }) {
         </nav>
       </header>
 
-      <main className="main flex-col" style={{ flex: 1, maxWidth: '1200px', margin: '0 auto', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-        <div className="topbar" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '40px' }}>
+      <main className="main flex-col" style={{ flex: 1, maxWidth: '1200px', margin: '0 auto', width: '100%', padding: '40px 20px', alignItems: 'center' }}>
+        <div className="topbar" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '40px', marginTop: '40px' }}>
           <div>
             <div className="eyebrow gold" style={{ justifyContent: 'center', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}><div className="dash" style={{ background: 'var(--gold)' }}></div><span>Início da Jornada</span><div className="dash" style={{ background: 'var(--gold)' }}></div></div>
             <h1 className="page-title paper uppercase" style={{ letterSpacing: '4px', textShadow: '0 4px 16px rgba(0,0,0,0.9)' }}>Selecione seu Personagem</h1>
@@ -68,7 +68,12 @@ export default function Selecionar({ session, setPlayerState }) {
         ) : (
           <div className="showcase-grid flex-row" style={{ gap: '24px', justifyContent: 'center', flexWrap: 'wrap' }}>
             {characters.map(char => (
-              <div key={char.id} className="dashboard-card flex-col" style={{ width: '280px', alignItems: 'center', background: 'rgba(15, 15, 20, 0.9)', border: '1px solid var(--line-bright)', borderRadius: '16px', padding: '24px' }}>
+              <div 
+                key={char.id} 
+                className="dashboard-card flex-col" 
+                onDoubleClick={() => handleSelect(char)}
+                style={{ width: '280px', alignItems: 'center', background: 'rgba(15, 15, 20, 0.9)', border: '1px solid var(--line-bright)', borderRadius: '16px', padding: '24px', cursor: 'pointer', transition: 'transform 0.2s' }}
+              >
                 <div style={{ width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', border: '3px solid var(--gold)', marginBottom: '16px', boxShadow: '0 0 16px rgba(201, 162, 39, 0.3)' }}>
                   {char.avatar?.startsWith('/') ? (
                     <img src={char.avatar} alt={char.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

@@ -104,7 +104,8 @@ export default function Criar({ session, setPlayerState }) {
       backgroundImage: `url(/images/bg_login.jpg)`,
       backgroundSize: 'cover', 
       backgroundPosition: 'center', 
-      minHeight: '100vh', 
+      height: '100vh', 
+      overflow: 'auto',
       padding: 0,
       display: 'flex',
       flexDirection: 'column'

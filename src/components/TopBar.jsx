@@ -139,11 +139,13 @@ export default function TopBar({ player, updatePlayer }) {
         </div>
 
         {/* Mochila / Inventário Rápido */}
-        <div style={{ marginLeft: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '36px', height: '36px', borderRadius: '50%', background: 'var(--ink-raised)', border: '1px solid var(--line-bright)', transition: 'all 0.2s' }} title="Inventário de Consumíveis">
+        <div onClick={() => setIsInventoryOpen(true)} style={{ marginLeft: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '36px', height: '36px', borderRadius: '50%', background: 'var(--ink-raised)', border: '1px solid var(--line-bright)', transition: 'all 0.2s' }} title="Inventário de Consumíveis">
           <span style={{ fontSize: '16px' }}>🎒</span>
         </div>
 
       </div>
+
+      <InventoryModal isOpen={isInventoryOpen} onClose={() => setIsInventoryOpen(false)} player={player} />
 
     </div>
   );

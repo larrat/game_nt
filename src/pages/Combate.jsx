@@ -624,7 +624,15 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const mult = getElementalMultiplier(player.element, npcInit.element);
     const jutsuBaseDmg = jutsu.damage || 15;
     
-    const magicDmg = Math.floor((player.ninjutsu || player.nin || 0) / 2) + jutsuBaseDmg;
+    let attrValue = 0;
+    const cat = (jutsu.category || '').toLowerCase();
+    if (cat === 'ninjutsu') attrValue = player.ninjutsu || player.nin || 0;
+    else if (cat === 'taijutsu') attrValue = player.taijutsu || player.tai || 0;
+    else if (cat === 'genjutsu') attrValue = player.genjutsu || player.gen || 0;
+    else if (cat === 'bukijutsu') attrValue = player.bukijutsu || player.buk || 0;
+    else attrValue = player.ninjutsu || player.nin || 0; // fallback
+
+    const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
     const finalDamage = Math.max(1, magicDmg - Math.floor(npcInit.def / 2));
     const damage = Math.floor(finalDamage * mult);
 
@@ -821,18 +829,36 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             {player.activeJutsus?.map((jutsu, idx) => {
                const jutsuBaseAcc = jutsu.accuracy || 100;
                const finalAcc = Math.min(100, jutsuBaseAcc + Math.floor(playerPrecision / 2));
+               
+               let attrValue = 0;
+               const cat = (jutsu.category || '').toLowerCase();
+               if (cat === 'ninjutsu') attrValue = player.ninjutsu || player.nin || 0;
+               else if (cat === 'taijutsu') attrValue = player.taijutsu || player.tai || 0;
+               else if (cat === 'genjutsu') attrValue = player.genjutsu || player.gen || 0;
+               else if (cat === 'bukijutsu') attrValue = player.bukijutsu || player.buk || 0;
+               else attrValue = player.ninjutsu || player.nin || 0;
+               
+               const jutsuBaseDmg = jutsu.damage || 15;
+               const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
+               const estDamage = Math.max(1, magicDmg - Math.floor(npcInit.def / 2));
+               const cost = jutsu.chakraCost || 20;
 
                return (
                 <button 
                   key={idx}
-                  className="btn-ghost" 
-                  style={{ flex: 1, minWidth: '150px', padding: '16px', border: '1px solid var(--seal-bright)', opacity: isPlayerTurn ? 1 : 0.5 }} 
+                  className="btn-ghost flex-col" 
+                  style={{ flex: 1, minWidth: '150px', padding: '12px', border: '1px solid var(--seal-bright)', opacity: isPlayerTurn ? 1 : 0.5, gap: '4px', alignItems: 'center' }} 
                   disabled={!isPlayerTurn}
                   onClick={() => handleJutsu(jutsu)}
                 >
-                  <div style={{ fontSize: '20px', marginBottom: '8px' }}>📜</div>
-                  {jutsu.name}
-                  <div className="gold mono" style={{ fontSize: '10px', marginTop: '4px' }}>Precisão: {finalAcc}%</div>
+                  <div className="flex-row" style={{ alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 'bold' }}>
+                    <span style={{ fontSize: '16px' }}>📜</span> {jutsu.name}
+                  </div>
+                  <div className="flex-row" style={{ gap: '12px', marginTop: '4px' }}>
+                    <span className="mono blue" style={{ fontSize: '10px' }}>-{cost} CP</span>
+                    <span className="mono red" style={{ fontSize: '10px' }}>~{estDamage} DMG</span>
+                    <span className="mono gold" style={{ fontSize: '10px' }}>{finalAcc}% ACC</span>
+                  </div>
                 </button>
                );
             })}

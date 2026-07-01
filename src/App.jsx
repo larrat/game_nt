@@ -67,8 +67,12 @@ function App() {
   }, []);
 
   async function updatePlayer(explicitPlayerId) {
-    // Aceita o id do player diretamente ou usa o playerState atual
-    const currentPlayerId = explicitPlayerId || playerState?.id;
+    // Aceita o id numérico do player diretamente ou usa o playerState atual
+    let currentPlayerId = playerState?.id;
+    if (typeof explicitPlayerId === 'number') {
+      currentPlayerId = explicitPlayerId;
+    }
+    
     if (!currentPlayerId) return;
     const { data: dbPlayer } = await supabase
       .from('players')

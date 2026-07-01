@@ -52,8 +52,8 @@ export default function Selecionar({ session, setPlayerState }) {
         </nav>
       </header>
 
-      <main className="main" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', paddingTop: '60px' }}>
-        <div className="topbar" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '60px' }}>
+      <main className="main flex-col" style={{ flex: 1, maxWidth: '1200px', margin: '0 auto', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="topbar" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '40px' }}>
           <div>
             <div className="eyebrow gold" style={{ justifyContent: 'center', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}><div className="dash" style={{ background: 'var(--gold)' }}></div><span>Início da Jornada</span><div className="dash" style={{ background: 'var(--gold)' }}></div></div>
             <h1 className="page-title paper uppercase" style={{ letterSpacing: '4px', textShadow: '0 4px 16px rgba(0,0,0,0.9)' }}>Selecione seu Personagem</h1>
@@ -66,10 +66,10 @@ export default function Selecionar({ session, setPlayerState }) {
             <button className="btn-primary" onClick={() => navigate('/criar')}><span>Criar Personagem</span><div className="stamp"></div></button>
           </div>
         ) : (
-          <div className="showcase-grid flex-row" style={{ gap: '48px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="showcase-grid flex-row" style={{ gap: '24px', justifyContent: 'center', flexWrap: 'wrap' }}>
             {characters.map(char => (
-              <div key={char.id} className="dashboard-card flex-col" style={{ width: '320px', alignItems: 'center', background: 'rgba(20, 20, 25, 0.85)' }}>
-                <div style={{ width: '120px', height: '120px', borderRadius: '50%', overflow: 'hidden', border: '3px solid var(--gold)', marginBottom: '24px', boxShadow: '0 0 24px rgba(201, 162, 39, 0.3)' }}>
+              <div key={char.id} className="dashboard-card flex-col" style={{ width: '280px', alignItems: 'center', background: 'rgba(15, 15, 20, 0.9)', border: '1px solid var(--line-bright)', borderRadius: '16px', padding: '24px' }}>
+                <div style={{ width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', border: '3px solid var(--gold)', marginBottom: '16px', boxShadow: '0 0 16px rgba(201, 162, 39, 0.3)' }}>
                   {char.avatar?.startsWith('/') ? (
                     <img src={char.avatar} alt={char.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   ) : (
@@ -77,36 +77,34 @@ export default function Selecionar({ session, setPlayerState }) {
                   )}
                 </div>
                 
-                <h3 className="gold card-title" style={{ marginBottom: '24px', textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+                <h3 className="gold" style={{ fontSize: '18px', marginBottom: '4px', textShadow: '0 2px 8px rgba(0,0,0,0.5)', fontFamily: 'Shippori Mincho', textAlign: 'center' }}>
                   {char.name}
                 </h3>
+                <div className="muted mono" style={{ fontSize: '11px', marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                  Nível {char.level}
+                </div>
                 
-                <div className="card" style={{ width: '100%', padding: '16px', marginBottom: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                  <div className="info-row flex-between" style={{ marginBottom: '12px' }}>
-                    <span className="muted" style={{ fontSize: '13px' }}>Nível</span>
-                    <span className="mono" style={{ fontWeight: 'bold' }}>{char.level}</span>
-                  </div>
-                  <div className="info-row flex-between" style={{ marginBottom: '12px' }}>
-                    <span className="muted" style={{ fontSize: '13px' }}>Patente</span>
-                    <span style={{ color: 'var(--seal-bright)', fontWeight: 500 }}>{char.rank || 'Estudante'}</span>
+                <div className="card" style={{ width: '100%', padding: '12px', marginBottom: '20px', background: 'var(--ink)' }}>
+                  <div className="info-row flex-between" style={{ marginBottom: '8px' }}>
+                    <span className="muted" style={{ fontSize: '12px' }}>Patente</span>
+                    <span style={{ color: 'var(--seal-bright)', fontWeight: 500, fontSize: '12px' }}>{char.rank || 'Estudante'}</span>
                   </div>
                   <div className="info-row flex-between">
-                    <span className="muted" style={{ fontSize: '13px' }}>Vila Oculta</span>
-                    <span>{char.village_id === 1 ? 'Folha' : `ID: ${char.village_id}`}</span>
+                    <span className="muted" style={{ fontSize: '12px' }}>Vila Oculta</span>
+                    <span style={{ fontSize: '12px' }}>{char.village_id === 1 ? 'Folha' : `ID: ${char.village_id}`}</span>
                   </div>
                 </div>
 
-                <button className="btn-primary" style={{ width: '100%', padding: '16px', fontSize: '14px', marginTop: 'auto' }} onClick={() => handleSelect(char)}>
+                <button className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: '14px', marginTop: 'auto' }} onClick={() => handleSelect(char)}>
                   <span>Entrar no Mundo</span>
-                  <div className="stamp"></div>
                 </button>
               </div>
             ))}
 
-            <div className="dashboard-card flex-col" style={{ width: '320px', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', borderStyle: 'dashed', borderWidth: '2px', background: 'rgba(20, 20, 25, 0.5)' }} onClick={() => navigate('/criar')}>
-              <div className="muted" style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '64px', marginBottom: '16px', color: 'var(--seal-bright)', opacity: 0.8, textShadow: '0 0 16px rgba(212, 57, 63, 0.4)' }}>+</div>
-                <div className="uppercase" style={{ fontSize: '16px', letterSpacing: '1px' }}>Criar Personagem</div>
+            <div className="dashboard-card flex-col" style={{ width: '280px', height: 'auto', minHeight: '380px', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', borderStyle: 'dashed', borderWidth: '2px', background: 'rgba(20, 20, 25, 0.4)', borderRadius: '16px', transition: 'all 0.3s' }} onClick={() => navigate('/criar')}>
+              <div className="muted" style={{ textAlign: 'center', transition: 'transform 0.2s' }}>
+                <div style={{ fontSize: '48px', marginBottom: '16px', color: 'var(--seal-bright)', opacity: 0.8, textShadow: '0 0 16px rgba(212, 57, 63, 0.4)' }}>+</div>
+                <div className="uppercase mono" style={{ fontSize: '13px', letterSpacing: '1px' }}>Criar Personagem</div>
               </div>
             </div>
           </div>

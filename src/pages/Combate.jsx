@@ -111,6 +111,7 @@ export default function Combate({ player, updatePlayer }) {
   const [turnCount, setTurnCount] = useState(1);
   const [accumulatedDamage, setAccumulatedDamage] = useState(0);
   const [globalDebuffs, setGlobalDebuffs] = useState(getGlobalDebuffs(null));
+  const [autoBattle, setAutoBattle] = useState(false);
 
   useEffect(() => {
     async function checkGlobalDebuffs() {
@@ -169,6 +170,24 @@ export default function Combate({ player, updatePlayer }) {
       return () => clearTimeout(timer);
     }
   }, [isAltAutoBattle, battleResult]);
+
+  useEffect(() => {
+    if (isPlayerTurn && autoBattle && !battleResult && !isAltAutoBattle) {
+      const timer = setTimeout(() => {
+        const jutsus = player.activeJutsus || [];
+        const availableJutsus = jutsus.filter(j => playerCP >= (j.chakraCost || 20));
+        
+        if (availableJutsus.length > 0 && Math.random() > 0.4) {
+          const jutsuToUse = availableJutsus[Math.floor(Math.random() * availableJutsus.length)];
+          handleJutsu(jutsuToUse);
+        } else {
+          handleBasicAttack();
+        }
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlayerTurn, autoBattle]);
 
   const addLog = (msg) => {
     setLogs(prev => [...prev, msg]);
@@ -759,6 +778,7 @@ export default function Combate({ player, updatePlayer }) {
                 ))}
               </div>
             </div>
+
           </div>
         </div>
 
@@ -817,6 +837,14 @@ export default function Combate({ player, updatePlayer }) {
               onClick={handleSurrender}
             >
               <span style={{ fontSize: '20px' }}>🏳️</span> Desistir da Luta
+            </button>
+
+            <button 
+              className={`btn-ghost flex-row ${autoBattle ? 'active' : ''}`}
+              style={{ width: '100%', padding: '16px', border: autoBattle ? '1px solid var(--gold)' : '1px solid var(--line)', color: autoBattle ? 'var(--gold)' : 'var(--muted)', opacity: isPlayerTurn ? 1 : 0.5, marginTop: '8px', justifyContent: 'center', gap: '8px' }}
+              onClick={() => setAutoBattle(!autoBattle)}
+            >
+              <span style={{ fontSize: '20px' }}>🤖</span> Auto-Battle: {autoBattle ? 'LIGADO' : 'DESLIGADO'}
             </button>
           </div>
           )

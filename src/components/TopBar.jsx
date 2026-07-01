@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP } from '../utils/engine';
 import InventoryModal from './InventoryModal';
 

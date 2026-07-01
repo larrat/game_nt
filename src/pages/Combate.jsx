@@ -10,7 +10,8 @@ import {
   calculateAtkTaiBuk,
   calculateDefNinGen,
   getElementalMultiplier,
-  getGlobalDebuffs
+  getGlobalDebuffs,
+  getJutsuEnhancementBonus
 } from '../utils/engine';
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import PageHeader from '../components/PageHeader';
@@ -48,9 +49,26 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const maxPlayerSt = 100 + ((player?.stamina_pts || 0) * 10);
   
   const playerAtk = calculateAtkTaiBuk(player);
-  const playerDef = calculateDefNinGen(player); // Corrigido para calculateDefNinGen
+  const playerDef = calculateDefNinGen(player);
   const playerPrecision = player?.precisao || player?.pre || 0;
   const playerArmorPen = (player?.tai || 0) / 10;
+
+  // --- BOOST DOS 8 PORTÕES ---
+  // Verifica se o jogador abriu um portão recentemente (cooldown = 30 min)
+  const PORTOES_TABLE = [
+    { id: 1, boost: 0.05 }, { id: 2, boost: 0.10 }, { id: 3, boost: 0.20 },
+    { id: 4, boost: 0.35 }, { id: 5, boost: 0.50 }, { id: 6, boost: 0.70 },
+    { id: 7, boost: 1.00 }, { id: 8, boost: 2.00 }
+  ];
+  const COOLDOWN_MS = 30 * 60 * 1000;
+  const getPortaoBoost = () => {
+    if (!player?.portoes_used_at || !player?.portao_nivel) return 1.0;
+    const usedAt = new Date(player.portoes_used_at).getTime();
+    if (Date.now() - usedAt > COOLDOWN_MS) return 1.0;
+    const portao = PORTOES_TABLE.find(p => p.id === player.portao_nivel);
+    return portao ? 1 + portao.boost : 1.0;
+  };
+  const portaoAtkMultiplier = getPortaoBoost();
 
   const npcMaxHP = npcInit?.hp || 1;
   const npcMaxCP = npcInit?.chakra || 1;
@@ -73,6 +91,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const npcStatusRef = useRef(npcStatus);
   const playerHPRef = useRef(playerHP);
   const cooldownsRef = useRef(cooldowns);
+  const [surrenderConfirm, setSurrenderConfirm] = useState(false);
   
   // Efeitos Visuais (Lote 5)
   const [fcts, setFcts] = useState([]);
@@ -97,8 +116,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   
   useEffect(() => { playerStatusRef.current = playerStatus; }, [playerStatus]);
   useEffect(() => { npcStatusRef.current = npcStatus; }, [npcStatus]);
-  useEffect(() => { playerHPRef.current = playerHP; }, [playerHP]);
   useEffect(() => { cooldownsRef.current = cooldowns; }, [cooldowns]);
+  useEffect(() => { playerHPRef.current = playerHP; }, [playerHP]);
 
   const [logs, setLogs] = useState([
     location.state?.isWorldBoss ? `🔥 O céu escurece... ${npcInit?.name} surgiu! Prepare-se!` :
@@ -239,6 +258,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const isDojo = !location.state?.fromMap && !location.state?.isWorldBoss && !location.state?.isGhost && !location.state?.isBetrayal && !npcInit.is_dummy;
     const updates = { xp: newXp, level: newLevel, ryous: newRyous, pontos_atributos: newPontos };
     if (isDojo) updates.wins_dojo = (player.wins_dojo || 0) + 1;
+    if (location.state?.fromMap) updates.daily_map_battles = (player.daily_map_battles || 0) + 1;
 
     await supabase
       .from('players')
@@ -282,6 +302,21 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             droppedItemMsg = ` Você encontrou [${randomBaseItem.name}] (${rarity})!`;
           }
         }
+      }
+
+      // --- 3. Drop de Essência de Aprimoramento ---
+      const essenceDropChance = location.state?.fromMap ? 0.30 : 0.15;
+      if (Math.random() <= essenceDropChance && !npcInit.is_dummy) {
+        const rankToTier = { 'Estudante da Academia': 1, 'Genin': 1, 'Chunin': 2, 'Jounin': 3, 'ANBU': 4, 'Sannin': 4, 'Herói': 5 };
+        const tier = rankToTier[player.rank] || 1;
+        const essenceTypes = ['dano', 'custo', 'letalidade', 'protecao'];
+        const randomType = essenceTypes[Math.floor(Math.random() * essenceTypes.length)];
+        const essenceKey = `${randomType}_${tier}`;
+
+        const currentEssences = player.inventory_essences || {};
+        const newEssences = { ...currentEssences, [essenceKey]: (currentEssences[essenceKey] || 0) + 1 };
+        await supabase.from('players').update({ inventory_essences: newEssences }).eq('id', player.id);
+        droppedItemMsg += ` 📜 +1 Essência [${randomType.toUpperCase()} Tier ${tier}]!`;
       }
     }
 
@@ -487,15 +522,30 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         }
 
         if (!usedJutsu) {
-           const mult = getElementalMultiplier(npcInit.element, player.element);
-           const baseDamage = Math.max(1, npcInit.atk - playerDef);
-           damage = Math.floor(baseDamage * mult);
-           
-           if (mult > 1.0) elementalMsg = ' (Dano Efetivo!)';
-           if (mult < 1.0) elementalMsg = ' (Dano Reduzido)';
+            const staminaCost = 15;
+            if (npcSt < staminaCost) {
+               addLog(`💨 ${npcInit.name} tentou atacar, mas está exausto demais!`);
+            } else {
+               const newNpcSt = npcSt - staminaCost;
+               setNpcSt(newNpcSt);
 
-           addLog(`${npcInit.name} atacou e causou ${damage} de dano!${elementalMsg}`);
-        }
+               if (newNpcSt <= npcMaxSt * 0.1) {
+                  addLog(`⚠️ ${npcInit.name} esgotou sua Stamina (chegou em 10% ou menos) e desmaiou!`);
+                  setBattleResult('win');
+                  handleWin();
+                  return;
+               }
+
+               const mult = getElementalMultiplier(npcInit.element, player.element);
+               const baseDamage = Math.max(1, npcInit.atk - playerDef);
+               damage = Math.floor(baseDamage * mult);
+               
+               if (mult > 1.0) elementalMsg = ' (Dano Efetivo!)';
+               if (mult < 1.0) elementalMsg = ' (Dano Reduzido)';
+
+               addLog(`${npcInit.name} atacou e causou ${damage} de dano!${elementalMsg}`);
+            }
+         }
 
         const newPlayerHP = Math.max(0, playerHPRef.current - damage);
         setPlayerHP(newPlayerHP);
@@ -549,8 +599,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const isCrit = clanBonus.critChance > 0 && Math.random() < clanBonus.critChance;
     const defReduction = clanBonus.armorPen > 0 ? Math.floor(npcInit.def * clanBonus.armorPen) : 0;
     
-    let damage = Math.max(1, playerAtk - Math.floor(npcInit.def / 2) + defReduction);
+    let damage = Math.max(1, Math.floor(playerAtk * portaoAtkMultiplier) - Math.floor(npcInit.def / 2) + defReduction);
     if (isCrit) damage = Math.floor(damage * 1.75);
+    if (portaoAtkMultiplier > 1.0) addLog(`⚡ Os Portões do Chakra impulsionam seu ataque! (x${portaoAtkMultiplier.toFixed(2)})`);
 
     const newNpcHP = Math.max(0, npcHP - damage);
     setNpcHP(newNpcHP);
@@ -593,13 +644,31 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const handleJutsu = (jutsu) => {
     if (!isPlayerTurn || battleResult) return;
+
+    // --- VERIFICAR COOLDOWN ---
+    const jutsuCooldown = (jutsu.cooldown_rounds || 0);
+    const currentCooldown = cooldownsRef.current[jutsu.id] || 0;
+    if (currentCooldown > 0) {
+      addToast(`[${jutsu.name}] em recarga! (${currentCooldown} turno${currentCooldown > 1 ? 's' : ''} restante${currentCooldown > 1 ? 's' : ''})`, 'error');
+      return;
+    }
+
+    // --- APRIMORAMENTOS DE JUTSU (Essências) ---
+    const bonusCusto = getJutsuEnhancementBonus(jutsu, 'custo');
+    const bonusDano = getJutsuEnhancementBonus(jutsu, 'dano');
+    const bonusLetalidade = getJutsuEnhancementBonus(jutsu, 'letalidade');
     
-    const cost = jutsu.chakraCost || 20; 
+    const cost = Math.max(1, (jutsu.chakraCost || 20) + bonusCusto);
     if (playerCP < cost) { addToast('Chakra insuficiente para usar este jutsu!', 'error'); return; }
 
     setIsPlayerTurn(false);
     const newCP = playerCP - cost;
     setPlayerCP(newCP);
+    
+    // --- APLICAR COOLDOWN DO JUTSU ---
+    if (jutsuCooldown > 0) {
+      setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown }));
+    }
     
     if (newCP <= maxPlayerCP * 0.1) {
       addLog(`Você esgotou seu Chakra ao tentar usar [${jutsu.name}] e desmaiou de exaustão...`);
@@ -622,7 +691,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
 
     const mult = getElementalMultiplier(player.element, npcInit.element);
-    const jutsuBaseDmg = jutsu.damage || 15;
+    const jutsuBaseDmg = (jutsu.damage || 15) + bonusDano;
     
     let attrValue = 0;
     const cat = (jutsu.category || '').toLowerCase();
@@ -633,21 +702,30 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     else attrValue = player.ninjutsu || player.nin || 0; // fallback
 
     const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
-    const finalDamage = Math.max(1, magicDmg - Math.floor(npcInit.def / 2));
-    const damage = Math.floor(finalDamage * mult);
+    const rawDamage = Math.max(1, magicDmg - Math.floor(npcInit.def / 2));
+
+    // Crítico por Letalidade (Essência)
+    const critRoll = Math.random() * 100;
+    const isCrit = critRoll <= bonusLetalidade;
+    const critMult = isCrit ? 1.5 : 1.0;
+    
+    const damage = Math.floor(rawDamage * mult * critMult);
 
     const newNpcHP = Math.max(0, npcHP - damage);
     setNpcHP(newNpcHP);
 
     playJutsuSound();
+    if (isCrit) playCritSound();
     triggerShake('npc');
-    spawnFct('npc', `-${damage} MAG`, mult > 1 ? 'crit' : 'magic');
+    spawnFct('npc', `-${damage}${isCrit ? ' CRÍT!' : ' MAG'}`, isCrit ? 'crit' : mult > 1 ? 'crit' : 'magic');
 
-    let elementalMsg = '';
-    if (mult > 1.0) elementalMsg = ' (Vantagem Elemental! Dano Crítico!)';
-    if (mult < 1.0) elementalMsg = ' (Desvantagem Elemental. Dano Reduzido)';
+    let extraMsg = '';
+    if (isCrit) extraMsg += ' ⚡ CRÍTICO!';
+    if (mult > 1.0) extraMsg += ' (Vantagem Elemental!)';
+    if (mult < 1.0) extraMsg += ' (Desvantagem Elemental)';
+    if (bonusDano > 0) extraMsg += ` [+${bonusDano} Essência]`;
 
-    addLog(`Você usou [${jutsu.name}] e causou ${damage} de dano elemental!${elementalMsg} (Custou ${cost} CP)`);
+    addLog(`Você usou [${jutsu.name}] e causou ${damage} de dano!${extraMsg} (Custou ${cost} CP)`);
     applyJutsuEffects(jutsu, true);
 
     if (location.state?.isWorldBoss) {
@@ -665,9 +743,56 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
   };
 
-  const handleSurrender = async () => {
-    if (!window.confirm("Bandeira Branca: Você deseja desistir? Você ficará inconsciente e perderá seu progresso nesta batalha.")) return;
+  const handleItem = async (item) => {
+    if (!isPlayerTurn || battleResult) return;
     
+    setIsPlayerTurn(false);
+    
+    // Atualizar no banco e estado local
+    if (item.quantity > 1) {
+       supabase.from('player_consumables').update({ quantity: item.quantity - 1 }).eq('id', item.pc_id).then();
+    } else {
+       supabase.from('player_consumables').delete().eq('id', item.pc_id).then();
+    }
+    
+    if (setPlayerState) {
+      setPlayerState(prev => {
+        if (!prev || !prev.consumables) return prev;
+        const newCons = prev.consumables.map(c => c.pc_id === item.pc_id ? { ...c, quantity: c.quantity - 1 } : c).filter(c => c.quantity > 0);
+        return { ...prev, consumables: newCons };
+      });
+    }
+
+    const healVal = item.value;
+    if (item.type === 'hp') {
+      setPlayerHP(prev => Math.min(maxPlayerHP, prev + healVal));
+      addLog(`🍙 Você usou [${item.name}] e recuperou ${healVal} de HP!`);
+      spawnFct('player', `+${healVal} HP`, 'heal');
+    } else if (item.type === 'cp' || item.type === 'chakra') {
+      setPlayerCP(prev => Math.min(maxPlayerCP, prev + healVal));
+      addLog(`🍙 Você usou [${item.name}] e recuperou ${healVal} de Chakra!`);
+      spawnFct('player', `+${healVal} CP`, 'chakra');
+    } else if (item.type === 'st' || item.type === 'stamina') {
+      setPlayerSt(prev => Math.min(maxPlayerSt, prev + healVal));
+      addLog(`🍙 Você usou [${item.name}] e recuperou ${healVal} de Stamina!`);
+      spawnFct('player', `+${healVal} ST`, 'heal');
+    }
+
+    playJutsuSound();
+    
+    setTimeout(() => {
+      npcTurn(npcHP);
+    }, 1000);
+  };
+
+  const handleSurrender = async () => {
+    if (!surrenderConfirm) {
+      addToast('Clique novamente em Desistir para confirmar.', 'info');
+      setSurrenderConfirm(true);
+      setTimeout(() => setSurrenderConfirm(false), 4000);
+      return;
+    }
+    setSurrenderConfirm(false);
     addLog('Você jogou a toalha e desistiu da batalha...');
     setBattleResult('surrender');
     await setPlayerFainted();
@@ -838,38 +963,76 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                else if (cat === 'bukijutsu') attrValue = player.bukijutsu || player.buk || 0;
                else attrValue = player.ninjutsu || player.nin || 0;
                
-               const jutsuBaseDmg = jutsu.damage || 15;
+               const bonusDano = getJutsuEnhancementBonus(jutsu, 'dano');
+               const bonusCusto = getJutsuEnhancementBonus(jutsu, 'custo');
+               const bonusLetalidade = getJutsuEnhancementBonus(jutsu, 'letalidade');
+               const jutsuBaseDmg = (jutsu.damage || 15) + bonusDano;
                const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
                const estDamage = Math.max(1, magicDmg - Math.floor(npcInit.def / 2));
-               const cost = jutsu.chakraCost || 20;
+               const cost = Math.max(1, (jutsu.chakraCost || 20) + bonusCusto);
+               const hasEssences = bonusDano > 0 || bonusCusto < 0 || bonusLetalidade > 0;
+               const jutsuLevel = jutsu.level || 1;
+               const jutsuCdVal = cooldowns[jutsu.id] || 0;
+               const isOnCooldown = jutsuCdVal > 0;
 
                return (
                 <button 
                   key={idx}
                   className="btn-ghost flex-col" 
-                  style={{ flex: 1, minWidth: '150px', padding: '12px', border: '1px solid var(--seal-bright)', opacity: isPlayerTurn ? 1 : 0.5, gap: '4px', alignItems: 'center' }} 
-                  disabled={!isPlayerTurn}
+                  style={{ flex: 1, minWidth: '150px', padding: '12px', border: isOnCooldown ? '1px solid #6b7280' : hasEssences ? '1px solid var(--gold)' : '1px solid var(--seal-bright)', opacity: (isPlayerTurn && !isOnCooldown) ? 1 : 0.4, gap: '4px', alignItems: 'center' }} 
+                  disabled={!isPlayerTurn || isOnCooldown}
                   onClick={() => handleJutsu(jutsu)}
                 >
                   <div className="flex-row" style={{ alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 'bold' }}>
-                    <span style={{ fontSize: '16px' }}>📜</span> {jutsu.name}
+                    <span style={{ fontSize: '16px' }}>{isOnCooldown ? '⏳' : '📜'}</span> {jutsu.name}
+                    {jutsuLevel > 1 && <span className="gold mono" style={{ fontSize: '10px' }}>[Lv.{jutsuLevel}]</span>}
                   </div>
-                  <div className="flex-row" style={{ gap: '12px', marginTop: '4px' }}>
-                    <span className="mono blue" style={{ fontSize: '10px' }}>-{cost} CP</span>
-                    <span className="mono red" style={{ fontSize: '10px' }}>~{estDamage} DMG</span>
-                    <span className="mono gold" style={{ fontSize: '10px' }}>{finalAcc}% ACC</span>
-                  </div>
+                  {isOnCooldown ? (
+                    <div className="mono muted" style={{ fontSize: '11px' }}>Recarga: {jutsuCdVal} turno{jutsuCdVal > 1 ? 's' : ''}</div>
+                  ) : (
+                    <>
+                      <div className="flex-row" style={{ gap: '12px', marginTop: '4px' }}>
+                        <span className="mono blue" style={{ fontSize: '10px' }}>-{cost} CP</span>
+                        <span className="mono red" style={{ fontSize: '10px' }}>~{estDamage} DMG</span>
+                        <span className="mono gold" style={{ fontSize: '10px' }}>{finalAcc}% ACC</span>
+                      </div>
+                      {hasEssences && (
+                        <div className="flex-row" style={{ gap: '6px', marginTop: '2px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                          {bonusDano > 0 && <span style={{ fontSize: '9px', background: 'rgba(239,68,68,0.2)', color: '#ef4444', borderRadius: '3px', padding: '1px 4px' }}>+{bonusDano} DMG</span>}
+                          {bonusCusto < 0 && <span style={{ fontSize: '9px', background: 'rgba(96,165,250,0.2)', color: '#60a5fa', borderRadius: '3px', padding: '1px 4px' }}>{bonusCusto} CP</span>}
+                          {bonusLetalidade > 0 && <span style={{ fontSize: '9px', background: 'rgba(212,162,42,0.2)', color: 'var(--gold)', borderRadius: '3px', padding: '1px 4px' }}>+{bonusLetalidade}% CRÍT</span>}
+                        </div>
+                      )}
+                    </>
+                  )}
                 </button>
                );
             })}
 
+            {player.consumables?.map((item, idx) => (
+              <button
+                key={`item-${idx}`}
+                className="btn-ghost flex-col"
+                style={{ flex: 1, minWidth: '150px', padding: '12px', border: '1px dashed #4ade80', opacity: isPlayerTurn ? 1 : 0.4, gap: '4px', alignItems: 'center' }}
+                disabled={!isPlayerTurn}
+                onClick={() => handleItem(item)}
+              >
+                <div className="flex-row" style={{ alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 'bold' }}>
+                  <span style={{ fontSize: '16px' }}>{item.icon}</span> {item.name} <span className="gold mono" style={{ fontSize: '10px' }}>x{item.quantity}</span>
+                </div>
+                <div className="mono" style={{ fontSize: '11px', color: '#4ade80' }}>
+                  +{item.value} {item.type.toUpperCase()}
+                </div>
+              </button>
+            ))}
+
             <button 
               className="btn-ghost flex-row" 
-              style={{ width: '100%', padding: '16px', border: '1px dashed #ef4444', color: '#ef4444', opacity: isPlayerTurn ? 1 : 0.5, marginTop: '8px', justifyContent: 'center', gap: '8px' }} 
+              style={{ width: '100%', padding: '16px', border: surrenderConfirm ? '2px solid #ef4444' : '1px dashed #ef4444', color: '#ef4444', opacity: isPlayerTurn ? 1 : 0.5, marginTop: '8px', justifyContent: 'center', gap: '8px', fontWeight: surrenderConfirm ? 'bold' : 'normal' }} 
               disabled={!isPlayerTurn}
               onClick={handleSurrender}
             >
-              <span style={{ fontSize: '20px' }}>🏳️</span> Desistir da Luta
+              <span style={{ fontSize: '20px' }}>🏳️</span> {surrenderConfirm ? '⚠️ Confirmar Desistência!' : 'Desistir da Luta'}
             </button>
 
             <button 

@@ -45,6 +45,7 @@ export default function Clas({ player, updatePlayer }) {
       .from('players')
       .update({
         clan_id: clan.id,
+        clan: clan.name,   // Salva o nome para o motor de combate usar os bônus passivos
       })
       .eq('id', player.id);
 
@@ -141,7 +142,8 @@ export default function Clas({ player, updatePlayer }) {
 
           <div className="card flex-col" style={{ marginBottom: '48px', alignItems: 'center' }}>
             <h3 className="card-title" style={{ textAlign: 'center' }}>Despertar Sanguíneo</h3>
-            <p className="muted" style={{ marginBottom: '24px', textAlign: 'center' }}>Juntar-se a um clã é uma escolha para a vida toda. O bônus passivo será ativado imediatamente nas suas batalhas.</p>
+            <p className="muted" style={{ marginBottom: '8px', textAlign: 'center' }}>Juntar-se a um clã é uma escolha para a vida toda. O bônus passivo será ativado imediatamente nas suas batalhas.</p>
+            <p className="danger" style={{ fontSize: '12px', marginBottom: '24px', textAlign: 'center' }}>⚠️ Atenção: esta escolha é <strong>permanente e irreversível</strong>.</p>
             <div style={{ textAlign: 'center' }}>
               <button className="btn-primary" onClick={handleJoinClan}>
                 <span>Despertar {clan.name}</span>

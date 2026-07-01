@@ -10,6 +10,7 @@ export default function Tarefas({ player, updatePlayer }) {
   const [timers, setTimers] = useState({});
   const [loading, setLoading] = useState(false);
   const [showBuySlotModal, setShowBuySlotModal] = useState(false);
+  const [activeTab, setActiveTab] = useState('tarefa_academia');
   const { addToast } = useToast();
   const gameConfig = useGameConfig();
 
@@ -20,7 +21,7 @@ export default function Tarefas({ player, updatePlayer }) {
 
   useEffect(() => {
     async function fetchMissions() {
-      const { data } = await supabase.from('missions').select('*').eq('mission_type', 'tarefa_academia').order('id', { ascending: true });
+      const { data } = await supabase.from('missions').select('*').eq('is_active', true).order('id', { ascending: true });
       if (data) {
         // Map database columns back to what the frontend expects
         const formatted = data.map(m => ({
@@ -30,7 +31,8 @@ export default function Tarefas({ player, updatePlayer }) {
           reqLevel: m.req_level,
           xp: m.xp,
           ryous: m.ryous,
-          time: m.time_seconds
+          time: m.time_seconds,
+          type: m.mission_type
         }));
         setTarefas(formatted);
       }
@@ -141,15 +143,24 @@ export default function Tarefas({ player, updatePlayer }) {
     const newPontos = (player.pontos_atributos || 0) + levelsGained;
 
     const newActive = activeMissions.filter(m => m.mission_id !== taskDef.id);
-
-    const { error } = await supabase.from('players').update({
+    
+    // Atualiza contadores específicos no banco
+    let updates = {
       xp: newXp,
       ryous: newRyous,
-      tasks_completed: newTasksCount,
       level: newLevel,
       pontos_atributos: newPontos,
       active_missions: newActive
-    }).eq('id', player.id);
+    };
+
+    if (taskDef.type === 'tarefa_academia') updates.tasks_completed = (player.tasks_completed || 0) + 1;
+    if (taskDef.type === 'D') updates.missions_d = (player.missions_d || 0) + 1;
+    if (taskDef.type === 'C') updates.missions_c = (player.missions_c || 0) + 1;
+    if (taskDef.type === 'B') updates.missions_b = (player.missions_b || 0) + 1;
+    if (taskDef.type === 'A') updates.missions_a = (player.missions_a || 0) + 1;
+    if (taskDef.type === 'S') updates.missions_s = (player.missions_s || 0) + 1;
+
+    const { error } = await supabase.from('players').update(updates).eq('id', player.id);
 
     if (error) {
       addToast('Erro ao concluir missão.', 'error');
@@ -171,10 +182,30 @@ export default function Tarefas({ player, updatePlayer }) {
     <div className="page">
       <div className="topbar">
         <div>
-          <div className="eyebrow">Academia</div>
-          <h1 className="page-title">Tarefas Ninja</h1>
-          <div className="sub">Suas missões em andamento e missões disponíveis.</div>
+          <div className="eyebrow">Quadro de Avisos</div>
+          <h1 className="page-title">Missões Ninja</h1>
+          <div className="sub">Gerencie suas tarefas e missões oficiais da vila.</div>
         </div>
+      </div>
+
+      {/* Tabs de Ranks */}
+      <div className="flex-row" style={{ gap: '8px', marginBottom: '24px', overflowX: 'auto', paddingBottom: '8px' }}>
+        <button className={`btn-ghost ${activeTab === 'tarefa_academia' ? 'active' : ''}`} onClick={() => setActiveTab('tarefa_academia')}>Academia</button>
+        {['genin', 'chunin', 'jounin', 'anbu', 'sannin', 'herói'].includes((player.rank || '').toLowerCase()) && (
+          <>
+            <button className={`btn-ghost ${activeTab === 'D' ? 'active' : ''}`} onClick={() => setActiveTab('D')}>Rank D</button>
+            <button className={`btn-ghost ${activeTab === 'C' ? 'active' : ''}`} onClick={() => setActiveTab('C')}>Rank C</button>
+          </>
+        )}
+        {['chunin', 'jounin', 'anbu', 'sannin', 'herói'].includes((player.rank || '').toLowerCase()) && (
+          <button className={`btn-ghost ${activeTab === 'B' ? 'active' : ''}`} onClick={() => setActiveTab('B')}>Rank B</button>
+        )}
+        {['jounin', 'anbu', 'sannin', 'herói'].includes((player.rank || '').toLowerCase()) && (
+          <button className={`btn-ghost ${activeTab === 'A' ? 'active' : ''}`} onClick={() => setActiveTab('A')}>Rank A</button>
+        )}
+        {['anbu', 'sannin', 'herói'].includes((player.rank || '').toLowerCase()) && (
+          <button className={`btn-ghost ${activeTab === 'S' ? 'active' : ''}`} onClick={() => setActiveTab('S')}>Rank S</button>
+        )}
       </div>
 
       {/* Slots & Missões Ativas */}
@@ -251,9 +282,11 @@ export default function Tarefas({ player, updatePlayer }) {
             </tr>
           </thead>
           <tbody>
-            {tarefas.map((t, idx) => {
+            {tarefas.filter(t => t.type === activeTab).map((t, idx) => {
               const reqMet = player.level >= t.reqLevel;
-              const isCompleted = tasksCompleted >= t.id;
+              let isCompleted = false;
+              if (t.type === 'tarefa_academia') isCompleted = (player.tasks_completed || 0) >= 10;
+              
               const isRunning = activeMissions.some(m => m.mission_id === t.id);
 
               return (
@@ -264,7 +297,7 @@ export default function Tarefas({ player, updatePlayer }) {
                     <div style={{ marginTop: '8px', fontSize: '11px', color: reqMet ? 'var(--gold)' : 'var(--danger)' }}>Requisito: Level {t.reqLevel}</div>
                   </td>
                   <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center' }}>
-                    <span className="muted mono" style={{ fontSize: '12px' }}>00:00:{t.time}</span>
+                    <span className="muted mono" style={{ fontSize: '12px' }}>{formatTime(t.time)}</span>
                   </td>
                   <td style={{ padding: '16px', borderBottom: '1px solid var(--line)', textAlign: 'center', fontSize: '12px' }}>
                     <div className="success">+{t.xp} XP</div>

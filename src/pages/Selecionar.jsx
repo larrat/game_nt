@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
-export default function Selecionar({ session, setPlayerState }) {
+export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -22,14 +22,18 @@ export default function Selecionar({ session, setPlayerState }) {
     loadCharacters();
   }, [session]);
 
-  const handleSelect = (char) => {
-    setPlayerState({
-      ...char,
-      rank: char.rank || 'Estudante da Academia',
-      ryous: char.ryous || 0,
-      tasks_completed: char.tasks_completed || 0,
-      activeJutsus: []
-    });
+  const handleSelect = async (char) => {
+    if (updatePlayer) {
+      await updatePlayer(char.id);
+    } else {
+      setPlayerState({
+        ...char,
+        rank: char.rank || 'Estudante da Academia',
+        ryous: char.ryous || 0,
+        tasks_completed: char.tasks_completed || 0,
+        activeJutsus: []
+      });
+    }
   };
 
   const handleLogout = async () => {

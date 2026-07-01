@@ -251,3 +251,40 @@ export const getIchirakuStaminaBonus = (player) => {
   const lvl = getVillageBuildingLevel(player, 'ichiraku');
   return lvl * 50;
 };
+
+// --- APRIMORAMENTO DE JUTSUS (ESSÊNCIAS) ---
+export const getJutsuEnhancementBonus = (jutsu, statName) => {
+  if (!jutsu) return 0;
+  let total = 0;
+  
+  // 1. Lendo os atributos já absorvidos de níveis anteriores
+  if (jutsu.absorbed_stats && jutsu.absorbed_stats[statName]) {
+    total += jutsu.absorbed_stats[statName];
+  }
+
+  // 2. Lendo os slots atuais equipados
+  if (jutsu.slots && Array.isArray(jutsu.slots)) {
+    jutsu.slots.forEach(slot => {
+      if (!slot) return;
+      const [type, tierStr] = slot.split('_');
+      if (type === statName) {
+        const tier = parseInt(tierStr) || 1;
+        if (statName === 'dano') total += (tier === 1 ? 5 : tier === 2 ? 15 : tier === 3 ? 30 : tier === 4 ? 50 : 100);
+        if (statName === 'custo') total += (tier === 1 ? -2 : tier === 2 ? -5 : tier === 3 ? -10 : tier === 4 ? -15 : -25);
+        if (statName === 'letalidade') total += (tier === 1 ? 2 : tier === 2 ? 5 : tier === 3 ? 10 : tier === 4 ? 15 : 25);
+        if (statName === 'protecao') total += (tier === 1 ? 10 : tier === 2 ? 25 : tier === 3 ? 50 : tier === 4 ? 100 : 200);
+      }
+    });
+  }
+
+  // HARD CAPS PARA BALANCEAMENTO (Aplicado após a soma)
+  if (statName === 'custo') {
+    // Redução máxima de custo é de -50 para evitar que o custo fique negativo ou muito baixo, 
+    // mas o limite final será no Combate.jsx (onde o custo não pode ser < 1)
+  }
+  if (statName === 'letalidade') {
+    total = Math.min(total, 50); // Máximo 50% de chance extra
+  }
+
+  return total;
+};

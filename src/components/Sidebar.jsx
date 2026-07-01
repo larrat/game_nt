@@ -11,6 +11,7 @@ const NAV = [
       { to: '/treino', icon: '/images/imgi_10_stamina.png', label: 'Treinamento' },
       { to: '/elementos', icon: '/images/imgi_9_chakra.png', label: 'Elementos' },
       { to: '/tecnicas', icon: '/images/imgi_13_passe.png', label: 'Técnicas' },
+      { to: '/aprimorar-jutsus', icon: '/images/imgi_46_scroll.png', label: 'Aprimorar Jutsus' },
       { to: '/equipamentos', icon: '/images/imgi_21_Mochila.png', label: 'Inventário' },
       { to: '/portoes', icon: '/images/imgi_8_heart.png', label: '8 Portões' },
       { to: '/templo', icon: '/images/imgi_12_templo.png', label: 'Templo Ninja' },
@@ -31,7 +32,7 @@ const NAV = [
   {
     group: 'Academia',
     items: [
-      { to: '/tarefas', icon: '/images/imgi_14_rotina.png', label: 'Tarefas' },
+      { to: '/tarefas', icon: '/images/imgi_14_rotina.png', label: 'Missões' },
       { to: '/graduacoes', icon: '/images/imgi_126_star.png', label: 'Graduações' },
     ]
   },

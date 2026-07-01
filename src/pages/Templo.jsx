@@ -15,11 +15,11 @@ export default function Templo({ player, updatePlayer }) {
     async function checkEvolution() {
       if (!player) return;
       // Busca a definição do avatar atual do banco
-      const { data: currentAvatarData } = await supabase.from('avatars').select('*').eq('id', player.avatar).single();
+      const { data: currentAvatarData } = await supabase.from('avatars').select('*').eq('id', player.avatar).maybeSingle();
       
       if (currentAvatarData && currentAvatarData.evolution_target_id) {
         // Busca os dados do avatar alvo para pegar o nome e a imagem dele
-        const { data: targetAvatarData } = await supabase.from('avatars').select('*').eq('id', currentAvatarData.evolution_target_id).single();
+        const { data: targetAvatarData } = await supabase.from('avatars').select('*').eq('id', currentAvatarData.evolution_target_id).maybeSingle();
         
         if (targetAvatarData) {
           setEvolution({

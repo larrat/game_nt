@@ -7,6 +7,7 @@ export default function Ichiraku({ player, updatePlayer }) {
   const [consumables, setConsumables] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buyingId, setBuyingId] = useState(null);
+  const [tab, setTab] = useState('loja'); // loja | mochila
   const { addToast } = useToast();
 
   useEffect(() => {
@@ -124,9 +125,19 @@ export default function Ichiraku({ player, updatePlayer }) {
       </div>
 
       <div className="card-glass">
+        <div className="tabs" style={{ marginBottom: '24px' }}>
+          <div className={`tab ${tab === 'loja' ? 'active' : ''}`} onClick={() => setTab('loja')}>Cardápio</div>
+          <div className={`tab ${tab === 'mochila' ? 'active' : ''}`} onClick={() => setTab('mochila')}>
+            Sua Mochila 
+            <span style={{ marginLeft: '6px', background: 'var(--seal-glow)', border: '1px solid var(--seal-bright)', color: 'var(--seal-bright)', borderRadius: '10px', padding: '1px 7px', fontSize: '10px' }}>
+              {player.consumables?.length || 0}
+            </span>
+          </div>
+        </div>
+
         <div className="flex-between" style={{ marginBottom: '24px' }}>
           <h3 className="paper flex-row" style={{ alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '20px' }}>📜</span> Cardápio
+            <span style={{ fontSize: '20px' }}>{tab === 'loja' ? '📜' : '🎒'}</span> {tab === 'loja' ? 'Cardápio' : 'Seus Itens'}
           </h3>
           <div className="flex-row" style={{ gap: '16px', background: 'var(--ink)', padding: '8px 16px', borderRadius: '8px', border: '1px solid var(--line)' }}>
             <span className="flex-row" style={{ gap: '6px', fontSize: '13px' }}><span style={{ fontSize: '14px' }}>💴</span> {player.ryous || 0}</span>
@@ -135,12 +146,13 @@ export default function Ichiraku({ player, updatePlayer }) {
           </div>
         </div>
 
-        {loading ? (
-          <div className="muted mono" style={{ textAlign: 'center', padding: '40px' }}>Preparando a cozinha...</div>
-        ) : (
-          <div className="grid-3">
-            {consumables.map(item => (
-              <div key={item.id} style={{ background: 'var(--ink-card)', border: '1px solid var(--line)', borderRadius: '8px', padding: '16px', display: 'flex', flexDirection: 'column' }}>
+        {tab === 'loja' && (
+          loading ? (
+            <div className="muted mono" style={{ textAlign: 'center', padding: '40px' }}>Preparando a cozinha...</div>
+          ) : (
+            <div className="grid-3">
+              {consumables.map(item => (
+                <div key={item.id} style={{ background: 'var(--ink-card)', border: '1px solid var(--line)', borderRadius: '8px', padding: '16px', display: 'flex', flexDirection: 'column' }}>
                 <div className="flex-row" style={{ gap: '12px', marginBottom: '12px' }}>
                   <div style={{ fontSize: '32px', width: '48px', height: '48px', background: 'var(--ink-raised)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {item.icon}
@@ -172,7 +184,45 @@ export default function Ichiraku({ player, updatePlayer }) {
                   )}
                 </button>
               </div>
-            ))}
+              ))}
+            </div>
+          )
+        )}
+
+        {tab === 'mochila' && (
+          <div className="grid-3">
+            {!player.consumables || player.consumables.length === 0 ? (
+              <div className="muted" style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px' }}>Sua mochila está vazia.</div>
+            ) : (
+              player.consumables.map(item => (
+                <div key={item.pc_id} style={{ background: 'var(--ink-card)', border: '1px solid var(--line)', borderRadius: '8px', padding: '16px', display: 'flex', flexDirection: 'column' }}>
+                  <div className="flex-row flex-between" style={{ marginBottom: '12px' }}>
+                    <div className="flex-row" style={{ gap: '12px' }}>
+                      <div style={{ fontSize: '32px', width: '48px', height: '48px', background: 'var(--ink-raised)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        {item.icon}
+                      </div>
+                      <div>
+                        <div className="paper" style={{ fontWeight: 'bold', fontSize: '15px' }}>{item.name}</div>
+                        <div className="badge badge-muted" style={{ marginTop: '4px', display: 'inline-block' }}>
+                          Restaura {item.value} {item.type.toUpperCase()}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="badge badge-gold" style={{ fontSize: '14px', padding: '4px 10px' }}>
+                      x{item.quantity}
+                    </div>
+                  </div>
+                  
+                  <div className="muted" style={{ fontSize: '12px', lineHeight: '1.5', flex: 1, marginBottom: '16px' }}>
+                    {item.description}
+                  </div>
+                  
+                  <div className="muted mono" style={{ fontSize: '10px', textAlign: 'center' }}>
+                    Equipamento automático. Pode ser usado em combate.
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         )}
       </div>

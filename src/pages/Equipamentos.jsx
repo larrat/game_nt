@@ -9,10 +9,10 @@ export default function Equipamentos({ player, updatePlayer }) {
   const [inventory, setInventory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('Todos');
-
-  if (!player) return null;
+  const [confirmSell, setConfirmSell] = useState(false);
 
   const loadInventory = async () => {
+    if (!player) return;
     setLoading(true);
     const { data, error } = await supabase
       .from('player_inventory')
@@ -29,7 +29,9 @@ export default function Equipamentos({ player, updatePlayer }) {
 
   useEffect(() => {
     loadInventory();
-  }, [player.id]);
+  }, [player?.id]);
+
+  if (!player) return null;
 
   const handleEquip = async (invItem) => {
     if (player.level < invItem.items.req_level) {
@@ -100,7 +102,13 @@ export default function Equipamentos({ player, updatePlayer }) {
       return i.id;
     });
 
-    if (!window.confirm(`Deseja vender ${junkItems.length} itens lixo por RY$ ${totalRyous}? (Isso irá apagar seus itens Brancos e Verdes não-favoritados)`)) return;
+    if (!confirmSell) {
+      addToast(`Clique novamente para confirmar a venda de ${junkItems.length} itens por RY$ ${totalRyous}.`, 'info');
+      setConfirmSell(true);
+      setTimeout(() => setConfirmSell(false), 5000);
+      return;
+    }
+    setConfirmSell(false);
 
     setLoading(true);
     const { error } = await supabase.from('player_inventory').delete().in('id', idsToDelete);

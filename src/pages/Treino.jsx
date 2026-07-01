@@ -3,21 +3,7 @@ import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
-import { 
-  calculateHP, 
-  calculateChakra, 
-  calculateStamina,
-  calculateAtkTaiBuk,
-  calculateAtkNinGen,
-  calculateDefTaiBuk,
-  calculateDefNinGen,
-  calculatePerfuracao,
-  calculatePrecisao,
-  calculateConcentracao,
-  calculatePercepcao,
-  calculateConviccao,
-  calculateDeterminacao
-} from '../utils/engine';
+
 
 export default function Treino({ player, updatePlayer }) {
   const [loading, setLoading] = useState(false);

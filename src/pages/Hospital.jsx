@@ -25,7 +25,8 @@ export default function Hospital({ player, updatePlayer }) {
   }, []);
 
   // O custo de cura escala com o nível e pode dobrar se o debuff de fase 3 da Bijuu estiver ativo
-  const cureCost = Math.max(50, player?.level * 50) * globalDebuffs.hospitalCostMultiplier;
+  // Usa optional chaining para não quebrar se player ainda estiver carregando
+  const cureCost = Math.max(50, (player?.level || 1) * 50) * globalDebuffs.hospitalCostMultiplier;
 
   useEffect(() => {
     if (!player || !player.fainted_at) return;

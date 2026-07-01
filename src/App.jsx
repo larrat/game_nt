@@ -14,6 +14,7 @@ import Graduacoes from './pages/Graduacoes';
 import Tarefas from './pages/Tarefas';
 import Clas from './pages/Clas';
 import Tecnicas from './pages/Tecnicas';
+import AprimorarJutsus from './pages/AprimorarJutsus';
 import Equipamentos from './pages/Equipamentos';
 import Ranking from './pages/Ranking';
 import Vila from './pages/Vila';
@@ -65,9 +66,9 @@ function App() {
     return () => subscription.unsubscribe();
   }, []);
 
-  async function updatePlayer(userId) {
+  async function updatePlayer(explicitPlayerId) {
     // Aceita o id do player diretamente ou usa o playerState atual
-    const currentPlayerId = playerState?.id;
+    const currentPlayerId = explicitPlayerId || playerState?.id;
     if (!currentPlayerId) return;
     const { data: dbPlayer } = await supabase
       .from('players')
@@ -84,15 +85,32 @@ function App() {
 
       const equippedItems = invData ? invData.map(i => i.items) : [];
 
+      const { data: consData } = await supabase
+        .from('player_consumables')
+        .select('*, consumables(*)')
+        .eq('player_id', dbPlayer.id)
+        .gt('quantity', 0);
+
+      const playerConsumables = consData ? consData.map(c => ({ ...c.consumables, quantity: c.quantity, pc_id: c.id })) : [];
+
       let activeJutsus = [];
       if (dbPlayer.jutsus_learned && dbPlayer.jutsus_learned.length > 0) {
+        const jutsuIds = dbPlayer.jutsus_learned.map(j => typeof j === 'string' ? j : j.id);
         const { data: jutsuData } = await supabase
           .from('jutsus')
           .select('*')
-          .in('id', dbPlayer.jutsus_learned)
+          .in('id', jutsuIds)
           .eq('is_active', true);
         
-        if (jutsuData) activeJutsus = jutsuData;
+        if (jutsuData) {
+          activeJutsus = jutsuData.map(jData => {
+            const ref = dbPlayer.jutsus_learned.find(j => (typeof j === 'string' ? j : j.id) === jData.id);
+            if (ref && typeof ref === 'object') {
+              return { ...jData, level: ref.level || 1, slots: ref.slots || [null, null, null] };
+            }
+            return { ...jData, level: 1, slots: [null, null, null] };
+          });
+        }
       }
 
       setPlayerState({
@@ -104,7 +122,8 @@ function App() {
         active_missions: dbPlayer.active_missions || [],
         tasks_completed: dbPlayer.tasks_completed || 0,
         activeJutsus: activeJutsus,
-        equipped_items: equippedItems
+        equipped_items: equippedItems,
+        consumables: playerConsumables
       });
     }
   }
@@ -135,8 +154,8 @@ function App() {
         <Router>
           <div className="grain"></div>
           <Routes>
-            <Route path="/selecionar" element={<Selecionar session={session} setPlayerState={setPlayerState} />} />
-            <Route path="/criar" element={<Criar session={session} setPlayerState={setPlayerState} />} />
+            <Route path="/selecionar" element={<Selecionar session={session} setPlayerState={setPlayerState} updatePlayer={updatePlayer} />} />
+            <Route path="/criar" element={<Criar session={session} setPlayerState={setPlayerState} updatePlayer={updatePlayer} />} />
             <Route path="*" element={<Navigate to="/selecionar" replace />} />
           </Routes>
         </Router>
@@ -168,6 +187,7 @@ function App() {
             <Route path="/treino" element={<Treino player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/elementos" element={<Elementos player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/tecnicas" element={<Tecnicas player={playerState} updatePlayer={updatePlayer} />} />
+            <Route path="/aprimorar-jutsus" element={<AprimorarJutsus player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/equipamentos" element={<Equipamentos player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/graduacoes" element={<Graduacoes player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/tarefas" element={<Tarefas player={playerState} updatePlayer={updatePlayer} />} />

@@ -272,6 +272,45 @@ export default function Dashboard({ player, updatePlayer }) {
         {/* 2. Direita: Barras de Status e Level */}
         <div className="flex-col" style={{ position: 'relative', zIndex: 1, gap: '20px', minWidth: '320px', flex: '1 1 320px', padding: '24px', borderRadius: '16px' }}>
 
+          {/* XP & Status Básicos */}
+          <div className="flex-col" style={{ gap: '16px' }}>
+            {/* Level e XP */}
+            <div>
+              <div className="flex-between" style={{ marginBottom: '8px' }}>
+                <span className="muted mono" style={{ fontSize: '11px' }}>NÍVEL {player.level || 1}</span>
+                <span className="muted mono" style={{ fontSize: '11px' }}>{player.xp || 0} / {nextLevelXP} XP</span>
+              </div>
+              <div className="progress-track" style={{ height: '6px' }}>
+                <div className="progress-fill blue" style={{ width: `${xpPercent}%` }}></div>
+              </div>
+            </div>
+
+            {/* Barras Secundárias (HP / CP / ST) */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+              <div className="flex-col" style={{ gap: '4px' }}>
+                <span className="muted mono" style={{ fontSize: '10px' }}>HP</span>
+                <div className="progress-track" style={{ height: '4px' }}>
+                  <div className="progress-fill red" style={{ width: '100%' }}></div>
+                </div>
+                <span className="paper mono" style={{ fontSize: '12px' }}>{maxHP}</span>
+              </div>
+              <div className="flex-col" style={{ gap: '4px' }}>
+                <span className="muted mono" style={{ fontSize: '10px' }}>CHAKRA</span>
+                <div className="progress-track" style={{ height: '4px' }}>
+                  <div className="progress-fill blue" style={{ width: '100%' }}></div>
+                </div>
+                <span className="paper mono" style={{ fontSize: '12px' }}>{maxChakra}</span>
+              </div>
+              <div className="flex-col" style={{ gap: '4px' }}>
+                <span className="muted mono" style={{ fontSize: '10px' }}>STAMINA</span>
+                <div className="progress-track" style={{ height: '4px' }}>
+                  <div className="progress-fill yellow" style={{ width: '100%' }}></div>
+                </div>
+                <span className="paper mono" style={{ fontSize: '12px' }}>{maxStamina}</span>
+              </div>
+            </div>
+          </div>
+
           {/* FICHA TÉCNICA REVISADA - ATRIBUTOS BASE */}
           <div style={{ marginTop: '4px' }}>
             <div className="muted uppercase mono" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '12px' }}>Atributos Básicos</div>
@@ -279,27 +318,27 @@ export default function Dashboard({ player, updatePlayer }) {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px' }}>
               <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
                 <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Taijutsu</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.tai || 0}</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.taijutsu || 0}</div>
               </div>
               <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
                 <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Ninjutsu</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.nin || 0}</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.ninjutsu || 0}</div>
               </div>
               <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
                 <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Genjutsu</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.gen || 0}</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.genjutsu || 0}</div>
               </div>
               <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
                 <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Bukijutsu</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.buk || 0}</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.bukijutsu || 0}</div>
               </div>
               <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
                 <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Inteligência</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.int || 0}</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.inteligencia || 0}</div>
               </div>
               <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
                 <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Selos</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.pre || 0}</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.selos || 0}</div>
               </div>
             </div>
           </div>

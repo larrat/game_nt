@@ -15,7 +15,7 @@ export default function Vip({ player, updatePlayer }) {
 
   if (!player) return null;
 
-  const vipCredits = player.vip_credits || 0;
+  const vipCredits = player.vip_coins || 0;
 
   const handleSingleTalentReset = () => {
     if (vipCredits < 1) {

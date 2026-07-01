@@ -23,12 +23,14 @@ export default function Tecnicas({ player, updatePlayer }) {
   const [allJutsus, setAllJutsus] = useState([]);
   const [tab, setTab] = useState('tecnicas');
   const [filterCat, setFilterCat] = useState('Todos');
+  const [confirmBulk, setConfirmBulk] = useState(false);
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
 
   // Early return moved below hooks
-  // Jutsus já aprendidos (salvos como array JSON no campo player.jutsus_learned)
-  const learnedIds = Array.isArray(player?.jutsus_learned) ? player.jutsus_learned : [];
+  // Jutsus já aprendidos (agora suporta objetos {id, level, slots})
+  const rawLearned = Array.isArray(player?.jutsus_learned) ? player.jutsus_learned : [];
+  const learnedIds = rawLearned.map(j => typeof j === 'string' ? j : j.id);
 
   useEffect(() => {
     async function fetchJutsus() {
@@ -82,7 +84,7 @@ export default function Tecnicas({ player, updatePlayer }) {
     }
 
     setLoading(true);
-    const newLearned = [...learnedIds, jutsu.id];
+    const newLearned = [...rawLearned, { id: jutsu.id, level: 1, slots: [null, null, null] }];
     const newRyous = player.ryous - jutsu.cost;
 
     const { error } = await supabase
@@ -110,6 +112,13 @@ export default function Tecnicas({ player, updatePlayer }) {
 
     if (availableToLearn.length === 0) {
       addToast('Você já aprendeu tudo que estava disponível para o seu nível/graduação!', 'info');
+      setConfirmBulk(false);
+      return;
+    }
+
+    // VERIFICAR VIP
+    if (!player.is_vip) {
+      addToast('Aprender em massa é um recurso exclusivo para jogadores VIP!', 'error');
       return;
     }
 
@@ -118,19 +127,27 @@ export default function Tecnicas({ player, updatePlayer }) {
 
     if (player.ryous < totalCost) {
       addToast(`Você precisa de RY$ ${totalCost} para aprender as ${availableToLearn.length} técnicas disponíveis.`, 'error');
+      setConfirmBulk(false);
       return;
     }
 
-    if (!window.confirm(`Aprender ${availableToLearn.length} jutsus de uma vez por RY$ ${totalCost}?`)) return;
+    if (!confirmBulk) {
+      addToast(`Atenção: Aprender ${availableToLearn.length} jutsus de uma vez custará RY$ ${totalCost}. Clique novamente para confirmar.`, 'info');
+      setConfirmBulk(true);
+      setTimeout(() => setConfirmBulk(false), 3000);
+      return;
+    }
+    setConfirmBulk(false);
 
     setLoading(true);
 
-    const newLearnedIds = [...learnedIds, ...availableToLearn.map(j => j.id)];
+    const newObjs = availableToLearn.map(j => ({ id: j.id, level: 1, slots: [null, null, null] }));
+    const newLearned = [...rawLearned, ...newObjs];
     const newRyous = player.ryous - totalCost;
 
     const { error } = await supabase
       .from('players')
-      .update({ jutsus_learned: newLearnedIds, ryous: newRyous })
+      .update({ jutsus_learned: newLearned, ryous: newRyous })
       .eq('id', player.id);
 
     if (error) {

@@ -99,7 +99,7 @@ export default function Vila({ player, updatePlayer }) {
       if (bErr) throw bErr;
 
       addToast(`Doou ¥${donation.toLocaleString()}!`, "success");
-      await updatePlayer(player.id);
+      await updatePlayer(player.user_id);
       
       setBuildings(buildings.map(b => b.id === building.id ? { ...b, current_donations: newDonations, level: newLevel, next_level_cost: newCost } : b));
       

@@ -39,6 +39,9 @@ export default function Elementos({ player, updatePlayer }) {
     fetchElements();
   }, []);
 
+  // early return movido
+  if (!player) return null;
+
   // Lógica de Requerimentos
   const isLevel5 = player.level >= 5;
   const isGenin = player.rank !== 'Estudante da Academia'; // Simplificado
@@ -62,7 +65,6 @@ export default function Elementos({ player, updatePlayer }) {
     setLoading(false);
   };
 
-  if (!player) return null;
 
   return (
     <div className="page flex-col" style={{ minHeight: '100vh' }}>

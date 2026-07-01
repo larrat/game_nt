@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
+import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
 
 export default function Graduacoes({ player, updatePlayer }) {
@@ -18,12 +19,42 @@ export default function Graduacoes({ player, updatePlayer }) {
           if (r.req_level > 0) reqs.push({ label: `Nível ${r.req_level} ou superior`, check: (p) => p.level >= r.req_level, progress: (p) => `${p.level}/${r.req_level}` });
           if (r.req_tasks > 0) reqs.push({ label: `Completar ${r.req_tasks} Tarefas`, check: (p) => (p.tasks_completed || 0) >= r.req_tasks, progress: (p) => `${p.tasks_completed || 0}/${r.req_tasks}` });
           if (r.req_jutsus > 0) reqs.push({ label: `Ter ${r.req_jutsus} Jutsus Aprendidos`, check: (p) => (p.jutsus_learned?.length || 0) >= r.req_jutsus, progress: (p) => `${p.jutsus_learned?.length || 0}/${r.req_jutsus}` });
-          if (r.req_npc_wins > 0) reqs.push({ label: `Ter ${r.req_npc_wins} Vitórias contra NPC`, check: (p) => (p.npc_wins || 0) >= r.req_npc_wins, progress: (p) => `${p.npc_wins || 0}/${r.req_npc_wins}` });
+          
+          if (r.req_combat_points > 0) reqs.push({ label: `Ter ${r.req_combat_points} Pontos de Combate (Híbrido PvP/NPC)`, check: (p) => {
+            const pts = (((p.wins_pvp || 0) + (p.losses_pvp || 0)) * 1.5) + (p.npc_wins || 0);
+            return pts >= r.req_combat_points;
+          }, progress: (p) => {
+            const pts = (((p.wins_pvp || 0) + (p.losses_pvp || 0)) * 1.5) + (p.npc_wins || 0);
+            return `${pts.toFixed(1)}/${r.req_combat_points}`;
+          } });
+          
           if (r.req_missions_d > 0) reqs.push({ label: `Completar ${r.req_missions_d} Missões Rank D`, check: (p) => (p.missions_d || 0) >= r.req_missions_d, progress: (p) => `${p.missions_d || 0}/${r.req_missions_d}` });
           if (r.req_missions_c > 0) reqs.push({ label: `Completar ${r.req_missions_c} Missões Rank C`, check: (p) => (p.missions_c || 0) >= r.req_missions_c, progress: (p) => `${p.missions_c || 0}/${r.req_missions_c}` });
           if (r.req_missions_b > 0) reqs.push({ label: `Completar ${r.req_missions_b} Missões Rank B`, check: (p) => (p.missions_b || 0) >= r.req_missions_b, progress: (p) => `${p.missions_b || 0}/${r.req_missions_b}` });
           if (r.req_missions_a > 0) reqs.push({ label: `Completar ${r.req_missions_a} Missões Rank A`, check: (p) => (p.missions_a || 0) >= r.req_missions_a, progress: (p) => `${p.missions_a || 0}/${r.req_missions_a}` });
           if (r.req_missions_s > 0) reqs.push({ label: `Completar ${r.req_missions_s} Missões Rank S`, check: (p) => (p.missions_s || 0) >= r.req_missions_s, progress: (p) => `${p.missions_s || 0}/${r.req_missions_s}` });
+          
+          // Novos requisitos
+          if (r.req_jutsus_lvl2 > 0) reqs.push({ label: `Ter ${r.req_jutsus_lvl2} Jutsus Nível 2+`, check: (p) => (p.jutsus_learned?.filter(j => (j.level || 1) >= 2).length || 0) >= r.req_jutsus_lvl2, progress: (p) => `${p.jutsus_learned?.filter(j => (j.level || 1) >= 2).length || 0}/${r.req_jutsus_lvl2}` });
+          if (r.req_jutsus_lvl3 > 0) reqs.push({ label: `Ter ${r.req_jutsus_lvl3} Jutsus Nível 3+`, check: (p) => (p.jutsus_learned?.filter(j => (j.level || 1) >= 3).length || 0) >= r.req_jutsus_lvl3, progress: (p) => `${p.jutsus_learned?.filter(j => (j.level || 1) >= 3).length || 0}/${r.req_jutsus_lvl3}` });
+          if (r.req_bingo_book > 0) reqs.push({ label: `Derrotar ${r.req_bingo_book} Alvos do Bingo Book`, check: (p) => (p.bingo_book_kills || 0) >= r.req_bingo_book, progress: (p) => `${p.bingo_book_kills || 0}/${r.req_bingo_book}` });
+          
+          if (r.req_gate_lvl > 0 || r.req_clan_lvl > 0 || r.req_karma_lvl > 0) {
+            reqs.push({
+              label: `Ter (Invocação Lvl ${r.req_invocation_lvl || 0} + Clã Lvl ${r.req_clan_lvl || 0}) OU (Portão ${r.req_gate_lvl || 0}) OU (Karma ${r.req_karma_lvl || 0})`,
+              check: (p) => (
+                (p.gate_lvl || 0) >= (r.req_gate_lvl || 999) || 
+                (p.karma_lvl || 0) >= (r.req_karma_lvl || 999) || 
+                ((p.clan_lvl || 0) >= (r.req_clan_lvl || 999) && (p.invocation_lvl || 0) >= (r.req_invocation_lvl || 0))
+              ),
+              progress: (p) => {
+                const passed = (p.gate_lvl || 0) >= (r.req_gate_lvl || 999) || 
+                (p.karma_lvl || 0) >= (r.req_karma_lvl || 999) || 
+                ((p.clan_lvl || 0) >= (r.req_clan_lvl || 999) && (p.invocation_lvl || 0) >= (r.req_invocation_lvl || 0));
+                return passed ? '1/1' : '0/1';
+              }
+            });
+          }
           
           return {
             id: r.name_id,
@@ -44,7 +75,7 @@ export default function Graduacoes({ player, updatePlayer }) {
   const currentIndex = ranksData.findIndex(r => r.id === player.rank);
   const nextRank = ranksData[currentIndex + 1];
 
-  let canGraduate = true;
+  const canGraduate = nextRank ? nextRank.reqs.every(req => req.check(player)) : false;
 
   async function graduarPara(novoRank) {
     setNewRank(novoRank);
@@ -68,14 +99,12 @@ export default function Graduacoes({ player, updatePlayer }) {
   }
 
   return (
-    <>
-      <div className="topbar">
-        <div>
-          <div className="eyebrow">Academia Ninja</div>
-          <h1 style={{ fontFamily: "'Shippori Mincho', serif", fontSize: '30px', fontWeight: 600 }}>Graduações</h1>
-          <div className="sub">Prove seu valor e suba na hierarquia shinobi.</div>
-        </div>
-      </div>
+    <div className="page">
+      <PageHeader 
+        eyebrow="Academia Ninja" 
+        title="Graduações" 
+        subtitle="Prove seu valor e suba na hierarquia shinobi." 
+      />
 
       <div className="grad-container" style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
         {!nextRank ? (
@@ -99,7 +128,6 @@ export default function Graduacoes({ player, updatePlayer }) {
             <div className="req-list" style={{ background: 'rgba(0,0,0,0.2)', padding: '16px', borderRadius: '6px', textAlign: 'left', marginBottom: '24px' }}>
               {nextRank.reqs.map((req, idx) => {
                 const isMet = req.check(player);
-                if (!isMet) canGraduate = false;
                 return (
                   <div key={idx} style={{ display: 'flex', gap: '8px', marginBottom: '8px', fontSize: '13px', color: isMet ? '#4ade80' : '#ef4444' }}>
                     <span>{isMet ? '✓' : '✗'}</span>
@@ -168,6 +196,6 @@ export default function Graduacoes({ player, updatePlayer }) {
         @keyframes zoomIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         @keyframes slideUpFade { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
       `}</style>
-    </>
+    </div>
   );
 }

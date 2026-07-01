@@ -1,5 +1,9 @@
-import React from 'react';
 import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP } from '../utils/engine';
+
+const VILLAGES = {
+  1: 'Folha', 2: 'Areia', 3: 'Névoa',
+  4: 'Pedra', 5: 'Nuvem', 6: 'Som', 7: 'Chuva', 8: 'Akatsuki'
+};
 
 export default function TopBar({ player }) {
   if (!player) return null;
@@ -61,7 +65,7 @@ export default function TopBar({ player }) {
         <div>
           <div className="flex-row" style={{ gap: '8px', alignItems: 'baseline', marginBottom: '2px' }}>
             <div className="gold mono uppercase" style={{ fontSize: '10px', letterSpacing: '1px' }}>
-              Nível {player.level || 1} • {player.rank || 'Estudante'}
+              Nível {player.level || 1} • {player.rank || 'Estudante'} • Vila da {VILLAGES[player.village_id]}
             </div>
             <div className="muted mono" style={{ fontSize: '9px' }}>
               ({Math.floor(xpPercent)}%)

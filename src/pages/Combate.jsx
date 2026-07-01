@@ -209,9 +209,13 @@ export default function Combate({ player, updatePlayer }) {
     const levelsGained = newLevel > player.level ? newLevel - player.level : 0;
     const newPontos = (player.pontos_atributos || 0) + levelsGained;
 
+    const isDojo = !location.state?.fromMap && !location.state?.isWorldBoss && !location.state?.isGhost && !location.state?.isBetrayal && !npcInit.is_dummy;
+    const updates = { xp: newXp, level: newLevel, ryous: newRyous, pontos_atributos: newPontos };
+    if (isDojo) updates.wins_dojo = (player.wins_dojo || 0) + 1;
+
     await supabase
       .from('players')
-      .update({ xp: newXp, level: newLevel, ryous: newRyous, pontos_atributos: newPontos })
+      .update(updates)
       .eq('id', player.id);
 
     let droppedItemMsg = '';
@@ -310,7 +314,11 @@ export default function Combate({ player, updatePlayer }) {
 
   const setPlayerFainted = async () => {
     if (npcInit.is_dummy) return;
-    await supabase.from('players').update({ is_fainted: true, fainted_at: new Date().toISOString() }).eq('id', player.id);
+    const isDojo = !location.state?.fromMap && !location.state?.isWorldBoss && !location.state?.isGhost && !location.state?.isBetrayal;
+    const updates = { is_fainted: true, fainted_at: new Date().toISOString() };
+    if (isDojo) updates.losses_dojo = (player.losses_dojo || 0) + 1;
+
+    await supabase.from('players').update(updates).eq('id', player.id);
     await updatePlayer(player.user_id);
   };
 

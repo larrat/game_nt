@@ -16,6 +16,7 @@ export default function Dashboard({ player, updatePlayer }) {
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
   const [claiming, setClaiming] = useState(false);
   const [activeEvents, setActiveEvents] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [timeRemaining, setTimeRemaining] = useState({});
   const { addToast } = useToast();
   const navigate = useNavigate();
@@ -23,13 +24,21 @@ export default function Dashboard({ player, updatePlayer }) {
   // Busca Eventos Ativos
   useEffect(() => {
     async function fetchEvents() {
-      const { data } = await supabase
+      const { data: active } = await supabase
         .from('global_events')
         .select('*')
         .eq('is_active', true)
         .order('id', { ascending: false });
 
-      if (data && data.length > 0) setActiveEvents(data);
+      if (active) setActiveEvents(active);
+
+      const { data: upcoming } = await supabase
+        .from('global_events')
+        .select('*')
+        .eq('is_active', false)
+        .order('id', { ascending: false });
+
+      if (upcoming) setUpcomingEvents(upcoming);
     }
     fetchEvents();
   }, []);
@@ -232,8 +241,8 @@ export default function Dashboard({ player, updatePlayer }) {
         border: '1px solid rgba(255,255,255,0.05)',
         boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
       }}>
-        {/* Overlay Escuro com Fade Lateral */}
-        <div style={{ background: 'linear-gradient(90deg, rgba(15,15,20,0.95) 0%, rgba(15,15,20,0.7) 45%, rgba(15,15,20,0.3) 100%)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }} />
+        {/* Overlay Removido conforme pedido (apenas uma leve sombra no topo para os textos não sumirem) */}
+        <div style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 100%)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }} />
 
         {/* 1. Esquerda: Avatar e Info Básica */}
         <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: '32px', alignItems: 'center', flex: '1 1 400px' }}>
@@ -263,30 +272,34 @@ export default function Dashboard({ player, updatePlayer }) {
         {/* 2. Direita: Barras de Status e Level */}
         <div className="flex-col" style={{ position: 'relative', zIndex: 1, gap: '20px', minWidth: '320px', flex: '1 1 320px', padding: '24px', borderRadius: '16px' }}>
 
-          {/* FICHA TÉCNICA */}
+          {/* FICHA TÉCNICA REVISADA - ATRIBUTOS BASE */}
           <div style={{ marginTop: '4px' }}>
-            <div className="muted uppercase mono" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '12px' }}>Ficha de Combate</div>
+            <div className="muted uppercase mono" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '12px' }}>Atributos Básicos</div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', borderLeft: '2px solid #ef4444' }}>
-                <div className="muted mono" style={{ fontSize: '10px', marginBottom: '4px' }}>Dano Físico</div>
-                <div className="paper mono" style={{ fontSize: '14px' }}>{calculateAtkTaiBuk(player)}</div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px' }}>
+              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Taijutsu</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.tai || 0}</div>
               </div>
-              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', borderLeft: '2px solid #3b82f6' }}>
-                <div className="muted mono" style={{ fontSize: '10px', marginBottom: '4px' }}>Dano Mágico</div>
-                <div className="paper mono" style={{ fontSize: '14px' }}>{calculateAtkNinGen(player)}</div>
+              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Ninjutsu</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.nin || 0}</div>
               </div>
-              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', borderLeft: '2px solid var(--gold)' }}>
-                <div className="muted mono" style={{ fontSize: '10px', marginBottom: '4px' }}>Selos Místicos</div>
-                <div className="paper mono" style={{ fontSize: '14px' }}>{player.precisao || player.pre || 0} pts</div>
+              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Genjutsu</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.gen || 0}</div>
               </div>
-              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', borderLeft: '2px solid var(--success)' }}>
-                <div className="muted mono" style={{ fontSize: '10px', marginBottom: '4px' }}>Vantagem do Clã</div>
-                <div className="paper mono" style={{ fontSize: '14px', color: 'var(--success)' }}>
-                  {player.clan === 'Uchiha' ? '+15% Crítico' :
-                    player.clan === 'Hyuga' ? 'Ignora Armadura' :
-                      player.clan === 'Nara' ? '+10% Paralisia' : '---'}
-                </div>
+              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Bukijutsu</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.buk || 0}</div>
+              </div>
+              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Inteligência</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.int || 0}</div>
+              </div>
+              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Selos</div>
+                <div className="paper mono" style={{ fontSize: '13px' }}>{player.pre || 0}</div>
               </div>
             </div>
           </div>
@@ -302,24 +315,25 @@ export default function Dashboard({ player, updatePlayer }) {
           <span className="muted mono" style={{ fontSize: '11px' }}>Cronograma Oficial</span>
         </div>
         <div className="grid-4">
-          <div style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)', borderLeft: '3px solid var(--gold)' }}>
-            <div className="gold mono" style={{ fontSize: '10px', marginBottom: '6px' }}>Sexta-feira, 20:00</div>
-            <div className="paper" style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>Torneio Chunin</div>
-            <div className="muted" style={{ fontSize: '11px' }}>PvP Rankeado. Prove seu valor e avance de patente.</div>
-          </div>
-          <div style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)', borderLeft: '3px solid #ef4444' }}>
-            <div className="danger mono" style={{ fontSize: '10px', marginBottom: '6px' }}>Sábado, 14:00</div>
-            <div className="paper" style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>Invasão Akatsuki</div>
-            <div className="muted" style={{ fontSize: '11px' }}>Proteja os portões da vila contra os renegados.</div>
-          </div>
-          <div style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)', borderLeft: '3px solid #3b82f6' }}>
-            <div className="info mono" style={{ fontSize: '10px', marginBottom: '6px' }}>Domingo, 16:00</div>
-            <div className="paper" style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>Boss Global: Besta de Cauda</div>
-            <div className="muted" style={{ fontSize: '11px' }}>Tente sobreviver e colete caixas do colapso.</div>
-          </div>
-          <div style={{ background: 'rgba(0,0,0,0.2)', padding: '16px', borderRadius: '8px', border: '1px dashed var(--line-bright)', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-            <div className="muted" style={{ fontSize: '12px' }}>Mais eventos serão anunciados em breve.</div>
-          </div>
+          {upcomingEvents.length > 0 ? (
+            upcomingEvents.map((evt, idx) => {
+              let color = 'var(--gold)';
+              if (evt.is_world_boss) color = '#ef4444';
+              else if (idx % 2 === 0) color = '#3b82f6';
+
+              return (
+                <div key={evt.id} style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)', borderLeft: `3px solid ${color}` }}>
+                  <div className="mono" style={{ fontSize: '10px', marginBottom: '6px', color }}>{evt.ends_at ? new Date(evt.ends_at).toLocaleString() : 'Em breve'}</div>
+                  <div className="paper" style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>{evt.name}</div>
+                  <div className="muted" style={{ fontSize: '11px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{evt.description}</div>
+                </div>
+              );
+            })
+          ) : (
+            <div style={{ gridColumn: 'span 4', background: 'rgba(0,0,0,0.2)', padding: '24px', borderRadius: '8px', border: '1px dashed var(--line-bright)', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+              <div className="muted" style={{ fontSize: '13px' }}>Não há eventos cadastrados no momento. Novos comunicados surgirão em breve.</div>
+            </div>
+          )}
         </div>
       </div>
 

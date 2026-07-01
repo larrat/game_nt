@@ -216,3 +216,43 @@ export const getGlobalDebuffs = (activeBoss) => {
 
   return debuffs;
 };
+
+// ==========================================
+// SISTEMA DE BUFFS DE EDIFÍCIOS DA VILA
+// ==========================================
+export const getVillageBuildingLevel = (player, buildingType) => {
+  // Requer player.village_buildings carregado
+  if (!player || !player.village_buildings || !Array.isArray(player.village_buildings)) return 0;
+  const b = player.village_buildings.find(x => x.building_type === buildingType);
+  if (!b || b.level <= 0) return 0;
+  return b.level;
+};
+
+export const getHospitalDiscount = (player) => {
+  const lvl = getVillageBuildingLevel(player, 'hospital');
+  return Math.min(0.5, lvl * 0.10); // Máximo 50%
+};
+
+export const getDojoXPBonus = (player) => {
+  const lvl = getVillageBuildingLevel(player, 'dojo');
+  return 1 + (lvl * 0.05);
+};
+
+export const getBlacksmithDiscount = (player) => {
+  const lvl = getVillageBuildingLevel(player, 'blacksmith');
+  return Math.min(0.3, lvl * 0.05); // Máximo 30%
+};
+
+export const canAccessRankSMissions = (player) => {
+  return getVillageBuildingLevel(player, 'kage') >= 2;
+};
+
+export const getGatesDefMultiplier = (player) => {
+  const lvl = getVillageBuildingLevel(player, 'gates');
+  return 1 + (lvl * 0.02);
+};
+
+export const getIchirakuStaminaBonus = (player) => {
+  const lvl = getVillageBuildingLevel(player, 'ichiraku');
+  return lvl * 50;
+};

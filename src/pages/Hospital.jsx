@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
+import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { calculateHP, calculateChakra, calculateStamina, getGlobalDebuffs } from '../utils/engine';
 
 export default function Hospital({ player, updatePlayer }) {
   const { addToast } = useToast();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
 
@@ -85,6 +87,7 @@ export default function Hospital({ player, updatePlayer }) {
     await updatePlayer(player.user_id);
     addToast(paid ? 'Você pagou pelo tratamento e recebeu alta!' : 'Você se recuperou totalmente!', 'success');
     setLoading(false);
+    navigate('/dashboard', { replace: true });
   };
 
   if (!player) return null;

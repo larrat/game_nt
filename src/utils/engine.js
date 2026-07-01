@@ -179,17 +179,12 @@ export const getGlobalDebuffs = (activeBoss) => {
     currentPhase: 0
   };
 
-  if (!activeBoss || !activeBoss.is_world_boss || !activeBoss.boss_stats) return debuffs;
+  if (!activeBoss || !activeBoss.is_world_boss) return debuffs;
 
-  const hpStr = activeBoss.boss_stats.hp;
-  if (!hpStr) return debuffs;
-
-  const hpMatch = hpStr.match(/^(\d+)\/(\d+)$/);
-  if (!hpMatch) return debuffs;
-
-  const currentHP = parseInt(hpMatch[1], 10);
-  const maxHP = parseInt(hpMatch[2], 10);
-  if (maxHP <= 0) return debuffs;
+  const currentHP = Number(activeBoss.boss_hp);
+  const maxHP = Number(activeBoss.boss_max_hp);
+  
+  if (isNaN(currentHP) || isNaN(maxHP) || maxHP <= 0) return debuffs;
 
   const hpPercent = (currentHP / maxHP) * 100;
 

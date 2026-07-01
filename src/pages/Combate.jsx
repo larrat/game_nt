@@ -37,20 +37,20 @@ export default function Combate({ player, updatePlayer }) {
 
   // Early return removido daqui para respeitar as regras dos hooks.
   // Clãs
-  const clanBonus = player.clan ? (player.clan_bonus || { name: player.clan, critChance: 0, armorPen: 0, paralyzeChance: 0 }) : { critChance: 0, armorPen: 0, paralyzeChance: 0 };
-  if (player.clan === 'Hyuga') clanBonus.armorPen = 0.2;
-  if (player.clan === 'Uchiha') clanBonus.critChance = 0.15;
-  if (player.clan === 'Nara') clanBonus.paralyzeChance = 0.10;
+  const clanBonus = player?.clan ? (player.clan_bonus || { name: player.clan, critChance: 0, armorPen: 0, paralyzeChance: 0 }) : { critChance: 0, armorPen: 0, paralyzeChance: 0 };
+  if (player?.clan === 'Hyuga') clanBonus.armorPen = 0.2;
+  if (player?.clan === 'Uchiha') clanBonus.critChance = 0.15;
+  if (player?.clan === 'Nara') clanBonus.paralyzeChance = 0.10;
 
   // Calculando os status máximos do Jogador
   const maxPlayerHP = calculateHP(player);
   const maxPlayerCP = calculateChakra(player);
-  const maxPlayerSt = 100 + ((player.stamina_pts || 0) * 10);
+  const maxPlayerSt = 100 + ((player?.stamina_pts || 0) * 10);
   
   const playerAtk = calculateAtkTaiBuk(player);
-  const playerDef = calculateDefTaiBuk(player);
-  const playerPrecision = player.precisao || player.pre || 0;
-  const playerArmorPen = (player.tai || 0) / 10;
+  const playerDef = calculateDefNinGen(player); // Corrigido para calculateDefNinGen
+  const playerPrecision = player?.precisao || player?.pre || 0;
+  const playerArmorPen = (player?.tai || 0) / 10;
 
   const npcMaxHP = npcInit?.hp || 1;
   const npcMaxCP = npcInit?.chakra || 1;
@@ -151,8 +151,8 @@ export default function Combate({ player, updatePlayer }) {
   useEffect(() => {
     if (isAltAutoBattle && !battleResult) {
       const timer = setTimeout(() => {
-         const pPower = (player.level * 150) + (player.pontos_atributos * 50);
-         const nPower = (npcInit.level * 150) + 1000;
+         const pPower = ((player?.level || 1) * 150) + ((player?.pontos_atributos || 0) * 50);
+         const nPower = ((npcInit?.level || 1) * 150) + 1000;
          const winChance = pPower / (pPower + nPower);
          if (Math.random() < winChance) {
              setNpcHP(0);

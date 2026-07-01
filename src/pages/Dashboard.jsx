@@ -335,8 +335,17 @@ export default function Dashboard({ player, updatePlayer }) {
                   <span className="mono danger" style={{ fontSize: '20px', fontWeight: 'bold', textShadow: '0 0 10px rgba(239, 68, 68, 0.4)' }}>
                     {timeRemaining[event.id] || 'Calculando...'}
                   </span>
-                  <button className="btn-primary" style={{ width: '100%', padding: '10px', fontSize: '12px', background: '#ef4444', borderColor: '#ef4444', marginTop: '4px' }} onClick={() => navigate('/evento')}>
-                    Participar
+                  <button 
+                    className="btn-primary" 
+                    style={{ 
+                      width: '100%', padding: '10px', fontSize: '12px', marginTop: '4px',
+                      background: timeRemaining[event.id] === 'Evento Encerrado' ? '#555' : '#ef4444', 
+                      borderColor: timeRemaining[event.id] === 'Evento Encerrado' ? '#555' : '#ef4444' 
+                    }} 
+                    onClick={() => navigate('/evento')}
+                    disabled={timeRemaining[event.id] === 'Evento Encerrado'}
+                  >
+                    {timeRemaining[event.id] === 'Evento Encerrado' ? 'Encerrado' : 'Participar'}
                   </button>
                 </div>
               </div>

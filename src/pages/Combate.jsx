@@ -66,14 +66,17 @@ export default function Combate({ player, updatePlayer }) {
 
   const [playerStatus, setPlayerStatus] = useState([]);
   const [npcStatus, setNpcStatus] = useState([]);
+  const [cooldowns, setCooldowns] = useState({});
 
   const playerStatusRef = useRef(playerStatus);
   const npcStatusRef = useRef(npcStatus);
   const playerHPRef = useRef(playerHP);
+  const cooldownsRef = useRef(cooldowns);
   
   useEffect(() => { playerStatusRef.current = playerStatus; }, [playerStatus]);
   useEffect(() => { npcStatusRef.current = npcStatus; }, [npcStatus]);
   useEffect(() => { playerHPRef.current = playerHP; }, [playerHP]);
+  useEffect(() => { cooldownsRef.current = cooldowns; }, [cooldowns]);
 
   const [logs, setLogs] = useState([
     location.state?.isWorldBoss ? `🔥 O céu escurece... ${npcInit.name} surgiu! Prepare-se!` :
@@ -258,6 +261,18 @@ export default function Combate({ player, updatePlayer }) {
     await updatePlayer(player.user_id);
   };
 
+  const startPlayerTurn = () => {
+    setCooldowns(prev => {
+      const next = { ...prev };
+      Object.keys(next).forEach(k => {
+        if (next[k] > 0) next[k] -= 1;
+      });
+      return next;
+    });
+    setIsPlayerTurn(true);
+    setTimeLeft(30);
+  };
+
   const npcTurn = (currentNpcHP) => {
     if (currentNpcHP <= 0) return;
 
@@ -266,8 +281,7 @@ export default function Combate({ player, updatePlayer }) {
       setTimeout(() => {
         if (npcInit.is_dummy) {
           addLog('🪵 O Boneco de Madeira apenas balança com o vento...');
-          setIsPlayerTurn(true);
-          setTimeLeft(30);
+          startPlayerTurn();
           return;
         }
 
@@ -292,8 +306,7 @@ export default function Combate({ player, updatePlayer }) {
              addLog('Você não suportou a pressão do chakra e caiu...');
              setBattleResult('world_boss_end');
            } else {
-             setIsPlayerTurn(true);
-             setTimeLeft(30);
+             startPlayerTurn();
            }
            return;
         }
@@ -335,8 +348,7 @@ export default function Combate({ player, updatePlayer }) {
         }
 
         if (isStunned) {
-           setIsPlayerTurn(true);
-           setTimeLeft(30);
+           startPlayerTurn();
            return;
         }
 
@@ -402,8 +414,7 @@ export default function Combate({ player, updatePlayer }) {
           setBattleResult('lose');
           setPlayerFainted();
         } else {
-          setIsPlayerTurn(true);
-          setTimeLeft(30);
+          startPlayerTurn();
         }
       }, 1000);
     }, 1000);

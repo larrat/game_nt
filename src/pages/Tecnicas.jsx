@@ -4,7 +4,6 @@ import '../styles/main.css';
 import { useToast } from '../context/ToastContext';
 import PageHeader from '../components/PageHeader';
 
-// Helper para checar rank
 const rankValue = (rank) => {
   if (!rank) return 0;
   const r = rank.toLowerCase();
@@ -13,11 +12,12 @@ const rankValue = (rank) => {
   if (r.includes('chunin')) return 2;
   if (r.includes('jounin')) return 3;
   if (r.includes('anbu')) return 4;
-  if (r.includes('kage') || r.includes('lider')) return 5;
+  if (r.includes('sannin') || r.includes('sanin')) return 5;
+  if (r.includes('heroi') || r.includes('herói')) return 6;
   return 0;
 };
 
-const CATEGORIES = ['Todos', 'Ninjutsu', 'Taijutsu', 'Genjutsu', 'Geral'];
+const CATEGORIES = ['Todos', 'Ninjutsu', 'Taijutsu', 'Genjutsu', 'Bukijutsu'];
 
 export default function Tecnicas({ player, updatePlayer }) {
   const [allJutsus, setAllJutsus] = useState([]);
@@ -46,7 +46,10 @@ export default function Tecnicas({ player, updatePlayer }) {
           chakraCost: j.chakra_cost,
           damage: j.damage,
           accuracy: j.accuracy,
-          category: j.category
+          category: j.category,
+          reqAttrValue: j.req_attr_value,
+          reqSeals: j.req_seals,
+          cooldown: j.cooldown
         }));
         setAllJutsus(formatted);
       }
@@ -65,6 +68,12 @@ export default function Tecnicas({ player, updatePlayer }) {
     }
     if (jutsu.reqRank && rankValue(player.rank) < rankValue(jutsu.reqRank)) {
       addToast(`Graduação insuficiente! Precisa ser ${jutsu.reqRank}.`, 'error');
+      return;
+    }
+    // Trava de Maestria (Lote 4)
+    const playerMastery = player[jutsu.category.toLowerCase()] || 0;
+    if (jutsu.reqAttrValue && playerMastery < jutsu.reqAttrValue) {
+      addToast(`Maestria insuficiente! Você precisa de ${jutsu.reqAttrValue} em ${jutsu.category}.`, 'error');
       return;
     }
     if (player.ryous < jutsu.cost) {
@@ -227,13 +236,24 @@ export default function Tecnicas({ player, updatePlayer }) {
                     {jutsu.desc}
                   </p>
 
-                  {jutsu.damage > 0 && (
-                    <div className="mono flex-row" style={{ gap: '12px', marginBottom: '16px', fontSize: '11px', flexWrap: 'wrap' }}>
-                      <span className="danger">⚔ DMG: {jutsu.damage}</span>
-                      <span className="info">💧 CP: -{jutsu.chakraCost}</span>
-                      <span className="gold">🎯 Prec: {jutsu.accuracy}%</span>
-                    </div>
-                  )}
+                  <div className="mono flex-row" style={{ gap: '12px', marginBottom: '12px', fontSize: '11px', flexWrap: 'wrap' }}>
+                    {jutsu.damage > 0 && <span className="danger">⚔ DMG: {jutsu.damage}</span>}
+                    {jutsu.chakraCost > 0 && <span className="info">💧 CP: -{jutsu.chakraCost}</span>}
+                    {jutsu.cooldown !== undefined && <span className="paper">⏳ CD: {jutsu.cooldown > 0 ? `${jutsu.cooldown}T` : 'Nenhum'}</span>}
+                  </div>
+
+                  <div className="mono flex-col" style={{ gap: '4px', marginBottom: '16px', fontSize: '10px' }}>
+                    {jutsu.reqAttrValue > 0 && (
+                      <span className={(player[jutsu.category?.toLowerCase()] || 0) >= jutsu.reqAttrValue ? "success" : "danger"}>
+                        {(player[jutsu.category?.toLowerCase()] || 0) >= jutsu.reqAttrValue ? "✓" : "✗"} Maestria: {player[jutsu.category?.toLowerCase()] || 0}/{jutsu.reqAttrValue} {jutsu.category}
+                      </span>
+                    )}
+                    {jutsu.reqSeals > 0 && (
+                      <span className="gold">
+                        🎯 Precisão Real: {Math.min(100, Math.floor(((player.selo || 0) / jutsu.reqSeals) * 100))}% (Selo: {player.selo || 0}/{jutsu.reqSeals})
+                      </span>
+                    )}
+                  </div>
 
                   <div className="flex-between" style={{ alignItems: 'center' }}>
                     <div className={`mono ${canAfford && isUnlocked ? 'gold' : 'muted'}`} style={{ fontSize: '12px' }}>
@@ -290,13 +310,25 @@ export default function Tecnicas({ player, updatePlayer }) {
                   </div>
                   <h4 className="card-title" style={{ fontSize: '17px', marginBottom: '8px' }}>{jutsu.name}</h4>
                   <p className="muted" style={{ fontSize: '12px', lineHeight: '1.6' }}>{jutsu.desc}</p>
-                  {jutsu.damage > 0 && (
-                    <div className="mono flex-row" style={{ marginTop: '12px', gap: '12px', fontSize: '11px', flexWrap: 'wrap' }}>
-                      <span className="danger">⚔ DMG: {jutsu.damage}</span>
-                      <span className="info">💧 CP: -{jutsu.chakraCost}</span>
-                      <span className="gold">🎯 Prec: {jutsu.accuracy}%</span>
-                    </div>
-                  )}
+                  
+                  <div className="mono flex-row" style={{ gap: '12px', marginTop: '12px', marginBottom: '12px', fontSize: '11px', flexWrap: 'wrap' }}>
+                    {jutsu.damage > 0 && <span className="danger">⚔ DMG: {jutsu.damage}</span>}
+                    {jutsu.chakraCost > 0 && <span className="info">💧 CP: -{jutsu.chakraCost}</span>}
+                    {jutsu.cooldown !== undefined && <span className="paper">⏳ CD: {jutsu.cooldown > 0 ? `${jutsu.cooldown}T` : 'Nenhum'}</span>}
+                  </div>
+
+                  <div className="mono flex-col" style={{ gap: '4px', marginBottom: '16px', fontSize: '10px' }}>
+                    {jutsu.reqAttrValue > 0 && (
+                      <span className={(player[jutsu.category?.toLowerCase()] || 0) >= jutsu.reqAttrValue ? "success" : "danger"}>
+                        {(player[jutsu.category?.toLowerCase()] || 0) >= jutsu.reqAttrValue ? "✓" : "✗"} Maestria: {player[jutsu.category?.toLowerCase()] || 0}/{jutsu.reqAttrValue} {jutsu.category}
+                      </span>
+                    )}
+                    {jutsu.reqSeals > 0 && (
+                      <span className="gold">
+                        🎯 Precisão Real: {Math.min(100, Math.floor(((player.selo || 0) / jutsu.reqSeals) * 100))}% (Selo: {player.selo || 0}/{jutsu.reqSeals})
+                      </span>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>

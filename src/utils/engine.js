@@ -48,44 +48,46 @@ export const calculateVillageLevelFromXP = (totalXp) => {
 
 export const calculateHP = (player) => {
   if (!player) return 100;
-  // Resistência agora aumenta Vida, além da Defesa.
-  const base = 100 + ((player.level || 1) * 20) + ((player.resistencia || 0) * 10);
+  // Level escala mais forte anti-hitkill e Energia agora dá HP
+  const base = 100 + ((player.level || 1) * 30) + ((player.resistencia || 0) * 10) + ((player.energia || 0) * 5);
   return base + getEquipmentBonus(player, 'hp');
 };
 
 export const calculateChakra = (player) => {
   if (!player) return 50;
-  const base = 50 + ((player.level || 1) * 10) + ((player.energia || 0) * 5) + ((player.ninjutsu || 0) * 3) + ((player.genjutsu || 0) * 3);
+  const base = 50 + ((player.level || 1) * 10) + ((player.energia || 0) * 3) + ((player.ninjutsu || 0) * 3) + ((player.genjutsu || 0) * 3);
   return base + getEquipmentBonus(player, 'chakra');
 };
 
 export const calculateStamina = (player) => {
   if (!player) return 50;
-  const base = 50 + ((player.level || 1) * 10) + ((player.energia || 0) * 5) + ((player.taijutsu || 0) * 3) + ((player.bukijutsu || 0) * 3);
+  const base = 50 + ((player.level || 1) * 10) + ((player.energia || 0) * 3) + ((player.taijutsu || 0) * 3) + ((player.bukijutsu || 0) * 3);
   return base + getEquipmentBonus(player, 'stamina');
 };
 
 export const calculateAtkTaiBuk = (player) => {
   if (!player) return 5;
-  const base = ((player.forca || 0) * 2) + (player.taijutsu || 0) + (player.bukijutsu || 0) + 5;
+  // Taijutsu e Bukijutsu são a fonte primária de dano
+  const base = ((player.forca || 0) * 1) + ((player.taijutsu || 0) * 2) + ((player.bukijutsu || 0) * 2) + 5;
   return base + getEquipmentBonus(player, 'tai') + getEquipmentBonus(player, 'buk');
 };
 
 export const calculateAtkNinGen = (player) => {
   if (!player) return 5;
-  const base = ((player.inteligencia || 0) * 2) + (player.ninjutsu || 0) + (player.genjutsu || 0) + 5;
+  // Ninjutsu e Genjutsu são a fonte primária de dano
+  const base = ((player.inteligencia || 0) * 1) + ((player.ninjutsu || 0) * 2) + ((player.genjutsu || 0) * 2) + 5;
   return base + getEquipmentBonus(player, 'nin') + getEquipmentBonus(player, 'gen');
 };
 
 export const calculateDefTaiBuk = (player) => {
   if (!player) return 0;
-  const base = ((player.resistencia || 0) * 2) + Math.floor((player.taijutsu || 0) / 2);
+  const base = ((player.resistencia || 0) * 1) + Math.floor((player.taijutsu || 0) / 2);
   return base + getEquipmentBonus(player, 'def');
 };
 
 export const calculateDefNinGen = (player) => {
   if (!player) return 0;
-  const base = ((player.resistencia || 0) * 2) + Math.floor((player.ninjutsu || 0) / 2);
+  const base = ((player.resistencia || 0) * 1) + Math.floor((player.ninjutsu || 0) / 2);
   return base + getEquipmentBonus(player, 'def');
 };
 

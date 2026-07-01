@@ -412,7 +412,7 @@ export default function Combate({ player, updatePlayer }) {
   const handleBasicAttack = () => {
     if (!isPlayerTurn || battleResult) return;
     
-    if (playerSt < 15) return alert("Stamina insuficiente!");
+    if (playerSt < 15) { addToast('Stamina insuficiente para atacar!', 'error'); return; }
 
     setIsPlayerTurn(false);
     
@@ -475,7 +475,7 @@ export default function Combate({ player, updatePlayer }) {
     if (!isPlayerTurn || battleResult) return;
     
     const cost = jutsu.chakraCost || 20; 
-    if (playerCP < cost) return alert("Chakra insuficiente!");
+    if (playerCP < cost) { addToast('Chakra insuficiente para usar este jutsu!', 'error'); return; }
 
     setIsPlayerTurn(false);
     const newCP = playerCP - cost;

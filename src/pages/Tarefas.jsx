@@ -9,6 +9,7 @@ export default function Tarefas({ player, updatePlayer }) {
   const [tarefas, setTarefas] = useState([]);
   const [timers, setTimers] = useState({});
   const [loading, setLoading] = useState(false);
+  const [showBuySlotModal, setShowBuySlotModal] = useState(false);
   const { addToast } = useToast();
   const gameConfig = useGameConfig();
 
@@ -60,14 +61,16 @@ export default function Tarefas({ player, updatePlayer }) {
   if (!player) return null;
   const tasksCompleted = player.tasks_completed || 0;
 
-  const buySlot = async () => {
+  const buySlot = () => {
     if (vipCoins < SLOT_COST) {
       addToast('Kuro Coins insuficientes. (Custa ' + SLOT_COST + ' 🪙)', 'error');
       return;
     }
-    const confirmBuy = window.confirm(`Deseja comprar um novo Slot de Missão por ${SLOT_COST} Kuro Coins?`);
-    if (!confirmBuy) return;
+    setShowBuySlotModal(true);
+  };
 
+  const confirmBuySlot = async () => {
+    setShowBuySlotModal(false);
     setLoading(true);
     const { error } = await supabase.from('players').update({
       vip_coins: vipCoins - SLOT_COST,
@@ -158,9 +161,10 @@ export default function Tarefas({ player, updatePlayer }) {
   };
 
   const formatTime = (secs) => {
-    const m = Math.floor(secs / 60).toString().padStart(2, '0');
+    const h = Math.floor(secs / 3600);
+    const m = Math.floor((secs % 3600) / 60).toString().padStart(2, '0');
     const s = (secs % 60).toString().padStart(2, '0');
-    return `00:${m}:${s}`;
+    return h > 0 ? `${h}:${m}:${s}` : `${m}:${s}`;
   };
 
   return (
@@ -283,6 +287,22 @@ export default function Tarefas({ player, updatePlayer }) {
           </tbody>
         </table>
       </div>
+
+      {/* Modal de Compra de Slot */}
+      {showBuySlotModal && (
+        <div className="modal-overlay">
+          <div className="modal-content card">
+            <h3 className="card-title" style={{ fontSize: '20px', marginBottom: '16px' }}>Comprar Slot de Missão</h3>
+            <p className="muted" style={{ marginBottom: '24px', lineHeight: '1.5' }}>
+              Deseja comprar um novo Slot de Missão por <span className="gold">{SLOT_COST} Kuro Coins</span>?
+            </p>
+            <div className="flex-row" style={{ justifyContent: 'flex-end', gap: '12px' }}>
+              <button className="btn-ghost" onClick={() => setShowBuySlotModal(false)}>Cancelar</button>
+              <button className="btn-primary" onClick={confirmBuySlot}>Comprar Slot</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

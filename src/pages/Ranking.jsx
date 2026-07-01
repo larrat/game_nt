@@ -2,27 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import { VILLAGES, KAGES } from '../constants';
 
-const VILLAGES = {
-  1: 'Folha',
-  2: 'Areia',
-  3: 'Névoa',
-  4: 'Pedra',
-  5: 'Nuvem',
-  6: 'Som',
-  7: 'Chuva',
-  8: 'Akatsuki'
-};
 
-const KAGES = {
-  1: 'HOKAGE',
-  2: 'KAZEKAGE',
-  3: 'MIZUKAGE',
-  4: 'TSUCHIKAGE',
-  5: 'RAIKAGE',
-  6: 'OTOKAGE',
-  7: 'AMEKAGE'
-};
 
 export default function Ranking({ player }) {
   const [ranking, setRanking] = useState([]);

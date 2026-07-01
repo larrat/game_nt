@@ -4,6 +4,7 @@ import PageHeader from '../components/PageHeader';
 import { useNavigate } from 'react-router-dom';
 import { calculateVillageLevelFromXP, calculateVillageXPForLevel } from '../utils/engine';
 import { supabase } from '../supabaseClient';
+import { useToast } from '../context/ToastContext';
 
 
 export default function Vila({ player }) {
@@ -11,7 +12,9 @@ export default function Vila({ player }) {
   const [villageLevel, setVillageLevel] = useState(1);
   const [kage, setKage] = useState(null);
   const [villageData, setVillageData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { addToast } = useToast();
 
   useEffect(() => {
     if (!player) return;
@@ -38,6 +41,8 @@ export default function Vila({ player }) {
       
       if (vData) {
         setVillageData(vData);
+        setVillageXP(vData.xp || 0);
+        setVillageLevel(vData.level || 1);
       }
     }
     fetchData();
@@ -48,12 +53,25 @@ export default function Vila({ player }) {
   const maxXP = calculateVillageXPForLevel(villageLevel + 1);
   const xpPercent = Math.min(100, (villageXP / maxXP) * 100);
 
-  const addXP = (amount) => {
+  const addXP = async (amount) => {
+    if (!villageData) return;
+    setLoading(true);
     let newXp = villageXP + amount;
     let newLevel = calculateVillageLevelFromXP(newXp);
     
-    setVillageXP(newXp);
-    setVillageLevel(newLevel);
+    const { error } = await supabase.from('villages').update({
+      xp: newXp,
+      level: newLevel
+    }).eq('id', villageData.id);
+
+    if (error) {
+      addToast('Erro ao adicionar EXP: ' + error.message, 'error');
+    } else {
+      setVillageXP(newXp);
+      setVillageLevel(newLevel);
+      addToast(`+${amount} EXP para a Vila!`, 'success');
+    }
+    setLoading(false);
   };
 
   return (
@@ -117,13 +135,13 @@ export default function Vila({ player }) {
           <h4 className="card-title" style={{ fontSize: '16px', marginBottom: '8px' }}>Hospital da Vila</h4>
           <p className="muted" style={{ fontSize: '12px' }}>Recupere sua Vida (HP) e Chakra pagando com Ryous.</p>
         </div>
-        <div className="card" style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => alert("Em breve!")}>
+        <div className="card" style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => addToast("Em breve!", "info")}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>🍜</div>
           <div className="gold" style={{ fontSize: '14px', marginBottom: '8px' }}>★ ★ ☆ ☆ ☆</div>
           <h4 className="card-title" style={{ fontSize: '16px', marginBottom: '8px' }}>Ramen Ichiraku</h4>
           <p className="muted" style={{ fontSize: '12px' }}>Recupere sua Stamina comendo os melhores Ramens.</p>
         </div>
-        <div className="card" style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => alert("Em breve!")}>
+        <div className="card" style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => addToast("Em breve!", "info")}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>📜</div>
           <div className="gold" style={{ fontSize: '14px', marginBottom: '8px' }}>★ ★ ★ ★ ☆</div>
           <h4 className="card-title" style={{ fontSize: '16px', marginBottom: '8px' }}>Painel de Missões</h4>

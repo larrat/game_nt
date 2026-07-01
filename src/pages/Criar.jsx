@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-
-const VILLAGES = [
-  { id: 1, name: 'Folha', icon: '🍃' },
-  { id: 2, name: 'Areia', icon: '⏳' },
-  { id: 3, name: 'Névoa', icon: '🌫️' },
-  { id: 4, name: 'Pedra', icon: '🪨' },
-  { id: 5, name: 'Nuvem', icon: '☁️' },
-  { id: 6, name: 'Som', icon: '🎵' },
-  { id: 7, name: 'Chuva', icon: '🌧️' },
-];
+import { useToast } from '../context/ToastContext';
+import { VILLAGES_LIST } from '../constants';
 
 export default function Criar({ session, setPlayerState }) {
+  const { addToast } = useToast();
   const [name, setName] = useState('');
   const [selectedVillage, setSelectedVillage] = useState(1);
   const [selectedAvatar, setSelectedAvatar] = useState('');
@@ -62,7 +55,7 @@ export default function Criar({ session, setPlayerState }) {
   }, [session.user.id]);
 
   const handleCreate = async () => {
-    if (!name) return alert('Digite um nome para o personagem!');
+    if (!name) { addToast('Digite um nome para o personagem!', 'error'); return; }
     setLoading(true);
 
     const newPlayer = {
@@ -95,10 +88,10 @@ export default function Criar({ session, setPlayerState }) {
       .single();
 
     if (error) {
-      alert("Erro ao criar personagem: " + error.message);
+      addToast('Erro ao criar personagem: ' + error.message, 'error');
       setLoading(false);
     } else {
-      alert("Personagem criado com sucesso!");
+      addToast('Personagem criado com sucesso!', 'success');
       setPlayerState({
         ...data,
         activeJutsus: []

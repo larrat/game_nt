@@ -302,11 +302,11 @@ export default function Dashboard({ player, updatePlayer }) {
               <img src="/images/imgi_112_1.png" style={{ width: '16px' }} /> Combates
             </h4>
             <div className="stats-list">
-              <div className="stat-win"><span>Vitórias Dojo:</span><span>0</span></div>
-              <div className="stat-win"><span>Vitórias PVP:</span><span>0</span></div>
-              <div className="stat-loss"><span>Derrotas Dojo:</span><span>0</span></div>
-              <div className="stat-loss"><span>Derrotas PVP:</span><span>0</span></div>
-              <div className="stat-neutral"><span>Fugas:</span><span>0</span></div>
+              <div className="stat-win"><span>Vitórias Dojo:</span><span>{player.wins_dojo || 0}</span></div>
+              <div className="stat-win"><span>Vitórias PVP:</span><span>{player.wins_pvp || 0}</span></div>
+              <div className="stat-loss"><span>Derrotas Dojo:</span><span>{player.losses_dojo || 0}</span></div>
+              <div className="stat-loss"><span>Derrotas PVP:</span><span>{player.losses_pvp || 0}</span></div>
+              <div className="stat-neutral"><span>Fugas:</span><span>{player.fugas || 0}</span></div>
             </div>
           </div>
 
@@ -315,11 +315,11 @@ export default function Dashboard({ player, updatePlayer }) {
               <img src="/images/imgi_13_passe.png" style={{ width: '16px' }} /> Missões
             </h4>
             <div className="stats-list">
-              <div className="stat-win"><span>Rank S:</span><span>0 / 0</span></div>
-              <div className="stat-win"><span>Rank A:</span><span>0 / 0</span></div>
-              <div className="stat-neutral"><span>Rank B:</span><span>0 / 0</span></div>
-              <div className="stat-neutral"><span>Rank C:</span><span>0 / 0</span></div>
-              <div className="stat-neutral"><span>Rank D:</span><span>0 / 0</span></div>
+              <div className="stat-win"><span>Rank S:</span><span>{player.missions_s || 0}</span></div>
+              <div className="stat-win"><span>Rank A:</span><span>{player.missions_a || 0}</span></div>
+              <div className="stat-neutral"><span>Rank B:</span><span>{player.missions_b || 0}</span></div>
+              <div className="stat-neutral"><span>Rank C:</span><span>{player.missions_c || 0}</span></div>
+              <div className="stat-neutral"><span>Rank D:</span><span>{player.missions_d || 0}</span></div>
               <div className="stat-highlight" style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                 <span className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>
                   <img src="/images/imgi_14_rotina.png" style={{ width: '12px' }} /> Tarefas:

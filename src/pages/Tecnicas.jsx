@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
+import { useToast } from '../context/ToastContext';
+import PageHeader from '../components/PageHeader';
 
 // Helper para checar rank
 const rankValue = (rank) => {
@@ -21,8 +23,8 @@ export default function Tecnicas({ player, updatePlayer }) {
   const [allJutsus, setAllJutsus] = useState([]);
   const [tab, setTab] = useState('tecnicas');
   const [filterCat, setFilterCat] = useState('Todos');
-  const [learnMsg, setLearnMsg] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { addToast } = useToast();
 
   if (!player) return null;
 
@@ -54,19 +56,19 @@ export default function Tecnicas({ player, updatePlayer }) {
 
   const handleLearn = async (jutsu) => {
     if (learnedIds.includes(jutsu.id)) {
-      setLearnMsg({ type: 'info', text: `Você já conhece ${jutsu.name}!` });
+      addToast(`Você já conhece ${jutsu.name}!`, 'info');
       return;
     }
     if (player.level < jutsu.lvl) {
-      setLearnMsg({ type: 'error', text: `Nível insuficiente! Precisa de Nv.${jutsu.lvl}.` });
+      addToast(`Nível insuficiente! Precisa de Nv.${jutsu.lvl}.`, 'error');
       return;
     }
     if (jutsu.reqRank && rankValue(player.rank) < rankValue(jutsu.reqRank)) {
-      setLearnMsg({ type: 'error', text: `Graduação insuficiente! Precisa ser ${jutsu.reqRank}.` });
+      addToast(`Graduação insuficiente! Precisa ser ${jutsu.reqRank}.`, 'error');
       return;
     }
     if (player.ryous < jutsu.cost) {
-      setLearnMsg({ type: 'error', text: `Ryous insuficientes! Precisa de RY$ ${jutsu.cost}.` });
+      addToast(`Ryous insuficientes! Precisa de RY$ ${jutsu.cost}.`, 'error');
       return;
     }
 
@@ -80,28 +82,25 @@ export default function Tecnicas({ player, updatePlayer }) {
       .eq('id', player.id);
 
     if (error) {
-      player.jutsus_learned = newLearned;
-      player.ryous = newRyous;
-      setLearnMsg({ type: 'success', text: `${jutsu.name} aprendido! (Salvo localmente)` });
+      addToast('Erro ao aprender jutsu: ' + error.message, 'error');
     } else {
       await updatePlayer(player.user_id);
-      setLearnMsg({ type: 'success', text: `${jutsu.name} aprendido com sucesso! -RY$ ${jutsu.cost}` });
+      addToast(`${jutsu.name} aprendido com sucesso! -RY$ ${jutsu.cost}`, 'success');
     }
 
     setLoading(false);
-    setTimeout(() => setLearnMsg(null), 4000);
   };
 
   const handleBulkLearn = async () => {
     // Apenas filtra o que ele AINDA NÃO TEM e PODE COMPRAR (Lv + Rank)
-    const availableToLearn = allJutsus.filter(j => 
-      !learnedIds.includes(j.id) && 
-      player.level >= j.lvl && 
+    const availableToLearn = allJutsus.filter(j =>
+      !learnedIds.includes(j.id) &&
+      player.level >= j.lvl &&
       (!j.reqRank || rankValue(player.rank) >= rankValue(j.reqRank))
     );
 
     if (availableToLearn.length === 0) {
-      setLearnMsg({ type: 'info', text: 'Você já aprendeu tudo que estava disponível para o seu nível/graduação!' });
+      addToast('Você já aprendeu tudo que estava disponível para o seu nível/graduação!', 'info');
       return;
     }
 
@@ -109,14 +108,14 @@ export default function Tecnicas({ player, updatePlayer }) {
     const totalCost = availableToLearn.reduce((sum, j) => sum + j.cost, 0);
 
     if (player.ryous < totalCost) {
-      setLearnMsg({ type: 'error', text: `Você precisa de RY$ ${totalCost} para aprender as ${availableToLearn.length} técnicas disponíveis.` });
+      addToast(`Você precisa de RY$ ${totalCost} para aprender as ${availableToLearn.length} técnicas disponíveis.`, 'error');
       return;
     }
 
     if (!window.confirm(`Aprender ${availableToLearn.length} jutsus de uma vez por RY$ ${totalCost}?`)) return;
 
     setLoading(true);
-    
+
     const newLearnedIds = [...learnedIds, ...availableToLearn.map(j => j.id)];
     const newRyous = player.ryous - totalCost;
 
@@ -126,43 +125,28 @@ export default function Tecnicas({ player, updatePlayer }) {
       .eq('id', player.id);
 
     if (error) {
-      setLearnMsg({ type: 'error', text: 'Erro ao aprender em massa: ' + error.message });
+      addToast('Erro ao aprender em massa: ' + error.message, 'error');
     } else {
       await updatePlayer(player.user_id);
-      setLearnMsg({ type: 'success', text: `Prodígio da Academia ativado! Você aprendeu ${availableToLearn.length} jutsus por RY$ ${totalCost}!` });
+      addToast(`Prodígio da Academia ativado! Você aprendeu ${availableToLearn.length} jutsus por RY$ ${totalCost}!`, 'success');
     }
     setLoading(false);
-    setTimeout(() => setLearnMsg(null), 4000);
   };
-
-  const filtered = filterCat === 'Todos'
-    ? ALL_JUTSUS
-    : ALL_JUTSUS.filter(j => j.category === filterCat);
 
   return (
     <div className="page">
       {/* PAGE HEADER */}
-      <div style={{ marginBottom: '32px' }}>
-        <div className="flex-between" style={{ alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
-          <div>
-            <div className="flex-row" style={{ alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-              <div style={{ width: '24px', height: '1px', background: 'var(--seal-bright)' }} />
-              <span className="mono gold uppercase" style={{ fontSize: '10px', letterSpacing: '3px' }}>
-                {player.name} · Graduação: {player.rank}
-              </span>
-            </div>
-            <h1 className="page-title">Academia Ninja</h1>
-            <p className="muted" style={{ fontSize: '13px', marginTop: '6px' }}>
-              Aprenda jutsus usando Ryous. Jutsus aprendidos ficam disponíveis no combate.
-            </p>
-          </div>
+      <PageHeader
+        eyebrow={`${player.name} · Graduação: ${player.rank}`}
+        title="Academia Ninja"
+        subtitle="Aprenda jutsus usando Ryous. Jutsus aprendidos ficam disponíveis no combate."
+        actions={
           <div className="card" style={{ textAlign: 'center' }}>
             <div className="muted mono uppercase" style={{ fontSize: '10px', letterSpacing: '2px', marginBottom: '4px' }}>RYOUS</div>
             <div className="gold mono" style={{ fontSize: '24px' }}>RY$ {player.ryous || 0}</div>
           </div>
-        </div>
-        <div className="divider-glow" style={{ marginTop: '20px' }} />
-      </div>
+        }
+      />
 
       {/* TABS */}
       <div className="tabs" style={{ marginBottom: '32px' }}>
@@ -171,20 +155,6 @@ export default function Tecnicas({ player, updatePlayer }) {
           Aprendidas <span style={{ marginLeft: '6px', background: 'var(--seal-glow)', border: '1px solid var(--seal-bright)', color: 'var(--seal-bright)', borderRadius: '10px', padding: '1px 7px', fontSize: '10px', fontFamily: "'JetBrains Mono', monospace" }}>{learnedIds.length}</span>
         </div>
       </div>
-
-      {/* TOAST DE FEEDBACK */}
-      {learnMsg && (
-        <div style={{
-          marginBottom: '24px', padding: '14px 20px', borderRadius: '8px',
-          background: learnMsg.type === 'success' ? 'rgba(76,206,128,0.08)' : learnMsg.type === 'error' ? 'rgba(224,54,63,0.08)' : 'rgba(212,162,42,0.08)',
-          border: `1px solid ${learnMsg.type === 'success' ? 'rgba(76,206,128,0.4)' : learnMsg.type === 'error' ? 'var(--seal-bright)' : 'var(--gold)'}`,
-          color: learnMsg.type === 'success' ? '#4cce80' : learnMsg.type === 'error' ? 'var(--seal-bright)' : 'var(--gold)',
-          fontSize: '13px', display: 'flex', alignItems: 'center', gap: '10px'
-        }}>
-          {learnMsg.type === 'success' ? '✅' : learnMsg.type === 'error' ? '❌' : 'ℹ️'}
-          {learnMsg.text}
-        </div>
-      )}
 
       {/* LISTA DE TÉCNICAS */}
       {tab === 'tecnicas' && (
@@ -210,8 +180,8 @@ export default function Tecnicas({ player, updatePlayer }) {
             </div>
 
             {/* Vantagem VIP: Prodígio da Academia */}
-            <button 
-              className="btn-ghost" 
+            <button
+              className="btn-ghost"
               onClick={handleBulkLearn}
               disabled={loading}
               style={{ borderColor: 'var(--gold)', color: 'var(--gold)', padding: '6px 16px', fontSize: '12px' }}

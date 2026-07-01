@@ -1,17 +1,20 @@
 import React from 'react';
-import { calculateHP, calculateChakra } from '../utils/engine';
+import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 
 export default function TopBar({ player }) {
   if (!player) return null;
 
   const maxHp = calculateHP(player);
-  const hpPercent = 100; // Por enquanto, vida cheia. Depois podemos adicionar player.current_hp
+  const currentHp = player.hp !== undefined && player.hp !== null ? Math.min(player.hp, maxHp) : maxHp;
+  const hpPercent = Math.max(0, Math.min(100, (currentHp / maxHp) * 100));
 
   const maxCp = calculateChakra(player);
-  const cpPercent = 100;
+  const currentCp = player.chakra !== undefined && player.chakra !== null ? Math.min(player.chakra, maxCp) : maxCp;
+  const cpPercent = Math.max(0, Math.min(100, (currentCp / maxCp) * 100));
 
-  const maxSp = player.stamina_pts || 0; // Usando a coluna stamina_pts
-  const spPercent = 100;
+  const maxSp = calculateStamina(player);
+  const currentSp = player.stamina !== undefined && player.stamina !== null ? Math.min(player.stamina, maxSp) : maxSp;
+  const spPercent = Math.max(0, Math.min(100, (currentSp / maxSp) * 100));
 
   return (
     <div className="topbar-global" style={{
@@ -65,10 +68,10 @@ export default function TopBar({ player }) {
         <div className="flex-col" style={{ gap: '4px', width: '140px' }}>
           <div className="flex-between">
             <span className="muted uppercase mono" style={{ fontSize: '9px', letterSpacing: '1px' }}>Saúde</span>
-            <span className="mono" style={{ fontSize: '10px', color: '#ff4b4b' }}>{maxHp}/{maxHp}</span>
+            <span className="mono" style={{ fontSize: '10px', color: '#ff4b4b' }}>{currentHp}/{maxHp}</span>
           </div>
           <div className="progress-track" style={{ height: '8px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,75,75,0.2)', overflow: 'visible' }}>
-            <div className="progress-fill red" style={{ width: `${hpPercent}%`, position: 'relative' }}>
+            <div className="progress-fill red" style={{ width: `${hpPercent}%`, position: 'relative', transition: 'width 0.5s ease' }}>
               <img src="/images/imgi_8_heart.png" alt="HP" style={{ position: 'absolute', right: '-8px', top: '-6px', width: '20px' }} />
             </div>
           </div>
@@ -78,10 +81,10 @@ export default function TopBar({ player }) {
         <div className="flex-col" style={{ gap: '4px', width: '140px' }}>
           <div className="flex-between">
             <span className="muted uppercase mono" style={{ fontSize: '9px', letterSpacing: '1px' }}>Chakra</span>
-            <span className="mono" style={{ fontSize: '10px', color: '#4b9eff' }}>{maxCp}/{maxCp}</span>
+            <span className="mono" style={{ fontSize: '10px', color: '#4b9eff' }}>{currentCp}/{maxCp}</span>
           </div>
           <div className="progress-track" style={{ height: '8px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(75,158,255,0.2)', overflow: 'visible' }}>
-            <div className="progress-fill blue" style={{ width: `${cpPercent}%`, position: 'relative' }}>
+            <div className="progress-fill blue" style={{ width: `${cpPercent}%`, position: 'relative', transition: 'width 0.5s ease' }}>
               <img src="/images/imgi_9_chakra.png" alt="CP" style={{ position: 'absolute', right: '-8px', top: '-6px', width: '20px' }} />
             </div>
           </div>
@@ -91,10 +94,10 @@ export default function TopBar({ player }) {
         <div className="flex-col" style={{ gap: '4px', width: '140px' }}>
           <div className="flex-between">
             <span className="muted uppercase mono" style={{ fontSize: '9px', letterSpacing: '1px' }}>Energia</span>
-            <span className="mono gold" style={{ fontSize: '10px' }}>{maxSp}/{maxSp}</span>
+            <span className="mono gold" style={{ fontSize: '10px' }}>{currentSp}/{maxSp}</span>
           </div>
           <div className="progress-track" style={{ height: '8px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(212,162,42,0.2)', overflow: 'visible' }}>
-            <div className="progress-fill gold" style={{ width: `${spPercent}%`, position: 'relative' }}>
+            <div className="progress-fill gold" style={{ width: `${spPercent}%`, position: 'relative', transition: 'width 0.5s ease' }}>
               <img src="/images/imgi_10_stamina.png" alt="SP" style={{ position: 'absolute', right: '-8px', top: '-6px', width: '20px' }} />
             </div>
           </div>

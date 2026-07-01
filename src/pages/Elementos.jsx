@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import { useToast } from '../context/ToastContext';
 
 const ELEMENT_POS = {
   'Katon': { top: '10%', left: '50%' },
@@ -15,6 +16,7 @@ export default function Elementos({ player, updatePlayer }) {
   const [elementsData, setElementsData] = useState([]);
   const [hoveredElement, setHoveredElement] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { addToast } = useToast();
 
   if (!player) return null;
 
@@ -54,6 +56,9 @@ export default function Elementos({ player, updatePlayer }) {
 
     if (!error) {
       await updatePlayer(player.user_id);
+      addToast(`Elemento ${elementId} dominado!`, 'success');
+    } else {
+      addToast('Erro ao aprender elemento: ' + error.message, 'error');
     }
     setLoading(false);
   };
@@ -131,7 +136,7 @@ export default function Elementos({ player, updatePlayer }) {
             {player.element ? (
               <div className="flex-row" style={{ marginTop: '16px' }}>
                 <div className="flex-row" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--gold)', justifyContent: 'center', fontSize: '24px' }}>
-                  {ELEMENTS.find(e => e.id === player.element)?.icon}
+                  {elementsData.find(e => e.id === player.element)?.icon}
                 </div>
                 <div>
                   <div className="mono" style={{ fontWeight: 'bold' }}>{player.element}</div>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
+import { useToast } from '../context/ToastContext';
 
 export default function Graduacoes({ player, updatePlayer }) {
+  const { addToast } = useToast();
   const [ranksData, setRanksData] = useState([]);
   const [isCeremonyActive, setIsCeremonyActive] = useState(false);
   const [newRank, setNewRank] = useState('');
@@ -54,7 +56,7 @@ export default function Graduacoes({ player, updatePlayer }) {
       .eq('id', player.id);
 
     if (error) {
-      alert("Erro ao graduar: " + error.message);
+      addToast('Erro ao graduar: ' + error.message, 'error');
       setIsCeremonyActive(false);
       return;
     }

@@ -24,6 +24,7 @@ import Combate from './pages/Combate';
 import Vip from './pages/Vip';
 import Templo from './pages/Templo';
 import Evento from './pages/Evento';
+import Portoes from './pages/Portoes';
 
 // Novas telas Fullscreen (Lote 1)
 import Login from './pages/Login';
@@ -64,11 +65,13 @@ function App() {
   }, []);
 
   async function updatePlayer(userId) {
-    if (!playerState) return;
+    // Aceita o id do player diretamente ou usa o playerState atual
+    const currentPlayerId = playerState?.id;
+    if (!currentPlayerId) return;
     const { data: dbPlayer } = await supabase
       .from('players')
       .select('*')
-      .eq('id', playerState.id)
+      .eq('id', currentPlayerId)
       .single();
 
     if (dbPlayer) {
@@ -172,6 +175,7 @@ function App() {
             <Route path="/dojo" element={<Dojo player={playerState} />} />
             <Route path="/combate" element={<Combate player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/ranking" element={<Ranking player={playerState} updatePlayer={updatePlayer} />} />
+            <Route path="/portoes" element={<Portoes player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/vip" element={<Vip player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/templo" element={<Templo player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/evento" element={<Evento player={playerState} updatePlayer={updatePlayer} />} />

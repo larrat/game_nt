@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
+import { useToast } from '../context/ToastContext';
 
 export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
+  const { addToast } = useToast();
   const [selectedAvatar, setSelectedAvatar] = useState(player?.avatar || '/images/avatares/sasuke_01_kunai.png');
   const [loading, setLoading] = useState(false);
   const [allAvatars, setAllAvatars] = useState([]);
@@ -38,7 +40,7 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
       await updatePlayer(player.user_id);
       onClose();
     } else {
-      alert("Erro ao salvar: " + error.message);
+      addToast('Erro ao salvar avatar: ' + error.message, 'error');
     }
     setLoading(false);
   };

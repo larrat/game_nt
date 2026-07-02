@@ -5,16 +5,17 @@ import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
 
 const ELEMENT_POS = {
-  'Katon': { top: '10%', left: '50%' },
-  'Futon': { top: '38%', left: '85%' },
-  'Raiton': { top: '85%', left: '70%' },
-  'Doton': { top: '85%', left: '30%' },
-  'Suiton': { top: '38%', left: '15%' }
+  'Katon': { top: '20px', left: '160px' },
+  'Futon': { top: '116px', left: '293px' },
+  'Raiton': { top: '274px', left: '242px' },
+  'Doton': { top: '274px', left: '78px' },
+  'Suiton': { top: '116px', left: '27px' }
 };
 
 export default function Elementos({ player, updatePlayer }) {
   const [elementsData, setElementsData] = useState([]);
   const [hoveredElement, setHoveredElement] = useState(null);
+  const [selectedNode, setSelectedNode] = useState(null);
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
 
@@ -46,6 +47,7 @@ export default function Elementos({ player, updatePlayer }) {
   const isLevel5 = player.level >= 5;
   const isGenin = player.rank !== 'Estudante da Academia'; // Simplificado
   const canLearn = isLevel5 && isGenin && !player.element;
+  const displayElement = selectedNode || hoveredElement;
 
   const handleLearnElement = async (elementId) => {
     if (!canLearn) return;
@@ -121,7 +123,8 @@ export default function Elementos({ player, updatePlayer }) {
                   className={nodeClass}
                   onMouseEnter={() => setHoveredElement(el)}
                   onMouseLeave={() => setHoveredElement(null)}
-                  style={{ color: el.color }}
+                  onClick={() => setSelectedNode(el)}
+                  style={{ color: el.color, top: el.pos.top, left: el.pos.left, cursor: 'pointer' }}
                 >
                   {el.icon}
                   <div className="el-label">{el.name.split(' ')[0]}</div>
@@ -151,12 +154,12 @@ export default function Elementos({ player, updatePlayer }) {
             )}
           </div>
 
-          {hoveredElement && (
-            <div className="card" style={{ background: 'var(--ink-raised)', borderColor: hoveredElement.color, position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '-20px', right: '-20px', fontSize: '120px', opacity: 0.05, pointerEvents: 'none', color: hoveredElement.color }}>{hoveredElement.icon}</div>
-              <h3 className="page-title" style={{ color: hoveredElement.color, marginBottom: '16px', fontSize: '20px' }}>{hoveredElement.name}</h3>
+          {displayElement && (
+            <div className="card" style={{ background: 'var(--ink-raised)', borderColor: displayElement.color, position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: '-20px', right: '-20px', fontSize: '120px', opacity: 0.05, pointerEvents: 'none', color: displayElement.color }}>{displayElement.icon}</div>
+              <h3 className="page-title" style={{ color: displayElement.color, marginBottom: '16px', fontSize: '20px' }}>{displayElement.name}</h3>
               <p className="paper" style={{ fontSize: '13px', lineHeight: '1.6', marginBottom: '24px' }}>
-                {hoveredElement.desc}
+                {displayElement.desc}
               </p>
 
               <div style={{ borderTop: '1px dotted var(--line)', paddingTop: '16px' }}>
@@ -174,8 +177,8 @@ export default function Elementos({ player, updatePlayer }) {
                   </div>
                   <button 
                     className="btn-primary" 
-                    style={{ width: '100%', marginTop: '12px', background: hoveredElement.color, opacity: canLearn ? 1 : 0.5, cursor: canLearn ? 'pointer' : 'not-allowed' }}
-                    onClick={() => handleLearnElement(hoveredElement.id)}
+                    style={{ width: '100%', marginTop: '12px', background: displayElement.color, opacity: canLearn ? 1 : 0.5, cursor: canLearn ? 'pointer' : 'not-allowed' }}
+                    onClick={() => handleLearnElement(displayElement.id)}
                     disabled={!canLearn || loading}
                   >
                     {loading ? 'Aprendendo...' : canLearn ? 'Aprender Elemento' : 'Requisitos Incompletos'}

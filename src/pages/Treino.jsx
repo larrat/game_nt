@@ -34,6 +34,17 @@ export default function Treino({ player, updatePlayer }) {
     bonus: playerRankData.train_bonus
   };
 
+  const attrDesc = {
+    ninjutsu: "Aumenta o dano de técnicas Ninjutsu.",
+    taijutsu: "Aumenta o dano de técnicas Taijutsu.",
+    genjutsu: "Aumenta o dano de técnicas Genjutsu.",
+    inteligencia: "Aumenta ataque e defesa de Ninjutsu e Genjutsu.",
+    forca: "Aumenta o dano de Taijutsu, Bukijutsu e Vida Máxima (HP).",
+    agilidade: "Aumenta sua Esquiva e a chance de Crítico.",
+    selo: "Reduz o custo de Chakra de todas as habilidades.",
+    resistencia: "Aumenta drasticamente HP, Chakra, Stamina e Defesa."
+  };
+
   const getRange = (heroMin, heroMax) => {
     const min = Math.max(1, Math.floor(heroMin * rankMultiplier.minMult));
     const max = Math.max(1, Math.floor(heroMax * rankMultiplier.maxMult));
@@ -102,9 +113,12 @@ export default function Treino({ player, updatePlayer }) {
               <div key={field} className="flex-between" style={{ padding: '12px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', alignItems: 'center' }}>
                 
                 {/* Ícone e Nome */}
-                <div className="flex-row" style={{ flex: 1, gap: '12px', alignItems: 'center' }}>
+                <div className="flex-row" style={{ flex: 1.5, gap: '12px', alignItems: 'center' }}>
                   <span style={{ fontSize: '20px' }}>{icon}</span>
-                  <span className="paper uppercase" style={{ fontSize: '13px', fontWeight: 'bold' }}>{label}</span>
+                  <div className="flex-col">
+                    <span className="paper uppercase" style={{ fontSize: '13px', fontWeight: 'bold', marginBottom: '2px' }}>{label}</span>
+                    <span className="muted" style={{ fontSize: '10px', lineHeight: '1.4', maxWidth: '200px' }}>{attrDesc[field]}</span>
+                  </div>
                 </div>
 
                 {/* Range e Bonus */}

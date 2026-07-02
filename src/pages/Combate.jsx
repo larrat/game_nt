@@ -695,7 +695,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const bonusDano = getJutsuEnhancementBonus(jutsu, 'dano');
     const bonusLetalidade = getJutsuEnhancementBonus(jutsu, 'letalidade');
     
-    const cost = Math.max(1, (jutsu.chakraCost || 20) + bonusCusto);
+    // Desconto de Selo: 1% de redução de custo de chakra para cada ponto de Selo (máx 50%)
+    const seloDiscount = Math.min(0.5, (player.selo || 0) * 0.01);
+    const baseCost = (jutsu.chakraCost || 20) + bonusCusto;
+    const cost = Math.floor(Math.max(1, baseCost * (1 - seloDiscount)));
     if (playerCP < cost) { addToast('Chakra insuficiente para usar este jutsu!', 'error'); return; }
 
     setIsPlayerTurn(false);
@@ -820,7 +823,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         
         <div className="flex-row" style={{ alignItems: 'stretch', gap: '24px' }}>
           
-          <div className={`card flex-col ${playerShake ? 'shake' : ''}`} style={{ flex: 1, borderColor: clanBonus.name ? 'rgba(212,162,42,0.3)' : 'var(--line)', position: 'relative' }}>
+          <div className={`card flex-col ${playerShake ? 'shake' : ''}`} style={{ flex: 1, borderColor: clanBonus.name ? 'rgba(212,162,42,0.3)' : 'var(--line)', position: 'relative', backgroundImage: player.village_id ? `linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_${player.village_id}.jpg)` : 'none', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             {fcts.filter(f => f.target === 'player').map(f => (
               <div key={f.id} className={`fct fct-${f.type}`}>{f.text}</div>
             ))}
@@ -869,7 +872,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             <div className="page-title gold" style={{ fontSize: '24px' }}>VS</div>
           </div>
 
-          <div className={`card flex-col ${npcShake ? 'shake' : ''}`} style={{ flex: 1, border: isMirror ? '1px solid #ef4444' : '1px solid var(--line)', position: 'relative' }}>
+          <div className={`card flex-col ${npcShake ? 'shake' : ''}`} style={{ flex: 1, border: isMirror ? '1px solid #ef4444' : '1px solid var(--line)', position: 'relative', backgroundImage: (npcInit.village_id || isMirror) ? `linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_${npcInit.village_id || (isMirror ? 8 : 1)}.jpg)` : 'none', backgroundSize: 'cover', backgroundPosition: 'center' }}>
             {fcts.filter(f => f.target === 'npc').map(f => (
               <div key={f.id} className={`fct fct-${f.type}`}>{f.text}</div>
             ))}
@@ -967,7 +970,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                const jutsuBaseDmg = (jutsu.damage || 15) + bonusDano;
                const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
                const estDamage = Math.max(1, magicDmg - Math.floor(npcDef / 2));
-               const cost = Math.max(1, (jutsu.chakraCost || 20) + bonusCusto);
+               // Desconto de Selo: 1% de redução de custo de chakra para cada ponto de Selo (máx 50%)
+    const seloDiscount = Math.min(0.5, (player.selo || 0) * 0.01);
+    const baseCost = (jutsu.chakraCost || 20) + bonusCusto;
+    const cost = Math.floor(Math.max(1, baseCost * (1 - seloDiscount)));
                const hasEssences = bonusDano > 0 || bonusCusto < 0 || bonusLetalidade > 0;
                const jutsuLevel = jutsu.level || 1;
                const jutsuCdVal = cooldowns[jutsu.id] || 0;

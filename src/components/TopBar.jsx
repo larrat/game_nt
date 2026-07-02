@@ -23,7 +23,13 @@ export default function TopBar({ player, updatePlayer }) {
         .order('id', { ascending: false })
         .limit(1)
         .single();
-      if (data) setActiveEvent(data);
+      if (data) {
+        if (new Date() < new Date(data.ends_at)) {
+          setActiveEvent(data);
+        } else {
+          setActiveEvent(null);
+        }
+      }
     }
     fetchEvent();
   }, []);
@@ -197,16 +203,22 @@ export default function TopBar({ player, updatePlayer }) {
       </div>
 
     <InventoryModal isOpen={isInventoryOpen} onClose={() => setIsInventoryOpen(false)} player={player} />
-      {/* Tracker de Evento e Debuffs */}
+      {/* Tracker de Evento e Debuffs - Slim Banner */}
       {activeEvent && activeEvent.is_world_boss && (
         <div style={{
-          position: 'absolute', bottom: '-32px', left: '50%', transform: 'translateX(-50%)',
-          background: 'rgba(239, 68, 68, 0.9)', color: 'white',
-          padding: '4px 16px', borderRadius: '0 0 8px 8px',
-          fontSize: '12px', fontWeight: 'bold', display: 'flex', gap: '16px',
-          boxShadow: '0 4px 12px rgba(239, 68, 68, 0.3)', border: '1px solid rgba(255,255,255,0.2)', borderTop: 'none'
+          position: 'absolute', bottom: '-28px', left: 0, right: 0,
+          background: 'linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.15) 20%, rgba(239, 68, 68, 0.25) 50%, rgba(239, 68, 68, 0.15) 80%, transparent)', 
+          borderBottom: '1px solid rgba(239, 68, 68, 0.3)',
+          color: 'var(--danger)',
+          padding: '4px 16px',
+          fontSize: '11px', fontWeight: 'bold', display: 'flex', gap: '24px', justifyContent: 'center', alignItems: 'center',
+          backdropFilter: 'blur(4px)',
+          zIndex: -1,
+          animation: 'pulseGlow 2s infinite alternate'
         }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>🦊 {activeEvent.name} Ativo</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', letterSpacing: '1px', textTransform: 'uppercase' }}>
+            <span style={{ fontSize: '14px', filter: 'drop-shadow(0 0 4px red)' }}>🦊</span> {activeEvent.name} Ativo
+          </span>
           {(() => {
             const debuffs = getGlobalDebuffs(activeEvent);
             const activeTags = [];
@@ -215,11 +227,25 @@ export default function TopBar({ player, updatePlayer }) {
             if (debuffs.hospitalCostMultiplier > 1) activeTags.push(`Hospital x${debuffs.hospitalCostMultiplier}`);
             if (debuffs.ryouGainMultiplier < 1) activeTags.push(`Ryous x${debuffs.ryouGainMultiplier}`);
             
-            if (activeTags.length === 0) return <span style={{ opacity: 0.8 }}>Sem Debuffs Críticos</span>;
-            return <span style={{ display: 'flex', gap: '8px', opacity: 0.9 }}>{activeTags.map((t,i) => <span key={i} className="badge" style={{background: 'rgba(0,0,0,0.5)', border: 'none', padding: '2px 6px'}}>{t}</span>)}</span>;
+            if (activeTags.length === 0) return null;
+            return (
+              <span style={{ display: 'flex', gap: '12px', opacity: 0.9 }}>
+                {activeTags.map((t,i) => (
+                  <span key={i} className="mono" style={{ color: 'var(--paper)', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
+                    • {t}
+                  </span>
+                ))}
+              </span>
+            );
           })()}
         </div>
       )}
+      <style>{`
+        @keyframes pulseGlow {
+          0% { box-shadow: inset 0 -5px 15px -10px rgba(239,68,68,0); }
+          100% { box-shadow: inset 0 -5px 15px -10px rgba(239,68,68,0.8); }
+        }
+      `}</style>
     </div>
   );
 }

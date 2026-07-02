@@ -316,29 +316,29 @@ export default function Dashboard({ player, updatePlayer }) {
             <div className="muted uppercase mono" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '12px' }}>Atributos Básicos</div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px' }}>
-              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Taijutsu</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.taijutsu || 0}</div>
+              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>TAIJUTSU</div>
+                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.taijutsu || 0}</div>
               </div>
-              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Ninjutsu</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.ninjutsu || 0}</div>
+              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>NINJUTSU</div>
+                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.ninjutsu || 0}</div>
               </div>
-              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Genjutsu</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.genjutsu || 0}</div>
+              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>GENJUTSU</div>
+                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.genjutsu || 0}</div>
               </div>
-              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Bukijutsu</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.bukijutsu || 0}</div>
+              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>BUKIJUTSU</div>
+                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.bukijutsu || 0}</div>
               </div>
-              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Inteligência</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.inteligencia || 0}</div>
+              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>INTELIGÊNCIA</div>
+                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.inteligencia || 0}</div>
               </div>
-              <div style={{ background: 'var(--ink)', padding: '8px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '2px' }}>Selos</div>
-                <div className="paper mono" style={{ fontSize: '13px' }}>{player.selos || 0}</div>
+              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
+                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>SELOS</div>
+                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.selos || 0}</div>
               </div>
             </div>
           </div>
@@ -346,16 +346,16 @@ export default function Dashboard({ player, updatePlayer }) {
       </div>
 
       {/* CALENDÁRIO DE EVENTOS */}
-      <div className="card-glass" style={{ marginBottom: '24px' }}>
-        <div className="flex-between" style={{ marginBottom: '16px', borderBottom: '1px solid var(--line)', paddingBottom: '12px' }}>
-          <h3 className="paper" style={{ fontFamily: 'Shippori Mincho', fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '16px' }}>📅</span> Próximos Eventos
-          </h3>
-          <span className="muted mono" style={{ fontSize: '11px' }}>Cronograma Oficial</span>
-        </div>
-        <div className="grid-4">
-          {upcomingEvents.length > 0 ? (
-            upcomingEvents.map((evt, idx) => {
+      {upcomingEvents.length > 0 ? (
+        <div className="card-glass" style={{ marginBottom: '24px' }}>
+          <div className="flex-between" style={{ marginBottom: '16px', borderBottom: '1px solid var(--line)', paddingBottom: '12px' }}>
+            <h3 className="paper" style={{ fontFamily: 'Shippori Mincho', fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: '16px' }}>📅</span> Próximos Eventos
+            </h3>
+            <span className="muted mono" style={{ fontSize: '11px' }}>Cronograma Oficial</span>
+          </div>
+          <div className="grid-4">
+            {upcomingEvents.map((evt, idx) => {
               let color = 'var(--gold)';
               if (evt.is_world_boss) color = '#ef4444';
               else if (idx % 2 === 0) color = '#3b82f6';
@@ -367,14 +367,17 @@ export default function Dashboard({ player, updatePlayer }) {
                   <div className="muted" style={{ fontSize: '11px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{evt.description}</div>
                 </div>
               );
-            })
-          ) : (
-            <div style={{ gridColumn: 'span 4', background: 'rgba(0,0,0,0.2)', padding: '24px', borderRadius: '8px', border: '1px dashed var(--line-bright)', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-              <div className="muted" style={{ fontSize: '13px' }}>Não há eventos cadastrados no momento. Novos comunicados surgirão em breve.</div>
-            </div>
-          )}
+            })}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="card-glass flex-between" style={{ padding: '12px 24px', marginBottom: '24px', alignItems: 'center' }}>
+          <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
+            <span style={{ fontSize: '18px', opacity: 0.6 }}>📅</span>
+            <div className="muted mono" style={{ fontSize: '12px' }}>Nenhum evento futuro agendado no momento.</div>
+          </div>
+        </div>
+      )}
 
       {/* ALERTA DE MÚLTIPLOS EVENTOS GLOBAIS */}
       {activeEvents.length > 0 && (
@@ -385,19 +388,29 @@ export default function Dashboard({ player, updatePlayer }) {
           marginBottom: '24px'
         }}>
           {activeEvents.map(event => (
-            <div key={event.id} className="card" style={{ background: 'linear-gradient(90deg, rgba(30,10,10,1) 0%, rgba(20,20,25,1) 100%)', border: '1px solid #ef4444', position: 'relative', overflow: 'hidden', padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: '#ef4444', animation: 'pulse 2s infinite', boxShadow: '0 0 10px #ef4444' }}></div>
+            <div key={event.id} className="card" style={{ 
+              background: 'radial-gradient(circle at right, rgba(239, 68, 68, 0.15) 0%, transparent 60%), linear-gradient(90deg, rgba(20,10,10,0.95) 0%, rgba(30,15,15,0.95) 100%)',
+              border: '1px solid rgba(239, 68, 68, 0.4)', 
+              boxShadow: '0 8px 32px rgba(239, 68, 68, 0.1)',
+              position: 'relative', 
+              overflow: 'hidden', 
+              padding: '24px', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justifyContent: 'space-between' 
+            }}>
+              <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'linear-gradient(180deg, #ef4444, #991b1b)', animation: 'pulse 2s infinite', boxShadow: '0 0 15px #ef4444' }}></div>
 
               <div className="flex-between" style={{ alignItems: 'flex-start', flexWrap: 'wrap', gap: '24px' }}>
-                <div style={{ flex: '1 1 200px' }}>
+                <div style={{ flex: '1 1 200px', position: 'relative', zIndex: 2 }}>
                   <h4 className="danger mono" style={{ marginBottom: '8px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '8px', letterSpacing: '1px' }}>
-                    <img src="/images/imgi_34_megafone.png" alt="Megafone" style={{ width: '12px', height: '12px' }} />
+                    <span style={{ fontSize: '14px', filter: 'drop-shadow(0 0 4px red)' }}>🦊</span>
                     EVENTO GLOBAL
                   </h4>
-                  <div className="paper" style={{ fontSize: '18px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px', minHeight: '44px' }}>
+                  <div className="paper" style={{ fontSize: '22px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px', minHeight: '44px', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
                     {event.name}
                   </div>
-                  <div className="muted" style={{ fontSize: '13px', lineHeight: '1.5' }}>
+                  <div className="muted" style={{ fontSize: '13px', lineHeight: '1.6', maxWidth: '90%' }}>
                     {event.description}
                   </div>
                 </div>
@@ -422,18 +435,30 @@ export default function Dashboard({ player, updatePlayer }) {
                 </div>
               </div>
 
-              {/* Barra de Vida do Boss (se houver) */}
+              {/* Barra de Vida Cinematográfica do Boss */}
               {event.boss_hp !== null && (
-                <div style={{ marginTop: '24px' }}>
-                  <div className="flex-between" style={{ marginBottom: '8px', fontSize: '12px' }}>
-                    <span className="danger mono flex-row" style={{ alignItems: 'center', gap: '8px' }}>
-                      <img src="/images/imgi_8_heart.png" style={{ width: '12px', height: '12px' }} alt="HP" />
-                      HP DO CHEFE
+                <div style={{ marginTop: '28px', position: 'relative', zIndex: 2 }}>
+                  <div className="flex-between" style={{ marginBottom: '10px', fontSize: '12px' }}>
+                    <span className="danger mono flex-row" style={{ alignItems: 'center', gap: '8px', fontWeight: 'bold' }}>
+                      <span style={{ fontSize: '12px' }}>❤️</span> HP DO CHEFE
                     </span>
-                    <span className="muted mono">{event.boss_hp} / {event.boss_max_hp}</span>
+                    <span className="mono" style={{ color: 'rgba(255,255,255,0.9)', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
+                      {event.boss_hp.toLocaleString()} <span className="muted">/ {event.boss_max_hp.toLocaleString()}</span>
+                    </span>
                   </div>
-                  <div className="progress-track" style={{ height: '12px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
-                    <div className="progress-fill" style={{ width: `${(event.boss_hp / event.boss_max_hp) * 100}%`, background: '#ef4444', boxShadow: '0 0 10px #ef4444' }}></div>
+                  <div style={{ 
+                    position: 'relative', height: '14px', borderRadius: '8px', 
+                    background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(239, 68, 68, 0.2)', 
+                    overflow: 'hidden', boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.8)' 
+                  }}>
+                    <div style={{
+                      width: `${Math.max(0, Math.min(100, (event.boss_hp / event.boss_max_hp) * 100))}%`,
+                      height: '100%',
+                      background: 'linear-gradient(90deg, #7f1d1d, #ef4444, #f87171)',
+                      boxShadow: '0 0 10px #ef4444, inset 0 0 5px rgba(255,255,255,0.4)',
+                      transition: 'width 0.5s ease-out',
+                      borderRadius: '8px'
+                    }}></div>
                   </div>
                 </div>
               )}

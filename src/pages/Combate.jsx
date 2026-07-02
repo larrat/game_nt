@@ -233,7 +233,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   useEffect(() => {
     if (isPlayerTurn && autoBattle && !battleResult && !isAltAutoBattle) {
       const timer = setTimeout(() => {
-        const jutsus = player.activeJutsus || [];
+        const eqIds = player.equipped_jutsus || [];
+        const jutsus = eqIds.length > 0 
+                     ? (player.activeJutsus || []).filter(j => eqIds.includes(j.id))
+                     : (player.activeJutsus || []).slice(0, 4);
         const availableJutsus = jutsus.filter(j => playerCP >= (j.chakraCost || 20));
         
         if (availableJutsus.length > 0 && Math.random() > 0.4) {
@@ -366,6 +369,18 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
        });
     }
 
+    try {
+      await supabase.from('battle_logs').insert({
+        player_id: player.id,
+        enemy_name: npcInit.name,
+        result: 'Vitória',
+        xp_gained: npcInit.xpReward || 0,
+        ryous_gained: gainedRyous,
+        turn_count: turnCount,
+        combat_log: logs
+      });
+    } catch(e) {}
+
     await updatePlayer(player.user_id);
     if (location.state?.isBetrayal) {
       await supabase.from('players').update({ village_id: 8, clan: null, rank: 'Nukenin' }).eq('id', player.id);
@@ -420,6 +435,19 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     if (isDojo) updates.losses_dojo = (player.losses_dojo || 0) + 1;
 
     await supabase.from('players').update(updates).eq('id', player.id);
+    
+    try {
+      await supabase.from('battle_logs').insert({
+        player_id: player.id,
+        enemy_name: npcInit.name,
+        result: 'Derrota',
+        xp_gained: 0,
+        ryous_gained: 0,
+        turn_count: turnCount,
+        combat_log: logs
+      });
+    } catch(e) {}
+
     await updatePlayer(player.user_id);
   };
 
@@ -1116,7 +1144,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             </button>
             
             <div className="flex-row" style={{ flexWrap: 'wrap', gap: '8px', justifyContent: 'center', marginBottom: '8px' }}>
-              {player.activeJutsus?.map((jutsu, idx) => {
+              { (() => {
+                 const eqIds = player.equipped_jutsus || [];
+                 const jutsusToShow = eqIds.length > 0 
+                     ? (player.activeJutsus || []).filter(j => eqIds.includes(j.id))
+                     : (player.activeJutsus || []).slice(0, 4);
+                 return jutsusToShow.map((jutsu, idx) => {
                  const jutsuBaseAcc = jutsu.accuracy || 100;
                  const finalAcc = Math.min(100, jutsuBaseAcc + Math.floor(playerPrecision / 2));
                  
@@ -1185,7 +1218,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                     </div>
                   </button>
                  );
-              })}
+               })
+              }
             </div>
 
             <button 

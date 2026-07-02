@@ -40,6 +40,23 @@ export default function Tarefas({ player, updatePlayer }) {
     fetchMissions();
   }, []);
 
+  useEffect(() => {
+    if (!player?.active_missions || player.active_missions.length === 0) return;
+    const interval = setInterval(() => {
+      const now = new Date();
+      setTimers(prev => {
+        const next = { ...prev };
+        player.active_missions.forEach(m => {
+          const endTime = new Date(m.end_time);
+          const diff = Math.floor((endTime - now) / 1000);
+          next[m.mission_id] = diff > 0 ? diff : 0;
+        });
+        return next;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [player?.active_missions]);
+
 
   if (!player) return null;
   const tasksCompleted = player.tasks_completed || 0;

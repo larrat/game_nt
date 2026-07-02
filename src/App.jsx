@@ -6,7 +6,7 @@ import { ToastProvider } from './context/ToastContext';
 
 // Componentes
 import Sidebar from './components/Sidebar';
-import MissionManager from './components/MissionManager';
+// import MissionManager from './components/MissionManager';
 import TopBar from './components/TopBar';
 import Dashboard from './pages/Dashboard';
 import Treino from './pages/Treino';
@@ -19,12 +19,16 @@ import AprimorarJutsus from './pages/AprimorarJutsus';
 import Equipamentos from './pages/Equipamentos';
 import Ranking from './pages/Ranking';
 import Vila from './pages/Vila';
+import Loja from './pages/Loja';
+import Mapas from './pages/Mapas';
+import Historico from './pages/Historico';
 import Hospital from './pages/Hospital';
 import Mapa from './pages/Mapa';
 import Dojo from './pages/Dojo';
 import Combate from './pages/Combate';
 import Vip from './pages/Vip';
 import Templo from './pages/Templo';
+import Summons from './pages/Summons';
 import Evento from './pages/Evento';
 import Portoes from './pages/Portoes';
 import Ichiraku from './pages/Ichiraku';
@@ -65,7 +69,7 @@ const VipMissionBlock = ({ player, children }) => {
 const MainLayout = ({ children, playerState, updatePlayer }) => (
   <div className="app">
     <Sidebar player={playerState} />
-    <MissionManager player={playerState} updatePlayer={updatePlayer} />
+    {/* <MissionManager player={playerState} updatePlayer={updatePlayer} /> */}
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
       <TopBar player={playerState} updatePlayer={updatePlayer} />
       <main className="main">{children}</main>
@@ -235,6 +239,8 @@ function App() {
             <Route path="/portoes" element={<Portoes player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/vip" element={<Vip player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/templo" element={<Templo player={playerState} updatePlayer={updatePlayer} />} />
+            <Route path="/historico" element={<Historico player={playerState} updatePlayer={updatePlayer} />} />
+            <Route path="/summons" element={<Summons player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/evento" element={<Evento player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/exame" element={<Exame player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/ichiraku" element={<Ichiraku player={playerState} updatePlayer={updatePlayer} />} />

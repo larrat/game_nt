@@ -934,7 +934,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             >
               <div style={{ fontSize: '20px', marginBottom: '8px' }}>👊</div>
               Ataque Básico
-              <div className="muted mono" style={{ fontSize: '10px', marginTop: '4px' }}>Precisão: {BASE_PHYSICAL_ACCURACY}%</div>
+              <div className="flex-row" style={{ gap: '12px', marginTop: '4px', justifyContent: 'center' }}>
+                <span className="mono red" style={{ fontSize: '10px' }}>{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2) + (clanBonus.armorPen > 0 ? Math.floor(npcDef * clanBonus.armorPen) : 0))} DMG</span>
+                <span className="mono gold" style={{ fontSize: '10px' }}>{BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty}% ACC</span>
+              </div>
             </button>
             
             {player.activeJutsus?.map((jutsu, idx) => {
@@ -979,7 +982,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                     <>
                       <div className="flex-row" style={{ gap: '12px', marginTop: '4px' }}>
                         <span className="mono blue" style={{ fontSize: '10px' }}>-{cost} CP</span>
-                        <span className="mono red" style={{ fontSize: '10px' }}>~{estDamage} DMG</span>
+                        <span className="mono red" style={{ fontSize: '10px' }}>{estDamage} DMG</span>
                         <span className="mono gold" style={{ fontSize: '10px' }}>{finalAcc}% ACC</span>
                       </div>
                       {hasEssences && (

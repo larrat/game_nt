@@ -877,6 +877,15 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const nCPPercent = (npcCP / npcMaxCP) * 100;
   const nStPercent = (npcSt / npcMaxSt) * 100;
 
+  if (!player || !npcInit) {
+    return (
+      <div className="page">
+        <PageHeader eyebrow='Erro' title='Combate' />
+        <div className="card">Dados do combate perdidos ou não inicializados. Retorne ao menu principal.</div>
+      </div>
+    );
+  }
+
   return (
     <div className="page">
       <PageHeader eyebrow='A Fúria dos Shinobis' title='Combate' />

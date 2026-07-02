@@ -50,7 +50,8 @@ export default function Tecnicas({ player, updatePlayer }) {
           category: j.category,
           reqAttrValue: j.req_attr_value,
           reqSeals: j.req_seals,
-          cooldown: j.cooldown
+          cooldown: j.cooldown,
+          element: j.element
         }));
         setAllJutsus(formatted);
       }
@@ -107,7 +108,8 @@ export default function Tecnicas({ player, updatePlayer }) {
     const availableToLearn = allJutsus.filter(j =>
       !learnedIds.includes(j.id) &&
       player.level >= j.lvl &&
-      (!j.reqRank || rankValue(player.rank) >= rankValue(j.reqRank))
+      (!j.reqRank || rankValue(player.rank) >= rankValue(j.reqRank)) &&
+      (!j.element || j.element === player?.element)
     );
 
     if (availableToLearn.length === 0) {
@@ -220,7 +222,7 @@ export default function Tecnicas({ player, updatePlayer }) {
           </div>
 
           <div className="grid-auto" style={{ gap: '16px' }}>
-            {allJutsus.filter(j => filterCat === 'Todos' || j.category === filterCat).map(jutsu => {
+            {allJutsus.filter(j => (filterCat === 'Todos' || j.category === filterCat) && (!j.element || j.element === player?.element)).map(jutsu => {
               const isUnlockedLvl = player.level >= jutsu.lvl;
               const isUnlockedRank = !jutsu.reqRank || rankValue(player.rank) >= rankValue(jutsu.reqRank);
               const isUnlocked = isUnlockedLvl && isUnlockedRank;

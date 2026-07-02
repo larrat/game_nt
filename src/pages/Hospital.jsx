@@ -68,24 +68,16 @@ export default function Hospital({ player, updatePlayer }) {
 
     setLoading(true);
     
-    let updates = { 
-      is_fainted: false, 
-      fainted_at: null,
-      hp: calculateHP(player),
-      chakra: calculateChakra(player)
-    };
+    const { data, error } = await supabase.rpc('hospital_alta', {
+      p_player_id: player.id,
+      p_paid: paid,
+      p_max_hp: calculateHP(player),
+      p_max_cp: calculateChakra(player),
+      p_global_hospital_cost_mult: globalDebuffs.hospitalCostMultiplier
+    });
 
-    if (paid) {
-      updates.ryous = player.ryous - cureCost;
-    }
-
-    const { error } = await supabase
-      .from('players')
-      .update(updates)
-      .eq('id', player.id);
-
-    if (error) {
-      addToast('Erro ao sair do hospital: ' + error.message, 'error');
+    if (error || data.error) {
+      addToast(error ? error.message : data.error, 'error');
       setLoading(false);
       return;
     }

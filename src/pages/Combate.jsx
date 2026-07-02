@@ -701,8 +701,86 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }, 1000);
   };
 
-  const handleBasicAttack = () => {
+  const handleBasicAttack = async () => {
     if (!isPlayerTurn || battleResult) return;
+    
+    // Feature Flag: Server-side Combat vs Client-side Combat
+    const USE_SERVER_COMBAT = false; 
+
+    if (USE_SERVER_COMBAT) {
+      setIsPlayerTurn(false);
+      const { data, error } = await supabase.rpc('resolver_turno_combate', {
+        p_player_id: player.id,
+        p_action: 'basic',
+        p_target_type: 'npc',
+        p_npc_stats: { def: npcDef, element: npcInit.element },
+        p_global_debuffs: globalDebuffs,
+        p_equipped_summon: equippedSummon,
+        p_active_buffs: activeBuffs,
+        p_portao_multiplier: portaoAtkMultiplier
+      });
+
+      if (error) {
+        addToast('Erro ao contatar o servidor de combate. Tentando fallback local...', 'error');
+        // Pode ativar fallback setando USE_SERVER_COMBAT pra false dinamicamente num estado, 
+        // mas abortamos por precaução
+        setIsPlayerTurn(true);
+        return;
+      }
+
+      if (data.error) {
+        addToast(data.error, 'error');
+        setIsPlayerTurn(true);
+        return;
+      }
+
+      setPlayerSt(prev => prev - data.stamina_cost);
+
+      if (!data.hit) {
+        addLog(`Você usou Ataque Básico mas o inimigo esquivou!`);
+        npcTurn(npcHP);
+        return;
+      }
+
+      const newNpcHP = Math.max(0, npcHP - data.damage);
+      setNpcHP(newNpcHP);
+
+      let msg = `Você usou Ataque Básico e causou ${data.damage} de dano!`;
+      if (data.is_crit) {
+        msg += ` 👁️ CRÍTICO!`;
+        playCritSound();
+        spawnFct('npc', `-${data.damage} CRIT!`, 'crit');
+      } else {
+        playHitSound();
+        spawnFct('npc', `-${data.damage}`, 'damage');
+      }
+      triggerShake('npc');
+      addLog(msg);
+
+      if (data.paralyzed) {
+        addLog('🌑 Sombra Nara: inimigo paralisado! Turno extra ganho.');
+        setIsPlayerTurn(true);
+        setTimeLeft(30);
+        return;
+      }
+
+      if (location.state?.isWorldBoss) {
+        setAccumulatedDamage(prev => prev + data.damage);
+        npcTurn(newNpcHP);
+        return;
+      }
+
+      if (newNpcHP <= 0) {
+        addLog(`Vitória! Você derrotou ${npcInit.name}.`);
+        setBattleResult('win');
+        handleWin();
+      } else {
+        npcTurn(newNpcHP);
+      }
+      return;
+    }
+
+    // --- FALLBACK LOCAL / ANTIGO ---
     
     const staminaCost = Math.floor(15 * globalDebuffs.staminaCostMultiplier);
     if (playerSt < staminaCost) { addToast(`Stamina insuficiente (${staminaCost}) para atacar!`, 'error'); return; }
@@ -712,7 +790,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const newSt = playerSt - staminaCost;
     setPlayerSt(newSt);
 
-    const totalAccuracy = BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty;
+    const totalAccuracy = Math.min(95, BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty);
     const didHit = Math.random() * 100 <= totalAccuracy;
 
     if (!didHit) {
@@ -735,9 +813,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
        if (equippedSummon.name.includes('Pakkun')) summonAccBonus += 15;
     }
     
-    let damage = Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2) + defReduction + summonDamageBonus);
-    if (isCrit) damage = Math.floor(damage * 1.75);
-    if (portaoAtkMultiplier > 1.0) addLog(`⚡ Os Portões do Chakra impulsionam seu ataque! (x${portaoAtkMultiplier.toFixed(2)})`);
+    // HOTFIX: Trava multiplicador composto de (Oito Portões x Crítico) no máximo de 2.5x
+    const critMult = isCrit ? 1.75 : 1.0;
+    const combinedMult = Math.min(2.5, portaoAtkMultiplier * critMult);
+    
+    let damage = Math.max(1, Math.floor(playerAtkTaiBuk * combinedMult) - Math.floor(npcDef / 2) + defReduction + summonDamageBonus);
+    if (portaoAtkMultiplier > 1.0) addLog(`⚡ Os Portões do Chakra impulsionam seu ataque!`);
 
     const newNpcHP = Math.max(0, npcHP - damage);
     setNpcHP(newNpcHP);
@@ -782,6 +863,83 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const handleJutsu = async (jutsu) => {
     if (!isPlayerTurn || battleResult) return;
 
+    // Feature Flag
+    const USE_SERVER_COMBAT = false;
+
+    if (USE_SERVER_COMBAT) {
+      // Cooldown e verificação client-side UI
+      const jutsuCooldown = (jutsu.cooldown_rounds || 0);
+      const currentCooldown = cooldownsRef.current[jutsu.id] || 0;
+      if (currentCooldown > 0) { addToast(`[${jutsu.name}] em recarga!`, 'error'); return; }
+
+      setIsPlayerTurn(false);
+      const { data, error } = await supabase.rpc('resolver_turno_combate', {
+        p_player_id: player.id,
+        p_action: 'jutsu',
+        p_jutsu_payload: jutsu,
+        p_target_type: 'npc',
+        p_npc_stats: { def: npcDef, element: npcInit.element },
+        p_global_debuffs: globalDebuffs,
+        p_equipped_summon: equippedSummon,
+        p_active_buffs: activeBuffs
+      });
+
+      if (error || data.error) {
+        addToast(error ? error.message : data.error, 'error');
+        setIsPlayerTurn(true);
+        return;
+      }
+
+      const newCP = playerCP - data.chakra_cost;
+      setPlayerCP(newCP);
+
+      if (jutsuCooldown > 0) setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown }));
+
+      if (newCP <= 0) {
+        addLog(`Você ficou sem Chakra usando [${jutsu.name}] e desmaiou de exaustão...`);
+        setBattleResult('lose');
+        setPlayerFainted();
+        return;
+      }
+
+      const newDailyChakra = (player.daily_chakra_spent || 0) + data.chakra_cost;
+      await supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
+
+      if (!data.hit) {
+        addLog(`Você usou [${jutsu.name}] mas errou! (Custou ${data.chakra_cost} CP)`);
+        npcTurn(npcHP);
+        return;
+      }
+
+      const newNpcHP = Math.max(0, npcHP - data.damage);
+      setNpcHP(newNpcHP);
+
+      playJutsuSound();
+      if (data.is_crit) playCritSound();
+      triggerShake('npc');
+      spawnFct('npc', `-${data.damage}${data.is_crit ? ' CRÍT!' : ' MAG'}`, data.is_crit ? 'crit' : 'magic');
+
+      addLog(`Você usou [${jutsu.name}] e causou ${data.damage} de dano! (Custou ${data.chakra_cost} CP)`);
+      applyJutsuEffects(jutsu, true); // Aplica buffs/dots locais de UI
+
+      if (location.state?.isWorldBoss) {
+        setAccumulatedDamage(prev => prev + data.damage);
+        npcTurn(newNpcHP);
+        return;
+      }
+
+      if (newNpcHP <= 0) {
+        addLog(`Vitória magistral! Você derrotou ${npcInit.name}.`);
+        setBattleResult('win');
+        handleWin();
+      } else {
+        npcTurn(newNpcHP);
+      }
+      return;
+    }
+
+    // --- FALLBACK LOCAL / ANTIGO ---
+
     // --- VERIFICAR COOLDOWN ---
     const jutsuCooldown = (jutsu.cooldown_rounds || 0);
     const currentCooldown = cooldownsRef.current[jutsu.id] || 0;
@@ -823,7 +981,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     await supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
     
     const jutsuAccuracy = jutsu.accuracy || 100;
-    const totalAccuracy = jutsuAccuracy + (playerPrecision / 2) - globalDebuffs.accuracyPenalty;
+    const totalAccuracy = Math.min(95, jutsuAccuracy + (playerPrecision / 2) - globalDebuffs.accuracyPenalty);
     const didHit = Math.random() * 100 <= totalAccuracy;
 
     if (!didHit) {

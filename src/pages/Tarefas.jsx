@@ -133,39 +133,36 @@ export default function Tarefas({ player, updatePlayer }) {
   const finishTask = async (taskDef) => {
     setLoading(true);
 
+    const { data, error } = await supabase.rpc('finalizar_missao', {
+      p_player_id: player.id,
+      p_mission_id: taskDef.id,
+      p_mission_xp: taskDef.xp,
+      p_mission_ryous: taskDef.ryous,
+      p_mission_type: taskDef.type
+    });
+
+    if (error || data?.error) {
+      addToast(error ? error.message : data.error, 'error');
+      setLoading(false);
+      return;
+    }
+
+    // A RPC atualizou o XP, Ryous e contadores, e removeu a missão ativa.
+    // Agora o cliente processa apenas a barra de Level Up com o novo XP real lido da resposta (ou calculado localmente para a UI bater)
     const newXp = player.xp + taskDef.xp;
-    const newRyous = player.ryous + taskDef.ryous;
-    const newTasksCount = player.tasks_completed + 1; // Para Tarefas Lineares
     const newLevel = calculateLevelFromXP(newXp);
     const levelsGained = newLevel > player.level ? newLevel - player.level : 0;
-    const newPontos = (player.pontos_atributos || 0) + levelsGained;
-
-    const newActive = activeMissions.filter(m => m.mission_id !== taskDef.id);
     
-    // Atualiza contadores específicos no banco
-    let updates = {
-      xp: newXp,
-      ryous: newRyous,
-      level: newLevel,
-      pontos_atributos: newPontos,
-      active_missions: newActive
-    };
-
-    if (taskDef.type === 'tarefa_academia') updates.tasks_completed = (player.tasks_completed || 0) + 1;
-    if (taskDef.type === 'D') updates.missions_d = (player.missions_d || 0) + 1;
-    if (taskDef.type === 'C') updates.missions_c = (player.missions_c || 0) + 1;
-    if (taskDef.type === 'B') updates.missions_b = (player.missions_b || 0) + 1;
-    if (taskDef.type === 'A') updates.missions_a = (player.missions_a || 0) + 1;
-    if (taskDef.type === 'S') updates.missions_s = (player.missions_s || 0) + 1;
-
-    const { error } = await supabase.from('players').update(updates).eq('id', player.id);
-
-    if (error) {
-      addToast('Erro ao concluir missão.', 'error');
-    } else {
-      await updatePlayer(player.user_id);
-      addToast(`Missão concluída! +${taskDef.xp} XP / +${taskDef.ryous} RY`, 'success');
+    if (levelsGained > 0) {
+      const newPontos = (player.pontos_atributos || 0) + levelsGained;
+      await supabase.from('players').update({
+        level: newLevel,
+        pontos_atributos: newPontos
+      }).eq('id', player.id);
     }
+
+    await updatePlayer(player.user_id);
+    addToast('Missão concluída!', 'success');
     setLoading(false);
   };
 

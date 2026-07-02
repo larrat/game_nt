@@ -20,7 +20,7 @@ import Equipamentos from './pages/Equipamentos';
 import Ranking from './pages/Ranking';
 import Vila from './pages/Vila';
 
-import Mapas from './pages/Mapas';
+
 import Historico from './pages/Historico';
 import Hospital from './pages/Hospital';
 import Mapa from './pages/Mapa';

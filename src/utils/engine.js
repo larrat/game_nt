@@ -81,13 +81,14 @@ export const getClanBonus = (player) => {
 };
 
 export const calculateHP = (player) => {
-  if (!player) return 100;
-  const rankBoost = getRankBonus(player.rank).hp;
-  const base = 100 + ((player.level || 1) * 30) + ((player.resistencia || 0) * 10) + ((player.energia || 0) * 5) + rankBoost;
-  const equipBonus = getEquipmentBonus(player, 'hp');
-  const clanBonus = getClanBonus(player);
-  const hpMult = clanBonus.hpMult || 1.0;
-  return Math.floor((base + equipBonus) * hpMult);
+  if (!player) return 0;
+  let hp = 100 + (player.level * 30) + ((player.resistencia || 0) * 15);
+  hp += getRankBonus(player.rank).hp;
+  hp += getEquipmentBonus(player, 'hp');
+  if (player.clan === 'Senju') hp = Math.floor(hp * 1.10);
+  if (player.clan === 'Uzumaki') hp = Math.floor(hp * 1.05);
+  if (player.clan === 'Akimichi') hp = Math.floor(hp * 1.08);
+  return hp;
 };
 
 export const calculateChakra = (player) => {
@@ -121,21 +122,23 @@ export const calculateAtkNinGen = (player) => {
   return base + getEquipmentBonus(player, 'nin') + getEquipmentBonus(player, 'gen');
 };
 
-export const calculateDefTaiBuk = (player) => {
+export const calculateFisDef = (player) => {
   if (!player) return 0;
-  const base = ((player.resistencia || 0) * 1) + Math.floor((player.taijutsu || 0) / 2);
-  return base + getEquipmentBonus(player, 'def');
+  let def = (player.resistencia || 0) + (((player.taijutsu || 0) + (player.bukijutsu || 0)) / 4);
+  def += getEquipmentBonus(player, 'defFis');
+  return Math.floor(def);
 };
 
-export const calculateDefNinGen = (player) => {
+export const calculateMagDef = (player) => {
   if (!player) return 0;
-  const base = ((player.resistencia || 0) * 1) + Math.floor((player.ninjutsu || 0) / 2);
-  return base + getEquipmentBonus(player, 'def');
+  let def = (player.resistencia || 0) + (((player.ninjutsu || 0) + (player.genjutsu || 0)) / 4);
+  def += getEquipmentBonus(player, 'defMag');
+  return Math.floor(def);
 };
 
 // Fórmulas Secundárias (Baseados nas novas regras do RPG Master)
-export const calculateCritChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 5));
-export const calculateDodgeChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 5));
+export const calculateCritChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 10));
+export const calculateDodgeChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 10));
 export const calculateChakraDiscount = (player) => Math.min(50, Math.floor((player?.selo || 0) / 5));
 
 // Atributos derivados antigos (mantidos por compatibilidade se usados em outro lugar)

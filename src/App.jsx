@@ -28,7 +28,6 @@ import Dojo from './pages/Dojo';
 import Combate from './pages/Combate';
 import Vip from './pages/Vip';
 import Templo from './pages/Templo';
-import Summons from './pages/Summons';
 import Evento from './pages/Evento';
 import Portoes from './pages/Portoes';
 import Ichiraku from './pages/Ichiraku';
@@ -43,17 +42,17 @@ import Criar from './pages/Criar';
 
 const VipMissionBlock = ({ player, children }) => {
   if (!player) return children;
-  
+
   const hasActiveMissions = player.active_missions && player.active_missions.length > 0;
   // Regra de VIP: Ou flag is_vip ou comprou algum Kuro Coin
   const isVip = player.is_vip || (player.vip_coins && player.vip_coins > 0);
-  
+
   if (hasActiveMissions && !isVip) {
     return (
       <div className="page" style={{ textAlign: 'center', paddingTop: '60px' }}>
         <h2 className="gold" style={{ fontSize: '32px' }}>Você está em Missão!</h2>
         <p className="muted" style={{ maxWidth: '500px', margin: '24px auto', fontSize: '18px' }}>
-          Jogadores <span style={{color: 'var(--danger)'}}>Padrão</span> não podem realizar outras atividades enquanto uma missão está ativa no plano de fundo.
+          Jogadores <span style={{ color: 'var(--danger)' }}>Padrão</span> não podem realizar outras atividades enquanto uma missão está ativa no plano de fundo.
           Aguarde a missão terminar.
         </p>
         <p style={{ maxWidth: '500px', margin: '0 auto 24px auto' }}>
@@ -62,7 +61,7 @@ const VipMissionBlock = ({ player, children }) => {
       </div>
     );
   }
-  
+
   return children;
 };
 
@@ -106,7 +105,7 @@ function App() {
     if (typeof explicitPlayerId === 'number') {
       currentPlayerId = explicitPlayerId;
     }
-    
+
     if (!currentPlayerId) return;
     const { data: dbPlayer } = await supabase
       .from('players')
@@ -139,7 +138,7 @@ function App() {
           .select('*')
           .in('id', jutsuIds)
           .eq('is_active', true);
-        
+
         if (jutsuData) {
           activeJutsus = jutsuData.map(jData => {
             const ref = dbPlayer.jutsus_learned.find(j => (typeof j === 'string' ? j : j.id) === jData.id);

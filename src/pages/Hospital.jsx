@@ -14,7 +14,7 @@ export default function Hospital({ player, updatePlayer }) {
 
   const RECOVERY_TIME_MINUTES = 5;
   const RECOVERY_TIME_MS = RECOVERY_TIME_MINUTES * 60 * 1000;
-  
+
   const [globalDebuffs, setGlobalDebuffs] = useState(getGlobalDebuffs(null));
 
   useEffect(() => {
@@ -36,16 +36,15 @@ export default function Hospital({ player, updatePlayer }) {
     const targetTime = faintedTime + RECOVERY_TIME_MS;
 
     const updateTimer = () => {
-      const now = new Date().getTime();
+      const now = Date.now();
       const diff = targetTime - now;
+
       if (diff <= 0) {
         setTimeLeft(0);
         setIsRecovered(true);
       } else {
         setTimeLeft(Math.ceil(diff / 1000));
         setIsRecovered(false);
-      }
-        setTimeLeft(Math.ceil(diff / 1000));
       }
     };
 
@@ -67,7 +66,7 @@ export default function Hospital({ player, updatePlayer }) {
     }
 
     setLoading(true);
-    
+
     const { data, error } = await supabase.rpc('hospital_alta', {
       p_player_id: player.id,
       p_paid: paid,
@@ -91,11 +90,11 @@ export default function Hospital({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page" style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
-      justifyContent: 'center', 
+    <div className="page" style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
       minHeight: '100vh',
       background: 'rgba(224, 54, 63, 0.05)'
     }}>
@@ -107,9 +106,9 @@ export default function Hospital({ player, updatePlayer }) {
             <p className="muted" style={{ marginBottom: '24px' }}>
               Seu corpo se recuperou totalmente. Você já pode voltar para suas missões.
             </p>
-            <button 
-              className="btn-primary" 
-              onClick={() => handleCure(false)} 
+            <button
+              className="btn-primary"
+              onClick={() => handleCure(false)}
               disabled={loading}
               style={{ fontSize: '18px', padding: '12px 32px' }}
             >
@@ -126,16 +125,16 @@ export default function Hospital({ player, updatePlayer }) {
             <div className="muted mono" style={{ fontSize: '12px', marginBottom: '24px', opacity: 0.8 }}>
               O hospital da vila está cuidando de seus ferimentos...
             </div>
-            
+
             <div style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)' }}>
               <p className="paper" style={{ marginBottom: '12px', fontSize: '14px' }}>Deseja acelerar sua recuperação?</p>
-              <button 
-                className="btn-primary" 
-                onClick={() => handleCure(true)} 
+              <button
+                className="btn-primary"
+                onClick={() => handleCure(true)}
                 disabled={loading || player.ryous < cureCost}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
               >
-                <img src="/images/imgi_20_ryou.png" alt="ryous" style={{ width: '16px' }} onError={(e) => e.target.style.display='none'} />
+                <img src="/images/imgi_20_ryou.png" alt="ryous" style={{ width: '16px' }} onError={(e) => e.target.style.display = 'none'} />
                 Pagar {cureCost} Ryous
               </button>
               {player.ryous < cureCost && (

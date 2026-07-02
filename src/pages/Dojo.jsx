@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-import { calculateHP, calculateChakra, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules } from '../utils/engine';
+import { calculateHP, calculateChakra, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules, generateDynamicRogueNinja, getDynamicNpcJutsus } from '../utils/engine';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
@@ -30,105 +30,18 @@ export default function Dojo({ player }) {
     return data ? data.map(j => j.jutsus) : [];
   };
 
-  const getDynamicNpcJutsus = (npc) => {
-    if (!npc.element) return [];
-    return [{
-      name: `Liberação de ${npc.element}: Jutsu Padrão`,
-      element: npc.element,
-      damage: Math.floor(npc.level * 1.5) + 15,
-      chakraCost: 20,
-      accuracy: 90
-    }];
-  };
-
-  const generateDynamicRogueNinja = (playerLevel) => {
-    const levelDiff = Math.floor(Math.random() * 6) - 2; // -2 a +3
-    const npcLevel = Math.max(1, playerLevel + levelDiff);
-    
-    const elements = ['Katon', 'Futon', 'Suiton', 'Doton', 'Raiton'];
-    const element = elements[Math.floor(Math.random() * elements.length)];
-    
-    const clans = ['Uchiha', 'Senju', 'Hyuga', 'Uzumaki', 'Inuzuka', 'Aburame', 'Akimichi', 'Nara', 'Yamanaka', 'Hozuki', 'Kaguya', 'Yuki'];
-    const clan = clans[Math.floor(Math.random() * clans.length)];
-    const titles = ['Renegado', 'Mercenário', 'das Sombras', 'Desgarrado', 'Sanguinário', 'Oculto', 'Assassino'];
-    const title = titles[Math.floor(Math.random() * titles.length)];
-    
-    const avatars = ['🥷', '👹', '👺', '👻', '💀', '👽', '👤', '🗡️'];
-    
-    const npc = {
-      id: `rogue_${Date.now()}`,
-      name: `${clan} ${title}`,
-      avatar: avatars[Math.floor(Math.random() * avatars.length)],
-      level: npcLevel,
-      hp: 100 + (npcLevel * 45),
-      chakra: 50 + (npcLevel * 25),
-      atk: 10 + (npcLevel * 4),
-      def: 5 + (npcLevel * 3),
-      element: element,
-      xpReward: Math.floor((npcLevel * 50) + 100),
-      ryouReward: Math.floor((npcLevel * 25) + 50),
-      desc: `Você foi emboscado por um ninja sem escrúpulos em treinamento!`
-    };
-    
-    npc.activeJutsus = getDynamicNpcJutsus(npc);
-    return npc;
-  };
-
   const handleSearch = async () => {
     setLoadingId('search');
     await new Promise(r => setTimeout(r, 2000));
     
     const roll = Math.random();
     
-    const pvpChance = Number(gameConfig?.dojo_pvp_chance) || 0.25;
+    // A pedido do usuário, o sistema de espelho (PvP no Dojo) foi desativado temporariamente
+    // para focar na criação de NPCs perfeitamente parelhos (paralelos) com os status do jogador.
+    
+    // 1) Checa se existe NPC da História disponível no banco
     const npcChance = Number(gameConfig?.dojo_story_npc_chance) || 0.35;
-    
-    // 1) X% de chance de Invasão (Mirror)
-    if (roll < pvpChance) {
-      const rules = getPvPMatchRules(player.rank, player.level);
-      
-      let query = supabase
-        .from('players')
-        .select('*')
-        .neq('id', player.id)
-        .gte('level', rules.minLvl)
-        .lte('level', rules.maxLvl)
-        .limit(5);
-        
-      if (rules.targetRanks && rules.targetRanks.length > 0) {
-        query = query.in('rank', rules.targetRanks);
-      }
-        
-      const { data: rivals } = await query;
-        
-      if (rivals && rivals.length > 0) {
-        const rival = rivals[Math.floor(Math.random() * rivals.length)];
-        const isAlt = rival.user_id === player.user_id;
-        const rivalJutsus = await fetchRivalJutsus(rival.id);
-        
-        const mirrorNpc = {
-          id: `rival_${rival.id}`,
-          name: rival.name,
-          avatar: rival.avatar || '👤',
-          level: rival.level,
-          hp: calculateHP(rival),
-          chakra: calculateChakra(rival),
-          atk: calculateAtkTaiBuk(rival),
-          def: calculateDefTaiBuk(rival),
-          element: rival.element,
-          activeJutsus: rivalJutsus,
-          xpReward: Math.floor((rival.level * 60) + 150),
-          ryouReward: Math.floor((rival.level * 30) + 80),
-          desc: isAlt ? 'ALERTA! Você encontrou seu próprio alter ego (Wintrading Shield ativado)!' : 'ALERTA! Um Ninja Rival interceptou seu treinamento!'
-        };
-        
-        setLoadingId(null);
-        return navigate('/combate', { state: { npc: mirrorNpc, isMirror: true, isAltAutoBattle: isAlt } });
-      }
-    }
-    
-    // 2) Y% de chance de NPC do Banco de Dados (da História)
-    if (roll >= pvpChance && roll < (pvpChance + npcChance)) {
+    if (roll < npcChance) {
       const { data: dojoNpcs } = await supabase
         .from('npcs')
         .select('*')
@@ -143,10 +56,11 @@ export default function Dojo({ player }) {
       }
     }
 
-    // 3) 40% (ou fallback dos de cima): Gerar Ninja Renegado Dinâmico
-    const rogue = generateDynamicRogueNinja(player.level);
+    // 2) Fallback para Gerar Ninja Renegado Dinâmico Parelho
+    // Simulamos um IsMirror para garantir que as fórmulas de Combate usem os atributos recém gerados!
+    const rogue = generateDynamicRogueNinja(player);
     setLoadingId(null);
-    return navigate('/combate', { state: { npc: rogue, isMirror: false } });
+    return navigate('/combate', { state: { npc: rogue, isMirror: true } });
   };
 
   const handleBetrayal = async () => {

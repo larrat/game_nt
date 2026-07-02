@@ -34,10 +34,7 @@ export default function Equipamentos({ player, updatePlayer }) {
   if (!player) return null;
 
   const handleEquip = async (invItem) => {
-    if (player.level < invItem.items.req_level) {
-      addToast(`Nível insuficiente! Requer Nível ${invItem.items.req_level}`, 'error');
-      return;
-    }
+
 
     const typeToEquip = invItem.items.type;
     const currentlyEquipped = inventory.find(i => i.is_equipped && i.items.type === typeToEquip);
@@ -299,7 +296,7 @@ export default function Equipamentos({ player, updatePlayer }) {
                     
                     <div className="flex-row" style={{ gap: '8px' }}>
                       <span className="badge badge-muted" style={{ fontSize: '10px' }}>{invItem.items.type}</span>
-                      <span className="badge badge-gold" style={{ fontSize: '10px' }}>Nv. {invItem.items.req_level}</span>
+                      <span className="badge badge-gold" style={{ fontSize: '10px' }}>Força Nv. {invItem.items.req_level}</span>
                     </div>
 
                     <div className="card" style={{ background: 'var(--ink)', padding: '8px', border: '1px solid var(--line)', marginTop: 'auto' }}>

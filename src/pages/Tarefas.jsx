@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import { calculateLevelFromXP } from '../utils/engine';
@@ -40,25 +40,6 @@ export default function Tarefas({ player, updatePlayer }) {
     fetchMissions();
   }, []);
 
-  // Temporizador para múltiplas missões
-  useEffect(() => {
-    if (activeMissions.length === 0) return;
-
-    const interval = setInterval(() => {
-      const now = new Date();
-      const newTimers = {};
-      
-      activeMissions.forEach(m => {
-        const endTime = new Date(m.end_time);
-        const diff = Math.floor((endTime - now) / 1000);
-        newTimers[m.mission_id] = diff > 0 ? diff : 0;
-      });
-
-      setTimers(newTimers);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [activeMissions]);
 
   if (!player) return null;
   const tasksCompleted = player.tasks_completed || 0;

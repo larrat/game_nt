@@ -12,7 +12,8 @@ import {
   calculateDefNinGen,
   getElementalMultiplier,
   getGlobalDebuffs,
-  getJutsuEnhancementBonus
+  getJutsuEnhancementBonus,
+  scaleStoryNPC
 } from '../utils/engine';
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import PageHeader from '../components/PageHeader';
@@ -27,8 +28,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const navigate = useNavigate();
   const { addToast } = useToast();
   
-  const npcInit = location.state?.npc;
+  const rawNpc = location.state?.npc;
   const isMirror = location.state?.isMirror;
+  const npcInit = (rawNpc && rawNpc.is_story_mode && !isMirror) ? scaleStoryNPC(rawNpc, player) : rawNpc;
   const isAltAutoBattle = location.state?.isAltAutoBattle || false;
 
   useEffect(() => {
@@ -262,7 +264,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const newPontos = (player.pontos_atributos || 0) + levelsGained;
 
     const isDojo = !location.state?.fromMap && !location.state?.isWorldBoss && !location.state?.isGhost && !location.state?.isBetrayal && !npcInit.is_dummy;
-    const updates = { xp: newXp, level: newLevel, ryous: newRyous, pontos_atributos: newPontos };
+    const updates = { 
+       xp: newXp, 
+       level: newLevel, 
+       ryous: newRyous, 
+       pontos_atributos: newPontos,
+       hp: playerHP,
+       chakra: playerCP
+    };
     if (isDojo) updates.wins_dojo = (player.wins_dojo || 0) + 1;
     if (location.state?.fromMap) updates.daily_map_battles = (player.daily_map_battles || 0) + 1;
 

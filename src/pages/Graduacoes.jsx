@@ -20,11 +20,11 @@ export default function Graduacoes({ player, updatePlayer }) {
           if (r.req_tasks > 0) reqs.push({ label: `Completar ${r.req_tasks} Tarefas`, check: (p) => (p.tasks_completed || 0) >= r.req_tasks, progress: (p) => `${p.tasks_completed || 0}/${r.req_tasks}` });
           if (r.req_jutsus > 0) reqs.push({ label: `Ter ${r.req_jutsus} Jutsus Aprendidos`, check: (p) => (p.jutsus_learned?.length || 0) >= r.req_jutsus, progress: (p) => `${p.jutsus_learned?.length || 0}/${r.req_jutsus}` });
           
-          if (r.req_combat_points > 0) reqs.push({ label: `Ter ${r.req_combat_points} Pontos de Combate (Híbrido PvP/NPC)`, check: (p) => {
-            const pts = (((p.wins_pvp || 0) + (p.losses_pvp || 0)) * 1.5) + (p.npc_wins || 0);
+          if (r.req_combat_points > 0) reqs.push({ label: `Ter ${r.req_combat_points} Pontos de Combate (Híbrido PvP/NPC/Dojo)`, check: (p) => {
+            const pts = (((p.wins_pvp || 0) + (p.losses_pvp || 0)) * 1.5) + (p.npc_wins || 0) + (p.wins_dojo || 0);
             return pts >= r.req_combat_points;
           }, progress: (p) => {
-            const pts = (((p.wins_pvp || 0) + (p.losses_pvp || 0)) * 1.5) + (p.npc_wins || 0);
+            const pts = (((p.wins_pvp || 0) + (p.losses_pvp || 0)) * 1.5) + (p.npc_wins || 0) + (p.wins_dojo || 0);
             return `${pts.toFixed(1)}/${r.req_combat_points}`;
           } });
           
@@ -80,10 +80,20 @@ export default function Graduacoes({ player, updatePlayer }) {
   async function graduarPara(novoRank) {
     setNewRank(novoRank);
     setIsCeremonyActive(true);
+    
+    let bonusPontos = 0;
+    if (novoRank === 'Genin') bonusPontos = 5;
+    if (novoRank === 'Chunin') bonusPontos = 10;
+    if (novoRank === 'Jounin') bonusPontos = 20;
+    if (novoRank === 'ANBU') bonusPontos = 35;
+    if (novoRank === 'Sannin') bonusPontos = 50;
+    if (novoRank === 'Herói') bonusPontos = 100;
+    
+    const novosPontos = (player.pontos_atributos || 0) + bonusPontos;
 
     const { error } = await supabase
       .from('players')
-      .update({ rank: novoRank })
+      .update({ rank: novoRank, pontos_atributos: novosPontos })
       .eq('id', player.id);
 
     if (error) {

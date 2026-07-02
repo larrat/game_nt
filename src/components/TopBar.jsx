@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP } from '../utils/engine';
+import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP, getGlobalDebuffs } from '../utils/engine';
 import InventoryModal from './InventoryModal';
+import { supabase } from '../supabaseClient';
 
 const VILLAGES = {
   1: 'Folha', 2: 'Areia', 3: 'Névoa',
@@ -11,6 +12,21 @@ export default function TopBar({ player, updatePlayer }) {
   const [isInventoryOpen, setIsInventoryOpen] = useState(false);
   const [ryousFlash, setRyousFlash] = useState(false);
   const [prevRyous, setPrevRyous] = useState(player?.ryous || 0);
+  const [activeEvent, setActiveEvent] = useState(null);
+
+  React.useEffect(() => {
+    async function fetchEvent() {
+      const { data } = await supabase
+        .from('global_events')
+        .select('*')
+        .eq('is_active', true)
+        .order('id', { ascending: false })
+        .limit(1)
+        .single();
+      if (data) setActiveEvent(data);
+    }
+    fetchEvent();
+  }, []);
 
   React.useEffect(() => {
     if (player && player.ryous > prevRyous) {
@@ -162,6 +178,31 @@ export default function TopBar({ player, updatePlayer }) {
 
       <InventoryModal isOpen={isInventoryOpen} onClose={() => setIsInventoryOpen(false)} player={player} />
 
+    </div>
+      
+      {/* Tracker de Evento e Debuffs */}
+      {activeEvent && activeEvent.is_world_boss && (
+        <div style={{
+          position: 'absolute', bottom: '-32px', left: '50%', transform: 'translateX(-50%)',
+          background: 'rgba(239, 68, 68, 0.9)', color: 'white',
+          padding: '4px 16px', borderRadius: '0 0 8px 8px',
+          fontSize: '12px', fontWeight: 'bold', display: 'flex', gap: '16px',
+          boxShadow: '0 4px 12px rgba(239, 68, 68, 0.3)', border: '1px solid rgba(255,255,255,0.2)', borderTop: 'none'
+        }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>🦊 {activeEvent.name} Ativo</span>
+          {(() => {
+            const debuffs = getGlobalDebuffs(activeEvent);
+            const activeTags = [];
+            if (debuffs.staminaCostMultiplier > 1) activeTags.push(`Stamina x${debuffs.staminaCostMultiplier}`);
+            if (debuffs.accuracyPenalty > 0) activeTags.push(`Precisão -${debuffs.accuracyPenalty}%`);
+            if (debuffs.hospitalCostMultiplier > 1) activeTags.push(`Hospital x${debuffs.hospitalCostMultiplier}`);
+            if (debuffs.ryouGainMultiplier < 1) activeTags.push(`Ryous x${debuffs.ryouGainMultiplier}`);
+            
+            if (activeTags.length === 0) return <span style={{ opacity: 0.8 }}>Sem Debuffs Críticos</span>;
+            return <span style={{ display: 'flex', gap: '8px', opacity: 0.9 }}>{activeTags.map((t,i) => <span key={i} className="badge" style={{background: 'rgba(0,0,0,0.5)', border: 'none', padding: '2px 6px'}}>{t}</span>)}</span>;
+          })()}
+        </div>
+      )}
     </div>
   );
 }

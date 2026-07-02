@@ -6,6 +6,7 @@ import { ToastProvider } from './context/ToastContext';
 
 // Componentes
 import Sidebar from './components/Sidebar';
+import MissionManager from './components/MissionManager';
 import TopBar from './components/TopBar';
 import Dashboard from './pages/Dashboard';
 import Treino from './pages/Treino';
@@ -33,9 +34,36 @@ import Login from './pages/Login';
 import Selecionar from './pages/Selecionar';
 import Criar from './pages/Criar';
 
+
+const VipMissionBlock = ({ player, children }) => {
+  if (!player) return children;
+  
+  const hasActiveMissions = player.active_missions && player.active_missions.length > 0;
+  // Regra de VIP: Ou flag is_vip ou comprou algum Kuro Coin
+  const isVip = player.is_vip || (player.vip_coins && player.vip_coins > 0);
+  
+  if (hasActiveMissions && !isVip) {
+    return (
+      <div className="page" style={{ textAlign: 'center', paddingTop: '60px' }}>
+        <h2 className="gold" style={{ fontSize: '32px' }}>Você está em Missão!</h2>
+        <p className="muted" style={{ maxWidth: '500px', margin: '24px auto', fontSize: '18px' }}>
+          Jogadores <span style={{color: 'var(--danger)'}}>Padrão</span> não podem realizar outras atividades enquanto uma missão está ativa no plano de fundo.
+          Aguarde a missão terminar.
+        </p>
+        <p style={{ maxWidth: '500px', margin: '0 auto 24px auto' }}>
+          Torne-se <strong className="gold">VIP</strong> (Adquirindo Kuro Coins) para liberar o Modo Multitarefa e jogar no Dojo e Mapa enquanto suas missões rodam automaticamente!
+        </p>
+      </div>
+    );
+  }
+  
+  return children;
+};
+
 const MainLayout = ({ children, playerState, updatePlayer }) => (
   <div className="app">
     <Sidebar player={playerState} />
+    <MissionManager player={playerState} updatePlayer={updatePlayer} />
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
       <TopBar player={playerState} updatePlayer={updatePlayer} />
       <main className="main">{children}</main>
@@ -188,7 +216,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard player={playerState} updatePlayer={updatePlayer} session={session} setPlayerState={setPlayerState} />} />
             <Route path="/dashboard" element={<Dashboard player={playerState} updatePlayer={updatePlayer} />} />
-            <Route path="/treino" element={<Treino player={playerState} updatePlayer={updatePlayer} />} />
+            <Route path="/treino" element={<VipMissionBlock player={playerState}><Treino player={playerState} updatePlayer={updatePlayer} /></VipMissionBlock>} />
             <Route path="/elementos" element={<Elementos player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/tecnicas" element={<Tecnicas player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/aprimorar-jutsus" element={<AprimorarJutsus player={playerState} updatePlayer={updatePlayer} />} />
@@ -198,8 +226,8 @@ function App() {
             <Route path="/clas" element={<Clas player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/vila" element={<Vila player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/hospital" element={<Hospital player={playerState} updatePlayer={updatePlayer} />} />
-            <Route path="/mapa" element={<Mapa player={playerState} updatePlayer={updatePlayer} />} />
-            <Route path="/dojo" element={<Dojo player={playerState} />} />
+            <Route path="/mapa" element={<VipMissionBlock player={playerState}><Mapa player={playerState} updatePlayer={updatePlayer} /></VipMissionBlock>} />
+            <Route path="/dojo" element={<VipMissionBlock player={playerState}><Dojo player={playerState} /></VipMissionBlock>} />
             <Route path="/combate" element={<Combate player={playerState} updatePlayer={updatePlayer} setPlayerState={setPlayerState} />} />
             <Route path="/ranking" element={<Ranking player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/portoes" element={<Portoes player={playerState} updatePlayer={updatePlayer} />} />

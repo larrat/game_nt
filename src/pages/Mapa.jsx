@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
+import { generateDynamicRogueNinja } from '../utils/engine';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import MapGrid from '../components/MapGrid';
@@ -161,6 +162,29 @@ export default function Mapa({ player, updatePlayer }) {
   };
 
   const handleMove = (newX, newY) => {
+    // Checagem de Encontro Aleatório (15%)
+    if (Math.random() < 0.15) {
+       // Calcular distância da vila mais próxima (ou da vila atual)
+       let dist = 0;
+       const vIdStr = String(currentLoc);
+       const village = villages[vIdStr];
+       if (village) {
+         const vx = (parseInt(vIdStr) * 5) % 20;
+         const vy = (parseInt(vIdStr) * 3) % 20;
+         dist = Math.abs(newX - vx) + Math.abs(newY - vy);
+       } else {
+         dist = Math.abs(newX - 5) + Math.abs(newY - 5);
+       }
+       
+       // Zonas de Perigo: A cada 3 blocos de distância, +1 no extraLevelBonus
+       const extraLevel = Math.floor(dist / 3);
+       const rogue = generateDynamicRogueNinja(player, extraLevel);
+       
+       addToast(rogue.desc, "error");
+       navigate('/combate', { state: { npc: rogue, isMirror: true, fromMap: true } });
+       return;
+    }
+    
     setPlayerX(newX);
     setPlayerY(newY);
   };

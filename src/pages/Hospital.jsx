@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ export default function Hospital({ player, updatePlayer }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
+  const isCuringRef = useRef(false);
 
   const RECOVERY_TIME_MINUTES = 5;
   const RECOVERY_TIME_MS = RECOVERY_TIME_MINUTES * 60 * 1000;
@@ -39,6 +40,10 @@ export default function Hospital({ player, updatePlayer }) {
       const diff = targetTime - now;
       if (diff <= 0) {
         setTimeLeft(0);
+        if (!isCuringRef.current) {
+          isCuringRef.current = true;
+          handleCure(false);
+        }
       } else {
         setTimeLeft(Math.ceil(diff / 1000));
       }

@@ -239,7 +239,6 @@ function App() {
             <Route path="/vip" element={<Vip player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/templo" element={<Templo player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/historico" element={<Historico player={playerState} updatePlayer={updatePlayer} />} />
-            <Route path="/summons" element={<Summons player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/evento" element={<Evento player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/exame" element={<Exame player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/ichiraku" element={<Ichiraku player={playerState} updatePlayer={updatePlayer} />} />

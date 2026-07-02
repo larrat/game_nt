@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { calculateXPForLevel, calculateLevelFromXP } from '../utils/engine';
 import { playHoverSound, playClickSound } from '../utils/audioEngine';
+import SidebarIcon from './SidebarIcon';
 
 const NAV = [
   {
@@ -113,8 +114,8 @@ export default function Sidebar({ player }) {
                     onMouseEnter={handleMouseEnter}
                     className={({ isActive }) => `navitem${isActive ? ' active' : ''} ${group.group === 'Premium' ? 'premium' : ''}`}
                   >
-                    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', flexShrink: 0 }}>
-                      <img src={item.icon} alt={item.label} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', flexShrink: 0, color: 'inherit' }}>
+                      <SidebarIcon label={item.label} />
                     </span>
                     {item.label}
                   </NavLink>

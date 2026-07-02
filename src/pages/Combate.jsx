@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import { elementsData, rankValue } from '../utils/gameData';
 import JutsuIcon from '../components/JutsuIcon';
 import '../styles/main.css';
 

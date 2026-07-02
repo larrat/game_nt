@@ -30,6 +30,16 @@ import { playHitSound, playCritSound, playJutsuSound } from '../utils/audioEngin
 const BASE_PHYSICAL_ACCURACY = 80;
 
 export default function Combate({ player, updatePlayer, setPlayerState }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { addToast } = useToast();
+  
+  const rawNpc = location.state?.npc;
+  const isMirror = location.state?.isMirror;
+  const npcInitVal = (rawNpc && rawNpc.is_story_mode && !isMirror) ? scaleStoryNPC(rawNpc, player) : rawNpc;
+  const isAltAutoBattle = location.state?.isAltAutoBattle || false;
+  
+  const [npcInit, setNpcInit] = useState(npcInitVal);
 
   useEffect(() => {
     if (!npcInit || !player) {
@@ -788,7 +798,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       return;
     }
 
-    const mult = getElementalMultiplier(player.element, npcInit.element);
+    const mult = getElementalMultiplier(jutsu.element || player.element, npcInit.element);
     let jutsuBaseDmg = (jutsu.damage || 15) + bonusDano;
     
     // Passivas de Invocação no Jutsu

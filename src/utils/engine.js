@@ -400,8 +400,8 @@ export const generateDynamicRogueNinja = (player, extraLevelBonus = 0) => {
   
   // Definição de Rank baseada no Level
   let rank = 'Genin';
-  if (npcLevel >= 21) rank = 'Jounin';
-  else if (npcLevel >= 11) rank = 'Chunin';
+  if (npcLevel >= 25) rank = 'Jounin';
+  else if (npcLevel >= 15) rank = 'Chunin';
 
   const elements = ["Katon", "Futon", "Suiton", "Doton", "Raiton"];
   const element = elements[Math.floor(Math.random() * elements.length)];

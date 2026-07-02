@@ -7,12 +7,12 @@ import { useToast } from '../context/ToastContext';
 
 // Mapeamento de posições para os prédios no mockup visual
 const BUILDING_INFO = {
-  'kage': { icon: '👑', name: 'Gabinete do Kage', desc: 'Acesso a Missões Rank-S.', top: '20%', left: '50%' },
-  'hospital': { icon: '🏥', name: 'Hospital', desc: 'Regeneração de Vida.', top: '40%', left: '25%' },
-  'dojo': { icon: '🥋', name: 'Academia', desc: 'Bônus de XP.', top: '40%', left: '75%' },
-  'ichiraku': { icon: '🍲', name: 'Restaurante', desc: 'Stamina extra.', top: '60%', left: '35%' },
-  'blacksmith': { icon: '🗡️', name: 'Ferreiro', desc: 'Itens lendários.', top: '60%', left: '65%' },
-  'gates': { icon: '🛡️', name: 'Portões', desc: 'Sair para o Mundo.', top: '80%', left: '50%', isGate: true }
+  'kage': { img: '/images/icons/kage_icon_1782967244288.jpg', name: 'Gabinete do Kage', desc: 'Acesso a Missões Rank-S.', top: '20%', left: '50%' },
+  'hospital': { img: '/images/icons/hospital_icon_1782967252280.jpg', name: 'Hospital', desc: 'Regeneração de Vida.', top: '40%', left: '25%' },
+  'dojo': { img: '/images/icons/dojo_icon_1782967259930.jpg', name: 'Academia', desc: 'Bônus de XP.', top: '40%', left: '75%' },
+  'ichiraku': { img: '/images/icons/ichiraku_icon_1782967269460.jpg', name: 'Restaurante', desc: 'Stamina extra.', top: '60%', left: '35%' },
+  'blacksmith': { img: '/images/icons/blacksmith_icon_1782967278110.jpg', name: 'Ferreiro', desc: 'Itens lendários.', top: '60%', left: '65%' },
+  'gates': { img: '/images/icons/gates_icon_1782967286132.jpg', name: 'Portões', desc: 'Sair para o Mundo.', top: '80%', left: '50%', isGate: true }
 };
 
 export default function Vila({ player, updatePlayer }) {
@@ -180,11 +180,11 @@ export default function Vila({ player, updatePlayer }) {
             onMouseOut={(e) => e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)'}
           >
             <div style={{
-              width: '60px', height: '60px', borderRadius: '50%', background: info.isGate ? 'rgba(239, 68, 68, 0.8)' : 'rgba(20, 20, 25, 0.9)',
+              width: '64px', height: '64px', borderRadius: '50%', background: info.isGate ? 'rgba(239, 68, 68, 0.8)' : 'rgba(20, 20, 25, 0.9)',
               border: '2px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '30px', boxShadow: '0 0 20px rgba(0,0,0,0.8)'
+              boxShadow: '0 0 20px rgba(0,0,0,0.8)', overflow: 'hidden'
             }}>
-              {info.icon}
+              <img src={info.img} alt={info.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div className="paper" style={{
               background: 'rgba(0,0,0,0.8)', padding: '4px 12px', borderRadius: '4px', marginTop: '8px',
@@ -199,7 +199,9 @@ export default function Vila({ player, updatePlayer }) {
         {selectedBuildingInfo && !selectedBuildingInfo.isGate && (
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 20, width: '400px' }}>
             <div className="card-glass" style={{ background: 'rgba(15,15,20,0.95)', border: isDamaged ? '1px solid var(--danger)' : '1px solid var(--gold)' }}>
-              <div style={{ fontSize: '48px', textAlign: 'center', marginBottom: '8px' }}>{isDamaged ? '🔥' : selectedBuildingInfo.icon}</div>
+              <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+                <img src={selectedBuildingInfo.img} alt={selectedBuildingInfo.name} style={{ width: '80px', height: '80px', borderRadius: '50%', border: '2px solid var(--gold)', filter: isDamaged ? 'grayscale(100%) brightness(0.5)' : 'none' }} />
+              </div>
               {dbBuilding && (
                 <div className={isDamaged ? "danger uppercase" : "gold"} style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '4px', textAlign: 'center' }}>
                   {isDamaged ? 'DESTRUÍDO' : `Nível ${dbBuilding.level}`}

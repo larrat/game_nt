@@ -52,7 +52,7 @@ export default function Dojo({ player }) {
         const chosenNPC = dojoNpcs[Math.floor(Math.random() * dojoNpcs.length)];
         chosenNPC.activeJutsus = getDynamicNpcJutsus(chosenNPC);
         setLoadingId(null);
-        return navigate('/combate', { state: { npc: chosenNPC, isMirror: false } });
+        return navigate('/combate', { state: { bgType: 'dojo', npc: chosenNPC, isMirror: false } });
       }
     }
 
@@ -60,7 +60,7 @@ export default function Dojo({ player }) {
     // Simulamos um IsMirror para garantir que as fórmulas de Combate usem os atributos recém gerados!
     const rogue = generateDynamicRogueNinja(player);
     setLoadingId(null);
-    return navigate('/combate', { state: { npc: rogue, isMirror: true } });
+    return navigate('/combate', { state: { bgType: 'dojo', npc: rogue, isMirror: true } });
   };
 
   const handleBetrayal = async () => {
@@ -107,7 +107,7 @@ export default function Dojo({ player }) {
         desc: 'Você está prestes a cometer alta traição contra um companheiro de vila!'
       };
       
-      return navigate('/combate', { state: { npc: mirrorNpc, isMirror: true, isBetrayal: true } });
+      return navigate('/combate', { state: { bgType: 'dojo', npc: mirrorNpc, isMirror: true, isBetrayal: true } });
     } else {
       addToast('Não há membros de sua vila por perto no momento para trair.', 'info');
     }
@@ -146,7 +146,7 @@ export default function Dojo({ player }) {
         isBijuuHunt: true
       };
       
-      return navigate('/combate', { state: { npc: mirrorNpc, isMirror: true, isBijuuHunt: true } });
+      return navigate('/combate', { state: { bgType: 'dojo', npc: mirrorNpc, isMirror: true, isBijuuHunt: true } });
     } else {
       addToast('O radar da Akatsuki não encontrou nenhum Jinchuuriki no momento.', 'info');
     }
@@ -168,7 +168,7 @@ export default function Dojo({ player }) {
       desc: 'Teste de Dano. O boneco não ataca de volta nem dá experiência.',
       is_dummy: true
     };
-    navigate('/combate', { state: { npc: dummyNPC, isMirror: false, fromDojoFree: true } });
+    navigate('/combate', { state: { bgType: 'dojo', npc: dummyNPC, isMirror: false, fromDojoFree: true } });
   };
 
   return (

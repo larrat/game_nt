@@ -23,9 +23,10 @@ export default function Mapa({ player, updatePlayer }) {
   const [hideStory, setHideStory] = useState(false);
   const [loadingMap, setLoadingMap] = useState(true);
   
-  // Coordenadas mockadas locais para testar a exploração 2D
-  const [playerX, setPlayerX] = useState(5);
-  const [playerY, setPlayerY] = useState(5);
+  // Coordenadas em porcentagem (0-100)
+  const [playerX, setPlayerX] = useState(50);
+  const [playerY, setPlayerY] = useState(50);
+  const [isWalking, setIsWalking] = useState(false);
 
   useEffect(() => {
     if (player && player.is_fainted) {
@@ -181,7 +182,7 @@ export default function Mapa({ player, updatePlayer }) {
        const rogue = generateDynamicRogueNinja(player, extraLevel);
        
        addToast(rogue.desc, "error");
-       navigate('/combate', { state: { npc: rogue, isMirror: true, fromMap: true } });
+       navigate('/combate', { state: { bgType: 'map', npc: rogue, isMirror: true, fromMap: true } });
        return;
     }
     
@@ -199,13 +200,40 @@ export default function Mapa({ player, updatePlayer }) {
         return;
       }
     }
-    navigate('/combate', { state: { npc: npc, isMirror: false, fromMap: true, isGhost: npc.is_ghost } });
+    navigate('/combate', { state: { bgType: 'map', npc: npc, isMirror: false, fromMap: true, isGhost: npc.is_ghost } });
+  };
+
+  const handleMapClick = (e) => {
+    if (e.target.closest('.card, .card-glass, .village-node, .npc-node')) return;
+    
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    const dist = Math.sqrt(Math.pow(x - playerX, 2) + Math.pow(y - playerY, 2));
+    
+    setPlayerX(x);
+    setPlayerY(y);
+    setIsWalking(true);
+
+    // Rola encontro aleatório se a caminhada for razoável (10% de chance)
+    if (dist > 5 && Math.random() < 0.15) {
+       const extraLevel = Math.floor(dist / 10);
+       const rogue = generateDynamicRogueNinja(player, extraLevel);
+       setTimeout(() => {
+         setIsWalking(false);
+         addToast(rogue.desc, "error");
+         navigate('/combate', { state: { bgType: 'map', npc: rogue, isMirror: true, fromMap: true } });
+       }, 800); // Dá tempo do avatar andar um pouco
+    } else {
+       setTimeout(() => setIsWalking(false), 1000);
+    }
   };
 
   const visibleNpcs = npcs.filter(n => !hideStory || !n.is_story_mode);
 
   return (
-    <div style={{ padding: 0, overflow: 'hidden', position: 'fixed', inset: 0 }}>
+    <div style={{ padding: 0, overflow: 'hidden', position: 'fixed', inset: 0 }} onClick={handleMapClick}>
       
       {/* Mapa Fullscreen */}
       <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/images/mapa.png')", backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 0 }} />
@@ -214,13 +242,13 @@ export default function Mapa({ player, updatePlayer }) {
 
       {/* Vilas posicionadas no mapa */}
       {Object.entries(villages).map(([vId, v]) => v.x != null && (
-        <div key={vId} style={{
+        <div key={vId} className="village-node" style={{
           position: 'absolute', zIndex: 6,
           left: `${v.x}%`, top: `${v.y}%`,
           transform: 'translate(-50%, -50%)',
           display: 'flex', flexDirection: 'column', alignItems: 'center',
           cursor: currentLoc !== parseInt(vId) ? 'pointer' : 'default',
-        }} onClick={() => currentLoc !== parseInt(vId) && setConfirmTarget(parseInt(vId))}>
+        }} onClick={(e) => { e.stopPropagation(); currentLoc !== parseInt(vId) && setConfirmTarget(parseInt(vId)); }}>
           <div style={{
             fontSize: '28px',
             filter: currentLoc === parseInt(vId) ? 'drop-shadow(0 0 12px gold)' : 'drop-shadow(0 0 6px rgba(0,0,0,0.8))',
@@ -241,13 +269,13 @@ export default function Mapa({ player, updatePlayer }) {
 
       {/* NPCs como pontos no mapa */}
       {visibleNpcs.slice(0, 30).map(npc => (
-        <div key={npc.id} style={{
+        <div key={npc.id} className="npc-node" style={{
           position: 'absolute', zIndex: 7,
           left: `${npc.x}%`, top: `${npc.y}%`,
           transform: 'translate(-50%, -50%)',
           cursor: 'pointer',
           display: 'flex', flexDirection: 'column', alignItems: 'center',
-        }} onClick={() => attackNpc(npc)}
+        }} onClick={(e) => { e.stopPropagation(); attackNpc(npc); }}
           title={`${npc.name} - Lv. ${npc.level}`}
         >
           <div style={{
@@ -257,6 +285,25 @@ export default function Mapa({ player, updatePlayer }) {
           }}>{npc.avatar || '👹'}</div>
         </div>
       ))}
+
+      {/* Avatar do Jogador */}
+      <div style={{
+        position: 'absolute', zIndex: 8,
+        left: `${playerX}%`, top: `${playerY}%`,
+        transform: 'translate(-50%, -100%)',
+        transition: 'left 1s ease-in-out, top 1s ease-in-out',
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        pointerEvents: 'none'
+      }}>
+        <div style={{
+          fontSize: '32px',
+          filter: 'drop-shadow(0 0 8px gold)',
+          animation: isWalking ? 'shake 0.4s infinite' : 'none'
+        }}>🥷</div>
+        <div style={{ background: 'rgba(0,0,0,0.8)', padding: '2px 6px', borderRadius: '4px', fontSize: '10px', color: 'gold', fontWeight: 'bold' }}>
+          Você
+        </div>
+      </div>
 
       {/* Painel flutuante superior esquerdo - Localização */}
       <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 10 }}>

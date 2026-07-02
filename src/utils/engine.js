@@ -154,20 +154,34 @@ export const getElementalMultiplier = (attackerElement, defenderElement) => {
   const a = attackerElement.toLowerCase();
   const d = defenderElement.toLowerCase();
 
-  // Vantagens (+20%)
+  // Vantagens Elementais Mágicas (+20%)
   if (a === 'suiton' && d === 'katon') return 1.2;
   if (a === 'katon' && d === 'futon') return 1.2;
   if (a === 'futon' && d === 'raiton') return 1.2;
   if (a === 'raiton' && d === 'doton') return 1.2;
   if (a === 'doton' && d === 'suiton') return 1.2;
 
-  // Desvantagens (-20%)
+  // Desvantagens Elementais Mágicas (-20%)
   if (a === 'katon' && d === 'suiton') return 0.8;
   if (a === 'futon' && d === 'katon') return 0.8;
   if (a === 'raiton' && d === 'futon') return 0.8;
   if (a === 'doton' && d === 'raiton') return 0.8;
   if (a === 'suiton' && d === 'doton') return 0.8;
 
+  // Vantagens Marciais Físicas (+20%)
+  // Jūken (Punho Suave) quebra Gōken (Punho Forte)
+  if (a === 'juken' && d === 'goken') return 1.2;
+  // Kenjutsu (Armas) quebra Jūken (Punho Suave)
+  if (a === 'kenjutsu' && d === 'juken') return 1.2;
+  // Gōken (Punho Forte) quebra Kenjutsu (Armas)
+  if (a === 'goken' && d === 'kenjutsu') return 1.2;
+
+  // Desvantagens Marciais Físicas (-20%)
+  if (a === 'goken' && d === 'juken') return 0.8;
+  if (a === 'juken' && d === 'kenjutsu') return 0.8;
+  if (a === 'kenjutsu' && d === 'goken') return 0.8;
+
+  // Mágico vs Físico ou Empate = Neutro
   return 1.0;
 };
 

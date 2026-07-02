@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import { useToast } from '../context/ToastContext';
 import PageHeader from '../components/PageHeader';
+import JutsuIcon from '../components/JutsuIcon';
 
 const rankValue = (rank) => {
   if (!rank) return 0;
@@ -242,12 +243,19 @@ export default function Tecnicas({ player, updatePlayer }) {
                   )}
 
                   <div className="flex-between" style={{ alignItems: 'flex-start', marginBottom: '10px' }}>
-                    <div className={`mono uppercase ${isUnlocked ? 'gold' : 'muted'}`} style={{ fontSize: '10px', letterSpacing: '1.5px' }}>
-                      NV.{jutsu.lvl} {jutsu.reqRank ? `· ${jutsu.reqRank} ` : ''}· {jutsu.type}
+                    <div className="flex-row" style={{ gap: '12px' }}>
+                      <div style={{ width: '48px', height: '48px', flexShrink: 0 }}>
+                        <JutsuIcon jutsu={jutsu} />
+                      </div>
+                      <div className="flex-col" style={{ gap: '4px' }}>
+                        <div className={`mono uppercase ${isUnlocked ? 'gold' : 'muted'}`} style={{ fontSize: '10px', letterSpacing: '1.5px' }}>
+                          NV.{jutsu.lvl} {jutsu.reqRank ? `· ${jutsu.reqRank} ` : ''}· {jutsu.type}
+                        </div>
+                        {isLearned && (
+                          <span className="badge badge-green" style={{ fontSize: '10px', width: 'fit-content', fontFamily: "'JetBrains Mono', monospace" }}>✓ APRENDIDO</span>
+                        )}
+                      </div>
                     </div>
-                    {isLearned && (
-                      <span className="badge badge-green" style={{ fontSize: '10px', fontFamily: "'JetBrains Mono', monospace" }}>✓ APRENDIDO</span>
-                    )}
                   </div>
 
                   <h4 className={`card-title ${isUnlocked ? 'paper' : 'muted'}`} style={{ fontSize: '18px', marginBottom: '8px' }}>
@@ -326,10 +334,17 @@ export default function Tecnicas({ player, updatePlayer }) {
                   border: '1px solid rgba(76,206,128,0.25)',
                   borderTop: '2px solid rgba(76,206,128,0.5)',
                 }}>
-                  <div className="mono gold uppercase" style={{ fontSize: '10px', letterSpacing: '1.5px', marginBottom: '8px' }}>
-                    {jutsu.type} · {jutsu.category}
+                  <div className="flex-row" style={{ gap: '12px', marginBottom: '12px', alignItems: 'center' }}>
+                    <div style={{ width: '48px', height: '48px', flexShrink: 0 }}>
+                      <JutsuIcon jutsu={jutsu} />
+                    </div>
+                    <div className="flex-col">
+                      <div className="mono gold uppercase" style={{ fontSize: '10px', letterSpacing: '1.5px', marginBottom: '4px' }}>
+                        {jutsu.type} · {jutsu.category}
+                      </div>
+                      <h4 className="card-title" style={{ fontSize: '17px', margin: 0 }}>{jutsu.name}</h4>
+                    </div>
                   </div>
-                  <h4 className="card-title" style={{ fontSize: '17px', marginBottom: '8px' }}>{jutsu.name}</h4>
                   <p className="muted" style={{ fontSize: '12px', lineHeight: '1.6' }}>{jutsu.desc}</p>
                   
                   <div className="mono flex-row" style={{ gap: '12px', marginTop: '12px', marginBottom: '12px', fontSize: '11px', flexWrap: 'wrap' }}>

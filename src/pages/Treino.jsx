@@ -3,7 +3,19 @@ import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
-
+import { 
+  getEquipmentBonus, 
+  calculateHP, 
+  calculateChakra, 
+  calculateStamina, 
+  calculateAtkTaiBuk, 
+  calculateAtkNinGen, 
+  calculateDefTaiBuk, 
+  calculateDefNinGen,
+  calculateCritChance,
+  calculateDodgeChance,
+  calculateChakraDiscount
+} from '../utils/engine';
 
 export default function Treino({ player, updatePlayer }) {
   const [loading, setLoading] = useState(false);
@@ -42,7 +54,8 @@ export default function Treino({ player, updatePlayer }) {
     forca: { text: "Aumenta Taijutsu e HP Máximo.", detail: "Cada ponto de FOR aumenta também quantos PV você carrega.", color: '#ef4444' },
     agilidade: { text: "Aumenta Esquiva e Crítico.", detail: "Chance de não ser acertado e de causar dano duplo.", color: '#facc15' },
     selo: { text: "Desconta o custo de Chakra.", detail: "Cada ponto de Selo reduz 1% do custo de todos os jutsus (máx 50%).", color: '#c084fc' },
-    resistencia: { text: "Aumenta HP, Chakra e Def.", detail: "O atributo mais versátil: aumenta tudo relacionado à sua durabilidade.", color: '#2dd4bf' }
+    resistencia: { text: "Aumenta HP, Chakra e Def.", detail: "O atributo mais versátil: aumenta tudo relacionado à sua durabilidade.", color: '#2dd4bf' },
+    energia: { text: "Vitalidade Bruta.", detail: "Aumenta massivamente seu HP Máximo, Chakra e Stamina. Base para sobrevivência longa.", color: '#d97706' }
   };
 
   const getRange = (heroMin, heroMax) => {
@@ -96,6 +109,25 @@ export default function Treino({ player, updatePlayer }) {
         <span className="gold mono" style={{ fontSize: '32px' }}>{player.pontos_atributos || 0}</span>
       </div>
 
+      <div className="grid-4" style={{ marginBottom: '24px', gap: '16px' }}>
+        <div className="card-glass flex-col" style={{ padding: '16px', border: '1px solid var(--seal-bright)', alignItems: 'center', textAlign: 'center' }}>
+           <span className="muted uppercase mono" style={{ fontSize: '11px', marginBottom: '8px' }}>HP / CP / SP</span>
+           <span className="gold mono" style={{ fontSize: '15px' }}>{calculateHP(player)} / {calculateChakra(player)} / {calculateStamina(player)}</span>
+        </div>
+        <div className="card-glass flex-col" style={{ padding: '16px', border: '1px solid var(--seal-bright)', alignItems: 'center', textAlign: 'center' }}>
+           <span className="muted uppercase mono" style={{ fontSize: '11px', marginBottom: '8px' }}>Atk (Fís / Mag)</span>
+           <span className="danger mono" style={{ fontSize: '15px' }}>{calculateAtkTaiBuk(player)} / {calculateAtkNinGen(player)}</span>
+        </div>
+        <div className="card-glass flex-col" style={{ padding: '16px', border: '1px solid var(--seal-bright)', alignItems: 'center', textAlign: 'center' }}>
+           <span className="muted uppercase mono" style={{ fontSize: '11px', marginBottom: '8px' }}>Def (Fís / Mag)</span>
+           <span className="success mono" style={{ fontSize: '15px' }}>{calculateDefTaiBuk(player)} / {calculateDefNinGen(player)}</span>
+        </div>
+        <div className="card-glass flex-col" style={{ padding: '16px', border: '1px solid var(--seal-bright)', alignItems: 'center', textAlign: 'center' }}>
+           <span className="muted uppercase mono" style={{ fontSize: '11px', marginBottom: '8px' }}>Crítico / Esquiva</span>
+           <span className="gold mono" style={{ fontSize: '15px' }}>{calculateCritChance(player)}% / {calculateDodgeChance(player)}%</span>
+        </div>
+      </div>
+
       <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
         {/* Título da Tabela parecido com a imagem */}
         <div style={{ background: 'var(--ink-soft)', padding: '12px 24px', borderBottom: '1px solid var(--line)', textAlign: 'center' }}>
@@ -108,6 +140,9 @@ export default function Treino({ player, updatePlayer }) {
         <div className="flex-col">
           {attrsData.map(({ icon, label, field, hero_min, hero_max }) => {
             const { min, max, bonus } = getRange(hero_min, hero_max);
+            const baseValue = player[field] || 0;
+            const equipValue = getEquipmentBonus(player, field);
+            const totalValue = baseValue + equipValue;
             
             return (
               <div key={field} className="flex-between" style={{ padding: '12px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', alignItems: 'center' }}>
@@ -118,7 +153,7 @@ export default function Treino({ player, updatePlayer }) {
                   <div className="flex-col">
                     <div className="flex-row" style={{ gap: '8px', alignItems: 'center', marginBottom: '2px' }}>
                       <span className="paper uppercase" style={{ fontSize: '13px', fontWeight: 'bold' }}>{label}</span>
-                      <span className="mono" style={{ fontSize: '11px', background: `${attrDesc[field]?.color}20`, color: attrDesc[field]?.color, borderRadius: '3px', padding: '1px 6px', border: `1px solid ${attrDesc[field]?.color}40` }}>{player[field] || 0} pts</span>
+                      <span className="mono" style={{ fontSize: '11px', background: `${attrDesc[field]?.color}20`, color: attrDesc[field]?.color, borderRadius: '3px', padding: '1px 6px', border: `1px solid ${attrDesc[field]?.color}40` }}>{totalValue} pts {equipValue > 0 ? `(+${equipValue} Equip)` : ''}</span>
                     </div>
                     <span style={{ fontSize: '11px', color: attrDesc[field]?.color, marginBottom: '1px' }}>{attrDesc[field]?.text}</span>
                     <span className="muted" style={{ fontSize: '10px', lineHeight: '1.4', maxWidth: '280px' }}>{attrDesc[field]?.detail}</span>
@@ -135,7 +170,7 @@ export default function Treino({ player, updatePlayer }) {
                 <div className="flex-row" style={{ flex: 1, justifyContent: 'flex-end', gap: '24px', alignItems: 'center' }}>
                   <div className="flex-col" style={{ alignItems: 'flex-end' }}>
                     <span className="muted mono" style={{ fontSize: '10px' }}>TOTAL</span>
-                    <span className="gold mono" style={{ fontSize: '18px' }}>{player[field] || 0}</span>
+                    <span className="gold mono" style={{ fontSize: '18px' }}>{totalValue}</span>
                   </div>
                   
                   <button 

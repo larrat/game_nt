@@ -29,21 +29,64 @@ export default function Evento({ player, updatePlayer }) {
     fetchEvent();
   }, []);
 
+  const getRankMaxTickets = (rank) => {
+    switch (rank) {
+      case 'Estudante da Academia':
+      case 'Genin': return 2;
+      case 'Chunin': return 3;
+      case 'Jounin':
+      case 'ANBU': return 4;
+      case 'Sannin':
+      case 'Herói': return 5;
+      default: return 2;
+    }
+  };
+
+  const todayStr = new Date().toISOString().split('T')[0];
+  const maxTickets = getRankMaxTickets(player?.rank);
+  const currentTickets = player?.last_event_date === todayStr ? (player?.event_tickets ?? maxTickets) : maxTickets;
+  
+  const dayOfWeek = new Date().getDay();
+  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+
   const handleAttack = async () => {
     if (!event || event.boss_hp <= 0) return;
+    if (isWeekend) {
+      addToast('O World Boss descansa nos finais de semana!', 'error');
+      return;
+    }
+    if (currentTickets <= 0) {
+      addToast('Você não tem mais entradas diárias para hoje!', 'error');
+      return;
+    }
     
+    // Atualiza os tickets do jogador antes de entrar no combate
+    setAttacking(true);
+    const { error } = await supabase.from('players').update({
+      last_event_date: todayStr,
+      event_tickets: currentTickets - 1
+    }).eq('id', player.id);
+
+    if (error) {
+      addToast('Erro ao consumir ticket: ' + error.message, 'error');
+      setAttacking(false);
+      return;
+    }
+    await updatePlayer(player.user_id);
+    setAttacking(false);
+
     // Converte o Evento em um NPC para a engine de combate
     const bossNpc = {
       id: `worldboss_${event.id}`,
       name: event.name,
-      avatar: '/images/imgi_125_kurama.jpg', // Podíamos colocar uma imagem real se tivéssemos, mas vamos usar um emoji se falhar, ou algo genérico
-      level: 100, // Nível simbólico de World Boss
-      hp: event.boss_hp, // HP Real do Boss
+      avatar: '/images/imgi_125_kurama.jpg', 
+      level: 100, 
+      hp: event.boss_hp, 
       maxHp: event.boss_max_hp,
       chakra: 99999,
-      atk: 500, // Dano Base Alto
-      def: 250, // Defesa Base Alta
-      element: 'Katon', // Kurama = Fogo
+      atk: 500, 
+      def: 250, 
+      element: 'Katon', 
       isWorldBoss: true,
       eventId: event.id
     };
@@ -63,6 +106,12 @@ export default function Evento({ player, updatePlayer }) {
 
       {loading ? (
         <div className="muted" style={{ textAlign: 'center', padding: '40px' }}>Procurando anomalias no mundo...</div>
+      ) : isWeekend ? (
+        <div className="card" style={{ textAlign: 'center', padding: '60px 24px' }}>
+          <h2 className="muted">Fim de Semana de Descanso</h2>
+          <p className="muted" style={{ maxWidth: '400px', margin: '16px auto 0' }}>Os Kages ordenaram que as expedições param aos sábados e domingos para a manutenção das barreiras da Vila. Volte segunda-feira!</p>
+          <button className="btn-ghost" onClick={() => navigate('/dashboard')} style={{ marginTop: '24px' }}>Voltar</button>
+        </div>
       ) : !event ? (
         <div className="card" style={{ textAlign: 'center', padding: '60px 24px' }}>
           <h2 className="muted">Nenhum Evento Ativo</h2>
@@ -77,9 +126,13 @@ export default function Evento({ player, updatePlayer }) {
           <h2 className="danger uppercase" style={{ fontSize: '32px', textShadow: '0 0 20px rgba(239,68,68,0.5)', marginBottom: '8px', zIndex: 1 }}>
             {event.name}
           </h2>
-          <p className="paper" style={{ maxWidth: '600px', textAlign: 'center', marginBottom: '32px', zIndex: 1 }}>
+          <p className="paper" style={{ maxWidth: '600px', textAlign: 'center', marginBottom: '16px', zIndex: 1 }}>
             {event.description}
           </p>
+
+          <div className="badge badge-gold" style={{ marginBottom: '32px', zIndex: 1 }}>
+            Tickets Restantes Hoje: {currentTickets} / {maxTickets}
+          </div>
 
           <div style={{ fontSize: '100px', marginBottom: '32px', animation: 'pulse 2s infinite', zIndex: 1 }}>
             🦊
@@ -99,14 +152,14 @@ export default function Evento({ player, updatePlayer }) {
             className="btn-primary" 
             style={{ padding: '16px 48px', fontSize: '18px', background: '#ef4444', borderColor: '#ef4444', zIndex: 1 }}
             onClick={handleAttack}
-            disabled={attacking || event.boss_hp <= 0}
+            disabled={attacking || event.boss_hp <= 0 || currentTickets <= 0}
           >
-            <span>{event.boss_hp <= 0 ? 'Chefe Morto' : attacking ? 'Atacando...' : 'Atacar o Chefe!'}</span>
+            <span>{event.boss_hp <= 0 ? 'Chefe Morto' : currentTickets <= 0 ? 'Sem Tickets' : attacking ? 'Entrando...' : 'Atacar o Chefe!'}</span>
             <div className="stamp"></div>
           </button>
           
-          <div className="muted mono" style={{ marginTop: '16px', fontSize: '11px', zIndex: 1 }}>
-            Você ganha XP e Ryous proporcionais ao dano causado.
+          <div className="muted mono" style={{ marginTop: '16px', fontSize: '11px', zIndex: 1, textAlign: 'center' }}>
+            Sua patente ({player.rank}) garante {maxTickets} entradas diárias. <br/> Você ganha XP e Ryous proporcionais ao dano causado.
           </div>
         </div>
       )}

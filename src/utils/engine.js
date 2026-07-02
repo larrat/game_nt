@@ -93,7 +93,7 @@ export const calculateHP = (player) => {
 export const calculateChakra = (player) => {
   if (!player) return 50;
   const rankBoost = getRankBonus(player.rank).chakra;
-  const base = 50 + ((player.level || 1) * 10) + ((player.energia || 0) * 3) + ((player.ninjutsu || 0) * 3) + ((player.genjutsu || 0) * 3) + rankBoost;
+  const base = 100 + ((player.level || 1) * 20) + ((player.energia || 0) * 5) + ((player.ninjutsu || 0) * 5) + ((player.genjutsu || 0) * 5) + rankBoost;
   const equipBonus = getEquipmentBonus(player, 'chakra');
   const clanBonus = getClanBonus(player);
   const chakraMult = clanBonus.chakraMult || 1.0;
@@ -103,7 +103,7 @@ export const calculateChakra = (player) => {
 export const calculateStamina = (player) => {
   if (!player) return 50;
   const rankBoost = getRankBonus(player.rank).stamina;
-  const base = 50 + ((player.level || 1) * 10) + ((player.energia || 0) * 3) + ((player.taijutsu || 0) * 3) + ((player.bukijutsu || 0) * 3) + rankBoost;
+  const base = 100 + ((player.level || 1) * 20) + ((player.energia || 0) * 5) + ((player.taijutsu || 0) * 5) + ((player.bukijutsu || 0) * 5) + rankBoost;
   return base + getEquipmentBonus(player, 'stamina');
 };
 
@@ -116,8 +116,8 @@ export const calculateAtkTaiBuk = (player) => {
 
 export const calculateAtkNinGen = (player) => {
   if (!player) return 5;
-  // Ninjutsu e Genjutsu são a fonte primária de dano
-  const base = ((player.inteligencia || 0) * 1) + ((player.ninjutsu || 0) * 2) + ((player.genjutsu || 0) * 2) + 5;
+  // Ninjutsu e Genjutsu são a fonte primária de dano (aumentado multiplicador de inteligência)
+  const base = ((player.inteligencia || 0) * 2) + ((player.ninjutsu || 0) * 2) + ((player.genjutsu || 0) * 2) + 10;
   return base + getEquipmentBonus(player, 'nin') + getEquipmentBonus(player, 'gen');
 };
 
@@ -133,13 +133,18 @@ export const calculateDefNinGen = (player) => {
   return base + getEquipmentBonus(player, 'def');
 };
 
-// Fórmulas Secundárias
-export const calculatePerfuracao = (player) => (player.agilidade || 0) * 2;
-export const calculatePrecisao = (player) => (player.selo || 0) * 2;
-export const calculateConcentracao = (player) => Math.floor(((player.inteligencia || 0) + (player.genjutsu || 0)) / 2);
-export const calculatePercepcao = (player) => Math.floor(((player.agilidade || 0) + (player.ninjutsu || 0)) / 2);
-export const calculateConviccao = (player) => Math.floor(((player.energia || 0) + (player.forca || 0)) / 2);
-export const calculateDeterminacao = (player) => Math.floor(((player.energia || 0) + (player.resistencia || 0)) / 2);
+// Fórmulas Secundárias (Baseados nas novas regras do RPG Master)
+export const calculateCritChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 5));
+export const calculateDodgeChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 5));
+export const calculateChakraDiscount = (player) => Math.min(50, Math.floor((player?.selo || 0) / 5));
+
+// Atributos derivados antigos (mantidos por compatibilidade se usados em outro lugar)
+export const calculatePerfuracao = (player) => (player?.agilidade || 0) * 2;
+export const calculatePrecisao = (player) => (player?.selo || 0) * 2;
+export const calculateConcentracao = (player) => Math.floor(((player?.inteligencia || 0) + (player?.genjutsu || 0)) / 2);
+export const calculatePercepcao = (player) => Math.floor(((player?.agilidade || 0) + (player?.ninjutsu || 0)) / 2);
+export const calculateConviccao = (player) => Math.floor(((player?.energia || 0) + (player?.forca || 0)) / 2);
+export const calculateDeterminacao = (player) => Math.floor(((player?.energia || 0) + (player?.resistencia || 0)) / 2);
 
 // --- VANTAGEM ELEMENTAL ---
 // Suiton > Katon > Futon > Raiton > Doton > Suiton

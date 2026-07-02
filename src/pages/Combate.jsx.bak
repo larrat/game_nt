@@ -28,6 +28,36 @@ import { playHitSound, playCritSound, playJutsuSound } from '../utils/audioEngin
 const BASE_PHYSICAL_ACCURACY = 80;
 
 export default function Combate({ player, updatePlayer, setPlayerState }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { addToast } = useToast();
+
+  const [npcInit, setNpcInit] = useState(null);
+  const [npcHP, setNpcHP] = useState(100);
+  const [npcCP, setNpcCP] = useState(50);
+  const [npcSt, setNpcSt] = useState(50);
+  const [npcDef, setNpcDef] = useState(0);
+
+  const [playerHP, setPlayerHP] = useState(100);
+  const [playerCP, setPlayerCP] = useState(50);
+  const [playerSt, setPlayerSt] = useState(50);
+  
+  const [isPlayerTurn, setIsPlayerTurn] = useState(false); // Player starts if Agi is higher
+  const [battleResult, setBattleResult] = useState(null); // 'win' | 'lose' | 'flee'
+  const [logs, setLogs] = useState([]);
+  
+  const [turnCount, setTurnCount] = useState(1);
+  const [accumulatedDamage, setAccumulatedDamage] = useState(0);
+  const [globalDebuffs, setGlobalDebuffs] = useState(getGlobalDebuffs(null));
+  const [autoBattle, setAutoBattle] = useState(false);
+  const [equippedSummon, setEquippedSummon] = useState(null);
+  
+  const [activeBuffs, setActiveBuffs] = useState({ protecao: 0, letalidade: 0, duration: 0 });
+
+  const rawNpc = location.state?.npc;
+  const isMirror = location.state?.isMirror;
+  const npcInitVal = (rawNpc && rawNpc.is_story_mode && !isMirror) ? scaleStoryNPC(rawNpc, player) : rawNpc;
+  const isAltAutoBattle = location.state?.isAltAutoBattle || false;
 
   useEffect(() => {
     if (!npcInit || !player) {
@@ -90,7 +120,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const [playerStatus, setPlayerStatus] = useState([]);
   const [npcStatus, setNpcStatus] = useState([]);
   const [cooldowns, setCooldowns] = useState({});
-  const [activeBuffs, setActiveBuffs] = useState({ protecao: 0, letalidade: 0, duration: 0 });
 
   const playerStatusRef = useRef(playerStatus);
   const npcStatusRef = useRef(npcStatus);
@@ -420,17 +449,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       return next;
     });
 
-    setActiveBuffs(prev => {
-      if (prev.duration > 0) {
-        if (prev.duration - 1 === 0) {
-          addLog("Seus buffs ativos se esgotaram!");
-          return { protecao: 0, letalidade: 0, duration: 0 };
-        }
-        return { ...prev, duration: prev.duration - 1 };
-      }
-      return prev;
-    });
-
     // Passivas de invocação de início de turno (Ex: Cura)
     if (equippedSummon && equippedSummon.name.includes('Katsuyu')) {
        const healAmt = Math.floor(maxPlayerHP * 0.05); // Cura 5%
@@ -559,11 +577,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               const cat = (jutsu.category || "").toLowerCase();
               const npcMagic = (cat === "taijutsu" || cat === "bukijutsu") ? npcAtkTaiBuk : npcAtkNinGen;
               const magicDmg = npcMagic + jutsuBaseDmg;
-              
-              // Proteção Passiva do Buff Ativo
-              const defBonus = activeBuffs?.protecao || 0;
-              const finalDamage = Math.max(1, magicDmg - Math.floor((playerDef + defBonus) / 2));
-              
+              const finalDamage = Math.max(1, magicDmg - Math.floor(playerDef / 2));
               damage = Math.floor(finalDamage * mult);
               
               if (mult > 1.0) elementalMsg = ' (Vantagem Elemental!)';
@@ -590,40 +604,27 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                   return;
                }
                
-               const dodgeRoll = Math.random() * 100;
-               const dodgeChance = calculateDodgeChance(player);
+               const mult = getElementalMultiplier(npcInit.element, player.element);
+               const baseDamage = Math.max(1, npcAtkTaiBuk - playerDef);
+               damage = Math.floor(baseDamage * mult);
                
-               if (dodgeRoll <= dodgeChance) {
-                  addLog(`💨 ${npcInit.name} tentou um ataque básico, mas você esquivou!`);
-                  damage = 0;
-               } else {
-                 const mult = getElementalMultiplier(npcInit.element, player.element);
-                 const defBonus = activeBuffs?.protecao || 0;
-                 const baseDamage = Math.max(1, npcAtkTaiBuk - (playerDef + defBonus));
-                 damage = Math.floor(baseDamage * mult);
-                 
-                 if (mult > 1.0) elementalMsg = ' (Dano Efetivo!)';
-                 if (mult < 1.0) elementalMsg = ' (Dano Reduzido)';
+               if (mult > 1.0) elementalMsg = ' (Dano Efetivo!)';
+               if (mult < 1.0) elementalMsg = ' (Dano Reduzido)';
 
-                 addLog(`${npcInit.name} atacou e causou ${damage} de dano!${elementalMsg}`);
-               }
+               addLog(`${npcInit.name} atacou e causou ${damage} de dano!${elementalMsg}`);
             }
          }
 
         const newPlayerHP = Math.max(0, playerHPRef.current - damage);
         setPlayerHP(newPlayerHP);
-        
-        if (damage > 0) {
-          if (activeBuffs?.protecao > 0) addLog(`🛡️ Seu Escudo absorveu parte do impacto!`);
-          triggerShake('player');
-          if (usedJutsu) {
-            playJutsuSound();
-            spawnFct('player', `-${damage} MAG`, 'magic');
-          } else {
-            playHitSound();
-            spawnFct('player', `-${damage}`, 'damage');
-          }
+        if (usedJutsu) {
+          playJutsuSound();
+          spawnFct('player', `-${damage} MAG`, 'magic');
+        } else {
+          playHitSound();
+          spawnFct('player', `-${damage}`, 'damage');
         }
+        triggerShake('player');
 
         if (newPlayerHP <= 0) {
           addLog('Você foi derrotado e caiu inconsciente...');
@@ -676,10 +677,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       return;
     }
 
-    const baseCrit = calculateCritChance(player);
-    const clanCrit = clanBonus.critChance > 0 ? clanBonus.critChance * 100 : 0;
-    const totalCritChance = baseCrit + clanCrit + (activeBuffs.letalidade || 0);
-    const isCrit = Math.random() * 100 <= totalCritChance;
+    const isCrit = clanBonus.critChance > 0 && Math.random() < clanBonus.critChance;
     const defReduction = clanBonus.armorPen > 0 ? Math.floor(npcDef * clanBonus.armorPen) : 0;
     
     // Passivas de Invocação
@@ -749,10 +747,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const bonusCusto = getJutsuEnhancementBonus(jutsu, 'custo');
     const bonusDano = getJutsuEnhancementBonus(jutsu, 'dano');
     const bonusLetalidade = getJutsuEnhancementBonus(jutsu, 'letalidade');
-    const bonusProtecao = getJutsuEnhancementBonus(jutsu, 'protecao');
     
     // Desconto de Selo: 1% de redução de custo de chakra para cada ponto de Selo (máx 50%)
-    const seloDiscount = calculateChakraDiscount(player) * 0.01;
+    const seloDiscount = Math.min(0.5, (player.selo || 0) * 0.01);
     const baseCost = (jutsu.chakraCost || 20) + bonusCusto;
     const cost = Math.floor(Math.max(1, baseCost * (1 - seloDiscount)));
     if (playerCP < cost) { addToast('Chakra insuficiente para usar este jutsu!', 'error'); return; }
@@ -806,27 +803,15 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
     const rawDamage = Math.max(1, magicDmg - Math.floor(npcDef / 2) + summonDamageBonus);
 
-    // Crítico: Base (Engine) + Essência de Letalidade do Jutsu + Buffs Ativos
-    const baseCrit = calculateCritChance(player);
-    const totalCritChance = baseCrit + bonusLetalidade + (activeBuffs.letalidade || 0);
+    // Crítico por Letalidade (Essência)
     const critRoll = Math.random() * 100;
-    const isCrit = critRoll <= totalCritChance;
+    const isCrit = critRoll <= bonusLetalidade;
     const critMult = isCrit ? 1.5 : 1.0;
     
     const damage = Math.floor(rawDamage * mult * critMult);
 
     const newNpcHP = Math.max(0, npcHP - damage);
     setNpcHP(newNpcHP);
-
-    // Aplicação dos Buffs Ativos da Essência deste Jutsu
-    if (bonusProtecao > 0 || bonusLetalidade > 0) {
-      setActiveBuffs({
-        protecao: bonusProtecao,
-        letalidade: bonusLetalidade,
-        duration: 2 // O Buff dura 2 turnos
-      });
-      addLog(`✨ O Jutsu ativou um Buff Temporário (2 turnos)!`);
-    }
 
     playJutsuSound();
     if (isCrit) playCritSound();

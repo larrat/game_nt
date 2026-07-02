@@ -918,6 +918,34 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 </div>
               </div>
             </div>
+
+            {/* PAINEL DE STATUS ATIVOS (PLAYER) */}
+            <div className="flex-row" style={{ marginTop: '12px', gap: '8px', flexWrap: 'wrap' }}>
+              {clanBonus.name && (
+                <div className="badge badge-muted flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
+                  <img src="/images/imgi_24_clans.png" alt="clã" style={{ width: '12px' }} onError={(e) => e.target.style.display = 'none'} />
+                  Clã {clanBonus.name}
+                </div>
+              )}
+              {equippedSummon && (
+                <div className="badge badge-muted flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
+                  <span>{equippedSummon.animal_type === 'Sapo' ? '🐸' : equippedSummon.animal_type === 'Cobra' ? '🐍' : equippedSummon.animal_type === 'Lesma' ? '🐌' : equippedSummon.animal_type === 'Cachorro' ? '🐶' : '🐾'}</span>
+                  {equippedSummon.name}
+                </div>
+              )}
+              {activeBuffs?.duration > 0 && (
+                <div className="badge badge-gold flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
+                  <span>✨</span> Buff Ativo [{activeBuffs.duration}T]
+                  {activeBuffs.protecao > 0 && ` (+${activeBuffs.protecao} Def)`}
+                  {activeBuffs.letalidade > 0 && ` (+${activeBuffs.letalidade}% Crít)`}
+                </div>
+              )}
+              {playerStatus.map(s => (
+                <div key={s.name} className="badge badge-red flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
+                  {s.icon || '🦠'} {s.name} [{s.duration}T]
+                </div>
+              ))}
+            </div>
             
             <div className="flex-col" style={{ marginTop: 'auto' }}>
               <div>
@@ -1011,10 +1039,22 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 </div>
               </div>
               
-              <div className="flex-row" style={{ gap: '8px', minHeight: '24px', marginTop: '8px', flexDirection: 'row-reverse' }}>
-                {npcStatus.map((s, i) => (
-                  <div key={i} className="badge badge-muted flex-row" style={{ gap: '4px', padding: '2px 6px', fontSize: '10px' }}>
-                    <span>{s.duration}</span> <span>{s.icon}</span> 
+              {/* PAINEL DE STATUS ATIVOS (NPC) */}
+              <div className="flex-row" style={{ marginTop: '12px', gap: '8px', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
+                {npcInit?.clan && (
+                  <div className="badge badge-muted flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
+                    <img src="/images/imgi_24_clans.png" alt="clã" style={{ width: '12px' }} onError={(e) => e.target.style.display = 'none'} />
+                    Clã {npcInit.clan}
+                  </div>
+                )}
+                {npcInit?.summon && (
+                  <div className="badge badge-muted flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
+                    <span>🐾</span> {npcInit.summon.name}
+                  </div>
+                )}
+                {npcStatus.map(s => (
+                  <div key={s.name} className="badge badge-red flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
+                    {s.icon || '🦠'} {s.name} [{s.duration}T]
                   </div>
                 ))}
               </div>

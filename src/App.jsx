@@ -6,7 +6,7 @@ import { ToastProvider } from './context/ToastContext';
 
 // Componentes
 import Sidebar from './components/Sidebar';
-// import MissionManager from './components/MissionManager';
+import MissionManager from './components/MissionManager';
 import TopBar from './components/TopBar';
 import Dashboard from './pages/Dashboard';
 import Treino from './pages/Treino';
@@ -19,7 +19,7 @@ import AprimorarJutsus from './pages/AprimorarJutsus';
 import Equipamentos from './pages/Equipamentos';
 import Ranking from './pages/Ranking';
 import Vila from './pages/Vila';
-import Loja from './pages/Loja';
+
 import Mapas from './pages/Mapas';
 import Historico from './pages/Historico';
 import Hospital from './pages/Hospital';
@@ -69,7 +69,7 @@ const VipMissionBlock = ({ player, children }) => {
 const MainLayout = ({ children, playerState, updatePlayer }) => (
   <div className="app">
     <Sidebar player={playerState} />
-    {/* <MissionManager player={playerState} updatePlayer={updatePlayer} /> */}
+    <MissionManager player={playerState} updatePlayer={updatePlayer} />
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
       <TopBar player={playerState} updatePlayer={updatePlayer} />
       <main className="main">{children}</main>

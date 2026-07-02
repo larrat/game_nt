@@ -96,8 +96,17 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const [playerSt, setPlayerSt] = useState(player.stamina !== undefined && player.stamina !== null ? Math.min(player.stamina, maxPlayerSt) : maxPlayerSt);
   
   const [npcHP, setNpcHP] = useState(npcInit?.hp || 1);
-  const [npcCP, setNpcCP] = useState(npcInit?.chakra || 1);
+  const [npcMaxHPVal, setNpcMaxHPVal] = useState(npcInit?.hp || 1);
   const [npcSt, setNpcSt] = useState(npcMaxSt);
+
+  const timeoutRefs = useRef([]);
+
+  useEffect(() => {
+    return () => {
+      // Limpa todos os timeouts órfãos ao desmontar o componente
+      timeoutRefs.current.forEach(clearTimeout);
+    };
+  }, []);
 
   const [playerStatus, setPlayerStatus] = useState([]);
   const [npcStatus, setNpcStatus] = useState([]);
@@ -246,7 +255,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
           handleBasicAttack();
         }
       }, 1000);
-      return () => clearInterval(timer);
+      return () => clearTimeout(timer);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlayerTurn, autoBattle]);
@@ -494,9 +503,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const npcTurn = (currentNpcHP) => {
     if (currentNpcHP <= 0) return;
 
-    setTimeout(() => {
+    const t1 = setTimeout(() => {
       addLog(`${npcInit.name} está atacando...`);
-      setTimeout(() => {
+      const t2 = setTimeout(() => {
         if (npcInit.is_dummy) {
           addLog('🪵 O Boneco de Madeira apenas balança com o vento...');
           startPlayerTurn();
@@ -623,13 +632,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                const newNpcSt = npcSt - staminaCost;
                setNpcSt(newNpcSt);
 
-               if (newNpcSt <= 0) {
-                  addLog(`💨 ${npcInit.name} esgotou toda a Stamina e não consegue mais atacar!`);
-                  setBattleResult('win');
-                  handleWin();
-                  return;
-               }
-               
+
                const dodgeRoll = Math.random() * 100;
                const dodgeChance = calculateDodgeChance(player);
                
@@ -673,7 +676,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
           startPlayerTurn();
         }
       }, 1000);
+      timeoutRefs.current.push(t2);
     }, 1000);
+    timeoutRefs.current.push(t1);
   };
 
   const handleConsumable = async (cons) => {
@@ -774,7 +779,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
   };
 
-  const handleJutsu = (jutsu) => {
+  const handleJutsu = async (jutsu) => {
     if (!isPlayerTurn || battleResult) return;
 
     // --- VERIFICAR COOLDOWN ---
@@ -793,8 +798,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     
     // Desconto de Selo: 1% de redução de custo de chakra para cada ponto de Selo (máx 50%)
     const seloDiscount = calculateChakraDiscount(player) * 0.01;
-    const baseCost = (jutsu.chakraCost || 20) + bonusCusto;
-    const cost = Math.floor(Math.max(1, baseCost * (1 - seloDiscount)));
+    const originalCost = jutsu.chakraCost || 20;
+    const baseCost = originalCost + bonusCusto;
+    const cost = Math.floor(Math.max(originalCost * 0.1, Math.max(1, baseCost * (1 - seloDiscount))));
     if (playerCP < cost) { addToast('Chakra insuficiente para usar este jutsu!', 'error'); return; }
 
     setIsPlayerTurn(false);
@@ -814,7 +820,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
 
     const newDailyChakra = (player.daily_chakra_spent || 0) + cost;
-    supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
+    await supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
     
     const jutsuAccuracy = jutsu.accuracy || 100;
     const totalAccuracy = jutsuAccuracy + (playerPrecision / 2) - globalDebuffs.accuracyPenalty;
@@ -1057,6 +1063,15 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               </div>
             </div>
             
+            {/* PAINEL DE STATUS ATIVOS (NPC) */}
+            <div className="flex-row" style={{ marginTop: '12px', gap: '8px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+              {npcStatus.map(s => (
+                <div key={s.name} className="badge badge-red flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
+                  {s.icon || '🦠'} {s.name} [{s.duration}T]
+                </div>
+              ))}
+            </div>
+
             <div className="flex-col" style={{ marginTop: 'auto' }}>
               <div>
                 <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '8px', flexDirection: 'row-reverse' }}>
@@ -1169,9 +1184,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                  const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
                  const estDamage = Math.max(1, magicDmg - Math.floor(npcDef / 2));
                  
-                 const seloDiscount = Math.min(0.5, (player.selo || 0) * 0.01);
-                 const baseCost = (jutsu.chakraCost || 20) + bonusCusto;
-                 const cost = Math.floor(Math.max(1, baseCost * (1 - seloDiscount)));
+                 const seloDiscount = Math.min(0.5, (player.selos || 0) * 0.01);
+                 const originalCost = jutsu.chakraCost || 20;
+                 const baseCost = originalCost + bonusCusto;
+                 const cost = Math.floor(Math.max(originalCost * 0.1, Math.max(1, baseCost * (1 - seloDiscount))));
                  
                  const hasEssences = bonusDano > 0 || bonusCusto < 0 || bonusLetalidade > 0;
                  const jutsuLevel = jutsu.level || 1;

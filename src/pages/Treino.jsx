@@ -21,6 +21,7 @@ export default function Treino({ player, updatePlayer }) {
   const [loading, setLoading] = useState(false);
   const [attrsData, setAttrsData] = useState([]);
   const [ranksData, setRanksData] = useState([]);
+  const [flashAttr, setFlashAttr] = useState(null);
   const { addToast } = useToast();
 
   React.useEffect(() => {
@@ -92,6 +93,8 @@ export default function Treino({ player, updatePlayer }) {
     } else {
       addToast(`Treinamento concluído! Você ganhou +${totalGained} em ${label} (Rolou ${roll} + ${bonus} Bônus)`, 'success');
       await updatePlayer(player.user_id);
+      setFlashAttr(field);
+      setTimeout(() => setFlashAttr(null), 800);
     }
     setLoading(false);
   };
@@ -153,7 +156,19 @@ export default function Treino({ player, updatePlayer }) {
                   <div className="flex-col">
                     <div className="flex-row" style={{ gap: '8px', alignItems: 'center', marginBottom: '2px' }}>
                       <span className="paper uppercase" style={{ fontSize: '13px', fontWeight: 'bold' }}>{label}</span>
-                      <span className="mono" style={{ fontSize: '11px', background: `${attrDesc[field]?.color}20`, color: attrDesc[field]?.color, borderRadius: '3px', padding: '1px 6px', border: `1px solid ${attrDesc[field]?.color}40` }}>{totalValue} pts {equipValue > 0 ? `(+${equipValue} Equip)` : ''}</span>
+                      <span className="mono" style={{ 
+                        fontSize: '11px', 
+                        background: `${attrDesc[field]?.color}20`, 
+                        color: attrDesc[field]?.color, 
+                        borderRadius: '3px', 
+                        padding: '1px 6px', 
+                        border: `1px solid ${attrDesc[field]?.color}40`,
+                        transition: 'all 0.3s ease',
+                        transform: flashAttr === field ? 'scale(1.2)' : 'scale(1)',
+                        boxShadow: flashAttr === field ? `0 0 15px ${attrDesc[field]?.color}` : 'none'
+                      }}>
+                        {totalValue} pts {equipValue > 0 ? `(+${equipValue} Equip)` : ''}
+                      </span>
                     </div>
                     <span style={{ fontSize: '11px', color: attrDesc[field]?.color, marginBottom: '1px' }}>{attrDesc[field]?.text}</span>
                     <span className="muted" style={{ fontSize: '10px', lineHeight: '1.4', maxWidth: '280px' }}>{attrDesc[field]?.detail}</span>

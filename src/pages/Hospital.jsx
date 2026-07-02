@@ -10,7 +10,7 @@ export default function Hospital({ player, updatePlayer }) {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
-  const isCuringRef = useRef(false);
+  const [isRecovered, setIsRecovered] = useState(false);
 
   const RECOVERY_TIME_MINUTES = 5;
   const RECOVERY_TIME_MS = RECOVERY_TIME_MINUTES * 60 * 1000;
@@ -40,11 +40,11 @@ export default function Hospital({ player, updatePlayer }) {
       const diff = targetTime - now;
       if (diff <= 0) {
         setTimeLeft(0);
-        if (!isCuringRef.current) {
-          isCuringRef.current = true;
-          handleCure(false);
-        }
+        setIsRecovered(true);
       } else {
+        setTimeLeft(Math.ceil(diff / 1000));
+        setIsRecovered(false);
+      }
         setTimeLeft(Math.ceil(diff / 1000));
       }
     };
@@ -108,40 +108,50 @@ export default function Hospital({ player, updatePlayer }) {
       background: 'rgba(224, 54, 63, 0.05)'
     }}>
       <div className="card-glass" style={{ maxWidth: '480px', width: '100%', textAlign: 'center', padding: '40px 24px' }}>
-        <div style={{ fontSize: '48px', marginBottom: '16px' }}>🏥</div>
-        <h1 className="page-title danger" style={{ fontSize: '28px', marginBottom: '8px' }}>Hospital da Vila</h1>
-        <p className="muted" style={{ marginBottom: '24px' }}>
-          Você desmaiou de exaustão ou ferimentos graves em sua última batalha. 
-          As ninjas médicas estão cuidando de você.
-        </p>
-
-        <div className="card" style={{ background: 'var(--ink-raised)', borderColor: 'var(--seal-bright)', marginBottom: '24px' }}>
-          <div className="eyebrow danger" style={{ marginBottom: '8px' }}>Tempo para Alta Médica</div>
-          <div className="mono" style={{ fontSize: '32px', color: timeLeft === 0 ? 'var(--green)' : 'var(--paper)' }}>
-            {timeLeft > 0 ? formatTime(timeLeft) : 'Recuperado!'}
-          </div>
-        </div>
-
-        <div className="flex-col" style={{ gap: '12px' }}>
-          <button 
-            className="btn-primary" 
-            onClick={() => handleCure(false)} 
-            disabled={timeLeft > 0 || loading}
-            style={{ opacity: timeLeft > 0 ? 0.5 : 1 }}
-          >
-            <span>{loading ? 'Saindo...' : 'Receber Alta Gratuita'}</span>
-            <div className="stamp"></div>
-          </button>
-
-          <button 
-            className="btn-ghost" 
-            onClick={() => handleCure(true)} 
-            disabled={timeLeft === 0 || loading}
-            style={{ borderColor: 'var(--gold)', color: 'var(--gold)' }}
-          >
-            Pagar Tratamento Vip ({cureCost} Ryous)
-          </button>
-        </div>
+        {isRecovered ? (
+          <>
+            <div style={{ fontSize: '48px', marginBottom: '16px' }}>🌟</div>
+            <h3 className="paper" style={{ fontSize: '24px', marginBottom: '8px' }}>Recuperação Concluída</h3>
+            <p className="muted" style={{ marginBottom: '24px' }}>
+              Seu corpo se recuperou totalmente. Você já pode voltar para suas missões.
+            </p>
+            <button 
+              className="btn-primary" 
+              onClick={() => handleCure(false)} 
+              disabled={loading}
+              style={{ fontSize: '18px', padding: '12px 32px' }}
+            >
+              {loading ? 'Recebendo Alta...' : 'Receber Alta e Voltar'}
+            </button>
+          </>
+        ) : (
+          <>
+            <div style={{ fontSize: '48px', marginBottom: '16px' }}>⏳</div>
+            <h3 className="paper" style={{ fontSize: '24px', marginBottom: '8px' }}>Tempo Restante</h3>
+            <div className="mono danger" style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '24px' }}>
+              {formatTime(timeLeft)}
+            </div>
+            <div className="muted mono" style={{ fontSize: '12px', marginBottom: '24px', opacity: 0.8 }}>
+              O hospital da vila está cuidando de seus ferimentos...
+            </div>
+            
+            <div style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)' }}>
+              <p className="paper" style={{ marginBottom: '12px', fontSize: '14px' }}>Deseja acelerar sua recuperação?</p>
+              <button 
+                className="btn-primary" 
+                onClick={() => handleCure(true)} 
+                disabled={loading || player.ryous < cureCost}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              >
+                <img src="/images/imgi_20_ryou.png" alt="ryous" style={{ width: '16px' }} onError={(e) => e.target.style.display='none'} />
+                Pagar {cureCost} Ryous
+              </button>
+              {player.ryous < cureCost && (
+                <div className="danger mono" style={{ fontSize: '10px', marginTop: '8px' }}>Ryous Insuficientes</div>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

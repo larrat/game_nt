@@ -12,6 +12,41 @@ const VILLAGES = {
   4: 'Pedra', 5: 'Nuvem', 6: 'Som', 7: 'Chuva', 8: 'Akatsuki'
 };
 
+const DailyTaskItem = ({ 
+  taskId, title, titleIcon, rewardText, 
+  progressValue, progressMax, progressColor, 
+  claimedList, handleClaimTask, claiming 
+}) => {
+  const progressPercent = Math.min(100, (progressValue / progressMax) * 100);
+  const isDone = progressValue >= progressMax;
+  const isClaimed = claimedList.includes(taskId);
+
+  return (
+    <div style={{ background: 'var(--ink-raised)', padding: '12px', borderRadius: '6px', border: '1px solid var(--line)' }}>
+      <div className="flex-between" style={{ marginBottom: '8px' }}>
+        <span className="paper flex-row" style={{ fontSize: '13px', alignItems: 'center', gap: '6px' }}>
+          <img src={titleIcon} style={{ width: '12px' }} alt="Icon" /> {title}
+        </span>
+        <span className="mono gold flex-row" style={{ fontSize: '11px', alignItems: 'center', gap: '4px' }}>
+          <img src="/images/imgi_20_ryous.png" style={{ width: '10px' }} alt="Ryous" /> {rewardText}
+        </span>
+      </div>
+      <div className="flex-between" style={{ alignItems: 'center', gap: '12px' }}>
+        <div className="progress-track" style={{ flex: 1, height: '6px' }}>
+          <div className={`progress-fill ${progressColor}`} style={{ width: `${progressPercent}%` }} />
+        </div>
+        {isClaimed ? (
+          <span className="success mono" style={{ fontSize: '10px' }}>✓ FEITO</span>
+        ) : isDone ? (
+          <button className="btn-ghost" onClick={() => handleClaimTask(taskId, 'ryous', 20)} disabled={claiming} style={{ padding: '4px 8px', fontSize: '10px', borderColor: 'var(--seal-bright)', color: 'var(--seal-bright)' }}>RESGATAR</button>
+        ) : (
+          <span className="muted mono" style={{ fontSize: '10px' }}>{progressValue}/{progressMax}</span>
+        )}
+      </div>
+    </div>
+  );
+};
+
 export default function Dashboard({ player, updatePlayer }) {
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
   const [claiming, setClaiming] = useState(false);
@@ -598,76 +633,46 @@ export default function Dashboard({ player, updatePlayer }) {
             <div className="flex-col" style={{ gap: '12px' }}>
 
               {/* Tarefa 1 */}
-              <div style={{ background: 'var(--ink-raised)', padding: '12px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                <div className="flex-between" style={{ marginBottom: '8px' }}>
-                  <span className="paper flex-row" style={{ fontSize: '13px', alignItems: 'center', gap: '6px' }}>
-                    <img src="/images/imgi_112_1.png" style={{ width: '12px' }} alt="NPC" /> Derrote 3 inimigos
-                  </span>
-                  <span className="mono gold flex-row" style={{ fontSize: '11px', alignItems: 'center', gap: '4px' }}>
-                    <img src="/images/imgi_20_ryous.png" style={{ width: '10px' }} alt="Ryous" /> RY$ 20
-                  </span>
-                </div>
-                <div className="flex-between" style={{ alignItems: 'center', gap: '12px' }}>
-                  <div className="progress-track" style={{ flex: 1, height: '6px' }}>
-                    <div className="progress-fill green" style={{ width: `${Math.min(100, ((player.daily_npcs_defeated || 0) / 3) * 100)}%` }} />
-                  </div>
-                  {claimedList.includes('t1') ? (
-                    <span className="success mono" style={{ fontSize: '10px' }}>✓ FEITO</span>
-                  ) : (player.daily_npcs_defeated || 0) >= 3 ? (
-                    <button className="btn-ghost" onClick={() => handleClaimTask('t1', 'ryous', 20)} disabled={claiming} style={{ padding: '4px 8px', fontSize: '10px', borderColor: 'var(--seal-bright)', color: 'var(--seal-bright)' }}>RESGATAR</button>
-                  ) : (
-                    <span className="muted mono" style={{ fontSize: '10px' }}>{(player.daily_npcs_defeated || 0)}/3</span>
-                  )}
-                </div>
-              </div>
+              <DailyTaskItem 
+                taskId="t1" 
+                title="Derrote 3 inimigos" 
+                titleIcon="/images/imgi_112_1.png" 
+                rewardText="RY$ 20" 
+                progressValue={player.daily_npcs_defeated || 0} 
+                progressMax={3} 
+                progressColor="green" 
+                claimedList={claimedList} 
+                handleClaimTask={handleClaimTask} 
+                claiming={claiming} 
+              />
 
               {/* Tarefa 2 */}
-              <div style={{ background: 'var(--ink-raised)', padding: '12px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                <div className="flex-between" style={{ marginBottom: '8px' }}>
-                  <span className="paper flex-row" style={{ fontSize: '13px', alignItems: 'center', gap: '6px' }}>
-                    <img src="/images/imgi_9_chakra.png" style={{ width: '12px' }} alt="Chakra" /> Gaste 100 de Chakra
-                  </span>
-                  <span className="mono gold flex-row" style={{ fontSize: '11px', alignItems: 'center', gap: '4px' }}>
-                    <img src="/images/imgi_20_ryous.png" style={{ width: '10px' }} alt="Ryous" /> RY$ 20
-                  </span>
-                </div>
-                <div className="flex-between" style={{ alignItems: 'center', gap: '12px' }}>
-                  <div className="progress-track" style={{ flex: 1, height: '6px' }}>
-                    <div className="progress-fill blue" style={{ width: `${Math.min(100, ((player.daily_chakra_spent || 0) / 100) * 100)}%` }} />
-                  </div>
-                  {claimedList.includes('t2') ? (
-                    <span className="success mono" style={{ fontSize: '10px' }}>✓ FEITO</span>
-                  ) : (player.daily_chakra_spent || 0) >= 100 ? (
-                    <button className="btn-ghost" onClick={() => handleClaimTask('t2', 'ryous', 20)} disabled={claiming} style={{ padding: '4px 8px', fontSize: '10px', borderColor: 'var(--seal-bright)', color: 'var(--seal-bright)' }}>RESGATAR</button>
-                  ) : (
-                    <span className="muted mono" style={{ fontSize: '10px' }}>{(player.daily_chakra_spent || 0)}/100</span>
-                  )}
-                </div>
-              </div>
+              <DailyTaskItem 
+                taskId="t2" 
+                title="Gaste 100 de Chakra" 
+                titleIcon="/images/imgi_9_chakra.png" 
+                rewardText="RY$ 20" 
+                progressValue={player.daily_chakra_spent || 0} 
+                progressMax={100} 
+                progressColor="blue" 
+                claimedList={claimedList} 
+                handleClaimTask={handleClaimTask} 
+                claiming={claiming} 
+              />
 
               {/* Tarefa 3 */}
-              <div style={{ background: 'var(--ink-raised)', padding: '12px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                <div className="flex-between" style={{ marginBottom: '8px' }}>
-                  <span className="paper flex-row" style={{ fontSize: '13px', alignItems: 'center', gap: '6px' }}>
-                    <img src="/images/imgi_10_stamina.png" style={{ width: '12px' }} alt="Stamina" /> Treine 1 vez
-                  </span>
-                  <span className="mono gold flex-row" style={{ fontSize: '11px', alignItems: 'center', gap: '4px' }}>
-                    <img src="/images/imgi_20_ryous.png" style={{ width: '10px' }} alt="Ryous" /> RY$ 20
-                  </span>
-                </div>
-                <div className="flex-between" style={{ alignItems: 'center', gap: '12px' }}>
-                  <div className="progress-track" style={{ flex: 1, height: '6px' }}>
-                    <div className="progress-fill red" style={{ width: `${Math.min(100, ((player.daily_trainings || 0) / 1) * 100)}%` }} />
-                  </div>
-                  {claimedList.includes('t3') ? (
-                    <span className="success mono" style={{ fontSize: '10px' }}>✓ FEITO</span>
-                  ) : (player.daily_trainings || 0) >= 1 ? (
-                    <button className="btn-ghost" onClick={() => handleClaimTask('t3', 'ryous', 20)} disabled={claiming} style={{ padding: '4px 8px', fontSize: '10px', borderColor: 'var(--seal-bright)', color: 'var(--seal-bright)' }}>RESGATAR</button>
-                  ) : (
-                    <span className="muted mono" style={{ fontSize: '10px' }}>{(player.daily_trainings || 0)}/1</span>
-                  )}
-                </div>
-              </div>
+              <DailyTaskItem 
+                taskId="t3" 
+                title="Treine 1 vez" 
+                titleIcon="/images/imgi_10_stamina.png" 
+                rewardText="RY$ 20" 
+                progressValue={player.daily_trainings || 0} 
+                progressMax={1} 
+                progressColor="red" 
+                claimedList={claimedList} 
+                handleClaimTask={handleClaimTask} 
+                claiming={claiming} 
+              />
 
               {/* Baú Diário de Esforço */}
               <div style={{ background: 'var(--ink-card)', padding: '16px', borderRadius: '6px', border: '1px solid var(--gold)', marginTop: '8px', textAlign: 'center' }}>

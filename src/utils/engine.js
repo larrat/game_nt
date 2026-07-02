@@ -136,6 +136,16 @@ export const calculateMagDef = (player) => {
   return Math.floor(def);
 };
 
+// =====================================================
+// COMPATIBILIDADE COM COMPONENTES ANTIGOS
+// =====================================================
+
+// Alguns componentes ainda importam estes nomes.
+// Mantemos estes aliases para evitar erros de import.
+
+export const calculateDefTaiBuk = (player) => calculateFisDef(player);
+
+export const calculateDefNinGen = (player) => calculateMagDef(player);
 // Fórmulas Secundárias (Baseados nas novas regras do RPG Master)
 export const calculateCritChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 10));
 export const calculateDodgeChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 10));
@@ -247,7 +257,7 @@ export const getGlobalDebuffs = (activeBoss) => {
 
   const currentHP = Number(activeBoss.boss_hp);
   const maxHP = Number(activeBoss.boss_max_hp);
-  
+
   if (isNaN(currentHP) || isNaN(maxHP) || maxHP <= 0) return debuffs;
 
   const hpPercent = (currentHP / maxHP) * 100;
@@ -320,7 +330,7 @@ export const getIchirakuStaminaBonus = (player) => {
 export const getJutsuEnhancementBonus = (jutsu, statName) => {
   if (!jutsu) return 0;
   let total = 0;
-  
+
   // 1. Lendo os atributos já absorvidos de níveis anteriores
   if (jutsu.absorbed_stats && jutsu.absorbed_stats[statName]) {
     total += jutsu.absorbed_stats[statName];
@@ -357,9 +367,9 @@ export const getJutsuEnhancementBonus = (jutsu, statName) => {
 
 export const getDynamicNpcJutsus = (npc) => {
   if (!npc.element) return [];
-  
+
   const jutsus = [];
-  
+
   // Jutsu Básico (Genin+)
   jutsus.push({
     name: `Liberação de ${npc.element}: Jutsu Básico`,
@@ -400,7 +410,7 @@ export const getDynamicNpcJutsus = (npc) => {
 export const generateDynamicRogueNinja = (player, extraLevelBonus = 0) => {
   const levelDiff = Math.floor(Math.random() * 3) - 1; // -1 a +1
   const npcLevel = Math.max(1, player.level + levelDiff + extraLevelBonus);
-  
+
   // Definição de Rank baseada no Level
   let rank = 'Genin';
   if (npcLevel >= 25) rank = 'Jounin';
@@ -408,39 +418,39 @@ export const generateDynamicRogueNinja = (player, extraLevelBonus = 0) => {
 
   const elements = ["Katon", "Futon", "Suiton", "Doton", "Raiton"];
   const element = elements[Math.floor(Math.random() * elements.length)];
-  
+
   const clans = ["Uchiha", "Senju", "Hyuga", "Uzumaki", "Inuzuka", "Aburame", "Akimichi", "Nara", "Yamanaka", "Hozuki", "Kaguya", "Yuki"];
   const clan = clans[Math.floor(Math.random() * clans.length)];
-  const titles = rank === 'Jounin' ? ["Líder Sanguinário", "Mestre das Sombras", "Kage Renegado"] 
-               : rank === 'Chunin' ? ["Assassino", "Mercenário Oculto", "Batedor"] 
-               : ["Renegado", "Desgarrado", "Ladrão"];
+  const titles = rank === 'Jounin' ? ["Líder Sanguinário", "Mestre das Sombras", "Kage Renegado"]
+    : rank === 'Chunin' ? ["Assassino", "Mercenário Oculto", "Batedor"]
+      : ["Renegado", "Desgarrado", "Ladrão"];
   const title = titles[Math.floor(Math.random() * titles.length)];
-  
+
   const avatars = rank === 'Jounin' ? ["👹", "👺", "💀"] : rank === 'Chunin' ? ["🥷", "👻", "🗡️"] : ["👤", "👺", "🥷"];
 
   const attributesList = ["forca", "agilidade", "resistencia", "inteligencia", "energia", "ninjutsu", "taijutsu", "genjutsu", "bukijutsu", "selo"];
-  
+
   // Calcula o total de pontos que o jogador tem
   let totalStats = attributesList.reduce((acc, stat) => acc + (player[stat] || 5), 0);
-  
+
   // Bônus adicional pelas zonas de risco (extraLevelBonus)
   // Cada nível a mais concede +5 atributos. Inimigos Jounin também ganham bônus maciço extra.
   totalStats += (extraLevelBonus * 5);
   if (rank === 'Chunin') totalStats += 20;
   if (rank === 'Jounin') totalStats += 50;
-  
+
   const npcStats = {
-     forca: 5, agilidade: 5, resistencia: 5, inteligencia: 5, energia: 5,
-     ninjutsu: 5, taijutsu: 5, genjutsu: 5, bukijutsu: 5, selo: 5
+    forca: 5, agilidade: 5, resistencia: 5, inteligencia: 5, energia: 5,
+    ninjutsu: 5, taijutsu: 5, genjutsu: 5, bukijutsu: 5, selo: 5
   };
-  
+
   let statsToDistribute = Math.max(0, totalStats - 50); // subtract the base 5 per stat
   while (statsToDistribute > 0) {
-     const randomAttr = attributesList[Math.floor(Math.random() * attributesList.length)];
-     npcStats[randomAttr]++;
-     statsToDistribute--;
+    const randomAttr = attributesList[Math.floor(Math.random() * attributesList.length)];
+    npcStats[randomAttr]++;
+    statsToDistribute--;
   }
-  
+
   // Opcional: Invocação se for Chunin+
   let npcSummon = null;
   if (rank === 'Chunin' || rank === 'Jounin') {
@@ -468,35 +478,35 @@ export const generateDynamicRogueNinja = (player, extraLevelBonus = 0) => {
     summon: npcSummon,
     ...npcStats
   };
-  
+
   npc.hp = calculateHP(npc);
   npc.chakra = calculateChakra(npc);
   npc.activeJutsus = getDynamicNpcJutsus(npc);
-  
+
   return npc;
 };
 
 export const scaleStoryNPC = (npc, player) => {
   if (!npc || !player) return npc;
-  
+
   // O level do NPC original serve como "multiplicador de dificuldade/rank"
   // Ex: Um boss level 10 original deve ser mais difícil que um level 5.
   // Escala dinâmica: NPC Level = Player Level + (Original Level / 5)
   const diffScale = Math.floor((npc.level || 1) / 5);
   const newLevel = Math.max(npc.level || 1, player.level + diffScale);
-  
+
   const scaledNPC = { ...npc, level: newLevel };
-  
+
   // Se o NPC não tem status separados (apenas atk e def clássicos)
   // Escalamos o atk, def e hp de forma bruta baseada no novo level.
   if (!scaledNPC.ninjutsu && !scaledNPC.taijutsu) {
     // Multiplicador com base no level escalado comparado ao player
     const scaleRatio = newLevel / Math.max(1, player.level);
-    
+
     // Tentamos usar o atk/def base do banco (ou fallback)
     const baseAtk = scaledNPC.atk || 15;
     const baseDef = scaledNPC.def || 10;
-    
+
     // Suavizamos o multiplicador para levels baixos
     const earlyGameNerf = player.level < 15 ? 0.7 : 1.0;
     scaledNPC.atk = Math.floor((baseAtk * scaleRatio * earlyGameNerf) + (newLevel * 4));
@@ -504,15 +514,15 @@ export const scaleStoryNPC = (npc, player) => {
     scaledNPC.hp = Math.floor(((scaledNPC.hp || 100) + (newLevel * 50)) * earlyGameNerf);
     scaledNPC.chakra = Math.floor(((scaledNPC.chakra || 50) + (newLevel * 25)) * earlyGameNerf);
   }
-  
+
   // Atualiza as recompensas dinamicamente também
   scaledNPC.xpReward = Math.floor((newLevel * 60) + 200);
   scaledNPC.ryouReward = Math.floor((newLevel * 30) + 100);
-  
+
   // Se não tiver jutsus, adiciona o dinâmico
   if (!scaledNPC.activeJutsus || scaledNPC.activeJutsus.length === 0) {
     scaledNPC.activeJutsus = getDynamicNpcJutsus(scaledNPC);
   }
-  
+
   return scaledNPC;
 };

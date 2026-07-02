@@ -1,0 +1,1 @@
+ALTER TABLE players ADD COLUMN passou_exame_chunin BOOLEAN DEFAULT FALSE;

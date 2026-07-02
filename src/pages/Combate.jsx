@@ -83,8 +83,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const npcDef = isMirror ? calculateDefNinGen(npcInit) : (npcInit?.def || 0);
 
   // Estados da Batalha
-  const [playerHP, setPlayerHP] = useState(maxPlayerHP);
-  const [playerCP, setPlayerCP] = useState(maxPlayerCP);
+  const [playerHP, setPlayerHP] = useState(location.state?.isExame && player.hp !== undefined ? player.hp : maxPlayerHP);
+  const [playerCP, setPlayerCP] = useState(location.state?.isExame && player.chakra !== undefined ? player.chakra : maxPlayerCP);
   const [playerSt, setPlayerSt] = useState(maxPlayerSt);
   
   const [npcHP, setNpcHP] = useState(npcInit?.hp || 1);
@@ -1013,8 +1013,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                );
             })}
 
-            {/* Consumíveis */}
-            {player.consumables?.filter(c => c.quantity > 0).map((cons, idx) => (
+            {/* Consumíveis (Bloqueado no Exame) */}
+            {location.state?.isExame ? (
+              <div className="flex-col" style={{ alignItems: 'center', padding: '16px', border: '1px dashed #ef4444', color: '#ef4444', opacity: 0.7, marginTop: '8px' }}>
+                <span style={{ fontSize: '20px', marginBottom: '8px' }}>🚫</span>
+                <span style={{ fontSize: '12px', textAlign: 'center' }}>Uso de itens proibido no Exame Chunin!</span>
+              </div>
+            ) : (
+              player.consumables?.filter(c => c.quantity > 0).map((cons, idx) => (
                <button 
                  key={`cons-${idx}`}
                  className="btn-ghost flex-col"
@@ -1027,7 +1033,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                  </div>
                  <div className="mono" style={{ fontSize: "10px", color: "#10b981" }}>+{cons.effect_value} {cons.type.toUpperCase()}</div>
                </button>
-            ))}
+              ))
+            )}
 
             <button 
               className="btn-ghost flex-row" 
@@ -1057,7 +1064,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               <p className="muted" style={{ marginBottom: '16px' }}>Você causou um total de <strong className="danger" style={{ fontSize: '18px' }}>{accumulatedDamage}</strong> de dano ao Chefe Global!</p>
             )}
 
-            <button className="btn-primary" onClick={battleResult === 'world_boss_end' ? handleWorldBossEnd : () => navigate(battleResult === 'win' ? (location.state?.fromMap ? '/mapa' : '/dojo') : '/hospital')} disabled={loading}>
+            <button className="btn-primary" onClick={battleResult === 'world_boss_end' ? handleWorldBossEnd : () => navigate(battleResult === 'win' ? (location.state?.isExame ? '/exame' : (location.state?.fromMap ? '/mapa' : '/dojo')) : (location.state?.isExame ? '/exame' : '/hospital'), { state: { roundWon: battleResult === 'win' ? location.state?.exameRound : null } })} disabled={loading}>
               <span>{loading ? 'Retornando...' : (battleResult === 'win' ? 'Retornar' : 'Ir para o Hospital')}</span>
               <div className="stamp"></div>
             </button>

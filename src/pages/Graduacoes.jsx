@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 
 export default function Graduacoes({ player, updatePlayer }) {
@@ -9,6 +10,7 @@ export default function Graduacoes({ player, updatePlayer }) {
   const [ranksData, setRanksData] = useState([]);
   const [isCeremonyActive, setIsCeremonyActive] = useState(false);
   const [newRank, setNewRank] = useState('');
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     async function fetchRanks() {
@@ -35,6 +37,13 @@ export default function Graduacoes({ player, updatePlayer }) {
           if (r.req_missions_s > 0) reqs.push({ label: `Completar ${r.req_missions_s} Missões Rank S`, check: (p) => (p.missions_s || 0) >= r.req_missions_s, progress: (p) => `${p.missions_s || 0}/${r.req_missions_s}` });
           
           // Novos requisitos
+          if (r.name_id === 'Chunin') {
+            reqs.push({
+              label: 'Aprovação na Floresta da Morte (Exame Chunin)',
+              check: (p) => p.passou_exame_chunin === true,
+              progress: (p) => p.passou_exame_chunin ? '1/1' : '0/1'
+            });
+          }
           if (r.req_jutsus_lvl2 > 0) reqs.push({ label: `Ter ${r.req_jutsus_lvl2} Jutsus Nível 2+`, check: (p) => (p.jutsus_learned?.filter(j => (j.level || 1) >= 2).length || 0) >= r.req_jutsus_lvl2, progress: (p) => `${p.jutsus_learned?.filter(j => (j.level || 1) >= 2).length || 0}/${r.req_jutsus_lvl2}` });
           if (r.req_jutsus_lvl3 > 0) reqs.push({ label: `Ter ${r.req_jutsus_lvl3} Jutsus Nível 3+`, check: (p) => (p.jutsus_learned?.filter(j => (j.level || 1) >= 3).length || 0) >= r.req_jutsus_lvl3, progress: (p) => `${p.jutsus_learned?.filter(j => (j.level || 1) >= 3).length || 0}/${r.req_jutsus_lvl3}` });
           if (r.req_bingo_book > 0) reqs.push({ label: `Derrotar ${r.req_bingo_book} Alvos do Bingo Book`, check: (p) => (p.bingo_book_kills || 0) >= r.req_bingo_book, progress: (p) => `${p.bingo_book_kills || 0}/${r.req_bingo_book}` });
@@ -147,15 +156,26 @@ export default function Graduacoes({ player, updatePlayer }) {
               })}
             </div>
 
-            <button 
-              className="btn btn-primary" 
-              style={{ width: '100%', opacity: canGraduate ? 1 : 0.5, cursor: canGraduate ? 'pointer' : 'not-allowed' }}
-              disabled={!canGraduate} 
-              onClick={() => graduarPara(nextRank.id)}
-            >
-              <span>{canGraduate ? 'Realizar Exame Ninja' : 'Requisitos Incompletos'}</span>
-              <div className="stamp"></div>
-            </button>
+            {nextRank.id === 'Chunin' && !player.passou_exame_chunin ? (
+              <button 
+                className="btn btn-primary" 
+                style={{ width: '100%' }}
+                onClick={() => navigate('/exame')}
+              >
+                <span>Ir para a Floresta da Morte</span>
+                <div className="stamp"></div>
+              </button>
+            ) : (
+              <button 
+                className="btn btn-primary" 
+                style={{ width: '100%', opacity: canGraduate ? 1 : 0.5, cursor: canGraduate ? 'pointer' : 'not-allowed' }}
+                disabled={!canGraduate} 
+                onClick={() => graduarPara(nextRank.id)}
+              >
+                <span>{canGraduate ? 'Graduar Ninja' : 'Requisitos Incompletos'}</span>
+                <div className="stamp"></div>
+              </button>
+            )}
           </div>
         )}
       </div>

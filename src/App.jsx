@@ -29,6 +29,7 @@ import Evento from './pages/Evento';
 import Portoes from './pages/Portoes';
 import Ichiraku from './pages/Ichiraku';
 import Exame from './pages/Exame';
+import Invocacoes from './pages/Invocacoes';
 
 // Novas telas Fullscreen (Lote 1)
 import Login from './pages/Login';
@@ -237,6 +238,7 @@ function App() {
             <Route path="/evento" element={<Evento player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/exame" element={<Exame player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="/ichiraku" element={<Ichiraku player={playerState} updatePlayer={updatePlayer} />} />
+            <Route path="/invocacoes" element={<Invocacoes player={playerState} updatePlayer={updatePlayer} />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </MainLayout>

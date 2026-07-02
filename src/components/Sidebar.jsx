@@ -27,6 +27,7 @@ const NAV = [
     group: 'Linhagem',
     items: [
       { to: '/clas', icon: '/images/imgi_32_star.png', label: 'Clãs' },
+      { to: '/invocacoes', icon: '🐾', label: 'Invocações' },
     ]
   },
   {

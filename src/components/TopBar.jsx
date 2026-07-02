@@ -36,6 +36,26 @@ export default function TopBar({ player, updatePlayer }) {
     setPrevRyous(player?.ryous || 0);
   }, [player?.ryous]);
 
+  // Regen passivo de HP/Chakra/Stamina a cada 15 segundos
+  React.useEffect(() => {
+    if (!player || player.is_fainted) return;
+    const interval = setInterval(async () => {
+      const maxH = calculateHP(player);
+      const maxC = calculateChakra(player);
+      const maxS = calculateStamina(player);
+      const cH = player.hp ?? maxH;
+      const cC = player.chakra ?? maxC;
+      const cS = player.stamina ?? maxS;
+      if (cH >= maxH && cC >= maxC && cS >= maxS) return;
+      const newH = Math.min(maxH, cH + Math.max(1, Math.floor(maxH * 0.1)));
+      const newC = Math.min(maxC, cC + Math.max(1, Math.floor(maxC * 0.1)));
+      const newS = Math.min(maxS, cS + Math.max(1, Math.floor(maxS * 0.1)));
+      await supabase.from('players').update({ hp: newH, chakra: newC, stamina: newS }).eq('id', player.id);
+      if (updatePlayer) updatePlayer();
+    }, 15000);
+    return () => clearInterval(interval);
+  }, [player?.id, player?.hp, player?.chakra, player?.stamina]);
+
   if (!player) return null;
 
   const maxHp = calculateHP(player);
@@ -93,19 +113,19 @@ export default function TopBar({ player, updatePlayer }) {
           )}
         </div>
         <div>
-          <div className="flex-row" style={{ gap: '8px', alignItems: 'baseline', marginBottom: '2px' }}>
-            <div className="gold mono uppercase" style={{ fontSize: '10px', letterSpacing: '1px' }}>
-              Nível {player.level || 1} • {player.rank || 'Estudante'} • Vila da {VILLAGES[player.village_id]}
+          <div className="gold mono uppercase" style={{ fontSize: '10px', letterSpacing: '1px', marginBottom: '2px' }}>
+            Nível {player.level || 1} • {player.rank || 'Estudante'} • Vila da {VILLAGES[player.village_id]}
+          </div>
+          <div className="flex-between" style={{ alignItems: 'baseline', marginBottom: '3px' }}>
+            <div className="paper" style={{ fontFamily: 'Shippori Mincho', fontSize: '16px', fontWeight: 'bold' }}>
+              {player.name}
             </div>
-            <div className="muted mono" style={{ fontSize: '9px' }}>
-              ({Math.floor(xpPercent)}%)
+            <div className="mono" style={{ fontSize: '9px', color: '#4ade80', whiteSpace: 'nowrap', marginLeft: '8px' }}>
+              {currentXp.toLocaleString()} / {requiredXp.toLocaleString()} XP ({Math.floor(xpPercent)}%)
             </div>
           </div>
-          <div className="paper" style={{ fontFamily: 'Shippori Mincho', fontSize: '16px', fontWeight: 'bold', marginBottom: '4px' }}>
-            {player.name}
-          </div>
-          <div className="progress-track" style={{ height: '3px', width: '100%', background: 'rgba(0,0,0,0.5)', border: '1px solid var(--line-bright)' }}>
-            <div className="progress-fill green" style={{ width: `${xpPercent}%` }}></div>
+          <div className="progress-track" style={{ height: '4px', width: '100%', background: 'rgba(0,0,0,0.5)', border: '1px solid var(--line-bright)' }}>
+            <div className="progress-fill green" style={{ width: `${xpPercent}%`, transition: 'width 0.5s ease' }}></div>
           </div>
         </div>
       </div>

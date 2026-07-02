@@ -35,14 +35,14 @@ export default function Treino({ player, updatePlayer }) {
   };
 
   const attrDesc = {
-    ninjutsu: "Aumenta o dano de técnicas Ninjutsu.",
-    taijutsu: "Aumenta o dano de técnicas Taijutsu.",
-    genjutsu: "Aumenta o dano de técnicas Genjutsu.",
-    inteligencia: "Aumenta ataque e defesa de Ninjutsu e Genjutsu.",
-    forca: "Aumenta o dano de Taijutsu, Bukijutsu e Vida Máxima (HP).",
-    agilidade: "Aumenta sua Esquiva e a chance de Crítico.",
-    selo: "Reduz o custo de Chakra de todas as habilidades.",
-    resistencia: "Aumenta drasticamente HP, Chakra, Stamina e Defesa."
+    ninjutsu: { text: "Aumenta dano de Ninjutsu.", detail: "Jutsus como Katon, Suiton e elementos usam este valor.", color: '#60a5fa' },
+    taijutsu: { text: "Aumenta dano corpo-a-corpo.", detail: "Ataques físicos e Taijutsu direto usam este valor.", color: '#f97316' },
+    genjutsu: { text: "Aumenta dano de Ilusorismos.", detail: "Jutsus de Genjutsu e efeitos de status usam este valor.", color: '#a78bfa' },
+    inteligencia: { text: "Amplifica Ninjutsu + Genjutsu.", detail: "Cada ponto de INT multiplica seu dano mágico.", color: '#34d399' },
+    forca: { text: "Aumenta Taijutsu e HP Máximo.", detail: "Cada ponto de FOR aumenta também quantos PV você carrega.", color: '#ef4444' },
+    agilidade: { text: "Aumenta Esquiva e Crítico.", detail: "Chance de não ser acertado e de causar dano duplo.", color: '#facc15' },
+    selo: { text: "Desconta o custo de Chakra.", detail: "Cada ponto de Selo reduz 1% do custo de todos os jutsus (máx 50%).", color: '#c084fc' },
+    resistencia: { text: "Aumenta HP, Chakra e Def.", detail: "O atributo mais versátil: aumenta tudo relacionado à sua durabilidade.", color: '#2dd4bf' }
   };
 
   const getRange = (heroMin, heroMax) => {
@@ -113,11 +113,15 @@ export default function Treino({ player, updatePlayer }) {
               <div key={field} className="flex-between" style={{ padding: '12px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)', alignItems: 'center' }}>
                 
                 {/* Ícone e Nome */}
-                <div className="flex-row" style={{ flex: 1.5, gap: '12px', alignItems: 'center' }}>
-                  <span style={{ fontSize: '20px' }}>{icon}</span>
+                <div className="flex-row" style={{ flex: 1.5, gap: '12px', alignItems: 'flex-start' }}>
+                  <span style={{ fontSize: '20px', marginTop: '2px' }}>{icon}</span>
                   <div className="flex-col">
-                    <span className="paper uppercase" style={{ fontSize: '13px', fontWeight: 'bold', marginBottom: '2px' }}>{label}</span>
-                    <span className="muted" style={{ fontSize: '10px', lineHeight: '1.4', maxWidth: '200px' }}>{attrDesc[field]}</span>
+                    <div className="flex-row" style={{ gap: '8px', alignItems: 'center', marginBottom: '2px' }}>
+                      <span className="paper uppercase" style={{ fontSize: '13px', fontWeight: 'bold' }}>{label}</span>
+                      <span className="mono" style={{ fontSize: '11px', background: `${attrDesc[field]?.color}20`, color: attrDesc[field]?.color, borderRadius: '3px', padding: '1px 6px', border: `1px solid ${attrDesc[field]?.color}40` }}>{player[field] || 0} pts</span>
+                    </div>
+                    <span style={{ fontSize: '11px', color: attrDesc[field]?.color, marginBottom: '1px' }}>{attrDesc[field]?.text}</span>
+                    <span className="muted" style={{ fontSize: '10px', lineHeight: '1.4', maxWidth: '280px' }}>{attrDesc[field]?.detail}</span>
                   </div>
                 </div>
 

@@ -83,9 +83,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const npcDef = isMirror ? calculateDefNinGen(npcInit) : (npcInit?.def || 0);
 
   // Estados da Batalha
-  const [playerHP, setPlayerHP] = useState(location.state?.isExame && player.hp !== undefined ? player.hp : maxPlayerHP);
-  const [playerCP, setPlayerCP] = useState(location.state?.isExame && player.chakra !== undefined ? player.chakra : maxPlayerCP);
-  const [playerSt, setPlayerSt] = useState(maxPlayerSt);
+  const [playerHP, setPlayerHP] = useState(player.hp !== undefined && player.hp !== null ? Math.min(player.hp, maxPlayerHP) : maxPlayerHP);
+  const [playerCP, setPlayerCP] = useState(player.chakra !== undefined && player.chakra !== null ? Math.min(player.chakra, maxPlayerCP) : maxPlayerCP);
+  const [playerSt, setPlayerSt] = useState(player.stamina !== undefined && player.stamina !== null ? Math.min(player.stamina, maxPlayerSt) : maxPlayerSt);
   
   const [npcHP, setNpcHP] = useState(npcInit?.hp || 1);
   const [npcCP, setNpcCP] = useState(npcInit?.chakra || 1);
@@ -263,7 +263,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const levelsGained = newLevel > player.level ? newLevel - player.level : 0;
     const newPontos = (player.pontos_atributos || 0) + levelsGained;
 
-    const isDojo = !location.state?.fromMap && !location.state?.isWorldBoss && !location.state?.isGhost && !location.state?.isBetrayal && !npcInit.is_dummy;
+    const isDojo = !location.state?.isWorldBoss && !location.state?.isBetrayal && !npcInit.is_dummy;
     const updates = { 
        xp: newXp, 
        level: newLevel, 
@@ -514,13 +514,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               const newNpcCP = npcCP - cost;
               setNpcCP(newNpcCP);
               
-              if (newNpcCP <= npcMaxCP * 0.1) {
-                addLog(`⚠️ ${npcInit.name} esgotou seu Chakra ao tentar usar [${jutsu.name}] e desmaiou!`);
-                setBattleResult('win');
-                handleWin();
-                return;
-              }
-
               const mult = getElementalMultiplier(jutsu.element || npcInit.element, player.element);
               const jutsuBaseDmg = jutsu.damage || 15;
               const cat = (jutsu.category || "").toLowerCase();
@@ -546,13 +539,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                const newNpcSt = npcSt - staminaCost;
                setNpcSt(newNpcSt);
 
-               if (newNpcSt <= npcMaxSt * 0.1) {
-                  addLog(`⚠️ ${npcInit.name} esgotou sua Stamina (chegou em 10% ou menos) e desmaiou!`);
+               if (newNpcSt <= 0) {
+                  addLog(`💨 ${npcInit.name} esgotou toda a Stamina e não consegue mais atacar!`);
                   setBattleResult('win');
                   handleWin();
                   return;
                }
-
+               
                const mult = getElementalMultiplier(npcInit.element, player.element);
                const baseDamage = Math.max(1, npcAtkTaiBuk - playerDef);
                damage = Math.floor(baseDamage * mult);
@@ -616,13 +609,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     
     const newSt = playerSt - staminaCost;
     setPlayerSt(newSt);
-
-    if (newSt <= maxPlayerSt * 0.1) {
-      addLog('Você esgotou sua Stamina (chegou em 10% ou menos) e desmaiou...');
-      setBattleResult('lose');
-      setPlayerFainted();
-      return;
-    }
 
     const totalAccuracy = BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty;
     const didHit = Math.random() * 100 <= totalAccuracy;
@@ -710,8 +696,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown }));
     }
     
-    if (newCP <= maxPlayerCP * 0.1) {
-      addLog(`Você esgotou seu Chakra ao tentar usar [${jutsu.name}] e desmaiou de exaustão...`);
+    if (newCP <= 0) {
+      addLog(`Você ficou sem Chakra usando [${jutsu.name}] e desmaiou de exaustão...`);
       setBattleResult('lose');
       setPlayerFainted();
       return;
@@ -858,6 +844,16 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 </div>
               </div>
 
+              <div>
+                <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '4px' }}>
+                  <span className="flex-row" style={{ gap: '6px', fontWeight: 600 }}><div className="dot-indicator" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b' }}></div> Stamina</span>
+                  <span className="mono" style={{ opacity: 0.8 }}>{playerSt}/{maxPlayerSt}</span>
+                </div>
+                <div className="progress-track" style={{ height: '6px' }}>
+                  <div className="progress-fill yellow" style={{ width: `${pStPercent}%` }}></div>
+                </div>
+              </div>
+
               <div className="flex-row" style={{ gap: '8px', minHeight: '24px', marginTop: '8px' }}>
                 {playerStatus.map((s, i) => (
                   <div key={i} className="badge badge-muted flex-row" style={{ gap: '4px', padding: '2px 6px', fontSize: '10px' }}>
@@ -906,6 +902,16 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 </div>
                 <div className="progress-track" style={{ height: '8px', display: 'flex', justifyContent: 'flex-end' }}>
                   <div className="progress-fill blue" style={{ width: `${nCPPercent}%`, background: 'linear-gradient(270deg, #1976d2, #4b9eff)' }}></div>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '4px', flexDirection: 'row-reverse' }}>
+                  <span className="flex-row" style={{ gap: '6px', fontWeight: 600, flexDirection: 'row-reverse' }}><div className="dot-indicator" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b' }}></div> Stamina</span>
+                  <span className="mono" style={{ opacity: 0.8 }}>{npcSt}/{npcMaxSt}</span>
+                </div>
+                <div className="progress-track" style={{ height: '6px', display: 'flex', justifyContent: 'flex-end' }}>
+                  <div className="progress-fill yellow" style={{ width: `${nStPercent}%`, background: 'linear-gradient(270deg, #b45309, #f59e0b)' }}></div>
                 </div>
               </div>
               

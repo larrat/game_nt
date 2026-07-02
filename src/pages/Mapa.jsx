@@ -205,94 +205,118 @@ export default function Mapa({ player, updatePlayer }) {
   const visibleNpcs = npcs.filter(n => !hideStory || !n.is_story_mode);
 
   return (
-    <div className="page" style={{ paddingBottom: '60px' }}>
-      <div className="topbar flex-between" style={{ marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
-        <PageHeader eyebrow="Exploração Global" title="Mapa-múndi" subtitle="Navegue pelas fronteiras, encontre batalhas e viaje para outras vilas." />
-        
-        <div className="flex-row" style={{ gap: '12px' }}>
-          <label className="flex-row" style={{ gap: '8px', cursor: 'pointer', fontSize: '12px' }}>
-            <input 
-              type="checkbox" 
-              checked={hideStory} 
-              onChange={(e) => setHideStory(e.target.checked)} 
-            />
-            <span className="muted">Ocultar Modo História</span>
-          </label>
+    <div style={{ padding: 0, overflow: 'hidden', position: 'fixed', inset: 0 }}>
+      
+      {/* Mapa Fullscreen */}
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: "url('/images/mapa.png')", backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 0 }} />
+      {/* Overlay escuro suave para legibilidade */}
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)', zIndex: 1 }} />
+
+      {/* Vilas posicionadas no mapa */}
+      {Object.entries(villages).map(([vId, v]) => v.x != null && (
+        <div key={vId} style={{
+          position: 'absolute', zIndex: 6,
+          left: `${v.x}%`, top: `${v.y}%`,
+          transform: 'translate(-50%, -50%)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
+          cursor: currentLoc !== parseInt(vId) ? 'pointer' : 'default',
+        }} onClick={() => currentLoc !== parseInt(vId) && setConfirmTarget(parseInt(vId))}>
+          <div style={{
+            fontSize: '28px',
+            filter: currentLoc === parseInt(vId) ? 'drop-shadow(0 0 12px gold)' : 'drop-shadow(0 0 6px rgba(0,0,0,0.8))',
+            transition: 'transform 0.2s'
+          }}>{v.icon || '🏯'}</div>
+          <div style={{
+            background: currentLoc === parseInt(vId) ? 'rgba(212,162,42,0.9)' : 'rgba(0,0,0,0.75)',
+            border: `1px solid ${currentLoc === parseInt(vId) ? 'gold' : 'rgba(255,255,255,0.3)'}`,
+            color: currentLoc === parseInt(vId) ? '#000' : '#fff',
+            fontSize: '10px', fontWeight: 'bold',
+            padding: '2px 8px', borderRadius: '4px', marginTop: '4px',
+            whiteSpace: 'nowrap'
+          }}>
+            {currentLoc === parseInt(vId) ? '📍 ' : ''}{v.name}
+          </div>
+        </div>
+      ))}
+
+      {/* NPCs como pontos no mapa */}
+      {visibleNpcs.slice(0, 30).map(npc => (
+        <div key={npc.id} style={{
+          position: 'absolute', zIndex: 7,
+          left: `${npc.x}%`, top: `${npc.y}%`,
+          transform: 'translate(-50%, -50%)',
+          cursor: 'pointer',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
+        }} onClick={() => attackNpc(npc)}
+          title={`${npc.name} - Lv. ${npc.level}`}
+        >
+          <div style={{
+            fontSize: '20px',
+            filter: `drop-shadow(0 0 4px ${npc.is_bingo_book ? '#ef4444' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? 'gold' : '#fff'})`,
+            animation: npc.is_bingo_book ? 'pulse 2s infinite' : 'none'
+          }}>{npc.avatar || '👹'}</div>
+        </div>
+      ))}
+
+      {/* Painel flutuante superior esquerdo - Localização */}
+      <div style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 10 }}>
+        <div className="card-glass" style={{ padding: '12px 20px', background: 'rgba(10,10,15,0.85)', backdropFilter: 'blur(8px)', border: '1px solid rgba(212,162,42,0.4)' }}>
+          <div className="muted" style={{ fontSize: '10px', letterSpacing: '1px', marginBottom: '4px' }}>LOCALIZAÇÃO ATUAL</div>
+          <div className="paper" style={{ fontSize: '16px', fontFamily: "'Shippori Mincho', serif", fontWeight: 'bold' }}>
+            {villages[currentLoc]?.icon} Vila da {villages[currentLoc]?.name}
+          </div>
         </div>
       </div>
 
-      <div className="card" style={{ marginBottom: '32px' }}>
-        <div className="flex-row" style={{ flexWrap: 'wrap', gap: '16px' }}>
-          <div className="card-glass" style={{ flex: 1, minWidth: '200px' }}>
-            <div className="muted uppercase" style={{ fontSize: '12px', marginBottom: '8px', letterSpacing: '1px' }}>LOCALIZAÇÃO ATUAL</div>
-            <div className="paper" style={{ fontSize: '18px', fontFamily: "'Shippori Mincho', serif" }}>
-              {villages[currentLoc]?.icon} Vila da {villages[currentLoc]?.name}
-            </div>
-          </div>
-          <div className="card-glass" style={{ flex: 1, minWidth: '200px' }}>
-            <div className="muted uppercase" style={{ fontSize: '12px', marginBottom: '8px', letterSpacing: '1px' }}>SEUS RYOUS</div>
-            <div className="mono gold" style={{ fontSize: '18px' }}>
-              {player.ryous} ¥
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid-sidebar">
+      {/* Radar / Lista de Ameaças - painel direito flutuante */}
+      <div style={{ position: 'absolute', top: '16px', right: '16px', zIndex: 10, width: '280px', display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: 'calc(100vh - 32px)' }}>
         
-        {/* GRID MAP */}
-        <MapGrid 
-          playerX={playerX}
-          playerY={playerY}
-          onMove={handleMove}
-          villages={villages}
-          npcs={visibleNpcs}
-          currentLoc={currentLoc}
-          onEnterVillage={(vId) => {
-            requestTravel(parseInt(vId));
-          }}
-          onAttackNpc={attackNpc}
-        />
-
-        {/* Radar Sidebar */}
-        <div className="flex-col" style={{ gap: '16px' }}>
-          
-          {confirmTarget && (
-            <div className="card" style={{ border: '2px solid var(--gold)', animation: 'fadeIn 0.3s ease' }}>
-              <h3 className="gold" style={{ marginBottom: '8px' }}>Confirmar Entrada</h3>
-              <p className="paper" style={{ fontSize: '14px', marginBottom: '16px' }}>Você está no portão da Vila da {villages[confirmTarget]?.name}.</p>
-              <div className="flex-col" style={{ gap: '12px' }}>
-                <button className="btn-primary" style={{ width: '100%' }} onClick={handleTravel} disabled={loadingId !== null}>
-                  {loadingId === confirmTarget ? 'Entrando...' : 'Entrar (100 Ryous)'}
-                </button>
-                <button className="btn-ghost" style={{ width: '100%' }} onClick={cancelTravel}>Cancelar</button>
-              </div>
+        {/* Caixa de confirmação de viagem */}
+        {confirmTarget && (
+          <div className="card" style={{ border: '2px solid var(--gold)', background: 'rgba(10,10,15,0.95)', backdropFilter: 'blur(8px)' }}>
+            <h3 className="gold" style={{ marginBottom: '8px' }}>Confirmar Viagem</h3>
+            <p className="paper" style={{ fontSize: '13px', marginBottom: '16px' }}>
+              Ir para a Vila da {villages[confirmTarget]?.name}?
+            </p>
+            <div className="flex-col" style={{ gap: '8px' }}>
+              <button className="btn-primary" style={{ width: '100%' }} onClick={handleTravel} disabled={loadingId !== null}>
+                {loadingId === confirmTarget ? 'Entrando...' : 'Viajar (100 ¥)'}
+              </button>
+              <button className="btn-ghost" style={{ width: '100%' }} onClick={cancelTravel}>Cancelar</button>
             </div>
-          )}
+          </div>
+        )}
 
-          <h3 className="section-title gold" style={{ borderBottom: 'none' }}>Radar de Ameaças</h3>
+        {/* Radar */}
+        <div className="card-glass" style={{ background: 'rgba(10,10,15,0.88)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,75,75,0.25)', flex: 1, overflowY: 'auto' }}>
+          <div className="flex-between" style={{ marginBottom: '12px' }}>
+            <h3 className="danger" style={{ fontSize: '14px', margin: 0 }}>📡 Radar de Ameaças</h3>
+            <label className="flex-row" style={{ gap: '6px', cursor: 'pointer', fontSize: '11px' }}>
+              <input type="checkbox" checked={hideStory} onChange={(e) => setHideStory(e.target.checked)} />
+              <span className="muted">Ocultar História</span>
+            </label>
+          </div>
           
           {loadingMap ? (
-             <div className="muted">Escaneando o continente...</div>
+            <div className="muted" style={{ textAlign: 'center', padding: '16px' }}>Escaneando...</div>
           ) : visibleNpcs.length === 0 ? (
-             <div className="card-glass muted">O mapa está seguro... por enquanto.</div>
+            <div className="muted" style={{ textAlign: 'center', padding: '16px' }}>O mapa está seguro... por enquanto.</div>
           ) : (
-            <div className="flex-col" style={{ gap: '12px', maxHeight: '500px', overflowY: 'auto' }}>
-              {visibleNpcs.map(npc => (
-                <div key={npc.id} className="card-glass flex-row" style={{ 
-                  justifyContent: 'space-between', 
-                  borderLeft: `3px solid ${npc.is_bingo_book ? 'var(--danger)' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? 'var(--gold)' : 'var(--seal)'}`
+            <div className="flex-col" style={{ gap: '8px' }}>
+              {visibleNpcs.slice(0, 15).map(npc => (
+                <div key={npc.id} className="flex-between" style={{
+                  padding: '8px', borderRadius: '6px',
+                  background: 'rgba(255,255,255,0.05)',
+                  borderLeft: `3px solid ${npc.is_bingo_book ? '#ef4444' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? 'var(--gold)' : 'var(--seal)'}`
                 }}>
-                  <div className="flex-row" style={{ gap: '12px' }}>
-                    <div style={{ fontSize: '24px' }}>{npc.avatar}</div>
+                  <div className="flex-row" style={{ gap: '8px', flex: 1 }}>
+                    <span style={{ fontSize: '18px' }}>{npc.avatar}</span>
                     <div className="flex-col">
-                      <div className="paper" style={{ fontWeight: 600 }}>{npc.name}</div>
-                      <div className="muted" style={{ fontSize: '11px' }}>
-                        Nv. {npc.level} • {npc.is_bingo_book ? 'ALVO BINGO BOOK' : npc.is_ghost ? 'Fantasma' : npc.is_story_mode ? 'Modo História' : 'Ameaça Local'}
-                      </div>
+                      <span className="paper" style={{ fontSize: '12px', fontWeight: 600 }}>{npc.name}</span>
+                      <span className="muted" style={{ fontSize: '10px' }}>Nv. {npc.level}</span>
                     </div>
                   </div>
-                  <button className="btn-danger" style={{ padding: '6px 12px', fontSize: '11px' }} onClick={() => attackNpc(npc)}>Atacar</button>
+                  <button className="btn-danger" style={{ padding: '4px 10px', fontSize: '10px', flexShrink: 0 }} onClick={() => attackNpc(npc)}>Atacar</button>
                 </div>
               ))}
             </div>

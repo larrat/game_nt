@@ -60,18 +60,44 @@ export const calculateVillageLevelFromXP = (totalXp) => {
 
 // --- FÓRMULAS DE COMBATE AVANÇADAS (Status Baseados nos 10 Atributos) ---
 
+export const CLAN_PASSIVES = {
+  'Senju': { hpMult: 1.10, desc: '+10% HP Máximo' },
+  'Uzumaki': { chakraMult: 1.15, hpMult: 1.05, desc: '+15% Chakra, +5% HP' },
+  'Uchiha': { critChance: 0.15, desc: '+15% Crítico' },
+  'Hyuga': { armorPen: 0.20, desc: '+20% Penetração de Armadura' },
+  'Nara': { paralyzeChance: 0.10, desc: '+10% chance de Paralisar' },
+  'Inuzuka': { atkMult: 1.10, desc: '+10% Dano Físico' },
+  'Kaguya': { boneDmg: 0.15, desc: '+15% Dano Taijutsu' },
+  'Aburame': { poisonChance: 0.10, desc: '+10% chance de Envenenar' },
+  'Akimichi': { hpMult: 1.08, desc: '+8% HP, Resistência maior' },
+  'Yamanaka': { mindControl: 0.08, desc: '+8% chance de Controle Mental' },
+  'Hozuki': { chakraMult: 1.10, desc: '+10% Chakra Máximo' },
+  'Yuki': { iceDmg: 0.12, desc: '+12% Dano com gelo (Suiton/Futon)' },
+};
+
+export const getClanBonus = (player) => {
+  if (!player || !player.clan) return {};
+  return CLAN_PASSIVES[player.clan] || {};
+};
+
 export const calculateHP = (player) => {
   if (!player) return 100;
   const rankBoost = getRankBonus(player.rank).hp;
   const base = 100 + ((player.level || 1) * 30) + ((player.resistencia || 0) * 10) + ((player.energia || 0) * 5) + rankBoost;
-  return base + getEquipmentBonus(player, 'hp');
+  const equipBonus = getEquipmentBonus(player, 'hp');
+  const clanBonus = getClanBonus(player);
+  const hpMult = clanBonus.hpMult || 1.0;
+  return Math.floor((base + equipBonus) * hpMult);
 };
 
 export const calculateChakra = (player) => {
   if (!player) return 50;
   const rankBoost = getRankBonus(player.rank).chakra;
   const base = 50 + ((player.level || 1) * 10) + ((player.energia || 0) * 3) + ((player.ninjutsu || 0) * 3) + ((player.genjutsu || 0) * 3) + rankBoost;
-  return base + getEquipmentBonus(player, 'chakra');
+  const equipBonus = getEquipmentBonus(player, 'chakra');
+  const clanBonus = getClanBonus(player);
+  const chakraMult = clanBonus.chakraMult || 1.0;
+  return Math.floor((base + equipBonus) * chakraMult);
 };
 
 export const calculateStamina = (player) => {

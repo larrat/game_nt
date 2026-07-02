@@ -128,30 +128,36 @@ export default function Vila({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page" style={{ padding: 0, height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-      
-      <div style={{ position: 'absolute', top: '24px', left: '24px', right: '24px', zIndex: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div style={{ flex: 1 }}>
-          <PageHeader eyebrow='Administração e Projetos' title={`Vila da ${villageData?.name || 'Desconhecida'}`} subtitle="Clique nos edifícios para interagir." />
-        </div>
-        <div className="card-glass" style={{ textAlign: 'center', border: '1px solid var(--gold)', width: '200px', padding: '16px', background: 'rgba(15,15,20,0.85)', backdropFilter: 'blur(8px)' }}>
-          <div className="gold uppercase" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '8px', fontWeight: 'bold' }}>{villageData?.leader_title || 'Líder'}</div>
-          <div style={{ fontSize: '32px', marginBottom: '8px' }}>👑</div>
-          <div className="paper" style={{ fontWeight: 600, marginBottom: '4px', fontSize: '16px' }}>{kage ? kage.name : 'Vago'}</div>
-          <div className="muted" style={{ fontSize: '11px' }}>{kage ? `${kage.class || 'NIN'} - Nv. ${kage.level}` : 'Nenhum líder'}</div>
+    <div style={{ padding: 0, position: 'fixed', inset: 0, overflow: 'hidden' }}>
+
+      {/* Background Image */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: `url(/images/bg_${player.village_id}.jpg), url(/images/bg_login.jpg)`,
+        backgroundSize: 'cover', backgroundPosition: 'center',
+        zIndex: 0
+      }} />
+      {/* Dark Overlay */}
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)', zIndex: 1 }} />
+
+      {/* Header top-left */}
+      <div style={{ position: 'absolute', top: '16px', left: '24px', zIndex: 10 }}>
+        <PageHeader eyebrow='Administração e Projetos' title={`Vila da ${villageData?.name || 'Desconhecida'}`} subtitle="Clique nos edifícios para interagir." />
+      </div>
+
+      {/* Kage card bottom-right */}
+      <div style={{ position: 'absolute', bottom: '24px', right: '24px', zIndex: 10 }}>
+        <div className="card-glass" style={{ textAlign: 'center', border: '1px solid var(--gold)', width: '180px', padding: '12px', background: 'rgba(15,15,20,0.9)', backdropFilter: 'blur(8px)' }}>
+          <div className="gold uppercase" style={{ fontSize: '10px', letterSpacing: '1px', marginBottom: '6px', fontWeight: 'bold' }}>{villageData?.leader_title || 'Líder'}</div>
+          <div style={{ fontSize: '28px', marginBottom: '6px' }}>👑</div>
+          <div className="paper" style={{ fontWeight: 600, marginBottom: '2px', fontSize: '14px' }}>{kage ? kage.name : 'Vago'}</div>
+          <div className="muted" style={{ fontSize: '10px' }}>{kage ? `${kage.class || 'NIN'} - Nv. ${kage.level}` : 'Nenhum líder'}</div>
         </div>
       </div>
 
-      <div style={{ 
-        flex: 1, 
-        position: 'relative', 
-        backgroundImage: `url(/images/bg_${player.village_id}.jpg), url(/images/bg_login.jpg)`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center' 
-      }}>
-        
-        {/* Overlay Escuro */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)' }}></div>
+      {/* Buildings area - relative within the fixed container */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 5 }}>
+
 
         {/* Renderizar Prédios */}
         {Object.entries(BUILDING_INFO).map(([key, info]) => (

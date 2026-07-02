@@ -226,7 +226,17 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
                 </>
               )}
             </div>
-            <p className="muted" style={{ marginBottom: '24px' }}>Preencha os 3 slots com Pergaminhos de Aprimoramento. Eles darão bônus imediatos no combate. Ao encher os 3, você pode evoluir a habilidade.</p>
+            <p className="muted" style={{ marginBottom: '16px' }}>Preencha os 3 slots com Pergaminhos. Ao encher os 3, você pode evoluir a habilidade para o próximo nível.</p>
+            <div className="card" style={{ padding: '12px 16px', marginBottom: '24px', background: 'var(--ink)', border: '1px solid rgba(212,162,42,0.2)' }}>
+              <div className="mono gold" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '8px' }}>📖 LEGENDA — O QUE CADA ESSÊNCIA FAZ</div>
+              <div className="grid-2" style={{ gap: '4px' }}>
+                <div style={{ fontSize: '11px', color: 'var(--muted)' }}>📜 <strong style={{ color: '#ef4444' }}>Dano</strong> — Aumenta o dano base do jutsu.</div>
+                <div style={{ fontSize: '11px', color: 'var(--muted)' }}>📜 <strong style={{ color: '#60a5fa' }}>Custo</strong> — Reduz o Chakra necessário para usar.</div>
+                <div style={{ fontSize: '11px', color: 'var(--muted)' }}>📜 <strong style={{ color: 'var(--gold)' }}>Letalidade</strong> — Aumenta a chance de acerto crítico.</div>
+                <div style={{ fontSize: '11px', color: 'var(--muted)' }}>📜 <strong style={{ color: '#10b981' }}>Proteção</strong> — Adiciona escudo passivo durante a luta.</div>
+              </div>
+              <div className="muted" style={{ fontSize: '10px', marginTop: '8px', borderTop: '1px solid var(--line)', paddingTop: '8px' }}>💡 <em>Clique em um slot ocupado (📜) para devolver a essência ao seu inventário.</em></div>
+            </div>
 
             <div className="flex-row" style={{ gap: '16px', justifyContent: 'center', marginBottom: '32px' }}>
               {[0, 1, 2].map(idx => {
@@ -267,18 +277,30 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
               <div>
                 <h4 className="paper" style={{ marginBottom: '12px' }}>Seu Inventário de Essências</h4>
                 <div className="grid-3" style={{ gap: '8px' }}>
-                  {Object.entries(inventoryEssences).filter(([k, v]) => v > 0).map(([key, count]) => (
-                    <div key={key} className="flex-col" style={{ background: 'var(--ink)', border: '1px solid var(--line)', padding: '8px', borderRadius: '4px', alignItems: 'center', cursor: 'pointer' }}
+                  {Object.entries(inventoryEssences).filter(([k, v]) => v > 0).map(([key, count]) => {
+                    const essenceDesc = {
+                      dano: { cor: '#ef4444', desc: '+DMG ao jutsu' },
+                      custo: { cor: '#60a5fa', desc: '-Chakra p/ usar' },
+                      letalidade: { cor: 'var(--gold)', desc: '+% Crítico' },
+                      protecao: { cor: '#10b981', desc: '+Proteção passiva' }
+                    };
+                    const tipo = key.split('_')[0];
+                    const meta = essenceDesc[tipo] || { cor: 'var(--gold)', desc: 'Bônus especial' };
+                    const tier = key.split('_')[1] ? ` T${key.split('_')[1]}` : '';
+                    return (
+                    <div key={key} className="flex-col" 
+                         style={{ background: 'var(--ink)', border: `1px solid ${meta.cor}40`, padding: '8px', borderRadius: '4px', alignItems: 'center', cursor: 'pointer', transition: 'border-color 0.2s', gap: '2px' }}
                          onClick={() => {
                            const emptySlotIndex = selectedJutsu.slots.findIndex(s => s === null);
                            if (emptySlotIndex !== -1) equipEssence(emptySlotIndex, key);
                            else addToast('Todos os slots estão cheios!', 'error');
                          }}>
                       <span style={{ fontSize: '20px' }}>📜</span>
-                      <span className="mono" style={{ fontSize: '10px', marginTop: '4px', textAlign: 'center', color: 'var(--gold)' }}>{key.replace('_', ' ').toUpperCase()}</span>
-                      <span className="muted" style={{ fontSize: '10px' }}>Qtd: {count}</span>
+                      <span className="mono" style={{ fontSize: '10px', marginTop: '2px', textAlign: 'center', color: meta.cor, fontWeight: 'bold' }}>{tipo.toUpperCase()}{tier}</span>
+                      <span style={{ fontSize: '9px', textAlign: 'center', color: 'var(--muted)' }}>{meta.desc}</span>
+                      <span className="muted" style={{ fontSize: '9px' }}>Qtd: {count}</span>
                     </div>
-                  ))}
+                  );})}
                   {Object.values(inventoryEssences).every(v => v === 0) && (
                     <div className="muted" style={{ gridColumn: 'span 3', textAlign: 'center', padding: '16px' }}>Você não tem pergaminhos. Batalhe no mapa ou compre na Loja.</div>
                   )}

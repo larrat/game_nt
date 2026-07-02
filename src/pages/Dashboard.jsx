@@ -220,7 +220,7 @@ export default function Dashboard({ player, updatePlayer }) {
   const maxHP = calculateHP(player);
   const maxChakra = calculateChakra(player);
   const maxStamina = calculateStamina(player);
-  const bgImage = player.village_id === 1 ? '/images/bg_1.jpg' : '/images/bg_default.jpg';
+  const bgImage = player.village_id ? `/images/bg_${player.village_id}.jpg` : '/images/bg_default.jpg';
 
   return (
     <div className="page">

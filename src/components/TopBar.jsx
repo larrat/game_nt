@@ -176,10 +176,7 @@ export default function TopBar({ player, updatePlayer }) {
 
       </div>
 
-      <InventoryModal isOpen={isInventoryOpen} onClose={() => setIsInventoryOpen(false)} player={player} />
-
-    </div>
-      
+    <InventoryModal isOpen={isInventoryOpen} onClose={() => setIsInventoryOpen(false)} player={player} />
       {/* Tracker de Evento e Debuffs */}
       {activeEvent && activeEvent.is_world_boss && (
         <div style={{

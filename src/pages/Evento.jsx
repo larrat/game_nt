@@ -97,11 +97,11 @@ export default function Evento({ player, updatePlayer }) {
 
           <button 
             className="btn-primary" 
-            style={{ padding: '16px 48px', fontSize: '18px', background: (event.ends_at && new Date(event.ends_at) <= new Date()) ? '#555' : '#ef4444', borderColor: (event.ends_at && new Date(event.ends_at) <= new Date()) ? '#555' : '#ef4444', zIndex: 1 }}
+            style={{ padding: '16px 48px', fontSize: '18px', background: '#ef4444', borderColor: '#ef4444', zIndex: 1 }}
             onClick={handleAttack}
-            disabled={attacking || event.boss_hp <= 0 || (event.ends_at && new Date(event.ends_at) <= new Date())}
+            disabled={attacking || event.boss_hp <= 0}
           >
-            <span>{event.boss_hp <= 0 ? 'Chefe Morto' : (event.ends_at && new Date(event.ends_at) <= new Date()) ? 'Tempo Esgotado' : attacking ? 'Atacando...' : 'Atacar o Chefe!'}</span>
+            <span>{event.boss_hp <= 0 ? 'Chefe Morto' : attacking ? 'Atacando...' : 'Atacar o Chefe!'}</span>
             <div className="stamp"></div>
           </button>
           

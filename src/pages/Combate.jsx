@@ -4,7 +4,7 @@ import { supabase } from '../supabaseClient';
 import JutsuIcon from '../components/JutsuIcon';
 import '../styles/main.css';
 
-import { 
+import {
   calculateLevelFromXP,
   calculateHP,
   calculateChakra,
@@ -33,12 +33,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { addToast } = useToast();
-  
+
   const rawNpc = location.state?.npc;
   const isMirror = location.state?.isMirror;
   const npcInitVal = (rawNpc && rawNpc.is_story_mode && !isMirror) ? scaleStoryNPC(rawNpc, player) : rawNpc;
   const isAltAutoBattle = location.state?.isAltAutoBattle || false;
-  
+
   const [npcInit, setNpcInit] = useState(npcInitVal);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const maxPlayerHP = calculateHP(player);
   const maxPlayerCP = calculateChakra(player);
   const maxPlayerSt = calculateStamina(player);
-  
+
   const playerAtkTaiBuk = calculateAtkTaiBuk(player);
   const playerAtkNinGen = calculateAtkNinGen(player);
   const playerDef = calculateDefNinGen(player);
@@ -85,7 +85,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const npcMaxHP = npcInit?.hp || 1;
   const npcMaxCP = npcInit?.chakra || 1;
   const npcMaxSt = 100;
-  
+
   const npcAtkTaiBuk = isMirror ? calculateAtkTaiBuk(npcInit) : (npcInit?.atk || 0);
   const npcAtkNinGen = isMirror ? calculateAtkNinGen(npcInit) : (npcInit?.atk || 0);
   const npcDef = isMirror ? calculateDefNinGen(npcInit) : (npcInit?.def || 0);
@@ -94,7 +94,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const [playerHP, setPlayerHP] = useState(player.hp !== undefined && player.hp !== null ? Math.min(player.hp, maxPlayerHP) : maxPlayerHP);
   const [playerCP, setPlayerCP] = useState(player.chakra !== undefined && player.chakra !== null ? Math.min(player.chakra, maxPlayerCP) : maxPlayerCP);
   const [playerSt, setPlayerSt] = useState(player.stamina !== undefined && player.stamina !== null ? Math.min(player.stamina, maxPlayerSt) : maxPlayerSt);
-  
+
   const [npcHP, setNpcHP] = useState(npcInit?.hp || 1);
   const [npcMaxHPVal, setNpcMaxHPVal] = useState(npcInit?.hp || 1);
   const [npcSt, setNpcSt] = useState(npcMaxSt);
@@ -118,7 +118,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const playerHPRef = useRef(playerHP);
   const cooldownsRef = useRef(cooldowns);
   const [surrenderConfirm, setSurrenderConfirm] = useState(false);
-  
+
   // Efeitos Visuais (Lote 5)
   const [fcts, setFcts] = useState([]);
   const [playerShake, setPlayerShake] = useState(false);
@@ -139,7 +139,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       setTimeout(() => setNpcShake(false), 400);
     }
   };
-  
+
   useEffect(() => { playerStatusRef.current = playerStatus; }, [playerStatus]);
   useEffect(() => { npcStatusRef.current = npcStatus; }, [npcStatus]);
   useEffect(() => { cooldownsRef.current = cooldowns; }, [cooldowns]);
@@ -147,7 +147,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const [logs, setLogs] = useState([
     location.state?.isWorldBoss ? `🔥 O céu escurece... ${npcInit?.name} surgiu! Prepare-se!` :
-    isMirror ? `⚠️ INVASÃO! Você foi emboscado pelo ninja rival ${npcInit?.name}!` : `Um combate se inicia contra ${npcInit?.name}!`
+      isMirror ? `⚠️ INVASÃO! Você foi emboscado pelo ninja rival ${npcInit?.name}!` : `Um combate se inicia contra ${npcInit?.name}!`
   ]);
   const [isPlayerTurn, setIsPlayerTurn] = useState(!isAltAutoBattle);
   const [battleResult, setBattleResult] = useState(null); // 'win', 'lose', 'flee', 'world_boss_end'
@@ -220,20 +220,20 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   useEffect(() => {
     if (isAltAutoBattle && !battleResult) {
       const timer = setTimeout(() => {
-         const pPower = ((player?.level || 1) * 150) + ((player?.pontos_atributos || 0) * 50);
-         const nPower = ((npcInit?.level || 1) * 150) + 1000;
-         const winChance = pPower / (pPower + nPower);
-         if (Math.random() < winChance) {
-             setNpcHP(0);
-             addLog(`🤖 Wintrading Shield: O seu Alter Ego venceu a batalha contra o invasor!`);
-             setBattleResult('win');
-             handleWin();
-         } else {
-             setPlayerHP(0);
-             addLog(`🤖 Wintrading Shield: O invasor foi muito forte e derrotou o seu Alter Ego...`);
-             setBattleResult('lose');
-             setPlayerFainted();
-         }
+        const pPower = ((player?.level || 1) * 150) + ((player?.pontos_atributos || 0) * 50);
+        const nPower = ((npcInit?.level || 1) * 150) + 1000;
+        const winChance = pPower / (pPower + nPower);
+        if (Math.random() < winChance) {
+          setNpcHP(0);
+          addLog(`🤖 Wintrading Shield: O seu Alter Ego venceu a batalha contra o invasor!`);
+          setBattleResult('win');
+          handleWin();
+        } else {
+          setPlayerHP(0);
+          addLog(`🤖 Wintrading Shield: O invasor foi muito forte e derrotou o seu Alter Ego...`);
+          setBattleResult('lose');
+          setPlayerFainted();
+        }
       }, 3000);
       return () => clearTimeout(timer);
     }
@@ -243,11 +243,11 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     if (isPlayerTurn && autoBattle && !battleResult && !isAltAutoBattle) {
       const timer = setTimeout(() => {
         const eqIds = player.equipped_jutsus || [];
-        const jutsus = eqIds.length > 0 
-                     ? (player.activeJutsus || []).filter(j => eqIds.includes(j.id))
-                     : (player.activeJutsus || []).slice(0, 4);
+        const jutsus = eqIds.length > 0
+          ? (player.activeJutsus || []).filter(j => eqIds.includes(j.id))
+          : (player.activeJutsus || []).slice(0, 4);
         const availableJutsus = jutsus.filter(j => playerCP >= (j.chakraCost || 20));
-        
+
         if (availableJutsus.length > 0 && Math.random() > 0.4) {
           const jutsuToUse = availableJutsus[Math.floor(Math.random() * availableJutsus.length)];
           handleJutsu(jutsuToUse);
@@ -266,7 +266,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const applyJutsuEffects = (jutsu, toNpc = true) => {
     if (!jutsu.jutsu_effects || jutsu.jutsu_effects.length === 0) return;
-    
+
     jutsu.jutsu_effects.forEach(eff => {
       const statusDef = eff.status_effects;
       if (!statusDef) return;
@@ -300,13 +300,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const newPontos = (player.pontos_atributos || 0) + levelsGained;
 
     const isDojo = !location.state?.isWorldBoss && !location.state?.isBetrayal && !npcInit.is_dummy;
-    const updates = { 
-       xp: newXp, 
-       level: newLevel, 
-       ryous: newRyous, 
-       pontos_atributos: newPontos,
-       hp: playerHP,
-       chakra: playerCP
+    const updates = {
+      xp: newXp,
+      level: newLevel,
+      ryous: newRyous,
+      pontos_atributos: newPontos,
+      hp: playerHP,
+      chakra: playerCP
     };
     if (isDojo) updates.wins_dojo = (player.wins_dojo || 0) + 1;
     if (location.state?.fromMap) updates.daily_map_battles = (player.daily_map_battles || 0) + 1;
@@ -319,7 +319,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     let droppedItemMsg = '';
     let vipCoinMsg = '';
     if (!location.state?.isGhost && !location.state?.isWorldBoss) {
-      
+
       // --- 1. Drop Raro de Kuro Coin (2% de chance) ---
       if (Math.random() <= 0.02) {
         const { error: vipError } = await supabase.from('players').update({
@@ -339,7 +339,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
           const playerNinjaClass = '';
           const rarity = await rollRarity(player.rank || 'Genin');
           const rolledStats = await generateLootStats(rarity, player.rank || 'Genin', playerNinjaClass);
-          
+
           const { error: insertError } = await supabase.from('player_inventory').insert({
             player_id: player.id,
             item_id: randomBaseItem.id,
@@ -372,10 +372,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
 
     if ((npcInit.is_story_mode || npcInit.is_bingo_book) && !location.state?.isGhost) {
-       await supabase.from('player_defeated_npcs').insert({
-          player_id: player.id,
-          npc_id: npcInit.id
-       });
+      await supabase.from('player_defeated_npcs').insert({
+        player_id: player.id,
+        npc_id: npcInit.id
+      });
     }
 
     try {
@@ -388,7 +388,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         turn_count: turnCount,
         combat_log: logs
       });
-    } catch(e) {}
+    } catch (e) { }
 
     await updatePlayer(player.user_id);
     if (location.state?.isBetrayal) {
@@ -410,20 +410,20 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       const newBossHp = Math.max(0, npcInit.hp - accumulatedDamage);
       const isDead = newBossHp <= 0;
       await supabase.from('global_events').update({ boss_hp: newBossHp }).eq('id', npcInit.eventId);
-      
+
       // Rastrear Dano (UPSERT com Soma)
       const { data: currentDmg } = await supabase.from('world_boss_damage')
         .select('total_damage').eq('player_id', player.id).eq('event_id', npcInit.eventId).single();
-      
+
       const newTotalDamage = (currentDmg?.total_damage || 0) + accumulatedDamage;
-      
+
       await supabase.from('world_boss_damage').upsert({
         player_id: player.id,
         event_id: npcInit.eventId,
         total_damage: newTotalDamage,
         is_last_hit: isDead
       }, { onConflict: 'player_id,event_id' });
-      
+
       if (isDead) {
         addLog(`O Boss Mundial foi derrotado! Você deu o golpe final! As recompensas estão sendo distribuídas...`);
         // Chama a RPC de distribuição
@@ -444,7 +444,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     if (isDojo) updates.losses_dojo = (player.losses_dojo || 0) + 1;
 
     await supabase.from('players').update(updates).eq('id', player.id);
-    
+
     try {
       await supabase.from('battle_logs').insert({
         player_id: player.id,
@@ -455,7 +455,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         turn_count: turnCount,
         combat_log: logs
       });
-    } catch(e) {}
+    } catch (e) { }
 
     await updatePlayer(player.user_id);
   };
@@ -482,10 +482,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     // Passivas de invocação de início de turno (Ex: Cura)
     if (equippedSummon && equippedSummon.name.includes('Katsuyu')) {
-       const healAmt = Math.floor(maxPlayerHP * 0.05); // Cura 5%
-       setPlayerHP(prev => Math.min(maxPlayerHP, prev + healAmt));
-       addLog(`🐌 ${equippedSummon.name} restaurou ${healAmt} do seu HP!`);
-       spawnFct('player', `+${healAmt}`, 'heal');
+      const healAmt = Math.floor(maxPlayerHP * 0.05); // Cura 5%
+      setPlayerHP(prev => Math.min(maxPlayerHP, prev + healAmt));
+      addLog(`🐌 ${equippedSummon.name} restaurou ${healAmt} do seu HP!`);
+      spawnFct('player', `+${healAmt}`, 'heal');
     }
 
     // Regra anti-stalemate (Exaustão total)
@@ -513,39 +513,39 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         }
 
         if (location.state?.isWorldBoss) {
-           if (turnCount >= 10) {
-              addLog(`🚨 AVISO CRÍTICO: ${npcInit.name} está acumulando um chakra absurdo...`);
-              addLog(`💥 BIJUU DAMA! O mundo inteiro tremeu. Você foi obliterado.`);
-              setPlayerHP(0);
-              setBattleResult('world_boss_end');
-              return;
-           }
-           
-           const bossBaseDamage = Math.max(1, (npcAtkTaiBuk * (1 + (turnCount * 0.2))) - playerDef);
-           const mult = getElementalMultiplier(npcInit.element, player.element);
-           const damage = Math.floor(bossBaseDamage * mult);
-           const newPlayerHP = Math.max(0, playerHP - damage);
-           setPlayerHP(newPlayerHP);
-           playHitSound();
-           triggerShake('player');
-           spawnFct('player', `-${damage}`, 'damage');
-           addLog(`${npcInit.name} causou ${damage} de dano! (Turno ${turnCount}/10)`);
-           setTurnCount(t => t + 1);
+          if (turnCount >= 10) {
+            addLog(`🚨 AVISO CRÍTICO: ${npcInit.name} está acumulando um chakra absurdo...`);
+            addLog(`💥 BIJUU DAMA! O mundo inteiro tremeu. Você foi obliterado.`);
+            setPlayerHP(0);
+            setBattleResult('world_boss_end');
+            return;
+          }
 
-           if (newPlayerHP <= 0) {
-             addLog('Você não suportou a pressão do chakra e caiu...');
-             setBattleResult('world_boss_end');
-           } else {
-             startPlayerTurn();
-           }
-           return;
+          const bossBaseDamage = Math.max(1, (npcAtkTaiBuk * (1 + (turnCount * 0.2))) - playerDef);
+          const mult = getElementalMultiplier(npcInit.element, player.element);
+          const damage = Math.floor(bossBaseDamage * mult);
+          const newPlayerHP = Math.max(0, playerHP - damage);
+          setPlayerHP(newPlayerHP);
+          playHitSound();
+          triggerShake('player');
+          spawnFct('player', `-${damage}`, 'damage');
+          addLog(`${npcInit.name} causou ${damage} de dano! (Turno ${turnCount}/10)`);
+          setTurnCount(t => t + 1);
+
+          if (newPlayerHP <= 0) {
+            addLog('Você não suportou a pressão do chakra e caiu...');
+            setBattleResult('world_boss_end');
+          } else {
+            startPlayerTurn();
+          }
+          return;
         }
 
         let nHP = currentNpcHP;
         let isStunned = false;
         let isSilenced = false;
         const nextNpcStatus = [];
-        
+
         npcStatusRef.current.forEach(status => {
           if (status.type === 'dot') {
             nHP = Math.max(0, nHP - status.base_value);
@@ -571,15 +571,15 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         setNpcStatus(nextNpcStatus);
 
         if (nHP <= 0) {
-           addLog(`${npcInit.name} sucumbiu aos efeitos e caiu!`);
-           setBattleResult('win');
-           handleWin();
-           return;
+          addLog(`${npcInit.name} sucumbiu aos efeitos e caiu!`);
+          setBattleResult('win');
+          handleWin();
+          return;
         }
 
         if (isStunned) {
-           startPlayerTurn();
-           return;
+          startPlayerTurn();
+          return;
         }
 
         const jutsus = npcInit.activeJutsus || [];
@@ -588,74 +588,74 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         let elementalMsg = '';
 
         if (!isSilenced && jutsus.length > 0 && Math.random() > 0.5) {
-           const validJutsus = jutsus.filter(j => {
-             if (j.jutsu_effects && j.jutsu_effects.length > 0) {
-                const effectName = j.jutsu_effects[0].status_effects?.name;
-                if (playerStatusRef.current.some(s => s.name === effectName)) return false;
-             }
-             return true;
-           });
+          const validJutsus = jutsus.filter(j => {
+            if (j.jutsu_effects && j.jutsu_effects.length > 0) {
+              const effectName = j.jutsu_effects[0].status_effects?.name;
+              if (playerStatusRef.current.some(s => s.name === effectName)) return false;
+            }
+            return true;
+          });
 
-           const jutsu = validJutsus.length > 0 ? validJutsus[Math.floor(Math.random() * validJutsus.length)] : jutsus[Math.floor(Math.random() * jutsus.length)];
-           const cost = jutsu.chakraCost || 20;
-           
-           if (npcCP >= cost) {
-              const newNpcCP = npcCP - cost;
-              setNpcCP(newNpcCP);
-              
-              const mult = getElementalMultiplier(jutsu.element || npcInit.element, player.element);
-              const jutsuBaseDmg = jutsu.damage || 15;
-              const cat = (jutsu.category || "").toLowerCase();
-              const npcMagic = (cat === "taijutsu" || cat === "bukijutsu") ? npcAtkTaiBuk : npcAtkNinGen;
-              const magicDmg = npcMagic + jutsuBaseDmg;
-              
-              // Proteção Passiva do Buff Ativo
-              const defBonus = activeBuffs?.protecao || 0;
-              const finalDamage = Math.max(1, magicDmg - Math.floor((playerDef + defBonus) / 2));
-              
-              damage = Math.floor(finalDamage * mult);
-              
-              if (mult > 1.0) elementalMsg = ' (Vantagem Elemental!)';
-              if (mult < 1.0) elementalMsg = ' (Desvantagem Elemental)';
+          const jutsu = validJutsus.length > 0 ? validJutsus[Math.floor(Math.random() * validJutsus.length)] : jutsus[Math.floor(Math.random() * jutsus.length)];
+          const cost = jutsu.chakraCost || 20;
 
-              addLog(`⚠️ ${npcInit.name} usou [${jutsu.name}]! Causou ${damage} de dano!${elementalMsg}`);
-              applyJutsuEffects(jutsu, false);
-              usedJutsu = true;
-           }
+          if (npcCP >= cost) {
+            const newNpcCP = npcCP - cost;
+            setNpcCP(newNpcCP);
+
+            const mult = getElementalMultiplier(jutsu.element || npcInit.element, player.element);
+            const jutsuBaseDmg = jutsu.damage || 15;
+            const cat = (jutsu.category || "").toLowerCase();
+            const npcMagic = (cat === "taijutsu" || cat === "bukijutsu") ? npcAtkTaiBuk : npcAtkNinGen;
+            const magicDmg = npcMagic + jutsuBaseDmg;
+
+            // Proteção Passiva do Buff Ativo
+            const defBonus = activeBuffs?.protecao || 0;
+            const finalDamage = Math.max(1, magicDmg - Math.floor((playerDef + defBonus) / 2));
+
+            damage = Math.floor(finalDamage * mult);
+
+            if (mult > 1.0) elementalMsg = ' (Vantagem Elemental!)';
+            if (mult < 1.0) elementalMsg = ' (Desvantagem Elemental)';
+
+            addLog(`⚠️ ${npcInit.name} usou [${jutsu.name}]! Causou ${damage} de dano!${elementalMsg}`);
+            applyJutsuEffects(jutsu, false);
+            usedJutsu = true;
+          }
         }
 
         if (!usedJutsu) {
-            const staminaCost = 15;
-            if (npcSt < staminaCost) {
-               addLog(`💨 ${npcInit.name} tentou atacar, mas está exausto demais!`);
+          const staminaCost = 15;
+          if (npcSt < staminaCost) {
+            addLog(`💨 ${npcInit.name} tentou atacar, mas está exausto demais!`);
+          } else {
+            const newNpcSt = npcSt - staminaCost;
+            setNpcSt(newNpcSt);
+
+
+            const dodgeRoll = Math.random() * 100;
+            const dodgeChance = calculateDodgeChance(player);
+
+            if (dodgeRoll <= dodgeChance) {
+              addLog(`💨 ${npcInit.name} tentou um ataque básico, mas você esquivou!`);
+              damage = 0;
             } else {
-               const newNpcSt = npcSt - staminaCost;
-               setNpcSt(newNpcSt);
+              const mult = getElementalMultiplier(npcInit.element, player.element);
+              const defBonus = activeBuffs?.protecao || 0;
+              const baseDamage = Math.max(1, npcAtkTaiBuk - (playerDef + defBonus));
+              damage = Math.floor(baseDamage * mult);
 
+              if (mult > 1.0) elementalMsg = ' (Dano Efetivo!)';
+              if (mult < 1.0) elementalMsg = ' (Dano Reduzido)';
 
-               const dodgeRoll = Math.random() * 100;
-               const dodgeChance = calculateDodgeChance(player);
-               
-               if (dodgeRoll <= dodgeChance) {
-                  addLog(`💨 ${npcInit.name} tentou um ataque básico, mas você esquivou!`);
-                  damage = 0;
-               } else {
-                 const mult = getElementalMultiplier(npcInit.element, player.element);
-                 const defBonus = activeBuffs?.protecao || 0;
-                 const baseDamage = Math.max(1, npcAtkTaiBuk - (playerDef + defBonus));
-                 damage = Math.floor(baseDamage * mult);
-                 
-                 if (mult > 1.0) elementalMsg = ' (Dano Efetivo!)';
-                 if (mult < 1.0) elementalMsg = ' (Dano Reduzido)';
-
-                 addLog(`${npcInit.name} atacou e causou ${damage} de dano!${elementalMsg}`);
-               }
+              addLog(`${npcInit.name} atacou e causou ${damage} de dano!${elementalMsg}`);
             }
-         }
+          }
+        }
 
         const newPlayerHP = Math.max(0, playerHPRef.current - damage);
         setPlayerHP(newPlayerHP);
-        
+
         if (damage > 0) {
           if (activeBuffs?.protecao > 0) addLog(`🛡️ Seu Escudo absorveu parte do impacto!`);
           triggerShake('player');
@@ -688,12 +688,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     if (cons.type === "hp") setPlayerHP(prev => Math.min(maxPlayerHP, prev + cons.effect_value));
     else if (cons.type === "chakra") setPlayerCP(prev => Math.min(maxPlayerCP, prev + cons.effect_value));
     else if (cons.type === "stamina") setPlayerSt(prev => Math.min(maxPlayerSt, prev + cons.effect_value));
-    
+
     addLog(`💊 Você usou [${cons.name}] e recuperou ${cons.effect_value} de ${cons.type.toUpperCase()}!`);
-    
+
     if (cons.pc_id) {
-       await supabase.from("player_consumables").update({ quantity: cons.quantity - 1 }).eq("id", cons.pc_id);
-       await updatePlayer();
+      await supabase.from("player_consumables").update({ quantity: cons.quantity - 1 }).eq("id", cons.pc_id);
+      await updatePlayer();
     }
 
     setTimeout(() => {
@@ -703,9 +703,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const handleBasicAttack = async () => {
     if (!isPlayerTurn || battleResult) return;
-    
+
     // Feature Flag: Server-side Combat vs Client-side Combat
-    const USE_SERVER_COMBAT = false; 
+    const USE_SERVER_COMBAT = false;
 
     if (USE_SERVER_COMBAT) {
       setIsPlayerTurn(false);
@@ -781,12 +781,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
 
     // --- FALLBACK LOCAL / ANTIGO ---
-    
+
     const staminaCost = Math.floor(15 * globalDebuffs.staminaCostMultiplier);
     if (playerSt < staminaCost) { addToast(`Stamina insuficiente (${staminaCost}) para atacar!`, 'error'); return; }
 
     setIsPlayerTurn(false);
-    
+
     const newSt = playerSt - staminaCost;
     setPlayerSt(newSt);
 
@@ -804,19 +804,19 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const totalCritChance = baseCrit + clanCrit + (activeBuffs.letalidade || 0);
     const isCrit = Math.random() * 100 <= totalCritChance;
     const defReduction = clanBonus.armorPen > 0 ? Math.floor(npcDef * clanBonus.armorPen) : 0;
-    
+
     // Passivas de Invocação
     let summonDamageBonus = 0;
     let summonAccBonus = 0;
     if (equippedSummon) {
-       if (equippedSummon.name.includes('Gamakichi')) summonDamageBonus += Math.floor(equippedSummon.base_atk * 0.1);
-       if (equippedSummon.name.includes('Pakkun')) summonAccBonus += 15;
+      if (equippedSummon.name.includes('Gamakichi')) summonDamageBonus += Math.floor(equippedSummon.base_atk * 0.1);
+      if (equippedSummon.name.includes('Pakkun')) summonAccBonus += 15;
     }
-    
+
     // HOTFIX: Trava multiplicador composto de (Oito Portões x Crítico) no máximo de 2.5x
     const critMult = isCrit ? 1.75 : 1.0;
     const combinedMult = Math.min(2.5, portaoAtkMultiplier * critMult);
-    
+
     let damage = Math.max(1, Math.floor(playerAtkTaiBuk * combinedMult) - Math.floor(npcDef / 2) + defReduction + summonDamageBonus);
     if (portaoAtkMultiplier > 1.0) addLog(`⚡ Os Portões do Chakra impulsionam seu ataque!`);
 
@@ -953,7 +953,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const bonusDano = getJutsuEnhancementBonus(jutsu, 'dano');
     const bonusLetalidade = getJutsuEnhancementBonus(jutsu, 'letalidade');
     const bonusProtecao = getJutsuEnhancementBonus(jutsu, 'protecao');
-    
+
     // Desconto de Selo: 1% de redução de custo de chakra para cada ponto de Selo (máx 50%)
     const seloDiscount = calculateChakraDiscount(player) * 0.01;
     const originalCost = jutsu.chakraCost || 20;
@@ -964,12 +964,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     setIsPlayerTurn(false);
     const newCP = playerCP - cost;
     setPlayerCP(newCP);
-    
+
     // --- APLICAR COOLDOWN DO JUTSU ---
     if (jutsuCooldown > 0) {
       setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown }));
     }
-    
+
     if (newCP <= 0) {
       addLog(`Você ficou sem Chakra usando [${jutsu.name}] e desmaiou de exaustão...`);
       setBattleResult('lose');
@@ -979,7 +979,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     const newDailyChakra = (player.daily_chakra_spent || 0) + cost;
     await supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
-    
+
     const jutsuAccuracy = jutsu.accuracy || 100;
     const totalAccuracy = Math.min(95, jutsuAccuracy + (playerPrecision / 2) - globalDebuffs.accuracyPenalty);
     const didHit = Math.random() * 100 <= totalAccuracy;
@@ -992,13 +992,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     const mult = getElementalMultiplier(jutsu.element || player.element, npcInit.element);
     let jutsuBaseDmg = (jutsu.damage || 15) + bonusDano;
-    
+
     // Passivas de Invocação no Jutsu
     let summonDamageBonus = 0;
     if (equippedSummon && equippedSummon.name.includes('Gamakichi') && jutsu.element === 'Katon') {
-        summonDamageBonus += Math.floor(jutsuBaseDmg * 0.2); // +20% Katon
+      summonDamageBonus += Math.floor(jutsuBaseDmg * 0.2); // +20% Katon
     }
-    
+
     let attrValue = 0;
     const cat = (jutsu.category || '').toLowerCase();
     if (cat === 'ninjutsu') attrValue = player.ninjutsu || player.nin || 0;
@@ -1016,7 +1016,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const critRoll = Math.random() * 100;
     const isCrit = critRoll <= totalCritChance;
     const critMult = isCrit ? 1.5 : 1.0;
-    
+
     const damage = Math.floor(rawDamage * mult * critMult);
 
     const newNpcHP = Math.max(0, npcHP - damage);
@@ -1107,9 +1107,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       )}
 
       <div className="flex-col" style={{ width: '100%', gap: '24px' }}>
-        
+
         <div className="flex-row" style={{ alignItems: 'stretch', gap: '24px' }}>
-          
+
           <div className={`card flex-col ${playerShake ? 'damage-flash' : ''}`} style={{ flex: 1, borderColor: clanBonus.name ? 'rgba(212,162,42,0.3)' : 'var(--line)', position: 'relative', backgroundImage: location.state?.bgType === 'dojo' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_dojo.jpg)' : location.state?.bgType === 'map' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_forest.jpg)' : (player.village_id ? `linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_${player.village_id}.jpg)` : 'none'), backgroundSize: 'cover', backgroundPosition: 'center' }}>
             {fcts.filter(f => f.target === 'player').map(f => (
               <div key={f.id} className={`fct fct-${f.type}`}>{f.text}</div>
@@ -1159,7 +1159,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 </div>
               ))}
             </div>
-            
+
             <div className="flex-col" style={{ marginTop: 'auto' }}>
               <div>
                 <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '8px' }}>
@@ -1220,7 +1220,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 <div className="mono muted" style={{ fontSize: '12px' }}>Lvl. {npcInit.level}</div>
               </div>
             </div>
-            
+
             {/* PAINEL DE STATUS ATIVOS (NPC) */}
             <div className="flex-row" style={{ marginTop: '12px', gap: '8px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
               {npcStatus.map(s => (
@@ -1260,7 +1260,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                   <div className="progress-fill yellow" style={{ width: `${nStPercent}%`, background: 'linear-gradient(270deg, #b45309, #f59e0b)' }}></div>
                 </div>
               </div>
-              
+
               {/* PAINEL DE STATUS ATIVOS (NPC) */}
               <div className="flex-row" style={{ marginTop: '12px', gap: '8px', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
                 {npcInit?.clan && (
@@ -1301,125 +1301,234 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               <p className="muted" style={{ fontSize: '12px' }}>O Wintrading Shield foi ativado. Você não pode interferir no combate contra seu próprio alter ego. O sistema resolverá a batalha com base nos atributos e na sorte de ambos.</p>
             </div>
           ) : (
-          <div className="flex-wrap" style={{ gap: '16px' }}>
-            <button 
-              className="btn-ghost" 
-              style={{ flex: 1, minWidth: '150px', padding: '16px', border: '1px solid var(--line)', opacity: isPlayerTurn ? 1 : 0.5 }} 
-              disabled={!isPlayerTurn}
-              onClick={handleBasicAttack}
-            >
-              <div style={{ fontSize: '20px', marginBottom: '8px' }}>👊</div>
-              Ataque Básico
-              <div className="flex-row" style={{ gap: '12px', marginTop: '4px', justifyContent: 'center' }}>
-                <span className="mono red" style={{ fontSize: '10px' }}>{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2) + (clanBonus.armorPen > 0 ? Math.floor(npcDef * clanBonus.armorPen) : 0))} DMG</span>
-                <span className="mono gold" style={{ fontSize: '10px' }}>{BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty}% ACC</span>
+            <div className="flex-wrap" style={{ gap: '16px' }}>
+              <button
+                className="btn-ghost"
+                style={{ flex: 1, minWidth: '150px', padding: '16px', border: '1px solid var(--line)', opacity: isPlayerTurn ? 1 : 0.5 }}
+                disabled={!isPlayerTurn}
+                onClick={handleBasicAttack}
+              >
+                <div style={{ fontSize: '20px', marginBottom: '8px' }}>👊</div>
+                Ataque Básico
+                <div className="flex-row" style={{ gap: '12px', marginTop: '4px', justifyContent: 'center' }}>
+                  <span className="mono red" style={{ fontSize: '10px' }}>{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2) + (clanBonus.armorPen > 0 ? Math.floor(npcDef * clanBonus.armorPen) : 0))} DMG</span>
+                  <span className="mono gold" style={{ fontSize: '10px' }}>{BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty}% ACC</span>
+                </div>
+              </button>
+
+              <div className="flex-row" style={{ flexWrap: 'wrap', gap: '8px', justifyContent: 'center', marginBottom: '8px' }}>
+                {(() => {
+                  const eqIds = player.equipped_jutsus || [];
+
+                  const jutsusToShow =
+                    eqIds.length > 0
+                      ? (player.activeJutsus || []).filter(j => eqIds.includes(j.id))
+                      : (player.activeJutsus || []).slice(0, 4);
+
+                  return jutsusToShow.map((jutsu, idx) => {
+                    const jutsuBaseAcc = jutsu.accuracy || 100;
+                    const finalAcc = Math.min(100, jutsuBaseAcc + Math.floor(playerPrecision / 2));
+
+                    let attrValue = 0;
+                    const cat = (jutsu.category || '').toLowerCase();
+
+                    if (cat === 'ninjutsu') attrValue = player.ninjutsu || player.nin || 0;
+                    else if (cat === 'taijutsu') attrValue = player.taijutsu || player.tai || 0;
+                    else if (cat === 'genjutsu') attrValue = player.genjutsu || player.gen || 0;
+                    else if (cat === 'bukijutsu') attrValue = player.bukijutsu || player.buk || 0;
+                    else attrValue = player.ninjutsu || player.nin || 0;
+
+                    const bonusDano = getJutsuEnhancementBonus(jutsu, 'dano');
+                    const bonusCusto = getJutsuEnhancementBonus(jutsu, 'custo');
+                    const bonusLetalidade = getJutsuEnhancementBonus(jutsu, 'letalidade');
+
+                    const jutsuBaseDmg = (jutsu.damage || 15) + bonusDano;
+                    const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
+                    const estDamage = Math.max(1, magicDmg - Math.floor(npcDef / 2));
+
+                    const seloDiscount = Math.min(0.5, (player.selos || 0) * 0.01);
+                    const originalCost = jutsu.chakraCost || 20;
+                    const baseCost = originalCost + bonusCusto;
+
+                    const cost = Math.floor(
+                      Math.max(
+                        originalCost * 0.1,
+                        Math.max(1, baseCost * (1 - seloDiscount))
+                      )
+                    );
+
+                    const hasEssences =
+                      bonusDano > 0 ||
+                      bonusCusto < 0 ||
+                      bonusLetalidade > 0;
+
+                    const jutsuLevel = jutsu.level || 1;
+                    const jutsuCdVal = cooldowns[jutsu.id] || 0;
+                    const isOnCooldown = jutsuCdVal > 0;
+
+                    return (
+                      <button
+                        key={idx}
+                        className="btn-ghost flex-col"
+                        style={{
+                          flex: '1 1 calc(20% - 8px)',
+                          maxWidth: '80px',
+                          minWidth: '70px',
+                          height: '80px',
+                          padding: '4px',
+                          border: isOnCooldown
+                            ? '1px solid #6b7280'
+                            : hasEssences
+                              ? '1px solid var(--gold)'
+                              : '1px solid var(--seal-bright)',
+                          opacity: isPlayerTurn && !isOnCooldown ? 1 : 0.4,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          position: 'relative',
+                          background: 'var(--ink-raised)',
+                          cursor:
+                            !isPlayerTurn || isOnCooldown
+                              ? 'not-allowed'
+                              : 'pointer',
+                          borderRadius: '8px'
+                        }}
+                        disabled={!isPlayerTurn || isOnCooldown}
+                        onClick={() => handleJutsu(jutsu)}
+                        title={`${jutsu.name}\n${cost} CP | ${estDamage} DMG | ${finalAcc}% ACC\nTempo de Recarga: ${jutsu.cooldown || 0}T`}
+                      >
+                        <div
+                          style={{
+                            position: 'absolute',
+                            inset: 0,
+                            zIndex: 1
+                          }}
+                        >
+                          <JutsuIcon jutsu={jutsu} />
+                        </div>
+
+                        {isOnCooldown && (
+                          <div
+                            style={{
+                              position: 'absolute',
+                              inset: 0,
+                              background: 'rgba(0,0,0,0.6)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              zIndex: 3,
+                              borderRadius: '8px'
+                            }}
+                          >
+                            <span
+                              style={{
+                                fontSize: '24px',
+                                fontWeight: 'bold',
+                                color: '#fff',
+                                textShadow: '0 2px 4px rgba(0,0,0,1)'
+                              }}
+                            >
+                              {jutsuCdVal}
+                            </span>
+                          </div>
+                        )}
+
+                        <div
+                          style={{
+                            position: 'absolute',
+                            bottom: '0',
+                            left: '0',
+                            right: '0',
+                            padding: '2px',
+                            background: 'rgba(0,0,0,0.7)',
+                            borderBottomLeftRadius: '8px',
+                            borderBottomRightRadius: '8px',
+                            zIndex: 2
+                          }}
+                        >
+                          <div
+                            className="paper"
+                            style={{
+                              fontSize: '9px',
+                              lineHeight: 1.1,
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              textAlign: 'center'
+                            }}
+                          >
+                            {jutsu.name}
+                          </div>
+                        </div>
+
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: '2px',
+                            right: '4px',
+                            zIndex: 2
+                          }}
+                        >
+                          <span
+                            className="mono"
+                            style={{
+                              fontSize: '10px',
+                              color: '#60a5fa',
+                              textShadow: '0 1px 2px #000'
+                            }}
+                          >
+                            {cost}
+                          </span>
+                        </div>
+
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: '2px',
+                            left: '4px',
+                            zIndex: 2
+                          }}
+                        >
+                          <span
+                            className="mono"
+                            style={{
+                              fontSize: '9px',
+                              color: '#fff',
+                              textShadow: '0 1px 2px #000'
+                            }}
+                          >
+                            Lv.{jutsuLevel}
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  });
+                })()}
               </div>
-            </button>
-            
-            <div className="flex-row" style={{ flexWrap: 'wrap', gap: '8px', justifyContent: 'center', marginBottom: '8px' }}>
-              { (() => {
-                 const eqIds = player.equipped_jutsus || [];
-                 const jutsusToShow = eqIds.length > 0 
-                     ? (player.activeJutsus || []).filter(j => eqIds.includes(j.id))
-                     : (player.activeJutsus || []).slice(0, 4);
-                 return jutsusToShow.map((jutsu, idx) => {
-                 const jutsuBaseAcc = jutsu.accuracy || 100;
-                 const finalAcc = Math.min(100, jutsuBaseAcc + Math.floor(playerPrecision / 2));
-                 
-                 let attrValue = 0;
-                 const cat = (jutsu.category || '').toLowerCase();
-                 const elem = (jutsu.element || cat).toLowerCase();
-                 if (cat === 'ninjutsu') attrValue = player.ninjutsu || player.nin || 0;
-                 else if (cat === 'taijutsu') attrValue = player.taijutsu || player.tai || 0;
-                 else if (cat === 'genjutsu') attrValue = player.genjutsu || player.gen || 0;
-                 else if (cat === 'bukijutsu') attrValue = player.bukijutsu || player.buk || 0;
-                 else attrValue = player.ninjutsu || player.nin || 0;
-                 
-                 const bonusDano = getJutsuEnhancementBonus(jutsu, 'dano');
-                 const bonusCusto = getJutsuEnhancementBonus(jutsu, 'custo');
-                 const bonusLetalidade = getJutsuEnhancementBonus(jutsu, 'letalidade');
-                 const jutsuBaseDmg = (jutsu.damage || 15) + bonusDano;
-                 const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
-                 const estDamage = Math.max(1, magicDmg - Math.floor(npcDef / 2));
-                 
-                 const seloDiscount = Math.min(0.5, (player.selos || 0) * 0.01);
-                 const originalCost = jutsu.chakraCost || 20;
-                 const baseCost = originalCost + bonusCusto;
-                 const cost = Math.floor(Math.max(originalCost * 0.1, Math.max(1, baseCost * (1 - seloDiscount))));
-                 
-                 const hasEssences = bonusDano > 0 || bonusCusto < 0 || bonusLetalidade > 0;
-                 const jutsuLevel = jutsu.level || 1;
-                 const jutsuCdVal = cooldowns[jutsu.id] || 0;
-                 const isOnCooldown = jutsuCdVal > 0;
 
-                 return (
-                  <button 
-                    key={idx}
-                    className="btn-ghost flex-col" 
-                    style={{ 
-                      flex: '1 1 calc(20% - 8px)', maxWidth: '80px', minWidth: '70px', height: '80px', 
-                      padding: '4px', 
-                      border: isOnCooldown ? '1px solid #6b7280' : hasEssences ? '1px solid var(--gold)' : '1px solid var(--seal-bright)', 
-                      opacity: (isPlayerTurn && !isOnCooldown) ? 1 : 0.4, 
-                      alignItems: 'center', justifyContent: 'center',
-                      position: 'relative',
-                      background: 'var(--ink-raised)',
-                      cursor: (!isPlayerTurn || isOnCooldown) ? 'not-allowed' : 'pointer',
-                      borderRadius: '8px'
-                    }} 
-                    disabled={!isPlayerTurn || isOnCooldown}
-                    onClick={() => handleJutsu(jutsu)}
-                    title={`${jutsu.name}\n${cost} CP | ${estDamage} DMG | ${finalAcc}% ACC\nTempo de Recarga: ${jutsu.cooldown || 0}T`}
-                  >
-                    <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-                      <JutsuIcon jutsu={jutsu} />
-                    </div>
-                    {isOnCooldown && (
-                      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, borderRadius: '8px' }}>
-                        <span style={{ fontSize: '24px', fontWeight: 'bold', color: '#fff', textShadow: '0 2px 4px rgba(0,0,0,1)' }}>{jutsuCdVal}</span>
-                      </div>
-                    )}
-                    
-                    <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', padding: '2px', background: 'rgba(0,0,0,0.7)', borderBottomLeftRadius: '8px', borderBottomRightRadius: '8px', zIndex: 2 }}>
-                      <div className="paper" style={{ fontSize: '9px', lineHeight: 1.1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'center' }}>{jutsu.name}</div>
-                    </div>
-                    
-                    <div style={{ position: 'absolute', top: '2px', right: '4px', zIndex: 2 }}>
-                      <span className="mono" style={{ fontSize: '10px', color: '#60a5fa', textShadow: '0 1px 2px #000' }}>{cost}</span>
-                    </div>
-                    <div style={{ position: 'absolute', top: '2px', left: '4px', zIndex: 2 }}>
-                      <span className="mono" style={{ fontSize: '9px', color: '#fff', textShadow: '0 1px 2px #000' }}>Lv.{jutsuLevel}</span>
-                    </div>
-                  </button>
-                 );
-               })
-              }
+              <button
+                className="btn-ghost flex-row"
+                style={{ width: '100%', padding: '16px', border: surrenderConfirm ? '2px solid #ef4444' : '1px dashed #ef4444', color: '#ef4444', opacity: isPlayerTurn ? 1 : 0.5, marginTop: '8px', justifyContent: 'center', gap: '8px', fontWeight: surrenderConfirm ? 'bold' : 'normal' }}
+                disabled={!isPlayerTurn}
+                onClick={handleSurrender}
+              >
+                <span style={{ fontSize: '20px' }}>🏳️</span> {surrenderConfirm ? '⚠️ Confirmar Desistência!' : 'Desistir da Luta'}
+              </button>
+
+              <button
+                className={`btn-ghost flex-row ${autoBattle ? 'active' : ''}`}
+                style={{ width: '100%', padding: '16px', border: autoBattle ? '1px solid var(--gold)' : '1px solid var(--line)', color: autoBattle ? 'var(--gold)' : 'var(--muted)', opacity: isPlayerTurn ? 1 : 0.5, marginTop: '8px', justifyContent: 'center', gap: '8px' }}
+                onClick={() => setAutoBattle(!autoBattle)}
+              >
+                <span style={{ fontSize: '20px' }}>🤖</span> Auto-Battle: {autoBattle ? 'LIGADO' : 'DESLIGADO'}
+              </button>
             </div>
-
-            <button 
-              className="btn-ghost flex-row" 
-              style={{ width: '100%', padding: '16px', border: surrenderConfirm ? '2px solid #ef4444' : '1px dashed #ef4444', color: '#ef4444', opacity: isPlayerTurn ? 1 : 0.5, marginTop: '8px', justifyContent: 'center', gap: '8px', fontWeight: surrenderConfirm ? 'bold' : 'normal' }} 
-              disabled={!isPlayerTurn}
-              onClick={handleSurrender}
-            >
-              <span style={{ fontSize: '20px' }}>🏳️</span> {surrenderConfirm ? '⚠️ Confirmar Desistência!' : 'Desistir da Luta'}
-            </button>
-
-            <button 
-              className={`btn-ghost flex-row ${autoBattle ? 'active' : ''}`}
-              style={{ width: '100%', padding: '16px', border: autoBattle ? '1px solid var(--gold)' : '1px solid var(--line)', color: autoBattle ? 'var(--gold)' : 'var(--muted)', opacity: isPlayerTurn ? 1 : 0.5, marginTop: '8px', justifyContent: 'center', gap: '8px' }}
-              onClick={() => setAutoBattle(!autoBattle)}
-            >
-              <span style={{ fontSize: '20px' }}>🤖</span> Auto-Battle: {autoBattle ? 'LIGADO' : 'DESLIGADO'}
-            </button>
-          </div>
           )
         ) : (
           <div className="flex-col" style={{ textAlign: 'center', padding: '24px', border: `1px solid ${battleResult === 'win' ? 'var(--gold)' : '#ef4444'}`, background: 'var(--ink-soft)', alignItems: 'center' }}>
             <h2 className={battleResult === 'win' ? 'page-title gold' : 'page-title danger'} style={{ marginBottom: '16px' }}>
               {battleResult === 'win' ? 'Vitória!' : (battleResult === 'world_boss_end' ? 'Fim da Incursão' : 'Inconsciente')}
             </h2>
-            
+
             {battleResult === 'world_boss_end' && (
               <p className="muted" style={{ marginBottom: '16px' }}>Você causou um total de <strong className="danger" style={{ fontSize: '18px' }}>{accumulatedDamage}</strong> de dano ao Chefe Global!</p>
             )}

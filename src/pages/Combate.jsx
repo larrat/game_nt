@@ -95,7 +95,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const [npcHP, setNpcHP] = useState(npcInit?.hp || 1);
   const [npcMaxHPVal, setNpcMaxHPVal] = useState(npcInit?.hp || 1);
-  const [npcCP, setNpcCP] = useState(npcInit?.chakra || 50); // CORREÇÃO: ESTADO DO CHAKRA DO NPC
+  const [npcCP, setNpcCP] = useState(npcInit?.chakra || 50);
   const [npcSt, setNpcSt] = useState(npcMaxSt);
 
   const timeoutRefs = useRef([]);
@@ -115,7 +115,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const npcStatusRef = useRef(npcStatus);
   const playerHPRef = useRef(playerHP);
   const cooldownsRef = useRef(cooldowns);
-  const logsContainerRef = useRef(null); // CORREÇÃO: REF RESTAURADA
+  const logsContainerRef = useRef(null);
 
   const [surrenderConfirm, setSurrenderConfirm] = useState(false);
 
@@ -197,7 +197,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
   }, [playerHP, playerCP, setPlayerState]);
 
-  // CORREÇÃO: TIMER COM CLEANUP
   useEffect(() => {
     let timer;
     if (isPlayerTurn && !battleResult && !isAltAutoBattle) {
@@ -705,8 +704,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const handleBasicAttack = async () => {
     if (!isPlayerTurn || battleResult) return;
 
-    // Feature Flag: Server-side Combat vs Client-side Combat
-    const USE_SERVER_COMBAT = false;
+    // COMBATE VIA SERVIDOR ATIVADO
+    const USE_SERVER_COMBAT = true;
 
     if (USE_SERVER_COMBAT) {
       setIsPlayerTurn(false);
@@ -718,13 +717,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         p_global_debuffs: globalDebuffs,
         p_equipped_summon: equippedSummon,
         p_active_buffs: activeBuffs,
-        p_portao_multiplier: portaoAtkMultiplier
+        p_portao_multiplier: portaoAtkMultiplier,
+        p_player_atk_fis: playerAtkTaiBuk,
+        p_player_atk_mag: playerAtkNinGen
       });
 
       if (error) {
         addToast('Erro ao contatar o servidor de combate. Tentando fallback local...', 'error');
-        // Pode ativar fallback setando USE_SERVER_COMBAT pra false dinamicamente num estado, 
-        // mas abortamos por precaução
         setIsPlayerTurn(true);
         return;
       }
@@ -864,8 +863,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const handleJutsu = async (jutsu) => {
     if (!isPlayerTurn || battleResult) return;
 
-    // Feature Flag
-    const USE_SERVER_COMBAT = false;
+    // COMBATE VIA SERVIDOR ATIVADO
+    const USE_SERVER_COMBAT = true;
 
     if (USE_SERVER_COMBAT) {
       // Cooldown e verificação client-side UI
@@ -882,7 +881,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         p_npc_stats: { def: npcDef, element: npcInit.element },
         p_global_debuffs: globalDebuffs,
         p_equipped_summon: equippedSummon,
-        p_active_buffs: activeBuffs
+        p_active_buffs: activeBuffs,
+        p_player_atk_fis: playerAtkTaiBuk,
+        p_player_atk_mag: playerAtkNinGen
       });
 
       if (error || data.error) {

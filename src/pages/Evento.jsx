@@ -3,31 +3,45 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import { fetchActiveWorldBoss, isEventExpired } from '../utils/eventUtils';
 
 export default function Evento({ player, updatePlayer }) {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [attacking, setAttacking] = useState(false);
+  const [timeLeft, setTimeLeft] = useState('');
   const { addToast } = useToast();
   const navigate = useNavigate();
 
   const fetchEvent = async () => {
     setLoading(true);
-    const { data } = await supabase
-      .from('global_events')
-      .select('*')
-      .eq('is_active', true)
-      .order('id', { ascending: false })
-      .limit(1)
-      .single();
-    
-    if (data) setEvent(data);
+    const data = await fetchActiveWorldBoss(supabase);
+    setEvent(data);
     setLoading(false);
   };
 
   useEffect(() => {
     fetchEvent();
   }, []);
+
+  useEffect(() => {
+    if (!event?.ends_at) return;
+    const tick = () => {
+      const diff = new Date(event.ends_at) - new Date();
+      if (diff <= 0) {
+        setTimeLeft('Renovando...');
+        fetchEvent();
+        return;
+      }
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, [event?.id, event?.ends_at]);
 
   const getRankMaxTickets = (rank) => {
     switch (rank) {
@@ -45,12 +59,13 @@ export default function Evento({ player, updatePlayer }) {
   const todayStr = new Date().toISOString().split('T')[0];
   const maxTickets = getRankMaxTickets(player?.rank);
   const currentTickets = player?.last_event_date === todayStr ? (player?.event_tickets ?? maxTickets) : maxTickets;
-  
+
   const dayOfWeek = new Date().getDay();
   const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+  const eventExpired = event ? isEventExpired(event) : false;
 
   const handleAttack = async () => {
-    if (!event || event.boss_hp <= 0) return;
+    if (!event || event.boss_hp <= 0 || eventExpired) return;
     if (isWeekend) {
       addToast('O World Boss descansa nos finais de semana!', 'error');
       return;
@@ -59,8 +74,7 @@ export default function Evento({ player, updatePlayer }) {
       addToast('Você não tem mais entradas diárias para hoje!', 'error');
       return;
     }
-    
-    // Atualiza os tickets do jogador antes de entrar no combate
+
     setAttacking(true);
     const { error } = await supabase.from('players').update({
       last_event_date: todayStr,
@@ -72,21 +86,20 @@ export default function Evento({ player, updatePlayer }) {
       setAttacking(false);
       return;
     }
-    await updatePlayer(player.user_id);
+    await updatePlayer(player.id);
     setAttacking(false);
 
-    // Converte o Evento em um NPC para a engine de combate
     const bossNpc = {
       id: `worldboss_${event.id}`,
       name: event.name,
-      avatar: '/images/imgi_125_kurama.jpg', 
-      level: 100, 
-      hp: event.boss_hp, 
+      avatar: '/images/imgi_125_kurama.jpg',
+      level: 100,
+      hp: event.boss_hp,
       maxHp: event.boss_max_hp,
       chakra: 99999,
-      atk: 500, 
-      def: 250, 
-      element: 'Katon', 
+      atk: 500,
+      def: 250,
+      element: 'Katon',
       isWorldBoss: true,
       eventId: event.id
     };
@@ -98,10 +111,10 @@ export default function Evento({ player, updatePlayer }) {
 
   return (
     <div className="page">
-      <PageHeader 
-        eyebrow="Guerra Ninja" 
-        title="Evento Global" 
-        subtitle="Una forças com outros ninjas para combater ameaças ao mundo shinobi." 
+      <PageHeader
+        eyebrow="Guerra Ninja"
+        title="Evento Global"
+        subtitle="Una forças com outros ninjas para combater ameaças ao mundo shinobi."
       />
 
       {loading ? (
@@ -120,7 +133,7 @@ export default function Evento({ player, updatePlayer }) {
         </div>
       ) : (
         <div className="card-glass flex-col" style={{ alignItems: 'center', padding: '48px', position: 'relative', overflow: 'hidden', border: '1px solid #ef4444' }}>
-          
+
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'radial-gradient(circle at center, rgba(239, 68, 68, 0.1) 0%, transparent 70%)', pointerEvents: 'none' }}></div>
 
           <h2 className="danger uppercase" style={{ fontSize: '32px', textShadow: '0 0 20px rgba(239,68,68,0.5)', marginBottom: '8px', zIndex: 1 }}>
@@ -130,8 +143,9 @@ export default function Evento({ player, updatePlayer }) {
             {event.description}
           </p>
 
-          <div className="badge badge-gold" style={{ marginBottom: '32px', zIndex: 1 }}>
-            Tickets Restantes Hoje: {currentTickets} / {maxTickets}
+          <div className="flex-row" style={{ gap: '12px', marginBottom: '32px', zIndex: 1, flexWrap: 'wrap', justifyContent: 'center' }}>
+            <span className="badge badge-gold">Tickets: {currentTickets} / {maxTickets}</span>
+            {timeLeft && <span className="badge badge-muted">Termina em: {timeLeft}</span>}
           </div>
 
           <div style={{ fontSize: '100px', marginBottom: '32px', animation: 'pulse 2s infinite', zIndex: 1 }}>
@@ -148,16 +162,16 @@ export default function Evento({ player, updatePlayer }) {
             </div>
           </div>
 
-          <button 
-            className="btn-primary" 
+          <button
+            className="btn-primary"
             style={{ padding: '16px 48px', fontSize: '18px', background: '#ef4444', borderColor: '#ef4444', zIndex: 1 }}
             onClick={handleAttack}
-            disabled={attacking || event.boss_hp <= 0 || currentTickets <= 0}
+            disabled={attacking || event.boss_hp <= 0 || currentTickets <= 0 || eventExpired}
           >
             <span>{event.boss_hp <= 0 ? 'Chefe Morto' : currentTickets <= 0 ? 'Sem Tickets' : attacking ? 'Entrando...' : 'Atacar o Chefe!'}</span>
             <div className="stamp"></div>
           </button>
-          
+
           <div className="muted mono" style={{ marginTop: '16px', fontSize: '11px', zIndex: 1, textAlign: 'center' }}>
             Sua patente ({player.rank}) garante {maxTickets} entradas diárias. <br/> Você ganha XP e Ryous proporcionais ao dano causado.
           </div>

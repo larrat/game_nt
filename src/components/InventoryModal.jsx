@@ -3,7 +3,7 @@ import { supabase } from '../supabaseClient';
 import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 import { useToast } from '../context/ToastContext';
 import { useLocation } from 'react-router-dom';
-import { playClickSound, playHitSound } from '../utils/audioEngine'; // Podemos usar playHitSound ou algo similar para o barulho de uso
+import { playClickSound } from '../utils/audioEngine';
 
 export default function InventoryModal({ isOpen, onClose, player, updatePlayer }) {
   const location = useLocation();
@@ -28,21 +28,29 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
       .gt('quantity', 0)
       .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      setItems(data);
+    if (error) {
+      addToast('Erro ao carregar inventário.', 'error');
+      setItems([]);
+    } else {
+      setItems((data || []).filter(i => i.consumables));
     }
     setLoading(false);
   };
 
   const handleUseItem = async (invItem) => {
-    if (!player) return;
+    if (!player || !updatePlayer) return;
+    const consumable = invItem.consumables;
+    if (!consumable) {
+      addToast('Item inválido no inventário.', 'error');
+      return;
+    }
+
     setUsingId(invItem.id);
     playClickSound();
 
-    const consumable = invItem.consumables;
-    let newHp = player.hp || calculateHP(player);
-    let newCp = player.chakra || calculateChakra(player);
-    let newSp = player.stamina || calculateStamina(player);
+    let newHp = player.hp ?? calculateHP(player);
+    let newCp = player.chakra ?? calculateChakra(player);
+    let newSp = player.stamina ?? calculateStamina(player);
 
     const maxHp = calculateHP(player);
     const maxCp = calculateChakra(player);
@@ -52,25 +60,30 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
 
     if (consumable.type === 'hp' || consumable.type === 'all') {
       newHp = Math.min(maxHp, newHp + consumable.value);
-      usedText += `+HP `;
+      usedText += '+HP ';
     }
     if (consumable.type === 'cp' || consumable.type === 'all') {
       newCp = Math.min(maxCp, newCp + consumable.value);
-      usedText += `+Chakra `;
+      usedText += '+Chakra ';
     }
     if (consumable.type === 'sp' || consumable.type === 'all') {
       newSp = Math.min(maxSp, newSp + consumable.value);
-      usedText += `+Stamina `;
+      usedText += '+Stamina ';
     }
 
-    // Atualiza jogador
-    await supabase.from('players').update({
+    const { error: playerError } = await supabase.from('players').update({
       hp: newHp,
       chakra: newCp,
-      is_fainted: false // Revive se estiver desmaiado e usar um item (opcional, pode ser util para a Pilula de Renascimento)
+      stamina: newSp,
+      is_fainted: false
     }).eq('id', player.id);
 
-    // Atualiza inventário
+    if (playerError) {
+      addToast('Erro ao usar item: ' + playerError.message, 'error');
+      setUsingId(null);
+      return;
+    }
+
     const newQuantity = invItem.quantity - 1;
     if (newQuantity <= 0) {
       await supabase.from('player_consumables').delete().eq('id', invItem.id);
@@ -78,15 +91,14 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
       await supabase.from('player_consumables').update({ quantity: newQuantity }).eq('id', invItem.id);
     }
 
-    await updatePlayer(player.user_id);
+    await updatePlayer(player.id);
     addToast(`Você usou ${consumable.name} (${usedText.trim()})`, 'success');
-    
-    // Atualiza a lista local para não precisar fazer refetch
+
     setItems(prev => {
       if (newQuantity <= 0) return prev.filter(i => i.id !== invItem.id);
       return prev.map(i => i.id === invItem.id ? { ...i, quantity: newQuantity } : i);
     });
-    
+
     setUsingId(null);
   };
 
@@ -95,7 +107,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
   return (
     <div className="modal-overlay" onClick={onClose} style={{ zIndex: 100 }}>
       <div className="avatar-modal" onClick={e => e.stopPropagation()} style={{ maxWidth: '600px' }}>
-        
+
         <div className="modal-header">
           <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             🎒 Mochila de Suprimentos
@@ -126,12 +138,12 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
                     </div>
                     <div className="muted" style={{ fontSize: '12px', marginTop: '4px' }}>{invItem.consumables.description}</div>
                   </div>
-                  <button 
-                    className="btn-primary" 
+                  <button
+                    className="btn-primary"
                     style={{ padding: '8px 16px', fontSize: '12px', opacity: inCombat ? 0.5 : 1 }}
                     onClick={() => handleUseItem(invItem)}
                     disabled={usingId === invItem.id || inCombat}
-                    title={inCombat ? "Consumíveis não podem ser usados em combate." : ""}
+                    title={inCombat ? 'Consumíveis não podem ser usados em combate.' : ''}
                   >
                     {inCombat ? 'Bloqueado' : 'Usar'}
                   </button>

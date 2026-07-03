@@ -22,7 +22,7 @@ export default function Equipamentos({ player, updatePlayer }) {
     if (error) {
       addToast('Erro ao carregar equipamentos: ' + error.message, 'error');
     } else {
-      setInventory(data || []);
+      setInventory((data || []).filter(i => i.items));
     }
     setLoading(false);
   };
@@ -34,7 +34,10 @@ export default function Equipamentos({ player, updatePlayer }) {
   if (!player) return null;
 
   const handleEquip = async (invItem) => {
-
+    if (!invItem?.items) {
+      addToast('Item inválido no inventário.', 'error');
+      return;
+    }
 
     const typeToEquip = invItem.items.type;
     const currentlyEquipped = inventory.find(i => i.is_equipped && i.items.type === typeToEquip);
@@ -54,10 +57,11 @@ export default function Equipamentos({ player, updatePlayer }) {
 
     addToast(`${invItem.items.name} equipado com sucesso!`, 'success');
     loadInventory();
-    updatePlayer(player.user_id); // Atualiza os stats do player na root
+    updatePlayer(player.id);
   };
 
   const handleUnequip = async (invItem) => {
+    if (!invItem?.items) return;
     const { error } = await supabase.from('player_inventory').update({ is_equipped: false }).eq('id', invItem.id);
     if (error) {
       addToast('Erro ao remover equipamento: ' + error.message, 'error');
@@ -65,7 +69,7 @@ export default function Equipamentos({ player, updatePlayer }) {
     }
     addToast(`${invItem.items.name} removido.`, 'info');
     loadInventory();
-    updatePlayer(player.user_id);
+    updatePlayer(player.id);
   };
 
   const handleFavorite = async (invItem) => {
@@ -119,7 +123,7 @@ export default function Equipamentos({ player, updatePlayer }) {
     
     addToast(`Vendido com sucesso! Você ganhou RY$ ${totalRyous}.`, 'success');
     loadInventory();
-    updatePlayer(player.user_id);
+    updatePlayer(player.id);
   };
 
   // Helper para agrupar os slots equipados

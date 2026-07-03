@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from './supabaseClient';
+import { normalizeBonusStats } from './utils/engine';
 import './styles/main.css';
 import { ToastProvider } from './context/ToastContext';
 
@@ -120,7 +121,20 @@ function App() {
         .eq('player_id', dbPlayer.id)
         .eq('is_equipped', true);
 
-      const equippedItems = invData ? invData.map(i => i.items) : [];
+      const equippedItems = invData
+        ? invData
+            .filter(i => i.items)
+            .map(i => {
+              const merged = { ...(i.items.bonus_stats || {}), ...(i.rolled_stats || {}) };
+              return {
+                ...i.items,
+                bonus_stats: merged,
+                normalized_stats: normalizeBonusStats(merged),
+                inv_id: i.id,
+                rolled_stats: i.rolled_stats
+              };
+            })
+        : [];
 
       const { data: consData } = await supabase
         .from('player_consumables')

@@ -7,10 +7,10 @@ import PageHeader from '../components/PageHeader';
 const EMPTY_MISSIONS = [];
 
 const TABS = [
-  { id: 'tarefa_academia', label: 'Academia' },
-  { id: 'D', label: 'Rank D' },
-  { id: 'C', label: 'Rank C' },
-  { id: 'B', label: 'Rank B' }
+  { id: 'tarefa_academia', label: 'Academia', minLevel: 1 },
+  { id: 'D', label: 'Rank D', minLevel: 5 },
+  { id: 'C', label: 'Rank C', minLevel: 15 },
+  { id: 'B', label: 'Rank B', minLevel: 25 }
 ];
 
 export default function Tarefas({ player, updatePlayer }) {
@@ -65,10 +65,22 @@ export default function Tarefas({ player, updatePlayer }) {
   const isMissionActive = (missionId) =>
     activeMissions.some(m => m.mission_id === missionId);
 
+  const getMissionBlockReason = (task) => {
+    if (player.level < task.reqLevel) return `Nv.${task.reqLevel}`;
+    const tabReq = TABS.find(t => t.id === task.type);
+    if (tabReq && player.level < tabReq.minLevel) {
+      return `Rank ${tabReq.label.split(' ').pop()}`;
+    }
+    if (activeMissions.length >= slots) return 'Sem slots';
+    return null;
+  };
+
   const startTask = async (task) => {
     if (loading) return;
-    if (activeMissions.length >= slots) {
-      addToast('Slots ocupados!', 'error');
+
+    const blockReason = getMissionBlockReason(task);
+    if (blockReason) {
+      addToast(`Requisito não atendido: ${blockReason}`, 'error');
       return;
     }
     if (isMissionActive(task.id)) {
@@ -87,7 +99,7 @@ export default function Tarefas({ player, updatePlayer }) {
       if (error) throw new Error(error.message);
       if (data?.error) throw new Error(data.error);
 
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
       addToast(`Missão "${task.title}" iniciada!`, 'success');
     } catch (err) {
       addToast(err.message || 'Erro ao iniciar missão.', 'error');
@@ -109,7 +121,7 @@ export default function Tarefas({ player, updatePlayer }) {
 
       if (error || data?.error) throw new Error(error?.message || data?.error);
 
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
       addToast('Missão concluída!', 'success');
     } catch (err) {
       addToast(err.message, 'error');
@@ -141,19 +153,29 @@ export default function Tarefas({ player, updatePlayer }) {
       />
 
       <div className="segmented-tabs" role="tablist" aria-label="Categorias de missão">
-        {TABS.map(tab => (
-          <button
-            key={tab.id}
-            className={`segmented-tab ${activeTab === tab.id ? 'active' : ''}`}
-            onClick={() => setActiveTab(tab.id)}
-            type="button"
-            role="tab"
-            aria-selected={activeTab === tab.id}
-          >
-            {tab.label}
-            <span className="count">{missionsByType[tab.id] || 0}</span>
-          </button>
-        ))}
+        {TABS.map(tab => {
+          const locked = player.level < tab.minLevel;
+          return (
+            <button
+              key={tab.id}
+              className={`segmented-tab ${activeTab === tab.id ? 'active' : ''} ${locked ? 'locked' : ''}`}
+              onClick={() => {
+                if (locked) {
+                  addToast(`${tab.label} requer nível ${tab.minLevel}+`, 'error');
+                  return;
+                }
+                setActiveTab(tab.id);
+              }}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab.id}
+              title={locked ? `Requer Nv.${tab.minLevel}` : undefined}
+            >
+              {locked ? '🔒 ' : ''}{tab.label}
+              <span className="count">{missionsByType[tab.id] || 0}</span>
+            </button>
+          );
+        })}
       </div>
 
       <div className="card" style={{ marginBottom: '24px' }}>
@@ -210,6 +232,7 @@ export default function Tarefas({ player, updatePlayer }) {
             <thead>
               <tr>
                 <th>Missão</th>
+                <th>Requisito</th>
                 <th>Tempo</th>
                 <th>XP</th>
                 <th>Ryous</th>
@@ -217,11 +240,17 @@ export default function Tarefas({ player, updatePlayer }) {
               </tr>
             </thead>
             <tbody>
-              {visibleTasks.map((t) => (
+              {visibleTasks.map((t) => {
+                const blockReason = getMissionBlockReason(t);
+                const locked = !!blockReason && !isMissionActive(t.id);
+                return (
                 <tr key={t.id}>
                   <td>
                     <div className="paper" style={{ fontWeight: 600 }}>{t.title}</div>
                     <div className="muted" style={{ fontSize: '11px', marginTop: '4px', whiteSpace: 'normal' }}>{t.desc}</div>
+                  </td>
+                  <td className="mono" style={{ fontSize: '11px', color: player.level >= t.reqLevel ? 'var(--green)' : 'var(--danger)' }}>
+                    Nv.{t.reqLevel}
                   </td>
                   <td className="mono">{formatTime(t.time)}</td>
                   <td className="val-pos">{t.xp}</td>
@@ -229,11 +258,13 @@ export default function Tarefas({ player, updatePlayer }) {
                   <td>
                     {isMissionActive(t.id) ? (
                       <span className="badge badge-muted">Em andamento</span>
+                    ) : locked ? (
+                      <span className="badge badge-red" title={blockReason}>🔒 {blockReason}</span>
                     ) : (
                       <button
                         className="btn-primary"
                         onClick={() => startTask(t)}
-                        disabled={loading || activeMissions.length >= slots}
+                        disabled={loading}
                         style={{ padding: '9px 16px', fontSize: '11px' }}
                         type="button"
                       >
@@ -242,10 +273,10 @@ export default function Tarefas({ player, updatePlayer }) {
                     )}
                   </td>
                 </tr>
-              ))}
+              );})}
               {visibleTasks.length === 0 && (
                 <tr>
-                  <td colSpan="5" className="muted" style={{ textAlign: 'center', padding: '28px' }}>
+                  <td colSpan="6" className="muted" style={{ textAlign: 'center', padding: '28px' }}>
                     Nenhuma missão disponível para esta categoria.
                   </td>
                 </tr>

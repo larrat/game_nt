@@ -1337,58 +1337,53 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
           ) : (
             <div className="combat-actions">
               <div className="combat-actions-header">
-                <span className="mono uppercase" style={{ fontSize: '11px', letterSpacing: '1.5px', color: 'var(--muted)' }}>Ações de Combate</span>
-                <span className="badge badge-muted">{getCombatJutsus(player).length} jutsus disponíveis</span>
+                <span className="mono uppercase" style={{ fontSize: '11px', letterSpacing: '1.5px', color: 'var(--muted)' }}>Ações</span>
+                <span className="badge badge-muted">{getCombatJutsus(player).length + 1} técnicas</span>
               </div>
 
-              <button
-                className="combat-basic-attack"
-                disabled={!isPlayerTurn}
-                onClick={handleBasicAttack}
-                type="button"
-              >
-                <span style={{ fontSize: '28px' }}>👊</span>
-                <div className="flex-col" style={{ alignItems: 'flex-start', gap: '4px' }}>
-                  <span className="paper" style={{ fontWeight: 600, fontSize: '14px' }}>Ataque Básico</span>
-                  <div className="flex-row" style={{ gap: '12px' }}>
-                    <span className="mono danger" style={{ fontSize: '11px' }}>{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2) + (clanBonus.armorPen > 0 ? Math.floor(npcDef * clanBonus.armorPen) : 0))} DMG</span>
-                    <span className="mono gold" style={{ fontSize: '11px' }}>{BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty}% ACC</span>
-                  </div>
-                </div>
-              </button>
-
               <div className="combat-jutsu-section">
-                <div className="combat-jutsu-label">Jutsus Aprendidos</div>
                 <div className="combat-jutsu-bar">
-                  {getCombatJutsus(player).length === 0 ? (
-                    <div className="info-banner" style={{ flex: 1, fontSize: '12px' }}>
-                      Nenhum jutsu aprendido. Visite a Academia Ninja para aprender técnicas.
-                    </div>
-                  ) : (
-                    getCombatJutsus(player).map((jutsu) => {
-                      const stats = getJutsuCombatStats(jutsu, player, npcDef, cooldowns);
+                  <button
+                    className="combat-jutsu-btn combat-basic-btn"
+                    disabled={!isPlayerTurn}
+                    onClick={handleBasicAttack}
+                    title={`Ataque Básico\n${Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2))} DMG | ${BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty}% ACC`}
+                    type="button"
+                  >
+                    <span className="combat-basic-icon">👊</span>
+                    <span className="jutsu-name">Básico</span>
+                    <span className="jutsu-cost">{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2))}</span>
+                  </button>
 
-                      return (
-                        <button
-                          key={jutsu.id}
-                          className={`combat-jutsu-btn ${stats.isOnCooldown ? 'on-cooldown' : ''} ${stats.hasEssences ? 'enhanced' : ''}`}
-                          disabled={!isPlayerTurn || stats.isOnCooldown}
-                          onClick={() => handleJutsu(jutsu)}
-                          title={`${jutsu.name}\n${stats.cost} CP | ${stats.estDamage} DMG | ${stats.finalAcc}% ACC\nCD: ${jutsu.cooldown || 0}T`}
-                          type="button"
-                        >
-                          <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-                            <JutsuIcon jutsu={jutsu} />
-                          </div>
-                          {stats.isOnCooldown && (
-                            <div className="jutsu-cd-overlay">{stats.jutsuCdVal}</div>
-                          )}
-                          <span className="jutsu-name">{jutsu.name}</span>
-                          <span className="jutsu-cost">{stats.cost}</span>
-                          <span className="jutsu-level">Lv.{stats.jutsuLevel}</span>
-                        </button>
-                      );
-                    })
+                  {getCombatJutsus(player).map((jutsu) => {
+                    const stats = getJutsuCombatStats(jutsu, player, npcDef, cooldowns);
+
+                    return (
+                      <button
+                        key={jutsu.id}
+                        className={`combat-jutsu-btn ${stats.isOnCooldown ? 'on-cooldown' : ''} ${stats.hasEssences ? 'enhanced' : ''}`}
+                        disabled={!isPlayerTurn || stats.isOnCooldown}
+                        onClick={() => handleJutsu(jutsu)}
+                        title={`${jutsu.name}\n${stats.cost} CP | ${stats.estDamage} DMG | ${stats.finalAcc}% ACC\nCD: ${jutsu.cooldown || 0}T`}
+                        type="button"
+                      >
+                        <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+                          <JutsuIcon jutsu={jutsu} />
+                        </div>
+                        {stats.isOnCooldown && (
+                          <div className="jutsu-cd-overlay">{stats.jutsuCdVal}</div>
+                        )}
+                        <span className="jutsu-name">{jutsu.name}</span>
+                        <span className="jutsu-cost">{stats.cost}</span>
+                        <span className="jutsu-level">Lv.{stats.jutsuLevel}</span>
+                      </button>
+                    );
+                  })}
+
+                  {getCombatJutsus(player).length === 0 && (
+                    <div className="info-banner" style={{ flex: 1, fontSize: '11px', padding: '12px 16px', minWidth: '200px' }}>
+                      Aprenda jutsus na Academia Ninja
+                    </div>
                   )}
                 </div>
               </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { calculateXPForLevel, calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateAtkNinGen, getGlobalDebuffs } from '../utils/engine';
 import { supabase } from '../supabaseClient';
-import { useToast } from '../context/ToastContext';
+import { fetchActiveGlobalEvents } from '../utils/eventUtils';
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import AvatarModal from '../components/AvatarModal';
 import '../styles/main.css';
@@ -59,13 +59,8 @@ export default function Dashboard({ player, updatePlayer }) {
   // Busca Eventos Ativos
   useEffect(() => {
     async function fetchEvents() {
-      const { data: active } = await supabase
-        .from('global_events')
-        .select('*')
-        .eq('is_active', true)
-        .order('id', { ascending: false });
-
-      if (active) setActiveEvents(active);
+      const active = await fetchActiveGlobalEvents(supabase);
+      setActiveEvents(active);
 
       const { data: upcoming } = await supabase
         .from('global_events')

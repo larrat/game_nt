@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP, getGlobalDebuffs } from '../utils/engine';
 import InventoryModal from './InventoryModal';
-import { supabase } from '../supabaseClient';
+import { fetchActiveWorldBoss } from '../utils/eventUtils';
 
 const VILLAGES = {
   1: 'Folha', 2: 'Areia', 3: 'Névoa',
@@ -16,20 +16,8 @@ export default function TopBar({ player, updatePlayer }) {
 
   React.useEffect(() => {
     async function fetchEvent() {
-      const { data } = await supabase
-        .from('global_events')
-        .select('*')
-        .eq('is_active', true)
-        .order('id', { ascending: false })
-        .limit(1)
-        .single();
-      if (data) {
-        if (new Date() < new Date(data.ends_at)) {
-          setActiveEvent(data);
-        } else {
-          setActiveEvent(null);
-        }
-      }
+      const data = await fetchActiveWorldBoss(supabase);
+      setActiveEvent(data);
     }
     fetchEvent();
   }, []);
@@ -202,7 +190,7 @@ export default function TopBar({ player, updatePlayer }) {
 
       </div>
 
-    <InventoryModal isOpen={isInventoryOpen} onClose={() => setIsInventoryOpen(false)} player={player} />
+    <InventoryModal isOpen={isInventoryOpen} onClose={() => setIsInventoryOpen(false)} player={player} updatePlayer={updatePlayer} />
       {/* Tracker de Evento e Debuffs - Slim Banner */}
       {activeEvent && activeEvent.is_world_boss && (
         <div style={{

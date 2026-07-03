@@ -2,12 +2,44 @@
  * Fórmulas Matemáticas do Motor (Engine) do Kurokage
  */
 
+const STAT_KEY_MAP = {
+  HP: 'hp', hp: 'hp',
+  Chakra: 'chakra', chakra: 'chakra',
+  Stamina: 'stamina', stamina: 'stamina',
+  Taijutsu: 'tai', tai: 'tai', taijutsu: 'tai',
+  Ninjutsu: 'nin', nin: 'nin', ninjutsu: 'nin',
+  Genjutsu: 'gen', gen: 'gen', genjutsu: 'gen',
+  Bukijutsu: 'buk', buk: 'buk', bukijutsu: 'buk',
+  Força: 'forca', forca: 'forca',
+  Agilidade: 'agilidade', agilidade: 'agilidade',
+  Inteligência: 'inteligencia', inteligencia: 'inteligencia',
+  Selo: 'selo', selo: 'selo',
+  Resistência: 'resistencia', resistencia: 'resistencia',
+  Energia: 'energia', energia: 'energia',
+  'Ataque Tai/Buk': 'tai',
+  'Defesa Tai/Buk': 'defFis', defFis: 'defFis',
+  'Ataque Nin/Gen': 'nin',
+  'Defesa Nin/Gen': 'defMag', defMag: 'defMag',
+};
+
+export const normalizeBonusStats = (raw) => {
+  if (!raw || typeof raw !== 'object') return {};
+  const out = {};
+  for (const [key, val] of Object.entries(raw)) {
+    const num = parseInt(String(val).replace('%', ''), 10);
+    if (Number.isNaN(num)) continue;
+    const engineKey = STAT_KEY_MAP[key] || key;
+    out[engineKey] = (out[engineKey] || 0) + num;
+  }
+  return out;
+};
+
 export const getEquipmentBonus = (player, statName) => {
   if (!player || !player.equipped_items || !Array.isArray(player.equipped_items)) return 0;
   return player.equipped_items.reduce((total, item) => {
-    if (item && item.bonus_stats && item.bonus_stats[statName]) {
-      return total + Number(item.bonus_stats[statName]);
-    }
+    if (!item) return total;
+    const stats = item.normalized_stats || normalizeBonusStats(item.bonus_stats);
+    if (stats[statName]) return total + Number(stats[statName]);
     return total;
   }, 0);
 };

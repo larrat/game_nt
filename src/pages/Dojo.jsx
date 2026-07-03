@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-import { calculateHP, calculateChakra, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules, generateDynamicRogueNinja, getDynamicNpcJutsus } from '../utils/engine';
+import { calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules, generateDynamicRogueNinja, getDynamicNpcJutsus } from '../utils/engine';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
@@ -162,15 +162,53 @@ export default function Dojo({ player }) {
     }
   };
 
+  const RAID_STAMINA_COST = 25;
+
+  const handleRaid = async (fightCount) => {
+    const totalCost = fightCount * RAID_STAMINA_COST;
+    const currentSt = player.stamina ?? calculateStamina(player);
+
+    if (currentSt < totalCost) {
+      addToast(`Incursão de ${fightCount}x requer ${totalCost} Stamina (você tem ${currentSt}).`, 'error');
+      return;
+    }
+
+    setLoadingId('raid');
+    await new Promise(r => setTimeout(r, 1200));
+
+    const rogue = generateDynamicRogueNinja(player);
+    const { error } = await supabase
+      .from('players')
+      .update({ stamina: currentSt - totalCost })
+      .eq('id', player.id);
+
+    setLoadingId(null);
+
+    if (error) {
+      addToast('Erro ao iniciar incursão: ' + error.message, 'error');
+      return;
+    }
+
+    navigate('/combate', {
+      state: {
+        bgType: 'dojo',
+        npc: rogue,
+        isMirror: true,
+        raidTotal: fightCount,
+        raidCurrent: 1
+      }
+    });
+  };
+
   const handleFreeTraining = () => {
     const dummyNPC = {
       id: 'dummy',
       name: 'Boneco de Madeira',
       avatar: '🪵',
       level: 1,
-      hp: 9999, // Muito HP para não morrer rápido
+      hp: 9999,
       chakra: 0,
-      atk: 0, // Não bate de volta
+      atk: 0,
       def: 0,
       element: null,
       xpReward: 0,
@@ -232,6 +270,24 @@ export default function Dojo({ player }) {
             <span>{loadingId === 'search' ? 'Rastreando...' : 'Procurar Luta'}</span>
             <div className="stamp"></div>
           </button>
+        </section>
+
+        <section className="action-card">
+          <div className="action-card-icon">⚡</div>
+          <h3>Incursão (Raid)</h3>
+          <p>Lute várias vezes seguidas sem sair do combate. Custa Stamina antecipada — recompensas acumulam a cada vitória.</p>
+          <div className="meta-row">
+            <span className="badge badge-gold">{RAID_STAMINA_COST} ST/luta</span>
+            <span className="badge badge-muted">Stamina: {player.stamina ?? calculateStamina(player)}</span>
+          </div>
+          <div className="flex-row" style={{ gap: '8px', width: '100%' }}>
+            <button className="btn-ghost" onClick={() => handleRaid(3)} disabled={loadingId !== null} style={{ flex: 1 }}>
+              Raid 3x
+            </button>
+            <button className="btn-primary" onClick={() => handleRaid(5)} disabled={loadingId !== null} style={{ flex: 1 }}>
+              <span>{loadingId === 'raid' ? '...' : 'Raid 5x'}</span>
+            </button>
+          </div>
         </section>
 
         <section className={`action-card ${isAkatsuki ? 'featured' : 'danger-zone'}`}>

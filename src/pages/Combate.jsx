@@ -23,6 +23,7 @@ import {
 } from '../utils/engine';
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import PageHeader from '../components/PageHeader';
+import CombatFighterCard from '../components/CombatFighterCard';
 import { useToast } from '../context/ToastContext';
 import { playHitSound, playCritSound, playJutsuSound } from '../utils/audioEngine';
 
@@ -191,10 +192,15 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(30);
   const [turnCount, setTurnCount] = useState(1);
+  const [roundCount, setRoundCount] = useState(1);
+  const npcTurnCompletedRef = useRef(false);
   const [accumulatedDamage, setAccumulatedDamage] = useState(0);
   const [globalDebuffs, setGlobalDebuffs] = useState(getGlobalDebuffs(null));
   const [autoBattle, setAutoBattle] = useState(false);
   const [equippedSummon, setEquippedSummon] = useState(null);
+
+  const raidTotal = location.state?.raidTotal ?? 0;
+  const [raidCurrent, setRaidCurrent] = useState(location.state?.raidCurrent ?? 0);
 
   useEffect(() => {
     async function fetchSummon() {
@@ -324,6 +330,25 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     });
   };
 
+  const resetForNextRaidFight = () => {
+    const nextFight = raidCurrent + 1;
+    setBattleResult(null);
+    setNpcHP(npcMaxHPVal);
+    setNpcCP(npcInit?.chakra || npcMaxCP);
+    setNpcSt(npcMaxSt);
+    setNpcStatus([]);
+    setPlayerStatus([]);
+    setCooldowns({});
+    setRoundCount(1);
+    setTurnCount(1);
+    npcTurnCompletedRef.current = false;
+    setIsPlayerTurn(true);
+    setTimeLeft(30);
+    setSurrenderConfirm(false);
+    setRaidCurrent(nextFight);
+    addLog(`⚔️ Incursão ${nextFight}/${raidTotal}: um novo oponente surge!`);
+  };
+
   const handleWin = async () => {
     setLoading(true);
     const baseRyous = npcInit.ryouReward || 0;
@@ -420,12 +445,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         result: 'Vitória',
         xp_gained: npcInit.xpReward || 0,
         ryous_gained: gainedRyous,
-        turn_count: turnCount,
+        turn_count: roundCount,
         combat_log: logs
       });
     } catch (e) { }
 
-    await updatePlayer(player.user_id);
+    await updatePlayer(player.id);
     if (location.state?.isBetrayal) {
       await supabase.from('players').update({ village_id: 8, clan: null, rank: 'Nukenin' }).eq('id', player.id);
       addToast("Você traiu sua vila e agora faz parte da Akatsuki!", "success");
@@ -433,6 +458,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       addToast("Caçada concluída! Chakra da Bijuu extraído para a Organização!", "success");
     } else if (location.state?.isGhost) {
       addToast(`Você derrotou o fantasma de ${npcInit.name}!`, "success");
+    } else if (raidTotal > 0 && raidCurrent < raidTotal) {
+      addToast(`Incursão ${raidCurrent}/${raidTotal}! +${npcInit.xpReward} XP${droppedItemMsg}${vipCoinMsg}`, 'success');
+      resetForNextRaidFight();
+      setLoading(false);
+      return;
+    } else if (raidTotal > 0) {
+      addToast(`Incursão completa! ${raidTotal} vitórias seguidas!${droppedItemMsg}${vipCoinMsg}`, 'success');
     } else {
       addToast(`Vitória! +${npcInit.xpReward} XP, +${npcInit.ryouReward} Ryous.${droppedItemMsg}${vipCoinMsg}`, "success");
     }
@@ -487,7 +519,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         result: 'Derrota',
         xp_gained: 0,
         ryous_gained: 0,
-        turn_count: turnCount,
+        turn_count: roundCount,
         combat_log: logs
       });
     } catch (e) { }
@@ -496,6 +528,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   };
 
   const startPlayerTurn = () => {
+    if (npcTurnCompletedRef.current) {
+      setRoundCount(r => r + 1);
+    } else {
+      npcTurnCompletedRef.current = true;
+    }
+
     setCooldowns(prev => {
       const next = { ...prev };
       Object.keys(next).forEach(k => {
@@ -1126,205 +1164,136 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     );
   }
 
+  const combatBg = (villageId) => {
+    if (location.state?.bgType === 'dojo') {
+      return { backgroundImage: 'linear-gradient(rgba(10,10,15,0.75), rgba(10,10,15,0.92)), url(/images/bg_dojo.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top' };
+    }
+    if (location.state?.bgType === 'map') {
+      return { backgroundImage: 'linear-gradient(rgba(10,10,15,0.75), rgba(10,10,15,0.92)), url(/images/bg_forest.jpg)', backgroundSize: 'cover', backgroundPosition: 'center top' };
+    }
+    if (villageId) {
+      return { backgroundImage: `linear-gradient(rgba(10,10,15,0.75), rgba(10,10,15,0.92)), url(/images/bg_${villageId}.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center top' };
+    }
+    return {};
+  };
+
+  const playerBadges = [
+    clanBonus.name && (
+      <div key="clan" className="badge badge-muted" style={{ fontSize: '10px' }}>Clã {clanBonus.name}</div>
+    ),
+    equippedSummon && (
+      <div key="summon" className="badge badge-muted" style={{ fontSize: '10px' }}>🐾 {equippedSummon.name}</div>
+    ),
+    activeBuffs?.duration > 0 && (
+      <div key="buff" className="badge badge-gold" style={{ fontSize: '10px' }}>✨ Buff [{activeBuffs.duration}T]</div>
+    ),
+    ...playerStatus.map(s => (
+      <div key={s.name} className="badge badge-red" style={{ fontSize: '10px' }}>{s.icon || '🦠'} {s.name}</div>
+    ))
+  ].filter(Boolean);
+
+  const npcBadges = [
+    npcInit?.clan && (
+      <div key="clan" className="badge badge-muted" style={{ fontSize: '10px' }}>Clã {npcInit.clan}</div>
+    ),
+    npcInit?.summon && (
+      <div key="summon" className="badge badge-muted" style={{ fontSize: '10px' }}>🐾 {npcInit.summon.name}</div>
+    ),
+    ...npcStatus.map(s => (
+      <div key={s.name} className="badge badge-red" style={{ fontSize: '10px' }}>{s.icon || '🦠'} {s.name}</div>
+    ))
+  ].filter(Boolean);
+
   return (
     <div className="page">
       <PageHeader eyebrow='A Fúria dos Shinobis' title='Combate' />
 
-      {isPlayerTurn && !battleResult && (
+      {!battleResult && (
         <div className="combat-turn-bar">
           <div className="flex-between" style={{ fontSize: '12px', marginBottom: '8px' }}>
-            <span className="mono gold">SEU TURNO — Turno {turnCount}</span>
-            <span className={`mono ${timeLeft <= 10 ? 'danger' : 'muted'}`}>{timeLeft}s</span>
+            <span className="mono gold">
+              {isPlayerTurn ? 'SEU TURNO' : 'TURNO INIMIGO'} — Rodada {roundCount}
+            </span>
+            {isPlayerTurn && (
+              <span className={`mono ${timeLeft <= 10 ? 'danger' : 'muted'}`}>{timeLeft}s</span>
+            )}
           </div>
-          <div className="progress-track" style={{ height: '4px', background: 'rgba(0,0,0,0.5)' }}>
-            <div className={`progress-fill ${timeLeft <= 10 ? 'red' : 'gold'}`} style={{ width: `${(timeLeft / 30) * 100}%`, transition: 'width 1s linear' }}></div>
-          </div>
+          {isPlayerTurn && (
+            <div className="progress-track" style={{ height: '4px', background: 'rgba(0,0,0,0.5)' }}>
+              <div className={`progress-fill ${timeLeft <= 10 ? 'red' : 'gold'}`} style={{ width: `${(timeLeft / 30) * 100}%`, transition: 'width 1s linear' }} />
+            </div>
+          )}
         </div>
       )}
 
-      <div className="flex-col" style={{ width: '100%', gap: '20px' }}>
+      <div className="flex-col" style={{ width: '100%', gap: '16px' }}>
 
         <div className="combat-arena">
+          <CombatFighterCard
+            side="left"
+            shake={playerShake}
+            fcts={fcts.filter(f => f.target === 'player')}
+            bgStyle={combatBg(player.village_id)}
+            portrait={player.avatar?.startsWith('/') ? player.avatar : (player.avatar || '忍')}
+            name={player.name}
+            level={player.level}
+            subtitle={equippedSummon ? equippedSummon.name : null}
+            badges={playerBadges}
+            hp={playerHP}
+            maxHp={maxPlayerHP}
+            cp={playerCP}
+            maxCp={maxPlayerCP}
+            st={playerSt}
+            maxSt={maxPlayerSt}
+            hpPct={pHPPercent}
+            cpPct={pCPPercent}
+            stPct={pStPercent}
+          />
 
-          <div className={`card combat-fighter ${playerShake ? 'damage-flash' : ''}`} style={{ borderColor: clanBonus.name ? 'rgba(212,162,42,0.3)' : 'var(--line)', backgroundImage: location.state?.bgType === 'dojo' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_dojo.jpg)' : location.state?.bgType === 'map' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_forest.jpg)' : (player.village_id ? `linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_${player.village_id}.jpg)` : 'none'), backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            {fcts.filter(f => f.target === 'player').map(f => (
-              <div key={f.id} className={`fct fct-${f.type}`}>{f.text}</div>
-            ))}
-            <div className="flex-row">
-              <div className="flex-row" style={{ width: '64px', height: '64px', background: 'var(--ink-raised)', justifyContent: 'center', fontSize: '32px', border: '1px solid var(--line)', borderRadius: '6px', overflow: 'hidden', position: 'relative' }}>
-                {player.avatar?.startsWith('/') ? <img src={player.avatar} alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : '忍'}
-                {equippedSummon && (
-                  <div style={{ position: 'absolute', bottom: '-4px', right: '-4px', fontSize: '24px', filter: 'drop-shadow(0 2px 2px rgba(0,0,0,0.8))', zIndex: 10 }}>
-                    {equippedSummon.animal_type === 'Sapo' ? '🐸' : equippedSummon.animal_type === 'Cobra' ? '🐍' : equippedSummon.animal_type === 'Lesma' ? '🐌' : equippedSummon.animal_type === 'Cachorro' ? '🐶' : '🐾'}
-                  </div>
-                )}
+          <div className="combat-center-col">
+            <div className="combat-vs-badge">VS</div>
+            {raidTotal > 0 && (
+              <div className="badge badge-gold combat-raid-badge">
+                Incursão {raidCurrent}/{raidTotal}
               </div>
-              <div style={{ flex: 1 }}>
-                <h3 className="paper" style={{ fontSize: '18px', marginBottom: '4px' }}>{player.name}</h3>
-                <div className="mono muted" style={{ fontSize: '12px' }}>
-                  Lvl. {player.level}
-                  {equippedSummon && <span className="gold"> • c/ {equippedSummon.name}</span>}
-                </div>
-              </div>
-            </div>
-
-            {/* PAINEL DE STATUS ATIVOS (PLAYER) */}
-            <div className="flex-row" style={{ marginTop: '12px', gap: '8px', flexWrap: 'wrap' }}>
-              {clanBonus.name && (
-                <div className="badge badge-muted flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
-                  <img src="/images/imgi_24_clans.png" alt="clã" style={{ width: '12px' }} onError={(e) => e.target.style.display = 'none'} />
-                  Clã {clanBonus.name}
-                </div>
-              )}
-              {equippedSummon && (
-                <div className="badge badge-muted flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
-                  <span>{equippedSummon.animal_type === 'Sapo' ? '🐸' : equippedSummon.animal_type === 'Cobra' ? '🐍' : equippedSummon.animal_type === 'Lesma' ? '🐌' : equippedSummon.animal_type === 'Cachorro' ? '🐶' : '🐾'}</span>
-                  {equippedSummon.name}
-                </div>
-              )}
-              {activeBuffs?.duration > 0 && (
-                <div className="badge badge-gold flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
-                  <span>✨</span> Buff Ativo [{activeBuffs.duration}T]
-                  {activeBuffs.protecao > 0 && ` (+${activeBuffs.protecao} Def)`}
-                  {activeBuffs.letalidade > 0 && ` (+${activeBuffs.letalidade}% Crít)`}
-                </div>
-              )}
-              {playerStatus.map(s => (
-                <div key={s.name} className="badge badge-red flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
-                  {s.icon || '🦠'} {s.name} [{s.duration}T]
+            )}
+            <div className="combat-log combat-log-center" ref={logsContainerRef}>
+              {logs.map((log, idx) => (
+                <div
+                  key={idx}
+                  className="combat-log-line"
+                  data-type={
+                    log.includes('Você usou') || log.includes('Você causou') ? 'player'
+                      : log.includes('causou') || log.includes('atacou') || log.includes('usou [') ? 'enemy'
+                        : 'neutral'
+                  }
+                >
+                  {log}
                 </div>
               ))}
             </div>
-
-            <div className="flex-col" style={{ marginTop: 'auto' }}>
-              <div>
-                <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '8px' }}>
-                  <span className="flex-row" style={{ gap: '6px', fontWeight: 600 }}><div className="dot-indicator red"></div> HP</span>
-                  <span className="mono" style={{ opacity: 0.8 }}>{playerHP}/{maxPlayerHP}</span>
-                </div>
-                <div className="progress-track" style={{ height: '8px' }}>
-                  <div className="progress-fill red" style={{ width: `${pHPPercent}%` }}></div>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '8px' }}>
-                  <span className="flex-row" style={{ gap: '6px', fontWeight: 600 }}><div className="dot-indicator blue"></div> Chakra</span>
-                  <span className="mono" style={{ opacity: 0.8 }}>{playerCP}/{maxPlayerCP}</span>
-                </div>
-                <div className="progress-track" style={{ height: '8px' }}>
-                  <div className="progress-fill blue" style={{ width: `${pCPPercent}%` }}></div>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '4px' }}>
-                  <span className="flex-row" style={{ gap: '6px', fontWeight: 600 }}><div className="dot-indicator" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b' }}></div> Stamina</span>
-                  <span className="mono" style={{ opacity: 0.8 }}>{playerSt}/{maxPlayerSt}</span>
-                </div>
-                <div className="progress-track" style={{ height: '6px' }}>
-                  <div className="progress-fill yellow" style={{ width: `${pStPercent}%` }}></div>
-                </div>
-              </div>
-
-              <div className="flex-row" style={{ gap: '8px', minHeight: '24px', marginTop: '8px' }}>
-                {playerStatus.map((s, i) => (
-                  <div key={i} className="badge badge-muted flex-row" style={{ gap: '4px', padding: '2px 6px', fontSize: '10px' }}>
-                    <span>{s.icon}</span> <span>{s.duration}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          <div className="combat-vs">VS</div>
-
-          <div className={`card combat-fighter ${npcShake ? 'damage-flash' : ''}`} style={{ border: isMirror ? '1px solid #ef4444' : '1px solid var(--line)', backgroundImage: location.state?.bgType === 'dojo' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_dojo.jpg)' : location.state?.bgType === 'map' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_forest.jpg)' : ((npcInit.village_id || isMirror) ? `linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_${npcInit.village_id || (isMirror ? 8 : 1)}.jpg)` : 'none'), backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            {fcts.filter(f => f.target === 'npc').map(f => (
-              <div key={f.id} className={`fct fct-${f.type}`}>{f.text}</div>
-            ))}
-            <div className="flex-row" style={{ flexDirection: 'row-reverse', textAlign: 'right' }}>
-              <div className="flex-row" style={{ width: '64px', height: '64px', background: 'var(--ink-raised)', justifyContent: 'center', fontSize: '32px', border: isMirror ? '1px solid #ef4444' : '1px solid var(--seal-bright)', borderRadius: '6px' }}>
-                {npcInit.avatar}
-              </div>
-              <div>
-                <h3 className="danger" style={{ fontSize: '18px', marginBottom: '4px' }}>
-                  {isMirror && '⚠️ '}{npcInit.name}
-                </h3>
-                <div className="mono muted" style={{ fontSize: '12px' }}>Lvl. {npcInit.level}</div>
-              </div>
-            </div>
-
-            {/* PAINEL DE STATUS ATIVOS (NPC) */}
-            <div className="flex-row" style={{ marginTop: '12px', gap: '8px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-              {npcStatus.map(s => (
-                <div key={s.name} className="badge badge-red flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
-                  {s.icon || '🦠'} {s.name} [{s.duration}T]
-                </div>
-              ))}
-            </div>
-
-            <div className="flex-col" style={{ marginTop: 'auto' }}>
-              <div>
-                <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '8px', flexDirection: 'row-reverse' }}>
-                  <span className="flex-row" style={{ gap: '6px', fontWeight: 600, flexDirection: 'row-reverse' }}><div className="dot-indicator red"></div> HP</span>
-                  <span className="mono" style={{ opacity: 0.8 }}>{npcHP}/{npcMaxHP}</span>
-                </div>
-                <div className="progress-track" style={{ height: '8px', display: 'flex', justifyContent: 'flex-end' }}>
-                  <div className="progress-fill red" style={{ width: `${nHPPercent}%`, background: 'linear-gradient(270deg, #d32f2f, #ff4b4b)' }}></div>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '8px', flexDirection: 'row-reverse' }}>
-                  <span className="flex-row" style={{ gap: '6px', fontWeight: 600, flexDirection: 'row-reverse' }}><div className="dot-indicator blue"></div> Chakra</span>
-                  <span className="mono" style={{ opacity: 0.8 }}>{npcCP}/{npcMaxCP}</span>
-                </div>
-                <div className="progress-track" style={{ height: '8px', display: 'flex', justifyContent: 'flex-end' }}>
-                  <div className="progress-fill blue" style={{ width: `${nCPPercent}%`, background: 'linear-gradient(270deg, #1976d2, #4b9eff)' }}></div>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex-between paper" style={{ fontSize: '12px', marginBottom: '4px', flexDirection: 'row-reverse' }}>
-                  <span className="flex-row" style={{ gap: '6px', fontWeight: 600, flexDirection: 'row-reverse' }}><div className="dot-indicator" style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b' }}></div> Stamina</span>
-                  <span className="mono" style={{ opacity: 0.8 }}>{npcSt}/{npcMaxSt}</span>
-                </div>
-                <div className="progress-track" style={{ height: '6px', display: 'flex', justifyContent: 'flex-end' }}>
-                  <div className="progress-fill yellow" style={{ width: `${nStPercent}%`, background: 'linear-gradient(270deg, #b45309, #f59e0b)' }}></div>
-                </div>
-              </div>
-
-              {/* PAINEL DE STATUS ATIVOS (NPC) */}
-              <div className="flex-row" style={{ marginTop: '12px', gap: '8px', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
-                {npcInit?.clan && (
-                  <div className="badge badge-muted flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
-                    <img src="/images/imgi_24_clans.png" alt="clã" style={{ width: '12px' }} onError={(e) => e.target.style.display = 'none'} />
-                    Clã {npcInit.clan}
-                  </div>
-                )}
-                {npcInit?.summon && (
-                  <div className="badge badge-muted flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
-                    <span>🐾</span> {npcInit.summon.name}
-                  </div>
-                )}
-                {npcStatus.map(s => (
-                  <div key={s.name} className="badge badge-red flex-row" style={{ alignItems: 'center', gap: '4px', fontSize: '10px' }}>
-                    {s.icon || '🦠'} {s.name} [{s.duration}T]
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div className="combat-log" ref={logsContainerRef}>
-          {logs.map((log, idx) => (
-            <div key={idx} style={{ marginBottom: '6px', color: log.includes('derrotado') || log.includes('causou') ? (log.includes('Você usou') ? '#4ade80' : '#ef4444') : 'var(--muted)' }}>
-              &gt; {log}
-            </div>
-          ))}
+          <CombatFighterCard
+            side="right"
+            shake={npcShake}
+            fcts={fcts.filter(f => f.target === 'npc')}
+            bgStyle={combatBg(npcInit.village_id || (isMirror ? 8 : 1))}
+            portrait={typeof npcInit.avatar === 'string' && npcInit.avatar.startsWith('/') ? npcInit.avatar : (npcInit.avatar || '🥷')}
+            name={npcInit.name}
+            level={npcInit.level}
+            badges={npcBadges}
+            hp={npcHP}
+            maxHp={npcMaxHP}
+            cp={npcCP}
+            maxCp={npcMaxCP}
+            st={npcSt}
+            maxSt={npcMaxSt}
+            hpPct={nHPPercent}
+            cpPct={nCPPercent}
+            stPct={nStPercent}
+            isMirror={isMirror}
+          />
         </div>
 
         {!battleResult ? (

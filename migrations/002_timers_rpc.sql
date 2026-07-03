@@ -2,7 +2,7 @@
 
 -- 1. Hospital: Alta e Cura Paga
 CREATE OR REPLACE FUNCTION hospital_alta(
-    p_player_id UUID,
+    p_player_id INT,
     p_paid BOOLEAN,
     p_max_hp INT,
     p_max_cp INT,
@@ -64,7 +64,7 @@ $$ LANGUAGE plpgsql;
 
 -- 2. Missões: Validação e Finalização
 CREATE OR REPLACE FUNCTION finalizar_missao(
-    p_player_id UUID,
+    p_player_id INT,
     p_mission_id INT,
     p_mission_xp INT,
     p_mission_ryous INT,

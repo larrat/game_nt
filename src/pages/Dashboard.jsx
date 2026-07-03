@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { calculateXPForLevel, calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateAtkNinGen, getGlobalDebuffs } from '../utils/engine';
 import { supabase } from '../supabaseClient';
 import { fetchActiveGlobalEvents } from '../utils/eventUtils';
+import { useToast } from '../context/ToastContext';
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import AvatarModal from '../components/AvatarModal';
 import '../styles/main.css';

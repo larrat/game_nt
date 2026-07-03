@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP, getGlobalDebuffs } from '../utils/engine';
 import InventoryModal from './InventoryModal';
+import { supabase } from '../supabaseClient';
 import { fetchActiveWorldBoss } from '../utils/eventUtils';
 
 const VILLAGES = {

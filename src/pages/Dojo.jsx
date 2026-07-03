@@ -22,12 +22,22 @@ export default function Dojo({ player }) {
   if (!player) return null;
 
   const fetchRivalJutsus = async (rivalId) => {
+    const { data: rival } = await supabase
+      .from('players')
+      .select('jutsus_learned')
+      .eq('id', rivalId)
+      .single();
+
+    const learned = Array.isArray(rival?.jutsus_learned) ? rival.jutsus_learned : [];
+    const ids = learned.map(j => typeof j === 'string' ? j : j.id).filter(Boolean);
+    if (!ids.length) return [];
+
     const { data } = await supabase
-      .from('player_jutsus')
-      .select('*, jutsus(*, jutsu_effects(*, status_effects(*)))')
-      .eq('player_id', rivalId)
-      .eq('is_equipped', true);
-    return data ? data.map(j => j.jutsus) : [];
+      .from('jutsus')
+      .select('*, jutsu_effects(*, status_effects(*))')
+      .in('id', ids);
+
+    return data || [];
   };
 
   const handleSearch = async () => {

@@ -62,19 +62,35 @@ export default function Tarefas({ player, updatePlayer }) {
     return () => clearInterval(interval);
   }, [activeMissions]);
 
+  const isMissionActive = (missionId) =>
+    activeMissions.some(m => m.mission_id === missionId);
+
   const startTask = async (task) => {
+    if (loading) return;
     if (activeMissions.length >= slots) {
       addToast('Slots ocupados!', 'error');
       return;
     }
-    setLoading(true);
-    const endTime = new Date(Date.now() + task.time * 1000).toISOString();
-    const newActive = [...activeMissions, { mission_id: task.id, end_time: endTime }];
+    if (isMissionActive(task.id)) {
+      addToast('Esta missão já está em andamento!', 'error');
+      return;
+    }
 
-    const { error } = await supabase.from('players').update({ active_missions: newActive }).eq('id', player.id);
-    if (!error) {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.rpc('iniciar_missao', {
+        p_player_id: player.id,
+        p_mission_id: task.id,
+        p_duration_seconds: task.time
+      });
+
+      if (error) throw new Error(error.message);
+      if (data?.error) throw new Error(data.error);
+
       await updatePlayer(player.user_id);
       addToast(`Missão "${task.title}" iniciada!`, 'success');
+    } catch (err) {
+      addToast(err.message || 'Erro ao iniciar missão.', 'error');
     }
     setLoading(false);
   };
@@ -211,15 +227,19 @@ export default function Tarefas({ player, updatePlayer }) {
                   <td className="val-pos">{t.xp}</td>
                   <td className="val-pos">RY$ {t.ryous}</td>
                   <td>
-                    <button
-                      className="btn-primary"
-                      onClick={() => startTask(t)}
-                      disabled={loading || activeMissions.length >= slots}
-                      style={{ padding: '9px 16px', fontSize: '11px' }}
-                      type="button"
-                    >
-                      <span>Iniciar</span>
-                    </button>
+                    {isMissionActive(t.id) ? (
+                      <span className="badge badge-muted">Em andamento</span>
+                    ) : (
+                      <button
+                        className="btn-primary"
+                        onClick={() => startTask(t)}
+                        disabled={loading || activeMissions.length >= slots}
+                        style={{ padding: '9px 16px', fontSize: '11px' }}
+                        type="button"
+                      >
+                        <span>Iniciar</span>
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}

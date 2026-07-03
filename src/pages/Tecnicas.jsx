@@ -28,12 +28,8 @@ export default function Tecnicas({ player, updatePlayer }) {
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
 
-  // Early return moved below hooks
-  // Jutsus já aprendidos (agora suporta objetos {id, level, slots})
   const rawLearned = Array.isArray(player?.jutsus_learned) ? player.jutsus_learned : [];
   const learnedIds = rawLearned.map(j => typeof j === 'string' ? j : j.id);
-  const equippedJutsus = Array.isArray(player?.equipped_jutsus) ? player.equipped_jutsus : [];
-  const MAX_EQUIPPED = 4;
 
   useEffect(() => {
     async function fetchJutsus() {
@@ -164,32 +160,6 @@ export default function Tecnicas({ player, updatePlayer }) {
     setLoading(false);
   };
 
-  const handleToggleEquip = async (jutsuId) => {
-    if (loading) return;
-    setLoading(true);
-    let newEquipped = [...equippedJutsus];
-
-    if (newEquipped.includes(jutsuId)) {
-      newEquipped = newEquipped.filter(id => id !== jutsuId);
-    } else {
-      if (newEquipped.length >= MAX_EQUIPPED) {
-        addToast(`Você só pode equipar no máximo ${MAX_EQUIPPED} jutsus!`, 'error');
-        setLoading(false);
-        return;
-      }
-      newEquipped.push(jutsuId);
-    }
-
-    const { error } = await supabase.from('players').update({ equipped_jutsus: newEquipped }).eq('id', player.id);
-    if (!error) {
-      await updatePlayer(player.user_id);
-      addToast(newEquipped.includes(jutsuId) ? 'Jutsu equipado!' : 'Jutsu desequipado.', 'success');
-    } else {
-      addToast('Erro ao equipar jutsu.', 'error');
-    }
-    setLoading(false);
-  };
-
   if (!player) return null;
 
   return (
@@ -198,7 +168,7 @@ export default function Tecnicas({ player, updatePlayer }) {
       <PageHeader
         eyebrow={`${player.name} · Graduação: ${player.rank}`}
         title="Academia Ninja"
-        subtitle="Aprenda jutsus usando Ryous. Jutsus aprendidos ficam disponíveis no combate."
+        subtitle="Aprenda jutsus usando Ryous. Todos os jutsus aprendidos ficam disponíveis automaticamente no combate."
         actions={
           <div className="card" style={{ textAlign: 'center' }}>
             <div className="muted mono uppercase" style={{ fontSize: '10px', letterSpacing: '2px', marginBottom: '4px' }}>RYOUS</div>
@@ -350,8 +320,8 @@ export default function Tecnicas({ player, updatePlayer }) {
       {tab === 'aprendidas' && (
         <div>
           <div className="flex-between" style={{ marginBottom: '24px' }}>
-            <h3 className="gold" style={{ fontSize: '16px' }}>Slot de Combate: {equippedJutsus.length}/{MAX_EQUIPPED}</h3>
-            <span className="muted" style={{ fontSize: '12px' }}>Os jutsus equipados aparecerão durante as lutas.</span>
+            <h3 className="gold" style={{ fontSize: '16px' }}>Jutsus Aprendidos: {learnedIds.length}</h3>
+            <span className="muted" style={{ fontSize: '12px' }}>Todos aparecem automaticamente durante as lutas.</span>
           </div>
           {learnedIds.length === 0 ? (
             <div className="muted" style={{ textAlign: 'center', padding: '60px' }}>
@@ -396,17 +366,6 @@ export default function Tecnicas({ player, updatePlayer }) {
                         🎯 Precisão Real: {Math.min(100, Math.floor(((player.selo || 0) / jutsu.reqSeals) * 100))}% (Selo: {player.selo || 0}/{jutsu.reqSeals})
                       </span>
                     )}
-                  </div>
-
-                  <div className="flex-row" style={{ marginTop: '16px' }}>
-                    <button 
-                      className={equippedJutsus.includes(jutsu.id) ? 'btn-danger' : 'btn-ghost'}
-                      onClick={() => handleToggleEquip(jutsu.id)}
-                      disabled={loading}
-                      style={{ width: '100%', fontSize: '12px', padding: '8px' }}
-                    >
-                      {equippedJutsus.includes(jutsu.id) ? 'Desequipar' : 'Equipar Jutsu'}
-                    </button>
                   </div>
                 </div>
               ))}

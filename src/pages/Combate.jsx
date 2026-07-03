@@ -29,6 +29,43 @@ import { playHitSound, playCritSound, playJutsuSound } from '../utils/audioEngin
 // Constante de precisão básica física
 const BASE_PHYSICAL_ACCURACY = 80;
 
+function getCombatJutsus(player) {
+  return player?.activeJutsus || [];
+}
+
+function getJutsuCombatStats(jutsu, player, npcDef, cooldowns) {
+  const jutsuBaseAcc = jutsu.accuracy || 100;
+  const playerPrecision = player?.precisao || player?.pre || 0;
+  const finalAcc = Math.min(100, jutsuBaseAcc + Math.floor(playerPrecision / 2));
+
+  const cat = (jutsu.category || '').toLowerCase();
+  let attrValue = 0;
+  if (cat === 'ninjutsu') attrValue = player.ninjutsu || player.nin || 0;
+  else if (cat === 'taijutsu') attrValue = player.taijutsu || player.tai || 0;
+  else if (cat === 'genjutsu') attrValue = player.genjutsu || player.gen || 0;
+  else if (cat === 'bukijutsu') attrValue = player.bukijutsu || player.buk || 0;
+  else attrValue = player.ninjutsu || player.nin || 0;
+
+  const bonusDano = getJutsuEnhancementBonus(jutsu, 'dano');
+  const bonusCusto = getJutsuEnhancementBonus(jutsu, 'custo');
+  const bonusLetalidade = getJutsuEnhancementBonus(jutsu, 'letalidade');
+
+  const jutsuBaseDmg = (jutsu.damage || 15) + bonusDano;
+  const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
+  const estDamage = Math.max(1, magicDmg - Math.floor(npcDef / 2));
+
+  const seloDiscount = Math.min(0.5, (player.selos || 0) * 0.01);
+  const originalCost = jutsu.chakraCost || 20;
+  const baseCost = originalCost + bonusCusto;
+  const cost = Math.floor(Math.max(originalCost * 0.1, Math.max(1, baseCost * (1 - seloDiscount))));
+
+  const hasEssences = bonusDano > 0 || bonusCusto < 0 || bonusLetalidade > 0;
+  const jutsuLevel = jutsu.level || 1;
+  const jutsuCdVal = cooldowns[jutsu.id] || 0;
+
+  return { finalAcc, cost, estDamage, hasEssences, jutsuLevel, jutsuCdVal, isOnCooldown: jutsuCdVal > 0 };
+}
+
 export default function Combate({ player, updatePlayer, setPlayerState }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -243,10 +280,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     let timer;
     if (isPlayerTurn && autoBattle && !battleResult && !isAltAutoBattle) {
       timer = setTimeout(() => {
-        const eqIds = player.equipped_jutsus || [];
-        const jutsus = eqIds.length > 0
-          ? (player.activeJutsus || []).filter(j => eqIds.includes(j.id))
-          : (player.activeJutsus || []).slice(0, 4);
+        const jutsus = getCombatJutsus(player);
         const availableJutsus = jutsus.filter(j => playerCP >= (j.chakraCost || 20));
 
         if (availableJutsus.length > 0 && Math.random() > 0.4) {
@@ -1097,10 +1131,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       <PageHeader eyebrow='A Fúria dos Shinobis' title='Combate' />
 
       {isPlayerTurn && !battleResult && (
-        <div style={{ marginBottom: '24px' }}>
+        <div className="combat-turn-bar">
           <div className="flex-between" style={{ fontSize: '12px', marginBottom: '8px' }}>
-            <span className="mono gold">SEU TURNO</span>
-            <span className={`mono ${timeLeft <= 10 ? 'danger' : 'muted'}`}>{timeLeft}s Restantes</span>
+            <span className="mono gold">SEU TURNO — Turno {turnCount}</span>
+            <span className={`mono ${timeLeft <= 10 ? 'danger' : 'muted'}`}>{timeLeft}s</span>
           </div>
           <div className="progress-track" style={{ height: '4px', background: 'rgba(0,0,0,0.5)' }}>
             <div className={`progress-fill ${timeLeft <= 10 ? 'red' : 'gold'}`} style={{ width: `${(timeLeft / 30) * 100}%`, transition: 'width 1s linear' }}></div>
@@ -1108,11 +1142,11 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         </div>
       )}
 
-      <div className="flex-col" style={{ width: '100%', gap: '24px' }}>
+      <div className="flex-col" style={{ width: '100%', gap: '20px' }}>
 
-        <div className="flex-row" style={{ alignItems: 'stretch', gap: '24px' }}>
+        <div className="combat-arena">
 
-          <div className={`card flex-col ${playerShake ? 'damage-flash' : ''}`} style={{ flex: 1, borderColor: clanBonus.name ? 'rgba(212,162,42,0.3)' : 'var(--line)', position: 'relative', backgroundImage: location.state?.bgType === 'dojo' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_dojo.jpg)' : location.state?.bgType === 'map' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_forest.jpg)' : (player.village_id ? `linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_${player.village_id}.jpg)` : 'none'), backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div className={`card combat-fighter ${playerShake ? 'damage-flash' : ''}`} style={{ borderColor: clanBonus.name ? 'rgba(212,162,42,0.3)' : 'var(--line)', backgroundImage: location.state?.bgType === 'dojo' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_dojo.jpg)' : location.state?.bgType === 'map' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_forest.jpg)' : (player.village_id ? `linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_${player.village_id}.jpg)` : 'none'), backgroundSize: 'cover', backgroundPosition: 'center' }}>
             {fcts.filter(f => f.target === 'player').map(f => (
               <div key={f.id} className={`fct fct-${f.type}`}>{f.text}</div>
             ))}
@@ -1203,11 +1237,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             </div>
           </div>
 
-          <div className="flex-row" style={{ justifyContent: 'center', padding: '0 16px' }}>
-            <div className="page-title gold" style={{ fontSize: '24px' }}>VS</div>
-          </div>
+          <div className="combat-vs">VS</div>
 
-          <div className={`card flex-col ${npcShake ? 'damage-flash' : ''}`} style={{ flex: 1, border: isMirror ? '1px solid #ef4444' : '1px solid var(--line)', position: 'relative', backgroundImage: location.state?.bgType === 'dojo' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_dojo.jpg)' : location.state?.bgType === 'map' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_forest.jpg)' : ((npcInit.village_id || isMirror) ? `linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_${npcInit.village_id || (isMirror ? 8 : 1)}.jpg)` : 'none'), backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div className={`card combat-fighter ${npcShake ? 'damage-flash' : ''}`} style={{ border: isMirror ? '1px solid #ef4444' : '1px solid var(--line)', backgroundImage: location.state?.bgType === 'dojo' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_dojo.jpg)' : location.state?.bgType === 'map' ? 'linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_forest.jpg)' : ((npcInit.village_id || isMirror) ? `linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.95)), url(/images/bg_${npcInit.village_id || (isMirror ? 8 : 1)}.jpg)` : 'none'), backgroundSize: 'cover', backgroundPosition: 'center' }}>
             {fcts.filter(f => f.target === 'npc').map(f => (
               <div key={f.id} className={`fct fct-${f.type}`}>{f.text}</div>
             ))}
@@ -1287,9 +1319,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
           </div>
         </div>
 
-        <div className="card mono" ref={logsContainerRef} style={{ background: '#121216', height: '250px', overflowY: 'auto', padding: '16px', fontSize: '13px', lineHeight: '1.6' }}>
+        <div className="combat-log" ref={logsContainerRef}>
           {logs.map((log, idx) => (
-            <div key={idx} style={{ marginBottom: '8px', color: log.includes('derrotado') || log.includes('causou') ? (log.includes('Você usou') ? '#4ade80' : '#ef4444') : 'var(--muted)' }}>
+            <div key={idx} style={{ marginBottom: '6px', color: log.includes('derrotado') || log.includes('causou') ? (log.includes('Você usou') ? '#4ade80' : '#ef4444') : 'var(--muted)' }}>
               &gt; {log}
             </div>
           ))}
@@ -1303,226 +1335,86 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               <p className="muted" style={{ fontSize: '12px' }}>O Wintrading Shield foi ativado. Você não pode interferir no combate contra seu próprio alter ego. O sistema resolverá a batalha com base nos atributos e na sorte de ambos.</p>
             </div>
           ) : (
-            <div className="flex-wrap" style={{ gap: '16px' }}>
-              <button
-                className="btn-ghost"
-                style={{ flex: 1, minWidth: '150px', padding: '16px', border: '1px solid var(--line)', opacity: isPlayerTurn ? 1 : 0.5 }}
-                disabled={!isPlayerTurn}
-                onClick={handleBasicAttack}
-              >
-                <div style={{ fontSize: '20px', marginBottom: '8px' }}>👊</div>
-                Ataque Básico
-                <div className="flex-row" style={{ gap: '12px', marginTop: '4px', justifyContent: 'center' }}>
-                  <span className="mono red" style={{ fontSize: '10px' }}>{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2) + (clanBonus.armorPen > 0 ? Math.floor(npcDef * clanBonus.armorPen) : 0))} DMG</span>
-                  <span className="mono gold" style={{ fontSize: '10px' }}>{BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty}% ACC</span>
-                </div>
-              </button>
-
-              <div className="flex-row" style={{ flexWrap: 'wrap', gap: '8px', justifyContent: 'center', marginBottom: '8px' }}>
-                {(() => {
-                  const eqIds = player.equipped_jutsus || [];
-
-                  const jutsusToShow =
-                    eqIds.length > 0
-                      ? (player.activeJutsus || []).filter(j => eqIds.includes(j.id))
-                      : (player.activeJutsus || []).slice(0, 4);
-
-                  return jutsusToShow.map((jutsu, idx) => {
-                    const jutsuBaseAcc = jutsu.accuracy || 100;
-                    const finalAcc = Math.min(100, jutsuBaseAcc + Math.floor(playerPrecision / 2));
-
-                    let attrValue = 0;
-                    const cat = (jutsu.category || '').toLowerCase();
-
-                    if (cat === 'ninjutsu') attrValue = player.ninjutsu || player.nin || 0;
-                    else if (cat === 'taijutsu') attrValue = player.taijutsu || player.tai || 0;
-                    else if (cat === 'genjutsu') attrValue = player.genjutsu || player.gen || 0;
-                    else if (cat === 'bukijutsu') attrValue = player.bukijutsu || player.buk || 0;
-                    else attrValue = player.ninjutsu || player.nin || 0;
-
-                    const bonusDano = getJutsuEnhancementBonus(jutsu, 'dano');
-                    const bonusCusto = getJutsuEnhancementBonus(jutsu, 'custo');
-                    const bonusLetalidade = getJutsuEnhancementBonus(jutsu, 'letalidade');
-
-                    const jutsuBaseDmg = (jutsu.damage || 15) + bonusDano;
-                    const magicDmg = Math.floor(attrValue / 2) + jutsuBaseDmg;
-                    const estDamage = Math.max(1, magicDmg - Math.floor(npcDef / 2));
-
-                    const seloDiscount = Math.min(0.5, (player.selos || 0) * 0.01);
-                    const originalCost = jutsu.chakraCost || 20;
-                    const baseCost = originalCost + bonusCusto;
-
-                    const cost = Math.floor(
-                      Math.max(
-                        originalCost * 0.1,
-                        Math.max(1, baseCost * (1 - seloDiscount))
-                      )
-                    );
-
-                    const hasEssences =
-                      bonusDano > 0 ||
-                      bonusCusto < 0 ||
-                      bonusLetalidade > 0;
-
-                    const jutsuLevel = jutsu.level || 1;
-                    const jutsuCdVal = cooldowns[jutsu.id] || 0;
-                    const isOnCooldown = jutsuCdVal > 0;
-
-                    return (
-                      <button
-                        key={idx}
-                        className="btn-ghost flex-col"
-                        style={{
-                          flex: '1 1 calc(20% - 8px)',
-                          maxWidth: '80px',
-                          minWidth: '70px',
-                          height: '80px',
-                          padding: '4px',
-                          border: isOnCooldown
-                            ? '1px solid #6b7280'
-                            : hasEssences
-                              ? '1px solid var(--gold)'
-                              : '1px solid var(--seal-bright)',
-                          opacity: isPlayerTurn && !isOnCooldown ? 1 : 0.4,
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          position: 'relative',
-                          background: 'var(--ink-raised)',
-                          cursor:
-                            !isPlayerTurn || isOnCooldown
-                              ? 'not-allowed'
-                              : 'pointer',
-                          borderRadius: '8px'
-                        }}
-                        disabled={!isPlayerTurn || isOnCooldown}
-                        onClick={() => handleJutsu(jutsu)}
-                        title={`${jutsu.name}\n${cost} CP | ${estDamage} DMG | ${finalAcc}% ACC\nTempo de Recarga: ${jutsu.cooldown || 0}T`}
-                      >
-                        <div
-                          style={{
-                            position: 'absolute',
-                            inset: 0,
-                            zIndex: 1
-                          }}
-                        >
-                          <JutsuIcon jutsu={jutsu} />
-                        </div>
-
-                        {isOnCooldown && (
-                          <div
-                            style={{
-                              position: 'absolute',
-                              inset: 0,
-                              background: 'rgba(0,0,0,0.6)',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              zIndex: 3,
-                              borderRadius: '8px'
-                            }}
-                          >
-                            <span
-                              style={{
-                                fontSize: '24px',
-                                fontWeight: 'bold',
-                                color: '#fff',
-                                textShadow: '0 2px 4px rgba(0,0,0,1)'
-                              }}
-                            >
-                              {jutsuCdVal}
-                            </span>
-                          </div>
-                        )}
-
-                        <div
-                          style={{
-                            position: 'absolute',
-                            bottom: '0',
-                            left: '0',
-                            right: '0',
-                            padding: '2px',
-                            background: 'rgba(0,0,0,0.7)',
-                            borderBottomLeftRadius: '8px',
-                            borderBottomRightRadius: '8px',
-                            zIndex: 2
-                          }}
-                        >
-                          <div
-                            className="paper"
-                            style={{
-                              fontSize: '9px',
-                              lineHeight: 1.1,
-                              whiteSpace: 'nowrap',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                              textAlign: 'center'
-                            }}
-                          >
-                            {jutsu.name}
-                          </div>
-                        </div>
-
-                        <div
-                          style={{
-                            position: 'absolute',
-                            top: '2px',
-                            right: '4px',
-                            zIndex: 2
-                          }}
-                        >
-                          <span
-                            className="mono"
-                            style={{
-                              fontSize: '10px',
-                              color: '#60a5fa',
-                              textShadow: '0 1px 2px #000'
-                            }}
-                          >
-                            {cost}
-                          </span>
-                        </div>
-
-                        <div
-                          style={{
-                            position: 'absolute',
-                            top: '2px',
-                            left: '4px',
-                            zIndex: 2
-                          }}
-                        >
-                          <span
-                            className="mono"
-                            style={{
-                              fontSize: '9px',
-                              color: '#fff',
-                              textShadow: '0 1px 2px #000'
-                            }}
-                          >
-                            Lv.{jutsuLevel}
-                          </span>
-                        </div>
-                      </button>
-                    );
-                  });
-                })()}
+            <div className="combat-actions">
+              <div className="combat-actions-header">
+                <span className="mono uppercase" style={{ fontSize: '11px', letterSpacing: '1.5px', color: 'var(--muted)' }}>Ações de Combate</span>
+                <span className="badge badge-muted">{getCombatJutsus(player).length} jutsus disponíveis</span>
               </div>
 
               <button
-                className="btn-ghost flex-row"
-                style={{ width: '100%', padding: '16px', border: surrenderConfirm ? '2px solid #ef4444' : '1px dashed #ef4444', color: '#ef4444', opacity: isPlayerTurn ? 1 : 0.5, marginTop: '8px', justifyContent: 'center', gap: '8px', fontWeight: surrenderConfirm ? 'bold' : 'normal' }}
+                className="combat-basic-attack"
                 disabled={!isPlayerTurn}
-                onClick={handleSurrender}
+                onClick={handleBasicAttack}
+                type="button"
               >
-                <span style={{ fontSize: '20px' }}>🏳️</span> {surrenderConfirm ? '⚠️ Confirmar Desistência!' : 'Desistir da Luta'}
+                <span style={{ fontSize: '28px' }}>👊</span>
+                <div className="flex-col" style={{ alignItems: 'flex-start', gap: '4px' }}>
+                  <span className="paper" style={{ fontWeight: 600, fontSize: '14px' }}>Ataque Básico</span>
+                  <div className="flex-row" style={{ gap: '12px' }}>
+                    <span className="mono danger" style={{ fontSize: '11px' }}>{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2) + (clanBonus.armorPen > 0 ? Math.floor(npcDef * clanBonus.armorPen) : 0))} DMG</span>
+                    <span className="mono gold" style={{ fontSize: '11px' }}>{BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty}% ACC</span>
+                  </div>
+                </div>
               </button>
 
-              <button
-                className={`btn-ghost flex-row ${autoBattle ? 'active' : ''}`}
-                style={{ width: '100%', padding: '16px', border: autoBattle ? '1px solid var(--gold)' : '1px solid var(--line)', color: autoBattle ? 'var(--gold)' : 'var(--muted)', opacity: isPlayerTurn ? 1 : 0.5, marginTop: '8px', justifyContent: 'center', gap: '8px' }}
-                onClick={() => setAutoBattle(!autoBattle)}
-              >
-                <span style={{ fontSize: '20px' }}>🤖</span> Auto-Battle: {autoBattle ? 'LIGADO' : 'DESLIGADO'}
-              </button>
+              <div className="combat-jutsu-section">
+                <div className="combat-jutsu-label">Jutsus Aprendidos</div>
+                <div className="combat-jutsu-bar">
+                  {getCombatJutsus(player).length === 0 ? (
+                    <div className="info-banner" style={{ flex: 1, fontSize: '12px' }}>
+                      Nenhum jutsu aprendido. Visite a Academia Ninja para aprender técnicas.
+                    </div>
+                  ) : (
+                    getCombatJutsus(player).map((jutsu) => {
+                      const stats = getJutsuCombatStats(jutsu, player, npcDef, cooldowns);
+
+                      return (
+                        <button
+                          key={jutsu.id}
+                          className={`combat-jutsu-btn ${stats.isOnCooldown ? 'on-cooldown' : ''} ${stats.hasEssences ? 'enhanced' : ''}`}
+                          disabled={!isPlayerTurn || stats.isOnCooldown}
+                          onClick={() => handleJutsu(jutsu)}
+                          title={`${jutsu.name}\n${stats.cost} CP | ${stats.estDamage} DMG | ${stats.finalAcc}% ACC\nCD: ${jutsu.cooldown || 0}T`}
+                          type="button"
+                        >
+                          <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+                            <JutsuIcon jutsu={jutsu} />
+                          </div>
+                          {stats.isOnCooldown && (
+                            <div className="jutsu-cd-overlay">{stats.jutsuCdVal}</div>
+                          )}
+                          <span className="jutsu-name">{jutsu.name}</span>
+                          <span className="jutsu-cost">{stats.cost}</span>
+                          <span className="jutsu-level">Lv.{stats.jutsuLevel}</span>
+                        </button>
+                      );
+                    })
+                  )}
+                </div>
+              </div>
+
+              <div className="combat-secondary-actions">
+                <button
+                  className="btn-ghost flex-row"
+                  style={{ border: surrenderConfirm ? '2px solid #ef4444' : '1px dashed #ef4444', color: '#ef4444', opacity: isPlayerTurn ? 1 : 0.5, justifyContent: 'center', gap: '8px', fontWeight: surrenderConfirm ? 'bold' : 'normal' }}
+                  disabled={!isPlayerTurn}
+                  onClick={handleSurrender}
+                  type="button"
+                >
+                  <span style={{ fontSize: '18px' }}>🏳️</span>
+                  {surrenderConfirm ? 'Confirmar!' : 'Desistir'}
+                </button>
+
+                <button
+                  className={`btn-ghost flex-row ${autoBattle ? 'active' : ''}`}
+                  style={{ border: autoBattle ? '1px solid var(--gold)' : '1px solid var(--line)', color: autoBattle ? 'var(--gold)' : 'var(--muted)', opacity: isPlayerTurn ? 1 : 0.5, justifyContent: 'center', gap: '8px' }}
+                  onClick={() => setAutoBattle(!autoBattle)}
+                  type="button"
+                >
+                  <span style={{ fontSize: '18px' }}>🤖</span>
+                  Auto: {autoBattle ? 'ON' : 'OFF'}
+                </button>
+              </div>
             </div>
           )
         ) : (

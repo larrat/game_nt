@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../supabaseClient';
-import { calculateLevelFromXP } from '../utils/engine';
 import { useToast } from '../context/ToastContext';
 
 export default function MissionManager({ player, updatePlayer }) {
@@ -29,52 +28,32 @@ export default function MissionManager({ player, updatePlayer }) {
     fetchMissions();
   }, []);
 
-  const finishTask = async (taskDef, currentActive) => {
+  const finishTask = async (taskDef) => {
     if (!player) return;
 
-    const newXp = player.xp + taskDef.xp;
-    const newRyous = player.ryous + taskDef.ryous;
-    const newTasksCount = (player.tasks_completed || 0) + 1; 
-    const newLevel = calculateLevelFromXP(newXp);
-    const levelsGained = newLevel > player.level ? newLevel - player.level : 0;
-    const newPontos = (player.pontos_atributos || 0) + levelsGained;
+    try {
+      const { data, error } = await supabase.rpc('finalizar_missao', {
+        p_player_id: player.id,
+        p_mission_id: taskDef.id,
+        p_mission_xp: taskDef.xp,
+        p_mission_ryous: taskDef.ryous,
+        p_mission_type: taskDef.type
+      });
 
-    const newActive = currentActive.filter(m => m.mission_id !== taskDef.id);
-    
-    let updates = {
-      xp: newXp,
-      ryous: newRyous,
-      tasks_completed: newTasksCount,
-      level: newLevel,
-      pontos_atributos: newPontos,
-      active_missions: newActive
-    };
+      if (error || data?.error) throw new Error(error?.message || data?.error);
 
-    if (taskDef.type === 'tarefa_academia') updates.missions_d = (player.missions_d || 0) + 1;
-    if (taskDef.type === 'missao_genin') updates.missions_c = (player.missions_c || 0) + 1;
-    if (taskDef.type === 'missao_chunin') updates.missions_b = (player.missions_b || 0) + 1;
-    if (taskDef.type === 'missao_jounin') updates.missions_a = (player.missions_a || 0) + 1;
-    if (taskDef.type === 'missao_anbu') updates.missions_s = (player.missions_s || 0) + 1;
-
-    const { error } = await supabase.from('players').update(updates).eq('id', player.id);
-
-    if (!error) {
       await updatePlayer(player.user_id);
-      addToast(`Missão Concluída! Você recebeu ${taskDef.xp} XP e ${taskDef.ryous} Ryous.`, 'success');
-      if (levelsGained > 0) {
-        addToast(`Parabéns! Você subiu para o Nível ${newLevel}!`, 'success');
-      }
-    } else {
-      addToast('Erro ao finalizar missão.', 'error');
+      addToast(`Missão concluída! +${taskDef.xp} XP e RY$ ${taskDef.ryous}.`, 'success');
+    } catch (err) {
+      addToast(err.message || 'Erro ao finalizar missão.', 'error');
     }
-    
-    // Remove do ref para permitir futuras execuções se o usuário pegar a mesma missão
+
     finishingRefs.current.delete(taskDef.id);
   };
 
   useEffect(() => {
     if (!player || !tarefas.length) return;
-    
+
     const activeMissions = Array.isArray(player.active_missions) ? player.active_missions : [];
     if (activeMissions.length === 0) {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -85,18 +64,16 @@ export default function MissionManager({ player, updatePlayer }) {
 
     intervalRef.current = setInterval(() => {
       const now = new Date();
-      // O activeMissions aqui pega da closure do useEffect (que é atualizada toda vez que o player muda).
-      // Então não precisamos nos preocupar com stale state desde que player seja dependência.
-      
+
       activeMissions.forEach(m => {
         const endTime = new Date(m.end_time);
         const diff = Math.floor((endTime - now) / 1000);
-        
+
         if (diff <= 0 && !finishingRefs.current.has(m.mission_id)) {
           const taskDef = tarefas.find(t => t.id === m.mission_id);
           if (taskDef) {
             finishingRefs.current.add(m.mission_id);
-            finishTask(taskDef, activeMissions);
+            finishTask(taskDef);
           }
         }
       });

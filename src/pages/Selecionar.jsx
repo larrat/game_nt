@@ -44,20 +44,19 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   if (loading) return <div className="app" style={{ alignItems: 'center', justifyContent: 'center' }}>Carregando personagens...</div>;
 
   return (
-    <div className="page login-body flex-col" style={{ 
-      height: '100vh', width: '100%', position: 'absolute', top: 0, left: 0, overflow: 'auto',
-      background: 'linear-gradient(to bottom, rgba(11, 11, 13, 0.85) 0%, rgba(11, 11, 13, 0.6) 100%), url(/images/bg_selecao.jpg) center/cover no-repeat'
+    <div className="page auth-screen flex-col" style={{
+      backgroundImage: 'url(/images/bg_selecao.jpg)'
     }}>
-      <header className="header" style={{ position: 'relative', borderBottom: '1px solid var(--line)' }}>
-        <nav className="nav">
+      <header className="auth-header">
+        <nav className="auth-nav">
           <div className="brand"><div className="mark"></div>KUROKAGE</div>
           <div className="nav-right">
-            <button className="icon-btn logout-btn" onClick={handleLogout}>⏻</button>
+            <button className="icon-btn logout-btn" onClick={handleLogout} title="Sair">⏻</button>
           </div>
         </nav>
       </header>
 
-      <main className="main flex-col" style={{ flex: 1, maxWidth: '1200px', margin: '0 auto', width: '100%', padding: '40px 20px', alignItems: 'center' }}>
+      <main className="main flex-col" style={{ position: 'relative', zIndex: 1, flex: 1, maxWidth: '1200px', margin: '0 auto', width: '100%', padding: '40px 20px', alignItems: 'center' }}>
         <div className="topbar" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '40px', marginTop: '40px' }}>
           <div>
             <div className="eyebrow gold" style={{ justifyContent: 'center', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}><div className="dash" style={{ background: 'var(--gold)' }}></div><span>Início da Jornada</span><div className="dash" style={{ background: 'var(--gold)' }}></div></div>
@@ -77,7 +76,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
                 key={char.id} 
                 className="dashboard-card flex-col" 
                 onDoubleClick={() => handleSelect(char)}
-                style={{ width: '280px', alignItems: 'center', background: 'rgba(15, 15, 20, 0.9)', border: '1px solid var(--line-bright)', borderRadius: '16px', padding: '24px', cursor: 'pointer', transition: 'transform 0.2s' }}
+                style={{ width: '280px', alignItems: 'center', background: 'rgba(15, 15, 20, 0.9)', border: '1px solid var(--line-bright)', padding: '24px', cursor: 'pointer', transition: 'transform 0.2s' }}
               >
                 <div style={{ width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', border: '3px solid var(--gold)', marginBottom: '16px', boxShadow: '0 0 16px rgba(201, 162, 39, 0.3)' }}>
                   {char.avatar?.startsWith('/') ? (
@@ -111,7 +110,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
               </div>
             ))}
 
-            <div className="dashboard-card flex-col" style={{ width: '280px', height: 'auto', minHeight: '380px', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', borderStyle: 'dashed', borderWidth: '2px', background: 'rgba(20, 20, 25, 0.4)', borderRadius: '16px', transition: 'all 0.3s' }} onClick={() => navigate('/criar')}>
+            <div className="dashboard-card flex-col" style={{ width: '280px', height: 'auto', minHeight: '380px', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', borderStyle: 'dashed', borderWidth: '2px', background: 'rgba(20, 20, 25, 0.4)', transition: 'all 0.3s' }} onClick={() => navigate('/criar')}>
               <div className="muted" style={{ textAlign: 'center', transition: 'transform 0.2s' }}>
                 <div style={{ fontSize: '48px', marginBottom: '16px', color: 'var(--seal-bright)', opacity: 0.8, textShadow: '0 0 16px rgba(212, 57, 63, 0.4)' }}>+</div>
                 <div className="uppercase mono" style={{ fontSize: '13px', letterSpacing: '1px' }}>Criar Personagem</div>

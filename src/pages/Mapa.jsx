@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import { generateDynamicRogueNinja } from '../utils/engine';
-import '../styles/main.css';
-import PageHeader from '../components/PageHeader';
-import MapGrid from '../components/MapGrid';
 
 const TRAVEL_COST = 100;
 
@@ -34,10 +31,10 @@ export default function Mapa({ player, updatePlayer }) {
     }
   }, [player, navigate]);
 
-  if (!player) return null;
-  const currentLoc = player.vila_atual_id || player.village_id;
+  const currentLoc = player?.vila_atual_id || player?.village_id;
 
-  const loadMapData = async () => {
+  const loadMapData = useCallback(async () => {
+    if (!player) return;
     setLoadingMap(true);
     
     // 1. Puxa todos os NPCs do mapa
@@ -95,7 +92,7 @@ export default function Mapa({ player, updatePlayer }) {
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
       }
       const top5Ghost = shuffled.slice(0, 5);
-      const ghosts = top5Ghost.map((p, idx) => ({
+      const ghosts = top5Ghost.map((p) => ({
         id: `ghost_${p.id}`,
         name: p.name,
         level: p.level,
@@ -117,16 +114,13 @@ export default function Mapa({ player, updatePlayer }) {
       
     setNpcs(activeNpcs);
     setLoadingMap(false);
-  };
+  }, [player]);
 
   useEffect(() => {
     loadMapData();
-  }, [player.id]);
+  }, [loadMapData]);
 
-  const requestTravel = (targetId) => {
-    if (targetId === currentLoc) return;
-    setConfirmTarget(targetId);
-  };
+  if (!player) return null;
 
   const cancelTravel = () => {
     setConfirmTarget(null);
@@ -160,34 +154,6 @@ export default function Mapa({ player, updatePlayer }) {
 
     setLoadingId(null);
     setConfirmTarget(null);
-  };
-
-  const handleMove = (newX, newY) => {
-    // Checagem de Encontro Aleatório (15%)
-    if (Math.random() < 0.15) {
-       // Calcular distância da vila mais próxima (ou da vila atual)
-       let dist = 0;
-       const vIdStr = String(currentLoc);
-       const village = villages[vIdStr];
-       if (village) {
-         const vx = (parseInt(vIdStr) * 5) % 20;
-         const vy = (parseInt(vIdStr) * 3) % 20;
-         dist = Math.abs(newX - vx) + Math.abs(newY - vy);
-       } else {
-         dist = Math.abs(newX - 5) + Math.abs(newY - 5);
-       }
-       
-       // Zonas de Perigo: A cada 3 blocos de distância, +1 no extraLevelBonus
-       const extraLevel = Math.floor(dist / 3);
-       const rogue = generateDynamicRogueNinja(player, extraLevel);
-       
-       addToast(rogue.desc, "error");
-       navigate('/combate', { state: { bgType: 'map', npc: rogue, isMirror: true, fromMap: true } });
-       return;
-    }
-    
-    setPlayerX(newX);
-    setPlayerY(newY);
   };
 
   const attackNpc = (npc) => {
@@ -248,7 +214,10 @@ export default function Mapa({ player, updatePlayer }) {
           transform: 'translate(-50%, -50%)',
           display: 'flex', flexDirection: 'column', alignItems: 'center',
           cursor: currentLoc !== parseInt(vId) ? 'pointer' : 'default',
-        }} onClick={(e) => { e.stopPropagation(); currentLoc !== parseInt(vId) && setConfirmTarget(parseInt(vId)); }}>
+        }} onClick={(e) => {
+          e.stopPropagation();
+          if (currentLoc !== parseInt(vId)) setConfirmTarget(parseInt(vId));
+        }}>
           <div style={{
             fontSize: '28px',
             filter: currentLoc === parseInt(vId) ? 'drop-shadow(0 0 12px gold)' : 'drop-shadow(0 0 6px rgba(0,0,0,0.8))',

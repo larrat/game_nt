@@ -19,7 +19,6 @@ export default function Criar({ session, setPlayerState }) {
   const [selectedAvatar, setSelectedAvatar] = useState('');
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [accountUnlocked, setAccountUnlocked] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [villageStats, setVillageStats] = useState({});
   const navigate = useNavigate();
@@ -39,7 +38,6 @@ export default function Criar({ session, setPlayerState }) {
         accData.forEach(p => {
           if (p.avatar) aggregated.add(p.avatar);
         });
-        setAccountUnlocked(Array.from(aggregated));
       }
       
       const vStats = {};
@@ -95,21 +93,15 @@ export default function Criar({ session, setPlayerState }) {
   };
 
   return (
-    <div className="page" style={{ 
-      backgroundImage: `url(/images/bg_login.jpg)`,
-      backgroundSize: 'cover', 
-      backgroundPosition: 'center', 
-      height: '100vh', 
-      overflow: 'auto',
+    <div className="page auth-screen" style={{
+      backgroundImage: 'url(/images/bg_login.jpg)',
       padding: 0,
       display: 'flex',
       flexDirection: 'column'
     }}>
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to right, rgba(10,10,15,0.95) 30%, rgba(10,10,15,0.7) 100%)', pointerEvents: 'none' }} />
-
-      <header style={{ position: 'relative', zIndex: 10, padding: '24px 48px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-        <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div className="nav-left gold mono" style={{ fontSize: '20px', letterSpacing: '2px', textTransform: 'uppercase' }}>Kurokage</div>
+      <header className="auth-header">
+        <nav className="auth-nav">
+          <div className="brand"><div className="mark"></div>KUROKAGE</div>
           <div className="nav-right">
             <button className="btn-ghost" onClick={() => navigate('/selecionar')}>Voltar para Seleção</button>
           </div>
@@ -134,7 +126,7 @@ export default function Criar({ session, setPlayerState }) {
             </p>
           </div>
 
-          <div style={{ background: 'rgba(15,15,20,0.8)', padding: '32px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}>
+          <div className="card-glass" style={{ background: 'rgba(15,15,20,0.82)' }}>
             
             <div style={{ marginBottom: '32px' }}>
               <label className="gold mono uppercase" style={{ fontSize: '12px', letterSpacing: '1px', marginBottom: '16px', display: 'block' }}>Selecione o Herói (Visual)</label>
@@ -185,7 +177,7 @@ export default function Criar({ session, setPlayerState }) {
                       </div>
                     </div>
                     <div className="flex-row" style={{ flexWrap: 'wrap', gap: '4px' }}>
-                      {Object.entries(c.stats).filter(([k, v]) => v > 0).map(([k, v]) => (
+                      {Object.entries(c.stats).filter(([, v]) => v > 0).map(([k, v]) => (
                          <span key={k} className="badge badge-muted" style={{ fontSize: '10px', padding: '2px 4px' }}>
                            <span className="gold">{k.substring(0,3).toUpperCase()}</span>: {v}
                          </span>
@@ -242,4 +234,3 @@ export default function Criar({ session, setPlayerState }) {
     </div>
   );
 }
-

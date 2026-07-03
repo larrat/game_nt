@@ -111,6 +111,10 @@ export default function Tarefas({ player, updatePlayer }) {
   if (!player) return null;
 
   const visibleTasks = tarefas.filter(t => t.type === activeTab);
+  const missionsByType = TABS.reduce((acc, tab) => {
+    acc[tab.id] = tarefas.filter(t => t.type === tab.id).length;
+    return acc;
+  }, {});
 
   return (
     <div className="page">
@@ -120,15 +124,18 @@ export default function Tarefas({ player, updatePlayer }) {
         subtitle="Envie seu personagem em missões cronometradas e resgate as recompensas quando o tempo terminar."
       />
 
-      <div className="tabs" style={{ marginBottom: '24px', overflowX: 'auto' }}>
+      <div className="segmented-tabs" role="tablist" aria-label="Categorias de missão">
         {TABS.map(tab => (
           <button
             key={tab.id}
-            className={`tab ${activeTab === tab.id ? 'active' : ''}`}
+            className={`segmented-tab ${activeTab === tab.id ? 'active' : ''}`}
             onClick={() => setActiveTab(tab.id)}
             type="button"
+            role="tab"
+            aria-selected={activeTab === tab.id}
           >
             {tab.label}
+            <span className="count">{missionsByType[tab.id] || 0}</span>
           </button>
         ))}
       </div>

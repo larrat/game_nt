@@ -47,7 +47,8 @@ export default function Elementos({ player, updatePlayer }) {
   const isLevel5 = player.level >= 5;
   const isGenin = player.rank !== 'Estudante da Academia'; // Simplificado
   const canLearn = isLevel5 && isGenin && !player.element;
-  const displayElement = selectedNode || hoveredElement;
+  const currentElement = elementsData.find(e => e.id === player.element);
+  const displayElement = selectedNode || hoveredElement || currentElement;
 
   const handleLearnElement = async (elementId) => {
     if (!canLearn) return;
@@ -72,13 +73,25 @@ export default function Elementos({ player, updatePlayer }) {
     <div className="page flex-col" style={{ minHeight: '100vh' }}>
       <PageHeader eyebrow='Naturezas de Chakra' title='Elementos' subtitle='Descubra e domine sua natureza de chakra elementar.' />
 
-      <div className="flex-row" style={{ flex: 1, gap: '32px', position: 'relative', alignItems: 'stretch' }}>
+      <div className="element-summary">
+        <div className="summary-tile">
+          <div className="label">Status</div>
+          <div className="value">{player.element ? 'Elemento dominado' : 'Pendente'}</div>
+        </div>
+        <div className="summary-tile">
+          <div className="label">Requisito</div>
+          <div className="value">{isLevel5 ? 'Level liberado' : `Level ${player.level}/5`}</div>
+        </div>
+        <div className="summary-tile">
+          <div className="label">Graduação</div>
+          <div className="value">{isGenin ? 'Apto' : 'Genin necessário'}</div>
+        </div>
+      </div>
+
+      <div className="element-layout">
         
         {/* ÁREA DO CÍRCULO ELEMENTAL */}
-        <div className="card flex-row" style={{ 
-          flex: 1, position: 'relative', justifyContent: 'center', alignItems: 'center',
-          overflow: 'hidden', minHeight: '600px', padding: 0
-        }}>
+        <div className="card element-stage">
           <div className="element-wheel-container">
             {/* SVG para desenhar as linhas de vantagem (Estrela) */}
             <svg className="element-wheel-svg">
@@ -91,10 +104,10 @@ export default function Elementos({ player, updatePlayer }) {
 
             {/* Centro */}
             <div className="element-wheel-center">
-              {player.element ? (
+              {currentElement ? (
                 <>
-                  <div className="current-el" style={{ color: elementsData.find(e => e.id === player.element)?.color }}>
-                    {elementsData.find(e => e.id === player.element)?.icon}
+                  <div className="current-el" style={{ color: currentElement.color }}>
+                    {currentElement.icon}
                   </div>
                   <div className="current-label">Dominado</div>
                 </>
@@ -135,22 +148,22 @@ export default function Elementos({ player, updatePlayer }) {
         </div>
 
         {/* TOOLTIP FIXA NA DIREITA (INFORMAÇÕES) */}
-        <div className="flex-col" style={{ width: '360px', flexShrink: 0 }}>
+        <div className="element-side">
           
           <div className="card">
             <h3 className="card-title gold" style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: '8px' }}>Seu Elemento Atual</h3>
-            {player.element ? (
+            {currentElement ? (
               <div className="flex-row" style={{ marginTop: '16px' }}>
                 <div className="flex-row" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--gold)', justifyContent: 'center', fontSize: '24px' }}>
-                  {elementsData.find(e => e.id === player.element)?.icon}
+                  {currentElement.icon}
                 </div>
                 <div>
-                  <div className="mono" style={{ fontWeight: 'bold' }}>{player.element}</div>
+                  <div className="mono" style={{ fontWeight: 'bold' }}>{currentElement.name}</div>
                   <div className="muted" style={{ fontSize: '12px' }}>Natureza de Chakra Dominada</div>
                 </div>
               </div>
             ) : (
-              <div className="muted" style={{ fontSize: '13px' }}>Você ainda não descobriu sua Natureza de Chakra. Passe o mouse sobre o círculo para estudar os elementos.</div>
+              <div className="muted" style={{ fontSize: '13px', lineHeight: 1.6 }}>Você ainda não descobriu sua Natureza de Chakra. Selecione um elemento no círculo para estudar vantagens, requisitos e confirmar sua escolha.</div>
             )}
           </div>
 

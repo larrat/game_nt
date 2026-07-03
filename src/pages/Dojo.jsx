@@ -171,90 +171,90 @@ export default function Dojo({ player }) {
     navigate('/combate', { state: { bgType: 'dojo', npc: dummyNPC, isMirror: false, fromDojoFree: true } });
   };
 
+  const isAkatsuki = player.village_id === 8;
+
   return (
     <div className="page">
-      <PageHeader eyebrow='Treinamento e Combate' title='Dojo da Vila' subtitle='Teste suas habilidades e desafie oponentes.' />
+      <PageHeader
+        eyebrow='Treinamento e Combate'
+        title='Dojo da Vila'
+        subtitle='Escolha entre teste seguro, combate real e objetivos de risco.'
+      />
 
-      <div className="info-banner" style={{ marginBottom: '48px', padding: '32px' }}>
-        <h3 className="section-title gold" style={{ borderBottom: 'none', paddingBottom: '0', marginBottom: '12px' }}>A Arena de Treinamento</h3>
-        <p className="muted" style={{ lineHeight: '1.6' }}>
-          O Dojo é o local onde você pode testar suas habilidades contra Mestres locais ou encontrar Invasores de outras vilas.<br/>
-          <strong className="paper">Aviso:</strong> Se quiser apenas bater sem correr riscos, use o Treinamento Livre.
-        </p>
+      <div className="element-summary">
+        <div className="summary-tile">
+          <div className="label">Seu nível</div>
+          <div className="value">Nv. {player.level}</div>
+        </div>
+        <div className="summary-tile">
+          <div className="label">Graduação</div>
+          <div className="value">{player.rank || 'Estudante'}</div>
+        </div>
+        <div className="summary-tile">
+          <div className="label">Estado</div>
+          <div className="value">{loadingId ? 'Rastreando...' : 'Disponível'}</div>
+        </div>
       </div>
 
-      <div className="grid-2">
-        {/* Treino Livre */}
-        <div className="card flex-col" style={{ alignItems: 'center', justifyContent: 'center', minHeight: '320px', textAlign: 'center', padding: '48px', borderStyle: 'dashed', background: 'transparent' }}>
-          <div className="idle-ui flex-col" style={{ alignItems: 'center' }}>
-            <div style={{ fontSize: '64px', opacity: 0.8 }}>🪵</div>
-            <h2 className="page-title">Treinamento Livre</h2>
-            <p className="muted" style={{ maxWidth: '400px', lineHeight: '1.6', marginBottom: '24px' }}>
-              Duele contra um Boneco de Madeira infinito. Ideal para testar o limite do seu dano, a eficácia dos seus novos Jutsus e Equipamentos. (Sem custo, sem recompensas).
-            </p>
-            <button className="btn-ghost" onClick={handleFreeTraining} style={{ padding: '16px 40px', fontSize: '16px' }}>
-              Bater no Boneco
-            </button>
+      <div className="action-grid">
+        <section className="action-card">
+          <div className="action-card-icon">🪵</div>
+          <h3>Treinamento Livre</h3>
+          <p>Use um alvo sem risco para testar dano, jutsus e equipamentos. Não concede recompensas.</p>
+          <div className="meta-row">
+            <span className="badge badge-green">Seguro</span>
+            <span className="badge badge-muted">Sem custo</span>
           </div>
-        </div>
-
-        {/* Luta Rankeada / Invasão */}
-        <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', minHeight: '320px', textAlign: 'center', padding: '48px' }}>
-          {loadingId === 'search' ? (
-            <div className="searching-ui" style={{ animation: 'pulse 2s infinite' }}>
-              <div style={{ fontSize: '48px', marginBottom: '16px', filter: 'hue-rotate(180deg)' }}>👁️</div>
-              <h2 className="mono danger" style={{ marginBottom: '8px' }}>Rastreando Assinaturas de Chakra...</h2>
-              <p className="muted">Buscando um oponente nas redondezas.</p>
-            </div>
-          ) : (
-            <div className="idle-ui flex-col" style={{ alignItems: 'center' }}>
-              <div style={{ fontSize: '64px', opacity: 0.8 }}>⚔️</div>
-              <h2 className="page-title">Combate Real</h2>
-              <p className="muted" style={{ maxWidth: '400px', lineHeight: '1.6', marginBottom: '24px' }}>
-                Enfrente instrutores do Dojo ou sofra o risco de encontrar um Jogador Rival de outra vila invadindo seu espaço (25% chance PvP).
-              </p>
-              <button className="btn-primary" onClick={handleSearch} style={{ padding: '16px 40px', fontSize: '16px' }}>
-                <span>Procurar Luta</span>
-                <div className="stamp"></div>
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {player.village_id !== 8 && (
-        <div className="card" style={{ marginTop: '32px', border: '1px dashed #ef4444', textAlign: 'center' }}>
-          <h3 className="danger">Renegado (Traição)</h3>
-          <p className="muted" style={{ maxWidth: '600px', margin: '0 auto 24px', lineHeight: '1.6' }}>
-            Se você atacar um companheiro da sua própria vila e vencer, você rasgará sua bandana e se juntará imediatamente à Akatsuki (Vila Secreta). Não há caminho de volta.
-          </p>
-          <button 
-            className="btn-ghost" 
-            style={{ borderColor: '#ef4444', color: '#ef4444' }} 
-            onClick={handleBetrayal} 
-            disabled={loadingId !== null}
-          >
-            {loadingId === 'betray' ? 'Rastreando companheiro...' : 'Trair a Vila'}
+          <button className="btn-ghost" onClick={handleFreeTraining} disabled={loadingId !== null} style={{ width: '100%' }}>
+            Bater no Boneco
           </button>
-        </div>
-      )}
+        </section>
 
-      {player.village_id === 8 && (
-        <div className="card" style={{ marginTop: '32px', border: '1px solid var(--gold)', background: 'var(--ink-raised)', textAlign: 'center' }}>
-          <h3 className="gold">Caçada Jinchuuriki (Objetivo da Organização)</h3>
-          <p className="muted" style={{ maxWidth: '600px', margin: '0 auto 24px', lineHeight: '1.6' }}>
-            Como membro da Akatsuki, seu objetivo é rastrear e abater jogadores que portam Bijuus para extrair o chakra deles. Jinchuurikis são <strong>extremamente poderosos</strong>.
-          </p>
-          <button 
-            className="btn-primary" 
-            onClick={handleBijuuHunt} 
-            disabled={loadingId !== null}
-          >
-            <span>{loadingId === 'hunt' ? 'Rastreando Besta...' : 'Caçar Jinchuuriki'}</span>
+        <section className="action-card featured">
+          <div className="action-card-icon">⚔️</div>
+          <h3>Combate Real</h3>
+          <p>Rastreia um instrutor ou oponente parelho para uma luta completa com risco e progressão.</p>
+          <div className="meta-row">
+            <span className="badge badge-gold">Recomendado</span>
+            <span className="badge badge-muted">NPC ou rival</span>
+          </div>
+          <button className="btn-primary" onClick={handleSearch} disabled={loadingId !== null} style={{ width: '100%' }}>
+            <span>{loadingId === 'search' ? 'Rastreando...' : 'Procurar Luta'}</span>
             <div className="stamp"></div>
           </button>
-        </div>
-      )}
+        </section>
+
+        <section className={`action-card ${isAkatsuki ? 'featured' : 'danger-zone'}`}>
+          <div className="action-card-icon">{isAkatsuki ? '☁️' : '⛔'}</div>
+          <h3>{isAkatsuki ? 'Caçada Jinchuuriki' : 'Renegado'}</h3>
+          <p>
+            {isAkatsuki
+              ? 'Rastreie portadores de Bijuus para cumprir os objetivos da organização. Alvos são extremamente perigosos.'
+              : 'Ataque um companheiro de vila. Se vencer, você rasga a bandana e entra para a Akatsuki.'}
+          </p>
+          <div className="meta-row">
+            <span className={`badge ${isAkatsuki ? 'badge-gold' : 'badge-red'}`}>{isAkatsuki ? 'Objetivo' : 'Permanente'}</span>
+            <span className="badge badge-muted">Alto risco</span>
+          </div>
+          <button
+            className={isAkatsuki ? 'btn-primary' : 'btn-danger'}
+            onClick={isAkatsuki ? handleBijuuHunt : handleBetrayal}
+            disabled={loadingId !== null}
+            style={{ width: '100%' }}
+          >
+            <span>
+              {isAkatsuki
+                ? (loadingId === 'hunt' ? 'Rastreando...' : 'Caçar Jinchuuriki')
+                : (loadingId === 'betray' ? 'Rastreando...' : 'Trair a Vila')}
+            </span>
+            {isAkatsuki && <div className="stamp"></div>}
+          </button>
+        </section>
+      </div>
+
+      <div className="info-banner" style={{ marginTop: '24px' }}>
+        <strong className="paper">Dica:</strong> use o Treinamento Livre depois de trocar equipamentos ou jutsus. Para progressão real, vá em Combate Real.
+      </div>
     </div>
   );
 }

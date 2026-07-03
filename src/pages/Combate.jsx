@@ -26,6 +26,7 @@ import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
 import { playHitSound, playCritSound, playJutsuSound } from '../utils/audioEngine';
 
+// Constante de precisão básica física
 const BASE_PHYSICAL_ACCURACY = 80;
 
 export default function Combate({ player, updatePlayer, setPlayerState }) {
@@ -39,8 +40,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const isAltAutoBattle = location.state?.isAltAutoBattle || false;
 
   const [npcInit, setNpcInit] = useState(npcInitVal);
-  // CORREÇÃO: Estado de Chakra do NPC declarado
-  const [npcCP, setNpcCP] = useState(npcInit?.chakra || 50);
 
   useEffect(() => {
     if (!npcInit || !player) {
@@ -48,20 +47,24 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
   }, [npcInit, player, navigate]);
 
+  // Clãs
   const clanBonus = player?.clan ? (player.clan_bonus || { name: player.clan, critChance: 0, armorPen: 0, paralyzeChance: 0 }) : { critChance: 0, armorPen: 0, paralyzeChance: 0 };
   if (player?.clan === 'Hyuga') clanBonus.armorPen = 0.2;
   if (player?.clan === 'Uchiha') clanBonus.critChance = 0.15;
   if (player?.clan === 'Nara') clanBonus.paralyzeChance = 0.10;
 
+  // Calculando os status máximos do Jogador
   const maxPlayerHP = calculateHP(player);
   const maxPlayerCP = calculateChakra(player);
   const maxPlayerSt = calculateStamina(player);
 
   const playerAtkTaiBuk = calculateAtkTaiBuk(player);
+  const playerAtkNinGen = calculateAtkNinGen(player);
   const playerDef = calculateDefNinGen(player);
   const playerPrecision = player?.precisao || player?.pre || 0;
   const playerArmorPen = (player?.tai || 0) / 10;
 
+  // --- BOOST DOS 8 PORTÕES ---
   const PORTOES_TABLE = [
     { id: 1, boost: 0.05 }, { id: 2, boost: 0.10 }, { id: 3, boost: 0.20 },
     { id: 4, boost: 0.35 }, { id: 5, boost: 0.50 }, { id: 6, boost: 0.70 },
@@ -85,14 +88,23 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const npcAtkNinGen = isMirror ? calculateAtkNinGen(npcInit) : (npcInit?.atk || 0);
   const npcDef = isMirror ? calculateDefNinGen(npcInit) : (npcInit?.def || 0);
 
+  // Estados da Batalha
   const [playerHP, setPlayerHP] = useState(player.hp !== undefined && player.hp !== null ? Math.min(player.hp, maxPlayerHP) : maxPlayerHP);
   const [playerCP, setPlayerCP] = useState(player.chakra !== undefined && player.chakra !== null ? Math.min(player.chakra, maxPlayerCP) : maxPlayerCP);
   const [playerSt, setPlayerSt] = useState(player.stamina !== undefined && player.stamina !== null ? Math.min(player.stamina, maxPlayerSt) : maxPlayerSt);
+
   const [npcHP, setNpcHP] = useState(npcInit?.hp || 1);
+  const [npcMaxHPVal, setNpcMaxHPVal] = useState(npcInit?.hp || 1);
+  const [npcCP, setNpcCP] = useState(npcInit?.chakra || 50); // CORREÇÃO: ESTADO DO CHAKRA DO NPC
   const [npcSt, setNpcSt] = useState(npcMaxSt);
 
   const timeoutRefs = useRef([]);
-  useEffect(() => { return () => timeoutRefs.current.forEach(clearTimeout); }, []);
+
+  useEffect(() => {
+    return () => {
+      timeoutRefs.current.forEach(clearTimeout);
+    };
+  }, []);
 
   const [playerStatus, setPlayerStatus] = useState([]);
   const [npcStatus, setNpcStatus] = useState([]);
@@ -103,7 +115,11 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const npcStatusRef = useRef(npcStatus);
   const playerHPRef = useRef(playerHP);
   const cooldownsRef = useRef(cooldowns);
+  const logsContainerRef = useRef(null); // CORREÇÃO: REF RESTAURADA
+
   const [surrenderConfirm, setSurrenderConfirm] = useState(false);
+
+  // Efeitos Visuais
   const [fcts, setFcts] = useState([]);
   const [playerShake, setPlayerShake] = useState(false);
   const [npcShake, setNpcShake] = useState(false);
@@ -115,8 +131,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   };
 
   const triggerShake = (target) => {
-    if (target === 'player') { setPlayerShake(true); setTimeout(() => setPlayerShake(false), 400); }
-    else { setNpcShake(true); setTimeout(() => setNpcShake(false), 400); }
+    if (target === 'player') {
+      setPlayerShake(true);
+      setTimeout(() => setPlayerShake(false), 400);
+    } else {
+      setNpcShake(true);
+      setTimeout(() => setNpcShake(false), 400);
+    }
   };
 
   useEffect(() => { playerStatusRef.current = playerStatus; }, [playerStatus]);
@@ -124,7 +145,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   useEffect(() => { cooldownsRef.current = cooldowns; }, [cooldowns]);
   useEffect(() => { playerHPRef.current = playerHP; }, [playerHP]);
 
-  const [logs, setLogs] = useState([location.state?.isWorldBoss ? `🔥 O céu escurece... ${npcInit?.name} surgiu! Prepare-se!` : isMirror ? `⚠️ INVASÃO! Você foi emboscado pelo ninja rival ${npcInit?.name}!` : `Um combate se inicia contra ${npcInit?.name}!`]);
+  const [logs, setLogs] = useState([
+    location.state?.isWorldBoss ? `🔥 O céu escurece... ${npcInit?.name} surgiu! Prepare-se!` :
+      isMirror ? `⚠️ INVASÃO! Você foi emboscado pelo ninja rival ${npcInit?.name}!` : `Um combate se inicia contra ${npcInit?.name}!`
+  ]);
   const [isPlayerTurn, setIsPlayerTurn] = useState(!isAltAutoBattle);
   const [battleResult, setBattleResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -135,14 +159,53 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const [autoBattle, setAutoBattle] = useState(false);
   const [equippedSummon, setEquippedSummon] = useState(null);
 
-  // CORREÇÃO: Limpeza de Intervalo adicionada para evitar travamentos
+  useEffect(() => {
+    async function fetchSummon() {
+      if (!player?.id) return;
+      const { data } = await supabase
+        .from('player_summons')
+        .select('*, summons(*)')
+        .eq('player_id', player.id)
+        .eq('is_equipped', true)
+        .single();
+      if (data) setEquippedSummon(data.summons);
+    }
+    fetchSummon();
+  }, [player?.id]);
+
+  useEffect(() => {
+    async function checkGlobalDebuffs() {
+      if (location.state?.isWorldBoss) {
+        setGlobalDebuffs(getGlobalDebuffs(npcInit));
+        return;
+      }
+      const { data } = await supabase.from('global_events').select('*').eq('is_active', true).eq('is_world_boss', true).single();
+      if (data) setGlobalDebuffs(getGlobalDebuffs(data));
+    }
+    checkGlobalDebuffs();
+  }, [location.state, npcInit]);
+
+  useEffect(() => {
+    if (logsContainerRef.current) {
+      logsContainerRef.current.scrollTop = logsContainerRef.current.scrollHeight;
+    }
+  }, [logs]);
+
+  useEffect(() => {
+    if (setPlayerState) {
+      setPlayerState(prev => prev ? { ...prev, hp: playerHP, chakra: playerCP } : prev);
+    }
+  }, [playerHP, playerCP, setPlayerState]);
+
+  // CORREÇÃO: TIMER COM CLEANUP
   useEffect(() => {
     let timer;
     if (isPlayerTurn && !battleResult && !isAltAutoBattle) {
       timer = setInterval(() => {
         setTimeLeft(prev => {
           if (prev <= 1) {
-            addLog("Tempo esgotado!");
+            clearInterval(timer);
+            addLog("Tempo esgotado! Você perdeu a vez.");
             setIsPlayerTurn(false);
             npcTurn(npcHP);
             return 0;
@@ -155,8 +218,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   }, [isPlayerTurn, battleResult, npcHP, isAltAutoBattle]);
 
   useEffect(() => {
+    let timer;
     if (isAltAutoBattle && !battleResult) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         const pPower = ((player?.level || 1) * 150) + ((player?.pontos_atributos || 0) * 50);
         const nPower = ((npcInit?.level || 1) * 150) + 1000;
         const winChance = pPower / (pPower + nPower);
@@ -172,13 +236,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
           setPlayerFainted();
         }
       }, 3000);
-      return () => clearTimeout(timer);
     }
+    return () => clearTimeout(timer);
   }, [isAltAutoBattle, battleResult]);
 
   useEffect(() => {
+    let timer;
     if (isPlayerTurn && autoBattle && !battleResult && !isAltAutoBattle) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         const eqIds = player.equipped_jutsus || [];
         const jutsus = eqIds.length > 0
           ? (player.activeJutsus || []).filter(j => eqIds.includes(j.id))
@@ -192,8 +257,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
           handleBasicAttack();
         }
       }, 1000);
-      return () => clearTimeout(timer);
     }
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlayerTurn, autoBattle]);
 
@@ -568,7 +633,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
           } else {
             const newNpcSt = npcSt - staminaCost;
             setNpcSt(newNpcSt);
-
 
             const dodgeRoll = Math.random() * 100;
             const dodgeChance = calculateDodgeChance(player);

@@ -52,11 +52,11 @@ export default function Templo({ player, updatePlayer }) {
     // Vamos apenas usar level e Ryous como fallback para a demo
     
     setLoading(true);
-    const newUnlocked = [...unlocked, evolution.nextId];
-
-    const { error } = await supabase.from('players').update({
-      unlocked_avatars: newUnlocked
-    }).eq('id', player.id);
+    const { error } = await supabase.rpc('desbloquear_avatar_templo', {
+      p_player_id: player.id,
+      p_avatar_id: evolution.nextId,
+      p_req_level: evolution.requirements.level
+    });
 
     if (!error) {
       addToast(`${evolution.nextName} desbloqueado com sucesso!`, "success");

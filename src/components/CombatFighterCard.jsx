@@ -16,7 +16,7 @@ function StatBar({ label, current, max, percent, color, alignRight }) {
       </div>
       <div
         className="progress-track"
-        style={{ height: 6, display: 'flex', justifyContent: alignRight ? 'flex-end' : 'flex-start' }}
+        style={{ height: 10, display: 'flex', justifyContent: alignRight ? 'flex-end' : 'flex-start' }}
       >
         <div
           className={`progress-fill ${color === '#ef4444' ? 'red' : color === '#4b9eff' ? 'blue' : 'yellow'}`}
@@ -72,7 +72,7 @@ export default function CombatFighterCard({
         <div style={{ textAlign: alignRight ? 'right' : 'left', marginBottom: 8 }}>
           <h3
             className={alignRight ? 'danger' : 'paper'}
-            style={{ fontSize: '15px', marginBottom: 2, lineHeight: 1.2 }}
+            style={{ fontSize: '18px', marginBottom: 4, lineHeight: 1.2 }}
           >
             {isMirror && '⚠️ '}{name}
           </h3>

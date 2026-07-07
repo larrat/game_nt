@@ -151,17 +151,19 @@ export default function Dashboard({ player, updatePlayer }) {
     if (claimed.includes(taskId)) return;
 
     setClaiming(true);
-    const newClaimed = [...claimed, taskId];
 
-    let updates = { daily_rewards_claimed: newClaimed };
-    if (rewardType === 'ryous') updates.ryous = (player.ryous || 0) + rewardAmount;
-    if (rewardType === 'xp') updates.xp = (player.xp || 0) + rewardAmount;
-
-    const { error } = await supabase.from('players').update(updates).eq('id', player.id);
+    const { error } = await supabase.rpc('reivindicar_recompensa_diaria', {
+      p_player_id: player.id,
+      p_day_index: taskId,
+      p_reward_type: rewardType,
+      p_reward_amount: rewardAmount
+    });
 
     if (!error) {
       addToast(`Recompensa resgatada: +${rewardAmount} ${rewardType.toUpperCase()}!`, "success");
       updatePlayer(player.user_id);
+    } else {
+      addToast('Erro ao resgatar recompensa', 'error');
     }
     setClaiming(false);
   };
@@ -174,16 +176,19 @@ export default function Dashboard({ player, updatePlayer }) {
 
     setClaiming(true);
     const rewardCoins = Math.floor(Math.random() * 4) + 2;
-    const newClaimed = [...claimed, 'chest'];
 
-    const { error } = await supabase.from('players').update({
-      daily_rewards_claimed: newClaimed,
-      vip_coins: (player.vip_coins || 0) + rewardCoins
-    }).eq('id', player.id);
+    const { error } = await supabase.rpc('reivindicar_recompensa_diaria', {
+      p_player_id: player.id,
+      p_day_index: 'chest',
+      p_reward_type: 'vip_coins',
+      p_reward_amount: rewardCoins
+    });
 
     if (!error) {
       addToast(`Baú Aberto! Você encontrou 🪙 ${rewardCoins} Kuro Coins!`, "success");
       updatePlayer(player.user_id);
+    } else {
+      addToast('Erro ao abrir baú', 'error');
     }
     setClaiming(false);
   };
@@ -346,31 +351,27 @@ export default function Dashboard({ player, updatePlayer }) {
           <div style={{ marginTop: '4px' }}>
             <div className="muted uppercase mono" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '12px' }}>Atributos Básicos</div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px' }}>
-              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>TAIJUTSU</div>
-                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.taijutsu || 0}</div>
-              </div>
-              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>NINJUTSU</div>
-                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.ninjutsu || 0}</div>
-              </div>
-              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>GENJUTSU</div>
-                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.genjutsu || 0}</div>
-              </div>
-              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>BUKIJUTSU</div>
-                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.bukijutsu || 0}</div>
-              </div>
-              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>INTELIGÊNCIA</div>
-                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.inteligencia || 0}</div>
-              </div>
-              <div className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '12px 8px' }}>
-                <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>SELOS</div>
-                <div className="paper mono" style={{ fontSize: '14px', fontWeight: 'bold' }}>{player.selos || 0}</div>
-              </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '12px' }}>
+              {[
+                { field: 'ninjutsu', label: 'NINJUTSU' },
+                { field: 'taijutsu', label: 'TAIJUTSU' },
+                { field: 'genjutsu', label: 'GENJUTSU' },
+                { field: 'bukijutsu', label: 'BUKIJUTSU' },
+                { field: 'forca', label: 'FORÇA' },
+                { field: 'agilidade', label: 'AGILIDADE' },
+                { field: 'inteligencia', label: 'INTELIGÊNCIA' },
+                { field: 'resistencia', label: 'RESISTÊNCIA' },
+                { field: 'energia', label: 'ENERGIA' },
+                { field: 'selo', label: 'SELOS' }
+              ].map(attr => (
+                <div key={attr.field} className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '16px 8px', border: '1px solid var(--line-bright)' }}>
+                  <div style={{ width: '32px', height: '32px', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--seal-bright)', marginBottom: '8px' }}>
+                    <img src={`/images/icons/${attr.field}.jpg`} alt={attr.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>{attr.label}</div>
+                  <div className="gold mono" style={{ fontSize: '16px', fontWeight: 'bold' }}>{player[attr.field === 'selo' ? 'selos' : attr.field] || 0}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

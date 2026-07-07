@@ -198,6 +198,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const [globalDebuffs, setGlobalDebuffs] = useState(getGlobalDebuffs(null));
   const [autoBattle, setAutoBattle] = useState(false);
   const [equippedSummon, setEquippedSummon] = useState(null);
+  const [activeJutsuTab, setActiveJutsuTab] = useState('All');
 
   const raidTotal = location.state?.raidTotal ?? 0;
   const [raidCurrent, setRaidCurrent] = useState(location.state?.raidCurrent ?? 0);
@@ -351,30 +352,27 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const handleWin = async () => {
     setLoading(true);
-    const baseRyous = npcInit.ryouReward || 0;
-    const gainedRyous = Math.floor(baseRyous * globalDebuffs.ryouGainMultiplier);
-    const newXp = player.xp + (npcInit.xpReward || 0);
-    const newRyous = player.ryous + gainedRyous;
-    const newLevel = calculateLevelFromXP(newXp);
-    const levelsGained = newLevel > player.level ? newLevel - player.level : 0;
-    const newPontos = (player.pontos_atributos || 0) + levelsGained;
 
     const isDojo = !location.state?.isWorldBoss && !location.state?.isBetrayal && !npcInit.is_dummy;
-    const updates = {
-      xp: newXp,
-      level: newLevel,
-      ryous: newRyous,
-      pontos_atributos: newPontos,
-      hp: playerHP,
-      chakra: playerCP
-    };
-    if (isDojo) updates.wins_dojo = (player.wins_dojo || 0) + 1;
-    if (location.state?.fromMap) updates.daily_map_battles = (player.daily_map_battles || 0) + 1;
 
-    await supabase
-      .from('players')
-      .update(updates)
-      .eq('id', player.id);
+    const { data: resultData, error: resultError } = await supabase.rpc('finalizar_combate', {
+      p_player_id: player.id,
+      p_enemy_id: npcInit.id || 999999,
+      p_result: 'win',
+      p_turn_count: roundCount,
+      p_combat_log: logs,
+      p_fallback_xp: npcInit.xp_reward || 100,
+      p_fallback_ryous: npcInit.ryou_reward || 50,
+      p_enemy_name: npcInit.name || 'Desconhecido'
+    });
+
+    if (resultError) {
+      addToast('Erro ao processar recompensa de combate.', 'error');
+    }
+
+    const gainedRyous = resultData?.ryous_gained || 0;
+    const gainedXp = resultData?.xp_gained || 0;
+    const levelsGained = resultData?.levels_gained || 0;
 
     let droppedItemMsg = '';
     let vipCoinMsg = '';
@@ -438,17 +436,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       });
     }
 
-    try {
-      await supabase.from('battle_logs').insert({
-        player_id: player.id,
-        enemy_name: npcInit.name,
-        result: 'Vitória',
-        xp_gained: npcInit.xpReward || 0,
-        ryous_gained: gainedRyous,
-        turn_count: roundCount,
-        combat_log: logs
-      });
-    } catch (e) { }
+    // Salvar HP e Chakra restantes (visto que a RPC não sobrescreve os atributos de batalha)
+    const updatesAtuais = {
+      hp: playerHP,
+      chakra: playerCP
+    };
+    if (isDojo) updatesAtuais.wins_dojo = (player.wins_dojo || 0) + 1;
+    if (location.state?.fromMap) updatesAtuais.daily_map_battles = (player.daily_map_battles || 0) + 1;
+    await supabase.from('players').update(updatesAtuais).eq('id', player.id);
 
     await updatePlayer(player.id);
     if (location.state?.isBetrayal) {
@@ -459,14 +454,17 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     } else if (location.state?.isGhost) {
       addToast(`Você derrotou o fantasma de ${npcInit.name}!`, "success");
     } else if (raidTotal > 0 && raidCurrent < raidTotal) {
-      addToast(`Incursão ${raidCurrent}/${raidTotal}! +${npcInit.xpReward} XP${droppedItemMsg}${vipCoinMsg}`, 'success');
+      addToast(`Incursão ${raidCurrent}/${raidTotal}! +${gainedXp} XP${droppedItemMsg}${vipCoinMsg}`, 'success');
       resetForNextRaidFight();
       setLoading(false);
       return;
     } else if (raidTotal > 0) {
       addToast(`Incursão completa! ${raidTotal} vitórias seguidas!${droppedItemMsg}${vipCoinMsg}`, 'success');
     } else {
-      addToast(`Vitória! +${npcInit.xpReward} XP, +${npcInit.ryouReward} Ryous.${droppedItemMsg}${vipCoinMsg}`, "success");
+      addToast(`Vitória! +${gainedXp} XP, +${gainedRyous} Ryous.${droppedItemMsg}${vipCoinMsg}`, "success");
+      if (levelsGained > 0) {
+        addToast(`🎉 Você subiu ${levelsGained} Níveis!`, "success");
+      }
     }
     navigate(location.state?.fromMap ? '/mapa' : '/dojo');
   };
@@ -940,7 +938,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     if (USE_SERVER_COMBAT) {
       // Cooldown e verificação client-side UI
-      const jutsuCooldown = (jutsu.cooldown_rounds || 0);
+      const jutsuCooldown = (jutsu.cooldown || 0);
       const currentCooldown = cooldownsRef.current[jutsu.id] || 0;
       if (currentCooldown > 0) { addToast(`[${jutsu.name}] em recarga!`, 'error'); return; }
 
@@ -1015,7 +1013,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     // --- FALLBACK LOCAL / ANTIGO ---
 
     // --- VERIFICAR COOLDOWN ---
-    const jutsuCooldown = (jutsu.cooldown_rounds || 0);
+    const jutsuCooldown = (jutsu.cooldown || 0);
     const currentCooldown = cooldownsRef.current[jutsu.id] || 0;
     if (currentCooldown > 0) {
       addToast(`[${jutsu.name}] em recarga! (${currentCooldown} turno${currentCooldown > 1 ? 's' : ''} restante${currentCooldown > 1 ? 's' : ''})`, 'error');
@@ -1311,6 +1309,23 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               </div>
 
               <div className="combat-jutsu-section">
+                <div className="flex-row" style={{ gap: '4px', marginBottom: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  {['All', 'Ninjutsu', 'Taijutsu', 'Genjutsu', 'Bukijutsu'].map(tab => {
+                    const count = tab === 'All' ? getCombatJutsus(player).length : getCombatJutsus(player).filter(j => (j.category || '').toLowerCase() === tab.toLowerCase()).length;
+                    if (tab !== 'All' && count === 0) return null;
+                    return (
+                      <button
+                        key={tab}
+                        className={`badge ${activeJutsuTab === tab ? 'badge-gold' : 'badge-muted'}`}
+                        style={{ cursor: 'pointer', border: 'none', padding: '6px 12px' }}
+                        onClick={() => setActiveJutsuTab(tab)}
+                      >
+                        {tab === 'All' ? 'Todos' : tab} ({count})
+                      </button>
+                    );
+                  })}
+                </div>
+
                 <div className="combat-jutsu-bar">
                   <button
                     className="combat-jutsu-btn combat-basic-btn"
@@ -1324,30 +1339,32 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                     <span className="jutsu-cost">{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2))}</span>
                   </button>
 
-                  {getCombatJutsus(player).map((jutsu) => {
-                    const stats = getJutsuCombatStats(jutsu, player, npcDef, cooldowns);
+                  {getCombatJutsus(player)
+                    .filter(jutsu => activeJutsuTab === 'All' || (jutsu.category || '').toLowerCase() === activeJutsuTab.toLowerCase())
+                    .map((jutsu) => {
+                      const stats = getJutsuCombatStats(jutsu, player, npcDef, cooldowns);
 
-                    return (
-                      <button
-                        key={jutsu.id}
-                        className={`combat-jutsu-btn ${stats.isOnCooldown ? 'on-cooldown' : ''} ${stats.hasEssences ? 'enhanced' : ''}`}
-                        disabled={!isPlayerTurn || stats.isOnCooldown}
-                        onClick={() => handleJutsu(jutsu)}
-                        title={`${jutsu.name}\n${stats.cost} CP | ${stats.estDamage} DMG | ${stats.finalAcc}% ACC\nCD: ${jutsu.cooldown || 0}T`}
-                        type="button"
-                      >
-                        <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
-                          <JutsuIcon jutsu={jutsu} />
-                        </div>
-                        {stats.isOnCooldown && (
-                          <div className="jutsu-cd-overlay">{stats.jutsuCdVal}</div>
-                        )}
-                        <span className="jutsu-name">{jutsu.name}</span>
-                        <span className="jutsu-cost">{stats.cost}</span>
-                        <span className="jutsu-level">Lv.{stats.jutsuLevel}</span>
-                      </button>
-                    );
-                  })}
+                      return (
+                        <button
+                          key={jutsu.id}
+                          className={`combat-jutsu-btn ${stats.isOnCooldown ? 'on-cooldown' : ''} ${stats.hasEssences ? 'enhanced' : ''}`}
+                          disabled={!isPlayerTurn || stats.isOnCooldown}
+                          onClick={() => handleJutsu(jutsu)}
+                          title={`${jutsu.name}\n${stats.cost} CP | ${stats.estDamage} DMG | ${stats.finalAcc}% ACC\nCD: ${jutsu.cooldown || 0}T`}
+                          type="button"
+                        >
+                          <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+                            <JutsuIcon jutsu={jutsu} />
+                          </div>
+                          {stats.isOnCooldown && (
+                            <div className="jutsu-cd-overlay">{stats.jutsuCdVal}</div>
+                          )}
+                          <span className="jutsu-name">{jutsu.name}</span>
+                          <span className="jutsu-cost">{stats.cost}</span>
+                          <span className="jutsu-level">Lv.{stats.jutsuLevel}</span>
+                        </button>
+                      );
+                    })}
 
                   {getCombatJutsus(player).length === 0 && (
                     <div className="info-banner" style={{ flex: 1, fontSize: '11px', padding: '12px 16px', minWidth: '200px' }}>

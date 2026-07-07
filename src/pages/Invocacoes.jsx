@@ -68,14 +68,10 @@ export default function Invocacoes({ player, updatePlayer }) {
 
     setActionLoading(true);
     
-    // Descontar ryous
-    await supabase.from('players').update({ ryous: player.ryous - cost }).eq('id', player.id);
-    
-    // Assinar
-    const { error } = await supabase.from('player_summons').insert({
-      player_id: player.id,
-      summon_id: summon.id,
-      is_equipped: false
+    // Assinar via RPC (já desconta ryous e insere)
+    const { error } = await supabase.rpc('assinar_invocacao', {
+      p_player_id: player.id,
+      p_invocacao_id: summon.id
     });
     
     if (error) {

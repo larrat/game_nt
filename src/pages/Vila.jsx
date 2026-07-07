@@ -83,39 +83,28 @@ export default function Vila({ player, updatePlayer }) {
     setLoading(true);
 
     try {
-      const { error: pErr } = await supabase.from('players').update({ ryous: player.ryous - donation }).eq('id', player.id);
-      if (pErr) throw pErr;
+      const { data, error } = await supabase.rpc('doar_vila', {
+        p_player_id: player.id,
+        p_building_type: building.building_type,
+        p_amount: donation
+      });
 
-      let newDonations = Number(building.current_donations || 0) + donation;
-      let newLevel = building.level;
-      let newCost = Number(building.next_level_cost || 5000000);
-      
-      if (newDonations >= newCost) {
-        newLevel += 1;
-        newDonations = newDonations - newCost;
-        newCost = Math.floor(newCost * 1.5);
-        addToast(`🎉 ${BUILDING_INFO[building.building_type].name} subiu para o Nível ${newLevel}!`, "success");
+      if (error) {
+        throw new Error(error.message);
       }
 
-      const { error: bErr } = await supabase.from('village_buildings').update({
-        current_donations: newDonations,
-        level: newLevel,
-        next_level_cost: newCost
-      }).eq('id', building.id);
-      if (bErr) throw bErr;
+      const { new_donations, new_level, new_cost } = data;
+
+      if (new_level > building.level) {
+        addToast(`🎉 ${BUILDING_INFO[building.building_type].name} subiu para o Nível ${new_level}!`, "success");
+      }
 
       addToast(`Doou ¥${donation.toLocaleString()}!`, "success");
       await updatePlayer(player.user_id);
       
-      setBuildings(buildings.map(b => b.id === building.id ? { ...b, current_donations: newDonations, level: newLevel, next_level_cost: newCost } : b));
-      
-      await supabase.from('village_donors').upsert({
-        building_id: building.id,
-        player_id: player.id,
-        last_donated_at: new Date()
-      }, { onConflict: 'building_id, player_id' });
+      setBuildings(buildings.map(b => b.id === building.id ? { ...b, current_donations: new_donations, level: new_level, next_level_cost: new_cost } : b));
     } catch (err) {
-      addToast("Erro na doação.", "error");
+      addToast(err.message || "Erro na doação.", "error");
     }
     setLoading(false);
   };

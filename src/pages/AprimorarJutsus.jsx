@@ -47,28 +47,20 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
 
     setLoading(true);
     
-    const newJutsus = learnedJutsus.map(j => {
-      if (j.id === selectedJutsu.id) {
-        const newSlots = [...j.slots];
-        newSlots[slotIndex] = essenceKey;
-        return { ...j, slots: newSlots };
-      }
-      return j;
+    const { data: rpcData, error } = await supabase.rpc('modificar_jutsu_slots', {
+      p_player_id: player.id,
+      p_jutsu_id: selectedJutsu.id,
+      p_action: 'equip',
+      p_slot_idx: slotIndex,
+      p_essence_key: essenceKey,
+      p_upgrade_cost: 0
     });
-
-    const newInventory = { ...inventoryEssences, [essenceKey]: inventoryEssences[essenceKey] - 1 };
-
-    const { error } = await supabase.from('players').update({
-      jutsus_learned: newJutsus,
-      inventory_essences: newInventory
-    }).eq('id', player.id);
 
     if (error) {
       addToast('Erro ao equipar: ' + error.message, 'error');
     } else {
-      await updatePlayer(player.user_id);
-      setSelectedJutsu(newJutsus.find(j => j.id === selectedJutsu.id));
       addToast('Aprimoramento equipado!', 'success');
+      setSelectedJutsu(rpcData.new_jutsu);
     }
     setLoading(false);
   };
@@ -79,28 +71,20 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
     setLoading(true);
     const essenceKey = selectedJutsu.slots[slotIndex];
 
-    const newJutsus = learnedJutsus.map(j => {
-      if (j.id === selectedJutsu.id) {
-        const newSlots = [...j.slots];
-        newSlots[slotIndex] = null;
-        return { ...j, slots: newSlots };
-      }
-      return j;
+    const { data: rpcData, error } = await supabase.rpc('modificar_jutsu_slots', {
+      p_player_id: player.id,
+      p_jutsu_id: selectedJutsu.id,
+      p_action: 'unequip',
+      p_slot_idx: slotIndex,
+      p_essence_key: null,
+      p_upgrade_cost: 0
     });
-
-    const newInventory = { ...inventoryEssences, [essenceKey]: (inventoryEssences[essenceKey] || 0) + 1 };
-
-    const { error } = await supabase.from('players').update({
-      jutsus_learned: newJutsus,
-      inventory_essences: newInventory
-    }).eq('id', player.id);
 
     if (error) {
       addToast('Erro ao remover: ' + error.message, 'error');
     } else {
-      await updatePlayer(player.user_id);
-      setSelectedJutsu(newJutsus.find(j => j.id === selectedJutsu.id));
       addToast('Aprimoramento removido para o inventário.', 'info');
+      setSelectedJutsu(rpcData.new_jutsu);
     }
     setLoading(false);
   };
@@ -109,52 +93,39 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
     if (!selectedJutsu) return;
     const isFull = selectedJutsu.slots.every(s => s !== null);
     if (!isFull) {
-      addToast('Preencha os 3 slots com aprimoramentos antes de evoluir o Jutsu!', 'warning');
+      addToast('Você precisa preencher os 3 slots do jutsu antes de evoluí-lo.', 'warning');
       return;
     }
 
-    const cost = selectedJutsu.level * 15000;
+    const currentStars = selectedJutsu.stars || 1;
+    if (currentStars >= 5) {
+      addToast('Este jutsu já alcançou o nível máximo.', 'info');
+      return;
+    }
+
+    const cost = 500 * currentStars;
     if (player.ryous < cost) {
-      addToast(`Ryous insuficientes. Custa RY$ ${cost} para evoluir.`, 'error');
+      addToast(`Você precisa de ${cost} ¥ para evoluir este jutsu.`, 'error');
       return;
     }
 
     setLoading(true);
-    const newJutsus = learnedJutsus.map(j => {
-      if (j.id === selectedJutsu.id) {
-        // Absorver atributos
-        const newAbsorbed = { ...(j.absorbed_stats || { dano: 0, custo: 0, letalidade: 0, protecao: 0 }) };
-        j.slots.forEach(slot => {
-          if (!slot) return;
-          const isDano = slot.startsWith('dano');
-          const isCusto = slot.startsWith('custo');
-          const isLetalidade = slot.startsWith('letalidade');
-          const isProtecao = slot.startsWith('protecao');
-          
-          const tier = parseInt(slot.split('_')[1]) || 1;
-          
-          if (isDano) newAbsorbed.dano += (tier === 1 ? 5 : tier === 2 ? 15 : tier === 3 ? 30 : tier === 4 ? 50 : 100);
-          if (isCusto) newAbsorbed.custo += (tier === 1 ? -2 : tier === 2 ? -5 : tier === 3 ? -10 : tier === 4 ? -15 : -25);
-          if (isLetalidade) newAbsorbed.letalidade += (tier === 1 ? 2 : tier === 2 ? 5 : tier === 3 ? 10 : tier === 4 ? 15 : 25);
-          if (isProtecao) newAbsorbed.protecao += (tier === 1 ? 10 : tier === 2 ? 25 : tier === 3 ? 50 : tier === 4 ? 100 : 200);
-        });
 
-        return { ...j, level: j.level + 1, slots: [null, null, null], absorbed_stats: newAbsorbed };
-      }
-      return j;
+    const { data: rpcData, error } = await supabase.rpc('modificar_jutsu_slots', {
+      p_player_id: player.id,
+      p_jutsu_id: selectedJutsu.id,
+      p_action: 'upgrade',
+      p_slot_idx: 0,
+      p_essence_key: null,
+      p_upgrade_cost: cost
     });
-
-    const { error } = await supabase.from('players').update({
-      jutsus_learned: newJutsus,
-      ryous: player.ryous - cost
-    }).eq('id', player.id);
 
     if (error) {
       addToast('Erro ao evoluir: ' + error.message, 'error');
     } else {
       await updatePlayer(player.user_id);
-      setSelectedJutsu(newJutsus.find(j => j.id === selectedJutsu.id));
-      addToast(`Jutsu evoluiu para o Nível ${selectedJutsu.level + 1}! Os atributos foram absorvidos.`, 'success');
+      setSelectedJutsu(rpcData.new_jutsu);
+      addToast(`Jutsu evoluído para ${currentStars + 1} ⭐!`, 'success');
     }
     setLoading(false);
   };
@@ -216,16 +187,58 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
             <h2 className="card-title flex-row" style={{ alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
               <span className="gold">Nível {selectedJutsu.level}</span>
             </h2>
-            <div className="flex-row" style={{ gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
-              {selectedJutsu.absorbed_stats && (
-                <>
-                  {selectedJutsu.absorbed_stats.dano > 0 && <span className="badge badge-gold">+{selectedJutsu.absorbed_stats.dano} Dano</span>}
-                  {selectedJutsu.absorbed_stats.custo < 0 && <span className="badge badge-muted">{selectedJutsu.absorbed_stats.custo} Chakra</span>}
-                  {selectedJutsu.absorbed_stats.letalidade > 0 && <span className="badge badge-gold">+{selectedJutsu.absorbed_stats.letalidade}% Crítico</span>}
-                  {selectedJutsu.absorbed_stats.protecao > 0 && <span className="badge badge-muted">+{selectedJutsu.absorbed_stats.protecao} Proteção</span>}
-                </>
-              )}
-            </div>
+            
+            {/* PAINEL ESTATÍSTICO (Antes e Depois) */}
+            {(() => {
+              const fullData = getFullJutsuData(selectedJutsu);
+              const bonusDano = getJutsuEnhancementBonus(selectedJutsu, 'dano') + (selectedJutsu.absorbed_stats?.dano || 0);
+              const bonusCusto = getJutsuEnhancementBonus(selectedJutsu, 'custo') + (selectedJutsu.absorbed_stats?.custo || 0); // Negativo
+              const bonusLetal = getJutsuEnhancementBonus(selectedJutsu, 'letalidade') + (selectedJutsu.absorbed_stats?.letalidade || 0);
+              const bonusProt = getJutsuEnhancementBonus(selectedJutsu, 'protecao') + (selectedJutsu.absorbed_stats?.protecao || 0);
+
+              const baseDmg = fullData.damage || 0;
+              const finalDmg = baseDmg + bonusDano;
+
+              const baseCusto = fullData.cost || 0;
+              const finalCusto = Math.max(0, baseCusto + bonusCusto);
+
+              const baseAcc = fullData.accuracy || 0;
+              const finalAcc = baseAcc;
+
+              return (
+                <div className="flex-col" style={{ gap: '8px', marginBottom: '16px', background: 'var(--ink)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line)' }}>
+                  <h4 className="gold mono" style={{ fontSize: '11px', marginBottom: '8px' }}>INSPEÇÃO ESTATÍSTICA</h4>
+                  <div className="grid-2" style={{ gap: '12px' }}>
+                    <div className="flex-between">
+                      <span className="muted" style={{ fontSize: '12px' }}>🗡️ Dano Base:</span>
+                      <span className="paper mono" style={{ fontSize: '12px' }}>
+                        {baseDmg} {bonusDano > 0 ? <span style={{ color: '#ef4444' }}> ➔ {finalDmg}</span> : ''}
+                      </span>
+                    </div>
+                    <div className="flex-between">
+                      <span className="muted" style={{ fontSize: '12px' }}>🔵 Custo (CP):</span>
+                      <span className="paper mono" style={{ fontSize: '12px' }}>
+                        {baseCusto} {bonusCusto < 0 ? <span style={{ color: '#60a5fa' }}> ➔ {finalCusto}</span> : ''}
+                      </span>
+                    </div>
+                    <div className="flex-between">
+                      <span className="muted" style={{ fontSize: '12px' }}>🎯 Precisão:</span>
+                      <span className="paper mono" style={{ fontSize: '12px' }}>{finalAcc}%</span>
+                    </div>
+                    {(bonusLetal > 0 || bonusProt > 0) && (
+                      <div className="flex-between" style={{ gridColumn: 'span 2', borderTop: '1px dashed var(--line)', paddingTop: '8px' }}>
+                        <span className="muted" style={{ fontSize: '12px' }}>✨ Efeitos Extras:</span>
+                        <div className="flex-row" style={{ gap: '8px' }}>
+                          {bonusLetal > 0 && <span className="gold mono" style={{ fontSize: '12px' }}>+{bonusLetal}% Crítico</span>}
+                          {bonusProt > 0 && <span className="mono" style={{ fontSize: '12px', color: '#10b981' }}>+{bonusProt} Escudo</span>}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })()}
+
             <p className="muted" style={{ marginBottom: '16px' }}>Preencha os 3 slots com Pergaminhos. Ao encher os 3, você pode evoluir a habilidade para o próximo nível.</p>
             <div className="card" style={{ padding: '12px 16px', marginBottom: '24px', background: 'var(--ink)', border: '1px solid rgba(212,162,42,0.2)' }}>
               <div className="mono gold" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '8px' }}>📖 LEGENDA — O QUE CADA ESSÊNCIA FAZ</div>

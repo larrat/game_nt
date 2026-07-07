@@ -17,6 +17,7 @@ export default function Tarefas({ player, updatePlayer }) {
   const [tarefas, setTarefas] = useState([]);
   const [timers, setTimers] = useState({});
   const [loading, setLoading] = useState(false);
+  const [startingTaskIds, setStartingTaskIds] = useState({});
   const [activeTab, setActiveTab] = useState('tarefa_academia');
   const { addToast } = useToast();
   const gameConfig = useGameConfig();
@@ -76,7 +77,7 @@ export default function Tarefas({ player, updatePlayer }) {
   };
 
   const startTask = async (task) => {
-    if (loading) return;
+    if (loading || startingTaskIds[task.id]) return;
 
     const blockReason = getMissionBlockReason(task);
     if (blockReason) {
@@ -89,6 +90,7 @@ export default function Tarefas({ player, updatePlayer }) {
     }
 
     setLoading(true);
+    setStartingTaskIds(prev => ({ ...prev, [task.id]: true }));
     try {
       const { data, error } = await supabase.rpc('iniciar_missao', {
         p_player_id: player.id,
@@ -103,8 +105,10 @@ export default function Tarefas({ player, updatePlayer }) {
       addToast(`Missão "${task.title}" iniciada!`, 'success');
     } catch (err) {
       addToast(err.message || 'Erro ao iniciar missão.', 'error');
+    } finally {
+      setLoading(false);
+      setStartingTaskIds(prev => ({ ...prev, [task.id]: false }));
     }
-    setLoading(false);
   };
 
   const finishTask = async (taskDef) => {
@@ -264,11 +268,11 @@ export default function Tarefas({ player, updatePlayer }) {
                       <button
                         className="btn-primary"
                         onClick={() => startTask(t)}
-                        disabled={loading}
+                        disabled={loading || startingTaskIds[t.id]}
                         style={{ padding: '9px 16px', fontSize: '11px' }}
                         type="button"
                       >
-                        <span>Iniciar</span>
+                        <span>{startingTaskIds[t.id] ? 'Iniciando...' : 'Iniciar'}</span>
                       </button>
                     )}
                   </td>

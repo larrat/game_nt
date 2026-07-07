@@ -1668,7 +1668,7 @@ textarea {
   border-radius: var(--border-radius);
   border: 1px solid var(--line-bright);
   background: var(--ink-raised);
-  min-height: 300px;
+  min-height: 360px;
 }
 
 .combat-fighter-v2.enemy-mirror {
@@ -1678,8 +1678,8 @@ textarea {
 .combat-portrait-wrap {
   position: relative;
   flex: 1;
-  min-height: 140px;
-  max-height: 180px;
+  min-height: 180px;
+  max-height: 220px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -1688,7 +1688,7 @@ textarea {
 }
 
 .combat-portrait-wrap img {
-  max-height: 150px;
+  max-height: 200px;
   max-width: 90%;
   object-fit: contain;
   filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.85));
@@ -1742,6 +1742,7 @@ textarea {
 .combat-log-center {
   flex: 1;
   min-height: 0;
+  max-height: 280px;
 }
 
 .combat-log-line {

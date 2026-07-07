@@ -6,26 +6,78 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Mapeamento de Categorias de Status baseado nos Prints Oficiais
+const STAT_GROUPS = {
+  'Inteligência': 'base',
+  'Força': 'base',
+  'Resistência': 'base',
+  'Taijutsu': 'base',
+  'Ninjutsu': 'base',
+  'Genjutsu': 'base',
+  'Bukijutsu': 'base',
+  'Agilidade': 'base',
+  'Selo': 'base',
+
+  'Energia': 'energia',
+
+  'Ataque Tai/Buk': 'ataque_defesa',
+  'Ataque Nin/Gen': 'ataque_defesa',
+  'Defesa Tai/Buk': 'ataque_defesa',
+  'Defesa Nin/Gen': 'ataque_defesa',
+
+  'Precisão': 'perf_prec',
+  'Perfuração': 'perf_prec',
+
+  'HP': 'hp',
+
+  'Chakra': 'chakra_stamina',
+  'Stamina': 'chakra_stamina',
+
+  'Concentração': 'secundarios',
+  'Percepção': 'secundarios',
+  'Convicção': 'secundarios',
+  'Determinação': 'secundarios',
+  'Dano Crítico': 'secundarios',
+  'Absorção': 'secundarios'
+};
+
+const RANK_RANGES = {
+  'Estudante da Academia': { base: [1, 3], energia: [1, 1], ataque_defesa: [1, 1], perf_prec: [1, 2], hp: [1, 8], chakra_stamina: [1, 4], secundarios: [1, 5] },
+  'Genin': { base: [1, 3], energia: [1, 1], ataque_defesa: [1, 1], perf_prec: [1, 2], hp: [1, 8], chakra_stamina: [1, 4], secundarios: [1, 5] },
+  'Chunin': { base: [2, 4], energia: [1, 2], ataque_defesa: [1, 2], perf_prec: [2, 4], hp: [8, 16], chakra_stamina: [2, 4], secundarios: [1, 5] },
+  'Jonin': { base: [3, 5], energia: [2, 3], ataque_defesa: [2, 2], perf_prec: [3, 5], hp: [12, 24], chakra_stamina: [3, 6], secundarios: [1, 5] },
+  'ANBU': { base: [4, 6], energia: [2, 4], ataque_defesa: [2, 3], perf_prec: [4, 6], hp: [16, 32], chakra_stamina: [4, 6], secundarios: [1, 5] },
+  'Sannin Lendário': { base: [5, 7], energia: [3, 5], ataque_defesa: [3, 3], perf_prec: [5, 7], hp: [20, 40], chakra_stamina: [4, 8], secundarios: [1, 5] },
+  'Herói Mundial': { base: [6, 9], energia: [4, 6], ataque_defesa: [3, 4], perf_prec: [6, 9], hp: [24, 48], chakra_stamina: [6, 8], secundarios: [1, 5] }
+};
+
+const DROP_RATES = {
+  'Estudante da Academia': { Comum: 85, Raro: 10, Épico: 4, Lendário: 1 },
+  'Genin': { Comum: 85, Raro: 10, Épico: 4, Lendário: 1 },
+  'Chunin': { Comum: 10, Raro: 80, Épico: 7, Lendário: 3 },
+  'Jonin': { Comum: 0, Raro: 63, Épico: 30, Lendário: 7 },
+  'ANBU': { Comum: 0, Raro: 20, Épico: 65, Lendário: 15 },
+  'Sannin Lendário': { Comum: 0, Raro: 0, Épico: 75, Lendário: 25 },
+  'Herói Mundial': { Comum: 0, Raro: 0, Épico: 50, Lendário: 50 }
+};
+
 // Filtra atributos baseados no Smart Loot (Restrições de Classe)
 function filterStats(statsArray, ninjaClass) {
   if (!ninjaClass) return [...statsArray];
 
   return statsArray.filter(stat => {
-    // Regra: Se Ninjutsu, remover Tai, Gen, Buk, Stamina, Ataque/Defesa Tai/Buk
+    const s = stat.toLowerCase();
     if (ninjaClass.toLowerCase() === 'ninjutsu') {
-      if (['Taijutsu', 'Genjutsu', 'Bukijutsu', 'Stamina', 'Ataque Tai/Buk', 'Defesa Tai/Buk'].includes(stat)) return false;
+      if (['taijutsu', 'genjutsu', 'bukijutsu', 'stamina', 'ataque tai/buk', 'defesa tai/buk'].includes(s)) return false;
     }
-    // Regra: Se Taijutsu
     if (ninjaClass.toLowerCase() === 'taijutsu') {
-      if (['Ninjutsu', 'Genjutsu', 'Bukijutsu', 'Chakra', 'Selo', 'Ataque Nin/Gen', 'Defesa Nin/Gen'].includes(stat)) return false;
+      if (['ninjutsu', 'genjutsu', 'bukijutsu', 'chakra', 'selo', 'ataque nin/gen', 'defesa nin/gen'].includes(s)) return false;
     }
-    // Regra: Se Genjutsu
     if (ninjaClass.toLowerCase() === 'genjutsu') {
-      if (['Taijutsu', 'Ninjutsu', 'Bukijutsu', 'Stamina', 'Ataque Tai/Buk', 'Defesa Tai/Buk'].includes(stat)) return false;
+      if (['taijutsu', 'ninjutsu', 'bukijutsu', 'stamina', 'ataque tai/buk', 'defesa tai/buk'].includes(s)) return false;
     }
-    // Regra: Se Bukijutsu
     if (ninjaClass.toLowerCase() === 'bukijutsu') {
-      if (['Ninjutsu', 'Genjutsu', 'Taijutsu', 'Chakra', 'Selo', 'Ataque Nin/Gen', 'Defesa Nin/Gen'].includes(stat)) return false;
+      if (['ninjutsu', 'genjutsu', 'taijutsu', 'chakra', 'selo', 'ataque nin/gen', 'defesa nin/gen'].includes(s)) return false;
     }
     return true;
   });
@@ -37,25 +89,23 @@ function getRandomStat(pool, existingStats) {
   return available[getRandomInt(0, available.length - 1)];
 }
 
-// Sorteia a raridade com base no rank
+// Sorteia a raridade com base no rank usando a tabela exata
 export async function rollRarity(playerRank, customRates = null) {
-  let rates = customRates;
-  if (!rates) {
-    const { data } = await supabase.from('loot_drop_rates').select('*').eq('rank_name', playerRank).single();
-    rates = data || { common_chance: 85, rare_chance: 10, epic_chance: 4, legendary_chance: 1, unique_chance: 0 };
-  }
+  // Fallback para caso o playerRank não exista na tabela
+  const rank = playerRank || 'Genin';
+  const rates = customRates || DROP_RATES[rank] || DROP_RATES['Genin'];
   
   const roll = getRandomInt(1, 100);
   
-  // Chance do Único entra primeiro se existir
-  if (rates.unique_chance && roll <= rates.unique_chance) return 'Único';
-  if (roll <= (rates.unique_chance || 0) + rates.legendary_chance) return 'Lendário';
-  if (roll <= (rates.unique_chance || 0) + rates.legendary_chance + rates.epic_chance) return 'Épico';
-  if (roll <= (rates.unique_chance || 0) + rates.legendary_chance + rates.epic_chance + rates.rare_chance) return 'Raro';
+  // Como as chances somam 100%, validamos progressivamente
+  if (roll <= (rates.Lendário || 0)) return 'Lendário';
+  if (roll <= (rates.Lendário || 0) + (rates.Épico || 0)) return 'Épico';
+  if (roll <= (rates.Lendário || 0) + (rates.Épico || 0) + (rates.Raro || 0)) return 'Raro';
+  
   return 'Comum';
 }
 
-// Gera os afixos (Rolled Stats) para o equipamento
+// Gera os afixos (Rolled Stats) para o equipamento escalado por Graduação
 export async function generateLootStats(rarity, playerRank, ninjaClass = '') {
   const { data: statTypes } = await supabase.from('item_stat_types').select('*');
   
@@ -71,14 +121,19 @@ export async function generateLootStats(rarity, playerRank, ninjaClass = '') {
   const filteredFormulas = filterStats(formulaStats, ninjaClass);
   
   const stats = [];
+  const rank = playerRank || 'Genin';
+  const ranges = RANK_RANGES[rank] || RANK_RANGES['Genin'];
   
   const generateValue = (statName) => {
     const statDef = statTypes?.find(s => s.name === statName);
-    if (!statDef) return getRandomInt(2, 10);
     
-    // Se for Único, sempre pega o valor máximo possível
-    let val = rarity === 'Único' ? statDef.max_value : getRandomInt(statDef.min_value, statDef.max_value);
-    if (statDef.is_percentage) return val + '%';
+    // Identificar qual grupo matemático do print este status pertence
+    const group = STAT_GROUPS[statName] || 'base';
+    const range = ranges[group] || [1, 2];
+    
+    let val = getRandomInt(range[0], range[1]);
+    
+    if (statDef && statDef.is_percentage) return val + '%';
     return val;
   };
 
@@ -93,36 +148,20 @@ export async function generateLootStats(rarity, playerRank, ninjaClass = '') {
     addStat(isBase ? 'Base' : 'Fórmula');
   };
 
-  // Regras de Geração (QTD DE AFIXOS)
-  if (rarity === 'Comum') {
-    addStat('Base');
-    addStat('Base');
-  } else if (rarity === 'Raro') {
-    addStat('Base');
-    addStat('Base');
-    addRandomAny();
-  } else if (rarity === 'Épico') {
-    addStat('Base');
-    addStat('Base');
-    addRandomAny();
-    addStat('Fórmula');
-  } else if (rarity === 'Lendário') {
-    addStat('Base');
-    addStat('Base');
-    addStat('Base');
-    addRandomAny();
-    addStat('Fórmula');
-  } else if (rarity === 'Único') {
-    // 5 Afixos fixos (3 Base, 2 Fórmulas) e maximizados (pela lógica acima)
-    addStat('Base');
-    addStat('Base');
-    addStat('Base');
-    addStat('Fórmula');
-    addStat('Fórmula');
+  // Qtd de Atributos Fixos por Raridade
+  let fixedAmount = 1; // Comum
+  if (rarity === 'Raro') fixedAmount = 2;
+  if (rarity === 'Épico') fixedAmount = 3;
+  if (rarity === 'Lendário') fixedAmount = 4;
+  if (rarity === 'Único') fixedAmount = 5;
+
+  for (let i = 0; i < fixedAmount; i++) {
+    // Intercala entre Base e Fórmula
+    addStat(i % 2 === 0 ? 'Base' : 'Fórmula');
   }
 
-  // 20% chance de Extra Affix
-  if (Math.random() <= 0.20) {
+  // 1 Atributo Extra (Chance) - O print define como uma chance adicional
+  if (Math.random() <= 0.30) {
     addRandomAny();
   }
 

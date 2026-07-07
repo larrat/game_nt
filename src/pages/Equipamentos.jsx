@@ -217,8 +217,13 @@ export default function Equipamentos({ player, updatePlayer }) {
             ) : (
               <div className="grid-2" style={{ gap: '16px' }}>
                 {Object.entries(totalBonus).map(([stat, val]) => (
-                  <div key={stat} className="flex-between" style={{ background: 'var(--ink-raised)', padding: '12px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-                    <span className="muted uppercase" style={{ fontSize: '11px', letterSpacing: '1px' }}>{stat}</span>
+                  <div key={stat} className="flex-between" style={{ background: 'var(--ink-raised)', padding: '12px', borderRadius: '6px', border: '1px solid var(--line)', alignItems: 'center' }}>
+                    <div className="flex-row" style={{ alignItems: 'center', gap: '8px' }}>
+                      <div style={{ width: '20px', height: '20px', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--seal-bright)' }}>
+                        <img src={`/images/icons/${stat.toLowerCase()}.jpg`} alt={stat} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; }} />
+                      </div>
+                      <span className="muted uppercase" style={{ fontSize: '11px', letterSpacing: '1px' }}>{stat}</span>
+                    </div>
                     <span className="success mono" style={{ fontWeight: 'bold' }}>+{val}</span>
                   </div>
                 ))}

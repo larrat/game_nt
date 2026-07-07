@@ -59,6 +59,19 @@ export const getRankBonus = (rankName) => {
   return bonuses[rankName] || { hp: 0, chakra: 0, stamina: 0 };
 };
 
+export const rankValue = (rank) => {
+  if (!rank) return 0;
+  const r = rank.toLowerCase();
+  if (r.includes('estudante')) return 0;
+  if (r.includes('genin')) return 1;
+  if (r.includes('chunin')) return 2;
+  if (r.includes('jounin')) return 3;
+  if (r.includes('anbu')) return 4;
+  if (r.includes('sannin') || r.includes('sanin')) return 5;
+  if (r.includes('heroi') || r.includes('herói')) return 6;
+  return 0;
+};
+
 // Retorna a quantidade TOTAL de XP necessária para o jogador ALCANÇAR o nível especificado.
 export const calculateXPForLevel = (level) => {
   if (level <= 1) return 0;
@@ -114,7 +127,11 @@ export const getClanBonus = (player) => {
 
 export const calculateHP = (player) => {
   if (!player) return 0;
+  // Básico de nível + Resistência
   let hp = 100 + (player.level * 30) + ((player.resistencia || 0) * 15);
+  // Adiciona a Energia (Massivamente) e Força (Levemente)
+  hp += ((player.energia || 0) * 20) + ((player.forca || 0) * 5);
+  
   hp += getRankBonus(player.rank).hp;
   hp += getEquipmentBonus(player, 'hp');
   if (player.clan === 'Senju') hp = Math.floor(hp * 1.10);

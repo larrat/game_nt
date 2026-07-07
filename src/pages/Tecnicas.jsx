@@ -18,12 +18,24 @@ const rankValue = (rank) => {
   return 0;
 };
 
-const CATEGORIES = ['Todos', 'Ninjutsu', 'Taijutsu', 'Genjutsu', 'Bukijutsu'];
+const CATEGORIES = ['Ninjutsu', 'Taijutsu', 'Genjutsu', 'Bukijutsu', 'Elementar'];
 
 export default function Tecnicas({ player, updatePlayer }) {
+  const getHighestAttr = () => {
+    if (!player) return 'Ninjutsu';
+    const attrs = [
+      { name: 'Ninjutsu', val: player.ninjutsu || 0 },
+      { name: 'Taijutsu', val: player.taijutsu || 0 },
+      { name: 'Genjutsu', val: player.genjutsu || 0 },
+      { name: 'Bukijutsu', val: player.bukijutsu || 0 },
+    ];
+    attrs.sort((a,b) => b.val - a.val);
+    return attrs[0].val > 0 ? attrs[0].name : 'Ninjutsu';
+  };
+
   const [allJutsus, setAllJutsus] = useState([]);
   const [tab, setTab] = useState('tecnicas');
-  const [filterCat, setFilterCat] = useState('Todos');
+  const [filterCat, setFilterCat] = useState(getHighestAttr);
   const [confirmBulk, setConfirmBulk] = useState(false);
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
@@ -108,7 +120,8 @@ export default function Tecnicas({ player, updatePlayer }) {
       !learnedIds.includes(j.id) &&
       player.level >= j.lvl &&
       (!j.reqRank || rankValue(player.rank) >= rankValue(j.reqRank)) &&
-      (!j.element || j.element === player?.element)
+      (!j.element || j.element === player?.element) &&
+      (!j.reqAttrValue || (player?.[j.category?.toLowerCase()] || 0) >= j.reqAttrValue)
     );
 
     if (availableToLearn.length === 0) {
@@ -221,12 +234,16 @@ export default function Tecnicas({ player, updatePlayer }) {
           </div>
 
           <div className="grid-auto" style={{ gap: '16px' }}>
-            {allJutsus.filter(j => (filterCat === 'Todos' || j.category === filterCat) && (!j.element || j.element === player?.element)).map(jutsu => {
+            {allJutsus.filter(j => {
+              if (filterCat === 'Elementar') return !!j.element && j.element === player?.element;
+              return (filterCat === 'Todos' || j.category === filterCat) && (!j.element || j.element === player?.element);
+            }).map(jutsu => {
               const isUnlockedLvl = player.level >= jutsu.lvl;
               const isUnlockedRank = !jutsu.reqRank || rankValue(player.rank) >= rankValue(jutsu.reqRank);
               const isUnlocked = isUnlockedLvl && isUnlockedRank;
               const isLearned = learnedIds.includes(jutsu.id);
               const canAfford = player.ryous >= jutsu.cost;
+              const hasMastery = !jutsu.reqAttrValue || (player?.[jutsu.category?.toLowerCase()] || 0) >= jutsu.reqAttrValue;
 
               return (
                 <div key={jutsu.id} className="card" style={{
@@ -293,11 +310,11 @@ export default function Tecnicas({ player, updatePlayer }) {
                       <button
                         className="btn-ghost"
                         onClick={() => handleLearn(jutsu)}
-                        disabled={loading || !canAfford}
+                        disabled={loading || !canAfford || !hasMastery}
                         style={{
                           padding: '8px 16px',
-                          opacity: canAfford ? 1 : 0.4,
-                          cursor: canAfford ? 'pointer' : 'not-allowed',
+                          opacity: (canAfford && hasMastery) ? 1 : 0.4,
+                          cursor: (canAfford && hasMastery) ? 'pointer' : 'not-allowed',
                           fontSize: '11px',
                         }}
                       >

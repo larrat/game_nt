@@ -44,48 +44,20 @@ export default function Ichiraku({ player, updatePlayer }) {
 
     setBuyingId(item.id);
 
-    // Subtrair moedas do jogador
-    const newRyous = (player.ryous || 0) - item.cost_ryous;
-    const newCoins = (player.vip_coins || 0) - item.cost_coins;
+    const { error } = await supabase.rpc('comprar_ramen', {
+      p_player_id: player.id,
+      p_consumable_id: item.id,
+      p_quantidade: 1
+    });
 
-    const { error: playerError } = await supabase
-      .from('players')
-      .update({ ryous: newRyous, vip_coins: newCoins })
-      .eq('id', player.id);
-
-    if (playerError) {
-      addToast('Erro ao processar pagamento.', 'error');
+    if (error) {
+      addToast(error.message || 'Erro ao processar pagamento.', 'error');
       setBuyingId(null);
       return;
     }
 
-    // Checar se já existe o item na mochila
-    const { data: existing } = await supabase
-      .from('player_consumables')
-      .select('id, quantity')
-      .eq('player_id', player.id)
-      .eq('consumable_id', item.id)
-      .single();
-
-    if (existing) {
-      // Atualizar quantidade
-      await supabase
-        .from('player_consumables')
-        .update({ quantity: existing.quantity + 1 })
-        .eq('id', existing.id);
-    } else {
-      // Inserir novo registro
-      await supabase
-        .from('player_consumables')
-        .insert({
-          player_id: player.id,
-          consumable_id: item.id,
-          quantity: 1
-        });
-    }
-
     await updatePlayer(player.user_id);
-    addToast(`Você comprou 1x ${item.name}! Foi enviado para sua mochila.`, 'success');
+    addToast(`Você comprou ${item.name}!`, 'success');
     setBuyingId(null);
   };
 

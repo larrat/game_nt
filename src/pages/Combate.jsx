@@ -147,12 +147,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const [playerStatus, setPlayerStatus] = useState([]);
   const [npcStatus, setNpcStatus] = useState([]);
   const [cooldowns, setCooldowns] = useState({});
+  const [npcCooldowns, setNpcCooldowns] = useState({});
   const [activeBuffs, setActiveBuffs] = useState({ protecao: 0, letalidade: 0, duration: 0 });
 
   const playerStatusRef = useRef(playerStatus);
   const npcStatusRef = useRef(npcStatus);
   const playerHPRef = useRef(playerHP);
   const cooldownsRef = useRef(cooldowns);
+  const npcCooldownsRef = useRef(npcCooldowns);
   const logsContainerRef = useRef(null);
 
   const [surrenderConfirm, setSurrenderConfirm] = useState(false);
@@ -182,6 +184,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   useEffect(() => { npcStatusRef.current = npcStatus; }, [npcStatus]);
   useEffect(() => { cooldownsRef.current = cooldowns; }, [cooldowns]);
   useEffect(() => { playerHPRef.current = playerHP; }, [playerHP]);
+  useEffect(() => { npcCooldownsRef.current = npcCooldowns; }, [npcCooldowns]);
 
   const [logs, setLogs] = useState([
     location.state?.isWorldBoss ? `🔥 O céu escurece... ${npcInit?.name} surgiu! Prepare-se!` :
@@ -540,6 +543,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       return next;
     });
 
+    setNpcCooldowns(prev => {
+      const next = { ...prev };
+      Object.keys(next).forEach(k => {
+        if (next[k] > 0) next[k] -= 1;
+      });
+      return next;
+    });
+
     setActiveBuffs(prev => {
       if (prev.duration > 0) {
         if (prev.duration - 1 === 0) {
@@ -660,6 +671,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
         if (!isSilenced && jutsus.length > 0 && Math.random() > 0.5) {
           const validJutsus = jutsus.filter(j => {
+            const currentCooldown = npcCooldownsRef.current[j.id] || 0;
+            if (currentCooldown > 0) return false;
+
             if (j.jutsu_effects && j.jutsu_effects.length > 0) {
               const effectName = j.jutsu_effects[0].status_effects?.name;
               if (playerStatusRef.current.some(s => s.name === effectName)) return false;
@@ -667,31 +681,38 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             return true;
           });
 
-          const jutsu = validJutsus.length > 0 ? validJutsus[Math.floor(Math.random() * validJutsus.length)] : jutsus[Math.floor(Math.random() * jutsus.length)];
-          const cost = jutsu.chakraCost || 20;
+          const jutsu = validJutsus.length > 0 ? validJutsus[Math.floor(Math.random() * validJutsus.length)] : null;
+          
+          if (jutsu) {
+            const cost = jutsu.chakraCost || 20;
 
-          if (npcCP >= cost) {
-            const newNpcCP = npcCP - cost;
-            setNpcCP(newNpcCP);
+            if (npcCP >= cost) {
+              const newNpcCP = npcCP - cost;
+              setNpcCP(newNpcCP);
+              
+              if ((jutsu.cooldown || 0) > 0) {
+                setNpcCooldowns(prev => ({ ...prev, [jutsu.id]: (jutsu.cooldown || 0) + 1 }));
+              }
 
-            const mult = getElementalMultiplier(jutsu.element || npcInit.element, player.element);
-            const jutsuBaseDmg = jutsu.damage || 15;
-            const cat = (jutsu.category || "").toLowerCase();
-            const npcMagic = (cat === "taijutsu" || cat === "bukijutsu") ? npcAtkTaiBuk : npcAtkNinGen;
-            const magicDmg = npcMagic + jutsuBaseDmg;
+              const mult = getElementalMultiplier(jutsu.element || npcInit.element, player.element);
+              const jutsuBaseDmg = jutsu.damage || 15;
+              const cat = (jutsu.category || "").toLowerCase();
+              const npcMagic = (cat === "taijutsu" || cat === "bukijutsu") ? npcAtkTaiBuk : npcAtkNinGen;
+              const magicDmg = npcMagic + jutsuBaseDmg;
 
-            // Proteção Passiva do Buff Ativo
-            const defBonus = activeBuffs?.protecao || 0;
-            const finalDamage = Math.max(1, magicDmg - Math.floor((playerDef + defBonus) / 2));
+              // Proteção Passiva do Buff Ativo
+              const defBonus = activeBuffs?.protecao || 0;
+              const finalDamage = Math.max(1, magicDmg - Math.floor((playerDef + defBonus) / 2));
 
-            damage = Math.floor(finalDamage * mult);
+              damage = Math.floor(finalDamage * mult);
 
-            if (mult > 1.0) elementalMsg = ' (Vantagem Elemental!)';
-            if (mult < 1.0) elementalMsg = ' (Desvantagem Elemental)';
+              if (mult > 1.0) elementalMsg = ' (Vantagem Elemental!)';
+              if (mult < 1.0) elementalMsg = ' (Desvantagem Elemental)';
 
-            addLog(`⚠️ ${npcInit.name} usou [${jutsu.name}]! Causou ${damage} de dano!${elementalMsg}`);
-            applyJutsuEffects(jutsu, false);
-            usedJutsu = true;
+              addLog(`⚠️ ${npcInit.name} usou [${jutsu.name}]! Causou ${damage} de dano!${elementalMsg}`);
+              applyJutsuEffects(jutsu, false);
+              usedJutsu = true;
+            }
           }
         }
 
@@ -965,7 +986,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       const newCP = playerCP - data.chakra_cost;
       setPlayerCP(newCP);
 
-      if (jutsuCooldown > 0) setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown }));
+      // +1 to compensate for the immediate decrement in startPlayerTurn
+      if (jutsuCooldown > 0) setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown + 1 }));
 
       if (newCP <= 0) {
         addLog(`Você ficou sem Chakra usando [${jutsu.name}] e desmaiou de exaustão...`);
@@ -1039,7 +1061,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     // --- APLICAR COOLDOWN DO JUTSU ---
     if (jutsuCooldown > 0) {
-      setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown }));
+      setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown + 1 }));
     }
 
     if (newCP <= 0) {

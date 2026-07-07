@@ -123,10 +123,21 @@ export default function Tarefas({ player, updatePlayer }) {
         p_mission_type: taskDef.type
       });
 
-      if (error || data?.error) throw new Error(error?.message || data?.error);
+      if (error || data?.error) {
+        addToast(error?.message || data?.error, "error");
+        return;
+      }
 
+      let toastMsg = `Tarefa concluída! Você ganhou ${taskDef.xp} XP e RY$ ${taskDef.ryous}.`;
+      if (data?.levels_gained > 0) {
+        toastMsg += ` Subiu para o Nível ${player.level + data.levels_gained}!`;
+      }
+      if (data?.new_rank === 'Genin' && player.rank === 'Estudante da Academia') {
+        toastMsg += ` 🎓 Parabéns! Você se graduou como Genin!`;
+      }
+      
+      addToast(toastMsg, "success");
       await updatePlayer(player.id);
-      addToast('Missão concluída!', 'success');
     } catch (err) {
       addToast(err.message, 'error');
     }
@@ -262,6 +273,8 @@ export default function Tarefas({ player, updatePlayer }) {
                   <td>
                     {isMissionActive(t.id) ? (
                       <span className="badge badge-muted">Em andamento</span>
+                    ) : (player.completed_missions || []).includes(t.id) ? (
+                      <span className="badge badge-green">✓ Concluída</span>
                     ) : locked ? (
                       <span className="badge badge-red" title={blockReason}>🔒 {blockReason}</span>
                     ) : (

@@ -54,8 +54,19 @@ export default function Dashboard({ player, updatePlayer }) {
   const [activeEvents, setActiveEvents] = useState([]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [timeRemaining, setTimeRemaining] = useState({});
+  const [avatarUrl, setAvatarUrl] = useState('');
   const { addToast } = useToast();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function loadData() {
+      // 2. Eventos
+      const { data: eventsData } = await supabase.from('world_events').select('*').order('start_time', { ascending: true });
+      if (eventsData) setUpcomingEvents(eventsData);
+    }
+    if (player) loadData();
+    if (player) loadData();
+  }, [player]);
 
   // Busca Eventos Ativos
   useEffect(() => {
@@ -250,132 +261,71 @@ export default function Dashboard({ player, updatePlayer }) {
   const todayStr = new Date().toISOString().split('T')[0];
   const fidelityClaimed = player.last_daily_claim === todayStr;
   const claimedList = Array.isArray(player.daily_rewards_claimed) ? player.daily_rewards_claimed : [];
-
-  const nextLevelXP = calculateXPForLevel(player.level + 1);
-  const xpPercent = Math.min(100, (player.xp / nextLevelXP) * 100);
-  const maxHP = calculateHP(player);
-  const maxChakra = calculateChakra(player);
-  const maxStamina = calculateStamina(player);
+  const VILLAGES = { 1: 'Folha', 2: 'Areia', 3: 'Névoa', 4: 'Nuvem', 5: 'Pedra' };
   const bgImage = player.village_id ? `/images/bg_${player.village_id}.jpg` : '/images/bg_default.jpg';
 
   return (
-    <div className="page">
-      {/* HERO SECTION COMPLETA (SEMPRE NO TOPO) */}
-      <div style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '40px',
-        borderRadius: '16px',
-        display: 'flex',
-        gap: '32px',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        position: 'relative',
-        overflow: 'hidden',
-        marginBottom: '24px',
-        border: '1px solid rgba(255,255,255,0.05)',
-        boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
-      }}>
-        {/* Overlay Removido conforme pedido (apenas uma leve sombra no topo para os textos não sumirem) */}
-        <div style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 100%)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }} />
+    <div style={{
+      backgroundImage: `url(${bgImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      minHeight: '100vh',
+      color: 'var(--paper)'
+    }}>
+      {/* OVERLAY REMOVIDO PARA DEIXAR A VILA NÍTIDA */}
+      <div style={{ 
+        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, 
+        background: 'linear-gradient(180deg, rgba(5, 10, 15, 0.2) 0%, rgba(5, 10, 15, 0.8) 100%)', 
+        zIndex: 0,
+        pointerEvents: 'none'
+      }} />
 
-        {/* 1. Esquerda: Avatar e Info Básica */}
-        <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: '32px', alignItems: 'center', flex: '1 1 400px' }}>
-
-          {/* Moldura da Imagem */}
-          <div style={{ width: '160px', height: '160px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 0 40px rgba(0,0,0,0.8)', background: 'var(--ink)' }}>
-            {player.avatar?.startsWith('/') ? (
-              <img src={player.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-            ) : (
-              <span className="dash-avatar-glyph" style={{ fontSize: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>{player.avatar || '👤'}</span>
-            )}
-          </div>
-
-          {/* Informações Pessoais */}
-          <div className="flex-col" style={{ gap: '12px' }}>
-            <h2 className="paper" style={{ fontSize: '36px', textShadow: '2px 2px 8px rgba(0,0,0,1)', margin: 0 }}>{player.name}</h2>
-            <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
-              <div className="badge badge-gold" style={{ fontSize: '13px', padding: '6px 12px' }}>{player.rank || 'Estudante da Academia'}</div>
-              <div className="muted mono" style={{ fontSize: '13px' }}>Vila da {VILLAGES[player.village_id]}</div>
-            </div>
-            <div className="flex-row" style={{ gap: '12px', marginTop: '8px' }}>
-              <button className="btn-ghost" onClick={() => setIsAvatarModalOpen(true)} style={{ padding: '6px 16px', fontSize: '12px', background: 'rgba(0,0,0,0.4)' }}>🖼️ Trocar Imagem</button>
-            </div>
-          </div>
-        </div>
-
-        {/* 2. Direita: Barras de Status e Level */}
-        <div className="flex-col" style={{ position: 'relative', zIndex: 1, gap: '20px', minWidth: '320px', flex: '1 1 320px', padding: '24px', borderRadius: '16px' }}>
-
-          {/* XP & Status Básicos */}
-          <div className="flex-col" style={{ gap: '16px' }}>
-            {/* Level e XP */}
-            <div>
-              <div className="flex-between" style={{ marginBottom: '8px' }}>
-                <span className="muted mono" style={{ fontSize: '11px' }}>NÍVEL {player.level || 1}</span>
-                <span className="muted mono" style={{ fontSize: '11px' }}>{player.xp || 0} / {nextLevelXP} XP</span>
-              </div>
-              <div className="progress-track" style={{ height: '6px' }}>
-                <div className="progress-fill blue" style={{ width: `${xpPercent}%` }}></div>
-              </div>
+      <div className="page" style={{ position: 'relative', zIndex: 1, padding: '32px' }}>
+        
+        {/* SÉTIMA VERSÃO: HERO BANNER (SLIM) */}
+        <div className="card-glass flex-between" style={{ 
+          padding: '24px 32px',
+          borderRadius: '16px',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '24px',
+          marginBottom: '32px',
+          border: '1px solid rgba(255,255,255,0.1)',
+          background: 'rgba(10, 15, 25, 0.65)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.6)'
+        }}>
+          {/* Esquerda: Avatar e Info Básica */}
+          <div className="flex-row" style={{ gap: '24px', alignItems: 'center' }}>
+            <div 
+              style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--gold)', background: 'var(--ink)', position: 'relative', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
+              onClick={() => setIsAvatarModalOpen(true)}
+              title="Trocar Imagem"
+              className="avatar-container"
+            >
+              {player.avatar?.startsWith('/') ? (
+                <img src={player.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                <span className="dash-avatar-glyph" style={{ fontSize: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>{player.avatar || '👤'}</span>
+              )}
             </div>
 
-            {/* Barras Secundárias (HP / CP / ST) */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
-              <div className="flex-col" style={{ gap: '4px' }}>
-                <span className="muted mono" style={{ fontSize: '10px' }}>HP</span>
-                <div className="progress-track" style={{ height: '4px' }}>
-                  <div className="progress-fill red" style={{ width: '100%' }}></div>
-                </div>
-                <span className="paper mono" style={{ fontSize: '12px' }}>{maxHP}</span>
-              </div>
-              <div className="flex-col" style={{ gap: '4px' }}>
-                <span className="muted mono" style={{ fontSize: '10px' }}>CHAKRA</span>
-                <div className="progress-track" style={{ height: '4px' }}>
-                  <div className="progress-fill blue" style={{ width: '100%' }}></div>
-                </div>
-                <span className="paper mono" style={{ fontSize: '12px' }}>{maxChakra}</span>
-              </div>
-              <div className="flex-col" style={{ gap: '4px' }}>
-                <span className="muted mono" style={{ fontSize: '10px' }}>STAMINA</span>
-                <div className="progress-track" style={{ height: '4px' }}>
-                  <div className="progress-fill yellow" style={{ width: '100%' }}></div>
-                </div>
-                <span className="paper mono" style={{ fontSize: '12px' }}>{maxStamina}</span>
-              </div>
+            <div className="flex-col" style={{ gap: '4px' }}>
+              <div className="muted mono" style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px' }}>Bem-vindo de volta,</div>
+              <h2 className="paper" style={{ fontSize: '28px', textShadow: '1px 1px 4px rgba(0,0,0,1)', margin: 0, letterSpacing: '1px' }}>{player.name}</h2>
             </div>
           </div>
 
-          {/* FICHA TÉCNICA REVISADA - ATRIBUTOS BASE */}
-          <div style={{ marginTop: '4px' }}>
-            <div className="muted uppercase mono" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '12px' }}>Atributos Básicos</div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '12px' }}>
-              {[
-                { field: 'ninjutsu', label: 'NINJUTSU' },
-                { field: 'taijutsu', label: 'TAIJUTSU' },
-                { field: 'genjutsu', label: 'GENJUTSU' },
-                { field: 'bukijutsu', label: 'BUKIJUTSU' },
-                { field: 'forca', label: 'FORÇA' },
-                { field: 'agilidade', label: 'AGILIDADE' },
-                { field: 'inteligencia', label: 'INTELIGÊNCIA' },
-                { field: 'resistencia', label: 'RESISTÊNCIA' },
-                { field: 'energia', label: 'ENERGIA' },
-                { field: 'selo', label: 'SELOS' }
-              ].map(attr => (
-                <div key={attr.field} className="card-glass flex-col" style={{ alignItems: 'center', justifyContent: 'center', padding: '16px 8px', border: '1px solid var(--line-bright)' }}>
-                  <div style={{ width: '32px', height: '32px', borderRadius: '6px', overflow: 'hidden', border: '1px solid var(--seal-bright)', marginBottom: '8px' }}>
-                    <img src={`/images/icons/${attr.field}.jpg`} alt={attr.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                  <div className="muted mono" style={{ fontSize: '9px', marginBottom: '4px' }}>{attr.label}</div>
-                  <div className="gold mono" style={{ fontSize: '16px', fontWeight: 'bold' }}>{player[attr.field === 'selo' ? 'selos' : attr.field] || 0}</div>
-                </div>
-              ))}
+          {/* Direita: Badges de Identidade */}
+          <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
+            <div className="badge badge-gold" style={{ fontSize: '13px', padding: '8px 16px', textTransform: 'uppercase', letterSpacing: '1px', boxShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+              {player.rank || 'Estudante da Academia'}
+            </div>
+            <div className="badge" style={{ fontSize: '13px', padding: '8px 16px', background: 'rgba(0,0,0,0.8)', border: '1px solid rgba(255,255,255,0.2)', textShadow: '1px 1px 2px #000', boxShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+              Vila da {VILLAGES[player.village_id]}
             </div>
           </div>
         </div>
-      </div>
 
       {/* CALENDÁRIO DE EVENTOS */}
       {upcomingEvents.length > 0 ? (
@@ -696,6 +646,7 @@ export default function Dashboard({ player, updatePlayer }) {
         player={player}
         updatePlayer={updatePlayer}
       />
+    </div>
     </div>
   );
 }

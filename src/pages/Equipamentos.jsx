@@ -199,14 +199,18 @@ export default function Equipamentos({ player, updatePlayer }) {
         {/* LADO ESQUERDO: HERÓI & STATUS TOTAIS */}
         <div className="flex-col" style={{ flex: '1 1 350px', gap: '24px', maxWidth: '400px' }}>
           
-          <div className="card-glass flex-col" style={{ alignItems: 'center', padding: '48px 24px', position: 'relative', overflow: 'hidden' }}>
+          <div className="card-glass flex-col" style={{ alignItems: 'center', padding: '32px 24px', position: 'relative', overflow: 'hidden', border: '1px solid var(--seal-bright)' }}>
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at top, rgba(212,162,42,0.1) 0%, transparent 60%)', pointerEvents: 'none' }} />
             
-            <div style={{ fontSize: '140px', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.8))', zIndex: 1, marginBottom: '24px' }}>
-              {player.avatar || '🥷'}
+            <div style={{ width: '100px', height: '100px', borderRadius: '12px', overflow: 'hidden', border: '2px solid var(--gold)', marginBottom: '16px', zIndex: 1, background: 'var(--ink)' }}>
+              {player.avatar?.startsWith('/') ? (
+                <img src={player.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                <span style={{ fontSize: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>🥷</span>
+              )}
             </div>
             
-            <h2 className="gold uppercase" style={{ letterSpacing: '2px', zIndex: 1, textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>{player.name}</h2>
+            <h2 className="gold uppercase" style={{ letterSpacing: '2px', zIndex: 1, textShadow: '0 2px 4px rgba(0,0,0,0.8)', fontSize: '24px' }}>{player.name}</h2>
             <div className="badge badge-gold" style={{ zIndex: 1, marginTop: '8px' }}>Nível {player.level}</div>
           </div>
 

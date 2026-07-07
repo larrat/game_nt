@@ -8,8 +8,15 @@ import { rankValue } from '../utils/engine';
 export default function Clas({ player, updatePlayer }) {
   const [clansData, setClansData] = useState([]);
   const [clanJutsus, setClanJutsus] = useState([]);
+  const [myLearnedJutsus, setMyLearnedJutsus] = useState([]);
   const [selectedClanIdx, setSelectedClanIdx] = useState(0);
   const { addToast } = useToast();
+
+  const fetchLearned = async () => {
+    if (!player) return;
+    const { data } = await supabase.from('player_jutsus').select('jutsu_id').eq('player_id', player.id);
+    if (data) setMyLearnedJutsus(data.map(d => d.jutsu_id));
+  };
 
   React.useEffect(() => {
     async function fetchClans() {
@@ -34,9 +41,10 @@ export default function Clas({ player, updatePlayer }) {
         setClansData(mapped);
       }
       if (jData) setClanJutsus(jData);
+      await fetchLearned();
     }
-    fetchClans();
-  }, []);
+    if (player) fetchClans();
+  }, [player]);
 
   if (!player || clansData.length === 0) return <div>Carregando...</div>;
 
@@ -62,6 +70,30 @@ export default function Clas({ player, updatePlayer }) {
       addToast(`Sucesso! Agora você despertou a linhagem do ${clan.name}!`, "success");
       updatePlayer(player.user_id);
     }
+  };
+
+  const handleLearnKinjutsu = async (jutsu) => {
+    const cost = jutsu.cost_ryous || (jutsu.lvl * 150); // Fallback caso não tenha cost_ryous
+    if (player.ryous < cost) {
+      addToast(`Ryous insuficientes! Custa RY$ ${cost}.`, "error");
+      return;
+    }
+
+    const { error: err1 } = await supabase.from('players').update({ ryous: player.ryous - cost }).eq('id', player.id);
+    if (err1) {
+      addToast("Erro ao deduzir ryous.", "error");
+      return;
+    }
+
+    const { error: err2 } = await supabase.from('player_jutsus').insert({ player_id: player.id, jutsu_id: jutsu.id });
+    if (err2) {
+      addToast("Erro ao aprender kinjutsu.", "error");
+      return;
+    }
+
+    addToast(`Você aprendeu a técnica secreta: ${jutsu.name}!`, "success");
+    await fetchLearned();
+    updatePlayer(player.user_id);
   };
 
   const renderClanContent = (myClan) => {
@@ -129,10 +161,18 @@ export default function Clas({ player, updatePlayer }) {
                        <div className="muted" style={{ fontSize: '11px', textAlign: 'center', marginTop: 'auto' }}>
                          Bloqueado (Requer: Lvl {jutsu.lvl} / {jutsu.req_rank})
                        </div>
-                    ) : (
-                       <div className="success" style={{ fontSize: '11px', textAlign: 'center', marginTop: 'auto' }}>
-                         Disponível na Academia
+                    ) : myLearnedJutsus.includes(jutsu.id) ? (
+                       <div className="success" style={{ fontSize: '11px', textAlign: 'center', marginTop: 'auto', padding: '8px', background: 'rgba(34,197,94,0.1)', borderRadius: '4px' }}>
+                         ✓ Técnica Aprendida
                        </div>
+                    ) : (
+                       <button 
+                         className="btn-primary" 
+                         style={{ marginTop: 'auto', width: '100%', fontSize: '12px', padding: '8px' }}
+                         onClick={() => handleLearnKinjutsu(jutsu)}
+                       >
+                         Aprender (RY$ {jutsu.cost_ryous || (jutsu.lvl * 150)})
+                       </button>
                     )}
                   </div>
                 );

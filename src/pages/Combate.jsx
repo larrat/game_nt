@@ -363,7 +363,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       p_enemy_id: npcInit.id || 999999,
       p_result: 'win',
       p_turn_count: roundCount,
-      p_combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${playerMaxHP} | Chakra: ${playerCP}/${playerMaxCP} | Stamina: ${playerStamina}/100`],
+      p_combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${playerMaxHP} | Chakra: ${playerCP}/${playerMaxCP} | Stamina: ${playerSt}/${maxPlayerSt}`],
       p_fallback_xp: npcInit.xp_reward || 100,
       p_fallback_ryous: npcInit.ryou_reward || 50,
       p_enemy_name: npcInit.name || 'Desconhecido'
@@ -445,8 +445,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       hp: playerHP,
       chakra: playerCP
     };
-    if (isDojo) updatesAtuais.wins_dojo = (player.wins_dojo || 0) + 1;
-    if (location.state?.fromMap) updatesAtuais.daily_map_battles = (player.daily_map_battles || 0) + 1;
+    if (isDojo) {
+      updatesAtuais.wins_dojo = (player.wins_dojo || 0) + 1;
+      updatesAtuais.dojo_clears = (player.dojo_clears || 0) + 1;
+    }
+    if (location.state?.fromMap) {
+      updatesAtuais.daily_map_battles = (player.daily_map_battles || 0) + 1;
+    }
     await supabase.from('players').update(updatesAtuais).eq('id', player.id);
 
     if (updatePlayer) {
@@ -524,7 +529,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         xp_gained: 0,
         ryous_gained: 0,
         turn_count: roundCount,
-        combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${playerMaxHP} | Chakra: ${playerCP}/${playerMaxCP} | Stamina: ${playerStamina}/100`]
+        combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${playerMaxHP} | Chakra: ${playerCP}/${playerMaxCP} | Stamina: ${playerSt}/${maxPlayerSt}`]
       });
     } catch (e) { }
 
@@ -884,7 +889,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const newSt = playerSt - staminaCost;
     setPlayerSt(newSt);
 
-    const totalAccuracy = Math.min(95, BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty);
+    const totalAccuracy = Math.min(100, BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty);
     const didHit = Math.random() * 100 <= totalAccuracy;
 
     if (!didHit) {
@@ -1078,7 +1083,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     await supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
 
     const jutsuAccuracy = jutsu.accuracy || 100;
-    const totalAccuracy = Math.min(95, jutsuAccuracy + (playerPrecision / 2) - globalDebuffs.accuracyPenalty);
+    const totalAccuracy = Math.min(100, jutsuAccuracy + (playerPrecision / 2) - globalDebuffs.accuracyPenalty);
     const didHit = Math.random() * 100 <= totalAccuracy;
 
     if (!didHit) {

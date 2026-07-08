@@ -200,6 +200,52 @@ export default function Dojo({ player }) {
     });
   };
 
+  const handleQuickClear = async (fightCount) => {
+    const totalCost = fightCount * RAID_STAMINA_COST;
+    const currentSt = player.stamina ?? calculateStamina(player);
+
+    if (currentSt < totalCost) {
+      addToast(`Limpeza Rápida de ${fightCount}x requer ${totalCost} Stamina (você tem ${currentSt}).`, 'error');
+      return;
+    }
+
+    setLoadingId(`quick_${fightCount}`);
+    await new Promise(r => setTimeout(r, 600));
+
+    let totalXp = 0;
+    let totalRyous = 0;
+    for (let i = 0; i < fightCount; i++) {
+        totalXp += Math.floor((player.level * 40) + 150);
+        totalRyous += Math.floor((player.level * 25) + 80);
+    }
+    
+    // Variance
+    totalXp = Math.floor(totalXp * (0.9 + Math.random() * 0.2));
+    totalRyous = Math.floor(totalRyous * (0.9 + Math.random() * 0.2));
+
+    const { error } = await supabase
+      .from('players')
+      .update({
+        stamina: currentSt - totalCost,
+        xp: player.xp + totalXp,
+        ryous: player.ryous + totalRyous,
+        wins_dojo: (player.wins_dojo || 0) + fightCount,
+        dojo_clears: (player.dojo_clears || 0) + fightCount
+      })
+      .eq('id', player.id);
+
+    setLoadingId(null);
+
+    if (error) {
+      addToast('Erro na limpeza rápida: ' + error.message, 'error');
+      return;
+    }
+
+    addToast(`⚡ Limpeza Rápida ${fightCount}x Concluída! +${totalXp} XP | +${totalRyous} Ryous`, 'success');
+    await updatePlayer(player.user_id);
+  };
+
+
   const handleFreeTraining = () => {
     const dummyNPC = {
       id: 'dummy',
@@ -280,13 +326,25 @@ export default function Dojo({ player }) {
             <span className="badge badge-gold">{RAID_STAMINA_COST} ST/luta</span>
             <span className="badge badge-muted">Stamina: {player.stamina ?? calculateStamina(player)}</span>
           </div>
-          <div className="flex-row" style={{ gap: '8px', width: '100%' }}>
-            <button className="btn-ghost" onClick={() => handleRaid(3)} disabled={loadingId !== null} style={{ flex: 1 }}>
-              Raid 3x
-            </button>
-            <button className="btn-primary" onClick={() => handleRaid(5)} disabled={loadingId !== null} style={{ flex: 1 }}>
-              <span>{loadingId === 'raid' ? '...' : 'Raid 5x'}</span>
-            </button>
+          <div className="flex-col" style={{ gap: '8px', width: '100%' }}>
+            <div className="flex-row" style={{ gap: '8px', width: '100%' }}>
+              <button className="btn-ghost" onClick={() => handleRaid(3)} disabled={loadingId !== null} style={{ flex: 1 }}>
+                Raid 3x
+              </button>
+              <button className="btn-primary" onClick={() => handleRaid(5)} disabled={loadingId !== null} style={{ flex: 1 }}>
+                <span>{loadingId === 'raid' ? '...' : 'Raid 5x'}</span>
+              </button>
+            </div>
+            {(player.dojo_clears || 0) >= 3 && (
+              <div className="flex-row" style={{ gap: '8px', width: '100%' }}>
+                <button className="btn-ghost" onClick={() => handleQuickClear(3)} disabled={loadingId !== null} style={{ flex: 1, color: 'var(--gold)', borderColor: 'var(--gold)' }}>
+                  ⚡ Limpar 3x
+                </button>
+                <button className="btn-ghost" onClick={() => handleQuickClear(5)} disabled={loadingId !== null} style={{ flex: 1, color: 'var(--gold)', borderColor: 'var(--gold)' }}>
+                  ⚡ Limpar 5x
+                </button>
+              </div>
+            )}
           </div>
         </section>
 

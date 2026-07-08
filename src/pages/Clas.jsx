@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
+import JutsuCard from '../components/JutsuCard';
 import { rankValue } from '../utils/engine';
 
 export default function Clas({ player, updatePlayer }) {
@@ -139,72 +140,17 @@ export default function Clas({ player, updatePlayer }) {
             <h3 className="section-title danger" style={{ textAlign: 'center', borderBottom: 'none', paddingBottom: '0' }}>Técnicas Ocultas (Kinjutsu)</h3>
             <p className="muted" style={{ textAlign: 'center', marginBottom: '16px' }}>Esses Jutsus só podem ser aprendidos na Academia Ninja por membros deste clã.</p>
             <div className="grid-3" style={{ gap: '16px' }}>
-              {myJutsus.map(jutsu => {
-                const isRankUnlocked = !jutsu.req_rank || rankValue(player.rank) >= rankValue(jutsu.req_rank);
-                const isLvlUnlocked = player.level >= (jutsu.req_level || 1);
-                // Valida os atributos também para o desbloqueio geral
-                const reqAttr = jutsu.type || 'Ninjutsu';
-                const playerAttrVal = player[reqAttr.toLowerCase()] || 0;
-                const isAttrUnlocked = playerAttrVal >= (jutsu.req_attr_value || 0);
-                const isUnlocked = isRankUnlocked && isLvlUnlocked && isAttrUnlocked;
-
-                return (
-                  <div key={jutsu.id} className="card flex-col" style={{ border: isUnlocked ? '1px solid #ef4444' : '1px solid var(--line)', opacity: isUnlocked ? 1 : 0.6 }}>
-                    <div className="flex-row" style={{ alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-                      <div style={{ width: '48px', height: '48px', background: 'var(--ink)', borderRadius: '4px', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                         <img src={jutsu.icon_url || '/images/default_jutsu.png'} alt={jutsu.name} style={{ maxWidth: '100%', maxHeight: '100%' }} />
-                      </div>
-                      <div>
-                        <h4 className="paper" style={{ fontSize: '14px', fontWeight: 'bold' }}>{jutsu.name}</h4>
-                        <div className="badge badge-muted" style={{ fontSize: '10px', marginTop: '4px' }}>{jutsu.req_rank || 'Genin'}</div>
-                      </div>
-                    </div>
-                    
-                    <div className="grid-2 mono" style={{ gap: '8px', fontSize: '11px', marginBottom: '16px' }}>
-                      <div style={{ color: '#ef4444' }}>Dano: {jutsu.damage || 0}</div>
-                      <div style={{ color: '#60a5fa' }}>CP: {jutsu.chakra_cost || 0}</div>
-                      <div style={{ color: 'var(--muted)' }}>Precisão: {jutsu.accuracy || 0}%</div>
-                      <div style={{ color: 'var(--gold)' }}>Recarga: {jutsu.cooldown || 0}T</div>
-                    </div>
-
-                    <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '4px', marginBottom: '16px', border: '1px dashed var(--line)' }}>
-                      <div className="muted mono uppercase" style={{ fontSize: '10px', marginBottom: '8px' }}>Requisitos de Aprendizado:</div>
-                      <div className="flex-col" style={{ gap: '6px', fontSize: '11px' }}>
-                        <div className="flex-between">
-                          <span style={{ color: player.level >= (jutsu.req_level || 1) ? 'var(--green)' : 'var(--red)' }}>Nível Necessário:</span>
-                          <span className="mono">{jutsu.req_level || 1}</span>
-                        </div>
-                        <div className="flex-between">
-                          <span style={{ color: playerAttrVal >= (jutsu.req_attr_value || 0) ? 'var(--green)' : 'var(--red)' }}>{reqAttr} Mínimo:</span>
-                          <span className="mono">{jutsu.req_attr_value || 0}</span>
-                        </div>
-                        <div className="flex-between">
-                          <span style={{ color: (player.selo || 0) >= (jutsu.req_seals || 0) ? 'var(--green)' : 'var(--gold)' }}>Selos (Para 100%):</span>
-                          <span className="mono">{jutsu.req_seals || 0}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {!isUnlocked ? (
-                       <div className="muted" style={{ fontSize: '11px', textAlign: 'center', marginTop: 'auto' }}>
-                         Bloqueado (Não atende aos requisitos)
-                       </div>
-                    ) : myLearnedJutsus.includes(jutsu.id) ? (
-                       <div className="success" style={{ fontSize: '11px', textAlign: 'center', marginTop: 'auto', padding: '8px', background: 'rgba(34,197,94,0.1)', borderRadius: '4px' }}>
-                         ✓ Técnica Aprendida
-                       </div>
-                    ) : (
-                       <button 
-                         className="btn-primary" 
-                         style={{ marginTop: 'auto', width: '100%', fontSize: '12px', padding: '8px' }}
-                         onClick={() => handleLearnKinjutsu(jutsu)}
-                       >
-                         Aprender (RY$ {jutsu.cost_ryous || 1500})
-                       </button>
-                    )}
-                  </div>
-                );
-              })}
+              {myJutsus.map(jutsu => (
+                <JutsuCard 
+                  key={jutsu.id} 
+                  jutsu={jutsu} 
+                  player={player} 
+                  isLearned={myLearnedJutsus.includes(jutsu.id)} 
+                  learnCost={`RY$ ${jutsu.cost_ryous || 1500}`} 
+                  onLearn={() => handleLearnKinjutsu(jutsu)}
+                  showRequisites={true}
+                />
+              ))}
             </div>
           </div>
         )}

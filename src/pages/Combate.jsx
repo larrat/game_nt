@@ -363,7 +363,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       p_enemy_id: npcInit.id || 999999,
       p_result: 'win',
       p_turn_count: roundCount,
-      p_combat_log: logs,
+      p_combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${playerMaxHP} | Chakra: ${playerCP}/${playerMaxCP} | Stamina: ${playerStamina}/100`],
       p_fallback_xp: npcInit.xp_reward || 100,
       p_fallback_ryous: npcInit.ryou_reward || 50,
       p_enemy_name: npcInit.name || 'Desconhecido'
@@ -524,7 +524,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         xp_gained: 0,
         ryous_gained: 0,
         turn_count: roundCount,
-        combat_log: logs
+        combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${playerMaxHP} | Chakra: ${playerCP}/${playerMaxCP} | Stamina: ${playerStamina}/100`]
       });
     } catch (e) { }
 

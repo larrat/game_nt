@@ -370,6 +370,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     });
 
     if (resultError) {
+      console.error("Combat RPC Error:", resultError);
       addToast('Erro ao processar recompensa de combate.', 'error');
     }
 
@@ -1374,7 +1375,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                           className={`combat-jutsu-btn ${stats.isOnCooldown ? 'on-cooldown' : ''} ${stats.hasEssences ? 'enhanced' : ''}`}
                           disabled={!isPlayerTurn || stats.isOnCooldown}
                           onClick={() => handleJutsu(jutsu)}
-                          title={`${jutsu.name}\n${stats.cost} CP | ${stats.estDamage} DMG | ${stats.finalAcc}% ACC\nCD: ${jutsu.cooldown || 0}T`}
+                          title={`${jutsu.name}\n${stats.cost} CP | ${stats.estDamage} DMG | ${stats.finalAcc}% ACC\nSelos req.: ${jutsu.req_seals || 0}\nCD: ${jutsu.cooldown || 0}T`}
                           type="button"
                         >
                           <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>

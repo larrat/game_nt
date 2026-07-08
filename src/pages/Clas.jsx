@@ -91,6 +91,10 @@ export default function Clas({ player, updatePlayer }) {
       return;
     }
 
+    const currentLearned = player.jutsus_learned || [];
+    const newLearned = [...currentLearned, { id: jutsu.id, level: 1, slots: [null, null, null] }];
+    await supabase.from('players').update({ jutsus_learned: newLearned }).eq('id', player.id);
+
     addToast(`Você aprendeu a técnica secreta: ${jutsu.name}!`, "success");
     await fetchLearned();
     updatePlayer(player.user_id);
@@ -108,24 +112,26 @@ export default function Clas({ player, updatePlayer }) {
         </div>
 
         {/* ÁRVORE DE PASSIVAS */}
-        <div className="flex-col" style={{ gap: '24px', marginBottom: '48px' }}>
-          <h3 className="section-title muted" style={{ textAlign: 'center', borderBottom: 'none', paddingBottom: '0' }}>Despertar (Bônus Passivo)</h3>
-          <div className="flex-row" style={{ gap: '24px', justifyContent: 'center', overflowX: 'auto', paddingBottom: '16px' }}>
-            {myClan.skills.map((skill, idx) => (
-              <div key={`passive-${idx}`} className="card flex-col" style={{ width: '250px', textAlign: 'center', flexShrink: 0, border: '1px solid var(--gold)' }}>
-                <div style={{ position: 'relative', width: '60px', height: '60px', margin: '0 auto 16px' }}>
-                  <div className="flex-row" style={{ width: '100%', height: '100%', background: 'var(--ink)', justifyContent: 'center', border: '1px solid var(--line)', borderRadius: '4px', overflow: 'hidden' }}>
-                    {skill.icon ? <img src={skill.icon} alt={skill.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : '👁️'}
+        {myClan.skills && myClan.skills.length > 0 && (
+          <div className="flex-col" style={{ gap: '24px', marginBottom: '48px' }}>
+            <h3 className="section-title muted" style={{ textAlign: 'center', borderBottom: 'none', paddingBottom: '0' }}>Despertar (Bônus Passivo)</h3>
+            <div className="flex-row" style={{ gap: '24px', justifyContent: 'center', overflowX: 'auto', paddingBottom: '16px' }}>
+              {myClan.skills.map((skill, idx) => (
+                <div key={`passive-${idx}`} className="card flex-col" style={{ width: '250px', textAlign: 'center', flexShrink: 0, border: '1px solid var(--gold)' }}>
+                  <div style={{ position: 'relative', width: '60px', height: '60px', margin: '0 auto 16px' }}>
+                    <div className="flex-row" style={{ width: '100%', height: '100%', background: 'var(--ink)', justifyContent: 'center', border: '1px solid var(--line)', borderRadius: '4px', overflow: 'hidden' }}>
+                      {skill.icon ? <img src={skill.icon} alt={skill.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : '👁️'}
+                    </div>
                   </div>
+                  <h4 className="gold" style={{ marginBottom: '16px', fontSize: '14px', fontWeight: 'bold' }}>{skill.name}</h4>
+                  <div className="badge badge-gold" style={{ fontSize: '10px', alignSelf: 'center', marginBottom: '12px' }}>{skill.req || 'Passiva'}</div>
+                  <div className="muted" style={{ fontSize: '12px', marginBottom: '8px' }}>Efeito:</div>
+                  <div className="paper" style={{ fontSize: '13px', marginBottom: '24px' }}>{skill.effect}</div>
                 </div>
-                <h4 className="gold" style={{ marginBottom: '16px', fontSize: '14px', fontWeight: 'bold' }}>{skill.name}</h4>
-                <div className="badge badge-gold" style={{ fontSize: '10px', alignSelf: 'center', marginBottom: '12px' }}>{skill.req || 'Passiva'}</div>
-                <div className="muted" style={{ fontSize: '12px', marginBottom: '8px' }}>Efeito:</div>
-                <div className="paper" style={{ fontSize: '13px', marginBottom: '24px' }}>{skill.effect}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* JUTSUS OCULTOS (ÁRVORE DE HABILIDADES) */}
         {myJutsus.length > 0 && (
@@ -135,8 +141,12 @@ export default function Clas({ player, updatePlayer }) {
             <div className="grid-3" style={{ gap: '16px' }}>
               {myJutsus.map(jutsu => {
                 const isRankUnlocked = !jutsu.req_rank || rankValue(player.rank) >= rankValue(jutsu.req_rank);
-                const isLvlUnlocked = player.level >= jutsu.lvl;
-                const isUnlocked = isRankUnlocked && isLvlUnlocked;
+                const isLvlUnlocked = player.level >= (jutsu.req_level || 1);
+                // Valida os atributos também para o desbloqueio geral
+                const reqAttr = jutsu.type || 'Ninjutsu';
+                const playerAttrVal = player[reqAttr.toLowerCase()] || 0;
+                const isAttrUnlocked = playerAttrVal >= (jutsu.req_attr_value || 0);
+                const isUnlocked = isRankUnlocked && isLvlUnlocked && isAttrUnlocked;
 
                 return (
                   <div key={jutsu.id} className="card flex-col" style={{ border: isUnlocked ? '1px solid #ef4444' : '1px solid var(--line)', opacity: isUnlocked ? 1 : 0.6 }}>
@@ -151,15 +161,33 @@ export default function Clas({ player, updatePlayer }) {
                     </div>
                     
                     <div className="grid-2 mono" style={{ gap: '8px', fontSize: '11px', marginBottom: '16px' }}>
-                      <div style={{ color: '#ef4444' }}>Dano: {jutsu.damage}</div>
-                      <div style={{ color: '#60a5fa' }}>CP: {jutsu.cost}</div>
-                      <div style={{ color: 'var(--muted)' }}>Precisão: {jutsu.accuracy}%</div>
+                      <div style={{ color: '#ef4444' }}>Dano: {jutsu.damage || 0}</div>
+                      <div style={{ color: '#60a5fa' }}>CP: {jutsu.chakra_cost || 0}</div>
+                      <div style={{ color: 'var(--muted)' }}>Precisão: {jutsu.accuracy || 0}%</div>
                       <div style={{ color: 'var(--gold)' }}>Recarga: {jutsu.cooldown || 0}T</div>
+                    </div>
+
+                    <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '4px', marginBottom: '16px', border: '1px dashed var(--line)' }}>
+                      <div className="muted mono uppercase" style={{ fontSize: '10px', marginBottom: '8px' }}>Requisitos de Aprendizado:</div>
+                      <div className="flex-col" style={{ gap: '6px', fontSize: '11px' }}>
+                        <div className="flex-between">
+                          <span style={{ color: player.level >= (jutsu.req_level || 1) ? 'var(--green)' : 'var(--red)' }}>Nível Necessário:</span>
+                          <span className="mono">{jutsu.req_level || 1}</span>
+                        </div>
+                        <div className="flex-between">
+                          <span style={{ color: playerAttrVal >= (jutsu.req_attr_value || 0) ? 'var(--green)' : 'var(--red)' }}>{reqAttr} Mínimo:</span>
+                          <span className="mono">{jutsu.req_attr_value || 0}</span>
+                        </div>
+                        <div className="flex-between">
+                          <span style={{ color: (player.selo || 0) >= (jutsu.req_seals || 0) ? 'var(--green)' : 'var(--gold)' }}>Selos (Para 100%):</span>
+                          <span className="mono">{jutsu.req_seals || 0}</span>
+                        </div>
+                      </div>
                     </div>
 
                     {!isUnlocked ? (
                        <div className="muted" style={{ fontSize: '11px', textAlign: 'center', marginTop: 'auto' }}>
-                         Bloqueado (Requer: Lvl {jutsu.lvl} / {jutsu.req_rank})
+                         Bloqueado (Não atende aos requisitos)
                        </div>
                     ) : myLearnedJutsus.includes(jutsu.id) ? (
                        <div className="success" style={{ fontSize: '11px', textAlign: 'center', marginTop: 'auto', padding: '8px', background: 'rgba(34,197,94,0.1)', borderRadius: '4px' }}>
@@ -171,7 +199,7 @@ export default function Clas({ player, updatePlayer }) {
                          style={{ marginTop: 'auto', width: '100%', fontSize: '12px', padding: '8px' }}
                          onClick={() => handleLearnKinjutsu(jutsu)}
                        >
-                         Aprender (RY$ {jutsu.cost_ryous || (jutsu.lvl * 150)})
+                         Aprender (RY$ {jutsu.cost_ryous || 1500})
                        </button>
                     )}
                   </div>

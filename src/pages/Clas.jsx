@@ -97,7 +97,7 @@ export default function Clas({ player, updatePlayer }) {
   };
 
   const renderClanContent = (myClan) => {
-    const myJutsus = clanJutsus.filter(j => j.req_clan === myClan.name).sort((a,b) => a.lvl - b.lvl);
+    const myJutsus = clanJutsus.filter(j => myClan.name.includes(j.req_clan) || j.req_clan.includes(myClan.name)).sort((a,b) => a.lvl - b.lvl);
 
     return (
       <>

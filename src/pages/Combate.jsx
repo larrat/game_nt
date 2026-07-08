@@ -448,7 +448,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     if (location.state?.fromMap) updatesAtuais.daily_map_battles = (player.daily_map_battles || 0) + 1;
     await supabase.from('players').update(updatesAtuais).eq('id', player.id);
 
-    await updatePlayer(player.id);
+    if (updatePlayer) {
+      await updatePlayer(player.user_id);
+    }
     if (location.state?.isBetrayal) {
       await supabase.from('players').update({ village_id: 8, clan: null, rank: 'Nukenin' }).eq('id', player.id);
       addToast("Você traiu sua vila e agora faz parte da Akatsuki!", "success");
@@ -784,7 +786,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     if (cons.pc_id) {
       await supabase.from("player_consumables").update({ quantity: cons.quantity - 1 }).eq("id", cons.pc_id);
-      await updatePlayer();
+      await updatePlayer(player.user_id);
     }
 
     setTimeout(() => {

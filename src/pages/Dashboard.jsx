@@ -273,14 +273,6 @@ export default function Dashboard({ player, updatePlayer }) {
       minHeight: '100vh',
       color: 'var(--paper)'
     }}>
-      {/* OVERLAY REMOVIDO PARA DEIXAR A VILA NÍTIDA */}
-      <div style={{ 
-        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, 
-        background: 'linear-gradient(180deg, rgba(5, 10, 15, 0.2) 0%, rgba(5, 10, 15, 0.8) 100%)', 
-        zIndex: 0,
-        pointerEvents: 'none'
-      }} />
-
       <div className="page" style={{ position: 'relative', zIndex: 1, padding: '32px' }}>
         
         {/* SÉTIMA VERSÃO: HERO BANNER (SLIM) */}

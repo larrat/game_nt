@@ -1966,3 +1966,77 @@ textarea {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes zoomIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 @keyframes slideUpFade { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* =========================================================
+   CLASSES UTILITÁRIAS PARA PADRONIZAÇÃO (FASE 1)
+   ========================================================= */
+
+/* Espaçamentos e Gaps */
+.gap-xs { gap: 4px; }
+.gap-sm { gap: 8px; }
+.gap-md { gap: 12px; }
+.gap-lg { gap: 16px; }
+.gap-xl { gap: 24px; }
+
+/* Margens */
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mb-1 { margin-bottom: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+.ml-auto { margin-left: auto; }
+
+/* Alinhamento e Flex */
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: flex-end; }
+.flex-1 { flex: 1; }
+
+/* Tipografia */
+.text-xs { font-size: 10px; }
+.text-sm { font-size: 11px; }
+.text-md { font-size: 12px; }
+.text-lg { font-size: 14px; }
+.text-xl { font-size: 16px; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.font-bold { font-weight: bold; }
+.font-medium { font-weight: 500; }
+.break-word { word-wrap: break-word; }
+
+/* Cores Utilitárias */
+.text-gold { color: var(--gold); }
+.text-paper { color: var(--paper); }
+.text-ink { color: var(--ink); }
+.text-red { color: #ef4444; }
+.text-green { color: #10b981; }
+.text-blue { color: #60a5fa; }
+.bg-ink { background: var(--ink); }
+.border-gold { border-color: var(--gold); }
+.border-line { border-color: var(--line); }
+.border-line-solid { border: 1px solid var(--line); }
+.border-line-dashed { border: 1px dashed var(--line); }
+
+/* Dimensões */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.p-2 { padding: 8px; }
+.p-3 { padding: 12px; }
+.p-4 { padding: 16px; }
+.rounded-sm { border-radius: 4px; }
+.rounded-md { border-radius: 8px; }
+.rounded-full { border-radius: 50%; }
+
+.grid-ranking { display: grid; grid-template-columns: 60px 2fr 1fr 1fr 1fr; }
+.podium-col { width: 200px; }
+.podium-bar-1 { height: 180px; }
+.podium-bar-2 { height: 140px; }
+.podium-bar-3 { height: 120px; }

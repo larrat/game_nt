@@ -137,10 +137,10 @@ export default function Vila({ player, updatePlayer }) {
       {/* Kage card bottom-right */}
       <div style={{ position: 'absolute', bottom: '24px', right: '24px', zIndex: 10 }}>
         <div className="card-glass" style={{ textAlign: 'center', border: '1px solid var(--gold)', width: '180px', padding: '12px', background: 'rgba(15,15,20,0.9)', backdropFilter: 'blur(8px)' }}>
-          <div className="gold uppercase" style={{ fontSize: '10px', letterSpacing: '1px', marginBottom: '6px', fontWeight: 'bold' }}>{villageData?.leader_title || 'Líder'}</div>
+          <div className="gold uppercase text-xs font-bold mb-1">{villageData?.leader_title || 'Líder'}</div>
           <div style={{ fontSize: '28px', marginBottom: '6px' }}>👑</div>
-          <div className="paper" style={{ fontWeight: 600, marginBottom: '2px', fontSize: '14px' }}>{kage ? kage.name : 'Vago'}</div>
-          <div className="muted" style={{ fontSize: '10px' }}>{kage ? `${kage.class || 'NIN'} - Nv. ${kage.level}` : 'Nenhum líder'}</div>
+          <div className="paper font-medium mb-1 text-lg">{kage ? kage.name : 'Vago'}</div>
+          <div className="muted text-xs">{kage ? `${kage.class || 'NIN'} - Nv. ${kage.level}` : 'Nenhum líder'}</div>
         </div>
       </div>
 
@@ -192,23 +192,23 @@ export default function Vila({ player, updatePlayer }) {
                 <img src={selectedBuildingInfo.img} alt={selectedBuildingInfo.name} style={{ width: '80px', height: '80px', borderRadius: '50%', border: '2px solid var(--gold)', filter: isDamaged ? 'grayscale(100%) brightness(0.5)' : 'none' }} />
               </div>
               {dbBuilding && (
-                <div className={isDamaged ? "danger uppercase" : "gold"} style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '4px', textAlign: 'center' }}>
+                <div className={isDamaged ? "danger uppercase text-xs font-bold mb-1 text-center" : "gold text-xs font-bold mb-1 text-center"}>
                   {isDamaged ? 'DESTRUÍDO' : `Nível ${dbBuilding.level}`}
                 </div>
               )}
-              <h3 className="card-title" style={{ textAlign: 'center', fontSize: '24px', marginBottom: '8px' }}>{selectedBuildingInfo.name}</h3>
-              <p className="muted" style={{ textAlign: 'center', marginBottom: '24px' }}>{selectedBuildingInfo.desc}</p>
+              <h3 className="card-title text-center mb-2" style={{ fontSize: '24px' }}>{selectedBuildingInfo.name}</h3>
+              <p className="muted text-center mb-6">{selectedBuildingInfo.desc}</p>
               
               {dbBuilding && !isDamaged && (
-                <div style={{ marginBottom: '24px' }}>
-                  <div className="flex-between mono muted" style={{ marginBottom: '8px', fontSize: '10px' }}>
+                <div className="mb-6">
+                  <div className="flex-between mono muted mb-2 text-xs">
                     <div>DOAÇÕES ({dbBuilding.current_donations} / {dbBuilding.next_level_cost})</div>
                     <div>{buildingPercent.toFixed(1)}%</div>
                   </div>
-                  <div className="progress-track" style={{ marginBottom: '16px' }}>
+                  <div className="progress-track mb-4">
                     <div className="progress-fill gold" style={{ width: `${buildingPercent}%` }}></div>
                   </div>
-                  <button className="btn-primary" style={{ width: '100%', fontSize: '12px', padding: '10px' }} onClick={() => handleDonate(dbBuilding)} disabled={loading}>
+                  <button className="btn-primary w-full p-3 text-md" onClick={() => handleDonate(dbBuilding)} disabled={loading}>
                     Doar ¥ 100.000
                   </button>
                 </div>
@@ -228,7 +228,7 @@ export default function Vila({ player, updatePlayer }) {
                 </div>
               )}
 
-              <div className="flex-col" style={{ gap: '12px' }}>
+              <div className="flex-col gap-md">
                 <button className="btn-ghost" onClick={() => setSelectedBuildingKey(null)}>Fechar</button>
               </div>
             </div>

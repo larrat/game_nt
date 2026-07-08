@@ -142,7 +142,7 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
         {/* Lista de Jutsus */}
         <div className="card">
           <h2 className="card-title">Seus Jutsus</h2>
-          <div className="flex-col" style={{ gap: '12px' }}>
+          <div className="flex-col gap-md">
             {learnedJutsus.map(jObj => {
               const fullData = getFullJutsuData(jObj);
               if (!fullData) return null;
@@ -153,26 +153,24 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
               return (
                 <div 
                   key={jObj.id} 
-                  className="flex-between" 
+                  className="flex-between p-3 rounded-md" 
                   style={{ 
-                    padding: '12px', 
                     background: isSelected ? 'rgba(212,162,42,0.1)' : 'var(--ink-soft)', 
                     border: isSelected ? '1px solid var(--gold)' : '1px solid var(--line)',
-                    borderRadius: '8px',
                     cursor: 'pointer'
                   }}
                   onClick={() => setSelectedJutsu(jObj)}
                 >
-                  <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
-                    <div style={{ width: '40px', height: '40px', background: 'var(--ink)', borderRadius: '4px', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <img src={fullData.icon || '/images/default_jutsu.png'} alt="icon" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+                  <div className="flex-row gap-md items-center">
+                    <div className="bg-ink rounded-sm border-line-solid flex-row items-center justify-center" style={{ width: '40px', height: '40px' }}>
+                      <img src={fullData.icon || '/images/default_jutsu.png'} alt="icon" className="w-full h-full" style={{ objectFit: 'contain' }} />
                     </div>
                     <div>
-                      <div className="paper" style={{ fontWeight: 'bold' }}>{fullData.name} <span className="gold mono" style={{ fontSize: '12px' }}>[Lv. {jObj.level}]</span></div>
-                      <div className="muted" style={{ fontSize: '12px' }}>{fullData.type} - {fullData.damage_type || 'Suporte'}</div>
+                      <div className="paper font-bold">{fullData.name} <span className="gold mono text-md">[Lv. {jObj.level}]</span></div>
+                      <div className="muted text-md">{fullData.type} - {fullData.damage_type || 'Suporte'}</div>
                     </div>
                   </div>
-                  <div className="mono" style={{ fontSize: '12px', color: slotsFilled === 3 ? '#4ade80' : 'var(--muted)' }}>
+                  <div className="mono text-md" style={{ color: slotsFilled === 3 ? '#4ade80' : 'var(--muted)' }}>
                     Slots: {slotsFilled}/3
                   </div>
                 </div>
@@ -184,7 +182,7 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
         {/* Painel do Jutsu Selecionado */}
         {selectedJutsu ? (
           <div className="card" style={{ position: 'sticky', top: '24px' }}>
-            <h2 className="card-title flex-row" style={{ alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+            <h2 className="card-title flex-row items-center gap-sm mb-2">
               <span className="gold">Nível {selectedJutsu.level}</span>
             </h2>
             
@@ -206,31 +204,31 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
               const finalAcc = baseAcc;
 
               return (
-                <div className="flex-col" style={{ gap: '8px', marginBottom: '16px', background: 'var(--ink)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line)' }}>
-                  <h4 className="gold mono" style={{ fontSize: '11px', marginBottom: '8px' }}>INSPEÇÃO ESTATÍSTICA</h4>
-                  <div className="grid-2" style={{ gap: '12px' }}>
+                <div className="flex-col gap-sm mb-4 bg-ink p-4 rounded-md border-line-solid">
+                  <h4 className="gold mono text-sm mb-2">INSPEÇÃO ESTATÍSTICA</h4>
+                  <div className="grid-2 gap-md">
                     <div className="flex-between">
-                      <span className="muted" style={{ fontSize: '12px' }}>🗡️ Dano Base:</span>
-                      <span className="paper mono" style={{ fontSize: '12px' }}>
-                        {baseDmg} {bonusDano > 0 ? <span style={{ color: '#ef4444' }}> ➔ {finalDmg}</span> : ''}
+                      <span className="muted text-md">🗡️ Dano Base:</span>
+                      <span className="paper mono text-md">
+                        {baseDmg} {bonusDano > 0 ? <span className="text-red"> ➔ {finalDmg}</span> : ''}
                       </span>
                     </div>
                     <div className="flex-between">
-                      <span className="muted" style={{ fontSize: '12px' }}>🔵 Custo (CP):</span>
-                      <span className="paper mono" style={{ fontSize: '12px' }}>
-                        {baseCusto} {bonusCusto < 0 ? <span style={{ color: '#60a5fa' }}> ➔ {finalCusto}</span> : ''}
+                      <span className="muted text-md">🔵 Custo (CP):</span>
+                      <span className="paper mono text-md">
+                        {baseCusto} {bonusCusto < 0 ? <span className="text-blue"> ➔ {finalCusto}</span> : ''}
                       </span>
                     </div>
                     <div className="flex-between">
-                      <span className="muted" style={{ fontSize: '12px' }}>🎯 Precisão:</span>
-                      <span className="paper mono" style={{ fontSize: '12px' }}>{finalAcc}%</span>
+                      <span className="muted text-md">🎯 Precisão:</span>
+                      <span className="paper mono text-md">{finalAcc}%</span>
                     </div>
                     {(bonusLetal > 0 || bonusProt > 0) && (
-                      <div className="flex-between" style={{ gridColumn: 'span 2', borderTop: '1px dashed var(--line)', paddingTop: '8px' }}>
-                        <span className="muted" style={{ fontSize: '12px' }}>✨ Efeitos Extras:</span>
-                        <div className="flex-row" style={{ gap: '8px' }}>
-                          {bonusLetal > 0 && <span className="gold mono" style={{ fontSize: '12px' }}>+{bonusLetal}% Crítico</span>}
-                          {bonusProt > 0 && <span className="mono" style={{ fontSize: '12px', color: '#10b981' }}>+{bonusProt} Escudo</span>}
+                      <div className="flex-between border-line-dashed mt-2 pt-2" style={{ gridColumn: 'span 2', borderTopWidth: '1px', borderTopStyle: 'dashed' }}>
+                        <span className="muted text-md">✨ Efeitos Extras:</span>
+                        <div className="flex-row gap-sm">
+                          {bonusLetal > 0 && <span className="gold mono text-md">+{bonusLetal}% Crítico</span>}
+                          {bonusProt > 0 && <span className="mono text-md text-green">+{bonusProt} Escudo</span>}
                         </div>
                       </div>
                     )}
@@ -239,30 +237,29 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
               );
             })()}
 
-            <p className="muted" style={{ marginBottom: '16px' }}>Preencha os 3 slots com Pergaminhos. Ao encher os 3, você pode evoluir a habilidade para o próximo nível.</p>
-            <div className="card" style={{ padding: '12px 16px', marginBottom: '24px', background: 'var(--ink)', border: '1px solid rgba(212,162,42,0.2)' }}>
-              <div className="mono gold" style={{ fontSize: '11px', letterSpacing: '1px', marginBottom: '8px' }}>📖 LEGENDA — O QUE CADA ESSÊNCIA FAZ</div>
-              <div className="grid-2" style={{ gap: '4px' }}>
-                <div style={{ fontSize: '11px', color: 'var(--muted)' }}>📜 <strong style={{ color: '#ef4444' }}>Dano</strong> — Aumenta o dano base do jutsu.</div>
-                <div style={{ fontSize: '11px', color: 'var(--muted)' }}>📜 <strong style={{ color: '#60a5fa' }}>Custo</strong> — Reduz o Chakra necessário para usar.</div>
-                <div style={{ fontSize: '11px', color: 'var(--muted)' }}>📜 <strong style={{ color: 'var(--gold)' }}>Letalidade</strong> — Aumenta a chance de acerto crítico.</div>
-                <div style={{ fontSize: '11px', color: 'var(--muted)' }}>📜 <strong style={{ color: '#10b981' }}>Proteção</strong> — Adiciona escudo passivo durante a luta.</div>
+            <p className="muted mb-4">Preencha os 3 slots com Pergaminhos. Ao encher os 3, você pode evoluir a habilidade para o próximo nível.</p>
+            <div className="card p-3 mb-6 bg-ink" style={{ border: '1px solid rgba(212,162,42,0.2)' }}>
+              <div className="mono gold text-sm mb-2" style={{ letterSpacing: '1px' }}>📖 LEGENDA — O QUE CADA ESSÊNCIA FAZ</div>
+              <div className="grid-2 gap-xs">
+                <div className="text-sm muted">📜 <strong className="text-red">Dano</strong> — Aumenta o dano base do jutsu.</div>
+                <div className="text-sm muted">📜 <strong className="text-blue">Custo</strong> — Reduz o Chakra necessário para usar.</div>
+                <div className="text-sm muted">📜 <strong className="text-gold">Letalidade</strong> — Aumenta a chance de acerto crítico.</div>
+                <div className="text-sm muted">📜 <strong className="text-green">Proteção</strong> — Adiciona escudo passivo durante a luta.</div>
               </div>
-              <div className="muted" style={{ fontSize: '10px', marginTop: '8px', borderTop: '1px solid var(--line)', paddingTop: '8px' }}>💡 <em>Clique em um slot ocupado (📜) para devolver a essência ao seu inventário.</em></div>
+              <div className="muted text-xs mt-2 pt-2 border-line-solid" style={{ borderTopWidth: '1px' }}>💡 <em>Clique em um slot ocupado (📜) para devolver a essência ao seu inventário.</em></div>
             </div>
 
-            <div className="flex-row" style={{ gap: '16px', justifyContent: 'center', marginBottom: '32px' }}>
+            <div className="flex-row gap-lg justify-center mb-6" style={{ marginBottom: '32px' }}>
               {[0, 1, 2].map(idx => {
                 const slotted = selectedJutsu.slots[idx];
                 return (
-                  <div key={idx} className="flex-col" style={{ alignItems: 'center', gap: '8px' }}>
+                  <div key={idx} className="flex-col items-center gap-sm">
                     <div 
+                      className="rounded-full flex-row items-center justify-center text-center"
                       style={{
                         width: '64px', height: '64px', 
-                        borderRadius: '50%', 
                         border: slotted ? '2px solid var(--gold)' : '2px dashed var(--muted)',
                         background: slotted ? 'rgba(212,162,42,0.1)' : 'rgba(0,0,0,0.2)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: '24px', cursor: slotted ? 'pointer' : 'default',
                         boxShadow: slotted ? '0 0 12px rgba(212,162,42,0.2)' : 'none'
                       }}
@@ -271,7 +268,7 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
                     >
                       {slotted ? '📜' : '+'}
                     </div>
-                    <div className="mono" style={{ fontSize: '10px', color: slotted ? 'var(--gold)' : 'var(--muted)', textAlign: 'center', maxWidth: '80px', wordWrap: 'break-word' }}>
+                    <div className="mono text-xs break-word text-center" style={{ color: slotted ? 'var(--gold)' : 'var(--muted)', maxWidth: '80px' }}>
                       {slotted ? slotted.replace('_', ' ').toUpperCase() : 'SLOT VAZIO'}
                     </div>
                   </div>
@@ -280,16 +277,16 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
             </div>
 
             {selectedJutsu.slots.every(s => s !== null) ? (
-              <div style={{ textAlign: 'center' }}>
-                <button className="btn-primary" onClick={upgradeJutsuLevel} disabled={loading} style={{ width: '100%', padding: '12px' }}>
+              <div className="text-center">
+                <button className="btn-primary w-full p-3" onClick={upgradeJutsuLevel} disabled={loading}>
                   Evoluir para Nível {selectedJutsu.level + 1} (RY$ {selectedJutsu.level * 15000})
                 </button>
-                <div className="muted" style={{ fontSize: '11px', marginTop: '8px' }}>O Jutsu absorverá os atributos dos 3 pergaminhos permanentemente.</div>
+                <div className="muted text-sm mt-2">O Jutsu absorverá os atributos dos 3 pergaminhos permanentemente.</div>
               </div>
             ) : (
               <div>
-                <h4 className="paper" style={{ marginBottom: '12px' }}>Seu Inventário de Essências</h4>
-                <div className="grid-3" style={{ gap: '8px' }}>
+                <h4 className="paper mb-3">Seu Inventário de Essências</h4>
+                <div className="grid-3 gap-sm">
                   {Object.entries(inventoryEssences).filter(([k, v]) => v > 0).map(([key, count]) => {
                     const essenceDesc = {
                       dano: { cor: '#ef4444', desc: '+DMG ao jutsu' },
@@ -301,29 +298,29 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
                     const meta = essenceDesc[tipo] || { cor: 'var(--gold)', desc: 'Bônus especial' };
                     const tier = key.split('_')[1] ? ` T${key.split('_')[1]}` : '';
                     return (
-                    <div key={key} className="flex-col" 
-                         style={{ background: 'var(--ink)', border: `1px solid ${meta.cor}40`, padding: '8px', borderRadius: '4px', alignItems: 'center', cursor: 'pointer', transition: 'border-color 0.2s', gap: '2px' }}
+                    <div key={key} className="flex-col bg-ink p-2 rounded-sm items-center cursor-pointer" 
+                         style={{ border: `1px solid ${meta.cor}40`, transition: 'border-color 0.2s', gap: '2px' }}
                          onClick={() => {
                            const emptySlotIndex = selectedJutsu.slots.findIndex(s => s === null);
                            if (emptySlotIndex !== -1) equipEssence(emptySlotIndex, key);
                            else addToast('Todos os slots estão cheios!', 'error');
                          }}>
                       <span style={{ fontSize: '20px' }}>📜</span>
-                      <span className="mono" style={{ fontSize: '10px', marginTop: '2px', textAlign: 'center', color: meta.cor, fontWeight: 'bold' }}>{tipo.toUpperCase()}{tier}</span>
-                      <span style={{ fontSize: '9px', textAlign: 'center', color: 'var(--muted)' }}>{meta.desc}</span>
+                      <span className="mono text-xs mt-1 text-center font-bold" style={{ color: meta.cor }}>{tipo.toUpperCase()}{tier}</span>
+                      <span className="text-center muted" style={{ fontSize: '9px' }}>{meta.desc}</span>
                       <span className="muted" style={{ fontSize: '9px' }}>Qtd: {count}</span>
                     </div>
                   );})}
                   {Object.values(inventoryEssences).every(v => v === 0) && (
-                    <div className="muted" style={{ gridColumn: 'span 3', textAlign: 'center', padding: '16px' }}>Você não tem pergaminhos. Batalhe no mapa ou compre na Loja.</div>
+                    <div className="muted text-center p-4" style={{ gridColumn: 'span 3' }}>Você não tem pergaminhos. Batalhe no mapa ou compre na Loja.</div>
                   )}
                 </div>
               </div>
             )}
           </div>
         ) : (
-          <div className="card flex-col" style={{ alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', minHeight: '300px' }}>
-            <span style={{ fontSize: '32px', marginBottom: '16px' }}>🥷</span>
+          <div className="card flex-col items-center justify-center muted" style={{ minHeight: '300px' }}>
+            <span className="mb-4" style={{ fontSize: '32px' }}>🥷</span>
             Selecione um Jutsu na lista para aprimorá-lo.
           </div>
         )}

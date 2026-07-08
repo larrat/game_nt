@@ -23,25 +23,25 @@ const DailyTaskItem = ({
   const isClaimed = claimedList.includes(taskId);
 
   return (
-    <div style={{ background: 'var(--ink-raised)', padding: '12px', borderRadius: '6px', border: '1px solid var(--line)' }}>
-      <div className="flex-between" style={{ marginBottom: '8px' }}>
-        <span className="paper flex-row" style={{ fontSize: '13px', alignItems: 'center', gap: '6px' }}>
-          <img src={titleIcon} style={{ width: '12px' }} alt="Icon" /> {title}
+    <div className="bg-ink-raised p-3 rounded-sm border-line-solid">
+      <div className="flex-between mb-2">
+        <span className="paper flex-row items-center gap-xs text-sm">
+          <img src={titleIcon} className="w-3" alt="Icon" /> {title}
         </span>
-        <span className="mono gold flex-row" style={{ fontSize: '11px', alignItems: 'center', gap: '4px' }}>
-          <img src="/images/imgi_20_ryous.png" style={{ width: '10px' }} alt="Ryous" /> {rewardText}
+        <span className="mono gold flex-row items-center gap-xs text-xs">
+          <img src="/images/imgi_20_ryous.png" className="w-3" alt="Ryous" /> {rewardText}
         </span>
       </div>
-      <div className="flex-between" style={{ alignItems: 'center', gap: '12px' }}>
-        <div className="progress-track" style={{ flex: 1, height: '6px' }}>
+      <div className="flex-between items-center gap-sm">
+        <div className="progress-track flex-1 h-2">
           <div className={`progress-fill ${progressColor}`} style={{ width: `${progressPercent}%` }} />
         </div>
         {isClaimed ? (
-          <span className="success mono" style={{ fontSize: '10px' }}>✓ FEITO</span>
+          <span className="success mono text-xs">✓ FEITO</span>
         ) : isDone ? (
-          <button className="btn-ghost" onClick={() => handleClaimTask(taskId, 'ryous', 20)} disabled={claiming} style={{ padding: '4px 8px', fontSize: '10px', borderColor: 'var(--seal-bright)', color: 'var(--seal-bright)' }}>RESGATAR</button>
+          <button className="btn-ghost p-1 text-xs text-seal-bright border-seal-bright" onClick={() => handleClaimTask(taskId, 'ryous', 20)} disabled={claiming}>RESGATAR</button>
         ) : (
-          <span className="muted mono" style={{ fontSize: '10px' }}>{progressValue}/{progressMax}</span>
+          <span className="muted mono text-xs">{progressValue}/{progressMax}</span>
         )}
       </div>
     </div>
@@ -265,68 +265,53 @@ export default function Dashboard({ player, updatePlayer }) {
   const bgImage = player.village_id ? `/images/bg_${player.village_id}.jpg` : '/images/bg_default.jpg';
 
   return (
-    <div style={{
-      backgroundImage: `url(${bgImage})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundAttachment: 'fixed',
-      minHeight: '100vh',
-      color: 'var(--paper)'
-    }}>
-      <div className="page" style={{ position: 'relative', zIndex: 1, padding: '32px' }}>
+  return (
+    <div className="bg-cover bg-center min-h-screen text-paper bg-fixed" style={{ backgroundImage: `url(${bgImage})` }}>
+      <div className="page relative z-10 p-8">
         
         {/* SÉTIMA VERSÃO: HERO BANNER (SLIM) */}
-        <div className="card-glass flex-between" style={{ 
-          padding: '24px 32px',
-          borderRadius: '16px',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '24px',
-          marginBottom: '32px',
-          border: '1px solid rgba(255,255,255,0.1)',
-          background: 'rgba(10, 15, 25, 0.65)',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.6)'
-        }}>
+        <div className="card-glass flex-between p-6 rounded-lg items-center flex-wrap gap-lg mb-8 border-line-solid shadow-xl bg-ink-transparent">
           {/* Esquerda: Avatar e Info Básica */}
-          <div className="flex-row" style={{ gap: '24px', alignItems: 'center' }}>
+          <div className="flex-row items-center gap-lg">
             <div 
-              style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--gold)', background: 'var(--ink)', position: 'relative', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
+              className="rounded-full overflow-hidden border-gold border-2 bg-ink relative cursor-pointer shadow-md avatar-container flex-col items-center justify-center"
+              style={{ width: '80px', height: '80px' }}
               onClick={() => setIsAvatarModalOpen(true)}
               title="Trocar Imagem"
-              className="avatar-container"
             >
               {player.avatar?.startsWith('/') ? (
-                <img src={player.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={player.avatar} alt="Avatar" className="w-full h-full object-cover" />
               ) : (
-                <span className="dash-avatar-glyph" style={{ fontSize: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>{player.avatar || '👤'}</span>
+                <span className="dash-avatar-glyph text-4xl flex-col items-center justify-center w-full h-full">{player.avatar || '👤'}</span>
               )}
             </div>
 
-            <div className="flex-col" style={{ gap: '4px' }}>
-              <div className="muted mono" style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px' }}>Bem-vindo de volta,</div>
-              <h2 className="paper" style={{ fontSize: '28px', textShadow: '1px 1px 4px rgba(0,0,0,1)', margin: 0, letterSpacing: '1px' }}>{player.name}</h2>
+            <div className="flex-col gap-xs">
+              <div className="muted mono text-xs tracking-wide uppercase">Bem-vindo de volta,</div>
+              <h2 className="paper text-3xl m-0 tracking-wide text-shadow">{player.name}</h2>
             </div>
           </div>
 
           {/* Direita: Badges de Identidade */}
-          <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
-            <div className="badge badge-gold" style={{ fontSize: '13px', padding: '8px 16px', textTransform: 'uppercase', letterSpacing: '1px', boxShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+          <div className="flex-row items-center gap-md">
+            <div className="badge badge-gold uppercase tracking-wide px-4 py-2 text-sm shadow-md">
               {player.rank || 'Estudante da Academia'}
             </div>
-            <div className="badge" style={{ fontSize: '13px', padding: '8px 16px', background: 'rgba(0,0,0,0.8)', border: '1px solid rgba(255,255,255,0.2)', textShadow: '1px 1px 2px #000', boxShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+            <div className="badge uppercase px-4 py-2 text-sm shadow-md border-line-solid bg-ink-transparent text-shadow">
               Vila da {VILLAGES[player.village_id]}
             </div>
           </div>
         </div>
 
       {/* CALENDÁRIO DE EVENTOS */}
+      {/* CALENDÁRIO DE EVENTOS */}
       {upcomingEvents.length > 0 ? (
-        <div className="card-glass" style={{ marginBottom: '24px' }}>
-          <div className="flex-between" style={{ marginBottom: '16px', borderBottom: '1px solid var(--line)', paddingBottom: '12px' }}>
-            <h3 className="paper" style={{ fontFamily: 'Shippori Mincho', fontSize: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '16px' }}>📅</span> Próximos Eventos
+        <div className="card-glass mb-6">
+          <div className="flex-between mb-4 border-line-solid pb-3" style={{ borderBottomWidth: '1px' }}>
+            <h3 className="paper flex-row items-center gap-xs text-lg" style={{ fontFamily: 'Shippori Mincho' }}>
+              <span className="text-base">📅</span> Próximos Eventos
             </h3>
-            <span className="muted mono" style={{ fontSize: '11px' }}>Cronograma Oficial</span>
+            <span className="muted mono text-xs">Cronograma Oficial</span>
           </div>
           <div className="grid-4">
             {upcomingEvents.map((evt, idx) => {
@@ -335,69 +320,53 @@ export default function Dashboard({ player, updatePlayer }) {
               else if (idx % 2 === 0) color = '#3b82f6';
 
               return (
-                <div key={evt.id} style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)', borderLeft: `3px solid ${color}` }}>
-                  <div className="mono" style={{ fontSize: '10px', marginBottom: '6px', color }}>{evt.ends_at ? new Date(evt.ends_at).toLocaleString() : 'Em breve'}</div>
-                  <div className="paper" style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px' }}>{evt.name}</div>
-                  <div className="muted" style={{ fontSize: '11px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{evt.description}</div>
+                <div key={evt.id} className="bg-ink-raised p-4 rounded-sm border-line-solid border-line-bright border-l-3" style={{ borderLeftColor: color }}>
+                  <div className="mono text-xs mb-1" style={{ color }}>{evt.ends_at ? new Date(evt.ends_at).toLocaleString() : 'Em breve'}</div>
+                  <div className="paper font-bold text-sm mb-1">{evt.name}</div>
+                  <div className="muted text-xs" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{evt.description}</div>
                 </div>
               );
             })}
           </div>
         </div>
       ) : (
-        <div className="card-glass flex-between" style={{ padding: '12px 24px', marginBottom: '24px', alignItems: 'center' }}>
-          <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
-            <span style={{ fontSize: '18px', opacity: 0.6 }}>📅</span>
-            <div className="muted mono" style={{ fontSize: '12px' }}>Nenhum evento futuro agendado no momento.</div>
+        <div className="card-glass flex-between p-3 px-6 mb-6 items-center">
+          <div className="flex-row items-center gap-sm">
+            <span className="text-lg opacity-60">📅</span>
+            <div className="muted mono text-xs">Nenhum evento futuro agendado no momento.</div>
           </div>
         </div>
       )}
 
       {/* ALERTA DE MÚLTIPLOS EVENTOS GLOBAIS */}
       {activeEvents.length > 0 && (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(auto-fit, minmax(400px, 1fr))`,
-          gap: '24px',
-          marginBottom: '24px'
-        }}>
+        <div className="grid-responsive gap-lg mb-6">
           {activeEvents.map(event => (
-            <div key={event.id} className="card" style={{ 
-              background: 'radial-gradient(circle at right, rgba(239, 68, 68, 0.15) 0%, transparent 60%), linear-gradient(90deg, rgba(20,10,10,0.95) 0%, rgba(30,15,15,0.95) 100%)',
-              border: '1px solid rgba(239, 68, 68, 0.4)', 
-              boxShadow: '0 8px 32px rgba(239, 68, 68, 0.1)',
-              position: 'relative', 
-              overflow: 'hidden', 
-              padding: '24px', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justifyContent: 'space-between' 
-            }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: 'linear-gradient(180deg, #ef4444, #991b1b)', animation: 'pulse 2s infinite', boxShadow: '0 0 15px #ef4444' }}></div>
+            <div key={event.id} className="card relative overflow-hidden p-6 flex-col justify-between border-line-solid border-danger bg-event-card shadow-event">
+              <div className="absolute top-0 left-0 w-1 h-full animate-pulse shadow-pulse" style={{ background: 'linear-gradient(180deg, #ef4444, #991b1b)' }}></div>
 
-              <div className="flex-between" style={{ alignItems: 'flex-start', flexWrap: 'wrap', gap: '24px' }}>
-                <div style={{ flex: '1 1 200px', position: 'relative', zIndex: 2 }}>
-                  <h4 className="danger mono" style={{ marginBottom: '8px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '8px', letterSpacing: '1px' }}>
-                    <span style={{ fontSize: '14px', filter: 'drop-shadow(0 0 4px red)' }}>🦊</span>
+              <div className="flex-between items-start flex-wrap gap-lg">
+                <div className="flex-1 relative z-10" style={{ minWidth: '200px' }}>
+                  <h4 className="danger mono mb-2 text-xs flex-row items-center gap-sm tracking-wide">
+                    <span className="text-sm drop-shadow-red">🦊</span>
                     EVENTO GLOBAL
                   </h4>
-                  <div className="paper" style={{ fontSize: '22px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px', minHeight: '44px', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+                  <div className="paper text-xl font-bold uppercase tracking-wide mb-2 text-shadow" style={{ minHeight: '44px' }}>
                     {event.name}
                   </div>
-                  <div className="muted" style={{ fontSize: '13px', lineHeight: '1.6', maxWidth: '90%' }}>
+                  <div className="muted text-sm leading-relaxed" style={{ maxWidth: '90%' }}>
                     {event.description}
                   </div>
                 </div>
 
-                <div className="flex-col" style={{ alignItems: 'center', gap: '12px', minWidth: '150px', background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', border: '1px dashed #ef4444' }}>
-                  <span className="mono muted" style={{ fontSize: '11px', textTransform: 'uppercase' }}>Tempo Restante</span>
-                  <span className="mono danger" style={{ fontSize: '20px', fontWeight: 'bold', textShadow: '0 0 10px rgba(239, 68, 68, 0.4)' }}>
+                <div className="flex-col items-center gap-sm p-4 rounded-sm border-dashed border-danger bg-black-alpha-30" style={{ minWidth: '150px' }}>
+                  <span className="mono muted text-xs uppercase">Tempo Restante</span>
+                  <span className="mono danger text-xl font-bold text-shadow-red">
                     {timeRemaining[event.id] || 'Calculando...'}
                   </span>
                   <button 
-                    className="btn-primary" 
+                    className="btn-primary w-full p-2 text-xs mt-1" 
                     style={{ 
-                      width: '100%', padding: '10px', fontSize: '12px', marginTop: '4px',
                       background: timeRemaining[event.id] === 'Evento Encerrado' ? '#555' : '#ef4444', 
                       borderColor: timeRemaining[event.id] === 'Evento Encerrado' ? '#555' : '#ef4444' 
                     }} 
@@ -411,27 +380,19 @@ export default function Dashboard({ player, updatePlayer }) {
 
               {/* Barra de Vida Cinematográfica do Boss */}
               {event.boss_hp !== null && (
-                <div style={{ marginTop: '28px', position: 'relative', zIndex: 2 }}>
-                  <div className="flex-between" style={{ marginBottom: '10px', fontSize: '12px' }}>
-                    <span className="danger mono flex-row" style={{ alignItems: 'center', gap: '8px', fontWeight: 'bold' }}>
-                      <span style={{ fontSize: '12px' }}>❤️</span> HP DO CHEFE
+                <div className="mt-7 relative z-10">
+                  <div className="flex-between mb-2 text-xs">
+                    <span className="danger mono flex-row items-center gap-sm font-bold">
+                      <span className="text-xs">❤️</span> HP DO CHEFE
                     </span>
-                    <span className="mono" style={{ color: 'rgba(255,255,255,0.9)', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
+                    <span className="mono text-white text-shadow">
                       {event.boss_hp.toLocaleString()} <span className="muted">/ {event.boss_max_hp.toLocaleString()}</span>
                     </span>
                   </div>
-                  <div style={{ 
-                    position: 'relative', height: '14px', borderRadius: '8px', 
-                    background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(239, 68, 68, 0.2)', 
-                    overflow: 'hidden', boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.8)' 
-                  }}>
-                    <div style={{
+                  <div className="relative h-3 rounded-sm bg-black-alpha-60 border-line-solid border-danger-alpha overflow-hidden shadow-inner-dark">
+                    <div className="h-full rounded-sm transition-all duration-500 ease-out shadow-bar-glow" style={{
                       width: `${Math.max(0, Math.min(100, (event.boss_hp / event.boss_max_hp) * 100))}%`,
-                      height: '100%',
-                      background: 'linear-gradient(90deg, #7f1d1d, #ef4444, #f87171)',
-                      boxShadow: '0 0 10px #ef4444, inset 0 0 5px rgba(255,255,255,0.4)',
-                      transition: 'width 0.5s ease-out',
-                      borderRadius: '8px'
+                      background: 'linear-gradient(90deg, #7f1d1d, #ef4444, #f87171)'
                     }}></div>
                   </div>
                 </div>
@@ -500,17 +461,17 @@ export default function Dashboard({ player, updatePlayer }) {
       </div>
 
       {player.pending_boss_boxes > 0 && (
-        <div className="card-glass" style={{ marginBottom: '24px', border: '1px solid var(--seal-bright)', background: 'rgba(255,107,107,0.05)' }}>
-          <div className="flex-between" style={{ flexWrap: 'wrap', gap: '16px' }}>
+        <div className="card-glass mb-6 border-line-solid border-seal-bright bg-danger-alpha-5">
+          <div className="flex-between flex-wrap gap-md">
             <div>
-              <h3 className="gold" style={{ fontSize: '18px', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <h3 className="gold text-lg mb-2 flex-row items-center gap-xs">
                 🦊 Recompensa do Evento!
               </h3>
-              <p className="muted" style={{ fontSize: '12px' }}>
+              <p className="muted text-xs">
                 Você tem <strong className="danger">{player.pending_boss_boxes} Baús do Colapso</strong> prontos para serem abertos. Podem conter itens Comuns, Raros, Épicos, Lendários e até mesmo os míticos itens <strong>Únicos</strong>!
               </p>
             </div>
-            <button className="btn-primary" onClick={handleOpenBossChest} disabled={claiming} style={{ minWidth: '150px' }}>
+            <button className="btn-primary min-w-[150px]" onClick={handleOpenBossChest} disabled={claiming}>
               {claiming ? 'Abrindo...' : 'Abrir Baús agora!'}
             </button>
           </div>
@@ -518,19 +479,19 @@ export default function Dashboard({ player, updatePlayer }) {
       )}
 
       {/* ── PAINEL DE OBJETIVOS DIÁRIOS ── */}
-      <div className="grid-2" style={{ marginTop: '24px' }}>
+      <div className="grid-2 mt-6">
         {/* 3. Coluna Principal: Atividades Diárias */}
-        <div className="flex-col" style={{ flex: '2 1 400px', gap: '24px' }}>
+        <div className="flex-col gap-lg flex-[2_1_400px]">
 
           {/* AVISO DE DEBUFF GLOBAL */}
           {activeEvents.filter(e => e.is_world_boss).map(boss => {
             const debuffs = getGlobalDebuffs(boss);
             if (debuffs.currentPhase === 0) return null;
             return (
-              <div key={boss.id} className="card" style={{ borderLeft: '4px solid #ef4444' }}>
-                <h4 className="card-title danger" style={{ marginBottom: '8px' }}>⚠️ Alerta Global: {boss.name}</h4>
-                <div className="muted" style={{ fontSize: '13px', marginBottom: '12px' }}>A fúria deste evento está desestabilizando a economia e o chakra de todos os ninjas.</div>
-                <div className="grid-2" style={{ gap: '8px' }}>
+              <div key={boss.id} className="card border-l-4 border-danger">
+                <h4 className="card-title danger mb-2">⚠️ Alerta Global: {boss.name}</h4>
+                <div className="muted text-sm mb-3">A fúria deste evento está desestabilizando a economia e o chakra de todos os ninjas.</div>
+                <div className="grid-2 gap-sm">
                   <div className="badge badge-muted">Fase Atual: {debuffs.currentPhase}/4</div>
                   {debuffs.currentPhase >= 1 && <div className="badge badge-danger">Stamina +30% (Combate)</div>}
                   {debuffs.currentPhase >= 2 && <div className="badge badge-danger">Precisão -15% (Combate)</div>}
@@ -543,21 +504,20 @@ export default function Dashboard({ player, updatePlayer }) {
 
           {/* Fidelidade Diária */}
           <div className="card" style={{ border: fidelityClaimed ? '1px solid var(--line)' : '1px solid var(--seal-bright)', background: fidelityClaimed ? 'var(--ink)' : 'var(--seal-glow)' }}>
-            <h4 className="card-title flex-row" style={{ marginBottom: '8px', alignItems: 'center', gap: '8px' }}>
-              <img src="/images/imgi_16_fidelidade.png" style={{ width: '18px' }} alt="Fidelidade" /> Bônus de Fidelidade
+            <h4 className="card-title flex-row items-center gap-xs mb-2">
+              <img src="/images/imgi_16_fidelidade.png" className="w-4" alt="Fidelidade" /> Bônus de Fidelidade
             </h4>
-            <p className="muted" style={{ fontSize: '13px', marginBottom: '16px', lineHeight: '1.5' }}>
+            <p className="muted text-sm mb-4 leading-relaxed">
               Entre todos os dias no Kurokage e colete sua recompensa diária de sobrevivência.
             </p>
-            <div className="flex-between" style={{ alignItems: 'center' }}>
-              <span className="gold mono flex-row" style={{ alignItems: 'center', gap: '6px' }}>
-                <img src="/images/imgi_20_ryous.png" style={{ width: '14px' }} alt="Ryous" /> RY$ 50
+            <div className="flex-between items-center">
+              <span className="gold mono flex-row items-center gap-xs">
+                <img src="/images/imgi_20_ryous.png" className="w-3" alt="Ryous" /> RY$ 50
               </span>
               <button
-                className={fidelityClaimed ? "btn-ghost" : "btn-primary"}
+                className={`p-2 text-xs ${fidelityClaimed ? "btn-ghost" : "btn-primary"}`}
                 onClick={handleDailyFidelity}
                 disabled={fidelityClaimed || claiming}
-                style={{ padding: '8px 16px', fontSize: '12px' }}
               >
                 {fidelityClaimed ? 'Resgatado Hoje' : 'Resgatar Bônus'}
               </button>
@@ -566,10 +526,10 @@ export default function Dashboard({ player, updatePlayer }) {
 
           {/* Tarefas Diárias */}
           <div className="card">
-            <h4 className="card-title flex-row" style={{ marginBottom: '16px', alignItems: 'center', gap: '8px' }}>
-              <img src="/images/imgi_14_rotina.png" style={{ width: '18px' }} alt="Tarefas" /> Objetivos Diários
+            <h4 className="card-title flex-row items-center gap-xs mb-4">
+              <img src="/images/imgi_14_rotina.png" className="w-4" alt="Tarefas" /> Objetivos Diários
             </h4>
-            <div className="flex-col" style={{ gap: '12px' }}>
+            <div className="flex-col gap-md">
 
               {/* Tarefa 1 */}
               <DailyTaskItem 
@@ -614,17 +574,17 @@ export default function Dashboard({ player, updatePlayer }) {
               />
 
               {/* Baú Diário de Esforço */}
-              <div style={{ background: 'var(--ink-card)', padding: '16px', borderRadius: '6px', border: '1px solid var(--gold)', marginTop: '8px', textAlign: 'center' }}>
-                <h4 className="gold mono" style={{ marginBottom: '8px' }}>📦 Baú de Esforço Diário</h4>
-                <p className="muted" style={{ fontSize: '12px', marginBottom: '12px' }}>Complete as 3 tarefas acima para desbloquear Kuro Coins.</p>
+              <div className="bg-ink-card p-4 rounded-sm border-line-solid border-gold mt-2 text-center">
+                <h4 className="gold mono mb-2">📦 Baú de Esforço Diário</h4>
+                <p className="muted text-xs mb-3">Complete as 3 tarefas acima para desbloquear Kuro Coins.</p>
                 {claimedList.includes('chest') ? (
-                  <span className="success mono" style={{ fontSize: '12px' }}>✓ BAÚ ABERTO HOJE</span>
+                  <span className="success mono text-xs">✓ BAÚ ABERTO HOJE</span>
                 ) : claimedList.includes('t1') && claimedList.includes('t2') && claimedList.includes('t3') ? (
-                  <button className="btn-primary" onClick={handleClaimDailyChest} disabled={claiming} style={{ width: '100%', background: 'linear-gradient(to right, #b45309, #d97706)', borderColor: '#d97706' }}>
+                  <button className="btn-primary w-full" onClick={handleClaimDailyChest} disabled={claiming} style={{ background: 'linear-gradient(to right, #b45309, #d97706)', borderColor: '#d97706' }}>
                     Abrir Baú (🪙 2 a 5 Coins)
                   </button>
                 ) : (
-                  <span className="danger mono" style={{ fontSize: '11px' }}>🔒 COMPLETE AS TAREFAS PRIMEIRO</span>
+                  <span className="danger mono text-xs">🔒 COMPLETE AS TAREFAS PRIMEIRO</span>
                 )}
               </div>
             </div>

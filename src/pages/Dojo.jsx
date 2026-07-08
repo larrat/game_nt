@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-import { calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules, generateDynamicRogueNinja, getDynamicNpcJutsus } from '../utils/engine';
+import { calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules, generateDynamicRogueNinja, getDynamicNpcJutsus, calculateLevelFromXP } from '../utils/engine';
+import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
@@ -214,25 +215,92 @@ export default function Dojo({ player }) {
 
     let totalXp = 0;
     let totalRyous = 0;
+    let wins = 0;
+    let losses = 0;
+
     for (let i = 0; i < fightCount; i++) {
-        totalXp += Math.floor((player.level * 40) + 150);
-        totalRyous += Math.floor((player.level * 25) + 80);
+        // Chance base de 85% de vitória para simular a dificuldade de enfrentar Jounins escalados
+        if (Math.random() <= 0.85) {
+            totalXp += Math.floor((player.level * 40) + 150);
+            totalRyous += Math.floor((player.level * 25) + 80);
+            wins++;
+        } else {
+            losses++;
+        }
     }
     
     // Variance
-    totalXp = Math.floor(totalXp * (0.9 + Math.random() * 0.2));
-    totalRyous = Math.floor(totalRyous * (0.9 + Math.random() * 0.2));
+    if (wins > 0) {
+        totalXp = Math.floor(totalXp * (0.9 + Math.random() * 0.2));
+        totalRyous = Math.floor(totalRyous * (0.9 + Math.random() * 0.2));
+    }
 
-    const { error } = await supabase
-      .from('players')
-      .update({
+    const finalXp = player.xp + totalXp;
+    const newLevel = calculateLevelFromXP(finalXp);
+    const levelsGained = Math.max(0, newLevel - player.level);
+    const newPoints = (player.pontos_atributos || 0) + (levelsGained * 3);
+
+    let kuroCoinsDrop = 0;
+    let equipmentDrops = 0;
+    let essenceDrops = 0;
+    let newEssences = { ...(player.inventory_essences || {}) };
+    let equipmentInserts = [];
+
+    // Simulate Drops for each win
+    if (wins > 0) {
+      for (let w = 0; w < wins; w++) {
+        // 1. Kuro Coins (2% chance)
+        if (Math.random() <= 0.02) kuroCoinsDrop++;
+        
+        // 2. Equipments (25% chance in Dojo)
+        if (Math.random() <= 0.25) {
+          const { data: baseItems } = await supabase.from('items').select('*');
+          if (baseItems && baseItems.length > 0) {
+            const randomBaseItem = baseItems[Math.floor(Math.random() * baseItems.length)];
+            const rarity = await rollRarity(player.rank || 'Genin');
+            const rolledStats = await generateLootStats(rarity, player.rank || 'Genin', '');
+            equipmentInserts.push({
+              player_id: player.id,
+              item_id: randomBaseItem.id,
+              is_equipped: false,
+              is_favorite: false,
+              rarity: rarity,
+              rolled_stats: rolledStats
+            });
+            equipmentDrops++;
+          }
+        }
+
+        // 3. Essences (15% chance in Dojo)
+        if (Math.random() <= 0.15) {
+          const rankToTier = { 'Estudante da Academia': 1, 'Genin': 1, 'Chunin': 2, 'Jounin': 3, 'ANBU': 4, 'Sannin': 4, 'Herói': 5 };
+          const tier = rankToTier[player.rank] || 1;
+          const essenceTypes = ['dano', 'custo', 'letalidade', 'protecao'];
+          const randomType = essenceTypes[Math.floor(Math.random() * essenceTypes.length)];
+          const essenceKey = `${randomType}_${tier}`;
+          newEssences[essenceKey] = (newEssences[essenceKey] || 0) + 1;
+          essenceDrops++;
+        }
+      }
+    }
+
+    const playerUpdates = {
         stamina: currentSt - totalCost,
-        xp: player.xp + totalXp,
+        xp: finalXp,
+        level: newLevel,
+        pontos_atributos: newPoints,
         ryous: player.ryous + totalRyous,
-        wins_dojo: (player.wins_dojo || 0) + fightCount,
-        dojo_clears: (player.dojo_clears || 0) + fightCount
-      })
-      .eq('id', player.id);
+        wins_dojo: (player.wins_dojo || 0) + wins,
+        dojo_clears: (player.dojo_clears || 0) + wins
+    };
+    if (kuroCoinsDrop > 0) playerUpdates.vip_coins = (player.vip_coins || 0) + kuroCoinsDrop;
+    if (essenceDrops > 0) playerUpdates.inventory_essences = newEssences;
+
+    const { error } = await supabase.from('players').update(playerUpdates).eq('id', player.id);
+
+    if (equipmentInserts.length > 0) {
+       await supabase.from('player_inventory').insert(equipmentInserts);
+    }
 
     setLoadingId(null);
 
@@ -241,7 +309,21 @@ export default function Dojo({ player }) {
       return;
     }
 
-    addToast(`⚡ Limpeza Rápida ${fightCount}x Concluída! +${totalXp} XP | +${totalRyous} Ryous`, 'success');
+    let dropMsg = '';
+    if (equipmentDrops > 0) dropMsg += ` | ⚔️ ${equipmentDrops} Equipamentos`;
+    if (essenceDrops > 0) dropMsg += ` | 📜 ${essenceDrops} Essências`;
+    if (kuroCoinsDrop > 0) dropMsg += ` | 🪙 ${kuroCoinsDrop} Kuro Coins`;
+
+    if (wins === 0) {
+      addToast(`⚡ A Limpeza Rápida falhou! Você perdeu todas as ${losses} lutas.`, 'error');
+    } else if (losses > 0) {
+      addToast(`⚡ Limpeza Parcial! Venceu ${wins} e Perdeu ${losses}. +${totalXp} XP | +${totalRyous} Ryous${dropMsg}`, 'info');
+    } else {
+      addToast(`⚡ Limpeza Rápida Perfeita! Venceu todas as ${wins} lutas. +${totalXp} XP | +${totalRyous} Ryous${dropMsg}`, 'success');
+    }
+    if (levelsGained > 0) {
+      addToast(`🎉 Você subiu ${levelsGained} Níveis!`, "success");
+    }
     await updatePlayer(player.user_id);
   };
 
@@ -299,7 +381,7 @@ export default function Dojo({ player }) {
             <span className="badge badge-green">Seguro</span>
             <span className="badge badge-muted">Sem custo</span>
           </div>
-          <button className="btn-ghost" onClick={handleFreeTraining} disabled={loadingId !== null} style={{ width: '100%' }}>
+          <button className="btn-ghost w-full" onClick={handleFreeTraining} disabled={loadingId !== null}>
             Bater no Boneco
           </button>
         </section>
@@ -312,7 +394,7 @@ export default function Dojo({ player }) {
             <span className="badge badge-gold">Recomendado</span>
             <span className="badge badge-muted">NPC ou rival</span>
           </div>
-          <button className="btn-primary" onClick={handleSearch} disabled={loadingId !== null} style={{ width: '100%' }}>
+          <button className="btn-primary w-full" onClick={handleSearch} disabled={loadingId !== null}>
             <span>{loadingId === 'search' ? 'Rastreando...' : 'Procurar Luta'}</span>
             <div className="stamp"></div>
           </button>
@@ -326,21 +408,21 @@ export default function Dojo({ player }) {
             <span className="badge badge-gold">{RAID_STAMINA_COST} ST/luta</span>
             <span className="badge badge-muted">Stamina: {player.stamina ?? calculateStamina(player)}</span>
           </div>
-          <div className="flex-col" style={{ gap: '8px', width: '100%' }}>
-            <div className="flex-row" style={{ gap: '8px', width: '100%' }}>
-              <button className="btn-ghost" onClick={() => handleRaid(3)} disabled={loadingId !== null} style={{ flex: 1 }}>
+          <div className="flex-col gap-sm w-full">
+            <div className="flex-row gap-sm w-full">
+              <button className="btn-ghost flex-1" onClick={() => handleRaid(3)} disabled={loadingId !== null}>
                 Raid 3x
               </button>
-              <button className="btn-primary" onClick={() => handleRaid(5)} disabled={loadingId !== null} style={{ flex: 1 }}>
+              <button className="btn-primary flex-1" onClick={() => handleRaid(5)} disabled={loadingId !== null}>
                 <span>{loadingId === 'raid' ? '...' : 'Raid 5x'}</span>
               </button>
             </div>
-            {(player.dojo_clears || 0) >= 3 && (
-              <div className="flex-row" style={{ gap: '8px', width: '100%' }}>
-                <button className="btn-ghost" onClick={() => handleQuickClear(3)} disabled={loadingId !== null} style={{ flex: 1, color: 'var(--gold)', borderColor: 'var(--gold)' }}>
+            {(player.dojo_clears || player.wins_dojo || 0) >= 3 && (
+              <div className="flex-row gap-sm w-full">
+                <button className="btn-ghost flex-1 text-gold border-gold" onClick={() => handleQuickClear(3)} disabled={loadingId !== null}>
                   ⚡ Limpar 3x
                 </button>
-                <button className="btn-ghost" onClick={() => handleQuickClear(5)} disabled={loadingId !== null} style={{ flex: 1, color: 'var(--gold)', borderColor: 'var(--gold)' }}>
+                <button className="btn-ghost flex-1 text-gold border-gold" onClick={() => handleQuickClear(5)} disabled={loadingId !== null}>
                   ⚡ Limpar 5x
                 </button>
               </div>
@@ -361,10 +443,9 @@ export default function Dojo({ player }) {
             <span className="badge badge-muted">Alto risco</span>
           </div>
           <button
-            className={isAkatsuki ? 'btn-primary' : 'btn-danger'}
+            className={`w-full ${isAkatsuki ? 'btn-primary' : 'btn-danger'}`}
             onClick={isAkatsuki ? handleBijuuHunt : handleBetrayal}
             disabled={loadingId !== null}
-            style={{ width: '100%' }}
           >
             <span>
               {isAkatsuki
@@ -376,7 +457,7 @@ export default function Dojo({ player }) {
         </section>
       </div>
 
-      <div className="info-banner" style={{ marginTop: '24px' }}>
+      <div className="info-banner mt-6">
         <strong className="paper">Dica:</strong> use o Treinamento Livre depois de trocar equipamentos ou jutsus. Para progressão real, vá em Combate Real.
       </div>
     </div>

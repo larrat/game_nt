@@ -90,55 +90,46 @@ export default function Hospital({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page" style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: '100vh',
-      background: 'rgba(224, 54, 63, 0.05)'
-    }}>
-      <div className="card-glass" style={{ maxWidth: '480px', width: '100%', textAlign: 'center', padding: '40px 24px' }}>
+    <div className="page flex-col items-center justify-center h-full" style={{ background: 'rgba(224, 54, 63, 0.05)', minHeight: '100vh' }}>
+      <div className="card-glass w-full text-center p-4" style={{ maxWidth: '480px' }}>
         {isRecovered ? (
           <>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>🌟</div>
-            <h3 className="paper" style={{ fontSize: '24px', marginBottom: '8px' }}>Recuperação Concluída</h3>
-            <p className="muted" style={{ marginBottom: '24px' }}>
+            <div className="mb-4" style={{ fontSize: '48px' }}>🌟</div>
+            <h3 className="paper mb-2" style={{ fontSize: '24px' }}>Recuperação Concluída</h3>
+            <p className="muted mb-6">
               Seu corpo se recuperou totalmente. Você já pode voltar para suas missões.
             </p>
             <button
-              className="btn-primary"
+              className="btn-primary p-3 text-lg"
               onClick={() => handleCure(false)}
               disabled={loading}
-              style={{ fontSize: '18px', padding: '12px 32px' }}
             >
               {loading ? 'Recebendo Alta...' : 'Receber Alta e Voltar'}
             </button>
           </>
         ) : (
           <>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>⏳</div>
-            <h3 className="paper" style={{ fontSize: '24px', marginBottom: '8px' }}>Tempo Restante</h3>
-            <div className="mono danger" style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '24px' }}>
+            <div className="mb-4" style={{ fontSize: '48px' }}>⏳</div>
+            <h3 className="paper mb-2" style={{ fontSize: '24px' }}>Tempo Restante</h3>
+            <div className="mono danger font-bold mb-6" style={{ fontSize: '32px' }}>
               {formatTime(timeLeft)}
             </div>
-            <div className="muted mono" style={{ fontSize: '12px', marginBottom: '24px', opacity: 0.8 }}>
+            <div className="muted mono text-md mb-6" style={{ opacity: 0.8 }}>
               O hospital da vila está cuidando de seus ferimentos...
             </div>
 
-            <div style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: '1px solid var(--line-bright)' }}>
-              <p className="paper" style={{ marginBottom: '12px', fontSize: '14px' }}>Deseja acelerar sua recuperação?</p>
+            <div className="bg-ink p-4 rounded-md border-line-solid">
+              <p className="paper mb-3 text-lg">Deseja acelerar sua recuperação?</p>
               <button
-                className="btn-primary"
+                className="btn-primary flex-row items-center gap-sm justify-center w-full"
                 onClick={() => handleCure(true)}
                 disabled={loading || player.ryous < cureCost}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
               >
                 <img src="/images/imgi_20_ryou.png" alt="ryous" style={{ width: '16px' }} onError={(e) => e.target.style.display = 'none'} />
                 Pagar {cureCost} Ryous
               </button>
               {player.ryous < cureCost && (
-                <div className="danger mono" style={{ fontSize: '10px', marginTop: '8px' }}>Ryous Insuficientes</div>
+                <div className="danger mono text-xs mt-2">Ryous Insuficientes</div>
               )}
             </div>
           </>

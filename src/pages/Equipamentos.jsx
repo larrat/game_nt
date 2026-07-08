@@ -143,10 +143,9 @@ export default function Equipamentos({ player, updatePlayer }) {
     const equipped = getEquipped(type);
     
     return (
-      <div className={equipped ? "card-glass" : "card"} style={{ 
-        textAlign: 'center', width: '130px', 
+      <div className={equipped ? "card-glass flex-col items-center justify-center text-center border-line-solid" : "card flex-col items-center justify-center text-center border-line-dashed"} style={{ 
+        width: '130px', 
         background: equipped ? 'var(--ink-card)' : 'transparent', 
-        borderStyle: equipped ? 'solid' : 'dashed',
         borderColor: equipped ? getRarityColor(equipped.items.rarity) : 'var(--seal)'
       }}>
         <div className={equipped ? "page-title" : "page-title muted"} style={{ 
@@ -154,12 +153,12 @@ export default function Equipamentos({ player, updatePlayer }) {
         }}>
           {kanji}
         </div>
-        <div className={equipped ? "uppercase paper" : "uppercase muted"}>{title}</div>
+        <div className={equipped ? "uppercase paper text-xs" : "uppercase muted text-xs"}>{title}</div>
         
         {equipped && (
-          <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <span style={{ fontSize: '11px', color: 'var(--muted-bright)' }}>{equipped.items.name}</span>
-            <button className="btn-ghost" onClick={() => handleUnequip(equipped)} style={{ padding: '4px', fontSize: '10px' }}>Remover</button>
+          <div className="flex-col gap-sm mt-3 items-center w-full">
+            <span className="text-muted-bright text-xs">{equipped.items.name}</span>
+            <button className="btn-ghost p-1 text-xs w-full" onClick={() => handleUnequip(equipped)}>Remover</button>
           </div>
         )}
       </div>
@@ -194,41 +193,41 @@ export default function Equipamentos({ player, updatePlayer }) {
         subtitle='Gerencie seus equipamentos e veja o impacto nos seus atributos gerais.' 
       />
 
-      <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div className="flex-row gap-xl items-start flex-wrap">
         
         {/* LADO ESQUERDO: HERÓI & STATUS TOTAIS */}
-        <div className="flex-col" style={{ flex: '1 1 350px', gap: '24px', maxWidth: '400px' }}>
+        <div className="flex-col gap-lg flex-1" style={{ minWidth: '350px', maxWidth: '400px' }}>
           
-          <div className="card-glass flex-col" style={{ alignItems: 'center', padding: '32px 24px', position: 'relative', overflow: 'hidden', border: '1px solid var(--seal-bright)' }}>
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at top, rgba(212,162,42,0.1) 0%, transparent 60%)', pointerEvents: 'none' }} />
+          <div className="card-glass flex-col items-center p-8 relative overflow-hidden border-line-solid border-seal-bright">
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at top, rgba(212,162,42,0.1) 0%, transparent 60%)' }} />
             
-            <div style={{ width: '100px', height: '100px', borderRadius: '12px', overflow: 'hidden', border: '2px solid var(--gold)', marginBottom: '16px', zIndex: 1, background: 'var(--ink)' }}>
+            <div className="bg-ink z-10 mb-4 rounded-md overflow-hidden flex-row items-center justify-center border-gold" style={{ width: '100px', height: '100px', borderWidth: '2px' }}>
               {player.avatar?.startsWith('/') ? (
-                <img src={player.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={player.avatar} alt="Avatar" className="w-full h-full object-cover" />
               ) : (
-                <span style={{ fontSize: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>🥷</span>
+                <span className="text-5xl">🥷</span>
               )}
             </div>
             
-            <h2 className="gold uppercase" style={{ letterSpacing: '2px', zIndex: 1, textShadow: '0 2px 4px rgba(0,0,0,0.8)', fontSize: '24px' }}>{player.name}</h2>
-            <div className="badge badge-gold" style={{ zIndex: 1, marginTop: '8px' }}>Nível {player.level}</div>
+            <h2 className="gold uppercase text-2xl z-10 tracking-wide" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>{player.name}</h2>
+            <div className="badge badge-gold z-10 mt-2">Nível {player.level}</div>
           </div>
 
           <div className="card flex-col">
-            <h3 className="section-title gold" style={{ borderBottom: '1px solid var(--line)', paddingBottom: '12px', marginBottom: '16px' }}>Bônus de Equipamentos</h3>
+            <h3 className="section-title gold mb-4 pb-3 border-line-solid" style={{ borderBottomWidth: '1px' }}>Bônus de Equipamentos</h3>
             {Object.keys(totalBonus).length === 0 ? (
-              <div className="muted" style={{ textAlign: 'center', padding: '24px 0' }}>Nenhum bônus provido pelo equipamento atual.</div>
+              <div className="muted text-center py-6">Nenhum bônus provido pelo equipamento atual.</div>
             ) : (
-              <div className="grid-2" style={{ gap: '16px' }}>
+              <div className="grid-2 gap-md">
                 {Object.entries(totalBonus).map(([stat, val]) => (
-                  <div key={stat} className="flex-between" style={{ background: 'var(--ink-raised)', padding: '12px', borderRadius: '6px', border: '1px solid var(--line)', alignItems: 'center' }}>
-                    <div className="flex-row" style={{ alignItems: 'center', gap: '8px' }}>
-                      <div style={{ width: '20px', height: '20px', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--seal-bright)' }}>
-                        <img src={`/images/icons/${stat.toLowerCase()}.jpg`} alt={stat} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; }} />
+                  <div key={stat} className="flex-between bg-ink-raised p-3 rounded-sm border-line-solid items-center">
+                    <div className="flex-row items-center gap-sm">
+                      <div className="rounded-xs overflow-hidden border-line-solid border-seal-bright" style={{ width: '20px', height: '20px' }}>
+                        <img src={`/images/icons/${stat.toLowerCase()}.jpg`} alt={stat} className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
                       </div>
-                      <span className="muted uppercase" style={{ fontSize: '11px', letterSpacing: '1px' }}>{stat}</span>
+                      <span className="muted uppercase text-xs tracking-wide">{stat}</span>
                     </div>
-                    <span className="success mono" style={{ fontWeight: 'bold' }}>+{val}</span>
+                    <span className="success mono font-bold">+{val}</span>
                   </div>
                 ))}
               </div>
@@ -254,66 +253,63 @@ export default function Equipamentos({ player, updatePlayer }) {
 
           {/* MOCHILA */}
           <div className="card">
-            <div className="flex-between" style={{ marginBottom: '24px', borderBottom: '1px solid var(--line)', paddingBottom: '16px' }}>
-              <h3 className="section-title" style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: 0 }}>Mochila</h3>
+            <div className="flex-between mb-6 pb-4 border-line-solid" style={{ borderBottomWidth: '1px' }}>
+              <h3 className="section-title mb-0 pb-0" style={{ borderBottom: 'none' }}>Mochila</h3>
               
-              <div className="flex-row" style={{ gap: '8px', overflowX: 'auto', flexWrap: 'wrap' }}>
-                <div className="flex-row" style={{ gap: '8px' }}>
+              <div className="flex-row gap-sm overflow-x-auto flex-wrap">
+                <div className="flex-row gap-sm">
                   {['Todos', 'Favoritos', 'Cabeça', 'Tronco', 'Braços', 'Pernas', 'Arma', 'Acessório'].map(f => (
                     <button 
                       key={f} 
                       onClick={() => setFilter(f)}
-                      className={filter === f ? 'btn-attr' : 'btn-ghost'}
-                      style={{ fontSize: '11px', padding: '6px 12px', whiteSpace: 'nowrap' }}
+                      className={`text-xs p-2 whitespace-nowrap ${filter === f ? 'btn-attr' : 'btn-ghost'}`}
                     >
                       {f === 'Favoritos' ? '⭐' : f}
                     </button>
                   ))}
                 </div>
                 
-                <button onClick={handleMassSell} className="btn-ghost" style={{ fontSize: '11px', padding: '6px 12px', border: '1px solid #ef4444', color: '#ef4444', marginLeft: 'auto' }}>
+                <button onClick={handleMassSell} className="btn-ghost text-xs p-2 ml-auto" style={{ border: '1px solid #ef4444', color: '#ef4444' }}>
                   🗑️ Vender Lixo
                 </button>
               </div>
             </div>
             
             {loading ? (
-              <div className="muted" style={{ textAlign: 'center', padding: '40px' }}>Vasculhando a mochila...</div>
+              <div className="muted text-center py-10">Vasculhando a mochila...</div>
             ) : displayedItems.length === 0 ? (
-              <div className="muted" style={{ textAlign: 'center', padding: '40px', border: '1px dashed var(--line)' }}>
+              <div className="muted text-center py-10 border-line-dashed border-line">
                 {filter === 'Favoritos' ? 'Nenhum equipamento favoritado.' : 'Sua mochila está vazia para este filtro.'}
               </div>
             ) : (
-              <div className="grid-auto" style={{ gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
+              <div className="grid-auto gap-md" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
                 {displayedItems.map(invItem => (
-                  <div key={invItem.id} className="card-glass flex-col" style={{ 
-                    position: 'relative', 
-                    borderTop: `3px solid ${getRarityColor(invItem.rarity || invItem.items.rarity)}`,
-                    padding: '16px',
-                    gap: '12px'
+                  <div key={invItem.id} className="card-glass flex-col relative p-4 gap-sm" style={{ 
+                    borderTop: `3px solid ${getRarityColor(invItem.rarity || invItem.items.rarity)}`
                   }}>
                     
                     <button 
                         onClick={() => handleFavorite(invItem)}
-                        style={{ position: 'absolute', top: '12px', right: '12px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '14px', opacity: invItem.is_favorite ? 1 : 0.2, transition: 'all 0.2s' }}
+                        className="absolute bg-transparent border-none cursor-pointer text-sm transition-all"
+                        style={{ top: '12px', right: '12px', opacity: invItem.is_favorite ? 1 : 0.2 }}
                     >
                         ⭐
                     </button>
 
                     <div>
-                      <h4 style={{ color: getRarityColor(invItem.rarity || invItem.items.rarity), paddingRight: '24px', fontSize: '14px', marginBottom: '4px' }}>
+                      <h4 className="text-sm mb-1 pr-6" style={{ color: getRarityColor(invItem.rarity || invItem.items.rarity) }}>
                           {invItem.items.name}
                       </h4>
-                      <div className="muted" style={{ fontSize: '11px' }}>{invItem.rarity || invItem.items.rarity}</div>
+                      <div className="muted text-xs">{invItem.rarity || invItem.items.rarity}</div>
                     </div>
                     
-                    <div className="flex-row" style={{ gap: '8px' }}>
-                      <span className="badge badge-muted" style={{ fontSize: '10px' }}>{invItem.items.type}</span>
-                      <span className="badge badge-gold" style={{ fontSize: '10px' }}>Força Nv. {invItem.items.req_level}</span>
+                    <div className="flex-row gap-sm">
+                      <span className="badge badge-muted text-xs">{invItem.items.type}</span>
+                      <span className="badge badge-gold text-xs">Força Nv. {invItem.items.req_level}</span>
                     </div>
 
-                    <div className="card" style={{ background: 'var(--ink)', padding: '8px', border: '1px solid var(--line)', marginTop: 'auto' }}>
-                      <div className="mono" style={{ fontSize: '11px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <div className="card bg-ink p-2 border-line-solid mt-auto">
+                      <div className="mono text-xs flex-col gap-xs">
                         {Object.entries(invItem.rolled_stats || invItem.items.bonus_stats || {}).map(([stat, val]) => (
                           <div key={stat} className="flex-between">
                             <span className="muted uppercase">{stat}</span>
@@ -324,9 +320,9 @@ export default function Equipamentos({ player, updatePlayer }) {
                     </div>
                     
                     <button 
-                      className={player.level >= invItem.items.req_level ? "btn-primary" : "btn-danger"} 
+                      className={`w-full p-2 text-xs ${player.level >= invItem.items.req_level ? "btn-primary" : "btn-danger"}`} 
                       onClick={() => handleEquip(invItem)} 
-                      style={{ width: '100%', padding: '8px', fontSize: '12px', opacity: player.level >= invItem.items.req_level ? 1 : 0.5 }}
+                      style={{ opacity: player.level >= invItem.items.req_level ? 1 : 0.5 }}
                       disabled={player.level < invItem.items.req_level}
                     >
                       {player.level >= invItem.items.req_level ? 'Equipar Item' : 'Nível Muito Baixo'}

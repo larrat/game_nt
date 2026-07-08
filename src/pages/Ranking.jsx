@@ -64,51 +64,52 @@ export default function Ranking({ player }) {
         title='Hall da Fama'
         actions={
           <div className="filters">
-            <div className={`filter ${filter === 'geral' ? 'active' : ''}`} onClick={() => setFilter('geral')} style={{ cursor: 'pointer' }}>Geral</div>
-            <div className={`filter ${filter === 'vila' ? 'active' : ''}`} onClick={() => setFilter('vila')} style={{ cursor: 'pointer' }}>Por Vila</div>
+            <div className={`filter cursor-pointer ${filter === 'geral' ? 'active' : ''}`} onClick={() => setFilter('geral')}>Geral</div>
+            <div className={`filter cursor-pointer ${filter === 'vila' ? 'active' : ''}`} onClick={() => setFilter('vila')}>Por Vila</div>
 
           </div>
         }
       />
 
       {loading ? (
-        <div style={{ textAlign: 'center', padding: '60px' }}>Carregando ninjas lendários...</div>
+      {loading ? (
+        <div className="text-center py-10">Carregando ninjas lendários...</div>
       ) : (
         <>
           {top3.length > 0 && (
-            <div className="podium" style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: '16px', marginBottom: '48px', paddingTop: '40px' }}>
+            <div className="podium flex-row justify-center items-end gap-md mb-8 pt-6">
               {/* 2nd Place */}
               {top3[1] && (
-                <div style={{ textAlign: 'center', width: '200px' }}>
-                  <div className="paper" style={{ fontSize: '18px', marginBottom: '8px' }}>{top3[1].name}</div>
-                  <div className="card" style={{ height: '140px', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '16px', fontSize: '32px', color: '#cbd5e1' }}>2</div>
+                <div className="text-center podium-col">
+                  <div className="paper text-lg mb-2">{top3[1].name}</div>
+                  <div className="card flex-col items-center justify-start pt-4 text-4xl text-blue podium-bar-2">2</div>
                 </div>
               )}
               {/* 1st Place */}
               {top3[0] && (
-                <div style={{ textAlign: 'center', width: '220px' }}>
-                  <div className="gold" style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px' }}>
+                <div className="text-center podium-col">
+                  <div className="gold text-xl font-bold mb-2">
                     {top3[0].name}
                     {top3[0].name === kages[top3[0].village_id] && (
-                      <div style={{ marginTop: '4px' }}>
+                      <div className="mt-1">
                         <span className="badge badge-gold">{KAGES[top3[0].village_id] || 'KAGE'}</span>
                       </div>
                     )}
                   </div>
-                  <div className="card gold" style={{ height: '180px', border: '1px solid var(--gold)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '16px', fontSize: '40px' }}>1</div>
+                  <div className="card gold flex-col items-center justify-start pt-4 text-5xl border-line-solid border-gold podium-bar-1" style={{ borderWidth: '1px' }}>1</div>
                 </div>
               )}
               {/* 3rd Place */}
               {top3[2] && (
-                <div style={{ textAlign: 'center', width: '200px' }}>
-                  <div className="paper" style={{ fontSize: '18px', marginBottom: '8px' }}>{top3[2].name}</div>
-                  <div className="card" style={{ height: '120px', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '16px', fontSize: '28px', color: '#b45309' }}>3</div>
+                <div className="text-center podium-col">
+                  <div className="paper text-lg mb-2">{top3[2].name}</div>
+                  <div className="card flex-col items-center justify-start pt-4 text-3xl text-red podium-bar-3">3</div>
                 </div>
               )}
             </div>
           )}
 
-          <div className="list-head muted uppercase" style={{ display: 'grid', gridTemplateColumns: '60px 2fr 1fr 1fr 1fr', gap: '16px', padding: '16px', borderBottom: '1px solid var(--line)', fontSize: '11px', letterSpacing: '1px' }}>
+          <div className="list-head muted uppercase grid-ranking items-center gap-sm p-4 border-line-solid border-b text-xs tracking-wide" style={{ borderBottomWidth: '1px' }}>
             <div>Pos.</div><div>Personagem</div><div>Vila</div><div>Nível</div><div>XP</div>
           </div>
 
@@ -116,25 +117,21 @@ export default function Ranking({ player }) {
             {ranking.map((p, index) => {
               const isMe = player && player.name === p.name;
               return (
-              <div key={index} className="attr-row-item" style={{ 
-                display: 'grid', gridTemplateColumns: '60px 2fr 1fr 1fr 1fr', gap: '16px', alignItems: 'center',
-                borderLeft: isMe ? '3px solid var(--gold)' : 'none',
-                background: isMe ? 'rgba(212,162,42,0.1)' : 'transparent'
-              }}>
-                <div className={index < 3 ? 'gold' : 'muted'} style={{ fontWeight: index < 3 ? 'bold' : 'normal' }}>#{index + 1}</div>
-                <div style={{ fontWeight: 600, color: isMe ? 'var(--gold)' : 'inherit' }}>
-                  {p.name} <span className="muted" style={{ fontSize: '11px', fontWeight: 'normal', margin: '0 8px' }}>[{p.class || 'NIN'}]</span>
+              <div key={index} className={`attr-row-item grid-ranking gap-sm items-center ${isMe ? 'bg-gold-transparent border-l-3 border-gold' : ''}`} style={{ borderLeftStyle: isMe ? 'solid' : 'none', borderLeftWidth: isMe ? '3px' : '0px' }}>
+                <div className={index < 3 ? 'gold font-bold' : 'muted'}>#{index + 1}</div>
+                <div className={isMe ? 'gold font-bold' : 'font-bold'}>
+                  {p.name} <span className="muted text-xs mx-2 font-normal">[{p.class || 'NIN'}]</span>
                   {p.name === kages[p.village_id] && (
-                    <span className="badge badge-gold" style={{ marginLeft: '8px' }}>{KAGES[p.village_id] || 'KAGE'}</span>
+                    <span className="badge badge-gold ml-2">{KAGES[p.village_id] || 'KAGE'}</span>
                   )}
                 </div>
-                <div className="muted" style={{ fontSize: '13px' }}>{VILLAGES[p.village_id] || 'Desconhecida'}</div>
+                <div className="muted text-sm">{VILLAGES[p.village_id] || 'Desconhecida'}</div>
                 <div className="mono">{p.level}</div>
-                <div className="mono" style={{ color: 'var(--seal-bright)' }}>{p.xp}</div>
+                <div className="mono text-seal-bright">{p.xp}</div>
               </div>
               );
             })}
-            {ranking.length === 0 && <div className="muted" style={{ textAlign: 'center', padding: '24px' }}>Nenhum ninja encontrado.</div>}
+            {ranking.length === 0 && <div className="muted text-center py-6">Nenhum ninja encontrado.</div>}
           </div>
         </>
       )}

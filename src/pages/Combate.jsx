@@ -1207,28 +1207,28 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const playerBadges = [
     clanBonus.name && (
-      <div key="clan" className="badge badge-muted" style={{ fontSize: '10px' }}>Clã {clanBonus.name}</div>
+      <div key="clan" className="badge badge-muted text-xs">Clã {clanBonus.name}</div>
     ),
     equippedSummon && (
-      <div key="summon" className="badge badge-muted" style={{ fontSize: '10px' }}>🐾 {equippedSummon.name}</div>
+      <div key="summon" className="badge badge-muted text-xs">🐾 {equippedSummon.name}</div>
     ),
     activeBuffs?.duration > 0 && (
-      <div key="buff" className="badge badge-gold" style={{ fontSize: '10px' }}>✨ Buff [{activeBuffs.duration}T]</div>
+      <div key="buff" className="badge badge-gold text-xs">✨ Buff [{activeBuffs.duration}T]</div>
     ),
     ...playerStatus.map(s => (
-      <div key={s.name} className="badge badge-red" style={{ fontSize: '10px' }}>{s.icon || '🦠'} {s.name}</div>
+      <div key={s.name} className="badge badge-red text-xs">{s.icon || '🦠'} {s.name}</div>
     ))
   ].filter(Boolean);
 
   const npcBadges = [
     npcInit?.clan && (
-      <div key="clan" className="badge badge-muted" style={{ fontSize: '10px' }}>Clã {npcInit.clan}</div>
+      <div key="clan" className="badge badge-muted text-xs">Clã {npcInit.clan}</div>
     ),
     npcInit?.summon && (
-      <div key="summon" className="badge badge-muted" style={{ fontSize: '10px' }}>🐾 {npcInit.summon.name}</div>
+      <div key="summon" className="badge badge-muted text-xs">🐾 {npcInit.summon.name}</div>
     ),
     ...npcStatus.map(s => (
-      <div key={s.name} className="badge badge-red" style={{ fontSize: '10px' }}>{s.icon || '🦠'} {s.name}</div>
+      <div key={s.name} className="badge badge-red text-xs">{s.icon || '🦠'} {s.name}</div>
     ))
   ].filter(Boolean);
 
@@ -1238,7 +1238,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
       {!battleResult && (
         <div className="combat-turn-bar">
-          <div className="flex-between" style={{ fontSize: '12px', marginBottom: '8px' }}>
+          <div className="flex-between mb-2 text-xs">
             <span className="mono gold">
               {isPlayerTurn ? 'SEU TURNO' : 'TURNO INIMIGO'} — Rodada {roundCount}
             </span>
@@ -1247,14 +1247,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             )}
           </div>
           {isPlayerTurn && (
-            <div className="progress-track" style={{ height: '4px', background: 'rgba(0,0,0,0.5)' }}>
-              <div className={`progress-fill ${timeLeft <= 10 ? 'red' : 'gold'}`} style={{ width: `${(timeLeft / 30) * 100}%`, transition: 'width 1s linear' }} />
+            <div className="progress-track bg-black-alpha-50 h-1">
+              <div className={`progress-fill transition-all duration-1000 ${timeLeft <= 10 ? 'red' : 'gold'}`} style={{ width: `${(timeLeft / 30) * 100}%` }} />
             </div>
           )}
         </div>
       )}
 
-      <div className="flex-col" style={{ width: '100%', gap: '16px' }}>
+      <div className="flex-col w-full gap-md">
 
         <div className="combat-arena">
           <CombatFighterCard
@@ -1326,28 +1326,27 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
         {!battleResult ? (
           isAltAutoBattle ? (
-            <div className="card flex-col" style={{ textAlign: 'center', border: '1px dashed var(--gold)', background: 'var(--ink)' }}>
-              <div style={{ fontSize: '32px', marginBottom: '8px' }}>🤖</div>
-              <h3 className="gold" style={{ marginBottom: '8px' }}>Modo Auto-Battle</h3>
-              <p className="muted" style={{ fontSize: '12px' }}>O Wintrading Shield foi ativado. Você não pode interferir no combate contra seu próprio alter ego. O sistema resolverá a batalha com base nos atributos e na sorte de ambos.</p>
+            <div className="card flex-col text-center border-dashed border-gold bg-ink">
+              <div className="text-3xl mb-2">🤖</div>
+              <h3 className="gold mb-2">Modo Auto-Battle</h3>
+              <p className="muted text-xs">O Wintrading Shield foi ativado. Você não pode interferir no combate contra seu próprio alter ego. O sistema resolverá a batalha com base nos atributos e na sorte de ambos.</p>
             </div>
           ) : (
             <div className="combat-actions">
               <div className="combat-actions-header">
-                <span className="mono uppercase" style={{ fontSize: '11px', letterSpacing: '1.5px', color: 'var(--muted)' }}>Ações</span>
+                <span className="mono uppercase text-xs tracking-wider text-muted">Ações</span>
                 <span className="badge badge-muted">{getCombatJutsus(player).length + 1} técnicas</span>
               </div>
 
               <div className="combat-jutsu-section">
-                <div className="flex-row" style={{ gap: '4px', marginBottom: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <div className="flex-row gap-xs mb-3 flex-wrap justify-center">
                   {['All', 'Ninjutsu', 'Taijutsu', 'Genjutsu', 'Bukijutsu'].map(tab => {
                     const count = tab === 'All' ? getCombatJutsus(player).length : getCombatJutsus(player).filter(j => (j.category || '').toLowerCase() === tab.toLowerCase()).length;
                     if (tab !== 'All' && count === 0) return null;
                     return (
                       <button
                         key={tab}
-                        className={`badge ${activeJutsuTab === tab ? 'badge-gold' : 'badge-muted'}`}
-                        style={{ cursor: 'pointer', border: 'none', padding: '6px 12px' }}
+                        className={`badge cursor-pointer border-none px-3 py-1 ${activeJutsuTab === tab ? 'badge-gold' : 'badge-muted'}`}
                         onClick={() => setActiveJutsuTab(tab)}
                       >
                         {tab === 'All' ? 'Todos' : tab} ({count})
@@ -1383,7 +1382,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                           title={`${jutsu.name}\n${stats.cost} CP | ${stats.estDamage} DMG | ${stats.finalAcc}% ACC\nSelos req.: ${jutsu.req_seals || 0}\nCD: ${jutsu.cooldown || 0}T`}
                           type="button"
                         >
-                          <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+                          <div className="absolute inset-0 z-10">
                             <JutsuIcon jutsu={jutsu} />
                           </div>
                           {stats.isOnCooldown && (
@@ -1397,7 +1396,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                     })}
 
                   {getCombatJutsus(player).length === 0 && (
-                    <div className="info-banner" style={{ flex: 1, fontSize: '11px', padding: '12px 16px', minWidth: '200px' }}>
+                    <div className="info-banner flex-1 text-xs p-3 px-4 min-w-[200px]">
                       Aprenda jutsus na Academia Ninja
                     </div>
                   )}
@@ -1406,36 +1405,36 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
               <div className="combat-secondary-actions">
                 <button
-                  className="btn-ghost flex-row"
-                  style={{ border: surrenderConfirm ? '2px solid #ef4444' : '1px dashed #ef4444', color: '#ef4444', opacity: isPlayerTurn ? 1 : 0.5, justifyContent: 'center', gap: '8px', fontWeight: surrenderConfirm ? 'bold' : 'normal' }}
+                  className={`btn-ghost flex-row justify-center gap-sm ${!isPlayerTurn ? 'opacity-50' : ''}`}
+                  style={{ border: surrenderConfirm ? '2px solid #ef4444' : '1px dashed #ef4444', color: '#ef4444', fontWeight: surrenderConfirm ? 'bold' : 'normal' }}
                   disabled={!isPlayerTurn}
                   onClick={handleSurrender}
                   type="button"
                 >
-                  <span style={{ fontSize: '18px' }}>🏳️</span>
+                  <span className="text-lg">🏳️</span>
                   {surrenderConfirm ? 'Confirmar!' : 'Desistir'}
                 </button>
 
                 <button
-                  className={`btn-ghost flex-row ${autoBattle ? 'active' : ''}`}
-                  style={{ border: autoBattle ? '1px solid var(--gold)' : '1px solid var(--line)', color: autoBattle ? 'var(--gold)' : 'var(--muted)', opacity: isPlayerTurn ? 1 : 0.5, justifyContent: 'center', gap: '8px' }}
+                  className={`btn-ghost flex-row justify-center gap-sm ${autoBattle ? 'active' : ''} ${!isPlayerTurn ? 'opacity-50' : ''}`}
+                  style={{ border: autoBattle ? '1px solid var(--gold)' : '1px solid var(--line)', color: autoBattle ? 'var(--gold)' : 'var(--muted)' }}
                   onClick={() => setAutoBattle(!autoBattle)}
                   type="button"
                 >
-                  <span style={{ fontSize: '18px' }}>🤖</span>
+                  <span className="text-lg">🤖</span>
                   Auto: {autoBattle ? 'ON' : 'OFF'}
                 </button>
               </div>
             </div>
           )
         ) : (
-          <div className="flex-col" style={{ textAlign: 'center', padding: '24px', border: `1px solid ${battleResult === 'win' ? 'var(--gold)' : '#ef4444'}`, background: 'var(--ink-soft)', alignItems: 'center' }}>
-            <h2 className={battleResult === 'win' ? 'page-title gold' : 'page-title danger'} style={{ marginBottom: '16px' }}>
+          <div className="flex-col text-center p-6 bg-ink-soft items-center border-line-solid" style={{ borderColor: battleResult === 'win' ? 'var(--gold)' : '#ef4444' }}>
+            <h2 className={`page-title mb-4 ${battleResult === 'win' ? 'gold' : 'danger'}`}>
               {battleResult === 'win' ? 'Vitória!' : (battleResult === 'world_boss_end' ? 'Fim da Incursão' : 'Inconsciente')}
             </h2>
 
             {battleResult === 'world_boss_end' && (
-              <p className="muted" style={{ marginBottom: '16px' }}>Você causou um total de <strong className="danger" style={{ fontSize: '18px' }}>{accumulatedDamage}</strong> de dano ao Chefe Global!</p>
+              <p className="muted mb-4">Você causou um total de <strong className="danger text-lg">{accumulatedDamage}</strong> de dano ao Chefe Global!</p>
             )}
 
             <button className="btn-primary" onClick={battleResult === 'world_boss_end' ? handleWorldBossEnd : () => navigate(battleResult === 'win' ? (location.state?.isExame ? '/exame' : (location.state?.fromMap ? '/mapa' : '/dojo')) : (location.state?.isExame ? '/exame' : '/hospital'), { state: { roundWon: battleResult === 'win' ? location.state?.exameRound : null } })} disabled={loading}>

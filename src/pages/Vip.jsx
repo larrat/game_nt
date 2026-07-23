@@ -33,18 +33,16 @@ export default function Vip({ player, updatePlayer }) {
     const statKey = talentInput;
     
     setLoading(true);
-    const { error } = await supabase.from('players').update({
-      vip_credits: vipCredits - 1,
-      total_vip_spent: (player.total_vip_spent || 0) + 1,
-      [statKey]: player[statKey] - 1,
-      pontos_atributos: (player.pontos_atributos || 0) + 1
-    }).eq('id', player.id);
+    const { error } = await supabase.rpc('vip_reset_talento', {
+      p_player_id: player.id,
+      p_stat_name: statKey
+    });
 
     if (error) {
       addToast("Erro: " + error.message, "error");
     } else {
       addToast(`Sucesso! Você devolveu 1 ponto de ${statKey.toUpperCase()} e gastou 1 Crédito VIP.`, "success");
-      updatePlayer(player.user_id);
+      updatePlayer(player.id);
     }
     setLoading(false);
   };
@@ -59,19 +57,13 @@ export default function Vip({ player, updatePlayer }) {
   const confirmCharacterChange = async () => {
     setShowCharModal(false);
     setLoading(true);
-    const { error } = await supabase.from('players').update({
-      vip_credits: vipCredits - 2,
-      total_vip_spent: (player.total_vip_spent || 0) + 2,
-      // Forçamos o reset das estatísticas principais aqui para simular o reset de conta
-      level: 1,
-      xp: 0,
-      ryous: 1000,
-      pontos_atributos: 0
-    }).eq('id', player.id);
+    const { error } = await supabase.rpc('vip_reset_personagem', {
+      p_player_id: player.id
+    });
 
     if (!error) {
       addToast("Conta preparada para troca de personagem!", "success");
-      updatePlayer(player.user_id);
+      updatePlayer(player.id);
       // Aqui faríamos a lógica de redirecionar para a tela de Seleção
       navigate('/selecionar');
     } else {
@@ -94,14 +86,14 @@ export default function Vip({ player, updatePlayer }) {
         subtitle="Apoie o jogo e ganhe facilidades para sua jornada ninja."
       />
 
-      <div className="points-banner" style={{ background: 'var(--seal-glow)', borderColor: 'var(--seal-bright)', marginBottom: '32px' }}>
+      <div className="points-banner bg-seal-glow border-seal-bright mb-8">
         <div>
-          <div className="pts-label" style={{ color: 'var(--seal-bright)' }}>Seus Créditos VIP</div>
+          <div className="pts-label text-seal-bright">Seus Créditos VIP</div>
           <div className="pts-val gold">{vipCredits} 💎</div>
         </div>
-        <div style={{ textAlign: 'right' }}>
+        <div className="text-right">
           <div className="pts-label">Total Gasto na Temporada</div>
-          <div className="paper mono" style={{ fontSize: '18px' }}>{player.total_vip_spent || 0} Créditos</div>
+          <div className="paper mono text-lg">{player.total_vip_spent || 0} Créditos</div>
         </div>
       </div>
 
@@ -110,28 +102,28 @@ export default function Vip({ player, updatePlayer }) {
         <div className="card">
           <h3 className="section-title">Serviços Ninja</h3>
           
-          <div style={{ padding: '16px', border: '1px solid var(--line)', borderRadius: '8px', marginBottom: '16px' }}>
-            <div className="flex-between" style={{ marginBottom: '8px' }}>
-              <h4 className="paper" style={{ fontSize: '16px' }}>Reset de Talento Avulso</h4>
+          <div className="p-4 border-line-solid rounded-md mb-4">
+            <div className="flex-between mb-2">
+              <h4 className="paper text-xl">Reset de Talento Avulso</h4>
               <span className="mono gold">1 💎</span>
             </div>
-            <p className="muted" style={{ fontSize: '13px', lineHeight: '1.5', marginBottom: '16px' }}>
+            <p className="muted text-xs leading-relaxed mb-4">
               Errou na build? Use este serviço para resetar exatamente UM (1) ponto de atributo sem precisar resetar toda a sua ficha técnica.
             </p>
-            <button className="btn-ghost" style={{ width: '100%', borderColor: 'var(--seal-bright)' }} onClick={handleSingleTalentReset} disabled={loading}>
+            <button className="btn-ghost w-full border-seal-bright" onClick={handleSingleTalentReset} disabled={loading}>
               Resetar Talento Avulso
             </button>
           </div>
 
-          <div style={{ padding: '16px', border: '1px dashed #ef4444', borderRadius: '8px' }}>
-            <div className="flex-between" style={{ marginBottom: '8px' }}>
-              <h4 className="danger" style={{ fontSize: '16px' }}>Troca de Personagem</h4>
+          <div className="p-4 border-line-dashed border-danger rounded-md">
+            <div className="flex-between mb-2">
+              <h4 className="danger text-xl">Troca de Personagem</h4>
               <span className="mono gold">2 💎</span>
             </div>
-            <p className="muted" style={{ fontSize: '13px', lineHeight: '1.5', marginBottom: '16px' }}>
+            <p className="muted text-xs leading-relaxed mb-4">
               Permite trocar de personagem. <strong className="danger">Atenção:</strong> Seu personagem será totalmente resetado. Recomendado apenas para o 1º dia do round.
             </p>
-            <button className="btn-ghost" style={{ width: '100%', borderColor: '#ef4444', color: '#ef4444' }} onClick={handleCharacterChange} disabled={loading}>
+            <button className="btn-ghost w-full border-danger text-danger" onClick={handleCharacterChange} disabled={loading}>
               Mudar Personagem Inicial
             </button>
           </div>
@@ -140,27 +132,27 @@ export default function Vip({ player, updatePlayer }) {
         {/* RECOMPENSA DE TEMPORADA */}
         <div className="card">
           <h3 className="section-title">Recompensas da Temporada</h3>
-          <p className="muted" style={{ fontSize: '13px', marginBottom: '24px' }}>
+          <p className="muted text-sm mb-6">
             O valor gasto em VIP desbloqueia personagens únicos ao final da rodada! Acompanhe seu progresso:
           </p>
           
-          <div className="flex-col" style={{ gap: '16px' }}>
+          <div className="flex-col gap-4">
             {milestones.map((ms, idx) => {
               const spent = player.total_vip_spent || 0;
               const isAchieved = spent >= ms.spent;
               const percent = Math.min(100, (spent / ms.spent) * 100);
               
               return (
-                <div key={idx} style={{ background: 'var(--ink-raised)', padding: '16px', borderRadius: '8px', border: isAchieved ? '1px solid var(--seal-bright)' : '1px solid var(--line)' }}>
-                  <div className="flex-between" style={{ marginBottom: '8px' }}>
+                <div key={idx} className={`bg-ink-raised p-4 rounded-md ${isAchieved ? 'border-line-solid border-seal-bright' : 'border-line-solid'}`}>
+                  <div className="flex-between mb-2">
                     <span className={isAchieved ? "gold" : "paper"}>{ms.reward}</span>
                     <span className="mono muted">{spent}/{ms.spent} 💎</span>
                   </div>
-                  <div className="progress-track" style={{ height: '6px' }}>
+                  <div className="progress-track h-2">
                     <div className="progress-fill gold" style={{ width: `${percent}%` }} />
                   </div>
                   {isAchieved && (
-                    <div className="success mono" style={{ fontSize: '10px', marginTop: '8px', textAlign: 'right' }}>✓ DESBLOQUEADO</div>
+                    <div className="success mono text-xs mt-2 text-right">✓ DESBLOQUEADO</div>
                   )}
                 </div>
               );
@@ -173,16 +165,16 @@ export default function Vip({ player, updatePlayer }) {
       {showTalentModal && (
         <div className="modal-overlay">
           <div className="modal-content card">
-            <h3 className="card-title" style={{ fontSize: '20px', marginBottom: '16px' }}>Reset de Talento</h3>
-            <p className="muted" style={{ marginBottom: '16px', lineHeight: '1.5' }}>
+            <h3 className="card-title text-xl mb-4">Reset de Talento</h3>
+            <p className="muted mb-4 leading-relaxed">
               Selecione qual atributo você deseja remover 1 ponto. Você receberá 1 ponto livre para redistribuir.
               <br/><span className="gold">Custo: 1 Crédito VIP</span>
             </p>
-            <div style={{ marginBottom: '24px' }}>
+            <div className="mb-6">
               <select 
                 value={talentInput}
                 onChange={(e) => setTalentInput(e.target.value)}
-                style={{ width: '100%', padding: '12px', background: 'var(--ink)', border: '1px solid var(--line)', color: 'var(--paper)', borderRadius: '6px' }}
+                className="w-full p-3 bg-ink border-line-solid text-paper rounded-md"
               >
                 <option value="taijutsu">Taijutsu (Atual: {player.taijutsu || 0})</option>
                 <option value="ninjutsu">Ninjutsu (Atual: {player.ninjutsu || 0})</option>
@@ -196,7 +188,7 @@ export default function Vip({ player, updatePlayer }) {
                 <option value="inteligencia">Inteligência (Atual: {player.inteligencia || 0})</option>
               </select>
             </div>
-            <div className="flex-row" style={{ justifyContent: 'flex-end', gap: '12px' }}>
+            <div className="flex-row justify-end gap-3">
               <button className="btn-ghost" onClick={() => setShowTalentModal(false)}>Cancelar</button>
               <button className="btn-primary" onClick={confirmSingleTalentReset}>Confirmar Reset</button>
             </div>
@@ -207,14 +199,14 @@ export default function Vip({ player, updatePlayer }) {
       {/* Modal Troca Personagem */}
       {showCharModal && (
         <div className="modal-overlay">
-          <div className="modal-content card" style={{ border: '1px solid #ef4444' }}>
-            <h3 className="card-title danger" style={{ fontSize: '20px', marginBottom: '16px' }}>Troca de Personagem</h3>
-            <p className="muted" style={{ marginBottom: '24px', lineHeight: '1.5' }}>
+          <div className="modal-content card border-danger-solid">
+            <h3 className="card-title danger text-xl mb-4">Troca de Personagem</h3>
+            <p className="muted mb-6 leading-relaxed">
               <strong className="danger">Atenção:</strong> Essa vantagem só é recomendada no 1º Dia do Round. Ao aceitar, você perderá <span className="gold">2 Créditos VIP</span> e será enviado à tela de seleção de personagem, onde sua conta será resetada para o personagem novo! Deseja prosseguir?
             </p>
-            <div className="flex-row" style={{ justifyContent: 'flex-end', gap: '12px' }}>
+            <div className="flex-row justify-end gap-3">
               <button className="btn-ghost" onClick={() => setShowCharModal(false)}>Cancelar</button>
-              <button className="btn-danger" onClick={confirmCharacterChange} style={{ padding: '8px 16px' }}>Resetar Personagem</button>
+              <button className="btn-danger py-2 px-4" onClick={confirmCharacterChange}>Resetar Personagem</button>
             </div>
           </div>
         </div>

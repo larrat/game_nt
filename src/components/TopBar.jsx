@@ -31,7 +31,7 @@ export default function TopBar({ player, updatePlayer }) {
     setPrevRyous(player?.ryous || 0);
   }, [player?.ryous]);
 
-  // Regen passivo de HP/Chakra/Stamina a cada 15 segundos
+  // Regen passivo de HP/Chakra/Stamina a cada 60 segundos
   React.useEffect(() => {
     if (!player || player.is_fainted) return;
     const interval = setInterval(async () => {
@@ -42,12 +42,12 @@ export default function TopBar({ player, updatePlayer }) {
       const cC = player.chakra ?? maxC;
       const cS = player.stamina ?? maxS;
       if (cH >= maxH && cC >= maxC && cS >= maxS) return;
-      const newH = Math.min(maxH, cH + Math.max(1, Math.floor(maxH * 0.1)));
-      const newC = Math.min(maxC, cC + Math.max(1, Math.floor(maxC * 0.1)));
-      const newS = Math.min(maxS, cS + Math.max(1, Math.floor(maxS * 0.1)));
+      const newH = Math.min(maxH, cH + Math.max(1, Math.floor(maxH * 0.4)));
+      const newC = Math.min(maxC, cC + Math.max(1, Math.floor(maxC * 0.4)));
+      const newS = Math.min(maxS, cS + Math.max(1, Math.floor(maxS * 0.4)));
       await supabase.from('players').update({ hp: newH, chakra: newC, stamina: newS }).eq('id', player.id);
-      if (updatePlayer) updatePlayer();
-    }, 15000);
+      if (updatePlayer) updatePlayer(player.id);
+    }, 60000);
     return () => clearInterval(interval);
   }, [player?.id, player?.hp, player?.chakra, player?.stamina]);
 
@@ -77,164 +77,112 @@ export default function TopBar({ player, updatePlayer }) {
     xpPercent = Math.min(100, Math.max(0, (currentXp / requiredXp) * 100));
   }
 
+  const debuffs = getGlobalDebuffs(activeEvent);
+  const isCursed = debuffs.staminaCostMultiplier > 1;
+
   return (
-    <div className="topbar-global" style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      background: 'rgba(10, 15, 20, 0.85)',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid var(--line)',
-      padding: '12px 32px',
-      position: 'sticky',
-      top: 0,
-      zIndex: 90,
-      boxShadow: '0 4px 24px rgba(0,0,0,0.4)'
-    }}>
+    <div className="topbar-wrapper">
       
       {/* Esquerda: Identidade (Vila, Clan, Nome) */}
-      <div className="flex-row" style={{ gap: '16px', alignItems: 'center' }}>
-        <div style={{
-          width: '40px', height: '40px', borderRadius: '50%',
-          border: '1px solid var(--seal-bright)',
-          background: 'var(--ink-card)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          overflow: 'hidden'
-        }}>
-          {player.avatar ? (
-            <img src={player.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      <div className="flex-row">
+        <div className="topbar-avatar">
+          {player.avatar?.startsWith('/') ? (
+            <img src={player.avatar} alt="Avatar" />
           ) : (
-            <span style={{ fontSize: '18px' }}>👤</span>
+            <img src={`https://placehold.co/100x100/1c1c22/b3232d?text=${player.name?.charAt(0)}`} alt="Avatar" />
           )}
         </div>
-        <div>
-          <div className="gold mono uppercase" style={{ fontSize: '10px', letterSpacing: '1px', marginBottom: '2px' }}>
-            Nível {player.level || 1} • {player.rank || 'Estudante'} • Vila da {VILLAGES[player.village_id]}
+        
+        <div className="flex-col gap-1">
+          <div className="flex-row gap-2">
+            <span className="mono gold text-xs uppercase">{VILLAGES[player.village_id] || 'Nukenin'}</span>
+            <span className="mono muted text-xs uppercase">{player.clan || 'Sem Clã'}</span>
           </div>
-          <div className="flex-between" style={{ alignItems: 'baseline', marginBottom: '3px' }}>
-            <div className="paper" style={{ fontFamily: 'Shippori Mincho', fontSize: '16px', fontWeight: 'bold' }}>
-              {player.name}
-            </div>
-            <div className="mono" style={{ fontSize: '9px', color: '#4ade80', whiteSpace: 'nowrap', marginLeft: '8px' }}>
-              {currentXp.toLocaleString()} / {requiredXp.toLocaleString()} XP ({Math.floor(xpPercent)}%)
-            </div>
-          </div>
-          <div className="progress-track" style={{ height: '4px', width: '100%', background: 'rgba(0,0,0,0.5)', border: '1px solid var(--line-bright)' }}>
-            <div className="progress-fill green" style={{ width: `${xpPercent}%`, transition: 'width 0.5s ease' }}></div>
+          <div className="flex-row gap-2">
+            <span className="text-paper font-bold text-[15px] tracking-wide">{player.name}</span>
+            <span className="badge badge-muted px-1.5 py-0.5 text-[10px]">Nv {calculateLevelFromXP(player.xp)}</span>
           </div>
         </div>
       </div>
 
-      <div className="flex-row" style={{ gap: '24px', alignItems: 'center' }}>
+      {/* Centro: Barras de Status Pessoais */}
+      <div className="flex-row gap-6">
         
-        {/* Ryous & Kuro Coins */}
-        <div className="flex-row" style={{ 
-          alignItems: 'center', gap: '12px', background: 'rgba(212,162,42,0.1)', border: '1px solid var(--gold)', borderRadius: '20px', padding: '4px 16px',
-          boxShadow: ryousFlash ? '0 0 15px var(--gold)' : 'none',
-          transform: ryousFlash ? 'scale(1.05)' : 'scale(1)',
-          transition: 'all 0.3s ease'
-        }}>
-          <div className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>
-            <span style={{ fontSize: '14px' }}>💴</span>
-            <span className="mono" style={{ fontSize: '12px', color: ryousFlash ? '#4ade80' : 'var(--paper)', transition: 'color 0.3s' }}>{player.ryous || 0}</span>
-          </div>
-          <div style={{ width: '1px', height: '12px', background: 'var(--gold)', opacity: 0.5 }}></div>
-          <div className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>
-            <span style={{ fontSize: '14px' }}>🪙</span>
-            <span className="gold mono" style={{ fontSize: '12px', fontWeight: 'bold' }}>{player.vip_coins || 0}</span>
-          </div>
-        </div>
-
         {/* HP */}
-        <div className="flex-col" style={{ gap: '4px', width: '140px' }}>
-          <div className="flex-between">
-            <span className="muted uppercase mono" style={{ fontSize: '9px', letterSpacing: '1px' }}>Saúde</span>
-            <span className="mono" style={{ fontSize: '10px', color: '#ff4b4b' }}>{currentHp}/{maxHp}</span>
-          </div>
-          <div className="progress-track" style={{ height: '8px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,75,75,0.2)', overflow: 'visible' }}>
-            <div className="progress-fill red" style={{ width: `${hpPercent}%`, position: 'relative', transition: 'width 0.5s ease' }}>
-              <img src="/images/imgi_8_heart.png" alt="HP" style={{ position: 'absolute', right: '-8px', top: '-6px', width: '20px' }} />
-            </div>
+        <div className="topbar-stat-container" title={`HP: ${currentHp} / ${maxHp}`}>
+          <img src="/images/imgi_98_heart.png" alt="HP" className="topbar-stat-icon" />
+          <div className="topbar-stat-bar-bg">
+            <div className="topbar-stat-bar-fill red" style={{ width: `${hpPercent}%` }} />
           </div>
         </div>
 
         {/* Chakra */}
-        <div className="flex-col" style={{ gap: '4px', width: '140px' }}>
-          <div className="flex-between">
-            <span className="muted uppercase mono" style={{ fontSize: '9px', letterSpacing: '1px' }}>Chakra</span>
-            <span className="mono" style={{ fontSize: '10px', color: '#4b9eff' }}>{currentCp}/{maxCp}</span>
-          </div>
-          <div className="progress-track" style={{ height: '8px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(75,158,255,0.2)', overflow: 'visible' }}>
-            <div className="progress-fill blue" style={{ width: `${cpPercent}%`, position: 'relative', transition: 'width 0.5s ease' }}>
-              <img src="/images/imgi_9_chakra.png" alt="CP" style={{ position: 'absolute', right: '-8px', top: '-8px', width: '20px' }} />
-            </div>
+        <div className="topbar-stat-container" title={`Chakra: ${currentCp} / ${maxCp}`}>
+          <img src="/images/imgi_99_chakra.png" alt="CP" className="topbar-stat-icon" />
+          <div className="topbar-stat-bar-bg">
+            <div className="topbar-stat-bar-fill blue" style={{ width: `${cpPercent}%` }} />
           </div>
         </div>
 
         {/* Stamina */}
-        <div className="flex-col" style={{ gap: '4px', width: '140px' }}>
-          <div className="flex-between">
-            <span className="muted uppercase mono" style={{ fontSize: '9px', letterSpacing: '1px' }}>Energia</span>
-            <span className="mono gold" style={{ fontSize: '10px' }}>{currentSp}/{maxSp}</span>
-          </div>
-          <div className="progress-track" style={{ height: '8px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(212,162,42,0.2)', overflow: 'visible' }}>
-            <div className="progress-fill gold" style={{ width: `${spPercent}%`, position: 'relative', transition: 'width 0.5s ease' }}>
-              <img src="/images/imgi_10_stamina.png" alt="SP" style={{ position: 'absolute', right: '-8px', top: '-6px', width: '20px' }} />
-            </div>
+        <div className="topbar-stat-container" title={`Stamina: ${currentSp} / ${maxSp}`}>
+          <img src="/images/imgi_100_stamina.png" alt="SP" className="topbar-stat-icon" style={{ filter: isCursed ? 'hue-rotate(240deg) saturate(2)' : 'none' }} />
+          <div className="topbar-stat-bar-bg">
+            <div className="topbar-stat-bar-fill yellow" style={{ width: `${spPercent}%`, filter: isCursed ? 'hue-rotate(240deg) saturate(2)' : 'none' }} />
           </div>
         </div>
 
-        {/* Mochila / Inventário Rápido */}
-        <div onClick={() => setIsInventoryOpen(true)} style={{ marginLeft: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '36px', height: '36px', borderRadius: '50%', background: 'var(--ink-raised)', border: '1px solid var(--line-bright)', transition: 'all 0.2s' }} title="Inventário de Consumíveis">
-          <span style={{ fontSize: '16px' }}>🎒</span>
+        {/* XP */}
+        <div className="topbar-stat-container" title={`XP: ${currentXp} / ${requiredXp}`}>
+          <img src="/images/imgi_32_star.png" alt="XP" className="topbar-stat-icon" />
+          <div className="topbar-stat-bar-bg">
+            <div className="topbar-stat-bar-fill green" style={{ width: `${xpPercent}%` }} />
+          </div>
         </div>
-
       </div>
 
-    <InventoryModal isOpen={isInventoryOpen} onClose={() => setIsInventoryOpen(false)} player={player} updatePlayer={updatePlayer} />
-      {/* Tracker de Evento e Debuffs - Slim Banner */}
-      {activeEvent && activeEvent.is_world_boss && (
-        <div style={{
-          position: 'absolute', bottom: '-28px', left: 0, right: 0,
-          background: 'linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.15) 20%, rgba(239, 68, 68, 0.25) 50%, rgba(239, 68, 68, 0.15) 80%, transparent)', 
-          borderBottom: '1px solid rgba(239, 68, 68, 0.3)',
-          color: 'var(--danger)',
-          padding: '4px 16px',
-          fontSize: '11px', fontWeight: 'bold', display: 'flex', gap: '24px', justifyContent: 'center', alignItems: 'center',
-          backdropFilter: 'blur(4px)',
-          zIndex: -1,
-          animation: 'pulseGlow 2s infinite alternate'
-        }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', letterSpacing: '1px', textTransform: 'uppercase' }}>
-            <span style={{ fontSize: '14px', filter: 'drop-shadow(0 0 4px red)' }}>🦊</span> {activeEvent.name} Ativo
+      {/* Direita: Economia e Ações */}
+      <div className="flex-row gap-6">
+        
+        {/* Ryous */}
+        <div 
+          className="flex-row gap-2 px-3 py-1 rounded border border-line-bright transition-colors duration-300"
+          style={{ 
+            backgroundColor: ryousFlash ? 'rgba(212, 162, 42, 0.3)' : 'var(--ink-card)'
+          }}
+          title="Ryous (Dinheiro)"
+        >
+          <img src="/images/imgi_110_ryous.png" alt="Ryous" className="w-[18px] h-[18px]" />
+          <span className="font-mono text-gold text-[13px] font-semibold">
+            {player.ryous?.toLocaleString() || 0}
           </span>
-          {(() => {
-            const debuffs = getGlobalDebuffs(activeEvent);
-            const activeTags = [];
-            if (debuffs.staminaCostMultiplier > 1) activeTags.push(`Stamina x${debuffs.staminaCostMultiplier}`);
-            if (debuffs.accuracyPenalty > 0) activeTags.push(`Precisão -${debuffs.accuracyPenalty}%`);
-            if (debuffs.hospitalCostMultiplier > 1) activeTags.push(`Hospital x${debuffs.hospitalCostMultiplier}`);
-            if (debuffs.ryouGainMultiplier < 1) activeTags.push(`Ryous x${debuffs.ryouGainMultiplier}`);
-            
-            if (activeTags.length === 0) return null;
-            return (
-              <span style={{ display: 'flex', gap: '12px', opacity: 0.9 }}>
-                {activeTags.map((t,i) => (
-                  <span key={i} className="mono" style={{ color: 'var(--paper)', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>
-                    • {t}
-                  </span>
-                ))}
-              </span>
-            );
-          })()}
         </div>
-      )}
-      <style>{`
-        @keyframes pulseGlow {
-          0% { box-shadow: inset 0 -5px 15px -10px rgba(239,68,68,0); }
-          100% { box-shadow: inset 0 -5px 15px -10px rgba(239,68,68,0.8); }
-        }
-      `}</style>
+        
+        <div 
+          className="flex-row gap-2 bg-ink-card px-3 py-1 rounded border border-line-bright"
+          title="VIP Coins"
+        >
+          <img src="/images/imgi_88_vip.png" alt="VIP Coins" className="w-[18px] h-[18px]" />
+          <span className="font-mono text-muted-bright text-[13px] font-semibold">
+            {player.vip_coins?.toLocaleString() || 0}
+          </span>
+        </div>
+
+        <button 
+          className="btn-attr w-9 h-9 p-0 flex items-center justify-center"
+          onClick={() => setIsInventoryOpen(true)}
+          title="Abrir Inventário (Mochila)"
+        >
+          🎒
+        </button>
+      </div>
+
+      <InventoryModal 
+        isOpen={isInventoryOpen} 
+        onClose={() => setIsInventoryOpen(false)} 
+        player={player} 
+        updatePlayer={updatePlayer}
+      />
     </div>
   );
 }

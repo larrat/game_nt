@@ -72,7 +72,6 @@ export default function Ranking({ player }) {
       />
 
       {loading ? (
-      {loading ? (
         <div className="text-center py-10">Carregando ninjas lendários...</div>
       ) : (
         <>
@@ -96,7 +95,7 @@ export default function Ranking({ player }) {
                       </div>
                     )}
                   </div>
-                  <div className="card gold flex-col items-center justify-start pt-4 text-5xl border-line-solid border-gold podium-bar-1" style={{ borderWidth: '1px' }}>1</div>
+                  <div className="card gold flex-col items-center justify-start pt-4 text-5xl border-line-solid border-gold podium-bar-1 border">1</div>
                 </div>
               )}
               {/* 3rd Place */}
@@ -109,7 +108,7 @@ export default function Ranking({ player }) {
             </div>
           )}
 
-          <div className="list-head muted uppercase grid-ranking items-center gap-sm p-4 border-line-solid border-b text-xs tracking-wide" style={{ borderBottomWidth: '1px' }}>
+          <div className="list-head muted uppercase grid-ranking items-center gap-sm p-4 border-line-solid border-b text-xs tracking-wide">
             <div>Pos.</div><div>Personagem</div><div>Vila</div><div>Nível</div><div>XP</div>
           </div>
 
@@ -117,7 +116,7 @@ export default function Ranking({ player }) {
             {ranking.map((p, index) => {
               const isMe = player && player.name === p.name;
               return (
-              <div key={index} className={`attr-row-item grid-ranking gap-sm items-center ${isMe ? 'bg-gold-transparent border-l-3 border-gold' : ''}`} style={{ borderLeftStyle: isMe ? 'solid' : 'none', borderLeftWidth: isMe ? '3px' : '0px' }}>
+              <div key={index} className={`attr-row-item grid-ranking gap-sm items-center border-l-3 ${isMe ? 'bg-gold-transparent border-gold' : 'border-transparent'}`}>
                 <div className={index < 3 ? 'gold font-bold' : 'muted'}>#{index + 1}</div>
                 <div className={isMe ? 'gold font-bold' : 'font-bold'}>
                   {p.name} <span className="muted text-xs mx-2 font-normal">[{p.class || 'NIN'}]</span>

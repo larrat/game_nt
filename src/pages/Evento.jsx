@@ -118,53 +118,52 @@ export default function Evento({ player, updatePlayer }) {
       />
 
       {loading ? (
-        <div className="muted" style={{ textAlign: 'center', padding: '40px' }}>Procurando anomalias no mundo...</div>
+        <div className="muted text-center p-10">Procurando anomalias no mundo...</div>
       ) : isWeekend ? (
-        <div className="card" style={{ textAlign: 'center', padding: '60px 24px' }}>
+        <div className="card text-center px-6 py-12">
           <h2 className="muted">Fim de Semana de Descanso</h2>
-          <p className="muted" style={{ maxWidth: '400px', margin: '16px auto 0' }}>Os Kages ordenaram que as expedições param aos sábados e domingos para a manutenção das barreiras da Vila. Volte segunda-feira!</p>
-          <button className="btn-ghost" onClick={() => navigate('/dashboard')} style={{ marginTop: '24px' }}>Voltar</button>
+          <p className="muted max-w-400 mx-auto mt-4">Os Kages ordenaram que as expedições param aos sábados e domingos para a manutenção das barreiras da Vila. Volte segunda-feira!</p>
+          <button className="btn-ghost mt-6" onClick={() => navigate('/dashboard')}>Voltar</button>
         </div>
       ) : !event ? (
-        <div className="card" style={{ textAlign: 'center', padding: '60px 24px' }}>
+        <div className="card text-center px-6 py-12">
           <h2 className="muted">Nenhum Evento Ativo</h2>
-          <p className="muted" style={{ maxWidth: '400px', margin: '16px auto 0' }}>O mundo ninja está em paz no momento. Continue seu treinamento.</p>
-          <button className="btn-ghost" onClick={() => navigate('/dashboard')} style={{ marginTop: '24px' }}>Voltar</button>
+          <p className="muted max-w-400 mx-auto mt-4">O mundo ninja está em paz no momento. Continue seu treinamento.</p>
+          <button className="btn-ghost mt-6" onClick={() => navigate('/dashboard')}>Voltar</button>
         </div>
       ) : (
-        <div className="card-glass flex-col" style={{ alignItems: 'center', padding: '48px', position: 'relative', overflow: 'hidden', border: '1px solid #ef4444' }}>
+        <div className="card-glass flex-col items-center p-12 relative overflow-hidden border-danger">
 
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'radial-gradient(circle at center, rgba(239, 68, 68, 0.1) 0%, transparent 70%)', pointerEvents: 'none' }}></div>
+          <div className="absolute inset-0 bg-gradient-radial-danger pointer-events-none" />
 
-          <h2 className="danger uppercase" style={{ fontSize: '32px', textShadow: '0 0 20px rgba(239,68,68,0.5)', marginBottom: '8px', zIndex: 1 }}>
+          <h2 className="danger uppercase text-4xl mb-2 z-10 drop-shadow-danger">
             {event.name}
           </h2>
-          <p className="paper" style={{ maxWidth: '600px', textAlign: 'center', marginBottom: '16px', zIndex: 1 }}>
+          <p className="paper max-w-600 text-center mb-4 z-10">
             {event.description}
           </p>
 
-          <div className="flex-row" style={{ gap: '12px', marginBottom: '32px', zIndex: 1, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className="flex-row gap-md mb-8 z-10 flex-wrap justify-center">
             <span className="badge badge-gold">Tickets: {currentTickets} / {maxTickets}</span>
             {timeLeft && <span className="badge badge-muted">Termina em: {timeLeft}</span>}
           </div>
 
-          <div style={{ fontSize: '100px', marginBottom: '32px', animation: 'pulse 2s infinite', zIndex: 1 }}>
+          <div className="text-8xl mb-8 animate-pulse z-10">
             🦊
           </div>
 
-          <div style={{ width: '100%', maxWidth: '600px', marginBottom: '32px', zIndex: 1 }}>
-            <div className="flex-between" style={{ marginBottom: '8px' }}>
-              <span className="danger mono" style={{ fontSize: '14px' }}>HP DO CHEFE</span>
-              <span className="paper mono" style={{ fontSize: '14px' }}>{event.boss_hp} / {event.boss_max_hp}</span>
+          <div className="w-full max-w-600 mb-8 z-10">
+            <div className="flex-between mb-2">
+              <span className="danger mono text-sm">HP DO CHEFE</span>
+              <span className="paper mono text-sm">{event.boss_hp} / {event.boss_max_hp}</span>
             </div>
-            <div className="progress-track" style={{ height: '24px', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
-              <div className="progress-fill" style={{ width: `${(event.boss_hp / event.boss_max_hp) * 100}%`, background: '#ef4444', boxShadow: '0 0 10px #ef4444', transition: 'width 0.3s ease' }}></div>
+            <div className="progress-track h-6 bg-danger-alpha-10 border-danger-alpha-30">
+              <div className="progress-fill bg-danger shadow-danger transition-all" style={{ width: `${(event.boss_hp / event.boss_max_hp) * 100}%` }}></div>
             </div>
           </div>
 
           <button
-            className="btn-primary"
-            style={{ padding: '16px 48px', fontSize: '18px', background: '#ef4444', borderColor: '#ef4444', zIndex: 1 }}
+            className="btn-primary px-12 py-4 text-xl bg-danger border-danger z-10"
             onClick={handleAttack}
             disabled={attacking || event.boss_hp <= 0 || currentTickets <= 0 || eventExpired}
           >
@@ -172,7 +171,7 @@ export default function Evento({ player, updatePlayer }) {
             <div className="stamp"></div>
           </button>
 
-          <div className="muted mono" style={{ marginTop: '16px', fontSize: '11px', zIndex: 1, textAlign: 'center' }}>
+          <div className="muted mono mt-4 text-sm z-10 text-center">
             Sua patente ({player.rank}) garante {maxTickets} entradas diárias. <br/> Você ganha XP e Ryous proporcionais ao dano causado.
           </div>
         </div>

@@ -29,7 +29,7 @@ export default function Exame({ player, updatePlayer }) {
     const { error } = await supabase.from('players').update({ passou_exame_chunin: true }).eq('id', player.id);
     if (!error) {
       addToast('Incrível! Você concluiu a Floresta da Morte e foi aprovado no Exame Chunin!', 'success');
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
       navigate('/graduacoes');
     } else {
       addToast('Erro ao salvar progresso do Exame: ' + error.message, 'error');
@@ -79,14 +79,14 @@ export default function Exame({ player, updatePlayer }) {
     return (
       <div className="page">
         <PageHeader eyebrow="Evento" title="Floresta da Morte" subtitle="Exame Chunin" />
-        <div className="card flex-col" style={{ alignItems: 'center', padding: '48px', border: '1px solid var(--gold)', background: 'var(--ink-raised)' }}>
-          <div style={{ fontSize: '64px', marginBottom: '24px' }}>📜</div>
-          <h2 className="gold" style={{ marginBottom: '16px' }}>Você já foi Aprovado!</h2>
-          <p className="muted" style={{ maxWidth: '400px', textAlign: 'center', lineHeight: '1.6' }}>
+        <div className="card flex-col items-center p-12 bg-ink-raised border-line-solid border-gold">
+          <div className="text-6xl mb-6">📜</div>
+          <h2 className="gold mb-4">Você já foi Aprovado!</h2>
+          <p className="muted max-w-400 text-center leading-relaxed">
             Você já obteve os Pergaminhos do Céu e da Terra e sobreviveu à Floresta. 
             Não há necessidade de arriscar sua vida novamente.
           </p>
-          <button className="btn-ghost" onClick={() => navigate('/graduacoes')} style={{ marginTop: '24px' }}>Ir para Graduações</button>
+          <button className="btn-ghost mt-6" onClick={() => navigate('/graduacoes')}>Ir para Graduações</button>
         </div>
       </div>
     );
@@ -96,9 +96,9 @@ export default function Exame({ player, updatePlayer }) {
     <div className="page">
       <PageHeader eyebrow="Evento de Sobrevivência" title="Exame Chunin: Floresta da Morte" subtitle="Enfrente 3 desafios seguidos SEM RECUPERAR VIDA E CHAKRA." />
       
-      <div className="card" style={{ border: '1px solid #ef4444', marginBottom: '24px' }}>
-        <h3 className="danger" style={{ marginBottom: '8px' }}>⚠️ REGRAS DO EXAME ⚠️</h3>
-        <ul className="muted" style={{ lineHeight: '1.8', marginLeft: '24px' }}>
+      <div className="card mb-6 border-line-solid border-danger">
+        <h3 className="danger mb-2">⚠️ REGRAS DO EXAME ⚠️</h3>
+        <ul className="muted leading-loose ml-6">
           <li>Você enfrentará <strong>3 adversários</strong> em sequência.</li>
           <li>Sua <strong>Vida e Chakra não são restaurados</strong> entre as lutas.</li>
           <li>O uso de itens e consumíveis é <strong>ESTRITAMENTE PROIBIDO</strong> durante as lutas.</li>
@@ -107,22 +107,23 @@ export default function Exame({ player, updatePlayer }) {
         </ul>
       </div>
 
-      <div className="grid-3" style={{ gap: '24px' }}>
+      <div className="grid-3 gap-lg">
         {[1, 2, 3].map(round => {
           const isActive = currentRound === round;
           const isPassed = currentRound > round;
           
-          let cardStyle = { padding: '32px', textAlign: 'center', border: '1px solid var(--line)', opacity: 0.5 };
-          if (isActive) cardStyle = { ...cardStyle, border: '1px solid var(--gold)', background: 'var(--ink-raised)', opacity: 1 };
-          if (isPassed) cardStyle = { ...cardStyle, border: '1px solid #10b981', background: 'rgba(16, 185, 129, 0.1)', opacity: 0.8 };
+          let baseClasses = 'card flex-col p-8 text-center border-line-solid transition-all';
+          if (isActive) baseClasses += ' border-gold bg-ink-raised opacity-100';
+          else if (isPassed) baseClasses += ' border-success bg-green-alpha-10 opacity-80';
+          else baseClasses += ' border-line opacity-50';
 
           return (
-            <div key={round} className="card flex-col" style={cardStyle}>
-              <div style={{ fontSize: '48px', marginBottom: '16px' }}>
+            <div key={round} className={baseClasses}>
+              <div className="text-5xl mb-4">
                 {isPassed ? '✅' : (round === 1 ? '🌲' : round === 2 ? '🕷️' : '⛩️')}
               </div>
               <h3 className={isPassed ? 'success' : isActive ? 'gold' : 'muted'}>Etapa {round}</h3>
-              <p className="muted" style={{ fontSize: '13px', margin: '16px 0', minHeight: '40px' }}>
+              <p className="muted text-xs my-4 min-h-40">
                 {round === 1 && 'Um Genin inimigo tentará emboscá-lo logo na entrada da floresta.'}
                 {round === 2 && 'O coração da floresta abriga mestres de armadilhas. Sobreviva!'}
                 {round === 3 && 'Os portões da Torre. O guardião final o aguarda.'}

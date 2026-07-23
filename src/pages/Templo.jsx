@@ -60,7 +60,7 @@ export default function Templo({ player, updatePlayer }) {
 
     if (!error) {
       addToast(`${evolution.nextName} desbloqueado com sucesso!`, "success");
-      updatePlayer(player.user_id);
+      updatePlayer(player.id);
     } else {
       addToast("Erro ao desbloquear: " + error.message, "error");
     }
@@ -75,9 +75,9 @@ export default function Templo({ player, updatePlayer }) {
         subtitle="Prove seu valor no campo de batalha para desbloquear versões poderosas de seus ninjas."
       />
 
-      <div className="info-banner" style={{ marginBottom: '32px' }}>
-        <h3 className="gold" style={{ marginBottom: '8px' }}>O Despertar do Poder</h3>
-        <p className="muted" style={{ lineHeight: '1.5' }}>
+      <div className="info-banner mb-8">
+        <h3 className="gold mb-2">O Despertar do Poder</h3>
+        <p className="muted leading-relaxed">
           Jogue com as versões clássicas de seus personagens favoritos e cumpra os requisitos exigidos para despertar suas formas maduras ou supremas de forma permanente na sua conta.
         </p>
       </div>
@@ -85,44 +85,44 @@ export default function Templo({ player, updatePlayer }) {
       <div className="card">
         {evolution ? (
           unlocked.includes(evolution.nextId) ? (
-            <div style={{ textAlign: 'center', padding: '48px 0' }}>
+            <div className="text-center py-12">
               <h3 className="success mono">✓ Forma Suprema Desbloqueada</h3>
-              <p className="muted" style={{ marginTop: '8px' }}>Você já liberou a evolução deste personagem. Tente evoluir outros ninjas!</p>
+              <p className="muted mt-2">Você já liberou a evolução deste personagem. Tente evoluir outros ninjas!</p>
             </div>
           ) : (
-            <div className="flex-row" style={{ gap: '32px', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div className="flex-row gap-8 items-center justify-center flex-wrap">
               
               {/* Personagem Atual */}
-              <div className="flex-col" style={{ alignItems: 'center', gap: '16px' }}>
-                <div style={{ width: '140px', height: '140px', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--line)' }}>
-                  <img src={player.avatar} alt="Current" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div className="flex-col items-center gap-4">
+                <div className="w-[140px] h-[140px] rounded-full overflow-hidden border-2 border-line-solid">
+                  <img src={player.avatar} alt="Current" className="w-full h-full object-cover" />
                 </div>
-                <div className="muted mono" style={{ fontSize: '13px' }}>FORMA ATUAL</div>
+                <div className="muted mono text-sm">FORMA ATUAL</div>
               </div>
 
               {/* Seta de Evolução */}
-              <div style={{ fontSize: '32px', color: 'var(--seal-bright)', animation: 'pulse 2s infinite' }}>
+              <div className="text-4xl text-seal-bright animate-pulse">
                 →
               </div>
 
               {/* Próxima Evolução */}
-              <div className="flex-col" style={{ alignItems: 'center', gap: '16px' }}>
-                <div style={{ width: '180px', height: '180px', borderRadius: '50%', overflow: 'hidden', border: '3px solid var(--gold)', boxShadow: '0 0 30px rgba(234, 179, 8, 0.2)' }}>
-                  <img src={evolution.nextId} alt="Next" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div className="flex-col items-center gap-4">
+                <div className="w-[180px] h-[180px] rounded-full overflow-hidden border-3 border-gold shadow-gold-lg">
+                  <img src={evolution.nextId} alt="Next" className="w-full h-full object-cover" />
                 </div>
                 <div className="gold mono">{evolution.nextName}</div>
               </div>
 
               {/* Requisitos e Botão */}
-              <div style={{ flex: '1 1 300px', background: 'var(--ink-raised)', padding: '24px', borderRadius: '8px', border: '1px solid var(--line)' }}>
-                <h4 style={{ marginBottom: '16px', fontSize: '15px' }}>Requisitos de Despertar</h4>
-                <p className="muted" style={{ fontSize: '13px', marginBottom: '24px', lineHeight: '1.5' }}>
+              <div className="flex-1 min-w-[300px] bg-ink-raised p-6 rounded-md border-line-solid">
+                <h4 className="mb-4 text-md">Requisitos de Despertar</h4>
+                <p className="muted text-sm mb-6 leading-relaxed">
                   {evolution.desc}
                 </p>
 
-                <div className="flex-col" style={{ gap: '12px', marginBottom: '24px' }}>
+                <div className="flex-col gap-3 mb-6">
                   <div className="flex-between">
-                    <span className="paper" style={{ fontSize: '14px' }}>Level Requerido</span>
+                    <span className="paper text-sm">Level Requerido</span>
                     <span className={player.level >= evolution.requirements.level ? "success mono" : "danger mono"}>
                       {player.level} / {evolution.requirements.level}
                     </span>
@@ -131,8 +131,7 @@ export default function Templo({ player, updatePlayer }) {
                 </div>
 
                 <button 
-                  className="btn-primary" 
-                  style={{ width: '100%' }}
+                  className="btn-primary w-full" 
                   onClick={handleUnlock}
                   disabled={loading || player.level < evolution.requirements.level}
                 >
@@ -144,9 +143,9 @@ export default function Templo({ player, updatePlayer }) {
             </div>
           )
         ) : (
-          <div style={{ textAlign: 'center', padding: '48px 0' }}>
-            <h3 className="muted mono" style={{ fontSize: '16px' }}>Nenhum despertar disponível</h3>
-            <p className="muted" style={{ marginTop: '8px', maxWidth: '400px', margin: '8px auto 0', lineHeight: '1.5' }}>
+          <div className="text-center py-12">
+            <h3 className="muted mono text-md">Nenhum despertar disponível</h3>
+            <p className="muted mt-2 max-w-400 mx-auto leading-relaxed">
               Seu ninja atual não possui uma linha evolutiva descoberta ou já atingiu sua forma máxima.
             </p>
           </div>

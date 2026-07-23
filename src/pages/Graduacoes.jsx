@@ -112,7 +112,7 @@ export default function Graduacoes({ player, updatePlayer }) {
     }
 
     setTimeout(() => {
-      updatePlayer(player.user_id);
+      updatePlayer(player.id);
       setIsCeremonyActive(false);
     }, 5000);
   }
@@ -125,103 +125,113 @@ export default function Graduacoes({ player, updatePlayer }) {
         subtitle="Prove seu valor e suba na hierarquia shinobi." 
       />
 
-      <div className="grad-container" style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
-        {!nextRank ? (
-          <div className="grad-card active" style={{ padding: '32px', textAlign: 'center', border: '1px solid var(--seal-bright)' }}>
-            <div className="grad-icon" style={{ fontSize: '64px' }}>👑</div>
-            <div className="grad-title" style={{ color: 'var(--seal-bright)', fontSize: '24px', margin: '16px 0' }}>Nível Máximo</div>
-            <div className="grad-desc" style={{ color: 'var(--text-muted)' }}>Você alcançou o topo da hierarquia Ninja.</div>
-          </div>
-        ) : (
-          <div className="grad-card active" style={{ padding: '32px', textAlign: 'center', border: '1px solid var(--seal-bright)', borderRadius: '8px', maxWidth: '400px' }}>
-            <div className="grad-icon" style={{ fontSize: '64px', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80px' }}>
-              {nextRank.iconSrc ? (
-                <img src={nextRank.iconSrc} alt={nextRank.title} style={{ maxWidth: '80px', maxHeight: '80px', objectFit: 'contain' }} />
-              ) : (
-                <span>🥷</span>
-              )}
-            </div>
-            <div className="grad-title" style={{ color: 'var(--seal-bright)', fontSize: '24px', margin: '16px 0' }}>{nextRank.title}</div>
-            <div className="grad-desc" style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>{nextRank.desc}</div>
-            
-            <div className="req-list" style={{ background: 'rgba(0,0,0,0.2)', padding: '16px', borderRadius: '6px', textAlign: 'left', marginBottom: '24px' }}>
-              {nextRank.reqs.map((req, idx) => {
-                const isMet = req.check(player);
-                return (
-                  <div key={idx} style={{ display: 'flex', gap: '8px', marginBottom: '8px', fontSize: '13px', color: isMet ? '#4ade80' : '#ef4444' }}>
-                    <span>{isMet ? '✓' : '✗'}</span>
-                    <span>{req.label} ({req.progress(player)})</span>
-                  </div>
-                );
-              })}
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full pt-4">
+        {ranksData.map((rank, idx) => {
+          const isNextRank = nextRank && rank.id === nextRank.id;
+          const isPassed = currentIndex >= idx;
 
-            {nextRank.id === 'Chunin' && !player.passou_exame_chunin ? (
-              <button 
-                className="btn btn-primary" 
-                style={{ width: '100%' }}
-                onClick={() => navigate('/exame')}
-              >
-                <span>Ir para a Floresta da Morte</span>
-                <div className="stamp"></div>
-              </button>
-            ) : (
-              <button 
-                className="btn btn-primary" 
-                style={{ width: '100%', opacity: canGraduate ? 1 : 0.5, cursor: canGraduate ? 'pointer' : 'not-allowed' }}
-                disabled={!canGraduate} 
-                onClick={() => graduarPara(nextRank.id)}
-              >
-                <span>{canGraduate ? 'Graduar Ninja' : 'Requisitos Incompletos'}</span>
-                <div className="stamp"></div>
-              </button>
-            )}
-          </div>
-        )}
+          let cardStyle = "flex flex-col items-center p-6 rounded-lg transition-all relative min-h-[400px]";
+          if (isNextRank) {
+            cardStyle += " border-2 border-blue bg-ink shadow-xl scale-105 z-10 opacity-100";
+          } else if (isPassed) {
+            cardStyle += " border border-line-solid bg-ink-raised opacity-75";
+          } else {
+            cardStyle += " border border-line-solid bg-black/40 opacity-50 z-0";
+          }
+
+          const canGrad = isNextRank ? canGraduate : false;
+
+          return (
+            <div key={rank.id} className={cardStyle}>
+              
+              <div className="text-6xl flex justify-center items-center h-24 mb-4">
+                {rank.iconSrc ? (
+                  <img src={rank.iconSrc} alt={rank.title} className="max-w-full max-h-full object-contain filter drop-shadow-md" />
+                ) : (
+                  <span>🥷</span>
+                )}
+              </div>
+              
+              <div className={`text-xl font-bold mb-4 text-center ${isNextRank ? 'text-seal-bright' : 'text-gold'}`}>
+                {rank.title}
+              </div>
+
+              <div className="text-sm text-muted text-center mb-6 px-2 flex-grow">
+                {rank.desc}
+              </div>
+
+              {isNextRank && (
+                <div className="w-full relative group flex flex-col items-center mb-6">
+                  <div className="cursor-pointer bg-ink-raised border border-line-solid rounded p-2 text-2xl hover:bg-black/60 transition-colors">
+                     📋
+                  </div>
+                  
+                  {/* Tooltip Hover for Requirements */}
+                  <div className="absolute bottom-full mb-2 w-64 bg-ink border border-line-bright shadow-lg p-3 rounded-md text-xs z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all pointer-events-none">
+                    <div className="font-bold text-center mb-2 border-b border-line-solid pb-1">Requisitos</div>
+                    <div className="flex flex-col gap-1">
+                      {rank.reqs.map((req, i) => {
+                        const isMet = req.check(player);
+                        return (
+                          <div key={i} className={`${isMet ? 'text-muted' : 'text-danger'}`}>
+                            {req.label} {isMet ? '' : `(${req.progress(player)})`}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-auto w-full flex flex-col items-center">
+                {isPassed ? (
+                  <div className="text-success font-bold text-sm tracking-widest uppercase">Graduado ✓</div>
+                ) : isNextRank ? (
+                  rank.id === 'Chunin' && !player.passou_exame_chunin ? (
+                    <button 
+                      className="btn-primary w-full max-w-[200px]" 
+                      onClick={() => navigate('/exame')}
+                    >
+                      Floresta da Morte
+                    </button>
+                  ) : (
+                    <button 
+                      className={`btn-primary w-full max-w-[200px] ${!canGrad ? 'opacity-50 cursor-not-allowed filter grayscale' : ''}`} 
+                      disabled={!canGrad} 
+                      onClick={() => graduarPara(rank.id)}
+                    >
+                      Graduar
+                    </button>
+                  )
+                ) : (
+                  <div className="text-danger opacity-70 font-bold text-sm tracking-widest uppercase">
+                    Bloqueado
+                  </div>
+                )}
+              </div>
+
+            </div>
+          );
+        })}
       </div>
 
       {isCeremonyActive && (
-        <div style={{
-          position: 'fixed', inset: 0, zIndex: 9999,
-          background: 'rgba(0,0,0,0.9)', backdropFilter: 'blur(10px)',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          animation: 'fadeIn 1s forwards'
-        }}>
-          <div style={{
-            fontSize: '100px',
-            marginBottom: '24px',
-            animation: 'zoomIn 2s forwards',
-            filter: 'drop-shadow(0 0 30px rgba(230, 57, 70, 0.8))'
-          }}>
+        <div className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center animate-fade-in">
+          <div className="text-8xl mb-6 animate-zoom-in drop-shadow-md">
             {ranksData.find(r => r.id === newRank)?.iconSrc ? (
-              <img src={ranksData.find(r => r.id === newRank).iconSrc} alt={newRank} style={{ maxWidth: '150px', maxHeight: '150px' }} />
+              <img src={ranksData.find(r => r.id === newRank).iconSrc} alt={newRank} className="max-w-[150px] max-h-[150px]" />
             ) : (
               <span>🥷</span>
             )}
           </div>
-          <h1 style={{
-            fontFamily: "'Shippori Mincho', serif", 
-            color: 'var(--seal-bright)', 
-            fontSize: '48px', 
-            marginTop: '30px',
-            opacity: 0,
-            animation: 'slideUpFade 1s forwards 1.5s'
-          }}>
+          <h1 className="font-shippori text-seal-bright text-5xl mt-8 opacity-0 animate-slide-up-fade animate-delay-15">
             Parabéns, {player.name}!
           </h1>
-          <p style={{
-            color: 'var(--paper)',
-            fontSize: '20px',
-            marginTop: '16px',
-            opacity: 0,
-            animation: 'slideUpFade 1s forwards 2.5s'
-          }}>
+          <p className="font-inter text-paper text-xl mt-4 opacity-0 animate-slide-up-fade animate-delay-25">
             Você agora é oficialmente um {newRank} da sua Vila.
           </p>
         </div>
       )}
-
-
     </div>
   );
 }

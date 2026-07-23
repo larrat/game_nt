@@ -1,16 +1,13 @@
 # Kurokage — Regras do Projeto
 
-## Regra Principal de CSS
+## Regra Principal de CSS (TailwindCSS - MODO HÍBRIDO)
 
-**NUNCA** use `style={}` inline para aparência visual em páginas/componentes.
-Toda propriedade visual (cor, fundo, borda, padding, font) deve usar `className` com classes de `/src/styles/main.css`.
+**ESTAMOS MIGRANDO PARA O TAILWINDCSS V4.**
+- Você é **livre** para usar utilitários do Tailwind (ex: `flex`, `flex-col`, `gap-4`, `p-6`, `bg-ink`, `text-gold`, `hover:scale-105`) para desenhar telas e componentes.
+- **NUNCA** use `style={}` inline para aparência visual. Use sempre as classes do Tailwind.
+- As cores do nosso jogo (como `ink`, `gold`, `seal-bright`, `paper`, `muted`) já foram injetadas no tema do Tailwind. Exemplo: você pode usar `text-gold` ou `border-seal-bright`.
 
-`style={}` é PERMITIDO apenas para **valores calculados dinamicamente**:
-```jsx
-// ✅ OK — valor vem de variável
-<div style={{ width: `${xpPercent}%` }} />
-<div style={{ color: isUnlocked ? 'var(--gold)' : 'var(--muted)' }} />
-```
+Apesar do Tailwind ser o foco, classes legado do `main.css` como `.card`, `.page`, `.btn-primary` ainda funcionam e podem ser usadas junto com o Tailwind durante essa transição, mas prefira a estrutura utilitária nativa do Tailwind sempre que possível para novos layouts.
 
 ## Estrutura Obrigatória de Toda Tela
 

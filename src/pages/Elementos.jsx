@@ -43,24 +43,55 @@ export default function Elementos({ player, updatePlayer }) {
   // early return movido
   if (!player) return null;
 
+  // Helpers para checar rank
+  const rankVal = (r) => {
+    if (!r) return 0;
+    const rl = r.toLowerCase();
+    if (rl.includes('genin')) return 1;
+    if (rl.includes('chunin')) return 2;
+    if (rl.includes('jounin')) return 3;
+    if (rl.includes('anbu')) return 4;
+    if (rl.includes('sannin') || rl.includes('sanin')) return 5;
+    if (rl.includes('heroi') || rl.includes('herói')) return 6;
+    return 0;
+  };
+
   // Lógica de Requerimentos
   const isLevel5 = player.level >= 5;
-  const isGenin = player.rank !== 'Estudante da Academia'; // Simplificado
-  const canLearn = isLevel5 && isGenin && !player.element;
+  const isGenin = rankVal(player.rank) >= 1;
+  const isLevel15 = player.level >= 15;
+  const isChunin = rankVal(player.rank) >= 2;
+
+  const canLearnFirst = isLevel5 && isGenin && !player.element;
+  const canLearnSecond = isLevel15 && isChunin && player.element && !player.element2;
+  const canLearn = canLearnFirst || canLearnSecond;
+
   const currentElement = elementsData.find(e => e.id === player.element);
+  const currentElement2 = elementsData.find(e => e.id === player.element2);
   const displayElement = selectedNode || hoveredElement || currentElement;
 
   const handleLearnElement = async (elementId) => {
     if (!canLearn) return;
+    if (player.element === elementId || player.element2 === elementId) {
+      addToast('Você já possui este elemento!', 'error');
+      return;
+    }
     setLoading(true);
+
+    const updateData = {};
+    if (!player.element) {
+      updateData.element = elementId;
+    } else {
+      updateData.element2 = elementId;
+    }
 
     const { error } = await supabase
       .from('players')
-      .update({ element: elementId })
+      .update(updateData)
       .eq('id', player.id);
 
     if (!error) {
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
       addToast(`Elemento ${elementId} dominado!`, 'success');
     } else {
       addToast('Erro ao aprender elemento: ' + error.message, 'error');
@@ -70,7 +101,7 @@ export default function Elementos({ player, updatePlayer }) {
 
 
   return (
-    <div className="page flex-col" style={{ minHeight: '100vh' }}>
+    <div className="page flex-col min-h-screen">
       <PageHeader eyebrow='Naturezas de Chakra' title='Elementos' subtitle='Descubra e domine sua natureza de chakra elementar.' />
 
       <div className="element-summary">
@@ -103,22 +134,32 @@ export default function Elementos({ player, updatePlayer }) {
             </svg>
 
             {/* Centro */}
-            <div className="element-wheel-center">
+            <div className="element-wheel-center flex-col gap-1 items-center justify-center">
               {currentElement ? (
-                <>
-                  <div className="current-el" style={{ color: currentElement.color }}>
-                    {currentElement.icon}
+                <div className="flex gap-3 items-center">
+                  <div className="flex-col items-center">
+                    <div className="current-el" style={{ color: currentElement.color, fontSize: currentElement2 ? '24px' : '32px' }}>
+                      {currentElement.icon}
+                    </div>
+                    <div className="current-label text-[10px]">Primário</div>
                   </div>
-                  <div className="current-label">Dominado</div>
-                </>
+                  {currentElement2 && (
+                    <div className="flex-col items-center">
+                      <div className="current-el" style={{ color: currentElement2.color, fontSize: '24px' }}>
+                        {currentElement2.icon}
+                      </div>
+                      <div className="current-label text-[10px]">Secundário</div>
+                    </div>
+                  )}
+                </div>
               ) : (
-                <div className="current-label" style={{ color: 'var(--muted)', marginTop: '0' }}>Vazio</div>
+                <div className="current-label text-muted mt-0">Vazio</div>
               )}
             </div>
 
             {/* Nós (Elementos) */}
             {elementsData.map(el => {
-              const isSelected = player.element === el.id;
+              const isSelected = player.element === el.id || player.element2 === el.id;
               const isHovered = hoveredElement?.id === el.id;
               
               // Define Vantagens e Desvantagens dinâmicas
@@ -151,19 +192,32 @@ export default function Elementos({ player, updatePlayer }) {
         <div className="element-side">
           
           <div className="card">
-            <h3 className="card-title gold" style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: '8px' }}>Seu Elemento Atual</h3>
+            <h3 className="card-title gold border-b-0 pb-0 mb-2">Seus Elementos</h3>
             {currentElement ? (
-              <div className="flex-row" style={{ marginTop: '16px' }}>
-                <div className="flex-row" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid var(--gold)', justifyContent: 'center', fontSize: '24px' }}>
-                  {currentElement.icon}
+              <div className="flex-col gap-sm mt-4">
+                <div className="flex-row">
+                  <div className="flex-row" style={{ width: '48px', height: '48px', borderRadius: '50%', border: `2px solid ${currentElement.color}`, justifyContent: 'center', fontSize: '24px' }}>
+                    {currentElement.icon}
+                  </div>
+                  <div>
+                    <div className="mono font-bold">{currentElement.name}</div>
+                    <div className="muted text-xs">Elemento Primário (Genin)</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="mono" style={{ fontWeight: 'bold' }}>{currentElement.name}</div>
-                  <div className="muted" style={{ fontSize: '12px' }}>Natureza de Chakra Dominada</div>
-                </div>
+                {currentElement2 && (
+                  <div className="flex-row mt-2">
+                    <div className="flex-row" style={{ width: '48px', height: '48px', borderRadius: '50%', border: `2px solid ${currentElement2.color}`, justifyContent: 'center', fontSize: '24px' }}>
+                      {currentElement2.icon}
+                    </div>
+                    <div>
+                      <div className="mono font-bold">{currentElement2.name}</div>
+                      <div className="muted text-xs">Elemento Secundário (Chunin)</div>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
-              <div className="muted" style={{ fontSize: '13px', lineHeight: 1.6 }}>Você ainda não descobriu sua Natureza de Chakra. Selecione um elemento no círculo para estudar vantagens, requisitos e confirmar sua escolha.</div>
+              <div className="muted text-[13px] leading-relaxed">Você ainda não descobriu sua Natureza de Chakra. Selecione um elemento no círculo para estudar vantagens, requisitos e confirmar sua escolha.</div>
             )}
           </div>
 
@@ -171,22 +225,33 @@ export default function Elementos({ player, updatePlayer }) {
             <div className="card" style={{ background: 'var(--ink-raised)', borderColor: displayElement.color, position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: '-20px', right: '-20px', fontSize: '120px', opacity: 0.05, pointerEvents: 'none', color: displayElement.color }}>{displayElement.icon}</div>
               <h3 className="page-title" style={{ color: displayElement.color, marginBottom: '16px', fontSize: '20px' }}>{displayElement.name}</h3>
-              <p className="paper" style={{ fontSize: '13px', lineHeight: '1.6', marginBottom: '24px' }}>
+              <p className="paper text-[13px] leading-relaxed mb-6">
                 {displayElement.desc}
               </p>
 
-              <div style={{ borderTop: '1px dotted var(--line)', paddingTop: '16px' }}>
-                <div className="uppercase" style={{ color: '#ff9800', marginBottom: '8px' }}>Requerimentos</div>
-                <div className="mono flex-col" style={{ gap: '4px', fontSize: '12px' }}>
-                  <div style={{ color: isLevel5 ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Level 5</div>
-                  <div style={{ color: isGenin ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Genin</div>
+              <div className="border-t border-dotted border-line pt-4">
+                <div className="uppercase text-[#ff9800] mb-2">Requerimentos</div>
+                <div className="mono flex-col gap-1 text-xs">
+                  {(!player.element) ? (
+                    <>
+                      <div style={{ color: isLevel5 ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Nível 5</div>
+                      <div style={{ color: isGenin ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Genin</div>
+                    </>
+                  ) : (!player.element2) ? (
+                    <>
+                      <div style={{ color: isLevel15 ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Nível 15</div>
+                      <div style={{ color: isChunin ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Chunin</div>
+                    </>
+                  ) : (
+                    <div style={{ color: 'var(--green)' }}>Você já aprendeu o máximo de elementos disponíveis.</div>
+                  )}
                 </div>
               </div>
 
-              {!player.element && (
+              {(!player.element || !player.element2) && displayElement.id !== player.element && displayElement.id !== player.element2 && (
                 <>
-                  <div style={{ marginTop: '16px', padding: '8px', background: 'rgba(239, 68, 68, 0.1)', border: '1px dashed #ef4444', borderRadius: '4px', textAlign: 'center' }}>
-                    <span className="mono" style={{ color: '#ef4444', fontSize: '11px', letterSpacing: '1px' }}>⚠️ AVISO: Esta escolha é permanente!</span>
+                  <div className="mt-4 p-2 bg-danger/10 border border-dashed border-danger rounded-md text-center">
+                    <span className="mono text-danger text-[11px] tracking-[1px]">⚠️ AVISO: Esta escolha é permanente!</span>
                   </div>
                   <button 
                     className="btn-primary" 

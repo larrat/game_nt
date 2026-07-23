@@ -39,7 +39,9 @@ export const getEquipmentBonus = (player, statName) => {
   return player.equipped_items.reduce((total, item) => {
     if (!item) return total;
     const stats = item.normalized_stats || normalizeBonusStats(item.bonus_stats);
-    if (stats[statName]) return total + Number(stats[statName]);
+    const upgradeLevel = item.upgrade_level || 0;
+    const multiplier = 1 + (upgradeLevel * 0.2); // +20% per upgrade level
+    if (stats[statName]) return total + Math.floor(Number(stats[statName]) * multiplier);
     return total;
   }, 0);
 };
@@ -125,12 +127,26 @@ export const getClanBonus = (player) => {
   return CLAN_PASSIVES[player.clan] || {};
 };
 
+export const getClanStatBonus = (player, statName) => {
+  if (!player || !player.clan_lvl || player.clan_lvl <= 0) return 0;
+  if (!player.clan_custom_stats) return 0;
+  const baseBonus = player.clan_custom_stats[statName] || 0;
+  return baseBonus * player.clan_lvl;
+};
+
+export const getTotalStat = (player, statName) => {
+  if (!player) return 0;
+  const base = player[statName] || 0;
+  const clanBonus = getClanStatBonus(player, statName);
+  return base + clanBonus;
+};
+
 export const calculateHP = (player) => {
   if (!player) return 0;
   // Básico de nível + Resistência
-  let hp = 100 + (player.level * 30) + ((player.resistencia || 0) * 15);
+  let hp = 100 + (player.level * 30) + (getTotalStat(player, 'resistencia') * 15);
   // Adiciona a Energia (Massivamente) e Força (Levemente)
-  hp += ((player.energia || 0) * 20) + ((player.forca || 0) * 5);
+  hp += (getTotalStat(player, 'energia') * 20) + (getTotalStat(player, 'forca') * 5);
   
   hp += getRankBonus(player.rank).hp;
   hp += getEquipmentBonus(player, 'hp');
@@ -143,7 +159,7 @@ export const calculateHP = (player) => {
 export const calculateChakra = (player) => {
   if (!player) return 50;
   const rankBoost = getRankBonus(player.rank).chakra;
-  const base = 100 + ((player.level || 1) * 20) + ((player.energia || 0) * 5) + ((player.ninjutsu || 0) * 5) + ((player.genjutsu || 0) * 5) + rankBoost;
+  const base = 100 + ((player.level || 1) * 20) + (getTotalStat(player, 'energia') * 5) + (getTotalStat(player, 'ninjutsu') * 5) + (getTotalStat(player, 'genjutsu') * 5) + rankBoost;
   const equipBonus = getEquipmentBonus(player, 'chakra');
   const clanBonus = getClanBonus(player);
   const chakraMult = clanBonus.chakraMult || 1.0;
@@ -153,34 +169,34 @@ export const calculateChakra = (player) => {
 export const calculateStamina = (player) => {
   if (!player) return 50;
   const rankBoost = getRankBonus(player.rank).stamina;
-  const base = 100 + ((player.level || 1) * 20) + ((player.energia || 0) * 5) + ((player.taijutsu || 0) * 5) + ((player.bukijutsu || 0) * 5) + rankBoost;
+  const base = 100 + ((player.level || 1) * 20) + (getTotalStat(player, 'energia') * 5) + (getTotalStat(player, 'taijutsu') * 5) + (getTotalStat(player, 'bukijutsu') * 5) + rankBoost;
   return base + getEquipmentBonus(player, 'stamina');
 };
 
 export const calculateAtkTaiBuk = (player) => {
   if (!player) return 5;
   // Taijutsu e Bukijutsu são a fonte primária de dano
-  const base = ((player.forca || 0) * 1) + ((player.taijutsu || 0) * 2) + ((player.bukijutsu || 0) * 2) + 5;
+  const base = (getTotalStat(player, 'forca') * 1) + (getTotalStat(player, 'taijutsu') * 2) + (getTotalStat(player, 'bukijutsu') * 2) + 5;
   return base + getEquipmentBonus(player, 'tai') + getEquipmentBonus(player, 'buk');
 };
 
 export const calculateAtkNinGen = (player) => {
   if (!player) return 5;
   // Ninjutsu e Genjutsu são a fonte primária de dano (aumentado multiplicador de inteligência)
-  const base = ((player.inteligencia || 0) * 2) + ((player.ninjutsu || 0) * 2) + ((player.genjutsu || 0) * 2) + 10;
+  const base = (getTotalStat(player, 'inteligencia') * 2) + (getTotalStat(player, 'ninjutsu') * 2) + (getTotalStat(player, 'genjutsu') * 2) + 10;
   return base + getEquipmentBonus(player, 'nin') + getEquipmentBonus(player, 'gen');
 };
 
 export const calculateFisDef = (player) => {
   if (!player) return 0;
-  let def = (player.resistencia || 0) + (((player.taijutsu || 0) + (player.bukijutsu || 0)) / 4);
+  let def = getTotalStat(player, 'resistencia') + ((getTotalStat(player, 'taijutsu') + getTotalStat(player, 'bukijutsu')) / 4);
   def += getEquipmentBonus(player, 'defFis');
   return Math.floor(def);
 };
 
 export const calculateMagDef = (player) => {
   if (!player) return 0;
-  let def = (player.resistencia || 0) + (((player.ninjutsu || 0) + (player.genjutsu || 0)) / 4);
+  let def = getTotalStat(player, 'resistencia') + ((getTotalStat(player, 'ninjutsu') + getTotalStat(player, 'genjutsu')) / 4);
   def += getEquipmentBonus(player, 'defMag');
   return Math.floor(def);
 };
@@ -196,17 +212,17 @@ export const calculateDefTaiBuk = (player) => calculateFisDef(player);
 
 export const calculateDefNinGen = (player) => calculateMagDef(player);
 // Fórmulas Secundárias (Baseados nas novas regras do RPG Master)
-export const calculateCritChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 10));
-export const calculateDodgeChance = (player) => Math.min(50, Math.floor((player?.agilidade || 0) / 10));
-export const calculateChakraDiscount = (player) => Math.min(50, Math.floor((player?.selo || 0) / 5));
+export const calculateCritChance = (player) => Math.min(50, Math.floor(getTotalStat(player, 'agilidade') / 10));
+export const calculateDodgeChance = (player) => Math.min(50, Math.floor(getTotalStat(player, 'agilidade') / 10));
+export const calculateChakraDiscount = (player) => Math.min(50, Math.floor(getTotalStat(player, 'selo') / 5));
 
 // Atributos derivados antigos (mantidos por compatibilidade se usados em outro lugar)
-export const calculatePerfuracao = (player) => (player?.agilidade || 0) * 2;
-export const calculatePrecisao = (player) => (player?.selo || 0) * 2;
-export const calculateConcentracao = (player) => Math.floor(((player?.inteligencia || 0) + (player?.genjutsu || 0)) / 2);
-export const calculatePercepcao = (player) => Math.floor(((player?.agilidade || 0) + (player?.ninjutsu || 0)) / 2);
-export const calculateConviccao = (player) => Math.floor(((player?.energia || 0) + (player?.forca || 0)) / 2);
-export const calculateDeterminacao = (player) => Math.floor(((player?.energia || 0) + (player?.resistencia || 0)) / 2);
+export const calculatePerfuracao = (player) => getTotalStat(player, 'agilidade') * 2;
+export const calculatePrecisao = (player) => getTotalStat(player, 'selo') * 2;
+export const calculateConcentracao = (player) => Math.floor((getTotalStat(player, 'inteligencia') + getTotalStat(player, 'genjutsu')) / 2);
+export const calculatePercepcao = (player) => Math.floor((getTotalStat(player, 'agilidade') + getTotalStat(player, 'ninjutsu')) / 2);
+export const calculateConviccao = (player) => Math.floor((getTotalStat(player, 'energia') + getTotalStat(player, 'forca')) / 2);
+export const calculateDeterminacao = (player) => Math.floor((getTotalStat(player, 'energia') + getTotalStat(player, 'resistencia')) / 2);
 
 // --- VANTAGEM ELEMENTAL ---
 // Suiton > Katon > Futon > Raiton > Doton > Suiton
@@ -273,11 +289,11 @@ export const getPvPMatchRules = (playerRank, playerLevel) => {
   if (rank === 'ANBU') {
     if (lvl <= 45) return { minLvl: 35, maxLvl: 45, targetRanks: ['ANBU'] };
     // Level 46+ (Estagnado)
-    return { minLvl: 45, maxLvl: 999, targetRanks: ['Sanin'] };
+    return { minLvl: lvl, maxLvl: lvl, targetRanks: ['Sannin'] };
   }
 
-  if (rank === 'Sanin') {
-    if (lvl <= 55) return { minLvl: 45, maxLvl: 55, targetRanks: ['Sanin'] };
+  if (rank === 'Sannin') {
+    if (lvl <= 55) return { minLvl: 45, maxLvl: 55, targetRanks: ['Sannin'] };
     // Level 56+ (Estagnado)
     return { minLvl: 55, maxLvl: 999, targetRanks: ['Heroi'] };
   }
@@ -402,8 +418,9 @@ export const getJutsuEnhancementBonus = (jutsu, statName) => {
 
   // HARD CAPS PARA BALANCEAMENTO (Aplicado após a soma)
   if (statName === 'custo') {
-    // Redução máxima de custo é de -50 para evitar que o custo fique negativo ou muito baixo, 
-    // mas o limite final será no Combate.jsx (onde o custo não pode ser < 1)
+    // Redução máxima de custo é de -50 para evitar que o custo fique negativo ou muito baixo.
+    // Aplicando diminishing returns (retornos decrescentes) de forma simples limitando o valor.
+    total = Math.max(total, -50); 
   }
   if (statName === 'letalidade') {
     total = Math.min(total, 50); // Máximo 50% de chance extra
@@ -521,8 +538,6 @@ export const generateDynamicRogueNinja = (player, extraLevelBonus = 0) => {
     element: element,
     clan: clan,
     clan_bonus: { name: clan, critChance: clan === 'Uchiha' ? 0.15 : 0, armorPen: clan === 'Hyuga' ? 0.2 : 0, paralyzeChance: clan === 'Nara' ? 0.1 : 0 },
-    xpReward: Math.floor((npcLevel * 50) + 100),
-    ryouReward: Math.floor((npcLevel * 25) + 50),
     desc: rank === 'Jounin' ? `Um inimigo formidável apareceu! Prepare-se para a morte.` : extraLevelBonus > 0 ? `Você andou longe demais... Um ninja perigoso sentiu sua presença!` : `Você encontrou um ninja renegado pelo caminho!`,
     summon: npcSummon,
     ...npcStats

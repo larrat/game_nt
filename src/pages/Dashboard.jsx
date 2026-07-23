@@ -6,6 +6,7 @@ import { fetchActiveGlobalEvents } from '../utils/eventUtils';
 import { useToast } from '../context/ToastContext';
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import AvatarModal from '../components/AvatarModal';
+import PageHeader from '../components/PageHeader';
 import '../styles/main.css';
 
 const VILLAGES = {
@@ -129,7 +130,7 @@ export default function Dashboard({ player, updatePlayer }) {
         }).eq('id', player.id);
 
         if (!error) {
-          updatePlayer(player.user_id);
+          updatePlayer(player.id);
         }
       }
     };
@@ -150,7 +151,7 @@ export default function Dashboard({ player, updatePlayer }) {
 
     if (!error) {
       addToast("Bônus diário resgatado: +RY$ 50!", "success");
-      updatePlayer(player.user_id);
+      updatePlayer(player.id);
     }
     setClaiming(false);
   };
@@ -172,7 +173,7 @@ export default function Dashboard({ player, updatePlayer }) {
 
     if (!error) {
       addToast(`Recompensa resgatada: +${rewardAmount} ${rewardType.toUpperCase()}!`, "success");
-      updatePlayer(player.user_id);
+      updatePlayer(player.id);
     } else {
       addToast('Erro ao resgatar recompensa', 'error');
     }
@@ -197,7 +198,7 @@ export default function Dashboard({ player, updatePlayer }) {
 
     if (!error) {
       addToast(`Baú Aberto! Você encontrou 🪙 ${rewardCoins} Kuro Coins!`, "success");
-      updatePlayer(player.user_id);
+      updatePlayer(player.id);
     } else {
       addToast('Erro ao abrir baú', 'error');
     }
@@ -248,7 +249,7 @@ export default function Dashboard({ player, updatePlayer }) {
       } else {
         addToast(`🎉 Você abriu ${boxesToOpen} Baús do Colapso! Os itens foram enviados para o seu inventário.`, 'success');
       }
-      updatePlayer(player.user_id);
+      updatePlayer(player.id);
     } else {
       addToast('Erro ao abrir baús: ' + insertError.message, 'error');
     }
@@ -265,17 +266,21 @@ export default function Dashboard({ player, updatePlayer }) {
   const bgImage = player.village_id ? `/images/bg_${player.village_id}.jpg` : '/images/bg_default.jpg';
 
   return (
-  return (
     <div className="bg-cover bg-center min-h-screen text-paper bg-fixed" style={{ backgroundImage: `url(${bgImage})` }}>
       <div className="page relative z-10 p-8">
         
+        <PageHeader 
+          eyebrow="Painel Ninja"
+          title="Dashboard"
+          subtitle="Acompanhe seu progresso diário e eventos do mundo."
+        />
+
         {/* SÉTIMA VERSÃO: HERO BANNER (SLIM) */}
         <div className="card-glass flex-between p-6 rounded-lg items-center flex-wrap gap-lg mb-8 border-line-solid shadow-xl bg-ink-transparent">
           {/* Esquerda: Avatar e Info Básica */}
           <div className="flex-row items-center gap-lg">
             <div 
-              className="rounded-full overflow-hidden border-gold border-2 bg-ink relative cursor-pointer shadow-md avatar-container flex-col items-center justify-center"
-              style={{ width: '80px', height: '80px' }}
+              className="w-20 h-20 rounded-full overflow-hidden border-gold border-2 bg-ink relative cursor-pointer shadow-md avatar-container flex-col items-center justify-center"
               onClick={() => setIsAvatarModalOpen(true)}
               title="Trocar Imagem"
             >
@@ -307,8 +312,8 @@ export default function Dashboard({ player, updatePlayer }) {
       {/* CALENDÁRIO DE EVENTOS */}
       {upcomingEvents.length > 0 ? (
         <div className="card-glass mb-6">
-          <div className="flex-between mb-4 border-line-solid pb-3" style={{ borderBottomWidth: '1px' }}>
-            <h3 className="paper flex-row items-center gap-xs text-lg" style={{ fontFamily: 'Shippori Mincho' }}>
+          <div className="flex-between mb-4 border-line-solid pb-3 border-b">
+            <h3 className="paper flex-row items-center gap-xs text-lg font-shippori">
               <span className="text-base">📅</span> Próximos Eventos
             </h3>
             <span className="muted mono text-xs">Cronograma Oficial</span>
@@ -323,7 +328,7 @@ export default function Dashboard({ player, updatePlayer }) {
                 <div key={evt.id} className="bg-ink-raised p-4 rounded-sm border-line-solid border-line-bright border-l-3" style={{ borderLeftColor: color }}>
                   <div className="mono text-xs mb-1" style={{ color }}>{evt.ends_at ? new Date(evt.ends_at).toLocaleString() : 'Em breve'}</div>
                   <div className="paper font-bold text-sm mb-1">{evt.name}</div>
-                  <div className="muted text-xs" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{evt.description}</div>
+                  <div className="muted text-xs line-clamp-2">{evt.description}</div>
                 </div>
               );
             })}
@@ -343,33 +348,29 @@ export default function Dashboard({ player, updatePlayer }) {
         <div className="grid-responsive gap-lg mb-6">
           {activeEvents.map(event => (
             <div key={event.id} className="card relative overflow-hidden p-6 flex-col justify-between border-line-solid border-danger bg-event-card shadow-event">
-              <div className="absolute top-0 left-0 w-1 h-full animate-pulse shadow-pulse" style={{ background: 'linear-gradient(180deg, #ef4444, #991b1b)' }}></div>
+              <div className="absolute top-0 left-0 w-1 h-full animate-pulse shadow-pulse bg-gradient-to-b from-red-500 to-red-800"></div>
 
               <div className="flex-between items-start flex-wrap gap-lg">
-                <div className="flex-1 relative z-10" style={{ minWidth: '200px' }}>
+                <div className="flex-1 relative z-10 min-w-[200px]">
                   <h4 className="danger mono mb-2 text-xs flex-row items-center gap-sm tracking-wide">
                     <span className="text-sm drop-shadow-red">🦊</span>
                     EVENTO GLOBAL
                   </h4>
-                  <div className="paper text-xl font-bold uppercase tracking-wide mb-2 text-shadow" style={{ minHeight: '44px' }}>
+                  <div className="paper text-xl font-bold uppercase tracking-wide mb-2 text-shadow min-h-[44px]">
                     {event.name}
                   </div>
-                  <div className="muted text-sm leading-relaxed" style={{ maxWidth: '90%' }}>
+                  <div className="muted text-sm leading-relaxed max-w-[90%]">
                     {event.description}
                   </div>
                 </div>
 
-                <div className="flex-col items-center gap-sm p-4 rounded-sm border-dashed border-danger bg-black-alpha-30" style={{ minWidth: '150px' }}>
+                <div className="flex-col items-center gap-sm p-4 rounded-sm border-dashed border-danger bg-black-alpha-30 min-w-[150px]">
                   <span className="mono muted text-xs uppercase">Tempo Restante</span>
                   <span className="mono danger text-xl font-bold text-shadow-red">
                     {timeRemaining[event.id] || 'Calculando...'}
                   </span>
                   <button 
-                    className="btn-primary w-full p-2 text-xs mt-1" 
-                    style={{ 
-                      background: timeRemaining[event.id] === 'Evento Encerrado' ? '#555' : '#ef4444', 
-                      borderColor: timeRemaining[event.id] === 'Evento Encerrado' ? '#555' : '#ef4444' 
-                    }} 
+                    className={`btn-primary w-full p-2 text-xs mt-1 ${timeRemaining[event.id] === 'Evento Encerrado' ? 'bg-[#555] border-[#555]' : 'bg-red-500 border-red-500'}`}
                     onClick={() => navigate('/evento')}
                     disabled={timeRemaining[event.id] === 'Evento Encerrado'}
                   >
@@ -390,9 +391,8 @@ export default function Dashboard({ player, updatePlayer }) {
                     </span>
                   </div>
                   <div className="relative h-3 rounded-sm bg-black-alpha-60 border-line-solid border-danger-alpha overflow-hidden shadow-inner-dark">
-                    <div className="h-full rounded-sm transition-all duration-500 ease-out shadow-bar-glow" style={{
-                      width: `${Math.max(0, Math.min(100, (event.boss_hp / event.boss_max_hp) * 100))}%`,
-                      background: 'linear-gradient(90deg, #7f1d1d, #ef4444, #f87171)'
+                    <div className="h-full rounded-sm transition-all duration-500 ease-out shadow-bar-glow bg-gradient-to-r from-red-900 via-red-500 to-red-400" style={{
+                      width: `${Math.max(0, Math.min(100, (event.boss_hp / event.boss_max_hp) * 100))}%`
                     }}></div>
                   </div>
                 </div>
@@ -405,8 +405,8 @@ export default function Dashboard({ player, updatePlayer }) {
       {/* 3 Cards de Resumo */}
       <div className="grid-3">
         <div className="dashboard-card">
-          <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <img src="/images/imgi_112_1.png" style={{ width: '16px' }} alt="Combates" /> Combates
+          <h4 className="flex-row gap-xs items-center">
+            <img src="/images/imgi_112_1.png" className="w-4" alt="Combates" /> Combates
           </h4>
           <div className="stats-list">
             <div className="stat-win"><span>Vitórias Dojo:</span><span>{player.wins_dojo || 0}</span></div>
@@ -418,8 +418,8 @@ export default function Dashboard({ player, updatePlayer }) {
         </div>
 
         <div className="dashboard-card">
-          <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <img src="/images/imgi_13_passe.png" style={{ width: '16px' }} alt="Missões" /> Missões
+          <h4 className="flex-row gap-xs items-center">
+            <img src="/images/imgi_13_passe.png" className="w-4" alt="Missões" /> Missões
           </h4>
           <div className="stats-list">
             <div className="stat-win"><span>Rank S:</span><span>{player.missions_s || 0}</span></div>
@@ -427,9 +427,9 @@ export default function Dashboard({ player, updatePlayer }) {
             <div className="stat-neutral"><span>Rank B:</span><span>{player.missions_b || 0}</span></div>
             <div className="stat-neutral"><span>Rank C:</span><span>{player.missions_c || 0}</span></div>
             <div className="stat-neutral"><span>Rank D:</span><span>{player.missions_d || 0}</span></div>
-            <div className="stat-highlight" style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-              <span className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>
-                <img src="/images/imgi_14_rotina.png" style={{ width: '12px' }} alt="Tarefas" /> Tarefas:
+            <div className="stat-highlight mt-2 pt-2 border-t border-white/5">
+              <span className="flex-row items-center gap-xs">
+                <img src="/images/imgi_14_rotina.png" className="w-3" alt="Tarefas" /> Tarefas:
               </span>
               <span>{player.tasks_completed || 0}/10</span>
             </div>
@@ -437,19 +437,19 @@ export default function Dashboard({ player, updatePlayer }) {
         </div>
 
         <div className="dashboard-card">
-          <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <img src="/images/imgi_32_star.png" style={{ width: '16px' }} alt="Extras" /> Extras
+          <h4 className="flex-row gap-xs items-center">
+            <img src="/images/imgi_32_star.png" className="w-4" alt="Extras" /> Extras
           </h4>
           <div className="stats-list">
             <div className="stat-gold">
-              <span className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>
-                <img src="/images/imgi_20_ryous.png" style={{ width: '12px' }} alt="Ryous" /> Ryous:
+              <span className="flex-row items-center gap-xs">
+                <img src="/images/imgi_20_ryous.png" className="w-3" alt="Ryous" /> Ryous:
               </span>
               <span>RY$ {player.ryous}</span>
             </div>
             <div className="stat-highlight">
-              <span className="flex-row" style={{ alignItems: 'center', gap: '4px' }}>
-                <img src="/images/imgi_126_star.png" style={{ width: '12px' }} alt="Pts" /> Pts. Atrib.:
+              <span className="flex-row items-center gap-xs">
+                <img src="/images/imgi_126_star.png" className="w-3" alt="Pts" /> Pts. Atrib.:
               </span>
               <span>{player.pontos_atributos}</span>
             </div>
@@ -503,7 +503,7 @@ export default function Dashboard({ player, updatePlayer }) {
           })}
 
           {/* Fidelidade Diária */}
-          <div className="card" style={{ border: fidelityClaimed ? '1px solid var(--line)' : '1px solid var(--seal-bright)', background: fidelityClaimed ? 'var(--ink)' : 'var(--seal-glow)' }}>
+          <div className={`card ${fidelityClaimed ? 'border-line bg-ink' : 'border-seal-bright bg-seal-glow'}`}>
             <h4 className="card-title flex-row items-center gap-xs mb-2">
               <img src="/images/imgi_16_fidelidade.png" className="w-4" alt="Fidelidade" /> Bônus de Fidelidade
             </h4>
@@ -580,7 +580,7 @@ export default function Dashboard({ player, updatePlayer }) {
                 {claimedList.includes('chest') ? (
                   <span className="success mono text-xs">✓ BAÚ ABERTO HOJE</span>
                 ) : claimedList.includes('t1') && claimedList.includes('t2') && claimedList.includes('t3') ? (
-                  <button className="btn-primary w-full" onClick={handleClaimDailyChest} disabled={claiming} style={{ background: 'linear-gradient(to right, #b45309, #d97706)', borderColor: '#d97706' }}>
+                  <button className="btn-primary w-full bg-gradient-to-r from-amber-700 to-amber-600 border-amber-600" onClick={handleClaimDailyChest} disabled={claiming}>
                     Abrir Baú (🪙 2 a 5 Coins)
                   </button>
                 ) : (

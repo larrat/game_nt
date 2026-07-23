@@ -40,7 +40,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-body page" style={{ minHeight: '100vh', display: 'flex', width: '100%', position: 'absolute', top: 0, left: 0 }}>
+    <div className="login-body page min-h-screen flex w-full absolute top-0 left-0">
       <div className="panel-brand">
         <div className="strokes">
           <svg viewBox="0 0 500 700" preserveAspectRatio="xMidYMid slice">
@@ -64,7 +64,7 @@ export default function Login() {
         </div>
 
         {mode === 'forgot' && (
-          <div className="section-title paper" style={{ marginBottom: '24px', fontSize: '18px' }}>
+          <div className="section-title paper mb-6 text-lg">
             Recuperação de Senha
           </div>
         )}
@@ -84,13 +84,13 @@ export default function Login() {
         {mode === 'login' && (
           <div className="row-between flex-between">
             <label className="checkbox"><input type="checkbox" /> Manter conectado</label>
-            <span className="forgot gold" onClick={() => { setMode('forgot'); }} style={{ cursor: 'pointer' }}>Esqueci minha senha</span>
+            <span className="forgot gold cursor-pointer" onClick={() => { setMode('forgot'); }}>Esqueci minha senha</span>
           </div>
         )}
         
         {mode === 'forgot' && (
           <div className="row-between flex-between">
-            <span className="forgot muted" onClick={() => { setMode('login'); }} style={{ cursor: 'pointer' }}>Voltar para o Login</span>
+            <span className="forgot muted cursor-pointer" onClick={() => { setMode('login'); }}>Voltar para o Login</span>
           </div>
         )}
 
@@ -105,9 +105,9 @@ export default function Login() {
 
         <div className="switch">
           {mode === 'login' ? (
-            <>Ainda não tem conta? <span className="gold" style={{ cursor: 'pointer', fontWeight: 600 }} onClick={() => { setMode('signup'); }}>Forje seu personagem</span></>
+            <>Ainda não tem conta? <span className="gold cursor-pointer font-semibold" onClick={() => { setMode('signup'); }}>Forje seu personagem</span></>
           ) : (
-            <>Já é um ninja? <span className="gold" style={{ cursor: 'pointer', fontWeight: 600 }} onClick={() => { setMode('login'); }}>Faça Login</span></>
+            <>Já é um ninja? <span className="gold cursor-pointer font-semibold" onClick={() => { setMode('login'); }}>Faça Login</span></>
           )}
         </div>
       </div>

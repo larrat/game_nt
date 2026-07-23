@@ -109,38 +109,37 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
       <div className="avatar-modal" onClick={e => e.stopPropagation()} style={{ maxWidth: '600px' }}>
 
         <div className="modal-header">
-          <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <h2 className="flex-row items-center gap-xs">
             🎒 Mochila de Suprimentos
           </h2>
           <button className="btn-close" onClick={onClose}>×</button>
         </div>
 
-        <div className="modal-content" style={{ padding: '24px', background: 'var(--ink)' }}>
+        <div className="modal-content p-6 bg-ink">
           {loading ? (
-            <div className="muted mono" style={{ textAlign: 'center', padding: '40px' }}>Revirando a mochila...</div>
+            <div className="muted mono text-center p-10">Revirando a mochila...</div>
           ) : items.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px dashed var(--line)' }}>
-              <div style={{ fontSize: '48px', marginBottom: '16px', filter: 'grayscale(1)', opacity: 0.5 }}>🍜</div>
-              <h3 className="paper" style={{ marginBottom: '8px' }}>Mochila Vazia</h3>
-              <p className="muted" style={{ fontSize: '13px' }}>Você não tem nenhum consumível. Visite o Ichiraku Ramen para comprar suprimentos para suas missões.</p>
+            <div className="text-center p-10 bg-black-alpha-20 rounded-sm border-dashed border-line">
+              <div className="text-5xl mb-4 grayscale opacity-50">🍜</div>
+              <h3 className="paper mb-2">Mochila Vazia</h3>
+              <p className="muted text-sm">Você não tem nenhum consumível. Visite o Ichiraku Ramen para comprar suprimentos para suas missões.</p>
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className="flex-col gap-sm">
               {items.map(invItem => (
-                <div key={invItem.id} style={{ display: 'flex', background: 'var(--ink-raised)', border: '1px solid var(--line)', borderRadius: '8px', padding: '12px', alignItems: 'center', gap: '16px' }}>
-                  <div style={{ fontSize: '32px', width: '48px', height: '48px', background: 'var(--ink-card)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--line-bright)' }}>
+                <div key={invItem.id} className="flex-row bg-ink-raised border-line-solid rounded-sm p-3 items-center gap-md">
+                  <div className="text-3xl w-12 h-12 bg-ink-card rounded-xs flex-row items-center justify-center border-line-solid border-line-bright">
                     {invItem.consumables.icon}
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <div className="flex-row" style={{ gap: '8px', alignItems: 'baseline' }}>
-                      <span className="paper" style={{ fontWeight: 'bold' }}>{invItem.consumables.name}</span>
-                      <span className="mono gold" style={{ fontSize: '11px' }}>x{invItem.quantity}</span>
+                  <div className="flex-1">
+                    <div className="flex-row gap-xs items-baseline">
+                      <span className="paper font-bold">{invItem.consumables.name}</span>
+                      <span className="mono gold text-xs">x{invItem.quantity}</span>
                     </div>
-                    <div className="muted" style={{ fontSize: '12px', marginTop: '4px' }}>{invItem.consumables.description}</div>
+                    <div className="muted text-xs mt-1">{invItem.consumables.description}</div>
                   </div>
                   <button
-                    className="btn-primary"
-                    style={{ padding: '8px 16px', fontSize: '12px', opacity: inCombat ? 0.5 : 1 }}
+                    className={`btn-primary p-2 px-4 text-xs ${inCombat ? 'opacity-50' : 'opacity-100'}`}
                     onClick={() => handleUseItem(invItem)}
                     disabled={usingId === invItem.id || inCombat}
                     title={inCombat ? 'Consumíveis não podem ser usados em combate.' : ''}
@@ -153,8 +152,8 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
           )}
         </div>
 
-        <div className="modal-footer flex-row" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-          <span className="muted mono" style={{ fontSize: '11px', color: inCombat ? 'var(--danger)' : 'var(--muted)' }}>
+        <div className="modal-footer flex-between items-center">
+          <span className={`mono text-xs ${inCombat ? 'danger' : 'muted'}`}>
             {inCombat ? '⚠️ O uso de consumíveis é proibido durante batalhas.' : 'Dica: Cure-se antes de enfrentar desafios difíceis.'}
           </span>
           <button className="btn-ghost" onClick={onClose}>Fechar</button>

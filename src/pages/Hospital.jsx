@@ -81,7 +81,7 @@ export default function Hospital({ player, updatePlayer }) {
       return;
     }
 
-    await updatePlayer(player.user_id);
+    await updatePlayer(player.id);
     addToast(paid ? 'Você pagou pelo tratamento e recebeu alta!' : 'Você se recuperou totalmente!', 'success');
     setLoading(false);
     navigate('/dashboard', { replace: true });
@@ -90,12 +90,12 @@ export default function Hospital({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page flex-col items-center justify-center h-full" style={{ background: 'rgba(224, 54, 63, 0.05)', minHeight: '100vh' }}>
-      <div className="card-glass w-full text-center p-4" style={{ maxWidth: '480px' }}>
+    <div className="page flex-col items-center justify-center h-full bg-danger-alpha-05 min-h-screen">
+      <div className="card-glass w-full text-center p-4 max-w-480">
         {isRecovered ? (
           <>
-            <div className="mb-4" style={{ fontSize: '48px' }}>🌟</div>
-            <h3 className="paper mb-2" style={{ fontSize: '24px' }}>Recuperação Concluída</h3>
+            <div className="mb-4 text-5xl">🌟</div>
+            <h3 className="paper mb-2 text-2xl">Recuperação Concluída</h3>
             <p className="muted mb-6">
               Seu corpo se recuperou totalmente. Você já pode voltar para suas missões.
             </p>
@@ -109,12 +109,12 @@ export default function Hospital({ player, updatePlayer }) {
           </>
         ) : (
           <>
-            <div className="mb-4" style={{ fontSize: '48px' }}>⏳</div>
-            <h3 className="paper mb-2" style={{ fontSize: '24px' }}>Tempo Restante</h3>
-            <div className="mono danger font-bold mb-6" style={{ fontSize: '32px' }}>
+            <div className="mb-4 text-5xl">⏳</div>
+            <h3 className="paper mb-2 text-2xl">Tempo Restante</h3>
+            <div className="mono danger font-bold mb-6 text-4xl">
               {formatTime(timeLeft)}
             </div>
-            <div className="muted mono text-md mb-6" style={{ opacity: 0.8 }}>
+            <div className="muted mono text-md mb-6 opacity-80">
               O hospital da vila está cuidando de seus ferimentos...
             </div>
 
@@ -125,7 +125,7 @@ export default function Hospital({ player, updatePlayer }) {
                 onClick={() => handleCure(true)}
                 disabled={loading || player.ryous < cureCost}
               >
-                <img src="/images/imgi_20_ryou.png" alt="ryous" style={{ width: '16px' }} onError={(e) => e.target.style.display = 'none'} />
+                <img src="/images/imgi_20_ryou.png" alt="ryous" className="w-4" onError={(e) => e.target.style.display = 'none'} />
                 Pagar {cureCost} Ryous
               </button>
               {player.ryous < cureCost && (

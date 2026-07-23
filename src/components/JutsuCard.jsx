@@ -17,7 +17,16 @@ export default function JutsuCard({
   const reqAttr = jutsu.type || jutsu.category || 'Ninjutsu';
   const playerAttrVal = player[reqAttr.toLowerCase()] || 0;
   const reqAttrValue = jutsu.req_attr_value || jutsu.reqAttrValue || 0;
-  const isAttrUnlocked = playerAttrVal >= reqAttrValue;
+  
+  let isAttrUnlocked = true;
+  if (jutsu.req_stats && Object.keys(jutsu.req_stats).length > 0) {
+    for (const [statName, reqValue] of Object.entries(jutsu.req_stats)) {
+      if ((player[statName.toLowerCase()] || 0) < reqValue) isAttrUnlocked = false;
+    }
+  } else {
+    isAttrUnlocked = playerAttrVal >= reqAttrValue;
+    if (jutsu.req_seals && (player.selo || 0) < jutsu.req_seals) isAttrUnlocked = false;
+  }
   
   const isUnlocked = isUnlockedLvl && isUnlockedRank && isAttrUnlocked;
 
@@ -29,90 +38,169 @@ export default function JutsuCard({
   const levelReq = jutsu.req_level || jutsu.lvl || 1;
 
   return (
-    <div className="card flex-col" style={{ 
-      border: isLearned ? '1px solid rgba(76,206,128,0.5)' : isUnlocked ? '1px solid var(--line-bright)' : '1px solid var(--line)', 
-      opacity: isUnlocked || isLearned ? 1 : 0.6,
+    <div className="card" style={{ 
       position: 'relative',
-      overflow: 'hidden'
-    }}>
-      {isLearned && (
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'linear-gradient(90deg, #4cce80, transparent)' }} />
-      )}
-
-      <div className="flex-row" style={{ alignItems: 'flex-start', gap: '12px', marginBottom: '12px' }}>
-        <div style={{ width: '48px', height: '48px', flexShrink: 0 }}>
-           {jutsu.icon_url ? (
-             <div style={{ width: '100%', height: '100%', background: 'var(--ink)', borderRadius: '4px', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-               <img src={jutsu.icon_url} alt={jutsu.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-             </div>
-           ) : (
-             <JutsuIcon jutsu={jutsu} />
-           )}
-        </div>
-        <div className="flex-col" style={{ gap: '4px' }}>
-          <div className={`mono uppercase ${isUnlocked || isLearned ? 'gold' : 'muted'}`} style={{ fontSize: '10px', letterSpacing: '1.5px' }}>
-            NV.{levelReq} · {jutsuRank} · {reqAttr}
-          </div>
-          <h4 className={`card-title ${isUnlocked || isLearned ? 'paper' : 'muted'}`} style={{ fontSize: '16px', margin: 0 }}>
-            {jutsu.name}
-          </h4>
-        </div>
-      </div>
-      
-      {jutsu.desc || jutsu.description ? (
-        <p className="muted" style={{ fontSize: '12px', lineHeight: '1.5', marginBottom: '16px' }}>
-          {jutsu.desc || jutsu.description}
-        </p>
-      ) : null}
-      
-      <div className="grid-2 mono" style={{ gap: '8px', fontSize: '11px', marginBottom: '16px' }}>
-        {damage > 0 ? <div style={{ color: '#ef4444' }}>Dano: {damage}</div> : <div className="muted">Dano: 0</div>}
-        {cp > 0 ? <div style={{ color: '#60a5fa' }}>CP: {cp}</div> : <div className="muted">CP: 0</div>}
-        <div style={{ color: 'var(--muted)' }}>Precisão: {accuracy}%</div>
-        <div style={{ color: 'var(--gold)' }}>Recarga: {cooldown}T</div>
+      opacity: isUnlocked || isLearned ? 1 : 0.7,
+      minWidth: '220px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      textAlign: 'center',
+      transition: 'transform 0.2s',
+      cursor: 'default'
+    }}
+    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+    >
+      {/* Top right icon indicating type (Ninjutsu, Taijutsu etc) */}
+      <div style={{
+        position: 'absolute',
+        top: '8px',
+        right: '8px',
+        background: '#3b82f6',
+        padding: '4px',
+        borderRadius: '4px',
+        border: '1px solid var(--line-solid)',
+        color: 'white',
+        fontSize: '12px'
+      }}>
+        🥷
       </div>
 
+      {/* Jutsu Image */}
+      <div style={{
+        width: '64px',
+        height: '64px',
+        background: 'rgba(0, 0, 0, 0.4)',
+        border: '1px solid var(--line)',
+        borderRadius: '4px',
+        marginTop: '8px',
+        marginBottom: '16px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden'
+      }}>
+         {jutsu.icon_url ? (
+           <img src={jutsu.icon_url} alt={jutsu.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+         ) : (
+           <span style={{ fontSize: '32px' }}>📜</span>
+         )}
+      </div>
+
+      {/* Title */}
+      <h4 style={{ color: '#60a5fa', fontWeight: 'bold', fontSize: '18px', marginBottom: '8px' }}>
+        {jutsu.name}
+      </h4>
+
+      {/* Rank */}
+      <div className="muted mono uppercase" style={{ fontSize: '12px', letterSpacing: '2px', marginBottom: '16px' }}>
+        {jutsuRank}
+      </div>
+
+      {/* Requirements Icon with Tooltip */}
       {showRequisites && (
-        <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '4px', marginBottom: '16px', border: '1px dashed var(--line)' }}>
-          <div className="muted mono uppercase" style={{ fontSize: '10px', marginBottom: '8px' }}>Requisitos de Aprendizado:</div>
-          <div className="flex-col" style={{ gap: '6px', fontSize: '11px' }}>
-            <div className="flex-between">
-              <span style={{ color: player.level >= levelReq ? 'var(--green)' : 'var(--red)' }}>Nível Necessário:</span>
-              <span className="mono">{levelReq}</span>
+        <div style={{ position: 'relative', marginBottom: '16px', display: 'inline-block' }} 
+             onMouseEnter={(e) => {
+               const tooltip = e.currentTarget.querySelector('.jutsu-tooltip');
+               if (tooltip) { tooltip.style.opacity = '1'; tooltip.style.visibility = 'visible'; }
+             }}
+             onMouseLeave={(e) => {
+               const tooltip = e.currentTarget.querySelector('.jutsu-tooltip');
+               if (tooltip) { tooltip.style.opacity = '0'; tooltip.style.visibility = 'hidden'; }
+             }}
+        >
+          <div style={{ fontSize: '32px', color: 'var(--seal)', cursor: 'help', transition: 'color 0.2s' }}
+               onMouseEnter={(e) => e.currentTarget.style.color = 'var(--seal-bright)'}
+               onMouseLeave={(e) => e.currentTarget.style.color = 'var(--seal)'}
+          >
+            📋
+          </div>
+          
+          {/* Tooltip Content */}
+          <div className="jutsu-tooltip" style={{
+            position: 'absolute',
+            bottom: '100%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            marginBottom: '8px',
+            width: '220px',
+            background: 'rgba(10, 10, 10, 0.95)',
+            border: '1px solid var(--line-bright)',
+            padding: '12px',
+            borderRadius: '6px',
+            fontSize: '12px',
+            zIndex: 50,
+            opacity: 0,
+            visibility: 'hidden',
+            transition: 'all 0.2s',
+            textAlign: 'left',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.5)',
+            pointerEvents: 'none'
+          }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <div style={{ color: player.level >= levelReq ? 'var(--muted)' : 'var(--danger)' }}>
+                Requer nível {levelReq}
+              </div>
+              <div style={{ color: rankValue(player.rank) >= rankValue(jutsuRank) ? 'var(--muted)' : 'var(--danger)' }}>
+                Requer graduação: {jutsuRank}
+              </div>
+              {jutsu.req_stats && Object.keys(jutsu.req_stats).length > 0 ? (
+                Object.entries(jutsu.req_stats).map(([statName, reqValue]) => {
+                  const playerVal = player[statName.toLowerCase()] || 0;
+                  return (
+                    <div key={statName} style={{ color: playerVal >= reqValue ? 'var(--muted)' : 'var(--danger)' }}>
+                      Requer {reqValue} ponto(s) em {statName}
+                    </div>
+                  );
+                })
+              ) : (
+                <>
+                  {reqAttrValue > 0 && (
+                    <div style={{ color: playerAttrVal >= reqAttrValue ? 'var(--muted)' : 'var(--danger)' }}>
+                      Requer {reqAttrValue} ponto(s) em {reqAttr.toLowerCase()}
+                    </div>
+                  )}
+                  {seals > 0 && (
+                    <div style={{ color: (player.selo || 0) >= seals ? 'var(--muted)' : 'var(--danger)' }}>
+                      Requer {seals} ponto(s) em selo
+                    </div>
+                  )}
+                </>
+              )}
+              <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid var(--line)', color: 'var(--gold)' }}>
+                Custo: {learnCost}
+              </div>
             </div>
-            {reqAttrValue > 0 && (
-              <div className="flex-between">
-                <span style={{ color: playerAttrVal >= reqAttrValue ? 'var(--green)' : 'var(--red)' }}>{reqAttr} Mínimo:</span>
-                <span className="mono">{reqAttrValue}</span>
-              </div>
-            )}
-            {seals > 0 && (
-              <div className="flex-between">
-                <span style={{ color: (player.selo || 0) >= seals ? 'var(--green)' : 'var(--gold)' }}>Selos (Para 100%):</span>
-                <span className="mono">{seals}</span>
-              </div>
-            )}
           </div>
         </div>
       )}
 
-      {!isLearned && !isUnlocked ? (
-         <div className="muted" style={{ fontSize: '11px', textAlign: 'center', marginTop: 'auto', padding: '8px', background: 'rgba(255,255,255,0.02)', borderRadius: '4px' }}>
-           Bloqueado (Não atende aos requisitos)
-         </div>
-      ) : isLearned ? (
-         <div className="success" style={{ fontSize: '11px', textAlign: 'center', marginTop: 'auto', padding: '8px', background: 'rgba(34,197,94,0.1)', borderRadius: '4px' }}>
-           ✓ Técnica Aprendida
-         </div>
+      {/* Action Button */}
+      {isLearned ? (
+        <button className="btn-ghost" style={{ width: '100%', padding: '6px', fontSize: '12px', color: 'var(--success)', borderColor: 'var(--success)', cursor: 'default' }}>
+           ✓ Aprendido
+        </button>
       ) : (
-         <button 
-           className="btn-primary" 
-           style={{ marginTop: 'auto', width: '100%', fontSize: '12px', padding: '8px' }}
-           onClick={onLearn}
-         >
-           Aprender ({learnCost})
-         </button>
+        <button 
+          className="btn-primary"
+          style={{ 
+            width: '100%', 
+            padding: '8px', 
+            fontSize: '14px', 
+            fontWeight: 'bold', 
+            background: isUnlocked ? 'var(--seal-bright)' : 'rgba(0,0,0,0.4)',
+            color: isUnlocked ? 'white' : 'var(--muted)',
+            border: `1px solid ${isUnlocked ? 'var(--seal-bright)' : 'var(--line)'}`,
+            cursor: isUnlocked ? 'pointer' : 'not-allowed'
+          }}
+          onClick={isUnlocked ? onLearn : undefined}
+          disabled={!isUnlocked}
+        >
+          Treinar
+        </button>
       )}
+
     </div>
   );
 }

@@ -37,7 +37,7 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
       .eq('id', player.id);
 
     if (!error) {
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
       onClose();
     } else {
       addToast('Erro ao salvar avatar: ' + error.message, 'error');
@@ -66,8 +66,8 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
               className={`avatar-opt ${selectedAvatar === av.id ? 'selected' : ''}`}
               onClick={() => setSelectedAvatar(av.id)}
             >
-              <img src={av.id} alt={av.name} style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
-              <div className="tag" style={{ fontSize: '10px' }}>{av.name}</div>
+              <img src={av.id} alt={av.name} className="avatar-img" />
+              <div className="tag">{av.name}</div>
             </div>
           ))}
         </div>

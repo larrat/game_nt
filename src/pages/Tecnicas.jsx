@@ -61,7 +61,8 @@ export default function Tecnicas({ player, updatePlayer }) {
           accuracy: j.accuracy,
           category: j.category,
           reqAttrValue: j.req_attr_value,
-          reqSeals: j.req_seals,
+          req_seals: j.req_seals,
+          req_stats: j.req_stats,
           cooldown: j.cooldown,
           element: j.element
         }));
@@ -70,6 +71,19 @@ export default function Tecnicas({ player, updatePlayer }) {
     }
     fetchJutsus();
   }, []);
+
+  const hasRequirements = (jutsu, playerObj) => {
+    if (jutsu.req_stats && Object.keys(jutsu.req_stats).length > 0) {
+      for (const [statName, reqValue] of Object.entries(jutsu.req_stats)) {
+        if ((playerObj[statName.toLowerCase()] || 0) < reqValue) return false;
+      }
+      return true;
+    }
+    const playerMastery = playerObj?.[jutsu.category?.toLowerCase()] || 0;
+    if (jutsu.reqAttrValue && playerMastery < jutsu.reqAttrValue) return false;
+    if (jutsu.req_seals && (playerObj.selo || 0) < jutsu.req_seals) return false;
+    return true;
+  };
 
   const handleLearn = async (jutsu) => {
     if (learnedIds.includes(jutsu.id)) {
@@ -84,31 +98,28 @@ export default function Tecnicas({ player, updatePlayer }) {
       addToast(`Graduação insuficiente! Precisa ser ${jutsu.reqRank}.`, 'error');
       return;
     }
-    // Trava de Maestria (Lote 4)
-    // Trava de Maestria (Lote 4)
-    const playerMastery = player?.[jutsu.category.toLowerCase()] || 0;
-    if (jutsu.reqAttrValue && playerMastery < jutsu.reqAttrValue) {
-      addToast(`Maestria insuficiente! Você precisa de ${jutsu.reqAttrValue} em ${jutsu.category}.`, 'error');
+    
+    if (!hasRequirements(jutsu, player)) {
+      addToast(`Atributos insuficientes! Verifique os requisitos na carta.`, 'error');
       return;
     }
+
     if (player?.ryous < jutsu.cost) {
       addToast(`Ryous insuficientes! Precisa de RY$ ${jutsu.cost}.`, 'error');
       return;
     }
 
     setLoading(true);
-    const newLearned = [...rawLearned, { id: jutsu.id, level: 1, slots: [null, null, null] }];
-    const newRyous = player.ryous - jutsu.cost;
-
-    const { error } = await supabase
-      .from('players')
-      .update({ jutsus_learned: newLearned, ryous: newRyous })
-      .eq('id', player.id);
+    const { error } = await supabase.rpc('aprender_jutsu', {
+      p_player_id: player.id,
+      p_jutsu_id: jutsu.id,
+      p_cost: jutsu.cost
+    });
 
     if (error) {
       addToast('Erro ao aprender jutsu: ' + error.message, 'error');
     } else {
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
       addToast(`${jutsu.name} aprendido com sucesso! -RY$ ${jutsu.cost}`, 'success');
     }
 
@@ -122,7 +133,7 @@ export default function Tecnicas({ player, updatePlayer }) {
       player.level >= j.lvl &&
       (!j.reqRank || rankValue(player.rank) >= rankValue(j.reqRank)) &&
       (!j.element || j.element === player?.element) &&
-      (!j.reqAttrValue || (player?.[j.category?.toLowerCase()] || 0) >= j.reqAttrValue)
+      hasRequirements(j, player)
     );
 
     if (availableToLearn.length === 0) {
@@ -157,18 +168,16 @@ export default function Tecnicas({ player, updatePlayer }) {
     setLoading(true);
 
     const newObjs = availableToLearn.map(j => ({ id: j.id, level: 1, slots: [null, null, null] }));
-    const newLearned = [...rawLearned, ...newObjs];
-    const newRyous = player.ryous - totalCost;
-
-    const { error } = await supabase
-      .from('players')
-      .update({ jutsus_learned: newLearned, ryous: newRyous })
-      .eq('id', player.id);
+    const { error } = await supabase.rpc('aprender_jutsus_massa', {
+      p_player_id: player.id,
+      p_jutsus: newObjs,
+      p_total_cost: totalCost
+    });
 
     if (error) {
       addToast('Erro ao aprender em massa: ' + error.message, 'error');
     } else {
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
       addToast(`Prodígio da Academia ativado! Você aprendeu ${availableToLearn.length} jutsus por RY$ ${totalCost}!`, 'success');
     }
     setLoading(false);
@@ -184,18 +193,18 @@ export default function Tecnicas({ player, updatePlayer }) {
         title="Academia Ninja"
         subtitle="Aprenda jutsus usando Ryous. Todos os jutsus aprendidos ficam disponíveis automaticamente no combate."
         actions={
-          <div className="card" style={{ textAlign: 'center' }}>
-            <div className="muted mono uppercase" style={{ fontSize: '10px', letterSpacing: '2px', marginBottom: '4px' }}>RYOUS</div>
-            <div className="gold mono" style={{ fontSize: '24px' }}>RY$ {player.ryous || 0}</div>
+          <div className="card text-center">
+            <div className="muted mono uppercase text-[10px] tracking-[2px] mb-1">RYOUS</div>
+            <div className="gold mono text-2xl">RY$ {player.ryous || 0}</div>
           </div>
         }
       />
 
       {/* TABS */}
-      <div className="tabs" style={{ marginBottom: '32px' }}>
-        <div className={`tab ${tab === 'tecnicas' ? 'active' : ''}`} onClick={() => setTab('tecnicas')} style={{ cursor: 'pointer' }}>Técnicas</div>
-        <div className={`tab ${tab === 'aprendidas' ? 'active' : ''}`} onClick={() => setTab('aprendidas')} style={{ cursor: 'pointer' }}>
-          Aprendidas <span style={{ marginLeft: '6px', background: 'var(--seal-glow)', border: '1px solid var(--seal-bright)', color: 'var(--seal-bright)', borderRadius: '10px', padding: '1px 7px', fontSize: '10px', fontFamily: "'JetBrains Mono', monospace" }}>{learnedIds.length}</span>
+      <div className="tabs mb-8">
+        <div className={`tab cursor-pointer ${tab === 'tecnicas' ? 'active' : ''}`} onClick={() => setTab('tecnicas')}>Técnicas</div>
+        <div className={`tab cursor-pointer ${tab === 'aprendidas' ? 'active' : ''}`} onClick={() => setTab('aprendidas')}>
+          Aprendidas <span className="ml-[6px] bg-seal-glow border border-solid border-seal-bright text-seal-bright rounded-full px-2 py-[1px] text-[10px] font-mono">{learnedIds.length}</span>
         </div>
       </div>
 
@@ -203,38 +212,29 @@ export default function Tecnicas({ player, updatePlayer }) {
       {tab === 'tecnicas' && (
         <>
           {/* Filtros por categoria e Bulk Learn */}
-          <div className="flex-between" style={{ marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
-            <div className="flex-row" style={{ gap: '8px', flexWrap: 'wrap' }}>
+          <div className="flex-between mb-6 flex-wrap gap-4">
+            <div className="flex-row gap-2 flex-wrap">
               {CATEGORIES.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setFilterCat(cat)}
-                  className="mono uppercase"
-                  style={{
-                    padding: '6px 16px', borderRadius: '4px', fontSize: '11px', letterSpacing: '1px',
-                    cursor: 'pointer', border: '1px solid',
-                    transition: 'all 0.2s',
-                    borderColor: filterCat === cat ? 'var(--seal-bright)' : 'var(--line)',
-                    background: filterCat === cat ? 'var(--seal-glow)' : 'transparent',
-                    color: filterCat === cat ? 'var(--seal-bright)' : 'var(--muted)',
-                  }}
+                  className={`mono uppercase px-4 py-[6px] rounded-sm text-[11px] tracking-[1px] cursor-pointer border border-solid transition-all duration-200 ${filterCat === cat ? 'border-seal-bright bg-seal-glow text-seal-bright' : 'border-line bg-transparent text-muted'}`}
                 >{cat}</button>
               ))}
             </div>
 
             {/* Vantagem VIP: Prodígio da Academia */}
             <button
-              className="btn-ghost"
+              className="btn-ghost border-gold text-gold px-4 py-[6px] text-xs"
               onClick={handleBulkLearn}
               disabled={loading}
-              style={{ borderColor: 'var(--gold)', color: 'var(--gold)', padding: '6px 16px', fontSize: '12px' }}
               title="Vantagem VIP: Aprender todos os Jutsus disponíveis para você de uma vez"
             >
               🌟 Aprender Todos (VIP)
             </button>
           </div>
 
-          <div className="grid-auto" style={{ gap: '16px' }}>
+          <div className="grid-auto gap-4">
             {allJutsus.filter(j => {
               if (filterCat === 'Elementar') return !!j.element && j.element === player?.element;
               return (filterCat === 'Todos' || j.category === filterCat) && (!j.element || j.element === player?.element);
@@ -259,18 +259,18 @@ export default function Tecnicas({ player, updatePlayer }) {
       {/* APRENDIDAS */}
       {tab === 'aprendidas' && (
         <div>
-          <div className="flex-between" style={{ marginBottom: '24px' }}>
-            <h3 className="gold" style={{ fontSize: '16px' }}>Jutsus Aprendidos: {learnedIds.length}</h3>
-            <span className="muted" style={{ fontSize: '12px' }}>Todos aparecem automaticamente durante as lutas.</span>
+          <div className="flex-between mb-6">
+            <h3 className="gold text-base">Jutsus Aprendidos: {learnedIds.length}</h3>
+            <span className="muted text-xs">Todos aparecem automaticamente durante as lutas.</span>
           </div>
           {learnedIds.length === 0 ? (
-            <div className="muted" style={{ textAlign: 'center', padding: '60px' }}>
-              <div style={{ fontSize: '48px', marginBottom: '16px' }}>📖</div>
-              <div className="card-title" style={{ fontSize: '18px', marginBottom: '8px' }}>Nenhum jutsu aprendido</div>
-              <div style={{ fontSize: '13px' }}>Vá até "Técnicas" e compre seus primeiros jutsus com Ryous.</div>
+            <div className="muted text-center py-16">
+              <div className="text-5xl mb-4">📖</div>
+              <div className="card-title text-lg mb-2">Nenhum jutsu aprendido</div>
+              <div className="text-[13px]">Vá até "Técnicas" e compre seus primeiros jutsus com Ryous.</div>
             </div>
           ) : (
-            <div className="grid-auto" style={{ gap: '16px' }}>
+            <div className="grid-auto gap-4">
               {allJutsus.filter(j => learnedIds.includes(j.id)).map(jutsu => (
                 <JutsuCard 
                   key={jutsu.id} 

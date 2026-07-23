@@ -113,8 +113,6 @@ export default function Dojo({ player }) {
         def: calculateDefTaiBuk(target),
         element: target.element,
         activeJutsus: targetJutsus,
-        xpReward: Math.floor((target.level * 100) + 200),
-        ryouReward: Math.floor((target.level * 50) + 100),
         desc: 'Você está prestes a cometer alta traição contra um companheiro de vila!'
       };
       
@@ -151,8 +149,7 @@ export default function Dojo({ player }) {
         atk: calculateAtkTaiBuk(target) * 1.5,
         def: calculateDefTaiBuk(target) * 1.5,
         element: target.element,
-        xpReward: Math.floor((target.level * 300) + 500),
-        ryouReward: Math.floor((target.level * 150) + 300),
+        activeJutsus: targetJutsus,
         desc: 'Você rastreou uma Bijuu! Extraia o chakra para a Akatsuki!',
         isBijuuHunt: true
       };
@@ -324,7 +321,7 @@ export default function Dojo({ player }) {
     if (levelsGained > 0) {
       addToast(`🎉 Você subiu ${levelsGained} Níveis!`, "success");
     }
-    await updatePlayer(player.user_id);
+    await updatePlayer(player.id);
   };
 
 
@@ -357,68 +354,67 @@ export default function Dojo({ player }) {
         subtitle='Escolha entre teste seguro, combate real e objetivos de risco.'
       />
 
-      <div className="element-summary">
-        <div className="summary-tile">
-          <div className="label">Seu nível</div>
-          <div className="value">Nv. {player.level}</div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="bg-ink-card border border-line-solid p-4 flex flex-col items-center rounded shadow-sm">
+          <div className="text-muted text-xs uppercase tracking-widest mb-1">Seu nível</div>
+          <div className="text-xl font-bold text-paper">Nv. {player.level}</div>
         </div>
-        <div className="summary-tile">
-          <div className="label">Graduação</div>
-          <div className="value">{player.rank || 'Estudante'}</div>
+        <div className="bg-ink-card border border-line-solid p-4 flex flex-col items-center rounded shadow-sm">
+          <div className="text-muted text-xs uppercase tracking-widest mb-1">Graduação</div>
+          <div className="text-xl font-bold text-paper">{player.rank || 'Estudante'}</div>
         </div>
-        <div className="summary-tile">
-          <div className="label">Estado</div>
-          <div className="value">{loadingId ? 'Rastreando...' : 'Disponível'}</div>
+        <div className="bg-ink-card border border-line-solid p-4 flex flex-col items-center rounded shadow-sm">
+          <div className="text-muted text-xs uppercase tracking-widest mb-1">Estado</div>
+          <div className="text-xl font-bold text-paper">{loadingId ? 'Rastreando...' : 'Disponível'}</div>
         </div>
       </div>
 
-      <div className="action-grid">
-        <section className="action-card">
-          <div className="action-card-icon">🪵</div>
-          <h3>Treinamento Livre</h3>
-          <p>Use um alvo sem risco para testar dano, jutsus e equipamentos. Não concede recompensas.</p>
-          <div className="meta-row">
-            <span className="badge badge-green">Seguro</span>
-            <span className="badge badge-muted">Sem custo</span>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <section className="flex flex-col gap-4 bg-ink-card border border-line-solid p-6 rounded-lg transition-transform hover:-translate-y-1 hover:shadow-lg min-h-[260px]">
+          <div className="w-12 h-12 flex items-center justify-center bg-ink-raised border border-line-bright rounded-md text-2xl">🪵</div>
+          <h3 className="font-shippori text-xl font-bold text-paper">Treinamento Livre</h3>
+          <p className="text-muted-bright text-sm leading-relaxed">Use um alvo sem risco para testar dano, jutsus e equipamentos. Não concede recompensas.</p>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            <span className="bg-green/10 border border-green/40 text-green px-2 py-1 rounded text-xs">Seguro</span>
+            <span className="bg-white/5 border border-line text-muted px-2 py-1 rounded text-xs">Sem custo</span>
           </div>
-          <button className="btn-ghost w-full" onClick={handleFreeTraining} disabled={loadingId !== null}>
+          <button className="btn-ghost w-full mt-2" onClick={handleFreeTraining} disabled={loadingId !== null}>
             Bater no Boneco
           </button>
         </section>
 
-        <section className="action-card featured">
-          <div className="action-card-icon">⚔️</div>
-          <h3>Combate Real</h3>
-          <p>Rastreia um instrutor ou oponente parelho para uma luta completa com risco e progressão.</p>
-          <div className="meta-row">
-            <span className="badge badge-gold">Recomendado</span>
-            <span className="badge badge-muted">NPC ou rival</span>
+        <section className="flex flex-col gap-4 bg-gradient-to-b from-gold/10 to-ink-card border border-gold/30 p-6 rounded-lg transition-transform hover:-translate-y-1 hover:shadow-lg min-h-[260px]">
+          <div className="w-12 h-12 flex items-center justify-center bg-ink-raised border border-line-bright rounded-md text-2xl">⚔️</div>
+          <h3 className="font-shippori text-xl font-bold text-paper">Combate Real</h3>
+          <p className="text-muted-bright text-sm leading-relaxed">Rastreia um instrutor ou oponente parelho para uma luta completa com risco e progressão.</p>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            <span className="bg-gold/10 border border-gold text-gold px-2 py-1 rounded text-xs">Recomendado</span>
+            <span className="bg-white/5 border border-line text-muted px-2 py-1 rounded text-xs">NPC ou rival</span>
           </div>
-          <button className="btn-primary w-full" onClick={handleSearch} disabled={loadingId !== null}>
-            <span>{loadingId === 'search' ? 'Rastreando...' : 'Procurar Luta'}</span>
-            <div className="stamp"></div>
+          <button className="btn-primary w-full mt-2" onClick={handleSearch} disabled={loadingId !== null}>
+            {loadingId === 'search' ? 'Rastreando...' : 'Procurar Luta'}
           </button>
         </section>
 
-        <section className="action-card">
-          <div className="action-card-icon">⚡</div>
-          <h3>Incursão (Raid)</h3>
-          <p>Lute várias vezes seguidas sem sair do combate. Custa Stamina antecipada — recompensas acumulam a cada vitória.</p>
-          <div className="meta-row">
-            <span className="badge badge-gold">{RAID_STAMINA_COST} ST/luta</span>
-            <span className="badge badge-muted">Stamina: {player.stamina ?? calculateStamina(player)}</span>
+        <section className="flex flex-col gap-4 bg-ink-card border border-line-solid p-6 rounded-lg transition-transform hover:-translate-y-1 hover:shadow-lg min-h-[260px]">
+          <div className="w-12 h-12 flex items-center justify-center bg-ink-raised border border-line-bright rounded-md text-2xl">⚡</div>
+          <h3 className="font-shippori text-xl font-bold text-paper">Incursão (Raid)</h3>
+          <p className="text-muted-bright text-sm leading-relaxed">Lute várias vezes seguidas sem sair do combate. Custa Stamina antecipada — recompensas acumulam a cada vitória.</p>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            <span className="bg-gold/10 border border-gold text-gold px-2 py-1 rounded text-xs">{RAID_STAMINA_COST} ST/luta</span>
+            <span className="bg-white/5 border border-line text-muted px-2 py-1 rounded text-xs">Stamina: {player.stamina ?? calculateStamina(player)}</span>
           </div>
-          <div className="flex-col gap-sm w-full">
-            <div className="flex-row gap-sm w-full">
+          <div className="flex flex-col gap-2 w-full mt-2">
+            <div className="flex flex-row gap-2 w-full">
               <button className="btn-ghost flex-1" onClick={() => handleRaid(3)} disabled={loadingId !== null}>
                 Raid 3x
               </button>
               <button className="btn-primary flex-1" onClick={() => handleRaid(5)} disabled={loadingId !== null}>
-                <span>{loadingId === 'raid' ? '...' : 'Raid 5x'}</span>
+                {loadingId === 'raid' ? '...' : 'Raid 5x'}
               </button>
             </div>
             {(player.dojo_clears || player.wins_dojo || 0) >= 3 && (
-              <div className="flex-row gap-sm w-full">
+              <div className="flex flex-row gap-2 w-full">
                 <button className="btn-ghost flex-1 text-gold border-gold" onClick={() => handleQuickClear(3)} disabled={loadingId !== null}>
                   ⚡ Limpar 3x
                 </button>
@@ -430,35 +426,32 @@ export default function Dojo({ player }) {
           </div>
         </section>
 
-        <section className={`action-card ${isAkatsuki ? 'featured' : 'danger-zone'}`}>
-          <div className="action-card-icon">{isAkatsuki ? '☁️' : '⛔'}</div>
-          <h3>{isAkatsuki ? 'Caçada Jinchuuriki' : 'Renegado'}</h3>
-          <p>
+        <section className={`flex flex-col gap-4 border p-6 rounded-lg transition-transform hover:-translate-y-1 hover:shadow-lg min-h-[260px] ${isAkatsuki ? 'bg-gradient-to-b from-gold/10 to-ink-card border-gold/30' : 'bg-gradient-to-b from-danger/10 to-ink-card border-danger/30'}`}>
+          <div className="w-12 h-12 flex items-center justify-center bg-ink-raised border border-line-bright rounded-md text-2xl">{isAkatsuki ? '☁️' : '⛔'}</div>
+          <h3 className="font-shippori text-xl font-bold text-paper">{isAkatsuki ? 'Caçada Jinchuuriki' : 'Renegado'}</h3>
+          <p className="text-muted-bright text-sm leading-relaxed">
             {isAkatsuki
               ? 'Rastreie portadores de Bijuus para cumprir os objetivos da organização. Alvos são extremamente perigosos.'
               : 'Ataque um companheiro de vila. Se vencer, você rasga a bandana e entra para a Akatsuki.'}
           </p>
-          <div className="meta-row">
-            <span className={`badge ${isAkatsuki ? 'badge-gold' : 'badge-red'}`}>{isAkatsuki ? 'Objetivo' : 'Permanente'}</span>
-            <span className="badge badge-muted">Alto risco</span>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            <span className={`px-2 py-1 rounded text-xs ${isAkatsuki ? 'bg-gold/10 border border-gold text-gold' : 'bg-seal-glow border border-seal-bright text-seal-bright'}`}>{isAkatsuki ? 'Objetivo' : 'Permanente'}</span>
+            <span className="bg-white/5 border border-line text-muted px-2 py-1 rounded text-xs">Alto risco</span>
           </div>
           <button
-            className={`w-full ${isAkatsuki ? 'btn-primary' : 'btn-danger'}`}
+            className={`w-full mt-2 ${isAkatsuki ? 'btn-primary' : 'btn-danger'}`}
             onClick={isAkatsuki ? handleBijuuHunt : handleBetrayal}
             disabled={loadingId !== null}
           >
-            <span>
-              {isAkatsuki
-                ? (loadingId === 'hunt' ? 'Rastreando...' : 'Caçar Jinchuuriki')
-                : (loadingId === 'betray' ? 'Rastreando...' : 'Trair a Vila')}
-            </span>
-            {isAkatsuki && <div className="stamp"></div>}
+            {isAkatsuki
+              ? (loadingId === 'hunt' ? 'Rastreando...' : 'Caçar Jinchuuriki')
+              : (loadingId === 'betray' ? 'Rastreando...' : 'Trair a Vila')}
           </button>
         </section>
       </div>
 
-      <div className="info-banner mt-6">
-        <strong className="paper">Dica:</strong> use o Treinamento Livre depois de trocar equipamentos ou jutsus. Para progressão real, vá em Combate Real.
+      <div className="mt-8 p-4 bg-gold/5 border border-gold/20 rounded-lg text-sm">
+        <strong className="text-paper">Dica:</strong> use o Treinamento Livre depois de trocar equipamentos ou jutsus. Para progressão real, vá em Combate Real.
       </div>
     </div>
   );

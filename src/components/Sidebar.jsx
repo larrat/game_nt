@@ -9,6 +9,7 @@ const NAV = [
     group: 'Personagem',
     items: [
       { to: '/dashboard', icon: '/images/imgi_29_index.png', label: 'Ficha' },
+      { to: '/status', icon: '👤', label: 'Status' },
       { to: '/treino', icon: '/images/imgi_10_stamina.png', label: 'Treinamento' },
       { to: '/elementos', icon: '/images/imgi_9_chakra.png', label: 'Elementos' },
       { to: '/tecnicas', icon: '/images/imgi_13_passe.png', label: 'Técnicas' },
@@ -35,6 +36,7 @@ const NAV = [
     group: 'Academia',
     items: [
       { to: '/tarefas', icon: '/images/imgi_14_rotina.png', label: 'Missões' },
+      { to: '/exame', icon: '📜', label: 'Exame Ninja' },
       { to: '/graduacoes', icon: '/images/imgi_126_star.png', label: 'Graduações' },
     ]
   },
@@ -43,8 +45,11 @@ const NAV = [
     items: [
       { to: '/dojo', icon: '/images/imgi_112_1.png', label: 'Dojo' },
       { to: '/historico', icon: '📜', label: 'Histórico' },
+      { to: '/historia', icon: '📖', label: 'Modo História' },
       { to: '/ranking', icon: '/images/imgi_11_round46.png', label: 'Ranking' },
       { to: '/vila', icon: '/images/imgi_108_Noticias.png', label: 'Vila' },
+      { to: '/evento', icon: '🌎', label: 'Evento Global' },
+      { to: '/ferreiro', icon: '🔨', label: 'Ferreiro' },
       { to: '/mapa', icon: '/images/imgi_135_shield.png', label: 'Mapa-múndi' },
       { to: '/ichiraku', icon: '/images/imgi_21_Mochila.png', label: 'Ichiraku Ramen' },
     ]
@@ -90,7 +95,7 @@ export default function Sidebar({ player }) {
         </div>
       </div>
 
-      <div style={{ flex: 1, overflowY: 'auto' }}>
+      <div className="flex-1 overflow-y-auto">
         {NAV.map((group) => {
           const isOpen = expanded[group.group];
           return (
@@ -100,7 +105,7 @@ export default function Sidebar({ player }) {
                 onClick={() => toggleGroup(group.group)}
                 onMouseEnter={handleMouseEnter}
               >
-                <div className="label" style={{ color: group.group === 'Premium' ? 'var(--gold)' : 'var(--muted)' }}>
+                <div className={`label ${group.group === 'Premium' ? 'text-gold' : 'text-muted'}`}>
                   {group.group}
                 </div>
                 <div className="arrow">▼</div>
@@ -115,7 +120,7 @@ export default function Sidebar({ player }) {
                     onMouseEnter={handleMouseEnter}
                     className={({ isActive }) => `navitem${isActive ? ' active' : ''} ${group.group === 'Premium' ? 'premium' : ''}`}
                   >
-                    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', flexShrink: 0, color: 'inherit' }}>
+                    <span className="flex items-center justify-center w-5 h-5 shrink-0 text-inherit">
                       <SidebarIcon label={item.label} />
                     </span>
                     {item.label}
@@ -127,17 +132,16 @@ export default function Sidebar({ player }) {
         })}
       </div>
 
-      <div className="sidebar-footer" style={{ borderTop: '1px solid var(--line)', padding: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div className="sidebar-footer border-t border-line p-4 flex flex-col gap-2">
         
-        <div className="flex-between" style={{ marginTop: '0' }}>
+        <div className="flex-between mt-0">
           <div className="flex-col">
-            <div style={{ color: 'var(--gold)', marginBottom: '4px', fontWeight: 600, fontSize: '12px' }}>S1 · {player?.name || '---'}</div>
-            <div style={{ opacity: 0.5, fontSize: '11px' }}>v2.0 Kurokage</div>
+            <div className="text-gold mb-1 font-semibold text-xs">S1 · {player?.name || '---'}</div>
+            <div className="opacity-50 text-[11px]">v2.0 Kurokage</div>
           </div>
           
           <button 
-            className="btn-ghost" 
-            style={{ padding: '6px', fontSize: '16px', borderRadius: '4px', border: '1px solid var(--line)' }}
+            className="btn-ghost p-1.5 text-base rounded border border-line"
             onClick={() => { playClickSound(); setAudioOn(!audioOn); }}
             title={audioOn ? 'Desativar Som' : 'Ativar Som'}
           >

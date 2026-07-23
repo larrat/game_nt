@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { VILLAGES_LIST } from '../constants';
+import PageHeader from '../components/PageHeader';
 
 const CLASSES = [
   { id: 'NIN', name: 'Ninjutsu', icon: '📜', desc: 'Especialista em magias.', stats: { ninjutsu: 5, inteligencia: 4, selo: 3, energia: 3, agilidade: 2, resistencia: 1, genjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
@@ -42,7 +43,7 @@ export default function Criar({ session, setPlayerState }) {
       
       const vStats = {};
       for (const v of VILLAGES_LIST) {
-        if (v.id === 8) continue;
+        if (v.id === 8) continue; // Skip Akatsuki for creation
         const { count } = await supabase
           .from('players')
           .select('id', { count: 'exact', head: true })
@@ -89,148 +90,140 @@ export default function Criar({ session, setPlayerState }) {
         ...data,
         activeJutsus: []
       });
+      // The parent App component will auto-redirect to dashboard when player state is set
     }
   };
 
+  const currentClass = CLASSES.find(c => c.id === selectedClass);
+
   return (
-    <div className="page auth-screen" style={{
-      backgroundImage: 'url(/images/bg_login.jpg)',
-      padding: 0,
-      display: 'flex',
-      flexDirection: 'column'
-    }}>
+    <div className="page auth-screen-layout">
+      
       <header className="auth-header">
         <nav className="auth-nav">
           <div className="brand"><div className="mark"></div>KUROKAGE</div>
           <div className="nav-right">
-            <button className="btn-ghost" onClick={() => navigate('/selecionar')}>Voltar para Seleção</button>
+            <button className="btn-ghost" onClick={() => navigate('/selecionar')}>Voltar</button>
           </div>
         </nav>
       </header>
 
-      <main style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexWrap: 'wrap', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+      <div className="auth-title-container" style={{ position: 'relative', zIndex: 2 }}>
+        <PageHeader 
+          eyebrow="Novo Personagem"
+          title="Crie sua Lenda"
+          subtitle="Escolha seu caminho ninja com sabedoria."
+        />
+      </div>
+
+      <div className="selection-showcase" style={{ alignItems: 'flex-start' }}>
         
-        <div style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '48px' }}>
-          <div style={{ position: 'relative', width: '100%', maxWidth: '450px', height: '600px' }}>
-            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(234, 179, 8, 0.2) 0%, rgba(0,0,0,0) 70%)', pointerEvents: 'none' }}></div>
-            <img src={selectedAvatar} alt="Herói" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 20px rgba(0,0,0,0.8))', transition: 'all 0.3s ease' }} />
-          </div>
-        </div>
-
-        <div style={{ flex: '1 1 600px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '48px' }}>
+        {/* Lado Esquerdo: Avatar e Nome */}
+        <div className="flex-col" style={{ width: '300px', flexShrink: 0 }}>
           
-          <div style={{ marginBottom: '40px' }}>
-            <h1 className="paper" style={{ fontSize: '48px', margin: '0 0 16px 0', textTransform: 'uppercase', letterSpacing: '2px' }}>Forja de Heróis</h1>
-            <p className="muted" style={{ fontSize: '16px', lineHeight: '1.6', maxWidth: '500px' }}>
-              Seu caminho ninja começa aqui. Escolha o herói que deseja encarnar, a vila que irá defender e sua especialização.
-            </p>
-          </div>
+          <div className="card card-glass flex-col" style={{ alignItems: 'center' }}>
+             <div className="selection-avatar-container mb-4">
+                {selectedAvatar?.startsWith('/') ? (
+                  <img src={selectedAvatar} alt="Avatar" />
+                ) : (
+                  <img src={`https://placehold.co/250x250/1c1c22/b3232d?text=?`} alt="Avatar" />
+                )}
+             </div>
 
-          <div className="card-glass" style={{ background: 'rgba(15,15,20,0.82)' }}>
-            
-            <div style={{ marginBottom: '32px' }}>
-              <label className="gold mono uppercase" style={{ fontSize: '12px', letterSpacing: '1px', marginBottom: '16px', display: 'block' }}>Selecione o Herói (Visual)</label>
-              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-                {characters.map(char => (
-                  <div 
-                    key={char.id} 
-                    className="flex-col" 
-                    style={{ alignItems: 'center', gap: '8px', cursor: 'pointer', width: '72px' }} 
-                    onClick={() => { setSelectedCharacter(char.id); setSelectedAvatar(char.base_avatar_url); }}
-                    title={char.name}
-                  >
-                    <div style={{
-                      width: '72px', height: '72px', borderRadius: '8px', overflow: 'hidden',
-                      border: selectedCharacter === char.id ? '2px solid var(--gold)' : '1px solid var(--line)',
-                      opacity: selectedCharacter === char.id ? 1 : 0.5,
-                      transition: 'all 0.2s ease', background: 'var(--ink)'
-                    }}>
-                      <img src={char.base_avatar_url} alt={char.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </div>
-                    <span className={selectedCharacter === char.id ? 'gold' : 'muted'} style={{ fontSize: '11px', textAlign: 'center', lineHeight: '1.2' }}>
-                      {char.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+             <div className="w-full mb-4">
+                <label className="muted uppercase block mb-2">Nome Ninja</label>
+                <input 
+                  className="input" 
+                  type="text" 
+                  placeholder="Nome do personagem..."
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  maxLength={20}
+                  className="w-full"
+                />
+             </div>
 
-            <div style={{ marginBottom: '32px' }}>
-              <label className="gold mono uppercase" style={{ fontSize: '12px', letterSpacing: '1px', marginBottom: '16px', display: 'block' }}>Especialização Ninja (Status Base)</label>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                {CLASSES.map(c => (
-                  <div 
-                    key={c.id}
-                    onClick={() => setSelectedClass(c.id)}
-                    style={{ 
-                      padding: '12px', borderRadius: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '12px',
-                      background: selectedClass === c.id ? 'rgba(234, 179, 8, 0.1)' : 'var(--ink-raised)',
-                      border: selectedClass === c.id ? '1px solid var(--gold)' : '1px solid var(--line)',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
-                      <div style={{ fontSize: '24px' }}>{c.icon}</div>
-                      <div>
-                        <div className="paper" style={{ fontSize: '14px', fontWeight: 'bold' }}>{c.name}</div>
-                        <div className="muted" style={{ fontSize: '11px' }}>{c.desc}</div>
-                      </div>
-                    </div>
-                    <div className="flex-row" style={{ flexWrap: 'wrap', gap: '4px' }}>
-                      {Object.entries(c.stats).filter(([, v]) => v > 0).map(([k, v]) => (
-                         <span key={k} className="badge badge-muted" style={{ fontSize: '10px', padding: '2px 4px' }}>
-                           <span className="gold">{k.substring(0,3).toUpperCase()}</span>: {v}
-                         </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '32px' }}>
-              <label className="gold mono uppercase" style={{ fontSize: '12px', letterSpacing: '1px', marginBottom: '16px', display: 'block' }}>Vila de Origem</label>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: '12px' }}>
-                {VILLAGES_LIST.filter(v => v.id !== 8).map(v => (
-                  <div 
-                    key={v.id}
-                    onClick={() => setSelectedVillage(v.id)}
-                    style={{ 
-                      padding: '12px', borderRadius: '8px', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
-                      background: selectedVillage === v.id ? 'rgba(234, 179, 8, 0.1)' : 'var(--ink-raised)',
-                      border: selectedVillage === v.id ? '1px solid var(--gold)' : '1px solid var(--line)',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    <div style={{ fontSize: '24px' }}>{v.icon}</div>
-                    <div className="paper" style={{ fontSize: '12px', textAlign: 'center' }}>{v.name}</div>
-                    <div className="muted mono" style={{ fontSize: '10px' }}>Pop: {villageStats[v.id] || 0}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '40px' }}>
-              <label className="gold mono uppercase" style={{ fontSize: '12px', letterSpacing: '1px', marginBottom: '8px', display: 'block' }}>Identidade</label>
-              <input 
-                type="text" 
-                placeholder="Digite seu nome ninja" 
-                value={name} 
-                onChange={e => setName(e.target.value)} 
-                style={{ width: '100%', padding: '16px', fontSize: '16px', background: 'rgba(0,0,0,0.5)', border: '1px solid var(--line)', borderRadius: '8px', color: '#fff' }}
-              />
-            </div>
-
-            <button className="btn-primary" style={{ width: '100%', padding: '18px', fontSize: '16px', textTransform: 'uppercase', letterSpacing: '2px', position: 'relative', overflow: 'hidden' }} onClick={handleCreate} disabled={loading}>
-              <span style={{ position: 'relative', zIndex: 2 }}>{loading ? 'Forjando Destino...' : 'Despertar Personagem'}</span>
-              <div className="stamp" style={{ position: 'absolute', zIndex: 1, top: '50%', right: '20px', transform: 'translateY(-50%)', opacity: 0.2 }}>
-                <img src="/images/imgi_126_star.png" style={{ width: '32px', height: '32px' }} />
-              </div>
-            </button>
-            
+             <div className="w-full">
+                <label className="muted uppercase block mb-2">Selecione o Visual</label>
+                <div className="flex-wrap">
+                  {characters.map(c => (
+                    <img 
+                      key={c.id} 
+                      src={c.base_avatar_url} 
+                      alt={c.name}
+                      onClick={() => { setSelectedCharacter(c.id); setSelectedAvatar(c.base_avatar_url); }}
+                      style={{ 
+                        width: '48px', 
+                        height: '48px', 
+                        borderRadius: '4px', 
+                        cursor: 'pointer',
+                        border: selectedCharacter === c.id ? '2px solid var(--gold)' : '1px solid var(--line-bright)',
+                        opacity: selectedCharacter === c.id ? 1 : 0.6
+                      }}
+                    />
+                  ))}
+                </div>
+             </div>
           </div>
         </div>
-      </main>
+
+        {/* Lado Direito: Vila e Classe */}
+        <div className="flex-col flex-1">
+          
+          <div className="card card-glass mb-4">
+            <h3 className="card-title">Vila Oculta</h3>
+            <div className="grid-3">
+              {VILLAGES_LIST.filter(v => v.id !== 8).map(v => (
+                <div 
+                  key={v.id} 
+                  className={`create-class-card ${selectedVillage === v.id ? 'active' : ''}`}
+                  onClick={() => setSelectedVillage(v.id)}
+                >
+                  <img src={`/images/vilas/${v.id}.png`} alt={v.name} className="w-[40px] h-[40px] mb-2" onError={(e) => e.target.style.display='none'} />
+                  <div className="gold mb-1">{v.name}</div>
+                  <div className="muted text-xs">Habitantes: {villageStats[v.id] || 0}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="card card-glass">
+            <h3 className="card-title">Classe Ninja (Especialização)</h3>
+            <div className="grid-2">
+              {CLASSES.map(c => (
+                <div 
+                  key={c.id}
+                  className={`create-class-card ${selectedClass === c.id ? 'active' : ''}`}
+                  onClick={() => setSelectedClass(c.id)}
+                >
+                  <div className="text-2xl mb-2">{c.icon}</div>
+                  <div className="gold mb-1">{c.name}</div>
+                  <div className="muted text-xs">{c.desc}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 p-3 border-line-solid rounded-sm bg-ink">
+               <h4 className="gold mb-2 text-sm uppercase">Atributos Base ({currentClass.name})</h4>
+               <div className="flex-wrap gap-2">
+                  {Object.entries(currentClass.stats).map(([stat, val]) => val > 0 && (
+                    <div key={stat} className="badge badge-muted">
+                      <span className="capitalize">{stat}</span> <span className="gold">+{val}</span>
+                    </div>
+                  ))}
+               </div>
+            </div>
+          </div>
+          
+          <div className="flex-row mt-4 justify-end">
+             <button className="btn-primary py-3 px-8 text-base" onClick={handleCreate} disabled={loading}>
+               <span>{loading ? 'Criando...' : 'Criar Personagem'}</span>
+               <div className="stamp"></div>
+             </button>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 }

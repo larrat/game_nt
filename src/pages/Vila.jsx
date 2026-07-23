@@ -8,10 +8,12 @@ import { useToast } from '../context/ToastContext';
 // Mapeamento de posições para os prédios no mockup visual
 const BUILDING_INFO = {
   'kage': { img: '/images/icons/kage_icon_1782967244288.jpg', name: 'Gabinete do Kage', desc: 'Acesso a Missões Rank-S.', top: '20%', left: '50%' },
-  'hospital': { img: '/images/icons/hospital_icon_1782967252280.jpg', name: 'Hospital', desc: 'Regeneração de Vida.', top: '40%', left: '25%' },
+  'hospital': { img: '/images/icons/hospital_icon_1782967252280.jpg', name: 'Hospital', desc: 'Recuperar HP.', top: '25%', left: '20%' },
+  'historia': { img: '/images/imgi_29_scroll_gold.jpg', name: 'Escritório do Hokage', desc: 'Sagas.', top: '40%', left: '45%' },
   'dojo': { img: '/images/icons/dojo_icon_1782967259930.jpg', name: 'Academia', desc: 'Bônus de XP.', top: '40%', left: '75%' },
   'ichiraku': { img: '/images/icons/ichiraku_icon_1782967269460.jpg', name: 'Restaurante', desc: 'Stamina extra.', top: '60%', left: '35%' },
   'blacksmith': { img: '/images/icons/blacksmith_icon_1782967278110.jpg', name: 'Ferreiro', desc: 'Itens lendários.', top: '60%', left: '65%' },
+  'invasao': { img: '/images/icons/gates_icon_1782967286132.jpg', name: 'Alerta de Invasão', desc: 'World Boss.', top: '10%', left: '45%' },
   'gates': { img: '/images/icons/gates_icon_1782967286132.jpg', name: 'Portões', desc: 'Sair para o Mundo.', top: '80%', left: '50%', isGate: true }
 };
 
@@ -67,6 +69,18 @@ export default function Vila({ player, updatePlayer }) {
       navigate('/mapa');
       return;
     }
+    if (key === 'blacksmith') {
+      navigate('/ferreiro');
+      return;
+    }
+    if (key === 'invasao') {
+      navigate('/evento');
+      return;
+    }
+    if (key === 'historia') {
+      navigate('/historia');
+      return;
+    }
     setSelectedBuildingKey(key);
   };
 
@@ -100,7 +114,7 @@ export default function Vila({ player, updatePlayer }) {
       }
 
       addToast(`Doou ¥${donation.toLocaleString()}!`, "success");
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
       
       setBuildings(buildings.map(b => b.id === building.id ? { ...b, current_donations: new_donations, level: new_level, next_level_cost: new_cost } : b));
     } catch (err) {
@@ -117,35 +131,33 @@ export default function Vila({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div style={{ padding: 0, position: 'fixed', inset: 0, overflow: 'hidden' }}>
+    <div className="p-0 fixed inset-0 overflow-hidden">
 
       {/* Background Image */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: `url(/images/bg_${player.village_id}.jpg), url(/images/bg_login.jpg)`,
-        backgroundSize: 'cover', backgroundPosition: 'center',
-        zIndex: 0
-      }} />
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(/images/bg_${player.village_id}.jpg), url(/images/bg_login.jpg)` }} 
+      />
       {/* Dark Overlay */}
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)', zIndex: 1 }} />
+      <div className="absolute inset-0 z-1" style={{ background: 'rgba(0,0,0,0.45)' }} />
 
       {/* Header top-left */}
-      <div style={{ position: 'absolute', top: '16px', left: '24px', zIndex: 10 }}>
+      <div className="absolute z-10 top-4 left-6">
         <PageHeader eyebrow='Administração e Projetos' title={`Vila da ${villageData?.name || 'Desconhecida'}`} subtitle="Clique nos edifícios para interagir." />
       </div>
 
       {/* Kage card bottom-right */}
-      <div style={{ position: 'absolute', bottom: '24px', right: '24px', zIndex: 10 }}>
-        <div className="card-glass" style={{ textAlign: 'center', border: '1px solid var(--gold)', width: '180px', padding: '12px', background: 'rgba(15,15,20,0.9)', backdropFilter: 'blur(8px)' }}>
+      <div className="absolute z-10 bottom-6 right-6">
+        <div className="card-glass text-center p-3 w-[180px] bg-black-alpha-90 backdrop-blur-md border border-solid border-gold">
           <div className="gold uppercase text-xs font-bold mb-1">{villageData?.leader_title || 'Líder'}</div>
-          <div style={{ fontSize: '28px', marginBottom: '6px' }}>👑</div>
+          <div className="text-3xl mb-1">👑</div>
           <div className="paper font-medium mb-1 text-lg">{kage ? kage.name : 'Vago'}</div>
           <div className="muted text-xs">{kage ? `${kage.class || 'NIN'} - Nv. ${kage.level}` : 'Nenhum líder'}</div>
         </div>
       </div>
 
       {/* Buildings area - relative within the fixed container */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 5 }}>
+      <div className="absolute inset-0 z-5">
 
 
         {/* Renderizar Prédios */}
@@ -153,32 +165,26 @@ export default function Vila({ player, updatePlayer }) {
           <div
             key={key}
             onClick={() => handleBuildingClick(key)}
+            className="absolute flex-col items-center cursor-pointer z-5"
             style={{
-              position: 'absolute',
               top: info.top,
               left: info.left,
               transform: 'translate(-50%, -50%)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              cursor: 'pointer',
-              zIndex: 5,
               transition: 'transform 0.2s',
             }}
             onMouseOver={(e) => e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.1)'}
             onMouseOut={(e) => e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)'}
           >
-            <div style={{
-              width: '64px', height: '64px', borderRadius: '50%', background: info.isGate ? 'rgba(239, 68, 68, 0.8)' : 'rgba(20, 20, 25, 0.9)',
-              border: '2px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 0 20px rgba(0,0,0,0.8)', overflow: 'hidden'
-            }}>
-              <img src={info.img} alt={info.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div 
+              className="w-16 h-16 rounded-full border-2 border-gold flex-row items-center justify-center overflow-hidden"
+              style={{
+                background: info.isGate ? 'rgba(239, 68, 68, 0.8)' : 'rgba(20, 20, 25, 0.9)',
+                boxShadow: '0 0 20px rgba(0,0,0,0.8)'
+              }}
+            >
+              <img src={info.img} alt={info.name} className="w-full h-full object-cover" />
             </div>
-            <div className="paper" style={{
-              background: 'rgba(0,0,0,0.8)', padding: '4px 12px', borderRadius: '4px', marginTop: '8px',
-              fontSize: '12px', whiteSpace: 'nowrap', border: '1px solid var(--line)'
-            }}>
+            <div className="paper bg-black-alpha-80 px-3 py-1 rounded-sm mt-2 text-xs whitespace-nowrap border-line-solid">
               {info.name}
             </div>
           </div>
@@ -186,17 +192,17 @@ export default function Vila({ player, updatePlayer }) {
 
         {/* Modal Simples do Prédio */}
         {selectedBuildingInfo && !selectedBuildingInfo.isGate && (
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 20, width: '400px' }}>
-            <div className="card-glass" style={{ background: 'rgba(15,15,20,0.95)', border: isDamaged ? '1px solid var(--danger)' : '1px solid var(--gold)' }}>
-              <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-                <img src={selectedBuildingInfo.img} alt={selectedBuildingInfo.name} style={{ width: '80px', height: '80px', borderRadius: '50%', border: '2px solid var(--gold)', filter: isDamaged ? 'grayscale(100%) brightness(0.5)' : 'none' }} />
+          <div className="absolute z-20 w-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className={`card-glass bg-black-alpha-95 border border-solid ${isDamaged ? 'border-danger' : 'border-gold'}`}>
+              <div className="text-center mb-4">
+                <img src={selectedBuildingInfo.img} alt={selectedBuildingInfo.name} className={`w-20 h-20 rounded-full border-2 border-gold inline-block ${isDamaged ? 'grayscale brightness-50' : ''}`} />
               </div>
               {dbBuilding && (
                 <div className={isDamaged ? "danger uppercase text-xs font-bold mb-1 text-center" : "gold text-xs font-bold mb-1 text-center"}>
                   {isDamaged ? 'DESTRUÍDO' : `Nível ${dbBuilding.level}`}
                 </div>
               )}
-              <h3 className="card-title text-center mb-2" style={{ fontSize: '24px' }}>{selectedBuildingInfo.name}</h3>
+              <h3 className="card-title text-center mb-2 text-2xl">{selectedBuildingInfo.name}</h3>
               <p className="muted text-center mb-6">{selectedBuildingInfo.desc}</p>
               
               {dbBuilding && !isDamaged && (
@@ -215,15 +221,15 @@ export default function Vila({ player, updatePlayer }) {
               )}
 
               {isDamaged && (
-                <div style={{ marginBottom: '24px' }}>
-                  <button className="btn-danger" style={{ width: '100%', fontSize: '12px', padding: '10px' }} disabled={true}>
+                <div className="mb-6">
+                  <button className="btn-danger w-full p-2 text-xs" disabled={true}>
                     Requer Missão de Reparo
                   </button>
                 </div>
               )}
 
               {!dbBuilding && (
-                <div className="muted" style={{ textAlign: 'center', marginBottom: '24px', fontSize: '12px' }}>
+                <div className="muted text-center mb-6 text-xs">
                   (Planta não encontrada no banco de dados)
                 </div>
               )}

@@ -42,7 +42,7 @@ export default function MissionManager({ player, updatePlayer }) {
 
       if (error || data?.error) throw new Error(error?.message || data?.error);
 
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
       addToast(`Missão concluída! +${taskDef.xp} XP e RY$ ${taskDef.ryous}.`, 'success');
     } catch (err) {
       addToast(err.message || 'Erro ao finalizar missão.', 'error');

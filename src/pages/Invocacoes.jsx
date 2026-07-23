@@ -78,7 +78,7 @@ export default function Invocacoes({ player, updatePlayer }) {
       addToast('Erro ao assinar contrato: ' + error.message, 'error');
     } else {
       addToast(`Contrato assinado com ${summon.name}!`, 'success');
-      await updatePlayer();
+      await updatePlayer(player.id);
       await loadData();
     }
     
@@ -103,7 +103,7 @@ export default function Invocacoes({ player, updatePlayer }) {
       addToast('Erro ao equipar: ' + error.message, 'error');
     } else {
       addToast('Mascote invocado com sucesso!', 'success');
-      await updatePlayer();
+      await updatePlayer(player.id);
       await loadData();
     }
     
@@ -122,7 +122,7 @@ export default function Invocacoes({ player, updatePlayer }) {
       addToast('Erro ao recolher: ' + error.message, 'error');
     } else {
       addToast('Mascote recolhido.', 'success');
-      await updatePlayer();
+      await updatePlayer(player.id);
       await loadData();
     }
     
@@ -139,7 +139,7 @@ export default function Invocacoes({ player, updatePlayer }) {
         subtitle="Gerencie seus contratos de invocação e mascotes de batalha." 
       />
 
-      <div className="flex-row" style={{ gap: '16px', marginBottom: '24px' }}>
+      <div className="flex-row gap-md mb-6">
         <button 
           className={activeTab === 'meus' ? 'btn-primary' : 'btn-ghost'} 
           onClick={() => setActiveTab('meus')}
@@ -155,13 +155,13 @@ export default function Invocacoes({ player, updatePlayer }) {
       </div>
 
       {loading ? (
-        <div className="card-glass muted" style={{ textAlign: 'center', padding: '32px' }}>
+        <div className="card-glass muted text-center p-8">
           Consultando pergaminhos...
         </div>
       ) : activeTab === 'meus' ? (
-        <div className="flex-col" style={{ gap: '16px' }}>
+        <div className="flex-col gap-md">
           {playerSummons.length === 0 ? (
-            <div className="card-glass muted" style={{ textAlign: 'center', padding: '32px' }}>
+            <div className="card-glass muted text-center p-8">
               Você ainda não assinou nenhum contrato de invocação.
             </div>
           ) : (
@@ -169,20 +169,20 @@ export default function Invocacoes({ player, updatePlayer }) {
               {playerSummons.map(ps => {
                 const s = ps.summons;
                 return (
-                  <div key={ps.id} className="card-glass flex-col" style={{ border: ps.is_equipped ? '1px solid var(--gold)' : '1px solid rgba(255,255,255,0.1)' }}>
-                    <div className="flex-row" style={{ gap: '16px', alignItems: 'flex-start' }}>
-                      <div style={{ fontSize: '40px' }}>{s.animal_type === 'Sapo' ? '🐸' : s.animal_type === 'Cobra' ? '🐍' : s.animal_type === 'Lesma' ? '🐌' : s.animal_type === 'Cachorro' ? '🐶' : '🐾'}</div>
-                      <div style={{ flex: 1 }}>
+                  <div key={ps.id} className={`card-glass flex-col border border-solid ${ps.is_equipped ? 'border-gold' : 'border-white/10'}`}>
+                    <div className="flex-row gap-md items-start">
+                      <div className="text-4xl">{s.animal_type === 'Sapo' ? '🐸' : s.animal_type === 'Cobra' ? '🐍' : s.animal_type === 'Lesma' ? '🐌' : s.animal_type === 'Cachorro' ? '🐶' : '🐾'}</div>
+                      <div className="flex-1">
                         <div className="flex-between">
-                          <h3 className="paper" style={{ fontSize: '18px', margin: 0 }}>{s.name}</h3>
-                          {ps.is_equipped && <span className="badge badge-gold" style={{ fontSize: '10px' }}>Equipado</span>}
+                          <h3 className="paper text-lg m-0">{s.name}</h3>
+                          {ps.is_equipped && <span className="badge badge-gold text-[10px]">Equipado</span>}
                         </div>
-                        <div className="muted" style={{ fontSize: '12px', marginBottom: '8px' }}>
+                        <div className="muted text-xs mb-2">
                           Nível {ps.level} • Afeto: {ps.affection}/100
                         </div>
-                        <p className="paper" style={{ fontSize: '12px', margin: '0 0 12px 0' }}>{s.description}</p>
+                        <p className="paper text-xs m-0 mb-3">{s.description}</p>
                         
-                        <div className="grid-2" style={{ gap: '8px', marginBottom: '16px', fontSize: '11px' }}>
+                        <div className="grid-2 gap-sm mb-4 text-[11px]">
                           <div className="badge badge-muted">HP Base: {s.base_hp}</div>
                           <div className="badge badge-muted">ATK Base: {s.base_atk}</div>
                           <div className="badge badge-muted">Elemento: {s.element}</div>
@@ -190,11 +190,11 @@ export default function Invocacoes({ player, updatePlayer }) {
                         </div>
 
                         {ps.is_equipped ? (
-                          <button className="btn-ghost" style={{ width: '100%' }} onClick={unequipAll} disabled={actionLoading}>
+                          <button className="btn-ghost w-full" onClick={unequipAll} disabled={actionLoading}>
                             Recolher Mascote
                           </button>
                         ) : (
-                          <button className="btn-primary" style={{ width: '100%' }} onClick={() => equipSummon(ps.id)} disabled={actionLoading}>
+                          <button className="btn-primary w-full" onClick={() => equipSummon(ps.id)} disabled={actionLoading}>
                             Invocar para Combate
                           </button>
                         )}
@@ -213,29 +213,29 @@ export default function Invocacoes({ player, updatePlayer }) {
             const cost = s.req_level * 100;
             return (
               <div key={s.id} className="card-glass flex-col">
-                <div className="flex-row" style={{ gap: '16px', alignItems: 'flex-start' }}>
-                  <div style={{ fontSize: '40px' }}>{s.animal_type === 'Sapo' ? '🐸' : s.animal_type === 'Cobra' ? '🐍' : s.animal_type === 'Lesma' ? '🐌' : s.animal_type === 'Cachorro' ? '🐶' : '🐾'}</div>
-                  <div style={{ flex: 1 }}>
+                <div className="flex-row gap-md items-start">
+                  <div className="text-4xl">{s.animal_type === 'Sapo' ? '🐸' : s.animal_type === 'Cobra' ? '🐍' : s.animal_type === 'Lesma' ? '🐌' : s.animal_type === 'Cachorro' ? '🐶' : '🐾'}</div>
+                  <div className="flex-1">
                     <div className="flex-between">
-                      <h3 className="paper" style={{ fontSize: '18px', margin: 0 }}>{s.name}</h3>
-                      <span className="badge badge-muted" style={{ fontSize: '10px' }}>Rank {s.req_rank}</span>
+                      <h3 className="paper text-lg m-0">{s.name}</h3>
+                      <span className="badge badge-muted text-[10px]">Rank {s.req_rank}</span>
                     </div>
-                    <div className="muted" style={{ fontSize: '12px', marginBottom: '8px' }}>
+                    <div className="muted text-xs mb-2">
                       Requer Nível {s.req_level}
                     </div>
-                    <p className="paper" style={{ fontSize: '12px', margin: '0 0 12px 0' }}>{s.description}</p>
+                    <p className="paper text-xs m-0 mb-3">{s.description}</p>
                     
-                    <div className="grid-2" style={{ gap: '8px', marginBottom: '16px', fontSize: '11px' }}>
+                    <div className="grid-2 gap-sm mb-4 text-[11px]">
                       <div className="badge badge-muted">HP Base: {s.base_hp}</div>
                       <div className="badge badge-muted">ATK Base: {s.base_atk}</div>
                     </div>
 
                     {hasContract ? (
-                      <button className="btn-ghost" style={{ width: '100%', opacity: 0.5 }} disabled>
+                      <button className="btn-ghost w-full opacity-50" disabled>
                         Contrato Assinado
                       </button>
                     ) : (
-                      <button className="btn-primary" style={{ width: '100%' }} onClick={() => signContract(s)} disabled={actionLoading}>
+                      <button className="btn-primary w-full" onClick={() => signContract(s)} disabled={actionLoading}>
                         Assinar Contrato ({cost} ¥)
                       </button>
                     )}

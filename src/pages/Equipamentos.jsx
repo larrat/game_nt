@@ -143,10 +143,9 @@ export default function Equipamentos({ player, updatePlayer }) {
     const equipped = getEquipped(type);
     
     return (
-      <div className={equipped ? "card-glass flex-col items-center justify-center text-center border-line-solid" : "card flex-col items-center justify-center text-center border-line-dashed"} style={{ 
-        width: '130px', 
-        background: equipped ? 'var(--ink-card)' : 'transparent', 
-        borderColor: equipped ? getRarityColor(equipped.items.rarity) : 'var(--seal)'
+      <div className={`flex-col items-center justify-center text-center w-[130px] ${equipped ? 'card-glass border-line-solid' : 'card border-line-dashed bg-transparent border-seal'}`} style={{ 
+        background: equipped ? 'var(--ink-card)' : undefined, 
+        borderColor: equipped ? getRarityColor(equipped.items.rarity) : undefined
       }}>
         <div className={equipped ? "page-title" : "page-title muted"} style={{ 
           color: equipped ? getRarityColor(equipped.items.rarity) : undefined 
@@ -196,12 +195,12 @@ export default function Equipamentos({ player, updatePlayer }) {
       <div className="flex-row gap-xl items-start flex-wrap">
         
         {/* LADO ESQUERDO: HERÓI & STATUS TOTAIS */}
-        <div className="flex-col gap-lg flex-1" style={{ minWidth: '350px', maxWidth: '400px' }}>
+        <div className="flex-col gap-lg flex-1 min-w-[350px] max-w-[400px]">
           
           <div className="card-glass flex-col items-center p-8 relative overflow-hidden border-line-solid border-seal-bright">
-            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at top, rgba(212,162,42,0.1) 0%, transparent 60%)' }} />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-radial-gold" />
             
-            <div className="bg-ink z-10 mb-4 rounded-md overflow-hidden flex-row items-center justify-center border-gold" style={{ width: '100px', height: '100px', borderWidth: '2px' }}>
+            <div className="bg-ink z-10 mb-4 rounded-md overflow-hidden flex-row items-center justify-center border-gold border-2 w-[100px] h-[100px]">
               {player.avatar?.startsWith('/') ? (
                 <img src={player.avatar} alt="Avatar" className="w-full h-full object-cover" />
               ) : (
@@ -209,12 +208,12 @@ export default function Equipamentos({ player, updatePlayer }) {
               )}
             </div>
             
-            <h2 className="gold uppercase text-2xl z-10 tracking-wide" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>{player.name}</h2>
+            <h2 className="gold uppercase text-2xl z-10 tracking-wide drop-shadow-md">{player.name}</h2>
             <div className="badge badge-gold z-10 mt-2">Nível {player.level}</div>
           </div>
 
           <div className="card flex-col">
-            <h3 className="section-title gold mb-4 pb-3 border-line-solid" style={{ borderBottomWidth: '1px' }}>Bônus de Equipamentos</h3>
+            <h3 className="section-title gold mb-4 pb-3 border-line-solid border-b">Bônus de Equipamentos</h3>
             {Object.keys(totalBonus).length === 0 ? (
               <div className="muted text-center py-6">Nenhum bônus provido pelo equipamento atual.</div>
             ) : (
@@ -222,7 +221,7 @@ export default function Equipamentos({ player, updatePlayer }) {
                 {Object.entries(totalBonus).map(([stat, val]) => (
                   <div key={stat} className="flex-between bg-ink-raised p-3 rounded-sm border-line-solid items-center">
                     <div className="flex-row items-center gap-sm">
-                      <div className="rounded-xs overflow-hidden border-line-solid border-seal-bright" style={{ width: '20px', height: '20px' }}>
+                      <div className="rounded-xs overflow-hidden border-line-solid border-seal-bright w-5 h-5">
                         <img src={`/images/icons/${stat.toLowerCase()}.jpg`} alt={stat} className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
                       </div>
                       <span className="muted uppercase text-xs tracking-wide">{stat}</span>
@@ -236,12 +235,12 @@ export default function Equipamentos({ player, updatePlayer }) {
         </div>
 
         {/* LADO DIREITO: INVENTÁRIO */}
-        <div className="flex-col" style={{ flex: '2 1 600px', gap: '32px' }}>
+        <div className="flex-col flex-[2_1_600px] gap-xl">
           
           {/* SLOTS EQUIPADOS */}
           <div className="card">
-            <h3 className="section-title gold" style={{ borderBottom: '1px solid var(--line)', paddingBottom: '12px', marginBottom: '24px' }}>Equipamentos Ativos</h3>
-            <div className="flex-row" style={{ gap: '16px', overflowX: 'auto', paddingBottom: '16px' }}>
+            <h3 className="section-title gold border-b border-line pb-3 mb-6">Equipamentos Ativos</h3>
+            <div className="flex-row gap-md overflow-x-auto pb-4">
               {renderSlot('Cabeça', '額', 'Cabeça')}
               {renderSlot('Tronco', '胴', 'Tronco')}
               {renderSlot('Braços', '腕', 'Braços')}
@@ -253,8 +252,8 @@ export default function Equipamentos({ player, updatePlayer }) {
 
           {/* MOCHILA */}
           <div className="card">
-            <div className="flex-between mb-6 pb-4 border-line-solid" style={{ borderBottomWidth: '1px' }}>
-              <h3 className="section-title mb-0 pb-0" style={{ borderBottom: 'none' }}>Mochila</h3>
+            <div className="flex-between mb-6 pb-4 border-line-solid border-b">
+              <h3 className="section-title mb-0 pb-0 border-none">Mochila</h3>
               
               <div className="flex-row gap-sm overflow-x-auto flex-wrap">
                 <div className="flex-row gap-sm">
@@ -269,7 +268,7 @@ export default function Equipamentos({ player, updatePlayer }) {
                   ))}
                 </div>
                 
-                <button onClick={handleMassSell} className="btn-ghost text-xs p-2 ml-auto" style={{ border: '1px solid #ef4444', color: '#ef4444' }}>
+                <button onClick={handleMassSell} className="btn-ghost text-xs p-2 ml-auto text-red border border-red">
                   🗑️ Vender Lixo
                 </button>
               </div>
@@ -282,16 +281,15 @@ export default function Equipamentos({ player, updatePlayer }) {
                 {filter === 'Favoritos' ? 'Nenhum equipamento favoritado.' : 'Sua mochila está vazia para este filtro.'}
               </div>
             ) : (
-              <div className="grid-auto gap-md" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
+              <div className="grid-auto gap-md grid-cols-[repeat(auto-fill,minmax(220px,1fr))]">
                 {displayedItems.map(invItem => (
-                  <div key={invItem.id} className="card-glass flex-col relative p-4 gap-sm" style={{ 
-                    borderTop: `3px solid ${getRarityColor(invItem.rarity || invItem.items.rarity)}`
+                  <div key={invItem.id} className="card-glass flex-col relative p-4 gap-sm border-t-3" style={{ 
+                    borderTopColor: getRarityColor(invItem.rarity || invItem.items.rarity)
                   }}>
                     
                     <button 
                         onClick={() => handleFavorite(invItem)}
-                        className="absolute bg-transparent border-none cursor-pointer text-sm transition-all"
-                        style={{ top: '12px', right: '12px', opacity: invItem.is_favorite ? 1 : 0.2 }}
+                        className={`absolute bg-transparent border-none cursor-pointer text-sm transition-all top-3 right-3 ${invItem.is_favorite ? 'opacity-100' : 'opacity-20'}`}
                     >
                         ⭐
                     </button>
@@ -320,9 +318,8 @@ export default function Equipamentos({ player, updatePlayer }) {
                     </div>
                     
                     <button 
-                      className={`w-full p-2 text-xs ${player.level >= invItem.items.req_level ? "btn-primary" : "btn-danger"}`} 
+                      className={`w-full p-2 text-xs ${player.level >= invItem.items.req_level ? "btn-primary opacity-100" : "btn-danger opacity-50"}`} 
                       onClick={() => handleEquip(invItem)} 
-                      style={{ opacity: player.level >= invItem.items.req_level ? 1 : 0.5 }}
                       disabled={player.level < invItem.items.req_level}
                     >
                       {player.level >= invItem.items.req_level ? 'Equipar Item' : 'Nível Muito Baixo'}

@@ -34,34 +34,33 @@ export default function Historico({ player }) {
         subtitle="Analise seus últimos 20 confrontos."
       />
       
-      <div className="grid-2" style={{ alignItems: 'flex-start' }}>
+      <div className="grid-2 items-start">
         <div className="card">
-          <h3 className="card-title" style={{ marginBottom: '16px' }}>Últimos Confrontos</h3>
+          <h3 className="card-title mb-4">Últimos Confrontos</h3>
           {loading ? (
             <div className="muted mono">Carregando relatórios...</div>
           ) : logs.length === 0 ? (
             <div className="muted mono">Nenhum registro de batalha encontrado.</div>
           ) : (
-            <div className="flex-col" style={{ gap: '8px' }}>
+            <div className="flex-col gap-2">
               {logs.map(log => (
                 <button 
                   key={log.id}
-                  className={`btn-ghost flex-between ${selectedLog?.id === log.id ? 'active' : ''}`}
+                  className={`btn-ghost flex-between cursor-pointer rounded-sm p-3 border border-solid border-line ${selectedLog?.id === log.id ? 'active bg-ink-soft' : 'bg-transparent'}`}
                   onClick={() => setSelectedLog(log)}
-                  style={{ padding: '12px', border: '1px solid var(--line)', background: selectedLog?.id === log.id ? 'var(--ink-soft)' : 'transparent' }}
                 >
-                  <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
-                    <span style={{ fontSize: '18px' }}>{log.result === 'Vitória' ? '🏆' : '💀'}</span>
-                    <div className="flex-col" style={{ alignItems: 'flex-start' }}>
-                      <span className="paper" style={{ fontSize: '14px', fontWeight: 'bold' }}>vs {log.enemy_name}</span>
-                      <span className="muted mono" style={{ fontSize: '10px' }}>
+                  <div className="flex-row gap-3 items-center">
+                    <span className="text-lg">{log.result === 'Vitória' ? '🏆' : '💀'}</span>
+                    <div className="flex-col items-start">
+                      <span className="paper text-sm font-bold">vs {log.enemy_name}</span>
+                      <span className="muted mono text-[10px]">
                         {new Date(log.created_at).toLocaleString()}
                       </span>
                     </div>
                   </div>
-                  <div className="flex-col" style={{ alignItems: 'flex-end', fontSize: '12px' }}>
+                  <div className="flex-col items-end text-xs">
                     <span className={log.result === 'Vitória' ? 'success' : 'danger'}>{log.result}</span>
-                    <span className="muted mono" style={{ fontSize: '10px' }}>{log.turn_count} turnos</span>
+                    <span className="muted mono text-[10px]">{log.turn_count} turnos</span>
                   </div>
                 </button>
               ))}
@@ -69,41 +68,30 @@ export default function Historico({ player }) {
           )}
         </div>
 
-        <div className="card" style={{ position: 'sticky', top: '24px' }}>
-          <h3 className="card-title" style={{ marginBottom: '16px' }}>Detalhes do Combate</h3>
+        <div className="card sticky top-6">
+          <h3 className="card-title mb-4">Detalhes do Combate</h3>
           {!selectedLog ? (
-            <div className="muted mono" style={{ textAlign: 'center', padding: '40px 0' }}>Selecione uma batalha para ver os detalhes.</div>
+            <div className="muted mono text-center py-10">Selecione uma batalha para ver os detalhes.</div>
           ) : (
             <div>
-              <div className="flex-row" style={{ gap: '16px', marginBottom: '16px', flexWrap: 'wrap' }}>
-                <div className="card-glass flex-col" style={{ flex: 1, alignItems: 'center', padding: '12px' }}>
-                  <span className="muted mono" style={{ fontSize: '10px' }}>RESULTADO</span>
-                  <span className={selectedLog.result === 'Vitória' ? 'success' : 'danger'} style={{ fontSize: '16px', fontWeight: 'bold' }}>{selectedLog.result}</span>
+              <div className="flex-row gap-4 mb-4 flex-wrap">
+                <div className="card-glass flex-col flex-1 items-center p-3">
+                  <span className="muted mono text-[10px]">RESULTADO</span>
+                  <span className={`text-base font-bold ${selectedLog.result === 'Vitória' ? 'success' : 'danger'}`}>{selectedLog.result}</span>
                 </div>
-                <div className="card-glass flex-col" style={{ flex: 1, alignItems: 'center', padding: '12px' }}>
-                  <span className="muted mono" style={{ fontSize: '10px' }}>XP OBTIDO</span>
-                  <span className="success" style={{ fontSize: '16px', fontWeight: 'bold' }}>+{selectedLog.xp_gained}</span>
+                <div className="card-glass flex-col flex-1 items-center p-3">
+                  <span className="muted mono text-[10px]">XP OBTIDO</span>
+                  <span className="success text-base font-bold">+{selectedLog.xp_gained}</span>
                 </div>
-                <div className="card-glass flex-col" style={{ flex: 1, alignItems: 'center', padding: '12px' }}>
-                  <span className="muted mono" style={{ fontSize: '10px' }}>RYOUS OBTIDOS</span>
-                  <span className="gold" style={{ fontSize: '16px', fontWeight: 'bold' }}>+{selectedLog.ryous_gained}</span>
+                <div className="card-glass flex-col flex-1 items-center p-3">
+                  <span className="muted mono text-[10px]">RYOUS OBTIDOS</span>
+                  <span className="gold text-base font-bold">+{selectedLog.ryous_gained}</span>
                 </div>
               </div>
 
-              <h4 className="gold mono" style={{ fontSize: '12px', marginBottom: '8px' }}>Log de Turnos:</h4>
+              <h4 className="gold mono text-xs mb-2">Log de Turnos:</h4>
               <div 
-                className="card-glass" 
-                style={{ 
-                  maxHeight: '400px', 
-                  overflowY: 'auto', 
-                  background: '#0a0a0f', 
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '11px',
-                  padding: '16px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '6px'
-                }}
+                className="card-glass bg-black-alpha-40 border border-solid border-line rounded-sm p-4 h-[400px] max-h-[400px] overflow-y-auto flex-col gap-1 font-mono text-[11px]"
               >
                 {(selectedLog.combat_log || []).map((msg, i) => {
                   let color = '#9ca3af';

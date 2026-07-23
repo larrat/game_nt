@@ -193,11 +193,11 @@ export default function Tarefas({ player, updatePlayer }) {
         })}
       </div>
 
-      <div className="card" style={{ marginBottom: '24px' }}>
-        <div className="flex-between" style={{ marginBottom: activeMissions.length ? '18px' : 0, gap: '16px', flexWrap: 'wrap' }}>
+      <div className="card mb-6">
+        <div className={`flex-between flex-wrap gap-md ${activeMissions.length ? 'mb-[18px]' : 'mb-0'}`}>
           <div>
-            <h3 className="card-title" style={{ marginBottom: '6px' }}>Missões em andamento</h3>
-            <p className="muted" style={{ fontSize: '13px' }}>
+            <h3 className="card-title mb-2">Missões em andamento</h3>
+            <p className="muted text-xs">
               Slots ocupados: <span className="gold mono">{activeMissions.length}/{slots}</span>
             </p>
           </div>
@@ -214,22 +214,21 @@ export default function Tarefas({ player, updatePlayer }) {
               const remaining = timers[m.mission_id] || 0;
               const isDone = remaining <= 0;
               return (
-                <div key={`${m.mission_id}-${idx}`} className="card" style={{ borderColor: isDone ? 'rgba(76,206,128,0.45)' : 'var(--line-bright)' }}>
-                  <div className="flex-between" style={{ gap: '12px', marginBottom: '12px' }}>
-                    <strong className="paper" style={{ fontSize: '14px' }}>{tDef.title}</strong>
+                <div key={`${m.mission_id}-${idx}`} className={`card transition-colors border border-solid ${isDone ? 'border-success' : 'border-line-bright'}`}>
+                  <div className="flex-between gap-md mb-3">
+                    <strong className="paper text-sm">{tDef.title}</strong>
                     <span className={`badge ${isDone ? 'badge-green' : 'badge-muted'}`}>
                       {isDone ? 'Pronta' : formatTime(remaining)}
                     </span>
                   </div>
-                  <div className="flex-wrap" style={{ marginBottom: '16px' }}>
+                  <div className="flex-wrap mb-4">
                     <span className="badge badge-muted">XP {tDef.xp}</span>
                     <span className="badge badge-gold">RY$ {tDef.ryous}</span>
                   </div>
                   <button
-                    className={isDone ? 'btn-primary' : 'btn-ghost'}
+                    className={`w-full ${isDone ? 'btn-primary' : 'btn-ghost'}`}
                     onClick={() => finishTask(tDef)}
                     disabled={loading || !isDone}
-                    style={{ width: '100%' }}
                     type="button"
                   >
                     <span>{isDone ? 'Resgatar' : 'Em progresso'}</span>
@@ -241,8 +240,8 @@ export default function Tarefas({ player, updatePlayer }) {
         )}
       </div>
 
-      <div className="card" style={{ padding: 0 }}>
-        <div className="table-responsive" style={{ marginBottom: 0, border: 0 }}>
+      <div className="card p-0">
+        <div className="table-responsive m-0 border-none">
           <table className="data-table">
             <thead>
               <tr>
@@ -261,10 +260,10 @@ export default function Tarefas({ player, updatePlayer }) {
                 return (
                 <tr key={t.id}>
                   <td>
-                    <div className="paper" style={{ fontWeight: 600 }}>{t.title}</div>
-                    <div className="muted" style={{ fontSize: '11px', marginTop: '4px', whiteSpace: 'normal' }}>{t.desc}</div>
+                    <div className="paper font-bold">{t.title}</div>
+                    <div className="muted text-sm mt-1 whitespace-normal">{t.desc}</div>
                   </td>
-                  <td className="mono" style={{ fontSize: '11px', color: player.level >= t.reqLevel ? 'var(--green)' : 'var(--danger)' }}>
+                  <td className={`mono text-sm ${player.level >= t.reqLevel ? 'text-success' : 'text-danger'}`}>
                     Nv.{t.reqLevel}
                   </td>
                   <td className="mono">{formatTime(t.time)}</td>
@@ -279,10 +278,9 @@ export default function Tarefas({ player, updatePlayer }) {
                       <span className="badge badge-red" title={blockReason}>🔒 {blockReason}</span>
                     ) : (
                       <button
-                        className="btn-primary"
+                        className="btn-primary py-2 px-4 text-sm"
                         onClick={() => startTask(t)}
                         disabled={loading || startingTaskIds[t.id]}
-                        style={{ padding: '9px 16px', fontSize: '11px' }}
                         type="button"
                       >
                         <span>{startingTaskIds[t.id] ? 'Iniciando...' : 'Iniciar'}</span>
@@ -293,7 +291,7 @@ export default function Tarefas({ player, updatePlayer }) {
               );})}
               {visibleTasks.length === 0 && (
                 <tr>
-                  <td colSpan="6" className="muted" style={{ textAlign: 'center', padding: '28px' }}>
+                  <td colSpan="6" className="muted text-center p-7">
                     Nenhuma missão disponível para esta categoria.
                   </td>
                 </tr>

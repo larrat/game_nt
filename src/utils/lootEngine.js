@@ -45,20 +45,20 @@ const RANK_RANGES = {
   'Estudante da Academia': { base: [1, 3], energia: [1, 1], ataque_defesa: [1, 1], perf_prec: [1, 2], hp: [1, 8], chakra_stamina: [1, 4], secundarios: [1, 5] },
   'Genin': { base: [1, 3], energia: [1, 1], ataque_defesa: [1, 1], perf_prec: [1, 2], hp: [1, 8], chakra_stamina: [1, 4], secundarios: [1, 5] },
   'Chunin': { base: [2, 4], energia: [1, 2], ataque_defesa: [1, 2], perf_prec: [2, 4], hp: [8, 16], chakra_stamina: [2, 4], secundarios: [1, 5] },
-  'Jonin': { base: [3, 5], energia: [2, 3], ataque_defesa: [2, 2], perf_prec: [3, 5], hp: [12, 24], chakra_stamina: [3, 6], secundarios: [1, 5] },
+  'Jounin': { base: [3, 5], energia: [2, 3], ataque_defesa: [2, 2], perf_prec: [3, 5], hp: [12, 24], chakra_stamina: [3, 6], secundarios: [1, 5] },
   'ANBU': { base: [4, 6], energia: [2, 4], ataque_defesa: [2, 3], perf_prec: [4, 6], hp: [16, 32], chakra_stamina: [4, 6], secundarios: [1, 5] },
-  'Sannin Lendário': { base: [5, 7], energia: [3, 5], ataque_defesa: [3, 3], perf_prec: [5, 7], hp: [20, 40], chakra_stamina: [4, 8], secundarios: [1, 5] },
-  'Herói Mundial': { base: [6, 9], energia: [4, 6], ataque_defesa: [3, 4], perf_prec: [6, 9], hp: [24, 48], chakra_stamina: [6, 8], secundarios: [1, 5] }
+  'Sannin': { base: [5, 7], energia: [3, 5], ataque_defesa: [3, 3], perf_prec: [5, 7], hp: [20, 40], chakra_stamina: [4, 8], secundarios: [1, 5] },
+  'Heroi': { base: [6, 9], energia: [4, 6], ataque_defesa: [3, 4], perf_prec: [6, 9], hp: [24, 48], chakra_stamina: [6, 8], secundarios: [1, 5] }
 };
 
 const DROP_RATES = {
   'Estudante da Academia': { Comum: 85, Raro: 10, Épico: 4, Lendário: 1 },
   'Genin': { Comum: 85, Raro: 10, Épico: 4, Lendário: 1 },
   'Chunin': { Comum: 10, Raro: 80, Épico: 7, Lendário: 3 },
-  'Jonin': { Comum: 0, Raro: 63, Épico: 30, Lendário: 7 },
+  'Jounin': { Comum: 0, Raro: 63, Épico: 30, Lendário: 7 },
   'ANBU': { Comum: 0, Raro: 20, Épico: 65, Lendário: 15 },
-  'Sannin Lendário': { Comum: 0, Raro: 0, Épico: 75, Lendário: 25 },
-  'Herói Mundial': { Comum: 0, Raro: 0, Épico: 50, Lendário: 50 }
+  'Sannin': { Comum: 0, Raro: 0, Épico: 75, Lendário: 25 },
+  'Heroi': { Comum: 0, Raro: 0, Épico: 50, Lendário: 50 }
 };
 
 // Filtra atributos baseados no Smart Loot (Restrições de Classe)

@@ -87,7 +87,7 @@ export default function Treino({ player, updatePlayer }) {
       addToast('Erro no treinamento: ' + error.message, 'error');
     } else {
       addToast(`Você ganhou +${data.gained} em ${selectedAttr.label}!`, 'success');
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
     }
     setLoading(false);
   };
@@ -105,11 +105,11 @@ export default function Treino({ player, updatePlayer }) {
     if (simMin === currentStatus && simMax === currentStatus) return null; // Não muda
 
     return (
-      <div className="flex-between" style={{ padding: '8px 0', borderBottom: '1px solid var(--line)' }}>
-        <span className="muted" style={{ fontSize: '12px' }}>{currentVal}</span>
-        <div className="mono" style={{ fontSize: '13px' }}>
+      <div className="flex-between py-2 border-b border-line-solid">
+        <span className="muted text-xs">{currentVal}</span>
+        <div className="mono text-sm">
           <span className="paper">{currentStatus}</span>
-          <span className="gold" style={{ margin: '0 8px' }}>➔</span>
+          <span className="gold mx-2">➔</span>
           <span className="success">{simMin === simMax ? simMin : `${simMin} ~ ${simMax}`}</span>
         </div>
       </div>
@@ -124,17 +124,17 @@ export default function Treino({ player, updatePlayer }) {
         subtitle='Simule e treine os seus atributos com base nos seus Pontos Livres disponíveis.' 
       />
 
-      <div className="flex-between" style={{ background: 'var(--ink-raised)', padding: '16px 24px', borderRadius: '8px', border: '1px solid var(--seal-bright)', marginBottom: '24px' }}>
-        <span className="muted uppercase mono" style={{ fontSize: '13px', letterSpacing: '1px' }}>Pontos de Treino Disponíveis</span>
-        <span className="gold mono" style={{ fontSize: '32px' }}>{player.pontos_atributos || 0}</span>
+      <div className="flex-between bg-ink-raised px-6 py-4 rounded-md border-line-solid border-seal-bright mb-6">
+        <span className="muted uppercase mono tracking-wider text-sm">Pontos de Treino Disponíveis</span>
+        <span className="gold mono text-4xl">{player.pontos_atributos || 0}</span>
       </div>
 
-      <div className="grid-sidebar" style={{ gap: '24px', alignItems: 'start' }}>
+      <div className="grid-sidebar gap-6 items-start">
         
         {/* LISTA DE ATRIBUTOS */}
-        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
-          <div style={{ background: 'var(--ink-soft)', padding: '12px 24px', borderBottom: '1px solid var(--line)' }}>
-            <h3 className="gold mono uppercase" style={{ letterSpacing: '2px', fontSize: '14px', margin: 0 }}>
+        <div className="card p-0 overflow-hidden">
+          <div className="bg-ink-soft px-6 py-3 border-b border-line-solid">
+            <h3 className="gold mono uppercase tracking-widest text-sm m-0">
               Seus Atributos Base
             </h3>
           </div>
@@ -148,38 +148,22 @@ export default function Treino({ player, updatePlayer }) {
               return (
                 <div 
                   key={attr.field} 
-                  className="flex-between" 
+                  className={`flex-between px-6 py-4 border-b border-line-alpha-05 items-center cursor-pointer transition-all ${isSelected ? 'bg-seal-glow border-l-4 border-l-seal-bright' : 'bg-transparent border-l-4 border-l-transparent'}`}
                   onClick={() => setSelectedAttr(attr)}
-                  style={{ 
-                    padding: '16px 24px', 
-                    borderBottom: '1px solid rgba(255,255,255,0.05)', 
-                    alignItems: 'center',
-                    cursor: 'pointer',
-                    background: isSelected ? 'var(--seal-glow)' : 'transparent',
-                    borderLeft: isSelected ? '4px solid var(--seal-bright)' : '4px solid transparent',
-                    transition: 'all 0.2s ease'
-                  }}
                 >
-                  <div className="flex-row" style={{ gap: '12px', alignItems: 'center' }}>
-                    <div style={{ 
-                      width: '40px', height: '40px', 
-                      background: 'var(--ink-raised)', 
-                      borderRadius: '8px', 
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      border: '1px solid var(--line)',
-                      overflow: 'hidden'
-                    }}>
-                      <img src={`/images/icons/${attr.field}.jpg`} alt={attr.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div className="flex-row gap-3 items-center">
+                    <div className="w-10 h-10 bg-ink-raised rounded-sm flex-row items-center justify-center border-line-solid overflow-hidden">
+                      <img src={`/images/icons/${attr.field}.jpg`} alt={attr.label} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-col">
-                      <span className={isSelected ? "gold uppercase" : "paper uppercase"} style={{ fontSize: '14px', fontWeight: 'bold' }}>{attr.label}</span>
-                      <span className="muted" style={{ fontSize: '11px' }}>{attrDesc[attr.field]?.text || attr.desc}</span>
+                      <span className={`${isSelected ? "gold" : "paper"} uppercase font-bold text-sm`}>{attr.label}</span>
+                      <span className="muted text-xs">{attrDesc[attr.field]?.text || attr.desc}</span>
                     </div>
                   </div>
 
-                  <div className="flex-col" style={{ alignItems: 'flex-end' }}>
-                    <div className="gold mono" style={{ fontSize: '20px' }}>{totalValue}</div>
-                    {equipValue > 0 && <div className="success mono" style={{ fontSize: '10px' }}>+{equipValue} (Equip)</div>}
+                  <div className="flex-col items-end">
+                    <div className="gold mono text-xl">{totalValue}</div>
+                    {equipValue > 0 && <div className="success mono text-xs">+{equipValue} (Equip)</div>}
                   </div>
                 </div>
               );
@@ -188,35 +172,35 @@ export default function Treino({ player, updatePlayer }) {
         </div>
 
         {/* SIMULADOR DE BUILD (PAINEL DIREITO) */}
-        <div style={{ position: 'sticky', top: '24px' }}>
+        <div className="sticky top-6">
           {selectedAttr ? (
-            <div className="card" style={{ border: '1px solid var(--seal-bright)', background: 'var(--ink)' }}>
-              <div className="flex-row" style={{ gap: '12px', alignItems: 'center', marginBottom: '16px' }}>
-                <div style={{ width: '48px', height: '48px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--line)' }}>
-                  <img src={`/images/icons/${selectedAttr.field}.jpg`} alt={selectedAttr.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div className="card border-line-solid border-seal-bright bg-ink">
+              <div className="flex-row gap-3 items-center mb-4">
+                <div className="w-12 h-12 rounded-sm overflow-hidden border-line-solid">
+                  <img src={`/images/icons/${selectedAttr.field}.jpg`} alt={selectedAttr.label} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h3 className="gold" style={{ margin: 0 }}>Simulador: {selectedAttr.label}</h3>
-                  <span className="muted" style={{ fontSize: '12px' }}>Previsão de crescimento ao treinar.</span>
+                  <h3 className="gold m-0">Simulador: {selectedAttr.label}</h3>
+                  <span className="muted text-xs">Previsão de crescimento ao treinar.</span>
                 </div>
               </div>
 
-              <div className="card-glass" style={{ padding: '16px', marginBottom: '24px', border: '1px dashed var(--line-bright)' }}>
+              <div className="card-glass p-4 mb-6 border-line-dashed-bright">
                 {(() => {
                   const { min, max, bonus } = getRange(selectedAttr.hero_min, selectedAttr.hero_max);
                   return (
-                    <div className="flex-col" style={{ gap: '8px' }}>
-                      <span className="muted uppercase mono" style={{ fontSize: '11px' }}>GANHO ESTIMADO POR TREINO:</span>
-                      <span className="paper mono" style={{ fontSize: '16px' }}>
-                        +{min} a +{max} <span className="gold" style={{ fontSize: '12px' }}>(+{bonus} Bônus Rank)</span>
+                    <div className="flex-col gap-2">
+                      <span className="muted uppercase mono text-xs">GANHO ESTIMADO POR TREINO:</span>
+                      <span className="paper mono text-md">
+                        +{min} a +{max} <span className="gold text-xs">(+{bonus} Bônus Rank)</span>
                       </span>
                     </div>
                   );
                 })()}
               </div>
 
-              <div className="flex-col" style={{ marginBottom: '24px' }}>
-                <h4 className="muted uppercase mono" style={{ fontSize: '12px', marginBottom: '8px', borderBottom: '1px solid var(--line)', paddingBottom: '4px' }}>Impacto nos Status (Min ~ Max)</h4>
+              <div className="flex-col mb-6">
+                <h4 className="muted uppercase mono text-xs mb-2 border-b border-line-solid pb-1">Impacto nos Status (Min ~ Max)</h4>
                 {(() => {
                   const { min, max } = getRange(selectedAttr.hero_min, selectedAttr.hero_max);
                   const field = selectedAttr.field;
@@ -238,19 +222,18 @@ export default function Treino({ player, updatePlayer }) {
               </div>
 
               <button 
-                className="btn-primary" 
+                className="btn-primary w-full p-4 text-md" 
                 onClick={handleTrain} 
                 disabled={loading || player.pontos_atributos <= 0}
-                style={{ width: '100%', padding: '16px', fontSize: '16px' }}
               >
                 Gastar 1 Ponto em {selectedAttr.label}
               </button>
             </div>
           ) : (
-            <div className="card flex-col" style={{ alignItems: 'center', justifyContent: 'center', height: '300px', textAlign: 'center', color: 'var(--muted)' }}>
-              <span style={{ fontSize: '48px', marginBottom: '16px' }}>⚖️</span>
+            <div className="card flex-col items-center justify-center h-[300px] text-center text-muted">
+              <span className="text-5xl mb-4">⚖️</span>
               <h3>Selecione um Atributo</h3>
-              <p style={{ fontSize: '14px' }}>Clique em um atributo na lista ao lado para simular o crescimento do seu personagem antes de aplicar os pontos.</p>
+              <p className="text-sm">Clique em um atributo na lista ao lado para simular o crescimento do seu personagem antes de aplicar os pontos.</p>
             </div>
           )}
         </div>

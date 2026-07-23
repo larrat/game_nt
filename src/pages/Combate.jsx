@@ -363,9 +363,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       p_enemy_id: npcInit.id || 999999,
       p_result: 'win',
       p_turn_count: roundCount,
-      p_combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${playerMaxHP} | Chakra: ${playerCP}/${playerMaxCP} | Stamina: ${playerSt}/${maxPlayerSt}`],
-      p_fallback_xp: npcInit.xp_reward || 100,
-      p_fallback_ryous: npcInit.ryou_reward || 50,
+      p_combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${maxPlayerHP} | Chakra: ${playerCP}/${maxPlayerCP} | Stamina: ${playerSt}/${maxPlayerSt}`],
+      p_fallback_xp: npcInit.xp_reward || Math.floor(((npcInit.level || 1) * 22) + 28),
+      p_fallback_ryous: npcInit.ryou_reward || Math.floor(((npcInit.level || 1) * 24) + 23),
       p_enemy_name: npcInit.name || 'Desconhecido'
     });
 
@@ -455,7 +455,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     await supabase.from('players').update(updatesAtuais).eq('id', player.id);
 
     if (updatePlayer) {
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
     }
     if (location.state?.isBetrayal) {
       await supabase.from('players').update({ village_id: 8, clan: null, rank: 'Nukenin' }).eq('id', player.id);
@@ -477,7 +477,16 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         addToast(`🎉 Você subiu ${levelsGained} Níveis!`, "success");
       }
     }
-    navigate(location.state?.fromMap ? '/mapa' : '/dojo');
+    
+    if (location.state?.isStoryQuest) {
+      await supabase.rpc('concluir_story_quest', {
+        p_player_id: player.id,
+        p_quest_id: location.state?.npc?.storyQuestId
+      });
+      navigate('/historia');
+    } else {
+      navigate(location.state?.fromMap ? '/mapa' : '/dojo');
+    }
   };
 
   const handleWorldBossEnd = async () => {
@@ -529,11 +538,11 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         xp_gained: 0,
         ryous_gained: 0,
         turn_count: roundCount,
-        combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${playerMaxHP} | Chakra: ${playerCP}/${playerMaxCP} | Stamina: ${playerSt}/${maxPlayerSt}`]
+        combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${maxPlayerHP} | Chakra: ${playerCP}/${maxPlayerCP} | Stamina: ${playerSt}/${maxPlayerSt}`]
       });
     } catch (e) { }
 
-    await updatePlayer(player.user_id);
+    await updatePlayer(player.id);
   };
 
   const startPlayerTurn = () => {
@@ -792,7 +801,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     if (cons.pc_id) {
       await supabase.from("player_consumables").update({ quantity: cons.quantity - 1 }).eq("id", cons.pc_id);
-      await updatePlayer(player.user_id);
+      await updatePlayer(player.id);
     }
 
     setTimeout(() => {
@@ -1276,6 +1285,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             hpPct={pHPPercent}
             cpPct={pCPPercent}
             stPct={pStPercent}
+            clan={player.clan}
+            fighterObj={player}
           />
 
           <div className="combat-center-col">
@@ -1321,6 +1332,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             cpPct={nCPPercent}
             stPct={nStPercent}
             isMirror={isMirror}
+            clan={npcInit.clan}
+            fighterObj={npcInit}
           />
         </div>
 
@@ -1405,8 +1418,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
               <div className="combat-secondary-actions">
                 <button
-                  className={`btn-ghost flex-row justify-center gap-sm ${!isPlayerTurn ? 'opacity-50' : ''}`}
-                  style={{ border: surrenderConfirm ? '2px solid #ef4444' : '1px dashed #ef4444', color: '#ef4444', fontWeight: surrenderConfirm ? 'bold' : 'normal' }}
+                  className={`btn-ghost flex-row justify-center gap-sm text-xs ${!isPlayerTurn ? 'opacity-50' : ''} ${surrenderConfirm ? 'border-2 border-solid border-danger text-danger font-bold' : 'border border-dashed border-danger text-danger font-normal'}`}
                   disabled={!isPlayerTurn}
                   onClick={handleSurrender}
                   type="button"
@@ -1416,8 +1428,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 </button>
 
                 <button
-                  className={`btn-ghost flex-row justify-center gap-sm ${autoBattle ? 'active' : ''} ${!isPlayerTurn ? 'opacity-50' : ''}`}
-                  style={{ border: autoBattle ? '1px solid var(--gold)' : '1px solid var(--line)', color: autoBattle ? 'var(--gold)' : 'var(--muted)' }}
+                  className={`btn-ghost flex-row justify-center gap-sm text-xs ${!isPlayerTurn ? 'opacity-50' : ''} ${autoBattle ? 'active border border-solid border-gold text-gold' : 'border border-solid border-line text-muted'}`}
                   onClick={() => setAutoBattle(!autoBattle)}
                   type="button"
                 >
@@ -1428,7 +1439,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             </div>
           )
         ) : (
-          <div className="flex-col text-center p-6 bg-ink-soft items-center border-line-solid" style={{ borderColor: battleResult === 'win' ? 'var(--gold)' : '#ef4444' }}>
+          <div className={`flex-col text-center p-6 bg-ink-soft items-center border-line-solid border ${battleResult === 'win' ? 'border-gold' : 'border-danger'}`}>
             <h2 className={`page-title mb-4 ${battleResult === 'win' ? 'gold' : 'danger'}`}>
               {battleResult === 'win' ? 'Vitória!' : (battleResult === 'world_boss_end' ? 'Fim da Incursão' : 'Inconsciente')}
             </h2>

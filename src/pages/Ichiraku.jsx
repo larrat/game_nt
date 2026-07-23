@@ -56,7 +56,7 @@ export default function Ichiraku({ player, updatePlayer }) {
       return;
     }
 
-    await updatePlayer(player.user_id);
+    await updatePlayer(player.id);
     addToast(`Você comprou ${item.name}!`, 'success');
     setBuyingId(null);
   };
@@ -93,7 +93,7 @@ export default function Ichiraku({ player, updatePlayer }) {
        await supabase.from('players').update(updates).eq('id', player.id);
     }
 
-    await updatePlayer(player.user_id);
+    await updatePlayer(player.id);
     addToast(`Você consumiu ${item.name}!`, 'success');
     setUsingId(null);
   };
@@ -108,26 +108,16 @@ export default function Ichiraku({ player, updatePlayer }) {
         subtitle="Sente-se, relaxe e coma uma boa tigela de Ramen. Restauramos sua energia para a próxima missão!" 
       />
 
-      <div style={{
-        backgroundImage: `url('/images/bg_selecao.jpg')`, // Fundo improvisado (pode ser substituído por uma arte do Ichiraku)
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '32px',
-        borderRadius: '16px',
-        position: 'relative',
-        overflow: 'hidden',
-        marginBottom: '24px',
-        border: '1px solid var(--line-bright)'
-      }}>
-        <div style={{ background: 'linear-gradient(90deg, rgba(15,15,20,0.95) 0%, rgba(15,15,20,0.7) 100%)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, pointerEvents: 'none' }} />
+      <div className="bg-ichiraku-hero p-8 rounded-lg relative overflow-hidden mb-6 border-line-solid border-line-bright">
+        <div className="absolute inset-0 bg-ichiraku-overlay pointer-events-none" />
         
-        <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: '24px', alignItems: 'center' }}>
-          <div style={{ fontSize: '64px', background: 'var(--ink-raised)', borderRadius: '50%', width: '100px', height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid var(--gold)' }}>
+        <div className="relative z-10 flex-row gap-6 items-center">
+          <div className="text-6xl bg-ink-raised rounded-full w-100px h-100px flex-row items-center justify-center border-2 border-gold">
             🍜
           </div>
           <div>
-            <h2 className="paper" style={{ margin: '0 0 8px 0', fontFamily: 'Shippori Mincho' }}>Teuchi</h2>
-            <p className="muted" style={{ margin: 0, maxWidth: '500px', fontSize: '14px', lineHeight: '1.5' }}>
+            <h2 className="paper shippori m-0 mb-2">Teuchi</h2>
+            <p className="muted m-0 max-w-480 text-sm leading-relaxed">
               "Bem-vindo! Tem sido um dia difícil? Um bom shinobi precisa estar bem alimentado. Escolha algo do cardápio, preparamos com os melhores ingredientes da Vila!"
             </p>
           </div>
@@ -135,61 +125,60 @@ export default function Ichiraku({ player, updatePlayer }) {
       </div>
 
       <div className="card-glass">
-        <div className="tabs" style={{ marginBottom: '24px' }}>
+        <div className="tabs mb-6">
           <div className={`tab ${tab === 'loja' ? 'active' : ''}`} onClick={() => setTab('loja')}>Cardápio</div>
           <div className={`tab ${tab === 'mochila' ? 'active' : ''}`} onClick={() => setTab('mochila')}>
             Sua Mochila 
-            <span style={{ marginLeft: '6px', background: 'var(--seal-glow)', border: '1px solid var(--seal-bright)', color: 'var(--seal-bright)', borderRadius: '10px', padding: '1px 7px', fontSize: '10px' }}>
+            <span className="ml-2 bg-seal-glow border-line-solid border-seal-bright text-seal-bright rounded-sm px-2 py-1 text-xs">
               {player.consumables?.length || 0}
             </span>
           </div>
         </div>
 
-        <div className="flex-between" style={{ marginBottom: '24px' }}>
-          <h3 className="paper flex-row" style={{ alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '20px' }}>{tab === 'loja' ? '📜' : '🎒'}</span> {tab === 'loja' ? 'Cardápio' : 'Seus Itens'}
+        <div className="flex-between mb-6">
+          <h3 className="paper flex-row items-center gap-sm">
+            <span className="text-xl">{tab === 'loja' ? '📜' : '🎒'}</span> {tab === 'loja' ? 'Cardápio' : 'Seus Itens'}
           </h3>
-          <div className="flex-row" style={{ gap: '16px', background: 'var(--ink)', padding: '8px 16px', borderRadius: '8px', border: '1px solid var(--line)' }}>
-            <span className="flex-row" style={{ gap: '6px', fontSize: '13px' }}><span style={{ fontSize: '14px' }}>💴</span> {player.ryous || 0}</span>
-            <div style={{ width: '1px', height: '16px', background: 'var(--line-bright)' }}></div>
-            <span className="gold flex-row mono" style={{ gap: '6px', fontSize: '13px' }}><span style={{ fontSize: '14px' }}>🪙</span> {player.vip_coins || 0}</span>
+          <div className="flex-row gap-4 bg-ink px-4 py-2 rounded-md border-line-solid">
+            <span className="flex-row gap-xs text-sm"><span className="text-md">💴</span> {player.ryous || 0}</span>
+            <div className="w-px h-4 bg-line-bright"></div>
+            <span className="gold flex-row gap-xs mono text-sm"><span className="text-md">🪙</span> {player.vip_coins || 0}</span>
           </div>
         </div>
 
         {tab === 'loja' && (
           loading ? (
-            <div className="muted mono" style={{ textAlign: 'center', padding: '40px' }}>Preparando a cozinha...</div>
+            <div className="muted mono text-center p-10">Preparando a cozinha...</div>
           ) : (
             <div className="grid-3">
               {consumables.map(item => (
-                <div key={item.id} style={{ background: 'var(--ink-card)', border: '1px solid var(--line)', borderRadius: '8px', padding: '16px', display: 'flex', flexDirection: 'column' }}>
-                <div className="flex-row" style={{ gap: '12px', marginBottom: '12px' }}>
-                  <div style={{ fontSize: '32px', width: '48px', height: '48px', background: 'var(--ink-raised)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div key={item.id} className="bg-ink-card border-line-solid rounded-md p-4 flex-col">
+                <div className="flex-row gap-sm mb-3">
+                  <div className="text-4xl w-12 h-12 bg-ink-raised rounded-sm flex-row items-center justify-center">
                     {item.icon}
                   </div>
                   <div>
-                    <div className="paper" style={{ fontWeight: 'bold', fontSize: '15px' }}>{item.name}</div>
-                    <div className="badge badge-muted" style={{ marginTop: '4px', display: 'inline-block' }}>
+                    <div className="paper font-bold text-md">{item.name}</div>
+                    <div className="badge badge-muted mt-1 inline-block">
                       Restaura {item.value} {item.type.toUpperCase()}
                     </div>
                   </div>
                 </div>
                 
-                <div className="muted" style={{ fontSize: '12px', lineHeight: '1.5', flex: 1, marginBottom: '16px' }}>
+                <div className="muted text-xs leading-relaxed flex-1 mb-4">
                   {item.description}
                 </div>
 
                 <button 
-                  className="btn-primary" 
-                  style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '8px', padding: '12px' }}
+                  className="btn-primary w-full flex-row justify-center gap-sm p-3" 
                   onClick={() => handleBuy(item)}
                   disabled={buyingId === item.id}
                 >
                   {buyingId === item.id ? 'Comprando...' : (
                     <>
                       <span>Comprar por</span>
-                      {item.cost_ryous > 0 && <span className="mono flex-row" style={{ gap: '4px' }}>{item.cost_ryous} 💴</span>}
-                      {item.cost_coins > 0 && <span className="mono gold flex-row" style={{ gap: '4px' }}>{item.cost_coins} 🪙</span>}
+                      {item.cost_ryous > 0 && <span className="mono flex-row gap-xs">{item.cost_ryous} 💴</span>}
+                      {item.cost_coins > 0 && <span className="mono gold flex-row gap-xs">{item.cost_coins} 🪙</span>}
                     </>
                   )}
                 </button>
@@ -202,34 +191,33 @@ export default function Ichiraku({ player, updatePlayer }) {
         {tab === 'mochila' && (
           <div className="grid-3">
             {!player.consumables || player.consumables.length === 0 ? (
-              <div className="muted" style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px' }}>Sua mochila está vazia.</div>
+              <div className="muted text-center p-10 col-span-full">Sua mochila está vazia.</div>
             ) : (
               player.consumables.map(item => (
-                <div key={item.pc_id} style={{ background: 'var(--ink-card)', border: '1px solid var(--line)', borderRadius: '8px', padding: '16px', display: 'flex', flexDirection: 'column' }}>
-                  <div className="flex-row flex-between" style={{ marginBottom: '12px' }}>
-                    <div className="flex-row" style={{ gap: '12px' }}>
-                      <div style={{ fontSize: '32px', width: '48px', height: '48px', background: 'var(--ink-raised)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div key={item.pc_id} className="bg-ink-card border-line-solid rounded-md p-4 flex-col">
+                  <div className="flex-row flex-between mb-3">
+                    <div className="flex-row gap-sm">
+                      <div className="text-4xl w-12 h-12 bg-ink-raised rounded-sm flex-row items-center justify-center">
                         {item.icon}
                       </div>
                       <div>
-                        <div className="paper" style={{ fontWeight: 'bold', fontSize: '15px' }}>{item.name}</div>
-                        <div className="badge badge-muted" style={{ marginTop: '4px', display: 'inline-block' }}>
+                        <div className="paper font-bold text-md">{item.name}</div>
+                        <div className="badge badge-muted mt-1 inline-block">
                           Restaura {item.value} {item.type.toUpperCase()}
                         </div>
                       </div>
                     </div>
-                    <div className="badge badge-gold" style={{ fontSize: '14px', padding: '4px 10px' }}>
+                    <div className="badge badge-gold px-2 py-1 text-sm">
                       x{item.quantity}
                     </div>
                   </div>
                   
-                  <div className="muted" style={{ fontSize: '12px', lineHeight: '1.5', flex: 1, marginBottom: '16px' }}>
+                  <div className="muted text-xs leading-relaxed flex-1 mb-4">
                     {item.description}
                   </div>
                   
                   <button 
-                    className="btn-primary" 
-                    style={{ width: '100%', padding: '10px', fontSize: '14px' }}
+                    className="btn-primary w-full p-3 text-sm" 
                     onClick={() => handleUse(item)}
                     disabled={usingId === item.id}
                   >

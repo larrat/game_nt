@@ -360,13 +360,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     const { data: resultData, error: resultError } = await supabase.rpc('finalizar_combate', {
       p_player_id: player.id,
-      p_enemy_id: npcInit.id || 999999,
+      p_enemy_id: Number.isInteger(Number(npcInit.id)) ? Number(npcInit.id) : 999999,
       p_result: 'win',
       p_turn_count: roundCount,
       p_combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${maxPlayerHP} | Chakra: ${playerCP}/${maxPlayerCP} | Stamina: ${playerSt}/${maxPlayerSt}`],
       p_fallback_xp: npcInit.xp_reward || Math.floor(((npcInit.level || 1) * 22) + 28),
       p_fallback_ryous: npcInit.ryou_reward || Math.floor(((npcInit.level || 1) * 24) + 23),
-      p_enemy_name: npcInit.name || 'Desconhecido'
+      p_enemy_name: npcInit.name || 'Desconhecido',
+      p_from_map: Boolean(location.state?.fromMap)
     });
 
     if (resultError) {
@@ -380,57 +381,16 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     let droppedItemMsg = '';
     let vipCoinMsg = '';
-    if (!location.state?.isGhost && !location.state?.isWorldBoss) {
-
-      // --- 1. Drop Raro de Kuro Coin (2% de chance) ---
-      if (Math.random() <= 0.02) {
-        const { error: vipError } = await supabase.from('players').update({
-          vip_coins: (player.vip_coins || 0) + 1
-        }).eq('id', player.id);
-        if (!vipError) {
-          vipCoinMsg = ' 🪙 +1 Kuro Coin!';
-        }
-      }
-
-      // --- 2. Drop de Equipamento ---
-      const dropChance = location.state?.fromMap ? 0.35 : 0.25;
-      if (Math.random() <= dropChance && !npcInit.is_dummy) {
-        const { data: baseItems } = await supabase.from('items').select('*');
-        if (baseItems && baseItems.length > 0) {
-          const randomBaseItem = baseItems[Math.floor(Math.random() * baseItems.length)];
-          const playerNinjaClass = '';
-          const rarity = await rollRarity(player.rank || 'Genin');
-          const rolledStats = await generateLootStats(rarity, player.rank || 'Genin', playerNinjaClass);
-
-          const { error: insertError } = await supabase.from('player_inventory').insert({
-            player_id: player.id,
-            item_id: randomBaseItem.id,
-            is_equipped: false,
-            is_favorite: false,
-            rarity: rarity,
-            rolled_stats: rolledStats
-          });
-
-          if (!insertError) {
-            droppedItemMsg = ` Você encontrou [${randomBaseItem.name}] (${rarity})!`;
-          }
-        }
-      }
-
-      // --- 3. Drop de Essência de Aprimoramento ---
-      const essenceDropChance = location.state?.fromMap ? 0.30 : 0.15;
-      if (Math.random() <= essenceDropChance && !npcInit.is_dummy) {
-        const rankToTier = { 'Estudante da Academia': 1, 'Genin': 1, 'Chunin': 2, 'Jounin': 3, 'ANBU': 4, 'Sannin': 4, 'Herói': 5 };
-        const tier = rankToTier[player.rank] || 1;
-        const essenceTypes = ['dano', 'custo', 'letalidade', 'protecao'];
-        const randomType = essenceTypes[Math.floor(Math.random() * essenceTypes.length)];
-        const essenceKey = `${randomType}_${tier}`;
-
-        const currentEssences = player.inventory_essences || {};
-        const newEssences = { ...currentEssences, [essenceKey]: (currentEssences[essenceKey] || 0) + 1 };
-        await supabase.from('players').update({ inventory_essences: newEssences }).eq('id', player.id);
-        droppedItemMsg += ` 📜 +1 Essência [${randomType.toUpperCase()} Tier ${tier}]!`;
-      }
+    if (resultData?.vip_coin_dropped) vipCoinMsg = ' 🪙 +1 Kuro Coin!';
+    if (resultData?.loot_item_name) {
+      droppedItemMsg = ` Você encontrou [${resultData.loot_item_name}] (${resultData.loot_rarity || 'Comum'})!`;
+    }
+    if (resultData?.essence_key) {
+      const [essenceType, essenceTier] = String(resultData.essence_key).split('_');
+      droppedItemMsg += ` 📜 +1 Essência [${String(essenceType).toUpperCase()} Tier ${essenceTier}]!`;
+    }
+    if (resultData && resultData.enemy_in_catalog === false) {
+      addToast('Este inimigo não está no catálogo oficial; recompensas de combate foram bloqueadas por segurança.', 'info');
     }
 
     if ((npcInit.is_story_mode || npcInit.is_bingo_book) && !location.state?.isGhost) {
@@ -458,8 +418,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       await updatePlayer(player.id);
     }
     if (location.state?.isBetrayal) {
-      await supabase.from('players').update({ village_id: 8, clan: null, rank: 'Nukenin' }).eq('id', player.id);
-      addToast("Você traiu sua vila e agora faz parte da Akatsuki!", "success");
+      const { error: betrayalError } = await supabase.rpc('trair_vila', { p_player_id: player.id });
+      if (betrayalError) addToast('Erro ao registrar traição: ' + betrayalError.message, 'error');
+      else addToast("Você traiu sua vila e agora faz parte da Akatsuki!", "success");
     } else if (location.state?.isBijuuHunt) {
       addToast("Caçada concluída! Chakra da Bijuu extraído para a Organização!", "success");
     } else if (location.state?.isGhost) {

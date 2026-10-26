@@ -1,0 +1,37 @@
+name: Engine characterization tests
+
+on:
+  pull_request:
+    paths:
+      - 'src/utils/engine.js'
+      - 'tests/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/engine-tests.yml'
+  push:
+    branches:
+      - 'audit/security-and-engine-tests-2026-10'
+    paths:
+      - 'src/utils/engine.js'
+      - 'tests/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/engine-tests.yml'
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run engine characterization tests
+        run: npm test
+      - name: Build production bundle
+        run: npm run build

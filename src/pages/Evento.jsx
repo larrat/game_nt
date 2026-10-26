@@ -76,32 +76,35 @@ export default function Evento({ player, updatePlayer }) {
     }
 
     setAttacking(true);
-    const { error } = await supabase.from('players').update({
-      last_event_date: todayStr,
-      event_tickets: currentTickets - 1
-    }).eq('id', player.id);
+    const { data: startData, error } = await supabase.rpc('iniciar_world_boss', {
+      p_player_id: player.id,
+      p_event_id: event.id
+    });
 
-    if (error) {
-      addToast('Erro ao consumir ticket: ' + error.message, 'error');
+    if (error || !startData?.success) {
+      addToast('Não foi possível iniciar a incursão: ' + (error?.message || startData?.error || 'Tente novamente.'), 'error');
       setAttacking(false);
+      await fetchEvent();
       return;
     }
+
     await updatePlayer(player.id);
     setAttacking(false);
 
     const bossNpc = {
       id: `worldboss_${event.id}`,
-      name: event.name,
+      name: startData.event_name || event.name,
       avatar: '/images/imgi_125_kurama.jpg',
       level: 100,
-      hp: event.boss_hp,
-      maxHp: event.boss_max_hp,
+      hp: startData.boss_hp,
+      maxHp: startData.boss_max_hp,
       chakra: 99999,
       atk: 500,
       def: 250,
       element: 'Katon',
       isWorldBoss: true,
-      eventId: event.id
+      eventId: startData.event_id,
+      bossSessionId: startData.session_id
     };
 
     navigate('/combate', { state: { npc: bossNpc, isWorldBoss: true } });

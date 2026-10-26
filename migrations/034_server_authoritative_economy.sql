@@ -1020,7 +1020,7 @@ BEGIN
 
         IF random() <= 0.02 THEN v_coin_drop := 1; END IF;
 
-        IF random() <= CASE WHEN COALESCE(p_from_map,false) THEN 0.35 ELSE 0.25 END THEN
+        IF random() <= (CASE WHEN COALESCE(p_from_map,false) THEN 0.35 ELSE 0.25 END) THEN
             v_loot := public.kurokage_roll_loot(v_player.rank);
             IF COALESCE((v_loot->>'success')::boolean,false) THEN
                 INSERT INTO public.player_inventory (player_id,item_id,is_equipped,is_favorite,rarity,rolled_stats)
@@ -1030,7 +1030,7 @@ BEGIN
             END IF;
         END IF;
 
-        IF random() <= CASE WHEN COALESCE(p_from_map,false) THEN 0.30 ELSE 0.15 END THEN
+        IF random() <= (CASE WHEN COALESCE(p_from_map,false) THEN 0.30 ELSE 0.15 END) THEN
             v_tier := CASE lower(COALESCE(v_player.rank,''))
                 WHEN 'chunin' THEN 2 WHEN 'jounin' THEN 3 WHEN 'jonin' THEN 3
                 WHEN 'anbu' THEN 4 WHEN 'sannin' THEN 4 WHEN 'herói' THEN 5 WHEN 'heroi' THEN 5 ELSE 1 END;

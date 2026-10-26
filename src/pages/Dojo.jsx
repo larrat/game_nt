@@ -199,129 +199,43 @@ export default function Dojo({ player }) {
   };
 
   const handleQuickClear = async (fightCount) => {
-    const totalCost = fightCount * RAID_STAMINA_COST;
-    const currentSt = player.stamina ?? calculateStamina(player);
-
-    if (currentSt < totalCost) {
-      addToast(`Limpeza Rápida de ${fightCount}x requer ${totalCost} Stamina (você tem ${currentSt}).`, 'error');
-      return;
-    }
-
+    if (!player) return;
     setLoadingId(`quick_${fightCount}`);
-    await new Promise(r => setTimeout(r, 600));
 
-    let totalXp = 0;
-    let totalRyous = 0;
-    let wins = 0;
-    let losses = 0;
+    try {
+      const { data, error } = await supabase.rpc('resolver_limpeza_rapida', {
+        p_player_id: player.id,
+        p_fight_count: fightCount
+      });
 
-    for (let i = 0; i < fightCount; i++) {
-        // Chance base de 85% de vitória para simular a dificuldade de enfrentar Jounins escalados
-        if (Math.random() <= 0.85) {
-            totalXp += Math.floor((player.level * 40) + 150);
-            totalRyous += Math.floor((player.level * 25) + 80);
-            wins++;
-        } else {
-            losses++;
-        }
-    }
-    
-    // Variance
-    if (wins > 0) {
-        totalXp = Math.floor(totalXp * (0.9 + Math.random() * 0.2));
-        totalRyous = Math.floor(totalRyous * (0.9 + Math.random() * 0.2));
-    }
-
-    const finalXp = player.xp + totalXp;
-    const newLevel = calculateLevelFromXP(finalXp);
-    const levelsGained = Math.max(0, newLevel - player.level);
-    const newPoints = (player.pontos_atributos || 0) + (levelsGained * 3);
-
-    let kuroCoinsDrop = 0;
-    let equipmentDrops = 0;
-    let essenceDrops = 0;
-    let newEssences = { ...(player.inventory_essences || {}) };
-    let equipmentInserts = [];
-
-    // Simulate Drops for each win
-    if (wins > 0) {
-      for (let w = 0; w < wins; w++) {
-        // 1. Kuro Coins (2% chance)
-        if (Math.random() <= 0.02) kuroCoinsDrop++;
-        
-        // 2. Equipments (25% chance in Dojo)
-        if (Math.random() <= 0.25) {
-          const { data: baseItems } = await supabase.from('items').select('*');
-          if (baseItems && baseItems.length > 0) {
-            const randomBaseItem = baseItems[Math.floor(Math.random() * baseItems.length)];
-            const rarity = await rollRarity(player.rank || 'Genin');
-            const rolledStats = await generateLootStats(rarity, player.rank || 'Genin', '');
-            equipmentInserts.push({
-              player_id: player.id,
-              item_id: randomBaseItem.id,
-              is_equipped: false,
-              is_favorite: false,
-              rarity: rarity,
-              rolled_stats: rolledStats
-            });
-            equipmentDrops++;
-          }
-        }
-
-        // 3. Essences (15% chance in Dojo)
-        if (Math.random() <= 0.15) {
-          const rankToTier = { 'Estudante da Academia': 1, 'Genin': 1, 'Chunin': 2, 'Jounin': 3, 'ANBU': 4, 'Sannin': 4, 'Herói': 5 };
-          const tier = rankToTier[player.rank] || 1;
-          const essenceTypes = ['dano', 'custo', 'letalidade', 'protecao'];
-          const randomType = essenceTypes[Math.floor(Math.random() * essenceTypes.length)];
-          const essenceKey = `${randomType}_${tier}`;
-          newEssences[essenceKey] = (newEssences[essenceKey] || 0) + 1;
-          essenceDrops++;
-        }
+      if (error || !data?.success) {
+        addToast('Erro na limpeza rápida: ' + (error?.message || data?.error || 'A operação não foi concluída.'), 'error');
+        return;
       }
+
+      const wins = data.wins || 0;
+      const losses = data.losses || 0;
+      let dropMsg = '';
+      if (data.equipment_drops > 0) dropMsg += ` | ⚔️ ${data.equipment_drops} Equipamentos`;
+      if (data.essence_drops > 0) dropMsg += ` | 📜 ${data.essence_drops} Essências`;
+      if (data.kuro_coins_dropped > 0) dropMsg += ` | 🪙 ${data.kuro_coins_dropped} Kuro Coins`;
+
+      if (wins === 0) {
+        addToast(`⚡ A Limpeza Rápida falhou! Você perdeu todas as ${losses} lutas.`, 'error');
+      } else if (losses > 0) {
+        addToast(`⚡ Limpeza Parcial! Venceu ${wins} e Perdeu ${losses}. +${data.xp_gained} XP | +${data.ryous_gained} Ryous${dropMsg}`, 'info');
+      } else {
+        addToast(`⚡ Limpeza Rápida Perfeita! Venceu todas as ${wins} lutas. +${data.xp_gained} XP | +${data.ryous_gained} Ryous${dropMsg}`, 'success');
+      }
+      if (data.levels_gained > 0) {
+        addToast(`🎉 Você subiu ${data.levels_gained} Níveis!`, 'success');
+      }
+      await updatePlayer(player.id);
+    } catch (err) {
+      addToast('Erro na limpeza rápida: ' + (err?.message || 'Falha inesperada.'), 'error');
+    } finally {
+      setLoadingId(null);
     }
-
-    const playerUpdates = {
-        stamina: currentSt - totalCost,
-        xp: finalXp,
-        level: newLevel,
-        pontos_atributos: newPoints,
-        ryous: player.ryous + totalRyous,
-        wins_dojo: (player.wins_dojo || 0) + wins,
-        dojo_clears: (player.dojo_clears || 0) + wins
-    };
-    if (kuroCoinsDrop > 0) playerUpdates.vip_coins = (player.vip_coins || 0) + kuroCoinsDrop;
-    if (essenceDrops > 0) playerUpdates.inventory_essences = newEssences;
-
-    const { error } = await supabase.from('players').update(playerUpdates).eq('id', player.id);
-
-    if (equipmentInserts.length > 0) {
-       await supabase.from('player_inventory').insert(equipmentInserts);
-    }
-
-    setLoadingId(null);
-
-    if (error) {
-      addToast('Erro na limpeza rápida: ' + error.message, 'error');
-      return;
-    }
-
-    let dropMsg = '';
-    if (equipmentDrops > 0) dropMsg += ` | ⚔️ ${equipmentDrops} Equipamentos`;
-    if (essenceDrops > 0) dropMsg += ` | 📜 ${essenceDrops} Essências`;
-    if (kuroCoinsDrop > 0) dropMsg += ` | 🪙 ${kuroCoinsDrop} Kuro Coins`;
-
-    if (wins === 0) {
-      addToast(`⚡ A Limpeza Rápida falhou! Você perdeu todas as ${losses} lutas.`, 'error');
-    } else if (losses > 0) {
-      addToast(`⚡ Limpeza Parcial! Venceu ${wins} e Perdeu ${losses}. +${totalXp} XP | +${totalRyous} Ryous${dropMsg}`, 'info');
-    } else {
-      addToast(`⚡ Limpeza Rápida Perfeita! Venceu todas as ${wins} lutas. +${totalXp} XP | +${totalRyous} Ryous${dropMsg}`, 'success');
-    }
-    if (levelsGained > 0) {
-      addToast(`🎉 Você subiu ${levelsGained} Níveis!`, "success");
-    }
-    await updatePlayer(player.id);
   };
 
 

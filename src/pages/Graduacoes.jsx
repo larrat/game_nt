@@ -90,26 +90,17 @@ export default function Graduacoes({ player, updatePlayer }) {
     setNewRank(novoRank);
     setIsCeremonyActive(true);
     
-    let bonusPontos = 0;
-    if (novoRank === 'Genin') bonusPontos = 5;
-    if (novoRank === 'Chunin') bonusPontos = 10;
-    if (novoRank === 'Jounin') bonusPontos = 20;
-    if (novoRank === 'ANBU') bonusPontos = 35;
-    if (novoRank === 'Sannin') bonusPontos = 50;
-    if (novoRank === 'Herói') bonusPontos = 100;
-    
-    const novosPontos = (player.pontos_atributos || 0) + bonusPontos;
+    const { data, error } = await supabase.rpc('promover_graduacao', {
+      p_player_id: player.id,
+      p_novo_rank: novoRank
+    });
 
-    const { error } = await supabase
-      .from('players')
-      .update({ rank: novoRank, pontos_atributos: novosPontos })
-      .eq('id', player.id);
-
-    if (error) {
-      addToast('Erro ao graduar: ' + error.message, 'error');
+    if (error || !data?.success) {
+      addToast('Erro ao graduar: ' + (error?.message || data?.error || 'Requisitos não cumpridos.'), 'error');
       setIsCeremonyActive(false);
       return;
     }
+    setNewRank(data.new_rank || novoRank);
 
     setTimeout(() => {
       updatePlayer(player.id);

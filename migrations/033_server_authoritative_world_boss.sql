@@ -65,9 +65,13 @@ BEGIN
     END IF;
 
     v_max_tickets := CASE
-        WHEN v_player.rank IN ('Chunin') THEN 3
-        WHEN v_player.rank IN ('Jounin', 'ANBU') THEN 4
-        WHEN v_player.rank IN ('Sannin', 'Herói') THEN 5
+        WHEN lower(COALESCE(v_player.rank,'')) LIKE '%chunin%' THEN 3
+        WHEN lower(COALESCE(v_player.rank,'')) LIKE '%jounin%'
+          OR lower(COALESCE(v_player.rank,'')) LIKE '%jonin%'
+          OR lower(COALESCE(v_player.rank,'')) LIKE '%anbu%' THEN 4
+        WHEN lower(COALESCE(v_player.rank,'')) LIKE '%sannin%'
+          OR lower(COALESCE(v_player.rank,'')) LIKE '%herói%'
+          OR lower(COALESCE(v_player.rank,'')) LIKE '%heroi%' THEN 5
         ELSE 2
     END;
 

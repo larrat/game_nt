@@ -342,7 +342,27 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             clearInterval(timer);
             addLog("Tempo esgotado! Você perdeu a vez.");
             setIsPlayerTurn(false);
-            npcTurn(npcHP);
+            if (combatSessionId) {
+              supabase.rpc('resolver_turno_combate_sessao', {
+                p_player_id: player.id,
+                p_session_id: combatSessionId,
+                p_action: 'pass'
+              }).then(({ data, error }) => {
+                if (error || !data?.success) {
+                  addToast('O servidor não confirmou a perda de turno: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+                  setIsPlayerTurn(true);
+                  setTimeLeft(30);
+                  return;
+                }
+                npcTurn(Number.isFinite(data.enemy_hp_remaining) ? data.enemy_hp_remaining : npcHP);
+              }).catch(error => {
+                addToast('Erro ao resolver o turno: ' + (error?.message || 'erro inesperado'), 'error');
+                setIsPlayerTurn(true);
+                setTimeLeft(30);
+              });
+            } else {
+              npcTurn(npcHP);
+            }
             return 0;
           }
           return prev - 1;

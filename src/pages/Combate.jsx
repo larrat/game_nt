@@ -1449,6 +1449,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     return {};
   };
 
+  const isWorldBossCombat = Boolean(location.state?.isWorldBoss);
+  const combatModeEyebrow = isWorldBossCombat ? 'Incursão mundial' : isExame ? 'Exame de graduação' : isMirror ? 'Duelo ninja' : npcInit?.is_story_mode ? 'Modo história' : 'A Fúria dos Shinobis';
+  const combatModeTitle = isWorldBossCombat ? 'Chefe Mundial' : isExame ? 'Prova de graduação' : isMirror ? 'Duelo de espelho' : 'Combate';
+  const combatModeSubtitle = isWorldBossCombat ? 'Una estratégia e resistência para enfrentar a ameaça global.' : isExame ? 'Mostre domínio das técnicas e avance na sua graduação.' : isMirror ? 'Enfrente uma versão rival e prove a força da sua build.' : npcInit?.is_story_mode ? 'Avance na história e descubra o próximo capítulo da sua jornada.' : 'Leia o adversário, escolha suas técnicas e controle o ritmo da batalha.';
   const playerBadges = [
     clanBonus.name && (
       <div key="clan" className="badge badge-muted text-xs">Clã {clanBonus.name}</div>
@@ -1477,11 +1481,11 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   ].filter(Boolean);
 
   return (
-    <div className="page">
-      <PageHeader eyebrow='A Fúria dos Shinobis' title='Combate' />
+    <div className="page kuro-combat-page">
+      <PageHeader eyebrow={combatModeEyebrow} title={combatModeTitle} subtitle={combatModeSubtitle} />
 
       {!battleResult && (
-        <div className="combat-turn-bar">
+        <div className="combat-turn-bar kuro-combat-turn-bar">
           <div className="flex-between mb-2 text-xs">
             <span className="mono gold">
               {isPlayerTurn ? 'SEU TURNO' : 'TURNO INIMIGO'} — Rodada {roundCount}
@@ -1500,7 +1504,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
       <div className="flex-col w-full gap-md">
 
-        <div className="combat-arena">
+        <div className="combat-arena kuro-combat-arena">
           <CombatFighterCard
             side="left"
             shake={playerShake}
@@ -1574,13 +1578,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
         {!battleResult ? (
           isAltAutoBattle ? (
-            <div className="card flex-col text-center border-dashed border-gold bg-ink">
+            <div className="card flex-col text-center border-dashed border-gold bg-ink kuro-auto-battle">
               <div className="text-3xl mb-2">🤖</div>
               <h3 className="gold mb-2">Modo Auto-Battle</h3>
               <p className="muted text-xs">O Wintrading Shield foi ativado. Você não pode interferir no combate contra seu próprio alter ego. O sistema resolverá a batalha com base nos atributos e na sorte de ambos.</p>
             </div>
           ) : (
-            <div className="combat-actions">
+            <div className="combat-actions kuro-combat-actions">
               <div className="combat-actions-header">
                 <span className="mono uppercase text-xs tracking-wider text-muted">Ações</span>
                 <span className="badge badge-muted">{getCombatJutsus(player).length + 1} técnicas</span>
@@ -1674,7 +1678,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             </div>
           )
         ) : (
-          <div className={`flex-col text-center p-6 bg-ink-soft items-center border-line-solid border ${battleResult === 'win' ? 'border-gold' : 'border-danger'}`}>
+          <div className={`flex-col text-center p-6 bg-ink-soft items-center border-line-solid border kuro-combat-result ${battleResult === 'win' ? 'border-gold' : 'border-danger'}`}>
             <h2 className={`page-title mb-4 ${battleResult === 'win' ? 'gold' : 'danger'}`}>
               {battleResult === 'win' ? 'Vitória!' : (battleResult === 'world_boss_end' ? 'Fim da Incursão' : 'Inconsciente')}
             </h2>

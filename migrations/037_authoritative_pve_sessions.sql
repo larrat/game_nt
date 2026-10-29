@@ -909,7 +909,7 @@ DECLARE
     v_total integer := 0;
 BEGIN
     IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
-    IF jsonb_typeof(p_jutsus) <> 'array' OR jsonb_array_length(p_jutsus) = 0 THEN
+    IF p_jutsus IS NULL OR jsonb_typeof(p_jutsus) <> 'array' OR jsonb_array_length(p_jutsus) = 0 THEN
         RETURN jsonb_build_object('success',false,'error','Nenhum jutsu foi informado.');
     END IF;
     IF jsonb_array_length(p_jutsus) > 50 THEN
@@ -923,43 +923,8 @@ BEGIN
     FOR v_item IN SELECT value FROM jsonb_array_elements(p_jutsus) AS x(value)
     LOOP
         v_id_text := COALESCE(v_item->>'id', v_item #>> '{}');
-        IF COALESCE(v_id_text,'') !~ '^[0-9]{1,10}
-REVOKE UPDATE (tai, nin, gen, buk, taijutsu, bukijutsu, ninjutsu, genjutsu,
-    forca, agilidade, inteligencia, selo, resistencia, energia,
-    jutsus_learned, inventory_essences, daily_chakra_spent)
-ON public.players FROM PUBLIC, anon, authenticated;
-
-
--- API users can call only the authenticated RPC entry points. Internal calculation helpers are private.
-REVOKE ALL ON FUNCTION public.kurokage_equipment_bonus(integer,text) FROM PUBLIC, anon, authenticated, service_role;
-REVOKE ALL ON FUNCTION public.kurokage_player_max_stat(integer,text) FROM PUBLIC, anon, authenticated, service_role;
-REVOKE ALL ON FUNCTION public.kurokage_elemental_multiplier(text,text) FROM PUBLIC, anon, authenticated, service_role;
-
-REVOKE ALL ON FUNCTION public.iniciar_combate_sessao(integer,integer,boolean,boolean) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION public.iniciar_combate_sessao(integer,integer,boolean,boolean) TO authenticated, service_role;
-
-REVOKE ALL ON FUNCTION public.resolver_turno_combate_sessao(integer,uuid,text,integer) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION public.resolver_turno_combate_sessao(integer,uuid,text,integer) TO authenticated, service_role;
-
-REVOKE ALL ON FUNCTION public.responder_turno_combate_sessao(integer,uuid) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION public.responder_turno_combate_sessao(integer,uuid) TO authenticated, service_role;
-
-REVOKE ALL ON FUNCTION public.usar_consumivel_combate_sessao(integer,uuid,integer) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION public.usar_consumivel_combate_sessao(integer,uuid,integer) TO authenticated, service_role;
-
-REVOKE ALL ON FUNCTION public.finalizar_combate_sessao(integer,uuid,integer,jsonb) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION public.finalizar_combate_sessao(integer,uuid,integer,jsonb) TO authenticated, service_role;
-
-REVOKE ALL ON FUNCTION public.aprender_jutsu(integer,integer,integer) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION public.aprender_jutsu(integer,integer,integer) TO authenticated, service_role;
-
--- Prevent direct client calls that submit arbitrary victory flags and fallback rewards.
-REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jsonb) FROM PUBLIC, anon, authenticated;
-REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jsonb,integer,integer,text) FROM PUBLIC, anon, authenticated;
-REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jsonb,integer,integer,text,boolean) FROM PUBLIC, anon, authenticated;
-
-NOTIFY pgrst, 'reload schema';
- THEN
+        IF v_id_text IS NULL OR v_id_text = '' OR length(v_id_text) > 10
+           OR v_id_text !~ '^[0-9]' OR v_id_text ~ '[^0-9]' THEN
             RAISE EXCEPTION 'Um dos jutsus enviados possui identificador inválido.';
         END IF;
         v_jutsu_id := v_id_text::integer;

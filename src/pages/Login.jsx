@@ -49,7 +49,8 @@ export default function Login() {
       } else if (mode === 'signup') {
         const { data, error } = await supabase.auth.signUp({
           email: normalizedEmail,
-          password
+          password,
+          options: { emailRedirectTo: new URL('/selecionar', window.location.origin).toString() }
         });
         if (error) throw error;
         if (!data?.session) {

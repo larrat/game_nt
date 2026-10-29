@@ -131,7 +131,7 @@ export default function Vila({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="p-0 fixed inset-0 overflow-hidden">
+    <div className="kuro-village-screen p-0 fixed inset-0 overflow-hidden">
 
       {/* Background Image */}
       <div 
@@ -142,7 +142,7 @@ export default function Vila({ player, updatePlayer }) {
       <div className="absolute inset-0 z-1" style={{ background: 'rgba(0,0,0,0.45)' }} />
 
       {/* Header top-left */}
-      <div className="absolute z-10 top-4 left-6">
+      <div className="kuro-village-header absolute z-10 top-4 left-6">
         <PageHeader eyebrow='Administração e Projetos' title={`Vila da ${villageData?.name || 'Desconhecida'}`} subtitle="Clique nos edifícios para interagir." />
       </div>
 
@@ -165,7 +165,7 @@ export default function Vila({ player, updatePlayer }) {
           <div
             key={key}
             onClick={() => handleBuildingClick(key)}
-            className="absolute flex-col items-center cursor-pointer z-5"
+            className="kuro-village-building absolute flex-col items-center cursor-pointer z-5"
             style={{
               top: info.top,
               left: info.left,
@@ -176,7 +176,7 @@ export default function Vila({ player, updatePlayer }) {
             onMouseOut={(e) => e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)'}
           >
             <div 
-              className="w-16 h-16 rounded-full border-2 border-gold flex-row items-center justify-center overflow-hidden"
+              className="kuro-village-building__icon w-16 h-16 rounded-full border-2 border-gold flex-row items-center justify-center overflow-hidden"
               style={{
                 background: info.isGate ? 'rgba(239, 68, 68, 0.8)' : 'rgba(20, 20, 25, 0.9)',
                 boxShadow: '0 0 20px rgba(0,0,0,0.8)'
@@ -184,7 +184,7 @@ export default function Vila({ player, updatePlayer }) {
             >
               <img src={info.img} alt={info.name} className="w-full h-full object-cover" />
             </div>
-            <div className="paper bg-black-alpha-80 px-3 py-1 rounded-sm mt-2 text-xs whitespace-nowrap border-line-solid">
+            <div className="kuro-village-building__label paper bg-black-alpha-80 px-3 py-1 rounded-sm mt-2 text-xs whitespace-nowrap border-line-solid">
               {info.name}
             </div>
           </div>
@@ -192,7 +192,7 @@ export default function Vila({ player, updatePlayer }) {
 
         {/* Modal Simples do Prédio */}
         {selectedBuildingInfo && !selectedBuildingInfo.isGate && (
-          <div className="absolute z-20 w-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="kuro-village-modal absolute z-20 w-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <div className={`card-glass bg-black-alpha-95 border border-solid ${isDamaged ? 'border-danger' : 'border-gold'}`}>
               <div className="text-center mb-4">
                 <img src={selectedBuildingInfo.img} alt={selectedBuildingInfo.name} className={`w-20 h-20 rounded-full border-2 border-gold inline-block ${isDamaged ? 'grayscale brightness-50' : ''}`} />

@@ -1,6 +1,13 @@
 -- Migration 037: make ordinary PvE rewards depend on server-owned combat sessions.
 -- Client-side enemy HP, victory flags, player attack stats, and jutsu payloads are not trusted.
 
+-- Columns already consumed by the frontend but absent from the live schema.
+ALTER TABLE public.players ADD COLUMN IF NOT EXISTS element2 text;
+ALTER TABLE public.players ADD COLUMN IF NOT EXISTS clan_lvl integer NOT NULL DEFAULT 0;
+ALTER TABLE public.players ADD COLUMN IF NOT EXISTS clan_custom_stats jsonb NOT NULL DEFAULT '{}'::jsonb;
+ALTER TABLE public.players ADD COLUMN IF NOT EXISTS is_vip boolean NOT NULL DEFAULT false;
+ALTER TABLE public.players ADD COLUMN IF NOT EXISTS portoes_used_at timestamptz;
+
 CREATE TABLE IF NOT EXISTS public.player_combat_sessions (
     session_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     player_id integer NOT NULL REFERENCES public.players(id) ON DELETE CASCADE,
@@ -137,6 +144,15 @@ DECLARE
     v_rank_chakra integer := 0;
     v_rank_stamina integer := 0;
     v_value numeric;
+    v_clan_level integer := 0;
+    v_resistencia numeric := 0;
+    v_energia numeric := 0;
+    v_forca numeric := 0;
+    v_ninjutsu numeric := 0;
+    v_genjutsu numeric := 0;
+    v_taijutsu numeric := 0;
+    v_bukijutsu numeric := 0;
+    v_clan_custom jsonb;
 BEGIN
     SELECT * INTO v_player FROM public.players WHERE id = p_player_id;
     IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado.'; END IF;
@@ -159,7 +175,11 @@ BEGIN
         WHEN 'anbu' THEN 800 WHEN 'sannin' THEN 1200
         WHEN 'herói' THEN 2000 WHEN 'heroi' THEN 2000 ELSE 0 END;
 
-    IF lower(p_stat_name) = 'hp' THEN
+    v_clan_level := GREATEST(0, COALESCE(v_player.clan_lvl,0));
+    v_clan_custom := CASE
+        WHEN jsonb_typeof(v_player.clan_custom_stats) = 'object' THEN v_player.clan_custom_stats
+        ELSE '{}'::jsonb END;
+    v_resistencia := GREATEST(0,COALESCE(v_player.resistencia,0) + CASE WHEN COALESCE(v_clan_custom->>'resistencia','') ~ '^[0-9]{1,2}
         v_value := 100 + v_level * 30
             + GREATEST(0, COALESCE(v_player.resistencia, 0)) * 15
             + GREATEST(0, COALESCE(v_player.energia, 0)) * 20
@@ -185,6 +205,252 @@ BEGIN
             + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
             + GREATEST(0, COALESCE(v_player.taijutsu, COALESCE(v_player.tai, 0))) * 5
             + GREATEST(0, COALESCE(v_player.bukijutsu, COALESCE(v_player.buk, 0))) * 5
+            + v_rank_stamina
+            + public.kurokage_equipment_bonus(p_player_id, 'stamina');
+    ELSE
+        RAISE EXCEPTION 'Atributo máximo inválido.';
+    END IF;
+
+    RETURN GREATEST(1, LEAST(1000000000, FLOOR(v_value)))::integer;
+END;
+$function$; THEN (v_clan_custom->>'resistencia')::numeric * v_clan_level ELSE 0 END);
+    v_energia := GREATEST(0,COALESCE(v_player.energia,0) + CASE WHEN COALESCE(v_clan_custom->>'energia','') ~ '^[0-9]{1,2}
+        v_value := 100 + v_level * 30
+            + GREATEST(0, COALESCE(v_player.resistencia, 0)) * 15
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 20
+            + GREATEST(0, COALESCE(v_player.forca, 0)) * 5
+            + v_rank_hp
+            + public.kurokage_equipment_bonus(p_player_id, 'hp');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'senju' THEN 1.10 WHEN 'uzumaki' THEN 1.05
+            WHEN 'akimichi' THEN 1.08 ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'chakra' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.ninjutsu, COALESCE(v_player.nin, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.genjutsu, COALESCE(v_player.gen, 0))) * 5
+            + v_rank_chakra
+            + public.kurokage_equipment_bonus(p_player_id, 'chakra');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'uzumaki' THEN 1.15
+            WHEN 'hozuki' THEN 1.10
+            ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'stamina' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.taijutsu, COALESCE(v_player.tai, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.bukijutsu, COALESCE(v_player.buk, 0))) * 5
+            + v_rank_stamina
+            + public.kurokage_equipment_bonus(p_player_id, 'stamina');
+    ELSE
+        RAISE EXCEPTION 'Atributo máximo inválido.';
+    END IF;
+
+    RETURN GREATEST(1, LEAST(1000000000, FLOOR(v_value)))::integer;
+END;
+$function$; THEN (v_clan_custom->>'energia')::numeric * v_clan_level ELSE 0 END);
+    v_forca := GREATEST(0,COALESCE(v_player.forca,0) + CASE WHEN COALESCE(v_clan_custom->>'forca','') ~ '^[0-9]{1,2}
+        v_value := 100 + v_level * 30
+            + GREATEST(0, COALESCE(v_player.resistencia, 0)) * 15
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 20
+            + GREATEST(0, COALESCE(v_player.forca, 0)) * 5
+            + v_rank_hp
+            + public.kurokage_equipment_bonus(p_player_id, 'hp');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'senju' THEN 1.10 WHEN 'uzumaki' THEN 1.05
+            WHEN 'akimichi' THEN 1.08 ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'chakra' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.ninjutsu, COALESCE(v_player.nin, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.genjutsu, COALESCE(v_player.gen, 0))) * 5
+            + v_rank_chakra
+            + public.kurokage_equipment_bonus(p_player_id, 'chakra');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'uzumaki' THEN 1.15
+            WHEN 'hozuki' THEN 1.10
+            ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'stamina' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.taijutsu, COALESCE(v_player.tai, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.bukijutsu, COALESCE(v_player.buk, 0))) * 5
+            + v_rank_stamina
+            + public.kurokage_equipment_bonus(p_player_id, 'stamina');
+    ELSE
+        RAISE EXCEPTION 'Atributo máximo inválido.';
+    END IF;
+
+    RETURN GREATEST(1, LEAST(1000000000, FLOOR(v_value)))::integer;
+END;
+$function$; THEN (v_clan_custom->>'forca')::numeric * v_clan_level ELSE 0 END);
+    v_ninjutsu := GREATEST(0,COALESCE(v_player.ninjutsu,COALESCE(v_player.nin,0)) + CASE WHEN COALESCE(v_clan_custom->>'ninjutsu','') ~ '^[0-9]{1,2}
+        v_value := 100 + v_level * 30
+            + GREATEST(0, COALESCE(v_player.resistencia, 0)) * 15
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 20
+            + GREATEST(0, COALESCE(v_player.forca, 0)) * 5
+            + v_rank_hp
+            + public.kurokage_equipment_bonus(p_player_id, 'hp');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'senju' THEN 1.10 WHEN 'uzumaki' THEN 1.05
+            WHEN 'akimichi' THEN 1.08 ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'chakra' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.ninjutsu, COALESCE(v_player.nin, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.genjutsu, COALESCE(v_player.gen, 0))) * 5
+            + v_rank_chakra
+            + public.kurokage_equipment_bonus(p_player_id, 'chakra');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'uzumaki' THEN 1.15
+            WHEN 'hozuki' THEN 1.10
+            ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'stamina' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.taijutsu, COALESCE(v_player.tai, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.bukijutsu, COALESCE(v_player.buk, 0))) * 5
+            + v_rank_stamina
+            + public.kurokage_equipment_bonus(p_player_id, 'stamina');
+    ELSE
+        RAISE EXCEPTION 'Atributo máximo inválido.';
+    END IF;
+
+    RETURN GREATEST(1, LEAST(1000000000, FLOOR(v_value)))::integer;
+END;
+$function$; THEN (v_clan_custom->>'ninjutsu')::numeric * v_clan_level ELSE 0 END);
+    v_genjutsu := GREATEST(0,COALESCE(v_player.genjutsu,COALESCE(v_player.gen,0)) + CASE WHEN COALESCE(v_clan_custom->>'genjutsu','') ~ '^[0-9]{1,2}
+        v_value := 100 + v_level * 30
+            + GREATEST(0, COALESCE(v_player.resistencia, 0)) * 15
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 20
+            + GREATEST(0, COALESCE(v_player.forca, 0)) * 5
+            + v_rank_hp
+            + public.kurokage_equipment_bonus(p_player_id, 'hp');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'senju' THEN 1.10 WHEN 'uzumaki' THEN 1.05
+            WHEN 'akimichi' THEN 1.08 ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'chakra' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.ninjutsu, COALESCE(v_player.nin, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.genjutsu, COALESCE(v_player.gen, 0))) * 5
+            + v_rank_chakra
+            + public.kurokage_equipment_bonus(p_player_id, 'chakra');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'uzumaki' THEN 1.15
+            WHEN 'hozuki' THEN 1.10
+            ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'stamina' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.taijutsu, COALESCE(v_player.tai, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.bukijutsu, COALESCE(v_player.buk, 0))) * 5
+            + v_rank_stamina
+            + public.kurokage_equipment_bonus(p_player_id, 'stamina');
+    ELSE
+        RAISE EXCEPTION 'Atributo máximo inválido.';
+    END IF;
+
+    RETURN GREATEST(1, LEAST(1000000000, FLOOR(v_value)))::integer;
+END;
+$function$; THEN (v_clan_custom->>'genjutsu')::numeric * v_clan_level ELSE 0 END);
+    v_taijutsu := GREATEST(0,COALESCE(v_player.taijutsu,COALESCE(v_player.tai,0)) + CASE WHEN COALESCE(v_clan_custom->>'taijutsu','') ~ '^[0-9]{1,2}
+        v_value := 100 + v_level * 30
+            + GREATEST(0, COALESCE(v_player.resistencia, 0)) * 15
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 20
+            + GREATEST(0, COALESCE(v_player.forca, 0)) * 5
+            + v_rank_hp
+            + public.kurokage_equipment_bonus(p_player_id, 'hp');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'senju' THEN 1.10 WHEN 'uzumaki' THEN 1.05
+            WHEN 'akimichi' THEN 1.08 ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'chakra' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.ninjutsu, COALESCE(v_player.nin, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.genjutsu, COALESCE(v_player.gen, 0))) * 5
+            + v_rank_chakra
+            + public.kurokage_equipment_bonus(p_player_id, 'chakra');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'uzumaki' THEN 1.15
+            WHEN 'hozuki' THEN 1.10
+            ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'stamina' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.taijutsu, COALESCE(v_player.tai, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.bukijutsu, COALESCE(v_player.buk, 0))) * 5
+            + v_rank_stamina
+            + public.kurokage_equipment_bonus(p_player_id, 'stamina');
+    ELSE
+        RAISE EXCEPTION 'Atributo máximo inválido.';
+    END IF;
+
+    RETURN GREATEST(1, LEAST(1000000000, FLOOR(v_value)))::integer;
+END;
+$function$; THEN (v_clan_custom->>'taijutsu')::numeric * v_clan_level ELSE 0 END);
+    v_bukijutsu := GREATEST(0,COALESCE(v_player.bukijutsu,COALESCE(v_player.buk,0)) + CASE WHEN COALESCE(v_clan_custom->>'bukijutsu','') ~ '^[0-9]{1,2}
+        v_value := 100 + v_level * 30
+            + GREATEST(0, COALESCE(v_player.resistencia, 0)) * 15
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 20
+            + GREATEST(0, COALESCE(v_player.forca, 0)) * 5
+            + v_rank_hp
+            + public.kurokage_equipment_bonus(p_player_id, 'hp');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'senju' THEN 1.10 WHEN 'uzumaki' THEN 1.05
+            WHEN 'akimichi' THEN 1.08 ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'chakra' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.ninjutsu, COALESCE(v_player.nin, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.genjutsu, COALESCE(v_player.gen, 0))) * 5
+            + v_rank_chakra
+            + public.kurokage_equipment_bonus(p_player_id, 'chakra');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'uzumaki' THEN 1.15
+            WHEN 'hozuki' THEN 1.10
+            ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'stamina' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, COALESCE(v_player.energia, 0)) * 5
+            + GREATEST(0, COALESCE(v_player.taijutsu, COALESCE(v_player.tai, 0))) * 5
+            + GREATEST(0, COALESCE(v_player.bukijutsu, COALESCE(v_player.buk, 0))) * 5
+            + v_rank_stamina
+            + public.kurokage_equipment_bonus(p_player_id, 'stamina');
+    ELSE
+        RAISE EXCEPTION 'Atributo máximo inválido.';
+    END IF;
+
+    RETURN GREATEST(1, LEAST(1000000000, FLOOR(v_value)))::integer;
+END;
+$function$; THEN (v_clan_custom->>'bukijutsu')::numeric * v_clan_level ELSE 0 END);
+
+    IF lower(p_stat_name) = 'hp' THEN
+        v_value := 100 + v_level * 30
+            + GREATEST(0, v_resistencia) * 15
+            + GREATEST(0, v_energia) * 20
+            + GREATEST(0, v_forca) * 5
+            + v_rank_hp
+            + public.kurokage_equipment_bonus(p_player_id, 'hp');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'senju' THEN 1.10 WHEN 'uzumaki' THEN 1.05
+            WHEN 'akimichi' THEN 1.08 ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'chakra' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, v_energia) * 5
+            + GREATEST(0, v_ninjutsu) * 5
+            + GREATEST(0, v_genjutsu) * 5
+            + v_rank_chakra
+            + public.kurokage_equipment_bonus(p_player_id, 'chakra');
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'uzumaki' THEN 1.15
+            WHEN 'hozuki' THEN 1.10
+            ELSE 1.00 END;
+    ELSIF lower(p_stat_name) = 'stamina' THEN
+        v_value := 100 + v_level * 20
+            + GREATEST(0, v_energia) * 5
+            + GREATEST(0, v_taijutsu) * 5
+            + GREATEST(0, v_bukijutsu) * 5
             + v_rank_stamina
             + public.kurokage_equipment_bonus(p_player_id, 'stamina');
     ELSE
@@ -376,11 +642,7 @@ REVOKE ALL ON FUNCTION public.iniciar_exame_chunin(integer,integer) FROM PUBLIC,
 GRANT EXECUTE ON FUNCTION public.iniciar_exame_chunin(integer,integer) TO authenticated, service_role;
 
 
--- The frontend supports a second element, clan progression, and VIP bulk learning.
-ALTER TABLE public.players ADD COLUMN IF NOT EXISTS element2 text;
-ALTER TABLE public.players ADD COLUMN IF NOT EXISTS clan_lvl integer NOT NULL DEFAULT 0;
-ALTER TABLE public.players ADD COLUMN IF NOT EXISTS clan_custom_stats jsonb NOT NULL DEFAULT '{}'::jsonb;
-ALTER TABLE public.players ADD COLUMN IF NOT EXISTS is_vip boolean NOT NULL DEFAULT false;
+-- Elemental, clan and VIP columns were created at the top of this migration.
 
 CREATE OR REPLACE FUNCTION public.entrar_cla(
     p_player_id integer,

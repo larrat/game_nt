@@ -8,7 +8,7 @@ import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 
-export default function Dojo({ player }) {
+export default function Dojo({ player, updatePlayer }) {
   const navigate = useNavigate();
   const [loadingId, setLoadingId] = useState(null);
   const { addToast } = useToast();
@@ -139,6 +139,7 @@ export default function Dojo({ player }) {
 
     if (targets && targets.length > 0) {
       const target = targets[Math.floor(Math.random() * targets.length)];
+      const targetJutsus = await fetchRivalJutsus(target.id);
       const mirrorNpc = {
         id: `bijuu_${target.id}`,
         real_id: target.id,

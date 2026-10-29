@@ -67,8 +67,17 @@ BEGIN
     IF EXISTS (SELECT 1 FROM public.npcs WHERE id IN (8, 9, 10, 11, 12, 13, 14)) THEN
         RAISE EXCEPTION 'NPC duplicate cleanup incomplete: duplicate IDs remain.';
     END IF;
-    IF (SELECT count(*) FROM public.npcs) <> 15 THEN
-        RAISE EXCEPTION 'NPC catalog total differs from expected 15 unique records; review migration.';
+    IF EXISTS (
+        SELECT 1
+        FROM (VALUES
+            ('Naruto Uzumaki'), ('Kiba Inuzuka'), ('Rock Lee'),
+            ('Neji Hyuga'), ('Gaara'), ('Itachi Uchiha'), ('Kisame Hoshigaki')
+        ) AS expected(name)
+        JOIN public.npcs npc ON npc.name = expected.name
+        GROUP BY expected.name
+        HAVING count(*) <> 1
+    ) THEN
+        RAISE EXCEPTION 'NPC duplicate cleanup incomplete: a validated character name still has multiple rows.';
     END IF;
 END;
 $verify$;

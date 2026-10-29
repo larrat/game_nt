@@ -117,22 +117,22 @@ export default function Treino({ player, updatePlayer }) {
   };
 
   return (
-    <div className="page">
+    <div className="page kuro-training-page">
       <PageHeader 
         eyebrow={`Graduação: ${playerRank}`} 
         title='Centro de Treinamento' 
         subtitle='Simule e treine os seus atributos com base nos seus Pontos Livres disponíveis.' 
       />
 
-      <div className="flex-between bg-ink-raised px-6 py-4 rounded-md border-line-solid border-seal-bright mb-6">
+      <div className="kuro-training-points flex-between bg-ink-raised px-6 py-4 rounded-md border-line-solid border-seal-bright mb-6">
         <span className="muted uppercase mono tracking-wider text-sm">Pontos de Treino Disponíveis</span>
         <span className="gold mono text-4xl">{player.pontos_atributos || 0}</span>
       </div>
 
-      <div className="grid-sidebar gap-6 items-start">
+      <div className="kuro-training-layout grid-sidebar gap-6 items-start">
         
         {/* LISTA DE ATRIBUTOS */}
-        <div className="card p-0 overflow-hidden">
+        <div className="kuro-training-attributes card p-0 overflow-hidden">
           <div className="bg-ink-soft px-6 py-3 border-b border-line-solid">
             <h3 className="gold mono uppercase tracking-widest text-sm m-0">
               Seus Atributos Base
@@ -148,7 +148,7 @@ export default function Treino({ player, updatePlayer }) {
               return (
                 <div 
                   key={attr.field} 
-                  className={`flex-between px-6 py-4 border-b border-line-alpha-05 items-center cursor-pointer transition-all ${isSelected ? 'bg-seal-glow border-l-4 border-l-seal-bright' : 'bg-transparent border-l-4 border-l-transparent'}`}
+                  className={`kuro-training-attribute flex-between px-6 py-4 border-b border-line-alpha-05 items-center cursor-pointer transition-all ${isSelected ? 'bg-seal-glow border-l-4 border-l-seal-bright' : 'bg-transparent border-l-4 border-l-transparent'}`}
                   onClick={() => setSelectedAttr(attr)}
                 >
                   <div className="flex-row gap-3 items-center">
@@ -172,7 +172,7 @@ export default function Treino({ player, updatePlayer }) {
         </div>
 
         {/* SIMULADOR DE BUILD (PAINEL DIREITO) */}
-        <div className="sticky top-6">
+        <div className="kuro-training-simulator sticky top-6">
           {selectedAttr ? (
             <div className="card border-line-solid border-seal-bright bg-ink">
               <div className="flex-row gap-3 items-center mb-4">

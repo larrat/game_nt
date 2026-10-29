@@ -37,7 +37,7 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
 
     fetchAvatars();
     return () => { cancelled = true; };
-  }, [isOpen, player?.id, player?.character_id, player?.avatar]);
+  }, [isOpen, player?.id, player?.character_id, player?.avatar, addToast]);
 
   if (!isOpen || !player) return null;
 

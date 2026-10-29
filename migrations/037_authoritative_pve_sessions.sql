@@ -462,6 +462,154 @@ END;
 $function$;
 
 
+CREATE OR REPLACE FUNCTION public.abrir_portao(
+    p_player_id integer,
+    p_gate_id integer
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_player public.players%ROWTYPE;
+    v_max_hp integer;
+    v_hp integer;
+    v_cost_pct numeric;
+    v_required_level integer;
+    v_cost integer;
+    v_new_hp integer;
+    v_used_at timestamptz;
+BEGIN
+    IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
+    IF p_gate_id IS NULL OR p_gate_id NOT BETWEEN 1 AND 8 THEN
+        RETURN jsonb_build_object('success',false,'error','Portão inválido.');
+    END IF;
+
+    SELECT * INTO v_player FROM public.players
+    WHERE id=p_player_id AND user_id=auth.uid()
+    FOR UPDATE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
+
+    IF COALESCE(v_player.is_fainted,false) OR COALESCE(v_player.hp,0)<=0 THEN
+        RETURN jsonb_build_object('success',false,'error','Você não pode abrir os Portões estando inconsciente.');
+    END IF;
+    IF v_player.portoes_used_at IS NOT NULL
+       AND v_player.portoes_used_at > now() - interval '30 minutes' THEN
+        RETURN jsonb_build_object('success',false,'error','Os 8 Portões ainda estão em recarga.',
+            'cooldown_until',v_player.portoes_used_at + interval '30 minutes');
+    END IF;
+
+    v_required_level := p_gate_id*10;
+    IF COALESCE(v_player.level,1)<v_required_level THEN
+        RETURN jsonb_build_object('success',false,'error','Nível insuficiente para este portão.','required_level',v_required_level);
+    END IF;
+
+    v_cost_pct := CASE p_gate_id
+        WHEN 1 THEN 0.05 WHEN 2 THEN 0.10 WHEN 3 THEN 0.20 WHEN 4 THEN 0.35
+        WHEN 5 THEN 0.50 WHEN 6 THEN 0.65 WHEN 7 THEN 0.80 ELSE 1.00 END;
+
+    v_max_hp := public.kurokage_player_max_stat(p_player_id,'hp');
+    v_hp := LEAST(v_max_hp,GREATEST(0,COALESCE(v_player.hp,v_max_hp)));
+    v_cost := FLOOR(v_max_hp*v_cost_pct)::integer;
+    v_new_hp := GREATEST(0,v_hp-v_cost);
+
+    UPDATE public.players
+    SET hp=v_new_hp,
+        portoes_used_at=now(),
+        is_fainted=CASE WHEN p_gate_id=8 OR v_new_hp=0 THEN true ELSE COALESCE(is_fainted,false) END,
+        fainted_at=CASE WHEN p_gate_id=8 OR v_new_hp=0 THEN now() ELSE fainted_at END
+    WHERE id=p_player_id;
+
+    RETURN jsonb_build_object(
+        'success',true,'gate_id',p_gate_id,'hp_cost',v_cost,'hp',v_new_hp,
+        'max_hp',v_max_hp,'is_fainted',(p_gate_id=8 OR v_new_hp=0),
+        'used_at',now(),'attack_multiplier',CASE p_gate_id
+            WHEN 1 THEN 1.05 WHEN 2 THEN 1.10 WHEN 3 THEN 1.20 WHEN 4 THEN 1.35
+            WHEN 5 THEN 1.50 WHEN 6 THEN 1.70 WHEN 7 THEN 2.00 ELSE 3.00 END
+    );
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.abrir_portao(integer,integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.abrir_portao(integer,integer) TO authenticated, service_role;
+
+
+CREATE OR REPLACE FUNCTION public.reservar_raid_stamina(
+    p_player_id integer,
+    p_fight_count integer
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_player public.players%ROWTYPE;
+    v_max_stamina integer;
+    v_current_stamina integer;
+    v_cost integer;
+    v_remaining integer;
+BEGIN
+    IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
+    IF p_fight_count NOT IN (3,5) THEN
+        RETURN jsonb_build_object('success',false,'error','Quantidade de lutas inválida para uma incursão.');
+    END IF;
+
+    SELECT * INTO v_player FROM public.players
+    WHERE id=p_player_id AND user_id=auth.uid()
+    FOR UPDATE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
+    IF COALESCE(v_player.is_fainted,false) THEN
+        RETURN jsonb_build_object('success',false,'error','Você está inconsciente e não pode iniciar uma incursão.');
+    END IF;
+    IF EXISTS (SELECT 1 FROM public.player_combat_sessions
+        WHERE player_id=p_player_id AND status='active' AND expires_at>now()) THEN
+        RETURN jsonb_build_object('success',false,'error','Finalize o combate atual antes de iniciar uma incursão.');
+    END IF;
+
+    v_max_stamina := public.kurokage_player_max_stat(p_player_id,'stamina');
+    v_current_stamina := LEAST(v_max_stamina,GREATEST(0,COALESCE(v_player.stamina,v_max_stamina)));
+    v_cost := p_fight_count*25;
+    IF v_current_stamina<v_cost THEN
+        RETURN jsonb_build_object('success',false,'error','Stamina insuficiente.','required',v_cost,'current',v_current_stamina);
+    END IF;
+
+    v_remaining := v_current_stamina-v_cost;
+    UPDATE public.players SET stamina=v_remaining WHERE id=p_player_id;
+    RETURN jsonb_build_object('success',true,'stamina',v_remaining,'cost',v_cost,'fight_count',p_fight_count);
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.reservar_raid_stamina(integer,integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.reservar_raid_stamina(integer,integer) TO authenticated, service_role;
+
+
+CREATE OR REPLACE FUNCTION public.marcar_jogador_derrotado(
+    p_player_id integer
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_player public.players%ROWTYPE;
+BEGIN
+    IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
+    SELECT * INTO v_player FROM public.players
+    WHERE id=p_player_id AND user_id=auth.uid()
+    FOR UPDATE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
+
+    UPDATE public.players SET hp=0,is_fainted=true,fainted_at=COALESCE(fainted_at,now())
+    WHERE id=p_player_id;
+
+    RETURN jsonb_build_object('success',true,'is_fainted',true,'hp',0);
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.marcar_jogador_derrotado(integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.marcar_jogador_derrotado(integer) TO authenticated, service_role;
+
+
 CREATE OR REPLACE FUNCTION public.kurokage_elemental_multiplier(
     p_attacker_element text,
     p_defender_element text
@@ -1855,10 +2003,13 @@ REVOKE UPDATE (tai, nin, gen, buk, taijutsu, bukijutsu, ninjutsu, genjutsu,
     forca, agilidade, inteligencia, selo, resistencia, energia,
     jutsus_learned, inventory_essences, daily_chakra_spent,
     passou_exame_chunin, element, element2,
-    clan, clan_id, clan_lvl, clan_custom_stats, is_vip)
+    clan, clan_id, clan_lvl, clan_custom_stats, is_vip,
+    hp, chakra, stamina, is_fainted, fainted_at, portoes_used_at)
 ON public.players FROM PUBLIC, anon, authenticated;
 
 
+REVOKE UPDATE (wins_dojo, losses_dojo, dojo_clears, daily_map_battles)
+ON public.players FROM PUBLIC, anon, authenticated;
 -- API users can call only the authenticated RPC entry points. Internal calculation helpers are private.
 REVOKE ALL ON FUNCTION public.kurokage_equipment_bonus(integer,text) FROM PUBLIC, anon, authenticated, service_role;
 REVOKE ALL ON FUNCTION public.kurokage_player_max_stat(integer,text) FROM PUBLIC, anon, authenticated, service_role;

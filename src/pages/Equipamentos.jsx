@@ -187,19 +187,19 @@ export default function Equipamentos({ player, updatePlayer }) {
   const totalBonus = calculateTotalBonus();
 
   return (
-    <div className="page">
+    <div className="page kuro-equipment-page">
       <PageHeader 
         eyebrow={`${player.name} · ${player.clan_id ? `Clã ID ${player.clan_id}` : 'Sem Clã'}`} 
         title='Arsenal e Arsenal Ninja' 
         subtitle='Gerencie seus equipamentos e veja o impacto nos seus atributos gerais.' 
       />
 
-      <div className="flex-row gap-xl items-start flex-wrap">
+      <div className="kuro-equipment-layout flex-row gap-xl items-start flex-wrap">
         
         {/* LADO ESQUERDO: HERÓI & STATUS TOTAIS */}
         <div className="flex-col gap-lg flex-1 min-w-[350px] max-w-[400px]">
           
-          <div className="card-glass flex-col items-center p-8 relative overflow-hidden border-line-solid border-seal-bright">
+          <div className="kuro-equipment-profile card-glass flex-col items-center p-8 relative overflow-hidden border-line-solid border-seal-bright">
             <div className="absolute inset-0 pointer-events-none bg-gradient-radial-gold" />
             
             <div className="bg-ink z-10 mb-4 rounded-md overflow-hidden flex-row items-center justify-center border-gold border-2 w-[100px] h-[100px]">
@@ -214,7 +214,7 @@ export default function Equipamentos({ player, updatePlayer }) {
             <div className="badge badge-gold z-10 mt-2">Nível {player.level}</div>
           </div>
 
-          <div className="card flex-col">
+          <div className="kuro-equipment-bonuses card flex-col">
             <h3 className="section-title gold mb-4 pb-3 border-line-solid border-b">Bônus de Equipamentos</h3>
             {Object.keys(totalBonus).length === 0 ? (
               <div className="muted text-center py-6">Nenhum bônus provido pelo equipamento atual.</div>
@@ -237,10 +237,10 @@ export default function Equipamentos({ player, updatePlayer }) {
         </div>
 
         {/* LADO DIREITO: INVENTÁRIO */}
-        <div className="flex-col flex-[2_1_600px] gap-xl">
+        <div className="kuro-equipment-main flex-col flex-[2_1_600px] gap-xl">
           
           {/* SLOTS EQUIPADOS */}
-          <div className="card">
+          <div className="kuro-equipment-slots card">
             <h3 className="section-title gold border-b border-line pb-3 mb-6">Equipamentos Ativos</h3>
             <div className="flex-row gap-md overflow-x-auto pb-4">
               {renderSlot('Cabeça', '額', 'Cabeça')}
@@ -253,8 +253,8 @@ export default function Equipamentos({ player, updatePlayer }) {
           </div>
 
           {/* MOCHILA */}
-          <div className="card">
-            <div className="flex-between mb-6 pb-4 border-line-solid border-b">
+          <div className="kuro-equipment-backpack card">
+            <div className="kuro-inventory-toolbar flex-between mb-6 pb-4 border-line-solid border-b">
               <h3 className="section-title mb-0 pb-0 border-none">Mochila</h3>
               
               <div className="flex-row gap-sm overflow-x-auto flex-wrap">
@@ -285,7 +285,7 @@ export default function Equipamentos({ player, updatePlayer }) {
             ) : (
               <div className="grid-auto gap-md grid-cols-[repeat(auto-fill,minmax(220px,1fr))]">
                 {displayedItems.map(invItem => (
-                  <div key={invItem.id} className="card-glass flex-col relative p-4 gap-sm border-t-3" style={{ 
+                  <div key={invItem.id} className="kuro-equipment-item card-glass flex-col relative p-4 gap-sm border-t-3" style={{ 
                     borderTopColor: getRarityColor(invItem.rarity || invItem.items.rarity)
                   }}>
                     

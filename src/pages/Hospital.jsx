@@ -125,7 +125,7 @@ export default function Hospital({ player, updatePlayer }) {
                 onClick={() => handleCure(true)}
                 disabled={loading || player.ryous < cureCost}
               >
-                <img src="/images/imgi_20_ryou.png" alt="ryous" className="w-4" onError={(e) => e.target.style.display = 'none'} />
+                <img src="/images/imgi_20_ryous.png" alt="ryous" className="w-4" onError={(e) => e.target.style.display = 'none'} />
                 Pagar {cureCost} Ryous
               </button>
               {player.ryous < cureCost && (

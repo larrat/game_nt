@@ -233,8 +233,9 @@ export default function Historia({ player, updatePlayer }) {
             {/* Foto NPC */}
             <div className="kuro-story-dialog__portrait w-1/3 bg-ink relative border-r border-line-dashed">
               <img 
-                src={activeQuest.story_quests.npc_image_url || '/images/imgi_26_scroll_blue.jpg'} 
+                src={activeQuest.story_quests.npc_image_url || '/images/bg_forest.jpg'} 
                 alt={activeQuest.story_quests.npc_name}
+                onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = '/images/bg_forest.jpg'; }}
                 className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all opacity-80 min-h-[300px]"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink to-transparent p-4">

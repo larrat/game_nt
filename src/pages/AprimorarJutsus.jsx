@@ -158,7 +158,7 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
                 >
                   <div className="flex-row gap-md items-center">
                     <div className="bg-ink rounded-sm border-line-solid flex-row items-center justify-center w-[40px] h-[40px]">
-                      <img src={fullData.icon || '/images/default_jutsu.png'} alt="icon" className="w-full h-full object-contain" />
+                      <img src={fullData.icon || '/images/jutsus/jutsu_ninjutsu.jpg'} alt="icon" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <div className="paper font-bold">{fullData.name} <span className="gold mono text-md">[Lv. {jObj.level}]</span></div>

@@ -94,7 +94,7 @@ export default function Evento({ player, updatePlayer }) {
     const bossNpc = {
       id: `worldboss_${event.id}`,
       name: startData.event_name || event.name,
-      avatar: '/images/imgi_125_kurama.jpg',
+      avatar: '/images/bg_forest.jpg',
       level: 100,
       hp: startData.boss_hp,
       maxHp: startData.boss_max_hp,

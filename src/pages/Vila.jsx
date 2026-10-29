@@ -9,7 +9,7 @@ import { useToast } from '../context/ToastContext';
 const BUILDING_INFO = {
   'kage': { img: '/images/icons/kage_icon_1782967244288.jpg', name: 'Gabinete do Kage', desc: 'Acesso a Missões Rank-S.', top: '20%', left: '50%' },
   'hospital': { img: '/images/icons/hospital_icon_1782967252280.jpg', name: 'Hospital', desc: 'Recuperar HP.', top: '25%', left: '20%' },
-  'historia': { img: '/images/imgi_29_scroll_gold.jpg', name: 'Escritório do Hokage', desc: 'Sagas.', top: '40%', left: '45%' },
+  'historia': { img: '/images/icons/kage_icon_1782967244288.jpg', name: 'Escritório do Hokage', desc: 'Sagas.', top: '40%', left: '45%' },
   'dojo': { img: '/images/icons/dojo_icon_1782967259930.jpg', name: 'Academia', desc: 'Bônus de XP.', top: '40%', left: '75%' },
   'ichiraku': { img: '/images/icons/ichiraku_icon_1782967269460.jpg', name: 'Restaurante', desc: 'Stamina extra.', top: '60%', left: '35%' },
   'blacksmith': { img: '/images/icons/blacksmith_icon_1782967278110.jpg', name: 'Ferreiro', desc: 'Itens lendários.', top: '60%', left: '65%' },

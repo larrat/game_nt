@@ -67,16 +67,35 @@ const VipMissionBlock = ({ player, children }) => {
   return children;
 };
 
-const MainLayout = ({ children, playerState, updatePlayer }) => (
-  <div className="app">
-    <Sidebar player={playerState} />
-    <MissionManager player={playerState} updatePlayer={updatePlayer} />
-    <div className="flex-1 flex flex-col min-w-0">
-      <TopBar player={playerState} updatePlayer={updatePlayer} />
-      <main className="main">{children}</main>
+const MainLayout = ({ children, playerState, updatePlayer }) => {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+  return (
+    <div className={"app" + (mobileNavOpen ? " mobile-nav-open" : "")}>
+      <button
+        type="button"
+        className={"mobile-nav-backdrop" + (mobileNavOpen ? " is-open" : "")}
+        aria-label="Fechar menu de navegação"
+        onClick={() => setMobileNavOpen(false)}
+      />
+      <Sidebar
+        player={playerState}
+        isMobileOpen={mobileNavOpen}
+        onNavigate={() => setMobileNavOpen(false)}
+      />
+      <MissionManager player={playerState} updatePlayer={updatePlayer} />
+      <div className="flex-1 flex flex-col min-w-0">
+        <TopBar
+          player={playerState}
+          updatePlayer={updatePlayer}
+          mobileNavOpen={mobileNavOpen}
+          onMenuClick={() => setMobileNavOpen(open => !open)}
+        />
+        <main className="main">{children}</main>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 function App() {
   const [session, setSession] = useState(null);

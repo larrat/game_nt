@@ -160,14 +160,14 @@ export default function Tarefas({ player, updatePlayer }) {
   }, {});
 
   return (
-    <div className="page">
+    <div className="page kuro-missions-page">
       <PageHeader
         eyebrow="Rotina Shinobi"
         title="Missões Ninja"
         subtitle="Envie seu personagem em missões cronometradas e resgate as recompensas quando o tempo terminar."
       />
 
-      <div className="segmented-tabs" role="tablist" aria-label="Categorias de missão">
+      <div className="segmented-tabs kuro-mission-tabs" role="tablist" aria-label="Categorias de missão">
         {TABS.map(tab => {
           const locked = player.level < tab.minLevel;
           return (
@@ -193,7 +193,7 @@ export default function Tarefas({ player, updatePlayer }) {
         })}
       </div>
 
-      <div className="card mb-6">
+      <div className="kuro-active-missions-panel card mb-6">
         <div className={`flex-between flex-wrap gap-md ${activeMissions.length ? 'mb-[18px]' : 'mb-0'}`}>
           <div>
             <h3 className="card-title mb-2">Missões em andamento</h3>
@@ -214,7 +214,7 @@ export default function Tarefas({ player, updatePlayer }) {
               const remaining = timers[m.mission_id] || 0;
               const isDone = remaining <= 0;
               return (
-                <div key={`${m.mission_id}-${idx}`} className={`card transition-colors border border-solid ${isDone ? 'border-success' : 'border-line-bright'}`}>
+                <div key={`${m.mission_id}-${idx}`} className={`kuro-active-mission card transition-colors border border-solid ${isDone ? 'border-success' : 'border-line-bright'}`}>
                   <div className="flex-between gap-md mb-3">
                     <strong className="paper text-sm">{tDef.title}</strong>
                     <span className={`badge ${isDone ? 'badge-green' : 'badge-muted'}`}>
@@ -240,7 +240,7 @@ export default function Tarefas({ player, updatePlayer }) {
         )}
       </div>
 
-      <div className="card p-0">
+      <div className="kuro-mission-catalog card p-0">
         <div className="table-responsive m-0 border-none">
           <table className="data-table">
             <thead>

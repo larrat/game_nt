@@ -31,25 +31,36 @@ export default function TopBar({ player, updatePlayer }) {
     setPrevRyous(player?.ryous || 0);
   }, [player?.ryous]);
 
-  // Regen passivo de HP/Chakra/Stamina a cada 60 segundos
+  // A regeneração é limitada pelo servidor a uma operação por minuto.
   React.useEffect(() => {
     if (!player || player.is_fainted) return;
-    const interval = setInterval(async () => {
-      const maxH = calculateHP(player);
-      const maxC = calculateChakra(player);
-      const maxS = calculateStamina(player);
-      const cH = player.hp ?? maxH;
-      const cC = player.chakra ?? maxC;
-      const cS = player.stamina ?? maxS;
-      if (cH >= maxH && cC >= maxC && cS >= maxS) return;
-      const newH = Math.min(maxH, cH + Math.max(1, Math.floor(maxH * 0.4)));
-      const newC = Math.min(maxC, cC + Math.max(1, Math.floor(maxC * 0.4)));
-      const newS = Math.min(maxS, cS + Math.max(1, Math.floor(maxS * 0.4)));
-      await supabase.from('players').update({ hp: newH, chakra: newC, stamina: newS }).eq('id', player.id);
-      if (updatePlayer) updatePlayer(player.id);
-    }, 60000);
-    return () => clearInterval(interval);
-  }, [player?.id, player?.hp, player?.chakra, player?.stamina]);
+    let cancelled = false;
+
+    const regenerate = async () => {
+      try {
+        const { data, error } = await supabase.rpc('regenerar_recursos_jogador', {
+          p_player_id: player.id
+        });
+
+        if (error) {
+          console.error('Erro na regeneração de recursos:', error);
+          return;
+        }
+
+        if (!cancelled && data?.success && data?.regenerated && updatePlayer) {
+          await updatePlayer(player.id);
+        }
+      } catch (error) {
+        console.error('Erro inesperado na regeneração de recursos:', error);
+      }
+    };
+
+    const interval = setInterval(regenerate, 60000);
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, [player?.id, player?.is_fainted, updatePlayer]);
 
   if (!player) return null;
 

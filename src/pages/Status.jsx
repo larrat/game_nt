@@ -88,6 +88,12 @@ export default function Status({ player, updatePlayer }) {
     <div className="kuro-status-page bg-cover bg-center min-h-screen text-paper bg-fixed" style={{ backgroundImage: `url(${bgImage})` }}>
       <div className="page relative z-10 p-8">
         
+        <PageHeader 
+          eyebrow="Identidade Ninja"
+          title="Status do Personagem"
+          subtitle="Visualize seus atributos detalhados, poderes especiais e histórico de conta."
+        />
+
         {/* BIG STATUS BAR BANNER */}
         <div className="kuro-status-hero card border-line-solid p-6 mb-8 flex-col items-center bg-ink shadow-xl relative mt-[120px]">
            
@@ -171,13 +177,7 @@ export default function Status({ player, updatePlayer }) {
            </div>
         </div>
 
-        <PageHeader 
-          eyebrow="Identidade Ninja"
-          title="Status do Personagem"
-          subtitle="Visualize seus atributos detalhados, poderes especiais e histórico de conta."
-        />
-
-        <div className="kuro-status-layout grid-responsive gap-lg">
+<div className="kuro-status-layout grid-responsive gap-lg">
           {/* Coluna Esquerda: Títulos */}
           <div className="flex-col gap-md flex-[1_1_300px]">
             <div className="kuro-status-identity card-glass border-line-solid p-6 flex-col items-center gap-md">

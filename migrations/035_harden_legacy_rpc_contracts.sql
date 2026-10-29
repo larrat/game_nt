@@ -98,13 +98,16 @@ BEGIN
     INTO v_equipment_hp, v_equipment_chakra
     FROM public.player_inventory AS pi
     JOIN public.items AS it ON it.id = pi.item_id
-    CROSS JOIN LATERAL jsonb_each_text(
-        CASE
-          WHEN pi.rolled_stats IS NOT NULL AND pi.rolled_stats <> '{}'::jsonb
+    CROSS JOIN LATERAL (
+        SELECT CASE
+          WHEN jsonb_typeof(pi.rolled_stats) = 'object' AND pi.rolled_stats <> '{}'::jsonb
             THEN pi.rolled_stats
-          ELSE COALESCE(it.bonus_stats, '{}'::jsonb)
-        END
-    ) AS s(key, value)
+          WHEN jsonb_typeof(it.bonus_stats) = 'object'
+            THEN it.bonus_stats
+          ELSE '{}'::jsonb
+        END AS stats
+    ) AS equipment_stats
+    CROSS JOIN LATERAL jsonb_each_text(equipment_stats.stats) AS s(key, value)
     WHERE pi.player_id = p_player_id AND pi.is_equipped IS TRUE;
 
     v_rank_hp := CASE lower(COALESCE(v_player.rank, ''))
@@ -312,66 +315,8 @@ END;
 $function$;
 
 
-CREATE OR REPLACE FUNCTION public.assinar_invocacao(
-    p_player_id integer,
-    p_invocacao_id integer
-) RETURNS jsonb
-LANGUAGE plpgsql
-SECURITY DEFINER
-SET search_path = pg_catalog, public, pg_temp
-AS $function$
-DECLARE
-    v_player public.players%ROWTYPE;
-    v_invocacao public.summons%ROWTYPE;
-    v_cost integer;
-BEGIN
-    IF auth.uid() IS NULL THEN
-        RAISE EXCEPTION 'Autenticação obrigatória.';
-    END IF;
-
-    SELECT * INTO v_player
-    FROM public.players
-    WHERE id = p_player_id AND user_id = auth.uid()
-    FOR UPDATE;
-
-    IF NOT FOUND THEN
-        RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.';
-    END IF;
-
-    SELECT * INTO v_invocacao
-    FROM public.summons
-    WHERE id = p_invocacao_id;
-
-    IF NOT FOUND THEN
-        RETURN jsonb_build_object('success', false, 'error', 'Invocação não encontrada.');
-    END IF;
-
-    IF EXISTS (
-        SELECT 1 FROM public.player_summons ps
-        WHERE ps.player_id = p_player_id AND ps.summon_id = p_invocacao_id
-    ) THEN
-        RETURN jsonb_build_object('success', false, 'error', 'Você já possui essa invocação.');
-    END IF;
-
-    v_cost := GREATEST(0, COALESCE(v_invocacao.req_level, 1) * 100);
-    IF COALESCE(v_player.level, 1) < COALESCE(v_invocacao.req_level, 1) THEN
-        RETURN jsonb_build_object('success', false, 'error', 'Nível insuficiente.');
-    END IF;
-    IF COALESCE(v_player.ryous, 0) < v_cost THEN
-        RETURN jsonb_build_object('success', false, 'error', 'Ryous insuficientes.', 'cost', v_cost);
-    END IF;
-
-    UPDATE public.players
-    SET ryous = COALESCE(ryous, 0) - v_cost
-    WHERE id = p_player_id;
-
-    INSERT INTO public.player_summons (player_id, summon_id, is_equipped)
-    VALUES (p_player_id, p_invocacao_id, false);
-
-    RETURN jsonb_build_object('success', true, 'cost', v_cost);
-END;
-$function$;
-
+-- The legacy summon RPC is only permission-hardened below. Its catalogue tables are absent in this live schema,
+-- so replacing it here would create a misleading function that cannot work; the feature needs a separate schema repair.
 
 CREATE OR REPLACE FUNCTION public.viajar_mapa(
     p_player_id integer,

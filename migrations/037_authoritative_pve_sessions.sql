@@ -376,8 +376,135 @@ REVOKE ALL ON FUNCTION public.iniciar_exame_chunin(integer,integer) FROM PUBLIC,
 GRANT EXECUTE ON FUNCTION public.iniciar_exame_chunin(integer,integer) TO authenticated, service_role;
 
 
--- The frontend already supports a second element, but the live table lacked its column.
+-- The frontend supports a second element, clan progression, and VIP bulk learning.
 ALTER TABLE public.players ADD COLUMN IF NOT EXISTS element2 text;
+ALTER TABLE public.players ADD COLUMN IF NOT EXISTS clan_lvl integer NOT NULL DEFAULT 0;
+ALTER TABLE public.players ADD COLUMN IF NOT EXISTS clan_custom_stats jsonb NOT NULL DEFAULT '{}'::jsonb;
+ALTER TABLE public.players ADD COLUMN IF NOT EXISTS is_vip boolean NOT NULL DEFAULT false;
+
+CREATE OR REPLACE FUNCTION public.entrar_cla(
+    p_player_id integer,
+    p_clan_id integer,
+    p_custom_stats jsonb
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_player public.players%ROWTYPE;
+    v_clan public.clans%ROWTYPE;
+    v_key text;
+    v_text text;
+    v_total integer := 0;
+    v_allowed text[] := ARRAY['agilidade','selo','forca','inteligencia','resistencia','ninjutsu','genjutsu','taijutsu','energia','bukijutsu'];
+BEGIN
+    IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
+
+    SELECT * INTO v_player FROM public.players
+    WHERE id=p_player_id AND user_id=auth.uid()
+    FOR UPDATE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
+
+    IF v_player.clan_id IS NOT NULL OR COALESCE(v_player.clan,'') <> '' THEN
+        RETURN jsonb_build_object('success',false,'error','Você já pertence a um clã.');
+    END IF;
+
+    SELECT * INTO v_clan FROM public.clans WHERE id=p_clan_id;
+    IF NOT FOUND THEN RETURN jsonb_build_object('success',false,'error','Clã inválido.'); END IF;
+
+    IF p_custom_stats IS NULL OR jsonb_typeof(p_custom_stats) <> 'object'
+       OR jsonb_object_length(p_custom_stats) <> 10 THEN
+        RETURN jsonb_build_object('success',false,'error','A distribuição de atributos do clã é inválida.');
+    END IF;
+
+    FOREACH v_key IN ARRAY v_allowed LOOP
+        IF NOT (p_custom_stats ? v_key) THEN
+            RETURN jsonb_build_object('success',false,'error','A distribuição de atributos do clã está incompleta.');
+        END IF;
+        v_text := p_custom_stats->>v_key;
+        IF COALESCE(v_text,'') !~ '^[0-7]$' THEN
+            RETURN jsonb_build_object('success',false,'error','Cada atributo do clã deve receber de 0 a 7 pontos.');
+        END IF;
+        v_total := v_total + v_text::integer;
+    END LOOP;
+
+    IF v_total <> 7 THEN
+        RETURN jsonb_build_object('success',false,'error','Distribua exatamente 7 pontos de atributo.');
+    END IF;
+
+    UPDATE public.players
+    SET clan_id=v_clan.id,
+        clan=v_clan.name,
+        clan_custom_stats=p_custom_stats,
+        clan_lvl=0
+    WHERE id=p_player_id;
+
+    RETURN jsonb_build_object('success',true,'clan_id',v_clan.id,'clan',v_clan.name,'clan_lvl',0);
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.entrar_cla(integer,integer,jsonb) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.entrar_cla(integer,integer,jsonb) TO authenticated, service_role;
+
+
+CREATE OR REPLACE FUNCTION public.treinar_cla(
+    p_player_id integer,
+    p_target_level integer
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_player public.players%ROWTYPE;
+    v_cost integer;
+    v_required_level integer;
+    v_required_rank integer;
+    v_player_rank integer;
+BEGIN
+    IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
+
+    SELECT * INTO v_player FROM public.players
+    WHERE id=p_player_id AND user_id=auth.uid()
+    FOR UPDATE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
+
+    IF v_player.clan_id IS NULL OR COALESCE(v_player.clan,'') = '' THEN
+        RETURN jsonb_build_object('success',false,'error','Você precisa entrar em um clã primeiro.');
+    END IF;
+    IF p_target_level IS NULL OR p_target_level NOT BETWEEN 1 AND 4
+       OR p_target_level <> COALESCE(v_player.clan_lvl,0)+1 THEN
+        RETURN jsonb_build_object('success',false,'error','O nível de clã solicitado não é o próximo nível disponível.');
+    END IF;
+
+    v_cost := CASE p_target_level WHEN 1 THEN 1500 WHEN 2 THEN 4000 WHEN 3 THEN 12000 WHEN 4 THEN 35000 END;
+    v_required_level := CASE p_target_level WHEN 1 THEN 10 WHEN 2 THEN 25 WHEN 3 THEN 40 WHEN 4 THEN 55 END;
+    v_required_rank := CASE p_target_level WHEN 1 THEN 1 WHEN 2 THEN 2 WHEN 3 THEN 3 WHEN 4 THEN 4 END;
+    v_player_rank := CASE lower(COALESCE(v_player.rank,''))
+        WHEN 'genin' THEN 1 WHEN 'chunin' THEN 2
+        WHEN 'jounin' THEN 3 WHEN 'jonin' THEN 3
+        WHEN 'anbu' THEN 4 WHEN 'sannin' THEN 5
+        WHEN 'sanin' THEN 5 WHEN 'herói' THEN 6 WHEN 'heroi' THEN 6 ELSE 0 END;
+
+    IF COALESCE(v_player.level,1) < v_required_level OR v_player_rank < v_required_rank THEN
+        RETURN jsonb_build_object('success',false,'error','Você ainda não atende aos requisitos de nível e graduação deste nível de clã.');
+    END IF;
+    IF COALESCE(v_player.ryous,0) < v_cost THEN
+        RETURN jsonb_build_object('success',false,'error','Ryous insuficientes.','cost',v_cost);
+    END IF;
+
+    UPDATE public.players
+    SET clan_lvl=p_target_level, ryous=COALESCE(ryous,0)-v_cost
+    WHERE id=p_player_id;
+
+    RETURN jsonb_build_object('success',true,'clan_lvl',p_target_level,'cost',v_cost);
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.treinar_cla(integer,integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.treinar_cla(integer,integer) TO authenticated, service_role;
+
 
 CREATE OR REPLACE FUNCTION public.aprender_elemento(
     p_player_id integer,
@@ -1289,6 +1416,13 @@ BEGIN
     PERFORM 1 FROM public.players WHERE id = p_player_id AND user_id = auth.uid() FOR UPDATE;
     IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
 
+    IF NOT EXISTS (
+        SELECT 1 FROM public.players
+        WHERE id = p_player_id AND user_id = auth.uid() AND is_vip IS TRUE
+    ) THEN
+        RETURN jsonb_build_object('success',false,'error','Aprender jutsus em massa é exclusivo para jogadores VIP.');
+    END IF;
+
     FOR v_item IN SELECT value FROM jsonb_array_elements(p_jutsus) AS x(value)
     LOOP
         v_id_text := COALESCE(v_item->>'id', v_item #>> '{}');
@@ -1458,7 +1592,8 @@ GRANT EXECUTE ON FUNCTION public.usar_consumivel_inventario(integer,uuid) TO aut
 REVOKE UPDATE (tai, nin, gen, buk, taijutsu, bukijutsu, ninjutsu, genjutsu,
     forca, agilidade, inteligencia, selo, resistencia, energia,
     jutsus_learned, inventory_essences, daily_chakra_spent,
-    passou_exame_chunin, element, element2)
+    passou_exame_chunin, element, element2,
+    clan, clan_id, clan_lvl, clan_custom_stats, is_vip)
 ON public.players FROM PUBLIC, anon, authenticated;
 
 

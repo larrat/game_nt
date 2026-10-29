@@ -203,7 +203,7 @@ export default function Status({ player, updatePlayer }) {
               </div>
             </div>
 
-            <div className="card-glass border-line-solid p-6">
+            <div className="kuro-status-info card-glass border-line-solid p-6">
               <h3 className="gold mb-4 border-b border-line-bright pb-2">Informações Gerais</h3>
               <div className="flex-col gap-sm">
                 <div className="flex-between">
@@ -237,7 +237,7 @@ export default function Status({ player, updatePlayer }) {
           {/* Coluna Direita: Poderes Especiais e Estatísticas da Conta */}
           <div className="flex-col gap-lg flex-[2_1_500px]">
             
-            <div className="card-glass border-line-solid p-6">
+            <div className="kuro-status-powers card-glass border-line-solid p-6">
               <h3 className="gold mb-4 border-b border-line-bright pb-2 flex-row items-center gap-xs">
                 <span>⚡</span> Poderes Especiais & Linhagens
               </h3>
@@ -256,7 +256,7 @@ export default function Status({ player, updatePlayer }) {
               </div>
             </div>
 
-            <div className="card-glass border-line-solid p-6">
+            <div className="kuro-status-account card-glass border-line-solid p-6">
               <h3 className="gold mb-4 border-b border-line-bright pb-2">Estatísticas da Conta</h3>
               <div className="grid-2 gap-x-8 gap-y-3 text-sm">
                 

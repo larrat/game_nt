@@ -638,6 +638,10 @@ BEGIN
             v_damage := GREATEST(1, FLOOR(v_attack_physical - v_target_def / 2)::integer);
             v_attacker_element := v_player.element;
         END IF;
+    ELSIF p_action = 'pass' THEN
+        -- A timeout consumes the turn but never invents damage or resource use.
+        v_hit := false;
+        v_damage := 0;
     ELSIF p_action = 'jutsu' THEN
         IF p_jutsu_id IS NULL THEN
             RETURN jsonb_build_object('success', false, 'error', 'Jutsu inválido.');

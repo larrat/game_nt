@@ -40,13 +40,14 @@ export default function Status({ player, updatePlayer }) {
     setCurrentTitle(newTitle);
     setSavingTitle(true);
     
-    const { error } = await supabase
-      .from('players')
-      .update({ title: newTitle })
-      .eq('id', player.id);
+    const { data, error } = await supabase.rpc('atualizar_titulo_jogador', {
+      p_player_id: player.id,
+      p_title: newTitle
+    });
 
-    if (error) {
-      addToast('Erro ao atualizar título: ' + error.message, 'error');
+    if (error || !data?.success) {
+      addToast('Erro ao atualizar título: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+      setCurrentTitle(player.title || 'Nenhum(a)');
     } else {
       addToast('Título atualizado com sucesso!', 'success');
       if (updatePlayer) updatePlayer(player.id);

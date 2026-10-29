@@ -13,11 +13,15 @@ export default function Exame({ player, updatePlayer }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (location.state?.examFailed) {
+      setCurrentRound(1);
+      addToast('Exame interrompido. Você precisará reiniciar pela Etapa 1.', 'warning');
+    }
     if (location.state?.roundWon) {
-      const wonRound = location.state.roundWon;
+      const wonRound = Number(location.state.roundWon);
       if (wonRound === 3) {
         completeExame();
-      } else {
+      } else if (wonRound === 1 || wonRound === 2) {
         setCurrentRound(wonRound + 1);
         addToast(`Você sobreviveu à Etapa ${wonRound}! Prepare-se para a próxima.`, 'info');
       }
@@ -26,51 +30,65 @@ export default function Exame({ player, updatePlayer }) {
 
   const completeExame = async () => {
     setLoading(true);
-    const { error } = await supabase.from('players').update({ passou_exame_chunin: true }).eq('id', player.id);
-    if (!error) {
+    const { data, error } = await supabase
+      .from('players')
+      .select('passou_exame_chunin')
+      .eq('id', player.id)
+      .single();
+
+    if (!error && data?.passou_exame_chunin === true) {
       addToast('Incrível! Você concluiu a Floresta da Morte e foi aprovado no Exame Chunin!', 'success');
       await updatePlayer(player.id);
       navigate('/graduacoes');
     } else {
-      addToast('Erro ao salvar progresso do Exame: ' + error.message, 'error');
+      addToast('O servidor ainda não confirmou a aprovação no exame. Conclua a terceira etapa novamente se necessário.', 'error');
       setLoading(false);
     }
   };
 
   const startRound = async (round) => {
     setLoading(true);
-    
-    // Gera um inimigo difícil dependendo do round
-    const npcsMap = {
-      1: { name: 'Genin Experiente', levelBonus: 0, hpMult: 1.0, icon: '🥷' },
-      2: { name: 'Especialista em Armadilhas', levelBonus: 2, hpMult: 1.2, icon: '👺' },
-      3: { name: 'Prodígio Inimigo', levelBonus: 4, hpMult: 1.5, icon: '👹' }
-    };
-    
-    const config = npcsMap[round];
-    
-    // Geramos um NPC estilo Rogue mas adaptado pro Exame
-    const targetLevel = player.level + config.levelBonus;
-    
-    const npc = {
-      id: `exame_${round}`,
-      name: config.name,
-      avatar: config.icon,
-      level: targetLevel,
-      hp: Math.floor(targetLevel * 100 * config.hpMult),
-      chakra: Math.floor(targetLevel * 50),
-      atk: Math.floor(targetLevel * 8),
-      def: Math.floor(targetLevel * 6),
-      element: ['Katon', 'Suiton', 'Doton', 'Futon', 'Raiton'][Math.floor(Math.random() * 5)],
-      xpReward: Math.floor(targetLevel * 50),
-      ryouReward: 0,
-      desc: `Obstáculo da Etapa ${round} da Floresta da Morte.`,
-      eventId: null,
-      activeJutsus: [] // Pode adicionar jutsus genéricos se quiser depois
-    };
+    try {
+      const { data, error } = await supabase.rpc('iniciar_exame_chunin', {
+        p_player_id: player.id,
+        p_round: round
+      });
 
-    setLoading(false);
-    navigate('/combate', { state: { npc, isExame: true, exameRound: round, isMirror: true } });
+      if (error || !data?.success || !data?.session_id) {
+        addToast('Não foi possível iniciar esta etapa: ' + (error?.message || data?.error || 'sessão inválida'), 'error');
+        return;
+      }
+
+      const npc = {
+        id: data.enemy_id,
+        name: data.enemy_name,
+        avatar: round === 1 ? '🥷' : round === 2 ? '👺' : '👹',
+        level: data.enemy_level,
+        hp: data.enemy_max_hp,
+        chakra: data.enemy_chakra,
+        atk: data.enemy_atk,
+        def: data.enemy_def,
+        element: data.enemy_element,
+        xpReward: 0,
+        ryouReward: 0,
+        desc: `Obstáculo da Etapa ${round} da Floresta da Morte.`,
+        is_chunin_exam: true
+      };
+
+      navigate('/combate', {
+        state: {
+          npc,
+          isExame: true,
+          exameRound: round,
+          isMirror: false,
+          bgType: 'map'
+        }
+      });
+    } catch (error) {
+      addToast('Erro ao iniciar o exame: ' + (error?.message || 'erro inesperado'), 'error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!player) return null;

@@ -38,6 +38,7 @@ const Historia = React.lazy(() => import('./pages/Historia'));
 const Status = React.lazy(() => import('./pages/Status'));
 
 const Login = React.lazy(() => import('./pages/Login'));
+const RedefinirSenha = React.lazy(() => import('./pages/RedefinirSenha'));
 const Selecionar = React.lazy(() => import('./pages/Selecionar'));
 const Criar = React.lazy(() => import('./pages/Criar'));
 
@@ -215,6 +216,22 @@ function App() {
 
   if (loading) {
     return <div className="app"><div className="main flex items-center justify-center h-full">Carregando Kurokage...</div></div>;
+  }
+
+  // A recuperação precisa permanecer acessível mesmo depois de o link estabelecer uma sessão.
+  if (window.location.pathname === '/redefinir-senha') {
+    return (
+      <ToastProvider>
+        <Router>
+          <div className="grain"></div>
+          <Suspense fallback={<div className="page flex items-center justify-center min-h-screen text-muted">Carregando...</div>}>
+            <Routes>
+              <Route path="/redefinir-senha" element={<RedefinirSenha />} />
+            </Routes>
+          </Suspense>
+        </Router>
+      </ToastProvider>
+    );
   }
 
   // ESTADO 1: Não Logado

@@ -4,21 +4,21 @@
 
 REVOKE TRUNCATE, REFERENCES, TRIGGER
 ON ALL TABLES IN SCHEMA public
-FROM anon, authenticated;
+FROM PUBLIC, anon, authenticated;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA public
-REVOKE TRUNCATE, REFERENCES, TRIGGER ON TABLES FROM anon, authenticated;
+REVOKE TRUNCATE, REFERENCES, TRIGGER ON TABLES FROM PUBLIC, anon, authenticated;
 
 -- Story progress must only be advanced by the ownership-checked RPCs below.
 REVOKE INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER
 ON TABLE public.player_quests
-FROM authenticated;
+FROM PUBLIC, authenticated;
 
 REVOKE INSERT, UPDATE, DELETE
 ON TABLE public.player_defeated_npcs, public.world_boss_damage, public.world_boss_logs
-FROM authenticated;
+FROM PUBLIC, authenticated;
 
-REVOKE DELETE ON TABLE public.players FROM authenticated;
+REVOKE DELETE ON TABLE public.players FROM PUBLIC, authenticated;
 
 DROP POLICY IF EXISTS player_quests_insert_active_own ON public.player_quests;
 DROP POLICY IF EXISTS player_defeated_npcs_insert_own ON public.player_defeated_npcs;

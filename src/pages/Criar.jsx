@@ -164,7 +164,7 @@ export default function Criar({ session, setPlayerState }) {
                   className={`create-class-card ${selectedVillage === v.id ? 'active' : ''}`}
                   onClick={() => setSelectedVillage(v.id)}
                 >
-                  <img src={`/images/vilas/${v.id}.png`} alt={v.name} className="w-[40px] h-[40px] mb-2" onError={(e) => e.target.style.display='none'} />
+                  <img src={`/images/bg_${v.id}.jpg`} alt={`Paisagem da ${v.name}`} className="w-12 h-12 mb-2 rounded-md object-cover border border-line-bright" loading="lazy" />
                   <div className="gold mb-1">{v.name}</div>
                   <div className="muted text-xs">Habitantes: {villageStats[v.id] || 0}</div>
                 </div>

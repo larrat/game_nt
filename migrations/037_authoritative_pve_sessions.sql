@@ -1832,4 +1832,9 @@ REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jso
 REVOKE INSERT, UPDATE, DELETE ON TABLE public.player_defeated_npcs FROM PUBLIC, anon, authenticated;
 GRANT SELECT ON TABLE public.player_defeated_npcs TO authenticated;
 
+-- The obsolete UUID overload predates the integer player schema and lacks owner validation.
+-- Current frontend calls the integer overload only; keep this legacy endpoint unreachable.
+REVOKE ALL ON FUNCTION public.resolver_turno_combate(uuid,text,jsonb,text,uuid,jsonb,jsonb,jsonb,jsonb,numeric)
+    FROM PUBLIC, anon, authenticated;
+
 NOTIFY pgrst, 'reload schema';

@@ -323,7 +323,7 @@ DECLARE
     v_remaining integer;
 BEGIN
     IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
-    IF p_fight_count NOT IN (3,5) THEN
+    IF p_fight_count IS NULL OR p_fight_count NOT IN (3,5) THEN
         RETURN jsonb_build_object('success',false,'error','Quantidade de lutas inválida para uma incursão.');
     END IF;
 

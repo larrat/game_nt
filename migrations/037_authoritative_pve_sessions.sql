@@ -1837,4 +1837,9 @@ GRANT SELECT ON TABLE public.player_defeated_npcs TO authenticated;
 REVOKE ALL ON FUNCTION public.resolver_turno_combate(uuid,text,jsonb,text,uuid,jsonb,jsonb,jsonb,jsonb,numeric)
     FROM PUBLIC, anon, authenticated;
 
+-- Browser clients can read their consumable inventory but cannot insert, change quantities,
+-- or delete rows directly. The purchase/use RPCs perform those changes atomically.
+REVOKE INSERT, UPDATE, DELETE ON TABLE public.player_consumables FROM PUBLIC, anon, authenticated;
+GRANT SELECT ON TABLE public.player_consumables TO authenticated;
+
 NOTIFY pgrst, 'reload schema';

@@ -138,7 +138,7 @@ BEGIN
         RAISE EXCEPTION 'Atributo máximo inválido.';
     END IF;
 
-    RETURN GREATEST(1, LEAST(1000000000, FLOOR(v_value)::integer));
+    RETURN GREATEST(1, LEAST(1000000000, FLOOR(v_value)))::integer;
 END;
 $function$;
 
@@ -239,8 +239,38 @@ BEGIN
         RETURN jsonb_build_object('success', false, 'error', 'Sua vida está zerada. Vá ao hospital antes de lutar.');
     END IF;
 
+    IF COALESCE(p_from_map, false) AND NOT COALESCE(v_enemy.is_map_npc, false)
+       AND NOT COALESCE(v_enemy.is_story_mode, false)
+       AND NOT COALESCE(v_enemy.is_bingo_book, false) THEN
+        RETURN jsonb_build_object('success', false, 'error', 'Este inimigo não está disponível no mapa.');
+    END IF;
+
+    IF COALESCE(p_is_dojo, false) AND (
+       COALESCE(v_enemy.is_map_npc, false)
+       OR COALESCE(v_enemy.is_story_mode, false)
+       OR COALESCE(v_enemy.is_bingo_book, false)
+    ) THEN
+        RETURN jsonb_build_object('success', false, 'error', 'Este inimigo não pertence à lista de combates do Dojo.');
+    END IF;
+
+    IF NOT COALESCE(p_from_map, false)
+       AND NOT COALESCE(p_is_dojo, false)
+       AND NOT COALESCE(v_enemy.is_story_mode, false)
+       AND NOT COALESCE(v_enemy.is_bingo_book, false)
+       AND NOT COALESCE(v_enemy.is_map_npc, false) THEN
+        RETURN jsonb_build_object('success', false, 'error', 'Contexto de combate inválido.');
+    END IF;
+
+    IF (COALESCE(v_enemy.is_story_mode, false) OR COALESCE(v_enemy.is_bingo_book, false))
+       AND EXISTS (
+          SELECT 1 FROM public.player_defeated_npcs d
+          WHERE d.player_id = p_player_id AND d.npc_id = v_enemy.id
+       ) THEN
+        RETURN jsonb_build_object('success', false, 'error', 'Este inimigo já foi registrado como derrotado.');
+    END IF;
+
     v_from_map := COALESCE(p_from_map, false) AND COALESCE(v_enemy.is_map_npc, false);
-    v_is_dojo := COALESCE(p_is_dojo, false) AND NOT v_from_map
+    v_is_dojo := COALESCE(p_is_dojo, false) AND NOT COALESCE(v_enemy.is_map_npc, false)
         AND NOT COALESCE(v_enemy.is_story_mode, false)
         AND NOT COALESCE(v_enemy.is_bingo_book, false);
 
@@ -859,6 +889,95 @@ BEGIN
 END;
 $function$;
 
+
+
+CREATE OR REPLACE FUNCTION public.aprender_jutsus_massa(
+    p_player_id integer,
+    p_jutsus jsonb,
+    p_total_cost integer DEFAULT NULL
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_item jsonb;
+    v_id_text text;
+    v_jutsu_id integer;
+    v_result jsonb;
+    v_count integer := 0;
+    v_total integer := 0;
+BEGIN
+    IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
+    IF jsonb_typeof(p_jutsus) <> 'array' OR jsonb_array_length(p_jutsus) = 0 THEN
+        RETURN jsonb_build_object('success',false,'error','Nenhum jutsu foi informado.');
+    END IF;
+    IF jsonb_array_length(p_jutsus) > 50 THEN
+        RETURN jsonb_build_object('success',false,'error','Limite de 50 jutsus por operação.');
+    END IF;
+
+    -- Lock the character once; client-provided p_total_cost is intentionally ignored.
+    PERFORM 1 FROM public.players WHERE id = p_player_id AND user_id = auth.uid() FOR UPDATE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
+
+    FOR v_item IN SELECT value FROM jsonb_array_elements(p_jutsus) AS x(value)
+    LOOP
+        v_id_text := COALESCE(v_item->>'id', v_item #>> '{}');
+        IF COALESCE(v_id_text,'') !~ '^[0-9]{1,10}
+REVOKE UPDATE (tai, nin, gen, buk, taijutsu, bukijutsu, ninjutsu, genjutsu,
+    forca, agilidade, inteligencia, selo, resistencia, energia,
+    jutsus_learned, inventory_essences, daily_chakra_spent)
+ON public.players FROM PUBLIC, anon, authenticated;
+
+
+-- API users can call only the authenticated RPC entry points. Internal calculation helpers are private.
+REVOKE ALL ON FUNCTION public.kurokage_equipment_bonus(integer,text) FROM PUBLIC, anon, authenticated, service_role;
+REVOKE ALL ON FUNCTION public.kurokage_player_max_stat(integer,text) FROM PUBLIC, anon, authenticated, service_role;
+REVOKE ALL ON FUNCTION public.kurokage_elemental_multiplier(text,text) FROM PUBLIC, anon, authenticated, service_role;
+
+REVOKE ALL ON FUNCTION public.iniciar_combate_sessao(integer,integer,boolean,boolean) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.iniciar_combate_sessao(integer,integer,boolean,boolean) TO authenticated, service_role;
+
+REVOKE ALL ON FUNCTION public.resolver_turno_combate_sessao(integer,uuid,text,integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.resolver_turno_combate_sessao(integer,uuid,text,integer) TO authenticated, service_role;
+
+REVOKE ALL ON FUNCTION public.responder_turno_combate_sessao(integer,uuid) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.responder_turno_combate_sessao(integer,uuid) TO authenticated, service_role;
+
+REVOKE ALL ON FUNCTION public.usar_consumivel_combate_sessao(integer,uuid,integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.usar_consumivel_combate_sessao(integer,uuid,integer) TO authenticated, service_role;
+
+REVOKE ALL ON FUNCTION public.finalizar_combate_sessao(integer,uuid,integer,jsonb) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.finalizar_combate_sessao(integer,uuid,integer,jsonb) TO authenticated, service_role;
+
+REVOKE ALL ON FUNCTION public.aprender_jutsu(integer,integer,integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.aprender_jutsu(integer,integer,integer) TO authenticated, service_role;
+
+-- Prevent direct client calls that submit arbitrary victory flags and fallback rewards.
+REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jsonb) FROM PUBLIC, anon, authenticated;
+REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jsonb,integer,integer,text) FROM PUBLIC, anon, authenticated;
+REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jsonb,integer,integer,text,boolean) FROM PUBLIC, anon, authenticated;
+
+NOTIFY pgrst, 'reload schema';
+ THEN
+            RAISE EXCEPTION 'Um dos jutsus enviados possui identificador inválido.';
+        END IF;
+        v_jutsu_id := v_id_text::integer;
+
+        v_result := public.aprender_jutsu(p_player_id, v_jutsu_id, NULL);
+        IF COALESCE((v_result->>'success')::boolean, false) IS NOT TRUE THEN
+            RAISE EXCEPTION '%', COALESCE(v_result->>'error','Não foi possível aprender o jutsu.');
+        END IF;
+        v_count := v_count + 1;
+        v_total := v_total + GREATEST(0, COALESCE((v_result->>'cost')::integer,0));
+    END LOOP;
+
+    RETURN jsonb_build_object('success',true,'learned_count',v_count,'total_cost',v_total);
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.aprender_jutsus_massa(integer,jsonb,integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.aprender_jutsus_massa(integer,jsonb,integer) TO authenticated, service_role;
 
 -- The browser must not edit permanent stats, learned jutsus, essence inventory, or daily chakra totals.
 REVOKE UPDATE (tai, nin, gen, buk, taijutsu, bukijutsu, ninjutsu, genjutsu,

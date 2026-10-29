@@ -125,7 +125,6 @@ export default function Criar({ session, setPlayerState }) {
                   value={name}
                   onChange={e => setName(e.target.value)}
                   maxLength={20}
-                  className="w-full"
                 />
              </div>
 

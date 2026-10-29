@@ -196,7 +196,6 @@ export default function Dashboard({ player, updatePlayer }) {
   const todayStr = new Date().toISOString().split('T')[0];
   const fidelityClaimed = player.last_daily_claim === todayStr;
   const claimedList = Array.isArray(player.daily_rewards_claimed) ? player.daily_rewards_claimed : [];
-  const VILLAGES = { 1: 'Folha', 2: 'Areia', 3: 'Névoa', 4: 'Nuvem', 5: 'Pedra' };
   const bgImage = player.village_id ? `/images/bg_${player.village_id}.jpg` : '/images/bg_default.jpg';
 
   const currentLevel = calculateLevelFromXP(player.xp || 0);
@@ -273,7 +272,7 @@ export default function Dashboard({ player, updatePlayer }) {
 
       <section className="kuro-kpis" aria-label="Resumo do personagem">
         <article className="kuro-kpi"><span className="kuro-kpi__icon">⚔</span><div><span className="kuro-kpi__label">Vitórias no dojo</span><strong>{(player.wins_dojo || 0).toLocaleString()}</strong><small>Combates vencidos</small></div></article>
-        <article className="kuro-kpi"><span className="kuro-kpi__icon">巻</span><div><span className="kuro-kpi__label">Missões concluídas</span><strong">{((player.missions_s || 0) + (player.missions_a || 0) + (player.missions_b || 0) + (player.missions_c || 0) + (player.missions_d || 0)).toLocaleString()}</strong><small>Ranks S a D</small></div></article>
+        <article className="kuro-kpi"><span className="kuro-kpi__icon">巻</span><div><span className="kuro-kpi__label">Missões concluídas</span><strong>{((player.missions_s || 0) + (player.missions_a || 0) + (player.missions_b || 0) + (player.missions_c || 0) + (player.missions_d || 0)).toLocaleString()}</strong><small>Ranks S a D</small></div></article>
         <article className="kuro-kpi"><span className="kuro-kpi__icon is-gold">¥</span><div><span className="kuro-kpi__label">Ryous disponíveis</span><strong>{(player.ryous || 0).toLocaleString()}</strong><small>Moeda shinobi</small></div></article>
         <article className="kuro-kpi"><span className="kuro-kpi__icon">✧</span><div><span className="kuro-kpi__label">Pontos de atributo</span><strong>{(player.pontos_atributos || 0).toLocaleString()}</strong><small>Prontos para distribuir</small></div></article>
       </section>

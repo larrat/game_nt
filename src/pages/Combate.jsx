@@ -584,11 +584,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const setPlayerFainted = async () => {
     if (npcInit.is_dummy) return;
-    const isDojo = !combatSessionId && !location.state?.fromMap && !location.state?.isWorldBoss && !location.state?.isGhost && !location.state?.isBetrayal;
-    const updates = { is_fainted: true, fainted_at: new Date().toISOString() };
-    if (isDojo) updates.losses_dojo = (player.losses_dojo || 0) + 1;
 
-    await supabase.from('players').update(updates).eq('id', player.id);
+    const { data, error } = await supabase.rpc('marcar_jogador_derrotado', {
+      p_player_id: player.id
+    });
+    if (error || !data?.success) {
+      addToast('Não foi possível registrar a derrota: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+    }
 
     try {
       await supabase.from('battle_logs').insert({

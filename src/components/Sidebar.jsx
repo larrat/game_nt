@@ -67,7 +67,7 @@ const NAV = [
   }
 ];
 
-export default function Sidebar({ player }) {
+export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
   const [expanded, setExpanded] = useState({
     'Central': true,
     'Meu Ninja': true,
@@ -100,7 +100,7 @@ export default function Sidebar({ player }) {
   // XP logic moved to TopBar
 
   return (
-    <aside className="sidebar">
+    <aside className={"sidebar" + (isMobileOpen ? " is-mobile-open" : "")}>
       <div className="sidebar-brand-wrap">
         <div className="brand">
           <div className="mark"></div>
@@ -129,7 +129,7 @@ export default function Sidebar({ player }) {
                   <NavLink
                     key={item.to}
                     to={item.to}
-                    onClick={handleLinkClick}
+                    onClick={() => { handleLinkClick(); if (onNavigate) onNavigate(); }}
                     onMouseEnter={handleMouseEnter}
                     className={({ isActive }) => `navitem${isActive ? ' active' : ''} ${group.group === 'Premium' ? 'premium' : ''}`}
                   >

@@ -414,7 +414,7 @@ BEGIN
     IF NOT FOUND THEN RETURN jsonb_build_object('success',false,'error','Clã inválido.'); END IF;
 
     IF p_custom_stats IS NULL OR jsonb_typeof(p_custom_stats) <> 'object'
-       OR jsonb_object_length(p_custom_stats) <> 10 THEN
+       OR (SELECT count(*) FROM jsonb_object_keys(p_custom_stats)) <> 10 THEN
         RETURN jsonb_build_object('success',false,'error','A distribuição de atributos do clã é inválida.');
     END IF;
 

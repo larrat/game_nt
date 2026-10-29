@@ -69,13 +69,13 @@ export default function Invocacoes({ player, updatePlayer }) {
     setActionLoading(true);
     
     // Assinar via RPC (já desconta ryous e insere)
-    const { error } = await supabase.rpc('assinar_invocacao', {
+    const { data, error } = await supabase.rpc('assinar_invocacao', {
       p_player_id: player.id,
       p_invocacao_id: summon.id
     });
     
-    if (error) {
-      addToast('Erro ao assinar contrato: ' + error.message, 'error');
+    if (error || !data?.success) {
+      addToast('Erro ao assinar contrato: ' + (error?.message || data?.error || 'operação não concluída'), 'error');
     } else {
       addToast(`Contrato assinado com ${summon.name}!`, 'success');
       await updatePlayer(player.id);
@@ -89,18 +89,14 @@ export default function Invocacoes({ player, updatePlayer }) {
     if (actionLoading) return;
     setActionLoading(true);
     
-    // Desequipar todos
-    await supabase.from('player_summons')
-      .update({ is_equipped: false })
-      .eq('player_id', player.id);
+    const { data, error } = await supabase.rpc('equipar_invocacao', {
+      p_player_id: player.id,
+      p_player_summon_id: playerSummonId,
+      p_equipped: true
+    });
       
-    // Equipar o escolhido
-    const { error } = await supabase.from('player_summons')
-      .update({ is_equipped: true })
-      .eq('id', playerSummonId);
-      
-    if (error) {
-      addToast('Erro ao equipar: ' + error.message, 'error');
+    if (error || !data?.success) {
+      addToast('Erro ao equipar: ' + (error?.message || data?.error || 'operação não concluída'), 'error');
     } else {
       addToast('Mascote invocado com sucesso!', 'success');
       await updatePlayer(player.id);
@@ -114,12 +110,14 @@ export default function Invocacoes({ player, updatePlayer }) {
     if (actionLoading) return;
     setActionLoading(true);
     
-    const { error } = await supabase.from('player_summons')
-      .update({ is_equipped: false })
-      .eq('player_id', player.id);
+    const { data, error } = await supabase.rpc('equipar_invocacao', {
+      p_player_id: player.id,
+      p_player_summon_id: null,
+      p_equipped: false
+    });
       
-    if (error) {
-      addToast('Erro ao recolher: ' + error.message, 'error');
+    if (error || !data?.success) {
+      addToast('Erro ao recolher: ' + (error?.message || data?.error || 'operação não concluída'), 'error');
     } else {
       addToast('Mascote recolhido.', 'success');
       await updatePlayer(player.id);

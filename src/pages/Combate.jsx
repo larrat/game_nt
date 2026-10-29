@@ -210,6 +210,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const [combatSessionLoading, setCombatSessionLoading] = useState(false);
   const [combatSessionFailed, setCombatSessionFailed] = useState(false);
   const combatSessionStartRef = useRef(false);
+  const pendingVictoryRecoveryRef = useRef(false);
+  const handleWinRecoveryRef = useRef(null);
   const combatSessionEligible = Boolean(
     player?.id &&
     !location.state?.isWorldBoss &&
@@ -279,6 +281,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         chakra: data.player_chakra,
         stamina: data.player_stamina
       } : prev);
+
+      if (data.pending_victory === true) {
+        pendingVictoryRecoveryRef.current = true;
+        setNpcHP(0);
+        setIsPlayerTurn(false);
+        addLog('Vitória pendente recuperada. O servidor está confirmando e registrando suas recompensas.');
+        setBattleResult('win');
+      }
     };
 
     startSession()
@@ -545,6 +555,15 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
     setLoading(false);
   };
+
+  // Keep a current handler for the one-time pending-victory recovery effect below.
+  handleWinRecoveryRef.current = handleWin;
+
+  useEffect(() => {
+    if (!pendingVictoryRecoveryRef.current || !combatSessionId || battleResult !== 'win') return;
+    pendingVictoryRecoveryRef.current = false;
+    handleWinRecoveryRef.current?.();
+  }, [combatSessionId, battleResult]);
 
   const handleWorldBossEnd = async () => {
     setLoading(true);

@@ -103,9 +103,10 @@ BEGIN
         WHEN 'anbu' THEN 800 WHEN 'sannin' THEN 1200
         WHEN 'herói' THEN 2000 WHEN 'heroi' THEN 2000 ELSE 0 END;
     v_rank_stamina := CASE lower(COALESCE(v_player.rank, ''))
-        WHEN 'genin' THEN 100 WHEN 'chunin' THEN 200
-        WHEN 'jounin' THEN 300 WHEN 'jonin' THEN 300
-        WHEN 'anbu' THEN 500 WHEN 'sannin' THEN 700 ELSE 0 END;
+        WHEN 'genin' THEN 150 WHEN 'chunin' THEN 300
+        WHEN 'jounin' THEN 500 WHEN 'jonin' THEN 500
+        WHEN 'anbu' THEN 800 WHEN 'sannin' THEN 1200
+        WHEN 'herói' THEN 2000 WHEN 'heroi' THEN 2000 ELSE 0 END;
 
     IF lower(p_stat_name) = 'hp' THEN
         v_value := 100 + v_level * 30
@@ -124,9 +125,10 @@ BEGIN
             + GREATEST(0, COALESCE(v_player.genjutsu, COALESCE(v_player.gen, 0))) * 5
             + v_rank_chakra
             + public.kurokage_equipment_bonus(p_player_id, 'chakra');
-        IF lower(COALESCE(v_player.clan, '')) = 'uzumaki' THEN
-            v_value := v_value * 1.15;
-        END IF;
+        v_value := v_value * CASE lower(COALESCE(v_player.clan, ''))
+            WHEN 'uzumaki' THEN 1.15
+            WHEN 'hozuki' THEN 1.10
+            ELSE 1.00 END;
     ELSIF lower(p_stat_name) = 'stamina' THEN
         v_value := 100 + v_level * 20
             + GREATEST(0, COALESCE(v_player.energia, 0)) * 5

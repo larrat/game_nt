@@ -104,43 +104,31 @@ export default function Clas({ player, updatePlayer }) {
       return;
     }
 
-    const { error } = await supabase
-      .from('players')
-      .update({
-        clan_id: clan.id,
-        clan: clan.name,
-        clan_custom_stats: customStats,
-        clan_lvl: 0
-      })
-      .eq('id', player.id);
+    const { data, error } = await supabase.rpc('entrar_cla', {
+      p_player_id: player.id,
+      p_clan_id: clan.id,
+      p_custom_stats: customStats
+    });
 
-    if (error) {
-      addToast("Erro ao entrar no Clã: " + error.message, "error");
+    if (error || !data?.success) {
+      addToast("Erro ao entrar no Clã: " + (error?.message || data?.error || 'operação recusada'), "error");
     } else {
-      addToast(`Sucesso! Agora você despertou a linhagem do ${clan.name}!`, "success");
-      updatePlayer(player.id);
+      addToast(`Sucesso! Agora você despertou a linhagem do ${data.clan || clan.name}!`, "success");
+      await updatePlayer(player.id);
     }
   };
 
   const handleTrainLevel = async (targetLevel, cost) => {
-    if (player.ryous < cost) {
-      addToast(`Ryous insuficientes. Custa RY$ ${cost}.`, 'error');
-      return;
-    }
-    
-    const { error } = await supabase
-      .from('players')
-      .update({
-        clan_lvl: targetLevel,
-        ryous: player.ryous - cost
-      })
-      .eq('id', player.id);
+    const { data, error } = await supabase.rpc('treinar_cla', {
+      p_player_id: player.id,
+      p_target_level: targetLevel
+    });
 
-    if (error) {
-      addToast("Erro ao treinar nível de Clã: " + error.message, "error");
+    if (error || !data?.success) {
+      addToast("Erro ao treinar nível de Clã: " + (error?.message || data?.error || `operação recusada (custo indicado: RY$ ${cost})`), "error");
     } else {
-      addToast(`Você alcançou o Nível ${targetLevel} do seu Clã! Bônus dobrados!`, "success");
-      updatePlayer(player.id);
+      addToast(`Você alcançou o Nível ${targetLevel} do seu Clã! -RY$ ${data.cost}. Bônus atualizados.`, "success");
+      await updatePlayer(player.id);
     }
   };
 

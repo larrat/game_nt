@@ -78,25 +78,23 @@ export default function Elementos({ player, updatePlayer }) {
     }
     setLoading(true);
 
-    const updateData = {};
-    if (!player.element) {
-      updateData.element = elementId;
-    } else {
-      updateData.element2 = elementId;
-    }
+    try {
+      const { data, error } = await supabase.rpc('aprender_elemento', {
+        p_player_id: player.id,
+        p_element_id: elementId
+      });
 
-    const { error } = await supabase
-      .from('players')
-      .update(updateData)
-      .eq('id', player.id);
-
-    if (!error) {
-      await updatePlayer(player.id);
-      addToast(`Elemento ${elementId} dominado!`, 'success');
-    } else {
-      addToast('Erro ao aprender elemento: ' + error.message, 'error');
+      if (error || !data?.success) {
+        addToast('Erro ao aprender elemento: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+      } else {
+        await updatePlayer(player.id);
+        addToast(`Elemento ${elementId} dominado!`, 'success');
+      }
+    } catch (error) {
+      addToast('Erro ao aprender elemento: ' + (error?.message || 'erro inesperado'), 'error');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
 

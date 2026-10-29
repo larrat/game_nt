@@ -110,17 +110,17 @@ export default function Tecnicas({ player, updatePlayer }) {
     }
 
     setLoading(true);
-    const { error } = await supabase.rpc('aprender_jutsu', {
+    const { data, error } = await supabase.rpc('aprender_jutsu', {
       p_player_id: player.id,
       p_jutsu_id: jutsu.id,
       p_cost: jutsu.cost
     });
 
-    if (error) {
-      addToast('Erro ao aprender jutsu: ' + error.message, 'error');
+    if (error || !data?.success) {
+      addToast('Erro ao aprender jutsu: ' + (error?.message || data?.error || 'operação recusada'), 'error');
     } else {
       await updatePlayer(player.id);
-      addToast(`${jutsu.name} aprendido com sucesso! -RY$ ${jutsu.cost}`, 'success');
+      addToast(`${jutsu.name} aprendido com sucesso! -RY$ ${data?.cost ?? jutsu.cost}`, 'success');
     }
 
     setLoading(false);
@@ -168,17 +168,17 @@ export default function Tecnicas({ player, updatePlayer }) {
     setLoading(true);
 
     const newObjs = availableToLearn.map(j => ({ id: j.id, level: 1, slots: [null, null, null] }));
-    const { error } = await supabase.rpc('aprender_jutsus_massa', {
+    const { data, error } = await supabase.rpc('aprender_jutsus_massa', {
       p_player_id: player.id,
       p_jutsus: newObjs,
       p_total_cost: totalCost
     });
 
-    if (error) {
-      addToast('Erro ao aprender em massa: ' + error.message, 'error');
+    if (error || !data?.success) {
+      addToast('Erro ao aprender em massa: ' + (error?.message || data?.error || 'operação recusada'), 'error');
     } else {
       await updatePlayer(player.id);
-      addToast(`Prodígio da Academia ativado! Você aprendeu ${availableToLearn.length} jutsus por RY$ ${totalCost}!`, 'success');
+      addToast(`Prodígio da Academia ativado! Você aprendeu ${data.learned_count} jutsus por RY$ ${data.total_cost}!`, 'success');
     }
     setLoading(false);
   };

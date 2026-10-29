@@ -139,39 +139,31 @@ export default function Portoes({ player, updatePlayer }) {
       return;
     }
 
-    const hpCusto = Math.floor(maxHP * portao.hpCusto);
-    const currentHP = player.hp !== undefined && player.hp !== null ? player.hp : maxHP;
-    const novoHP = Math.max(0, currentHP - hpCusto);
-    const isMortal = portao.id === 8;
-
     setLoading(true);
     setActivePortao(portao.id);
 
-    const updates = {
-      hp: novoHP,
-      portoes_used_at: new Date().toISOString(),
-    };
+    try {
+      const { data, error } = await supabase.rpc('abrir_portao', {
+        p_player_id: player.id,
+        p_gate_id: portao.id
+      });
 
-    if (isMortal || novoHP === 0) {
-      updates.is_fainted = true;
-      updates.fainted_at = new Date().toISOString();
-    }
-
-    const { error } = await supabase.from('players').update(updates).eq('id', player.id);
-
-    if (error) {
-      addToast('Erro ao abrir portão: ' + error.message, 'error');
-    } else {
-      await updatePlayer(player.id);
-      if (isMortal) {
-        addToast(`☠️ O 8º Portão foi aberto! Poder absoluto... mas você caiu inconsciente.`, 'error');
+      if (error || !data?.success) {
+        addToast('Erro ao abrir portão: ' + (error?.message || data?.error || 'operação recusada'), 'error');
       } else {
-        addToast(`⚡ ${portao.nome} ativado! ${portao.boost.desc} por 3 rodadas. (-${hpCusto} HP)`, 'success');
+        await updatePlayer(player.id);
+        if (data.is_fainted) {
+          addToast(`☠️ ${portao.nome} foi aberto, mas você caiu inconsciente. (-${data.hp_cost} HP)`, 'error');
+        } else {
+          addToast(`⚡ ${portao.nome} ativado! ${portao.boost.desc} por 3 rodadas. (-${data.hp_cost} HP)`, 'success');
+        }
       }
+    } catch (error) {
+      addToast('Erro ao abrir portão: ' + (error?.message || 'erro inesperado'), 'error');
+    } finally {
+      setLoading(false);
+      setActivePortao(null);
     }
-
-    setLoading(false);
-    setActivePortao(null);
   };
 
   if (!player) return null;

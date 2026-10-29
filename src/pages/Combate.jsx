@@ -74,6 +74,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const rawNpc = location.state?.npc;
   const isMirror = location.state?.isMirror;
+  const isExame = Boolean(location.state?.isExame);
   const npcInitVal = (rawNpc && rawNpc.is_story_mode && !isMirror) ? scaleStoryNPC(rawNpc, player) : rawNpc;
   const isAltAutoBattle = location.state?.isAltAutoBattle || false;
 
@@ -205,6 +206,94 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const raidTotal = location.state?.raidTotal ?? 0;
   const [raidCurrent, setRaidCurrent] = useState(location.state?.raidCurrent ?? 0);
+  const [combatSessionId, setCombatSessionId] = useState(null);
+  const [combatSessionLoading, setCombatSessionLoading] = useState(false);
+  const [combatSessionFailed, setCombatSessionFailed] = useState(false);
+  const combatSessionStartRef = useRef(false);
+  const combatSessionEligible = Boolean(
+    player?.id &&
+    !location.state?.isWorldBoss &&
+    (!isMirror || isExame) &&
+    !npcInit?.is_dummy &&
+    (!location.state?.isGhost || isExame) &&
+    !location.state?.isBijuuHunt &&
+    !isAltAutoBattle &&
+    !(raidTotal > 0) &&
+    (isExame
+      ? Number(location.state?.exameRound) >= 1 && Number(location.state?.exameRound) <= 3
+      : Number.isInteger(Number(npcInit?.id)) && Number(npcInit.id) > 0)
+  );
+
+  useEffect(() => {
+    if (!combatSessionEligible || combatSessionStartRef.current) return;
+    combatSessionStartRef.current = true;
+    setCombatSessionLoading(true);
+
+    const startSession = async () => {
+      const { data, error } = isExame
+        ? await supabase.rpc('iniciar_exame_chunin', {
+            p_player_id: player.id,
+            p_round: Number(location.state?.exameRound)
+          })
+        : await supabase.rpc('iniciar_combate_sessao', {
+            p_player_id: player.id,
+            p_enemy_id: Number(npcInit.id),
+            p_from_map: Boolean(location.state?.fromMap),
+            p_is_dojo: !location.state?.fromMap &&
+              !location.state?.isStoryQuest &&
+              !npcInit?.is_story_mode &&
+              !npcInit?.is_bingo_book &&
+              !location.state?.isBetrayal
+          });
+
+      if (error || !data?.success || !data?.session_id) {
+        const reason = error?.message || data?.error || 'Resposta inválida do servidor.';
+        setCombatSessionFailed(true);
+        addToast('Não foi possível validar esta batalha no servidor: ' + reason, 'error');
+        return;
+      }
+
+      setCombatSessionId(data.session_id);
+      setNpcHP(data.enemy_hp);
+      setNpcMaxHPVal(data.enemy_max_hp);
+      setNpcCP(data.enemy_chakra);
+      setNpcInit(prev => ({
+        ...prev,
+        id: data.enemy_id,
+        name: data.enemy_name,
+        level: data.enemy_level,
+        hp: data.enemy_max_hp,
+        atk: data.enemy_atk,
+        def: data.enemy_def,
+        chakra: data.enemy_chakra,
+        element: data.enemy_element,
+        xp_reward: data.xp_reward,
+        ryou_reward: data.ryou_reward
+      }));
+      setPlayerHP(data.player_hp);
+      setPlayerCP(data.player_chakra);
+      setPlayerSt(data.player_stamina);
+      setPlayerState?.(prev => prev ? {
+        ...prev,
+        hp: data.player_hp,
+        chakra: data.player_chakra,
+        stamina: data.player_stamina
+      } : prev);
+    };
+
+    startSession()
+      .catch(error => {
+        setCombatSessionFailed(true);
+        addToast('Erro ao iniciar combate validado: ' + (error?.message || 'erro inesperado'), 'error');
+      })
+      .finally(() => setCombatSessionLoading(false));
+  }, [
+    combatSessionEligible, player?.id, npcInit?.id,
+    location.state?.fromMap, location.state?.isStoryQuest,
+    location.state?.isBetrayal, location.state?.isExame,
+    location.state?.exameRound, npcInit?.is_story_mode,
+    npcInit?.is_bingo_book, addToast, setPlayerState
+  ]);
 
   useEffect(() => {
     async function fetchSummon() {
@@ -253,7 +342,27 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             clearInterval(timer);
             addLog("Tempo esgotado! Você perdeu a vez.");
             setIsPlayerTurn(false);
-            npcTurn(npcHP);
+            if (combatSessionId) {
+              supabase.rpc('resolver_turno_combate_sessao', {
+                p_player_id: player.id,
+                p_session_id: combatSessionId,
+                p_action: 'pass'
+              }).then(({ data, error }) => {
+                if (error || !data?.success) {
+                  addToast('O servidor não confirmou a perda de turno: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+                  setIsPlayerTurn(true);
+                  setTimeLeft(30);
+                  return;
+                }
+                npcTurn(Number.isFinite(data.enemy_hp_remaining) ? data.enemy_hp_remaining : npcHP);
+              }).catch(error => {
+                addToast('Erro ao resolver o turno: ' + (error?.message || 'erro inesperado'), 'error');
+                setIsPlayerTurn(true);
+                setTimeLeft(30);
+              });
+            } else {
+              npcTurn(npcHP);
+            }
             return 0;
           }
           return prev - 1;
@@ -356,98 +465,85 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const handleWin = async () => {
     setLoading(true);
 
-    const isDojo = !location.state?.isWorldBoss && !location.state?.isBetrayal && !npcInit.is_dummy;
+    let resultData = null;
+    let resultError = null;
+    if (combatSessionId) {
+      const result = await supabase.rpc('finalizar_combate_sessao', {
+        p_player_id: player.id,
+        p_session_id: combatSessionId,
+        p_turn_count: roundCount,
+        p_combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${maxPlayerHP} | Chakra: ${playerCP}/${maxPlayerCP} | Stamina: ${playerSt}/${maxPlayerSt}`]
+      });
+      resultData = result.data;
+      resultError = result.error;
 
-    const { data: resultData, error: resultError } = await supabase.rpc('finalizar_combate', {
-      p_player_id: player.id,
-      p_enemy_id: Number.isInteger(Number(npcInit.id)) ? Number(npcInit.id) : 999999,
-      p_result: 'win',
-      p_turn_count: roundCount,
-      p_combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${maxPlayerHP} | Chakra: ${playerCP}/${maxPlayerCP} | Stamina: ${playerSt}/${maxPlayerSt}`],
-      p_fallback_xp: npcInit.xp_reward || Math.floor(((npcInit.level || 1) * 22) + 28),
-      p_fallback_ryous: npcInit.ryou_reward || Math.floor(((npcInit.level || 1) * 24) + 23),
-      p_enemy_name: npcInit.name || 'Desconhecido',
-      p_from_map: Boolean(location.state?.fromMap)
-    });
-
-    if (resultError) {
-      console.error("Combat RPC Error:", resultError);
-      addToast('Erro ao processar recompensa de combate.', 'error');
+      if (resultError || !resultData?.success || resultData?.session_settled !== true) {
+        addToast('O servidor não confirmou a vitória; nenhuma recompensa será entregue.', 'error');
+        setLoading(false);
+        return;
+      }
+    } else {
+      // Temporary encounters that do not have server sessions are deliberately non-rewarding.
+      addToast('Esta batalha não possui uma sessão validada pelo servidor; recompensas e progresso foram bloqueados.', 'info');
     }
 
-    const gainedRyous = resultData?.ryous_gained || 0;
-    const gainedXp = resultData?.xp_gained || 0;
-    const levelsGained = resultData?.levels_gained || 0;
+    const hasVerifiedWin = Boolean(combatSessionId && !resultError && resultData?.success && resultData?.session_settled);
+    if (hasVerifiedWin && resultData?.is_exam === true) {
+      await updatePlayer(player.id);
+      navigate('/exame', { state: { roundWon: Number(resultData.exam_round_completed) } });
+      setLoading(false);
+      return;
+    }
+    const gainedRyous = hasVerifiedWin ? (resultData?.ryous_gained || 0) : 0;
+    const gainedXp = hasVerifiedWin ? (resultData?.xp_gained || 0) : 0;
+    const levelsGained = hasVerifiedWin ? (resultData?.levels_gained || 0) : 0;
 
     let droppedItemMsg = '';
     let vipCoinMsg = '';
-    if (resultData?.vip_coin_dropped) vipCoinMsg = ' 🪙 +1 Kuro Coin!';
-    if (resultData?.loot_item_name) {
+    if (hasVerifiedWin && resultData?.vip_coin_dropped) vipCoinMsg = ' 🪙 +1 Kuro Coin!';
+    if (hasVerifiedWin && resultData?.loot_item_name) {
       droppedItemMsg = ` Você encontrou [${resultData.loot_item_name}] (${resultData.loot_rarity || 'Comum'})!`;
     }
-    if (resultData?.essence_key) {
+    if (hasVerifiedWin && resultData?.essence_key) {
       const [essenceType, essenceTier] = String(resultData.essence_key).split('_');
       droppedItemMsg += ` 📜 +1 Essência [${String(essenceType).toUpperCase()} Tier ${essenceTier}]!`;
     }
-    if (resultData && resultData.enemy_in_catalog === false) {
-      addToast('Este inimigo não está no catálogo oficial; recompensas de combate foram bloqueadas por segurança.', 'info');
+
+    if (updatePlayer) await updatePlayer(player.id);
+
+    // Only verified server sessions can cause irreversible story, clan, or mission progress.
+    if (!hasVerifiedWin) {
+      navigate(location.state?.fromMap ? '/mapa' : '/dojo');
+      setLoading(false);
+      return;
     }
 
-    if ((npcInit.is_story_mode || npcInit.is_bingo_book) && !location.state?.isGhost) {
-      await supabase.from('player_defeated_npcs').insert({
-        player_id: player.id,
-        npc_id: npcInit.id
-      });
-    }
-
-    // Salvar HP e Chakra restantes (visto que a RPC não sobrescreve os atributos de batalha)
-    const updatesAtuais = {
-      hp: playerHP,
-      chakra: playerCP
-    };
-    if (isDojo) {
-      updatesAtuais.wins_dojo = (player.wins_dojo || 0) + 1;
-      updatesAtuais.dojo_clears = (player.dojo_clears || 0) + 1;
-    }
-    if (location.state?.fromMap) {
-      updatesAtuais.daily_map_battles = (player.daily_map_battles || 0) + 1;
-    }
-    await supabase.from('players').update(updatesAtuais).eq('id', player.id);
-
-    if (updatePlayer) {
-      await updatePlayer(player.id);
-    }
     if (location.state?.isBetrayal) {
       const { error: betrayalError } = await supabase.rpc('trair_vila', { p_player_id: player.id });
       if (betrayalError) addToast('Erro ao registrar traição: ' + betrayalError.message, 'error');
-      else addToast("Você traiu sua vila e agora faz parte da Akatsuki!", "success");
+      else addToast('Você traiu sua vila e agora faz parte da Akatsuki!', 'success');
     } else if (location.state?.isBijuuHunt) {
-      addToast("Caçada concluída! Chakra da Bijuu extraído para a Organização!", "success");
+      addToast('Caçada concluída! Chakra da Bijuu extraído para a Organização!', 'success');
     } else if (location.state?.isGhost) {
-      addToast(`Você derrotou o fantasma de ${npcInit.name}!`, "success");
-    } else if (raidTotal > 0 && raidCurrent < raidTotal) {
-      addToast(`Incursão ${raidCurrent}/${raidTotal}! +${gainedXp} XP${droppedItemMsg}${vipCoinMsg}`, 'success');
-      resetForNextRaidFight();
-      setLoading(false);
-      return;
-    } else if (raidTotal > 0) {
-      addToast(`Incursão completa! ${raidTotal} vitórias seguidas!${droppedItemMsg}${vipCoinMsg}`, 'success');
+      addToast(`Você derrotou o fantasma de ${npcInit.name}!`, 'success');
     } else {
-      addToast(`Vitória! +${gainedXp} XP, +${gainedRyous} Ryous.${droppedItemMsg}${vipCoinMsg}`, "success");
-      if (levelsGained > 0) {
-        addToast(`🎉 Você subiu ${levelsGained} Níveis!`, "success");
-      }
+      addToast(`Vitória! +${gainedXp} XP, +${gainedRyous} Ryous.${droppedItemMsg}${vipCoinMsg}`, 'success');
+      if (levelsGained > 0) addToast(`🎉 Você subiu ${levelsGained} Níveis!`, 'success');
     }
-    
+
     if (location.state?.isStoryQuest) {
-      await supabase.rpc('concluir_story_quest', {
+      const { data: questData, error: questError } = await supabase.rpc('concluir_story_quest', {
         p_player_id: player.id,
         p_quest_id: location.state?.npc?.storyQuestId
       });
+      if (questError || questData?.success === false) {
+        addToast('A vitória foi validada, mas a missão não pôde ser concluída.', 'warning');
+      }
       navigate('/historia');
     } else {
       navigate(location.state?.fromMap ? '/mapa' : '/dojo');
     }
+    setLoading(false);
   };
 
   const handleWorldBossEnd = async () => {
@@ -478,11 +574,13 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const setPlayerFainted = async () => {
     if (npcInit.is_dummy) return;
-    const isDojo = !location.state?.fromMap && !location.state?.isWorldBoss && !location.state?.isGhost && !location.state?.isBetrayal;
-    const updates = { is_fainted: true, fainted_at: new Date().toISOString() };
-    if (isDojo) updates.losses_dojo = (player.losses_dojo || 0) + 1;
 
-    await supabase.from('players').update(updates).eq('id', player.id);
+    const { data, error } = await supabase.rpc('marcar_jogador_derrotado', {
+      p_player_id: player.id
+    });
+    if (error || !data?.success) {
+      addToast('Não foi possível registrar a derrota: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+    }
 
     try {
       await supabase.from('battle_logs').insert({
@@ -542,7 +640,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
 
     // Regra anti-stalemate (Exaustão total)
-    if (playerCP < 10 && playerSt < 10 && npcCP < 10 && npcSt < 10) {
+    if (!combatSessionId && playerCP < 10 && playerSt < 10 && npcCP < 10 && npcSt < 10) {
       addLog(`⚔️ EMPATE POR EXAUSTÃO: Nenhum dos ninjas possui Chakra ou Stamina para continuar a luta!`);
       setBattleResult('lose');
       setPlayerFainted();
@@ -555,6 +653,49 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const npcTurn = (currentNpcHP) => {
     if (currentNpcHP <= 0) return;
+
+    if (combatSessionId && !location.state?.isWorldBoss) {
+      const timer = setTimeout(async () => {
+        addLog(`${npcInit.name} está respondendo ao seu turno...`);
+        const { data, error } = await supabase.rpc('responder_turno_combate_sessao', {
+          p_player_id: player.id,
+          p_session_id: combatSessionId
+        });
+
+        if (error || !data?.success) {
+          addToast('Erro ao resolver o turno inimigo: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+          setIsPlayerTurn(true);
+          return;
+        }
+
+        const remainingHp = Number(data.player_hp_remaining);
+        setPlayerHP(Number.isFinite(remainingHp) ? remainingHp : 0);
+        setPlayerState?.(prev => prev ? { ...prev, hp: Number.isFinite(remainingHp) ? remainingHp : 0 } : prev);
+
+        if (data.dodged) {
+          addLog(`💨 Você esquivou do ataque de ${npcInit.name}!`);
+        } else {
+          const damage = Math.max(0, Number(data.damage) || 0);
+          addLog(`${npcInit.name} atacou e causou ${damage} de dano!`);
+          if (damage > 0) {
+            playHitSound();
+            triggerShake('player');
+            spawnFct('player', `-${damage}`, 'damage');
+          }
+        }
+
+        if (data.player_defeated || remainingHp <= 0) {
+          addLog('Você foi derrotado e caiu inconsciente...');
+          setBattleResult('lose');
+          await setPlayerFainted();
+          if (isExame) navigate('/exame', { state: { examFailed: true } });
+        } else {
+          startPlayerTurn();
+        }
+      }, 700);
+      timeoutRefs.current.push(timer);
+      return;
+    }
 
     const t1 = setTimeout(() => {
       addLog(`${npcInit.name} está atacando...`);
@@ -744,27 +885,69 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   };
 
   const handleConsumable = async (cons) => {
-    if (!isPlayerTurn || battleResult) return;
-    setIsPlayerTurn(false);
+    if (!isPlayerTurn || battleResult || (combatSessionEligible && combatSessionLoading) || (combatSessionEligible && !combatSessionId)) return;
 
-    if (cons.type === "hp") setPlayerHP(prev => Math.min(maxPlayerHP, prev + cons.effect_value));
-    else if (cons.type === "chakra") setPlayerCP(prev => Math.min(maxPlayerCP, prev + cons.effect_value));
-    else if (cons.type === "stamina") setPlayerSt(prev => Math.min(maxPlayerSt, prev + cons.effect_value));
-
-    addLog(`💊 Você usou [${cons.name}] e recuperou ${cons.effect_value} de ${cons.type.toUpperCase()}!`);
-
-    if (cons.pc_id) {
-      await supabase.from("player_consumables").update({ quantity: cons.quantity - 1 }).eq("id", cons.pc_id);
-      await updatePlayer(player.id);
+    // World Boss uses its own session model; until it has a dedicated potion RPC, don't
+    // consume inventory items that would not update the boss session's resource state.
+    if (location.state?.isWorldBoss) {
+      addToast('Consumíveis ainda não estão disponíveis durante o Chefe Mundial.', 'warning');
+      return;
     }
 
-    setTimeout(() => {
+    if (!cons?.pc_id) {
+      addToast('Este item não está vinculado a uma unidade do seu inventário.', 'error');
+      return;
+    }
+
+    setIsPlayerTurn(false);
+
+    if (combatSessionId) {
+      const { data, error } = await supabase.rpc('usar_consumivel_combate_sessao', {
+        p_player_id: player.id,
+        p_session_id: combatSessionId,
+        p_consumable_id: cons.id
+      });
+      if (error || !data?.success) {
+        addToast('Não foi possível usar o consumível: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+        setIsPlayerTurn(true);
+        return;
+      }
+
+      setPlayerHP(data.hp_remaining);
+      setPlayerCP(data.chakra_remaining);
+      setPlayerSt(data.stamina_remaining);
+      addLog(`💊 Você usou [${cons.name}]. Recursos atualizados pelo servidor.`);
+      await updatePlayer(player.id);
       npcTurn(npcHP);
-    }, 1000);
+      return;
+    }
+
+    // Legacy/special encounters do not maintain a server combat session. Inventory and
+    // player resource changes still go through an owner-checked, atomic server RPC.
+    const { data, error } = await supabase.rpc('usar_consumivel_inventario', {
+      p_player_id: player.id,
+      p_inventory_id: cons.pc_id
+    });
+    if (error || !data?.success) {
+      addToast('Não foi possível usar o consumível: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+      setIsPlayerTurn(true);
+      return;
+    }
+
+    setPlayerHP(Number(data.hp));
+    setPlayerCP(Number(data.chakra));
+    setPlayerSt(Number(data.stamina));
+    addLog(`💊 Você usou [${cons.name}]. Recursos atualizados pelo servidor.`);
+    await updatePlayer(player.id);
+    npcTurn(npcHP);
   };
 
   const handleBasicAttack = async () => {
     if (!isPlayerTurn || battleResult) return;
+    if (combatSessionEligible && (combatSessionLoading || !combatSessionId)) {
+      if (combatSessionFailed) addToast('Esta batalha não foi validada pelo servidor; ataque bloqueado.', 'error');
+      return;
+    }
 
     // COMBATE VIA SERVIDOR ATIVADO
     const USE_SERVER_COMBAT = true;
@@ -778,18 +961,24 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             p_session_id: npcInit.bossSessionId,
             p_action: 'basic'
           })
-        : await supabase.rpc('resolver_turno_combate', {
-            p_player_id: player.id,
-            p_action: 'basic',
-            p_target_type: 'npc',
-            p_npc_stats: { def: npcDef, element: npcInit.element },
-            p_global_debuffs: globalDebuffs,
-            p_equipped_summon: equippedSummon,
-            p_active_buffs: activeBuffs,
-            p_portao_multiplier: portaoAtkMultiplier,
-            p_player_atk_fis: playerAtkTaiBuk,
-            p_player_atk_mag: playerAtkNinGen
-          });
+        : combatSessionId
+          ? await supabase.rpc('resolver_turno_combate_sessao', {
+              p_player_id: player.id,
+              p_session_id: combatSessionId,
+              p_action: 'basic'
+            })
+          : await supabase.rpc('resolver_turno_combate', {
+              p_player_id: player.id,
+              p_action: 'basic',
+              p_target_type: 'npc',
+              p_npc_stats: { def: npcDef, element: npcInit.element },
+              p_global_debuffs: globalDebuffs,
+              p_equipped_summon: equippedSummon,
+              p_active_buffs: activeBuffs,
+              p_portao_multiplier: portaoAtkMultiplier,
+              p_player_atk_fis: playerAtkTaiBuk,
+              p_player_atk_mag: playerAtkNinGen
+            });
 
       if (error || data?.error || data?.success === false) {
         const message = error?.message || data?.error || 'Falha ao resolver o ataque.';
@@ -807,11 +996,15 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
       if (!data.hit) {
         addLog(`Você usou Ataque Básico mas o inimigo esquivou!`);
-        npcTurn(npcHP);
+        npcTurn(Number.isFinite(data.enemy_hp_remaining) ? data.enemy_hp_remaining : npcHP);
         return;
       }
 
-      const newNpcHP = Math.max(0, isWorldBoss && Number.isFinite(data.boss_hp) ? data.boss_hp : npcHP - data.damage);
+      const newNpcHP = Math.max(0,
+        isWorldBoss && Number.isFinite(data.boss_hp) ? data.boss_hp :
+        Number.isFinite(data.enemy_hp_remaining) ? data.enemy_hp_remaining :
+        npcHP - data.damage
+      );
       setNpcHP(newNpcHP);
 
       let msg = `Você usou Ataque Básico e causou ${data.damage} de dano!`;
@@ -937,6 +1130,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const handleJutsu = async (jutsu) => {
     if (!isPlayerTurn || battleResult) return;
+    if (combatSessionEligible && (combatSessionLoading || !combatSessionId)) {
+      if (combatSessionFailed) addToast('Esta batalha não foi validada pelo servidor; jutsu bloqueado.', 'error');
+      return;
+    }
 
     // COMBATE VIA SERVIDOR ATIVADO
     const USE_SERVER_COMBAT = true;
@@ -956,18 +1153,25 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             p_action: 'jutsu',
             p_jutsu_id: jutsu.id
           })
-        : await supabase.rpc('resolver_turno_combate', {
-            p_player_id: player.id,
-            p_action: 'jutsu',
-            p_jutsu_payload: jutsu,
-            p_target_type: 'npc',
-            p_npc_stats: { def: npcDef, element: npcInit.element },
-            p_global_debuffs: globalDebuffs,
-            p_equipped_summon: equippedSummon,
-            p_active_buffs: activeBuffs,
-            p_player_atk_fis: playerAtkTaiBuk,
-            p_player_atk_mag: playerAtkNinGen
-          });
+        : combatSessionId
+          ? await supabase.rpc('resolver_turno_combate_sessao', {
+              p_player_id: player.id,
+              p_session_id: combatSessionId,
+              p_action: 'jutsu',
+              p_jutsu_id: jutsu.id
+            })
+          : await supabase.rpc('resolver_turno_combate', {
+              p_player_id: player.id,
+              p_action: 'jutsu',
+              p_jutsu_payload: jutsu,
+              p_target_type: 'npc',
+              p_npc_stats: { def: npcDef, element: npcInit.element },
+              p_global_debuffs: globalDebuffs,
+              p_equipped_summon: equippedSummon,
+              p_active_buffs: activeBuffs,
+              p_player_atk_fis: playerAtkTaiBuk,
+              p_player_atk_mag: playerAtkNinGen
+            });
 
       if (error || data?.error || data?.success === false) {
         const message = error?.message || data?.error || 'Falha ao resolver o jutsu.';
@@ -988,16 +1192,11 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       // +1 to compensate for the immediate decrement in startPlayerTurn
       if (jutsuCooldown > 0) setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown + 1 }));
 
-      if (newCP <= 0) {
+      if (newCP <= 0 && !combatSessionId) {
         addLog(`Você ficou sem Chakra usando [${jutsu.name}] e desmaiou de exaustão...`);
         setBattleResult('lose');
         setPlayerFainted();
         return;
-      }
-
-      if (!isWorldBoss) {
-        const newDailyChakra = (player.daily_chakra_spent || 0) + data.chakra_cost;
-        await supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
       }
 
       if (!data.hit) {
@@ -1006,7 +1205,11 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         return;
       }
 
-      const newNpcHP = Math.max(0, isWorldBoss && Number.isFinite(data.boss_hp) ? data.boss_hp : npcHP - data.damage);
+      const newNpcHP = Math.max(0,
+        isWorldBoss && Number.isFinite(data.boss_hp) ? data.boss_hp :
+        Number.isFinite(data.enemy_hp_remaining) ? data.enemy_hp_remaining :
+        npcHP - data.damage
+      );
       setNpcHP(newNpcHP);
 
       playJutsuSound();
@@ -1015,7 +1218,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       spawnFct('npc', `-${data.damage}${data.is_crit ? ' CRÍT!' : ' MAG'}`, data.is_crit ? 'crit' : 'magic');
 
       addLog(`Você usou [${jutsu.name}] e causou ${data.damage} de dano! (Custou ${data.chakra_cost} CP)`);
-      applyJutsuEffects(jutsu, true); // Aplica buffs/dots locais de UI
+      if (!combatSessionId) applyJutsuEffects(jutsu, true); // Sessões autoritativas não aceitam status calculado no cliente.
 
       if (isWorldBoss) {
         setAccumulatedDamage(prev => prev + data.damage);
@@ -1077,9 +1280,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       setPlayerFainted();
       return;
     }
-
-    const newDailyChakra = (player.daily_chakra_spent || 0) + cost;
-    await supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
 
     const jutsuAccuracy = jutsu.accuracy || 100;
     const totalAccuracy = Math.min(100, jutsuAccuracy + (playerPrecision / 2) - globalDebuffs.accuracyPenalty);
@@ -1172,6 +1372,17 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     setSurrenderConfirm(false);
     addLog('Você jogou a toalha e desistiu da batalha...');
     setBattleResult('surrender');
+    if (combatSessionId) {
+      const { data, error } = await supabase.rpc('abandonar_combate_sessao', {
+        p_player_id: player.id,
+        p_session_id: combatSessionId
+      });
+      if (error || !data?.success) {
+        addToast('Não foi possível encerrar a sessão com segurança: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+      } else if (isExame) {
+        navigate('/exame', { state: { examFailed: true } });
+      }
+    }
     await setPlayerFainted();
   };
 

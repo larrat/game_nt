@@ -14,7 +14,8 @@ on:
       - 'audit/security-and-engine-tests-2026-10'
       - 'fix/rpc-auth-and-rewards-2026-10'
     paths:
-      - 'src/utils/engine.js'
+      - 'src/**'
+      - 'migrations/**'
       - 'tests/**'
       - 'package.json'
       - 'package-lock.json'

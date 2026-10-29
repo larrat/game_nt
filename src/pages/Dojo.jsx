@@ -163,39 +163,35 @@ export default function Dojo({ player }) {
   const RAID_STAMINA_COST = 25;
 
   const handleRaid = async (fightCount) => {
-    const totalCost = fightCount * RAID_STAMINA_COST;
-    const currentSt = player.stamina ?? calculateStamina(player);
-
-    if (currentSt < totalCost) {
-      addToast(`Incursão de ${fightCount}x requer ${totalCost} Stamina (você tem ${currentSt}).`, 'error');
-      return;
-    }
-
     setLoadingId('raid');
-    await new Promise(r => setTimeout(r, 1200));
+    try {
+      const { data, error } = await supabase.rpc('reservar_raid_stamina', {
+        p_player_id: player.id,
+        p_fight_count: fightCount
+      });
 
-    const rogue = generateDynamicRogueNinja(player);
-    const { error } = await supabase
-      .from('players')
-      .update({ stamina: currentSt - totalCost })
-      .eq('id', player.id);
-
-    setLoadingId(null);
-
-    if (error) {
-      addToast('Erro ao iniciar incursão: ' + error.message, 'error');
-      return;
-    }
-
-    navigate('/combate', {
-      state: {
-        bgType: 'dojo',
-        npc: rogue,
-        isMirror: true,
-        raidTotal: fightCount,
-        raidCurrent: 1
+      if (error || !data?.success) {
+        addToast('Erro ao iniciar incursão: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+        return;
       }
-    });
+
+      await updatePlayer(player.id);
+      await new Promise(r => setTimeout(r, 400));
+      const rogue = generateDynamicRogueNinja(player);
+      navigate('/combate', {
+        state: {
+          bgType: 'dojo',
+          npc: rogue,
+          isMirror: true,
+          raidTotal: fightCount,
+          raidCurrent: 1
+        }
+      });
+    } catch (error) {
+      addToast('Erro ao iniciar incursão: ' + (error?.message || 'erro inesperado'), 'error');
+    } finally {
+      setLoadingId(null);
+    }
   };
 
   const handleQuickClear = async (fightCount) => {

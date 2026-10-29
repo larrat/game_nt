@@ -943,6 +943,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   };
 
   const handleBasicAttack = async () => {
+    if (location.state?.isWorldBoss && !npcInit?.bossSessionId) {
+      addToast('Chefe mundial sem sessão validada; combate bloqueado.', 'error');
+      return;
+    }
     if (!isPlayerTurn || battleResult) return;
     if (combatSessionEligible && (combatSessionLoading || !combatSessionId)) {
       if (combatSessionFailed) addToast('Esta batalha não foi validada pelo servidor; ataque bloqueado.', 'error');
@@ -950,7 +954,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
 
     // COMBATE VIA SERVIDOR ATIVADO
-    const USE_SERVER_COMBAT = true;
+    const USE_SERVER_COMBAT = Boolean(location.state?.isWorldBoss || combatSessionId);
 
     if (USE_SERVER_COMBAT) {
       setIsPlayerTurn(false);
@@ -961,24 +965,11 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             p_session_id: npcInit.bossSessionId,
             p_action: 'basic'
           })
-        : combatSessionId
-          ? await supabase.rpc('resolver_turno_combate_sessao', {
-              p_player_id: player.id,
-              p_session_id: combatSessionId,
-              p_action: 'basic'
-            })
-          : await supabase.rpc('resolver_turno_combate', {
-              p_player_id: player.id,
-              p_action: 'basic',
-              p_target_type: 'npc',
-              p_npc_stats: { def: npcDef, element: npcInit.element },
-              p_global_debuffs: globalDebuffs,
-              p_equipped_summon: equippedSummon,
-              p_active_buffs: activeBuffs,
-              p_portao_multiplier: portaoAtkMultiplier,
-              p_player_atk_fis: playerAtkTaiBuk,
-              p_player_atk_mag: playerAtkNinGen
-            });
+        : await supabase.rpc('resolver_turno_combate_sessao', {
+            p_player_id: player.id,
+            p_session_id: combatSessionId,
+            p_action: 'basic'
+          });
 
       if (error || data?.error || data?.success === false) {
         const message = error?.message || data?.error || 'Falha ao resolver o ataque.';
@@ -1129,6 +1120,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   };
 
   const handleJutsu = async (jutsu) => {
+    if (location.state?.isWorldBoss && !npcInit?.bossSessionId) {
+      addToast('Chefe mundial sem sessão validada; combate bloqueado.', 'error');
+      return;
+    }
     if (!isPlayerTurn || battleResult) return;
     if (combatSessionEligible && (combatSessionLoading || !combatSessionId)) {
       if (combatSessionFailed) addToast('Esta batalha não foi validada pelo servidor; jutsu bloqueado.', 'error');
@@ -1136,7 +1131,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
 
     // COMBATE VIA SERVIDOR ATIVADO
-    const USE_SERVER_COMBAT = true;
+    const USE_SERVER_COMBAT = Boolean(location.state?.isWorldBoss || combatSessionId);
 
     if (USE_SERVER_COMBAT) {
       // Cooldown e verificação client-side UI
@@ -1153,25 +1148,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             p_action: 'jutsu',
             p_jutsu_id: jutsu.id
           })
-        : combatSessionId
-          ? await supabase.rpc('resolver_turno_combate_sessao', {
-              p_player_id: player.id,
-              p_session_id: combatSessionId,
-              p_action: 'jutsu',
-              p_jutsu_id: jutsu.id
-            })
-          : await supabase.rpc('resolver_turno_combate', {
-              p_player_id: player.id,
-              p_action: 'jutsu',
-              p_jutsu_payload: jutsu,
-              p_target_type: 'npc',
-              p_npc_stats: { def: npcDef, element: npcInit.element },
-              p_global_debuffs: globalDebuffs,
-              p_equipped_summon: equippedSummon,
-              p_active_buffs: activeBuffs,
-              p_player_atk_fis: playerAtkTaiBuk,
-              p_player_atk_mag: playerAtkNinGen
-            });
+        : await supabase.rpc('resolver_turno_combate_sessao', {
+            p_player_id: player.id,
+            p_session_id: combatSessionId,
+            p_action: 'jutsu',
+            p_jutsu_id: jutsu.id
+          });
 
       if (error || data?.error || data?.success === false) {
         const message = error?.message || data?.error || 'Falha ao resolver o jutsu.';

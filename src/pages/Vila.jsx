@@ -136,7 +136,7 @@ export default function Vila({ player, updatePlayer }) {
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(/images/bg_${player.village_id}.jpg), url(/images/bg_login.jpg)` }} 
+        style={{ backgroundImage: `url(/images/bg_${player.village_id}.jpg), url(/images/bg_default.jpg)` }} 
       />
       {/* Dark Overlay */}
       <div className="absolute inset-0 z-1" style={{ background: 'rgba(0,0,0,0.45)' }} />

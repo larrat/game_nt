@@ -509,16 +509,6 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       droppedItemMsg += ` 📜 +1 Essência [${String(essenceType).toUpperCase()} Tier ${essenceTier}]!`;
     }
 
-    if (hasVerifiedWin && (npcInit.is_story_mode || npcInit.is_bingo_book) && !location.state?.isGhost) {
-      const { error } = await supabase.from('player_defeated_npcs').insert({
-        player_id: player.id,
-        npc_id: npcInit.id
-      });
-      if (error && !/duplicate key/i.test(error.message || '')) {
-        addToast('A vitória foi registrada, mas o histórico do NPC não foi atualizado.', 'warning');
-      }
-    }
-
     if (updatePlayer) await updatePlayer(player.id);
 
     // Only verified server sessions can cause irreversible story, clan, or mission progress.

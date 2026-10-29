@@ -165,7 +165,7 @@ export default function Historia({ player, updatePlayer }) {
   if (loading) return <div className="page text-center muted p-8">Lendo pergaminhos de história...</div>;
 
   return (
-    <div className="page">
+    <div className="page kuro-story-page">
       <PageHeader 
         eyebrow="Narrativa Principal" 
         title="Escritório do Hokage" 
@@ -173,13 +173,13 @@ export default function Historia({ player, updatePlayer }) {
       />
 
       {!activeQuest ? (
-        <div className="card text-center p-8">
+        <div className="kuro-story-empty card text-center p-8">
           <div className="text-6xl mb-4 opacity-50">📜</div>
           <h3 className="section-title">Sem Missões</h3>
           <p className="muted">O Hokage não tem missões de história para você no momento. Continue treinando!</p>
         </div>
       ) : (
-        <div className="card-glass border-gold p-6 relative overflow-hidden">
+        <div className="kuro-story-quest card-glass border-gold p-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 to-transparent pointer-events-none" />
           
           <div className="flex-between mb-4 z-10 relative">
@@ -228,10 +228,10 @@ export default function Historia({ player, updatePlayer }) {
 
       {/* MODAL DE DIÁLOGO */}
       {showDialog && (
-        <div className="fixed inset-0 bg-ink/90 z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-700 bg-ink-raised border-line-solid rounded-lg flex-row overflow-hidden shadow-2xl animate-fade-in">
+        <div className="kuro-story-dialog fixed inset-0 bg-ink/90 z-50 flex items-center justify-center p-4">
+          <div className="kuro-story-dialog__panel w-full max-w-700 bg-ink-raised border-line-solid rounded-lg flex-row overflow-hidden shadow-2xl animate-fade-in">
             {/* Foto NPC */}
-            <div className="w-1/3 bg-ink relative border-r border-line-dashed">
+            <div className="kuro-story-dialog__portrait w-1/3 bg-ink relative border-r border-line-dashed">
               <img 
                 src={activeQuest.story_quests.npc_image_url || '/images/imgi_26_scroll_blue.jpg'} 
                 alt={activeQuest.story_quests.npc_name}
@@ -243,7 +243,7 @@ export default function Historia({ player, updatePlayer }) {
             </div>
 
             {/* Texto */}
-            <div className="w-2/3 p-6 flex-col justify-between relative">
+            <div className="kuro-story-dialog__text w-2/3 p-6 flex-col justify-between relative">
               <div className="paper text-lg leading-relaxed italic mb-8 mt-4">
                 "{activeQuest.story_quests.dialogue[dialogStep]}"
               </div>

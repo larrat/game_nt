@@ -113,7 +113,7 @@ export default function Evento({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page">
+    <div className="page kuro-event-page">
       <PageHeader
         eyebrow="Guerra Ninja"
         title="Evento Global"
@@ -123,7 +123,7 @@ export default function Evento({ player, updatePlayer }) {
       {loading ? (
         <div className="muted text-center p-10">Procurando anomalias no mundo...</div>
       ) : isWeekend ? (
-        <div className="card text-center px-6 py-12">
+        <div className="kuro-event-empty card text-center px-6 py-12">
           <h2 className="muted">Fim de Semana de Descanso</h2>
           <p className="muted max-w-400 mx-auto mt-4">Os Kages ordenaram que as expedições param aos sábados e domingos para a manutenção das barreiras da Vila. Volte segunda-feira!</p>
           <button className="btn-ghost mt-6" onClick={() => navigate('/dashboard')}>Voltar</button>
@@ -135,11 +135,11 @@ export default function Evento({ player, updatePlayer }) {
           <button className="btn-ghost mt-6" onClick={() => navigate('/dashboard')}>Voltar</button>
         </div>
       ) : (
-        <div className="card-glass flex-col items-center p-12 relative overflow-hidden border-danger">
+        <div className="kuro-world-boss-card card-glass flex-col items-center p-12 relative overflow-hidden border-danger">
 
           <div className="absolute inset-0 bg-gradient-radial-danger pointer-events-none" />
 
-          <h2 className="danger uppercase text-4xl mb-2 z-10 drop-shadow-danger">
+          <h2 className="kuro-world-boss-title danger uppercase text-4xl mb-2 z-10 drop-shadow-danger">
             {event.name}
           </h2>
           <p className="paper max-w-600 text-center mb-4 z-10">
@@ -151,11 +151,11 @@ export default function Evento({ player, updatePlayer }) {
             {timeLeft && <span className="badge badge-muted">Termina em: {timeLeft}</span>}
           </div>
 
-          <div className="text-8xl mb-8 animate-pulse z-10">
+          <div className="kuro-world-boss-art text-8xl mb-8 animate-pulse z-10">
             🦊
           </div>
 
-          <div className="w-full max-w-600 mb-8 z-10">
+          <div className="kuro-world-boss-health w-full max-w-600 mb-8 z-10">
             <div className="flex-between mb-2">
               <span className="danger mono text-sm">HP DO CHEFE</span>
               <span className="paper mono text-sm">{event.boss_hp} / {event.boss_max_hp}</span>

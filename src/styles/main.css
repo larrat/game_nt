@@ -4171,3 +4171,183 @@ textarea {
   .kuro-training-simulator .flex-between.py-2 > .mono { white-space: normal; font-size: 11px; }
   .kuro-training-simulator h3 { font-size: 18px; line-height: 1.4; }
 }
+
+
+/* =========================================================
+   KUROKAGE REDESIGN — Story, world events and village
+   ========================================================= */
+.kuro-story-page,
+.kuro-event-page {
+  width: 100%;
+  max-width: 1640px;
+  margin: 0 auto;
+  padding: 8px 0 48px;
+  min-width: 0;
+}
+.kuro-story-quest {
+  border: 1px solid rgba(212,162,42,.35);
+  border-radius: 9px;
+  background: radial-gradient(ellipse at 100% 0%, rgba(212,162,42,.1), transparent 38%), linear-gradient(140deg, #181a21, #0e1118);
+  box-shadow: 0 18px 44px rgba(0,0,0,.18);
+}
+.kuro-story-quest h3 {
+  max-width: 100%;
+  font: 600 clamp(20px,2.6vw,30px)/1.2 'Shippori Mincho',serif;
+  letter-spacing: .1px;
+  overflow-wrap: anywhere;
+}
+.kuro-story-quest > p { max-width: 760px; font-size: 13px; line-height: 1.8; color: #cbc5bc; }
+.kuro-story-quest .badge { width: fit-content; border-radius: 3px; }
+.kuro-story-quest .flex-row > button { min-height: 46px; border-radius: 5px; }
+.kuro-story-empty {
+  border: 1px dashed var(--line-bright);
+  border-radius: 8px;
+  background: linear-gradient(145deg, rgba(20,24,32,.9), rgba(8,10,15,.8));
+}
+.kuro-story-empty .section-title { border-bottom-color: var(--line-bright); font: 600 21px 'Shippori Mincho',serif; }
+.kuro-story-dialog {
+  z-index: 150;
+  padding: max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+  background: rgba(3,5,9,.92);
+  backdrop-filter: blur(9px);
+}
+.kuro-story-dialog__panel {
+  max-height: min(650px, calc(100dvh - 32px));
+  min-height: 390px;
+  width: 100%;
+  border: 1px solid rgba(212,162,42,.35);
+  border-radius: 10px;
+  background: #11151c;
+  box-shadow: 0 24px 90px rgba(0,0,0,.55);
+}
+.kuro-story-dialog__portrait { min-width: 0; }
+.kuro-story-dialog__portrait img { min-height: 390px; max-height: 650px; }
+.kuro-story-dialog__text { min-width: 0; overflow-y: auto; }
+.kuro-story-dialog__text > div:first-child {
+  color: #ece4d8;
+  font: italic 18px/1.9 'Shippori Mincho',serif;
+}
+.kuro-story-dialog__text .flex-between { gap: 12px; }
+.kuro-story-dialog__text button { min-height: 42px; border-radius: 5px; }
+.kuro-story-dialog__text .mono { color: var(--gold); font-size: 10px; }
+
+.kuro-event-page .kuro-event-empty {
+  border: 1px dashed var(--line-bright);
+  border-radius: 8px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(212,162,42,.06), transparent 55%), #11151c;
+}
+.kuro-event-page .kuro-event-empty h2 { font: 600 24px 'Shippori Mincho',serif; color: var(--paper); }
+.kuro-event-page .kuro-event-empty p { line-height: 1.7; }
+.kuro-world-boss-card {
+  align-items: stretch;
+  gap: 16px;
+  padding: clamp(20px,4vw,48px);
+  border: 1px solid rgba(224,54,63,.42);
+  border-radius: 10px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(224,54,63,.12), transparent 43%), linear-gradient(140deg, #19151a, #0e1118);
+  box-shadow: 0 20px 55px rgba(0,0,0,.25);
+}
+.kuro-world-boss-title { text-align: center; font: 600 clamp(25px,4vw,40px)/1.15 'Shippori Mincho',serif; letter-spacing: .6px; }
+.kuro-world-boss-card > p { margin: 0 auto; font-size: 13px; line-height: 1.8; color: #d0c9c1; }
+.kuro-world-boss-card .badge { padding: 7px 10px; border-radius: 4px; font-size: 10px; }
+.kuro-world-boss-art {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(120px,19vw,190px);
+  height: clamp(120px,19vw,190px);
+  margin: 0 auto 3px;
+  border: 1px solid rgba(224,54,63,.32);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,54,63,.13), rgba(8,10,15,.15) 66%);
+  filter: drop-shadow(0 0 30px rgba(224,54,63,.12));
+}
+.kuro-world-boss-health { margin: 4px auto 0; }
+.kuro-world-boss-health .flex-between { gap: 15px; }
+.kuro-world-boss-health .progress-track { height: 12px; border-radius: 8px; overflow: hidden; background: rgba(255,255,255,.07); }
+.kuro-world-boss-health .progress-fill { border-radius: 8px; box-shadow: 0 0 15px rgba(224,54,63,.28); }
+.kuro-world-boss-card > button.btn-primary {
+  align-self: center;
+  width: min(100%,330px);
+  min-height: 52px;
+  border-radius: 5px;
+  font-size: 15px;
+  box-shadow: 0 9px 28px rgba(224,54,63,.17);
+}
+.kuro-world-boss-card > .muted { font-size: 10px; line-height: 1.8; }
+
+.kuro-village-screen { isolation: isolate; background: var(--ink); }
+.kuro-village-screen > .absolute.inset-0.z-0 { filter: saturate(.8); }
+.kuro-village-screen > .absolute.inset-0.z-1 { background: linear-gradient(180deg, rgba(5,7,11,.25), rgba(5,7,11,.12) 42%, rgba(5,7,11,.57)) !important; }
+.kuro-village-header { max-width: min(590px, calc(100vw - 300px)); }
+.kuro-village-header > div { padding: 16px 18px; border: 1px solid rgba(212,162,42,.26); border-radius: 8px; background: rgba(8,10,15,.76); backdrop-filter: blur(10px); box-shadow: 0 12px 30px rgba(0,0,0,.22); }
+.kuro-village-header h1 { font-size: clamp(20px,2.5vw,28px) !important; }
+.kuro-village-header p { color: #b0aaa2 !important; }
+.kuro-village-screen .kuro-village-building { min-width: 94px; z-index: 10; }
+.kuro-village-building__icon {
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(212,162,42,.85);
+  background: rgba(8,10,15,.88);
+  box-shadow: 0 8px 28px rgba(0,0,0,.5), 0 0 0 5px rgba(8,10,15,.22);
+  transition: box-shadow .2s, border-color .2s;
+}
+.kuro-village-building:hover .kuro-village-building__icon {
+  border-color: #ffe09b;
+  box-shadow: 0 10px 35px rgba(0,0,0,.55), 0 0 24px rgba(212,162,42,.2);
+}
+.kuro-village-building__label {
+  max-width: 160px;
+  padding: 6px 9px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 4px;
+  background: rgba(6,8,12,.8);
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: .25px;
+  backdrop-filter: blur(5px);
+}
+.kuro-village-screen > .absolute.z-10.bottom-6.right-6 > .card-glass {
+  width: 190px;
+  border: 1px solid rgba(212,162,42,.36);
+  border-radius: 8px;
+  background: rgba(8,10,15,.84);
+  box-shadow: 0 15px 40px rgba(0,0,0,.3);
+}
+.kuro-village-modal { width: min(400px, calc(100vw - 28px)) !important; z-index: 30 !important; }
+.kuro-village-modal > .card-glass { max-height: min(80dvh, 700px); overflow-y: auto; border-radius: 9px; box-shadow: 0 24px 80px rgba(0,0,0,.55); }
+
+@media (max-width: 680px) {
+  .kuro-story-page, .kuro-event-page { padding: 12px 0 32px; }
+  .kuro-story-quest { padding: 18px; }
+  .kuro-story-quest > .flex-between { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .kuro-story-quest > .flex-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .kuro-story-quest > .flex-row button { width: 100%; }
+  .kuro-story-dialog { align-items: stretch; overflow-y: auto; }
+  .kuro-story-dialog__panel { flex-direction: column; max-height: none; min-height: 0; overflow: visible; }
+  .kuro-story-dialog__portrait { width: 100%; height: 150px; flex: 0 0 150px; border-right: 0; border-bottom: 1px solid var(--line-bright); }
+  .kuro-story-dialog__portrait img { width: 100%; height: 150px; min-height: 150px; object-fit: cover; object-position: center 35%; }
+  .kuro-story-dialog__portrait > div { padding: 9px 13px; }
+  .kuro-story-dialog__text { width: 100%; min-height: 220px; padding: 18px; gap: 12px; }
+  .kuro-story-dialog__text > div:first-child { font-size: 16px; line-height: 1.7; margin: 4px 0 18px; }
+  .kuro-story-dialog__text .flex-between { align-items: flex-end; }
+  .kuro-world-boss-card { padding: 22px 15px; gap: 14px; }
+  .kuro-world-boss-card .flex-row { gap: 7px; }
+  .kuro-world-boss-card .badge { font-size: 9px; }
+  .kuro-world-boss-health .flex-between { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .kuro-world-boss-art { width: 120px; height: 120px; font-size: 62px; }
+  .kuro-village-header { top: max(12px, env(safe-area-inset-top)) !important; left: 12px !important; max-width: calc(100vw - 24px); }
+  .kuro-village-header > div { padding: 10px 12px; }
+  .kuro-village-header h1 { font-size: 18px !important; }
+  .kuro-village-header p { font-size: 10px !important; }
+  .kuro-village-screen .kuro-village-building { min-width: 74px; }
+  .kuro-village-building__icon { width: 48px; height: 48px; }
+  .kuro-village-building__label { max-width: 105px; white-space: normal; font-size: 8px; padding: 4px 5px; }
+  .kuro-village-screen > .absolute.z-10.bottom-6.right-6 { right: 12px !important; bottom: max(12px, env(safe-area-inset-bottom)) !important; }
+  .kuro-village-screen > .absolute.z-10.bottom-6.right-6 > .card-glass { width: 142px; padding: 10px; }
+  .kuro-village-screen > .absolute.z-10.bottom-6.right-6 .text-3xl { font-size: 21px; }
+  .kuro-village-screen > .absolute.z-10.bottom-6.right-6 .text-lg { font-size: 13px; }
+  .kuro-village-screen > .absolute.inset-0.z-5 { overflow: auto; }
+  .kuro-village-modal { max-height: 85dvh; overflow-y: auto; }
+}

@@ -32,8 +32,59 @@ CREATE TABLE IF NOT EXISTS public.player_combat_sessions (
     expires_at timestamptz NOT NULL DEFAULT (now() + interval '30 minutes')
 );
 
-CREATE INDEX IF NOT EXISTS player_combat_sessions_owner_status_idx
-    ON public.player_combat_sessions(player_id, status, expires_at);
+ALTER TABLE public.player_combat_sessions
+    ADD COLUMN IF NOT EXISTS is_exam boolean NOT NULL DEFAULT false;
+ALTER TABLE public.player_combat_sessions
+    ADD COLUMN IF NOT EXISTS exam_round integer;
+
+ALTER TABLE public.npcs ADD COLUMN IF NOT EXISTS is_chunin_exam boolean NOT NULL DEFAULT false;
+ALTER TABLE public.npcs ADD COLUMN IF NOT EXISTS exam_round integer;
+CREATE UNIQUE INDEX IF NOT EXISTS npcs_chunin_exam_round_unique_idx
+    ON public.npcs(exam_round)
+    WHERE is_chunin_exam IS TRUE AND exam_round IS NOT NULL;
+
+INSERT INTO public.npcs
+    (name, level, hp, chakra, atk, def, element, avatar, xp_reward, ryou_reward,
+     rank, is_active, is_map_npc, is_story_mode, is_bingo_book, description,
+     is_chunin_exam, exam_round)
+VALUES
+    ('Exame Chunin — Etapa 1', 1, 100, 50, 8, 6, 'Katon', '🥷', 0, 0,
+     'Genin', true, false, false, false, 'Encontro interno do Exame Chunin — Etapa 1.', true, 1),
+    ('Exame Chunin — Etapa 2', 1, 100, 50, 8, 6, 'Suiton', '👺', 0, 0,
+     'Genin', true, false, false, false, 'Encontro interno do Exame Chunin — Etapa 2.', true, 2),
+    ('Exame Chunin — Etapa 3', 1, 100, 50, 8, 6, 'Doton', '👹', 0, 0,
+     'Genin', true, false, false, false, 'Encontro interno do Exame Chunin — Etapa 3.', true, 3)
+ON CONFLICT (exam_round) WHERE is_chunin_exam IS TRUE AND exam_round IS NOT NULL
+DO UPDATE SET
+    name = EXCLUDED.name,
+    level = EXCLUDED.level,
+    hp = EXCLUDED.hp,
+    chakra = EXCLUDED.chakra,
+    atk = EXCLUDED.atk,
+    def = EXCLUDED.def,
+    element = EXCLUDED.element,
+    avatar = EXCLUDED.avatar,
+    xp_reward = 0,
+    ryou_reward = 0,
+    rank = EXCLUDED.rank,
+    is_active = true,
+    is_map_npc = false,
+    is_story_mode = false,
+    is_bingo_book = false,
+    description = EXCLUDED.description;
+
+CREATE TABLE IF NOT EXISTS public.player_chunin_exams (
+    player_id integer PRIMARY KEY REFERENCES public.players(id) ON DELETE CASCADE,
+    current_round integer NOT NULL DEFAULT 1 CHECK (current_round BETWEEN 1 AND 4),
+    status text NOT NULL DEFAULT 'in_progress'
+        CHECK (status IN ('in_progress','completed','failed')),
+    active_session_id uuid,
+    created_at timestamptz NOT NULL DEFAULT now(),
+    updated_at timestamptz NOT NULL DEFAULT now(),
+    completed_at timestamptz
+);
+ALTER TABLE public.player_chunin_exams ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON TABLE public.player_chunin_exams FROM PUBLIC, anon, authenticated;
 
 ALTER TABLE public.player_combat_sessions ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON TABLE public.player_combat_sessions FROM PUBLIC, anon, authenticated;
@@ -164,6 +215,167 @@ AS $function$
 $function$;
 
 
+CREATE OR REPLACE FUNCTION public.iniciar_exame_chunin(
+    p_player_id integer,
+    p_round integer
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_player public.players%ROWTYPE;
+    v_exam public.player_chunin_exams%ROWTYPE;
+    v_session public.player_combat_sessions%ROWTYPE;
+    v_enemy public.npcs%ROWTYPE;
+    v_session_id uuid;
+    v_level integer;
+    v_hp integer;
+    v_chakra integer;
+    v_atk integer;
+    v_def integer;
+    v_element text;
+    v_max_hp integer;
+    v_max_chakra integer;
+    v_max_stamina integer;
+    v_player_hp integer;
+    v_player_chakra integer;
+    v_player_stamina integer;
+    v_hp_multiplier numeric;
+BEGIN
+    IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
+    IF p_round IS NULL OR p_round NOT BETWEEN 1 AND 3 THEN
+        RETURN jsonb_build_object('success',false,'error','Etapa de exame inválida.');
+    END IF;
+
+    SELECT * INTO v_player
+    FROM public.players
+    WHERE id = p_player_id AND user_id = auth.uid()
+    FOR UPDATE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
+
+    IF lower(COALESCE(v_player.rank,'')) <> 'genin' THEN
+        RETURN jsonb_build_object('success',false,'error','Somente ninjas Genin podem iniciar o Exame Chunin.');
+    END IF;
+    IF COALESCE(v_player.passou_exame_chunin,false) THEN
+        RETURN jsonb_build_object('success',false,'error','Você já foi aprovado no Exame Chunin.');
+    END IF;
+    IF COALESCE(v_player.is_fainted,false) OR COALESCE(v_player.hp,0) <= 0 THEN
+        RETURN jsonb_build_object('success',false,'error','Recupere-se no hospital antes de iniciar o exame.');
+    END IF;
+
+    SELECT * INTO v_exam
+    FROM public.player_chunin_exams
+    WHERE player_id = p_player_id
+    FOR UPDATE;
+
+    IF NOT FOUND THEN
+        IF p_round <> 1 THEN
+            RETURN jsonb_build_object('success',false,'error','O Exame deve começar pela Etapa 1.');
+        END IF;
+        INSERT INTO public.player_chunin_exams (player_id,current_round,status)
+        VALUES (p_player_id,1,'in_progress')
+        RETURNING * INTO v_exam;
+    ELSIF v_exam.status = 'failed' THEN
+        IF p_round <> 1 THEN
+            RETURN jsonb_build_object('success',false,'error','Após uma reprovação, reinicie pela Etapa 1.');
+        END IF;
+        UPDATE public.player_chunin_exams
+        SET current_round=1,status='in_progress',active_session_id=NULL,updated_at=now(),completed_at=NULL
+        WHERE player_id=p_player_id
+        RETURNING * INTO v_exam;
+    ELSIF v_exam.status = 'completed' THEN
+        RETURN jsonb_build_object('success',false,'error','Este exame já foi concluído.');
+    END IF;
+
+    IF v_exam.current_round <> p_round THEN
+        RETURN jsonb_build_object('success',false,'error','Etapa fora de ordem. Conclua a etapa atual primeiro.');
+    END IF;
+
+    IF v_exam.active_session_id IS NOT NULL THEN
+        SELECT * INTO v_session FROM public.player_combat_sessions
+        WHERE session_id = v_exam.active_session_id AND player_id = p_player_id;
+        IF FOUND AND v_session.status = 'active' AND v_session.expires_at > now() THEN
+            RETURN jsonb_build_object(
+                'success',true,'session_id',v_session.session_id,
+                'enemy_id',v_session.enemy_id,'enemy_name',v_session.enemy_name,
+                'enemy_level',v_session.enemy_level,'enemy_hp',v_session.enemy_hp_remaining,
+                'enemy_max_hp',v_session.enemy_max_hp,'enemy_atk',v_session.enemy_atk,
+                'enemy_def',v_session.enemy_def,'enemy_chakra',v_session.enemy_chakra,
+                'enemy_element',v_session.enemy_element,'xp_reward',0,'ryou_reward',0,
+                'player_hp',v_session.player_hp,'player_chakra',v_session.player_chakra,
+                'player_stamina',v_session.player_stamina,
+                'player_max_hp',v_session.player_max_hp,
+                'player_max_chakra',v_session.player_max_chakra,
+                'player_max_stamina',v_session.player_max_stamina,
+                'is_exam',true,'exam_round',v_session.exam_round
+            );
+        END IF;
+        UPDATE public.player_chunin_exams
+        SET active_session_id=NULL,updated_at=now()
+        WHERE player_id=p_player_id;
+    END IF;
+
+    SELECT * INTO v_enemy FROM public.npcs
+    WHERE is_chunin_exam IS TRUE AND exam_round = p_round AND COALESCE(is_active,true) IS TRUE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Catálogo interno do exame incompleto.'; END IF;
+
+    v_level := LEAST(1000, GREATEST(1, COALESCE(v_player.level,1) +
+        CASE p_round WHEN 1 THEN 0 WHEN 2 THEN 2 ELSE 4 END));
+    v_hp_multiplier := CASE p_round WHEN 1 THEN 1.0 WHEN 2 THEN 1.2 ELSE 1.5 END;
+    v_hp := LEAST(100000000, GREATEST(1, FLOOR(v_level * 100 * v_hp_multiplier)::integer));
+    v_chakra := LEAST(100000000, v_level * 50);
+    v_atk := LEAST(1000000, v_level * 8);
+    v_def := LEAST(1000000, v_level * 6);
+    v_element := (ARRAY['Katon','Suiton','Doton','Futon','Raiton'])[1 + FLOOR(random()*5)::integer];
+
+    v_max_hp := public.kurokage_player_max_stat(p_player_id,'hp');
+    v_max_chakra := public.kurokage_player_max_stat(p_player_id,'chakra');
+    v_max_stamina := public.kurokage_player_max_stat(p_player_id,'stamina');
+    v_player_hp := LEAST(v_max_hp,GREATEST(0,COALESCE(v_player.hp,v_max_hp)));
+    v_player_chakra := LEAST(v_max_chakra,GREATEST(0,COALESCE(v_player.chakra,v_max_chakra)));
+    v_player_stamina := LEAST(v_max_stamina,GREATEST(0,COALESCE(v_player.stamina,v_max_stamina)));
+    IF v_player_hp <= 0 THEN
+        RETURN jsonb_build_object('success',false,'error','Vida insuficiente para continuar o Exame Chunin.');
+    END IF;
+
+    UPDATE public.player_combat_sessions SET status='abandoned',awaiting_enemy_turn=false
+    WHERE player_id=p_player_id AND status='active';
+
+    INSERT INTO public.player_combat_sessions (
+        player_id,enemy_id,enemy_name,enemy_max_hp,enemy_hp_remaining,
+        enemy_atk,enemy_def,enemy_level,enemy_chakra,enemy_element,
+        player_max_hp,player_max_chakra,player_max_stamina,
+        player_hp,player_chakra,player_stamina,from_map,is_dojo,is_exam,exam_round
+    ) VALUES (
+        p_player_id,v_enemy.id,v_enemy.name,v_hp,v_hp,
+        v_atk,v_def,v_level,v_chakra,v_element,
+        v_max_hp,v_max_chakra,v_max_stamina,
+        v_player_hp,v_player_chakra,v_player_stamina,false,false,true,p_round
+    ) RETURNING session_id INTO v_session_id;
+
+    UPDATE public.player_chunin_exams
+    SET active_session_id=v_session_id,updated_at=now()
+    WHERE player_id=p_player_id;
+
+    RETURN jsonb_build_object(
+        'success',true,'session_id',v_session_id,
+        'enemy_id',v_enemy.id,'enemy_name',v_enemy.name,
+        'enemy_level',v_level,'enemy_hp',v_hp,'enemy_max_hp',v_hp,
+        'enemy_atk',v_atk,'enemy_def',v_def,'enemy_chakra',v_chakra,
+        'enemy_element',v_element,'xp_reward',0,'ryou_reward',0,
+        'player_hp',v_player_hp,'player_chakra',v_player_chakra,
+        'player_stamina',v_player_stamina,'player_max_hp',v_max_hp,
+        'player_max_chakra',v_max_chakra,'player_max_stamina',v_max_stamina,
+        'is_exam',true,'exam_round',p_round
+    );
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.iniciar_exame_chunin(integer,integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.iniciar_exame_chunin(integer,integer) TO authenticated, service_role;
+
+
 CREATE OR REPLACE FUNCTION public.iniciar_combate_sessao(
     p_player_id integer,
     p_enemy_id integer,
@@ -212,6 +424,9 @@ BEGIN
 
     IF NOT FOUND THEN
         RETURN jsonb_build_object('success', false, 'error', 'Inimigo não encontrado no catálogo oficial.');
+    END IF;
+    IF COALESCE(v_enemy.is_chunin_exam,false) THEN
+        RETURN jsonb_build_object('success',false,'error','Este inimigo só pode ser acessado pelo fluxo oficial do Exame Chunin.');
     END IF;
 
     v_hp := GREATEST(1, COALESCE(v_enemy.hp, 1));
@@ -607,6 +822,12 @@ BEGIN
         fainted_at = CASE WHEN v_new_player_hp <= 0 THEN now() ELSE NULL END
     WHERE id = p_player_id;
 
+    IF v_new_player_hp <= 0 AND v_session.is_exam THEN
+        UPDATE public.player_chunin_exams
+        SET status='failed',current_round=1,active_session_id=NULL,updated_at=now()
+        WHERE player_id=p_player_id;
+    END IF;
+
     IF v_new_player_hp <= 0 AND v_session.is_dojo THEN
         UPDATE public.players SET losses_dojo = COALESCE(losses_dojo,0)+1 WHERE id = p_player_id;
     END IF;
@@ -655,6 +876,9 @@ BEGIN
     FOR UPDATE;
     IF NOT FOUND OR v_session.status <> 'active' OR v_session.awaiting_enemy_turn OR v_session.expires_at <= now() THEN
         RETURN jsonb_build_object('success', false, 'error', 'Sessão não está pronta para usar consumível.');
+    END IF;
+    IF v_session.is_exam THEN
+        RETURN jsonb_build_object('success',false,'error','Consumíveis são proibidos durante o Exame Chunin.');
     END IF;
 
     SELECT * INTO v_consumable FROM public.consumables
@@ -761,6 +985,32 @@ BEGIN
         daily_map_battles = CASE WHEN v_session.from_map THEN COALESCE(daily_map_battles,0)+1 ELSE COALESCE(daily_map_battles,0) END
     WHERE id = p_player_id;
 
+    IF v_session.is_exam THEN
+        IF v_session.exam_round = 3 THEN
+            UPDATE public.players SET passou_exame_chunin=true WHERE id=p_player_id;
+            UPDATE public.player_chunin_exams
+            SET status='completed',current_round=4,active_session_id=NULL,
+                completed_at=now(),updated_at=now()
+            WHERE player_id=p_player_id;
+            RETURN jsonb_build_object(
+                'success',true,'session_settled',true,'is_exam',true,
+                'exam_round_completed',3,'exam_completed',true,
+                'message','Exame Chunin concluído. Aprovação confirmada pelo servidor.'
+            );
+        ELSE
+            UPDATE public.player_chunin_exams
+            SET status='in_progress',current_round=v_session.exam_round+1,
+                active_session_id=NULL,updated_at=now()
+            WHERE player_id=p_player_id;
+            RETURN jsonb_build_object(
+                'success',true,'session_settled',true,'is_exam',true,
+                'exam_round_completed',v_session.exam_round,
+                'next_round',v_session.exam_round+1,
+                'message','Etapa concluída. Prossiga para a próxima etapa.'
+            );
+        END IF;
+    END IF;
+
     v_reward := public.finalizar_combate(
         p_player_id,
         v_session.enemy_id,
@@ -779,6 +1029,47 @@ BEGIN
     );
 END;
 $function$;
+
+
+CREATE OR REPLACE FUNCTION public.abandonar_combate_sessao(
+    p_player_id integer,
+    p_session_id uuid
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_player public.players%ROWTYPE;
+    v_session public.player_combat_sessions%ROWTYPE;
+BEGIN
+    IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
+    SELECT * INTO v_player FROM public.players
+    WHERE id=p_player_id AND user_id=auth.uid() FOR UPDATE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
+
+    SELECT * INTO v_session FROM public.player_combat_sessions
+    WHERE session_id=p_session_id AND player_id=p_player_id FOR UPDATE;
+    IF NOT FOUND OR v_session.status <> 'active' THEN
+        RETURN jsonb_build_object('success',false,'error','Sessão de combate não está ativa.');
+    END IF;
+
+    UPDATE public.player_combat_sessions
+    SET status='abandoned',awaiting_enemy_turn=false,last_action_at=clock_timestamp()
+    WHERE session_id=p_session_id;
+
+    IF v_session.is_exam THEN
+        UPDATE public.player_chunin_exams
+        SET status='failed',current_round=1,active_session_id=NULL,updated_at=now()
+        WHERE player_id=p_player_id;
+    END IF;
+
+    RETURN jsonb_build_object('success',true,'abandoned',true,'is_exam',v_session.is_exam);
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.abandonar_combate_sessao(integer,uuid) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.abandonar_combate_sessao(integer,uuid) TO authenticated, service_role;
 
 
 CREATE OR REPLACE FUNCTION public.aprender_jutsu(
@@ -949,7 +1240,8 @@ GRANT EXECUTE ON FUNCTION public.aprender_jutsus_massa(integer,jsonb,integer) TO
 -- The browser must not edit permanent stats, learned jutsus, essence inventory, or daily chakra totals.
 REVOKE UPDATE (tai, nin, gen, buk, taijutsu, bukijutsu, ninjutsu, genjutsu,
     forca, agilidade, inteligencia, selo, resistencia, energia,
-    jutsus_learned, inventory_essences, daily_chakra_spent)
+    jutsus_learned, inventory_essences, daily_chakra_spent,
+    passou_exame_chunin)
 ON public.players FROM PUBLIC, anon, authenticated;
 
 
@@ -960,6 +1252,12 @@ REVOKE ALL ON FUNCTION public.kurokage_elemental_multiplier(text,text) FROM PUBL
 
 REVOKE ALL ON FUNCTION public.iniciar_combate_sessao(integer,integer,boolean,boolean) FROM PUBLIC, anon;
 GRANT EXECUTE ON FUNCTION public.iniciar_combate_sessao(integer,integer,boolean,boolean) TO authenticated, service_role;
+
+REVOKE ALL ON FUNCTION public.iniciar_exame_chunin(integer,integer) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.iniciar_exame_chunin(integer,integer) TO authenticated, service_role;
+
+REVOKE ALL ON FUNCTION public.abandonar_combate_sessao(integer,uuid) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.abandonar_combate_sessao(integer,uuid) TO authenticated, service_role;
 
 REVOKE ALL ON FUNCTION public.resolver_turno_combate_sessao(integer,uuid,text,integer) FROM PUBLIC, anon;
 GRANT EXECUTE ON FUNCTION public.resolver_turno_combate_sessao(integer,uuid,text,integer) TO authenticated, service_role;

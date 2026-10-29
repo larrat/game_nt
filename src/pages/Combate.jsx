@@ -74,6 +74,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const rawNpc = location.state?.npc;
   const isMirror = location.state?.isMirror;
+  const isExame = Boolean(location.state?.isExame);
   const npcInitVal = (rawNpc && rawNpc.is_story_mode && !isMirror) ? scaleStoryNPC(rawNpc, player) : rawNpc;
   const isAltAutoBattle = location.state?.isAltAutoBattle || false;
 
@@ -212,14 +213,15 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const combatSessionEligible = Boolean(
     player?.id &&
     !location.state?.isWorldBoss &&
-    !isMirror &&
+    (!isMirror || isExame) &&
     !npcInit?.is_dummy &&
-    !location.state?.isGhost &&
+    (!location.state?.isGhost || isExame) &&
     !location.state?.isBijuuHunt &&
     !isAltAutoBattle &&
     !(raidTotal > 0) &&
-    Number.isInteger(Number(npcInit?.id)) &&
-    Number(npcInit.id) > 0
+    (isExame
+      ? Number(location.state?.exameRound) >= 1 && Number(location.state?.exameRound) <= 3
+      : Number.isInteger(Number(npcInit?.id)) && Number(npcInit.id) > 0)
   );
 
   useEffect(() => {
@@ -228,16 +230,21 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     setCombatSessionLoading(true);
 
     const startSession = async () => {
-      const { data, error } = await supabase.rpc('iniciar_combate_sessao', {
-        p_player_id: player.id,
-        p_enemy_id: Number(npcInit.id),
-        p_from_map: Boolean(location.state?.fromMap),
-        p_is_dojo: !location.state?.fromMap &&
-          !location.state?.isStoryQuest &&
-          !npcInit?.is_story_mode &&
-          !npcInit?.is_bingo_book &&
-          !location.state?.isBetrayal
-      });
+      const { data, error } = isExame
+        ? await supabase.rpc('iniciar_exame_chunin', {
+            p_player_id: player.id,
+            p_round: Number(location.state?.exameRound)
+          })
+        : await supabase.rpc('iniciar_combate_sessao', {
+            p_player_id: player.id,
+            p_enemy_id: Number(npcInit.id),
+            p_from_map: Boolean(location.state?.fromMap),
+            p_is_dojo: !location.state?.fromMap &&
+              !location.state?.isStoryQuest &&
+              !npcInit?.is_story_mode &&
+              !npcInit?.is_bingo_book &&
+              !location.state?.isBetrayal
+          });
 
       if (error || !data?.success || !data?.session_id) {
         const reason = error?.message || data?.error || 'Resposta inválida do servidor.';
@@ -283,7 +290,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   }, [
     combatSessionEligible, player?.id, npcInit?.id,
     location.state?.fromMap, location.state?.isStoryQuest,
-    location.state?.isBetrayal, npcInit?.is_story_mode,
+    location.state?.isBetrayal, location.state?.isExame,
+    location.state?.exameRound, npcInit?.is_story_mode,
     npcInit?.is_bingo_book, addToast, setPlayerState
   ]);
 
@@ -460,6 +468,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
 
     const hasVerifiedWin = Boolean(combatSessionId && !resultError && resultData?.success && resultData?.session_settled);
+    if (hasVerifiedWin && resultData?.is_exam === true) {
+      await updatePlayer(player.id);
+      navigate('/exame', { state: { roundWon: Number(resultData.exam_round_completed) } });
+      setLoading(false);
+      return;
+    }
     const gainedRyous = hasVerifiedWin ? (resultData?.ryous_gained || 0) : 0;
     const gainedXp = hasVerifiedWin ? (resultData?.xp_gained || 0) : 0;
     const levelsGained = hasVerifiedWin ? (resultData?.levels_gained || 0) : 0;
@@ -662,6 +676,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
           addLog('Você foi derrotado e caiu inconsciente...');
           setBattleResult('lose');
           await setPlayerFainted();
+          if (isExame) navigate('/exame', { state: { examFailed: true } });
         } else {
           startPlayerTurn();
         }
@@ -1328,6 +1343,17 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     setSurrenderConfirm(false);
     addLog('Você jogou a toalha e desistiu da batalha...');
     setBattleResult('surrender');
+    if (combatSessionId) {
+      const { data, error } = await supabase.rpc('abandonar_combate_sessao', {
+        p_player_id: player.id,
+        p_session_id: combatSessionId
+      });
+      if (error || !data?.success) {
+        addToast('Não foi possível encerrar a sessão com segurança: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+      } else if (isExame) {
+        navigate('/exame', { state: { examFailed: true } });
+      }
+    }
     await setPlayerFainted();
   };
 

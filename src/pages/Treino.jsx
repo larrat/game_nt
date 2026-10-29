@@ -22,6 +22,7 @@ export default function Treino({ player, updatePlayer }) {
   const [attrsData, setAttrsData] = useState([]);
   const [ranksData, setRanksData] = useState([]);
   const [selectedAttr, setSelectedAttr] = useState(null);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const { addToast } = useToast();
 
   React.useEffect(() => {
@@ -39,7 +40,15 @@ export default function Treino({ player, updatePlayer }) {
   if (!player || attrsData.length === 0 || ranksData.length === 0) return null;
 
   const playerRank = player.rank || 'Genin';
-  const playerRankData = ranksData.find(r => r.name_id === playerRank) || ranksData.find(r => r.name_id === 'Genin');
+  const rankKey = String(playerRank).toLowerCase();
+  const playerRankData = ranksData.find(r =>
+    r.title?.toLowerCase() === rankKey ||
+    r.name_id?.toLowerCase() === rankKey ||
+    (rankKey === 'jounin' && r.name_id === 'jonin') ||
+    (rankKey === 'herói' && r.name_id === 'heroi')
+  ) || ranksData.find(r => r.name_id === 'estudante') || ranksData[0];
+  const maxQuantity = Math.min(5, Math.max(0, Number(player.pontos_atributos) || 0));
+  const quantity = Math.max(1, Math.min(selectedQuantity, maxQuantity));
   
   const rankMultiplier = {
     minMult: playerRankData.train_min_mult,
@@ -61,35 +70,38 @@ export default function Treino({ player, updatePlayer }) {
   };
 
   const getRange = (heroMin, heroMax) => {
-    const min = Math.max(1, Math.floor(heroMin * rankMultiplier.minMult));
-    const max = Math.max(1, Math.floor(heroMax * rankMultiplier.maxMult));
-    return { min, max, bonus: rankMultiplier.bonus };
+    const minBase = Math.max(1, Math.floor(heroMin * (rankMultiplier.minMult ?? 0.2)));
+    const maxBase = Math.max(minBase, Math.floor(heroMax * (rankMultiplier.maxMult ?? 0.3)));
+    const bonus = rankMultiplier.bonus ?? 1;
+    return { min: minBase + bonus, max: maxBase + bonus, bonus };
   };
 
   const handleTrain = async () => {
     if (!selectedAttr) return;
-    if (player.pontos_atributos <= 0) {
+    if (maxQuantity < 1) {
       addToast('Você não tem Pontos de Atributo disponíveis!', 'error');
       return;
     }
-    
-    setLoading(true);
-    const { min, max } = getRange(selectedAttr.hero_min, selectedAttr.hero_max);
-    
-    const { data, error } = await supabase.rpc('treinar_atributo', {
-      p_player_id: player.id,
-      p_atributo: selectedAttr.field,
-      p_hero_min: min,
-      p_hero_max: max
-    });
 
-    if (error) {
-      addToast('Erro no treinamento: ' + error.message, 'error');
-    } else {
-      addToast(`Você ganhou +${data.gained} em ${selectedAttr.label}!`, 'success');
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.rpc('treinar_atributos', {
+        p_player_id: player.id,
+        p_atributo: selectedAttr.field,
+        p_quantidade: quantity
+      });
+
+      if (error || !data?.success) {
+        addToast('Erro no treinamento: ' + (error?.message || data?.error || 'Não foi possível treinar.'), 'error');
+        return;
+      }
+      addToast(`Você ganhou +${data.gained} em ${selectedAttr.label} usando ${data.quantity} ponto(s)!`, 'success');
       await updatePlayer(player.id);
+    } catch (err) {
+      addToast('Erro no treinamento: ' + (err?.message || 'Falha inesperada.'), 'error');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   // Funções de Simulação
@@ -121,7 +133,7 @@ export default function Treino({ player, updatePlayer }) {
       <PageHeader 
         eyebrow={`Graduação: ${playerRank}`} 
         title='Centro de Treinamento' 
-        subtitle='Simule e treine os seus atributos com base nos seus Pontos Livres disponíveis.' 
+        subtitle='Simule e distribua até 5 Pontos de Atributo por treinamento.' 
       />
 
       <div className="kuro-training-points flex-between bg-ink-raised px-6 py-4 rounded-md border-line-solid border-seal-bright mb-6">
@@ -190,9 +202,9 @@ export default function Treino({ player, updatePlayer }) {
                   const { min, max, bonus } = getRange(selectedAttr.hero_min, selectedAttr.hero_max);
                   return (
                     <div className="flex-col gap-2">
-                      <span className="muted uppercase mono text-xs">GANHO ESTIMADO POR TREINO:</span>
+                      <span className="muted uppercase mono text-xs">GANHO ESTIMADO POR {quantity} PONTO(S):</span>
                       <span className="paper mono text-md">
-                        +{min} a +{max} <span className="gold text-xs">(+{bonus} Bônus Rank)</span>
+                        +{min * quantity} a +{max * quantity} <span className="gold text-xs">(+{bonus} por ponto de Rank, já incluído)</span>
                       </span>
                     </div>
                   );
@@ -207,26 +219,41 @@ export default function Treino({ player, updatePlayer }) {
                   
                   return (
                     <div className="flex-col">
-                      {renderSimChange('HP Máximo', field, min, max, calculateHP)}
-                      {renderSimChange('Chakra (CP)', field, min, max, calculateChakra)}
-                      {renderSimChange('Stamina (SP)', field, min, max, calculateStamina)}
-                      {renderSimChange('Atk (Físico)', field, min, max, calculateAtkTaiBuk)}
-                      {renderSimChange('Atk (Mágico)', field, min, max, calculateAtkNinGen)}
-                      {renderSimChange('Def (Física)', field, min, max, calculateDefTaiBuk)}
-                      {renderSimChange('Def (Mágica)', field, min, max, calculateDefNinGen)}
-                      {renderSimChange('Chance Crítico', field, min, max, calculateCritChance)}
-                      {renderSimChange('Esquiva', field, min, max, calculateDodgeChance)}
+                      {renderSimChange('HP Máximo', field, min * quantity, max * quantity, calculateHP)}
+                      {renderSimChange('Chakra (CP)', field, min * quantity, max * quantity, calculateChakra)}
+                      {renderSimChange('Stamina (SP)', field, min * quantity, max * quantity, calculateStamina)}
+                      {renderSimChange('Atk (Físico)', field, min * quantity, max * quantity, calculateAtkTaiBuk)}
+                      {renderSimChange('Atk (Mágico)', field, min * quantity, max * quantity, calculateAtkNinGen)}
+                      {renderSimChange('Def (Física)', field, min * quantity, max * quantity, calculateDefTaiBuk)}
+                      {renderSimChange('Def (Mágica)', field, min * quantity, max * quantity, calculateDefNinGen)}
+                      {renderSimChange('Chance Crítico', field, min * quantity, max * quantity, calculateCritChance)}
+                      {renderSimChange('Esquiva', field, min * quantity, max * quantity, calculateDodgeChance)}
                     </div>
                   );
                 })()}
               </div>
 
-              <button 
-                className="btn-primary w-full p-4 text-md" 
-                onClick={handleTrain} 
-                disabled={loading || player.pontos_atributos <= 0}
+              <div className="flex-between gap-4 mb-4">
+                <label htmlFor="training-quantity" className="muted text-sm">Pontos a gastar (até 5)</label>
+                <select
+                  id="training-quantity"
+                  className="bg-ink-raised paper border-line-solid rounded-sm p-2"
+                  value={maxQuantity > 0 ? quantity : ''}
+                  onChange={(event) => setSelectedQuantity(Number(event.target.value))}
+                  disabled={loading || maxQuantity === 0}
+                >
+                  {maxQuantity === 0 && <option value="">Sem pontos</option>}
+                  {Array.from({ length: maxQuantity }, (_, index) => (
+                    <option value={index + 1} key={index + 1}>{index + 1}</option>
+                  ))}
+                </select>
+              </div>
+              <button
+                className="btn-primary w-full p-4 text-md"
+                onClick={handleTrain}
+                disabled={loading || maxQuantity === 0}
               >
-                Gastar 1 Ponto em {selectedAttr.label}
+                {loading ? 'Treinando...' : `Gastar ${quantity} Ponto(s) em ${selectedAttr.label}`}
               </button>
             </div>
           ) : (

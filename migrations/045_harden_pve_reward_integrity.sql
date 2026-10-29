@@ -314,11 +314,11 @@ BEGIN
     LIMIT 1;
 
     IF v_next_quest_id IS NOT NULL THEN
-        INSERT INTO public.player_quests (player_id, quest_id, status)
+        INSERT INTO public.player_quests AS existing (player_id, quest_id, status)
         VALUES (p_player_id, v_next_quest_id, 'active')
         ON CONFLICT (player_id, quest_id)
         DO UPDATE SET status = 'active', completed_at = NULL
-        WHERE public.player_quests.status = 'pending';
+        WHERE existing.status = 'pending';
     END IF;
 
     RETURN jsonb_build_object(

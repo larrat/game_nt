@@ -3741,7 +3741,7 @@ textarea {
   font-size: 54px;
 }
 .kuro-status-page .kuro-status-hero > div.flex-between.w-full.relative.z-10 {
-  padding-top: 66px !important;
+  padding-top: 116px !important;
   gap: 22px;
 }
 .kuro-status-page .kuro-status-hero > div.flex-between.w-full.relative.z-10 > div:first-child,
@@ -3966,7 +3966,7 @@ textarea {
     flex-direction: column;
     align-items: stretch;
     gap: 13px;
-    padding-top: 52px !important;
+    padding-top: 86px !important;
   }
   .kuro-status-page .kuro-status-hero > div.flex-between.w-full.relative.z-10 > div:first-child,
   .kuro-status-page .kuro-status-hero > div.flex-between.w-full.relative.z-10 > div:last-child {

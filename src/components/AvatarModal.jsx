@@ -10,17 +10,34 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
   const [allAvatars, setAllAvatars] = useState([]);
 
   useEffect(() => {
+    if (!isOpen || !player?.character_id) {
+      if (!isOpen) setAllAvatars([]);
+      return undefined;
+    }
+
+    let cancelled = false;
+    setSelectedAvatar(player.avatar || '');
+    setAllAvatars([]);
+
     async function fetchAvatars() {
-      if (!player.character_id) return;
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('avatars')
         .select('*')
         .eq('character_id', player.character_id)
         .order('id');
-      if (data) setAllAvatars(data);
+
+      if (cancelled) return;
+      if (error) {
+        addToast('Não foi possível carregar os avatares deste personagem.', 'error');
+        setAllAvatars([]);
+        return;
+      }
+      setAllAvatars(data || []);
     }
-    if (isOpen) fetchAvatars();
-  }, [isOpen]);
+
+    fetchAvatars();
+    return () => { cancelled = true; };
+  }, [isOpen, player?.id, player?.character_id, player?.avatar]);
 
   if (!isOpen || !player) return null;
 
@@ -31,10 +48,10 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
     }
 
     setLoading(true);
-    const { error } = await supabase
-      .from('players')
-      .update({ avatar: selectedAvatar })
-      .eq('id', player.id);
+    const { error } = await supabase.rpc('alterar_avatar_jogador', {
+      p_player_id: player.id,
+      p_avatar_id: selectedAvatar
+    });
 
     if (!error) {
       await updatePlayer(player.id);
@@ -74,7 +91,7 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
 
         <div className="avatar-modal-foot">
           <button className="btn-ghost" onClick={onClose} disabled={loading}>Cancelar</button>
-          <button className="btn-primary" onClick={handleConfirm} disabled={loading}>
+          <button className="btn-primary" onClick={handleConfirm} disabled={loading || !selectedAvatar}>
             <span>{loading ? 'Salvando...' : 'Confirmar'}</span>
             <div className="stamp"></div>
           </button>

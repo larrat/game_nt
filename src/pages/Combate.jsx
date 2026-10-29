@@ -360,13 +360,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     const { data: resultData, error: resultError } = await supabase.rpc('finalizar_combate', {
       p_player_id: player.id,
-      p_enemy_id: npcInit.id || 999999,
+      p_enemy_id: Number.isInteger(Number(npcInit.id)) ? Number(npcInit.id) : 999999,
       p_result: 'win',
       p_turn_count: roundCount,
       p_combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${maxPlayerHP} | Chakra: ${playerCP}/${maxPlayerCP} | Stamina: ${playerSt}/${maxPlayerSt}`],
       p_fallback_xp: npcInit.xp_reward || Math.floor(((npcInit.level || 1) * 22) + 28),
       p_fallback_ryous: npcInit.ryou_reward || Math.floor(((npcInit.level || 1) * 24) + 23),
-      p_enemy_name: npcInit.name || 'Desconhecido'
+      p_enemy_name: npcInit.name || 'Desconhecido',
+      p_from_map: Boolean(location.state?.fromMap)
     });
 
     if (resultError) {
@@ -380,57 +381,16 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     let droppedItemMsg = '';
     let vipCoinMsg = '';
-    if (!location.state?.isGhost && !location.state?.isWorldBoss) {
-
-      // --- 1. Drop Raro de Kuro Coin (2% de chance) ---
-      if (Math.random() <= 0.02) {
-        const { error: vipError } = await supabase.from('players').update({
-          vip_coins: (player.vip_coins || 0) + 1
-        }).eq('id', player.id);
-        if (!vipError) {
-          vipCoinMsg = ' 🪙 +1 Kuro Coin!';
-        }
-      }
-
-      // --- 2. Drop de Equipamento ---
-      const dropChance = location.state?.fromMap ? 0.35 : 0.25;
-      if (Math.random() <= dropChance && !npcInit.is_dummy) {
-        const { data: baseItems } = await supabase.from('items').select('*');
-        if (baseItems && baseItems.length > 0) {
-          const randomBaseItem = baseItems[Math.floor(Math.random() * baseItems.length)];
-          const playerNinjaClass = '';
-          const rarity = await rollRarity(player.rank || 'Genin');
-          const rolledStats = await generateLootStats(rarity, player.rank || 'Genin', playerNinjaClass);
-
-          const { error: insertError } = await supabase.from('player_inventory').insert({
-            player_id: player.id,
-            item_id: randomBaseItem.id,
-            is_equipped: false,
-            is_favorite: false,
-            rarity: rarity,
-            rolled_stats: rolledStats
-          });
-
-          if (!insertError) {
-            droppedItemMsg = ` Você encontrou [${randomBaseItem.name}] (${rarity})!`;
-          }
-        }
-      }
-
-      // --- 3. Drop de Essência de Aprimoramento ---
-      const essenceDropChance = location.state?.fromMap ? 0.30 : 0.15;
-      if (Math.random() <= essenceDropChance && !npcInit.is_dummy) {
-        const rankToTier = { 'Estudante da Academia': 1, 'Genin': 1, 'Chunin': 2, 'Jounin': 3, 'ANBU': 4, 'Sannin': 4, 'Herói': 5 };
-        const tier = rankToTier[player.rank] || 1;
-        const essenceTypes = ['dano', 'custo', 'letalidade', 'protecao'];
-        const randomType = essenceTypes[Math.floor(Math.random() * essenceTypes.length)];
-        const essenceKey = `${randomType}_${tier}`;
-
-        const currentEssences = player.inventory_essences || {};
-        const newEssences = { ...currentEssences, [essenceKey]: (currentEssences[essenceKey] || 0) + 1 };
-        await supabase.from('players').update({ inventory_essences: newEssences }).eq('id', player.id);
-        droppedItemMsg += ` 📜 +1 Essência [${randomType.toUpperCase()} Tier ${tier}]!`;
-      }
+    if (resultData?.vip_coin_dropped) vipCoinMsg = ' 🪙 +1 Kuro Coin!';
+    if (resultData?.loot_item_name) {
+      droppedItemMsg = ` Você encontrou [${resultData.loot_item_name}] (${resultData.loot_rarity || 'Comum'})!`;
+    }
+    if (resultData?.essence_key) {
+      const [essenceType, essenceTier] = String(resultData.essence_key).split('_');
+      droppedItemMsg += ` 📜 +1 Essência [${String(essenceType).toUpperCase()} Tier ${essenceTier}]!`;
+    }
+    if (resultData && resultData.enemy_in_catalog === false) {
+      addToast('Este inimigo não está no catálogo oficial; recompensas de combate foram bloqueadas por segurança.', 'info');
     }
 
     if ((npcInit.is_story_mode || npcInit.is_bingo_book) && !location.state?.isGhost) {
@@ -458,8 +418,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       await updatePlayer(player.id);
     }
     if (location.state?.isBetrayal) {
-      await supabase.from('players').update({ village_id: 8, clan: null, rank: 'Nukenin' }).eq('id', player.id);
-      addToast("Você traiu sua vila e agora faz parte da Akatsuki!", "success");
+      const { error: betrayalError } = await supabase.rpc('trair_vila', { p_player_id: player.id });
+      if (betrayalError) addToast('Erro ao registrar traição: ' + betrayalError.message, 'error');
+      else addToast("Você traiu sua vila e agora faz parte da Akatsuki!", "success");
     } else if (location.state?.isBijuuHunt) {
       addToast("Caçada concluída! Chakra da Bijuu extraído para a Organização!", "success");
     } else if (location.state?.isGhost) {
@@ -491,34 +452,27 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const handleWorldBossEnd = async () => {
     setLoading(true);
-    if (accumulatedDamage > 0) {
-      const newBossHp = Math.max(0, npcInit.hp - accumulatedDamage);
-      const isDead = newBossHp <= 0;
-      await supabase.from('global_events').update({ boss_hp: newBossHp }).eq('id', npcInit.eventId);
 
-      // Rastrear Dano (UPSERT com Soma)
-      const { data: currentDmg } = await supabase.from('world_boss_damage')
-        .select('total_damage').eq('player_id', player.id).eq('event_id', npcInit.eventId).single();
+    // O dano e as recompensas já foram registrados atomicamente pelo servidor
+    // a cada turno; o cliente não pode editar o HP global nem distribuir baús.
+    if (npcInit?.bossSessionId) {
+      const { data, error } = await supabase.rpc('encerrar_world_boss', {
+        p_player_id: player.id,
+        p_session_id: npcInit.bossSessionId
+      });
 
-      const newTotalDamage = (currentDmg?.total_damage || 0) + accumulatedDamage;
-
-      await supabase.from('world_boss_damage').upsert({
-        player_id: player.id,
-        event_id: npcInit.eventId,
-        total_damage: newTotalDamage,
-        is_last_hit: isDead
-      }, { onConflict: 'player_id,event_id' });
-
-      if (isDead) {
-        addLog(`O Boss Mundial foi derrotado! Você deu o golpe final! As recompensas estão sendo distribuídas...`);
-        // Chama a RPC de distribuição
-        await supabase.rpc('distribute_boss_rewards', { p_event_id: npcInit.eventId });
-        addToast(`A Raposa de Nove Caudas foi selada! Verifique seu inventário.`, 'success');
-      } else {
-        addToast(`Sua contribuição de ${accumulatedDamage} de dano foi registrada para o evento!`, 'info');
+      if (error || data?.success === false) {
+        addToast('Não foi possível encerrar a sessão: ' + (error?.message || data?.error || 'erro desconhecido'), 'error');
+      } else if (npcHP <= 0) {
+        addLog('O Chefe Mundial foi derrotado. As recompensas foram processadas pelo servidor.');
+        addToast('A incursão terminou. Confira suas recompensas no inventário.', 'success');
+      } else if ((data?.damage_total || accumulatedDamage) > 0) {
+        addToast(`Sua contribuição de ${data?.damage_total ?? accumulatedDamage} de dano já foi registrada.`, 'info');
       }
     }
+
     await setPlayerFainted();
+    await updatePlayer(player.id);
     navigate('/hospital');
   };
 
@@ -817,32 +771,39 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
     if (USE_SERVER_COMBAT) {
       setIsPlayerTurn(false);
-      const { data, error } = await supabase.rpc('resolver_turno_combate', {
-        p_player_id: player.id,
-        p_action: 'basic',
-        p_target_type: 'npc',
-        p_npc_stats: { def: npcDef, element: npcInit.element },
-        p_global_debuffs: globalDebuffs,
-        p_equipped_summon: equippedSummon,
-        p_active_buffs: activeBuffs,
-        p_portao_multiplier: portaoAtkMultiplier,
-        p_player_atk_fis: playerAtkTaiBuk,
-        p_player_atk_mag: playerAtkNinGen
-      });
+      const isWorldBoss = Boolean(location.state?.isWorldBoss);
+      const { data, error } = isWorldBoss
+        ? await supabase.rpc('atacar_world_boss', {
+            p_player_id: player.id,
+            p_session_id: npcInit.bossSessionId,
+            p_action: 'basic'
+          })
+        : await supabase.rpc('resolver_turno_combate', {
+            p_player_id: player.id,
+            p_action: 'basic',
+            p_target_type: 'npc',
+            p_npc_stats: { def: npcDef, element: npcInit.element },
+            p_global_debuffs: globalDebuffs,
+            p_equipped_summon: equippedSummon,
+            p_active_buffs: activeBuffs,
+            p_portao_multiplier: portaoAtkMultiplier,
+            p_player_atk_fis: playerAtkTaiBuk,
+            p_player_atk_mag: playerAtkNinGen
+          });
 
-      if (error) {
-        addToast('Erro ao contatar o servidor de combate. Tentando fallback local...', 'error');
-        setIsPlayerTurn(true);
+      if (error || data?.error || data?.success === false) {
+        const message = error?.message || data?.error || 'Falha ao resolver o ataque.';
+        addToast('Erro ao resolver o ataque: ' + message, 'error');
+        if (isWorldBoss && /chefe mundial|derrotado|evento terminou/i.test(message)) {
+          setNpcHP(0);
+          setBattleResult('world_boss_end');
+        } else {
+          setIsPlayerTurn(true);
+        }
         return;
       }
 
-      if (data.error) {
-        addToast(data.error, 'error');
-        setIsPlayerTurn(true);
-        return;
-      }
-
-      setPlayerSt(prev => prev - data.stamina_cost);
+      setPlayerSt(prev => Number.isFinite(data.stamina_remaining) ? data.stamina_remaining : prev - (data.stamina_cost || 0));
 
       if (!data.hit) {
         addLog(`Você usou Ataque Básico mas o inimigo esquivou!`);
@@ -850,7 +811,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         return;
       }
 
-      const newNpcHP = Math.max(0, npcHP - data.damage);
+      const newNpcHP = Math.max(0, isWorldBoss && Number.isFinite(data.boss_hp) ? data.boss_hp : npcHP - data.damage);
       setNpcHP(newNpcHP);
 
       let msg = `Você usou Ataque Básico e causou ${data.damage} de dano!`;
@@ -872,8 +833,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         return;
       }
 
-      if (location.state?.isWorldBoss) {
+      if (isWorldBoss) {
         setAccumulatedDamage(prev => prev + data.damage);
+        if (data.boss_defeated || newNpcHP <= 0) {
+          setNpcHP(0);
+          addLog('O Chefe Mundial foi derrotado! As recompensas estão sendo processadas pelo servidor.');
+          setBattleResult('world_boss_end');
+          return;
+        }
         npcTurn(newNpcHP);
         return;
       }
@@ -981,27 +948,42 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       if (currentCooldown > 0) { addToast(`[${jutsu.name}] em recarga!`, 'error'); return; }
 
       setIsPlayerTurn(false);
-      const { data, error } = await supabase.rpc('resolver_turno_combate', {
-        p_player_id: player.id,
-        p_action: 'jutsu',
-        p_jutsu_payload: jutsu,
-        p_target_type: 'npc',
-        p_npc_stats: { def: npcDef, element: npcInit.element },
-        p_global_debuffs: globalDebuffs,
-        p_equipped_summon: equippedSummon,
-        p_active_buffs: activeBuffs,
-        p_player_atk_fis: playerAtkTaiBuk,
-        p_player_atk_mag: playerAtkNinGen
-      });
+      const isWorldBoss = Boolean(location.state?.isWorldBoss);
+      const { data, error } = isWorldBoss
+        ? await supabase.rpc('atacar_world_boss', {
+            p_player_id: player.id,
+            p_session_id: npcInit.bossSessionId,
+            p_action: 'jutsu',
+            p_jutsu_id: jutsu.id
+          })
+        : await supabase.rpc('resolver_turno_combate', {
+            p_player_id: player.id,
+            p_action: 'jutsu',
+            p_jutsu_payload: jutsu,
+            p_target_type: 'npc',
+            p_npc_stats: { def: npcDef, element: npcInit.element },
+            p_global_debuffs: globalDebuffs,
+            p_equipped_summon: equippedSummon,
+            p_active_buffs: activeBuffs,
+            p_player_atk_fis: playerAtkTaiBuk,
+            p_player_atk_mag: playerAtkNinGen
+          });
 
-      if (error || data.error) {
-        addToast(error ? error.message : data.error, 'error');
-        setIsPlayerTurn(true);
+      if (error || data?.error || data?.success === false) {
+        const message = error?.message || data?.error || 'Falha ao resolver o jutsu.';
+        addToast(message, 'error');
+        if (isWorldBoss && /chefe mundial|derrotado|evento terminou/i.test(message)) {
+          setNpcHP(0);
+          setBattleResult('world_boss_end');
+        } else {
+          setIsPlayerTurn(true);
+        }
         return;
       }
 
-      const newCP = playerCP - data.chakra_cost;
+      const newCP = Number.isFinite(data.chakra_remaining) ? data.chakra_remaining : playerCP - data.chakra_cost;
       setPlayerCP(newCP);
+      if (Number.isFinite(data.stamina_remaining)) setPlayerSt(data.stamina_remaining);
 
       // +1 to compensate for the immediate decrement in startPlayerTurn
       if (jutsuCooldown > 0) setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown + 1 }));
@@ -1013,8 +995,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         return;
       }
 
-      const newDailyChakra = (player.daily_chakra_spent || 0) + data.chakra_cost;
-      await supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
+      if (!isWorldBoss) {
+        const newDailyChakra = (player.daily_chakra_spent || 0) + data.chakra_cost;
+        await supabase.from('players').update({ daily_chakra_spent: newDailyChakra }).eq('id', player.id);
+      }
 
       if (!data.hit) {
         addLog(`Você usou [${jutsu.name}] mas errou! (Custou ${data.chakra_cost} CP)`);
@@ -1022,7 +1006,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         return;
       }
 
-      const newNpcHP = Math.max(0, npcHP - data.damage);
+      const newNpcHP = Math.max(0, isWorldBoss && Number.isFinite(data.boss_hp) ? data.boss_hp : npcHP - data.damage);
       setNpcHP(newNpcHP);
 
       playJutsuSound();
@@ -1033,8 +1017,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       addLog(`Você usou [${jutsu.name}] e causou ${data.damage} de dano! (Custou ${data.chakra_cost} CP)`);
       applyJutsuEffects(jutsu, true); // Aplica buffs/dots locais de UI
 
-      if (location.state?.isWorldBoss) {
+      if (isWorldBoss) {
         setAccumulatedDamage(prev => prev + data.damage);
+        if (data.boss_defeated || newNpcHP <= 0) {
+          setNpcHP(0);
+          addLog('O Chefe Mundial foi derrotado! As recompensas estão sendo processadas pelo servidor.');
+          setBattleResult('world_boss_end');
+          return;
+        }
         npcTurn(newNpcHP);
         return;
       }

@@ -121,15 +121,11 @@ export default function Dashboard({ player, updatePlayer }) {
       if (!player) return;
       const today = new Date().toISOString().split('T')[0];
       if (player.last_daily_reset !== today) {
-        const { error } = await supabase.from('players').update({
-          last_daily_reset: today,
-          daily_npcs_defeated: 0,
-          daily_chakra_spent: 0,
-          daily_trainings: 0,
-          daily_rewards_claimed: []
-        }).eq('id', player.id);
+        const { data, error } = await supabase.rpc('reset_daily_progress', {
+          p_player_id: player.id
+        });
 
-        if (!error) {
+        if (!error && data?.success) {
           updatePlayer(player.id);
         }
       }
@@ -144,38 +140,37 @@ export default function Dashboard({ player, updatePlayer }) {
     if (player.last_daily_claim === today) return;
 
     setClaiming(true);
-    const { error } = await supabase.from('players').update({
-      last_daily_claim: today,
-      ryous: (player.ryous || 0) + 50
-    }).eq('id', player.id);
+    const { data, error } = await supabase.rpc('reivindicar_bonus_diario', {
+      p_player_id: player.id
+    });
 
-    if (!error) {
-      addToast("Bônus diário resgatado: +RY$ 50!", "success");
-      updatePlayer(player.id);
+    if (!error && data?.success) {
+      addToast(`Bônus diário resgatado: +RY$ ${data.reward_amount}!`, "success");
+      await updatePlayer(player.id);
+    } else {
+      addToast(error?.message || data?.error || 'Bônus diário indisponível.', 'error');
     }
     setClaiming(false);
   };
 
   // Resgate de Tarefa Diária
-  const handleClaimTask = async (taskId, rewardType, rewardAmount) => {
+  const handleClaimTask = async (taskId) => {
     if (!player) return;
     const claimed = Array.isArray(player.daily_rewards_claimed) ? player.daily_rewards_claimed : [];
     if (claimed.includes(taskId)) return;
 
     setClaiming(true);
-
-    const { error } = await supabase.rpc('reivindicar_recompensa_diaria', {
+    const { data, error } = await supabase.rpc('reivindicar_recompensa_diaria', {
       p_player_id: player.id,
-      p_day_index: taskId,
-      p_reward_type: rewardType,
-      p_reward_amount: rewardAmount
+      p_task_key: taskId
     });
 
-    if (!error) {
-      addToast(`Recompensa resgatada: +${rewardAmount} ${rewardType.toUpperCase()}!`, "success");
-      updatePlayer(player.id);
+    if (!error && data?.success) {
+      const rewardLabel = data.reward_type === 'vip_coins' ? 'KURO COINS' : 'RYOUS';
+      addToast(`Recompensa resgatada: +${data.reward_amount} ${rewardLabel}!`, "success");
+      await updatePlayer(player.id);
     } else {
-      addToast('Erro ao resgatar recompensa', 'error');
+      addToast(error?.message || data?.error || 'Erro ao resgatar recompensa.', 'error');
     }
     setClaiming(false);
   };
@@ -187,74 +182,23 @@ export default function Dashboard({ player, updatePlayer }) {
     if (claimed.includes('chest')) return;
 
     setClaiming(true);
-    const rewardCoins = Math.floor(Math.random() * 4) + 2;
-
-    const { error } = await supabase.rpc('reivindicar_recompensa_diaria', {
+    const { data, error } = await supabase.rpc('reivindicar_recompensa_diaria', {
       p_player_id: player.id,
-      p_day_index: 'chest',
-      p_reward_type: 'vip_coins',
-      p_reward_amount: rewardCoins
+      p_task_key: 'chest'
     });
 
-    if (!error) {
-      addToast(`Baú Aberto! Você encontrou 🪙 ${rewardCoins} Kuro Coins!`, "success");
-      updatePlayer(player.id);
+    if (!error && data?.success) {
+      addToast(`Baú Aberto! Você encontrou 🪙 ${data.reward_amount} Kuro Coins!`, "success");
+      await updatePlayer(player.id);
     } else {
-      addToast('Erro ao abrir baú', 'error');
+      addToast(error?.message || data?.error || 'Erro ao abrir baú.', 'error');
     }
     setClaiming(false);
   };
 
   // Abrir Baús do World Boss (Loteria Justa)
   const handleOpenBossChest = async () => {
-    if (!player || !player.pending_boss_boxes || player.pending_boss_boxes <= 0) return;
-    setClaiming(true);
-
-    const boxesToOpen = player.pending_boss_boxes;
-    const customRates = { common_chance: 60, rare_chance: 25, epic_chance: 10, legendary_chance: 4, unique_chance: 1 };
-    
-    const { data: baseItems } = await supabase.from('items').select('*');
-    if (!baseItems || baseItems.length === 0) {
-      addToast('Erro: Nenhum item base cadastrado no sistema.', 'error');
-      setClaiming(false);
-      return;
-    }
-
-    let openedItems = [];
-    let gotUnique = false;
-    
-    for (let i = 0; i < boxesToOpen; i++) {
-      const randomBaseItem = baseItems[Math.floor(Math.random() * baseItems.length)];
-      const rarity = await rollRarity(player.rank || 'Genin', customRates);
-      const rolledStats = await generateLootStats(rarity, player.rank || 'Genin', '');
-      
-      if (rarity === 'Único') gotUnique = true;
-
-      openedItems.push({
-        player_id: player.id,
-        item_id: randomBaseItem.id,
-        is_equipped: false,
-        is_favorite: false,
-        rarity: rarity,
-        rolled_stats: rolledStats
-      });
-    }
-
-    const { error: insertError } = await supabase.from('player_inventory').insert(openedItems);
-    
-    if (!insertError) {
-      await supabase.from('players').update({ pending_boss_boxes: 0 }).eq('id', player.id);
-      if (gotUnique) {
-        addToast(`🔥 IMPRESSIONANTE! Você abriu ${boxesToOpen} baús e conseguiu um Equipamento ÚNICO!`, 'success');
-      } else {
-        addToast(`🎉 Você abriu ${boxesToOpen} Baús do Colapso! Os itens foram enviados para o seu inventário.`, 'success');
-      }
-      updatePlayer(player.id);
-    } else {
-      addToast('Erro ao abrir baús: ' + insertError.message, 'error');
-    }
-    
-    setClaiming(false);
+    addToast('Os baús antigos não possuem estado de resgate no banco atual. Use as recompensas de incursão do chefe mundial.', 'info');
   };
 
   if (!player) return null;

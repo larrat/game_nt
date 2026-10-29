@@ -112,18 +112,21 @@ export default function Equipamentos({ player, updatePlayer }) {
     setConfirmSell(false);
 
     setLoading(true);
-    const { error } = await supabase.from('player_inventory').delete().in('id', idsToDelete);
-    if (error) {
-      addToast('Erro ao vender: ' + error.message, 'error');
+    const { data, error } = await supabase.rpc('vender_itens_inventario', {
+      p_player_id: player.id,
+      p_inventory_ids: idsToDelete
+    });
+
+    if (error || !data?.success) {
+      addToast('Erro ao vender: ' + (error?.message || data?.message || 'Venda não concluída.'), 'error');
       setLoading(false);
       return;
     }
 
-    await supabase.from('players').update({ ryous: (player.ryous || 0) + totalRyous }).eq('id', player.id);
-    
-    addToast(`Vendido com sucesso! Você ganhou RY$ ${totalRyous}.`, 'success');
-    loadInventory();
-    updatePlayer(player.id);
+    addToast(`Vendido com sucesso! ${data.sold_count} itens por RY$ ${data.ryous_gained}.`, 'success');
+    await loadInventory();
+    await updatePlayer(player.id);
+    setLoading(false);
   };
 
   // Helper para agrupar os slots equipados

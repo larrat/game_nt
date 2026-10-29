@@ -59,38 +59,24 @@ export default function Criar({ session, setPlayerState }) {
     if (!name) { addToast('Digite um nome para o personagem!', 'error'); return; }
     setLoading(true);
 
-    const baseStats = CLASSES.find(c => c.id === selectedClass).stats;
+    const { data, error } = await supabase.rpc('criar_personagem', {
+      p_name: name.trim(),
+      p_village_id: selectedVillage,
+      p_character_id: selectedCharacter,
+      p_avatar: selectedAvatar,
+      p_class: selectedClass
+    });
 
-    const newPlayer = {
-      user_id: session.user.id,
-      name: name.trim(),
-      village_id: selectedVillage,
-      character_id: selectedCharacter,
-      avatar: selectedAvatar,
-      class: selectedClass,
-      level: 1,
-      xp: 0,
-      ryous: 1000,
-      pontos_atributos: 5,
-      ...baseStats
-    };
-
-    const { data, error } = await supabase
-      .from('players')
-      .insert([newPlayer])
-      .select()
-      .single();
-
-    if (error) {
-      addToast('Erro ao criar personagem: ' + error.message, 'error');
+    if (error || !data?.success || !data?.player) {
+      addToast('Erro ao criar personagem: ' + (error?.message || data?.error || 'Não foi possível criar o personagem.'), 'error');
       setLoading(false);
     } else {
       addToast('Personagem criado com sucesso!', 'success');
       setPlayerState({
-        ...data,
+        ...data.player,
         activeJutsus: []
       });
-      // The parent App component will auto-redirect to dashboard when player state is set
+      // O estado do personagem redireciona para o dashboard.
     }
   };
 

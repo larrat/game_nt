@@ -145,24 +145,20 @@ export default function Clas({ player, updatePlayer }) {
   };
 
   const handleLearnKinjutsu = async (jutsu) => {
-    const cost = jutsu.cost_ryous || (jutsu.lvl * 150);
-    if (player.ryous < cost) {
-      addToast(`Ryous insuficientes! Custa RY$ ${cost}.`, "error");
+    if (!player) return;
+    const { data, error } = await supabase.rpc('aprender_kinjutsu', {
+      p_player_id: player.id,
+      p_jutsu_id: jutsu.id
+    });
+
+    if (error || !data?.success) {
+      addToast(error?.message || data?.error || 'Não foi possível aprender a técnica.', 'error');
       return;
     }
 
-    const { error: err1 } = await supabase.from('players').update({ ryous: player.ryous - cost }).eq('id', player.id);
-    if (err1) return;
-
-    await supabase.from('player_jutsus').insert({ player_id: player.id, jutsu_id: jutsu.id });
-
-    const currentLearned = player.jutsus_learned || [];
-    const newLearned = [...currentLearned, { id: jutsu.id, level: 1, slots: [null, null, null] }];
-    await supabase.from('players').update({ jutsus_learned: newLearned }).eq('id', player.id);
-
-    addToast(`Você aprendeu a técnica secreta: ${jutsu.name}!`, "success");
+    addToast(`Você aprendeu a técnica secreta: ${jutsu.name}! -RY$ ${data.cost || 0}`, 'success');
     await fetchLearned();
-    updatePlayer(player.id);
+    await updatePlayer(player.id);
   };
 
   const renderClanContent = (myClan) => {

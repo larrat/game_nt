@@ -1241,6 +1241,147 @@ $function$;
 REVOKE ALL ON FUNCTION public.aprender_jutsus_massa(integer,jsonb,integer) FROM PUBLIC, anon;
 GRANT EXECUTE ON FUNCTION public.aprender_jutsus_massa(integer,jsonb,integer) TO authenticated, service_role;
 
+CREATE OR REPLACE FUNCTION public.usar_consumivel_inventario(
+    p_player_id integer,
+    p_inventory_id uuid
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_player public.players%ROWTYPE;
+    v_inventory public.player_consumables%ROWTYPE;
+    v_consumable public.consumables%ROWTYPE;
+    v_max_hp integer;
+    v_max_chakra integer;
+    v_max_stamina integer;
+    v_new_hp integer;
+    v_new_chakra integer;
+    v_new_stamina integer;
+    v_value integer;
+    v_type text;
+    v_quantity_remaining integer;
+    v_used_text text := '';
+BEGIN
+    IF auth.uid() IS NULL THEN
+        RAISE EXCEPTION 'Autenticação obrigatória.';
+    END IF;
+
+    SELECT * INTO v_player
+    FROM public.players
+    WHERE id = p_player_id AND user_id = auth.uid()
+    FOR UPDATE;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.';
+    END IF;
+
+    -- A modal cannot bypass combat restrictions by calling this RPC directly.
+    IF EXISTS (
+        SELECT 1
+        FROM public.player_combat_sessions s
+        WHERE s.player_id = p_player_id
+          AND s.status = 'active'
+          AND s.expires_at > now()
+    ) THEN
+        RETURN jsonb_build_object('success', false, 'error', 'Consumíveis são proibidos durante combates.');
+    END IF;
+
+    SELECT * INTO v_inventory
+    FROM public.player_consumables
+    WHERE id = p_inventory_id
+      AND player_id = p_player_id
+      AND quantity > 0
+    FOR UPDATE;
+
+    IF NOT FOUND THEN
+        RETURN jsonb_build_object('success', false, 'error', 'Consumível não encontrado no seu inventário.');
+    END IF;
+
+    SELECT * INTO v_consumable
+    FROM public.consumables
+    WHERE id = v_inventory.consumable_id
+      AND COALESCE(is_active, true) IS TRUE;
+
+    IF NOT FOUND THEN
+        RETURN jsonb_build_object('success', false, 'error', 'Este consumível não está mais disponível.');
+    END IF;
+
+    v_type := lower(COALESCE(v_consumable.type, ''));
+    v_value := GREATEST(0, COALESCE(v_consumable.value, 0));
+
+    v_max_hp := public.kurokage_player_max_stat(p_player_id, 'hp');
+    v_max_chakra := public.kurokage_player_max_stat(p_player_id, 'chakra');
+    v_max_stamina := public.kurokage_player_max_stat(p_player_id, 'stamina');
+
+    v_new_hp := LEAST(v_max_hp, GREATEST(0, COALESCE(v_player.hp, v_max_hp)));
+    v_new_chakra := LEAST(v_max_chakra, GREATEST(0, COALESCE(v_player.chakra, v_max_chakra)));
+    v_new_stamina := LEAST(v_max_stamina, GREATEST(0, COALESCE(v_player.stamina, v_max_stamina)));
+
+    IF v_type IN ('hp', 'all') THEN
+        v_new_hp := LEAST(v_max_hp, v_new_hp + v_value);
+        v_used_text := v_used_text || '+HP ';
+    END IF;
+    IF v_type IN ('cp', 'chakra', 'all') THEN
+        v_new_chakra := LEAST(v_max_chakra, v_new_chakra + v_value);
+        v_used_text := v_used_text || '+Chakra ';
+    END IF;
+    IF v_type IN ('sp', 'stamina', 'all') THEN
+        v_new_stamina := LEAST(v_max_stamina, v_new_stamina + v_value);
+        v_used_text := v_used_text || '+Stamina ';
+    END IF;
+
+    IF v_used_text = '' THEN
+        RETURN jsonb_build_object('success', false, 'error', 'Tipo de consumível inválido.');
+    END IF;
+
+    IF v_new_hp = GREATEST(0, COALESCE(v_player.hp, v_max_hp))
+       AND v_new_chakra = GREATEST(0, COALESCE(v_player.chakra, v_max_chakra))
+       AND v_new_stamina = GREATEST(0, COALESCE(v_player.stamina, v_max_stamina)) THEN
+        RETURN jsonb_build_object('success', false, 'error', 'Seus recursos já estão cheios.');
+    END IF;
+
+    UPDATE public.players
+    SET hp = v_new_hp,
+        chakra = v_new_chakra,
+        stamina = v_new_stamina,
+        is_fainted = CASE WHEN v_new_hp > 0 THEN false ELSE COALESCE(is_fainted, false) END,
+        fainted_at = CASE WHEN v_new_hp > 0 THEN NULL ELSE fainted_at END
+    WHERE id = p_player_id;
+
+    v_quantity_remaining := GREATEST(0, v_inventory.quantity - 1);
+    IF v_quantity_remaining = 0 THEN
+        DELETE FROM public.player_consumables WHERE id = v_inventory.id;
+    ELSE
+        UPDATE public.player_consumables
+        SET quantity = v_quantity_remaining
+        WHERE id = v_inventory.id;
+    END IF;
+
+    RETURN jsonb_build_object(
+        'success', true,
+        'consumable_id', v_consumable.id,
+        'consumable_name', v_consumable.name,
+        'type', v_type,
+        'effect_value', v_value,
+        'used_text', btrim(v_used_text),
+        'quantity_remaining', v_quantity_remaining,
+        'hp', v_new_hp,
+        'chakra', v_new_chakra,
+        'stamina', v_new_stamina,
+        'max_hp', v_max_hp,
+        'max_chakra', v_max_chakra,
+        'max_stamina', v_max_stamina,
+        'revived', COALESCE(v_player.is_fainted, false) AND v_new_hp > 0
+    );
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.usar_consumivel_inventario(integer,uuid) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.usar_consumivel_inventario(integer,uuid) TO authenticated, service_role;
+
+
 -- The browser must not edit permanent stats, learned jutsus, essence inventory, or daily chakra totals.
 REVOKE UPDATE (tai, nin, gen, buk, taijutsu, bukijutsu, ninjutsu, genjutsu,
     forca, agilidade, inteligencia, selo, resistencia, energia,

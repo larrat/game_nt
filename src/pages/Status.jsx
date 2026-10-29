@@ -85,11 +85,11 @@ export default function Status({ player, updatePlayer }) {
   xpPercent = Math.min(100, Math.max(0, (currentRelativeXp / requiredRelativeXp) * 100));
 
   return (
-    <div className="bg-cover bg-center min-h-screen text-paper bg-fixed" style={{ backgroundImage: `url(${bgImage})` }}>
+    <div className="kuro-status-page bg-cover bg-center min-h-screen text-paper bg-fixed" style={{ backgroundImage: `url(${bgImage})` }}>
       <div className="page relative z-10 p-8">
         
         {/* BIG STATUS BAR BANNER */}
-        <div className="card border-line-solid p-6 mb-8 flex-col items-center bg-ink shadow-xl relative mt-[120px]">
+        <div className="kuro-status-hero card border-line-solid p-6 mb-8 flex-col items-center bg-ink shadow-xl relative mt-[120px]">
            
            {/* Imagem do personagem pulando pra fora do banner (ESTILO A IMAGEM REFERÊNCIA) */}
            <div 
@@ -177,10 +177,10 @@ export default function Status({ player, updatePlayer }) {
           subtitle="Visualize seus atributos detalhados, poderes especiais e histórico de conta."
         />
 
-        <div className="grid-responsive gap-lg">
+        <div className="kuro-status-layout grid-responsive gap-lg">
           {/* Coluna Esquerda: Títulos */}
           <div className="flex-col gap-md flex-[1_1_300px]">
-            <div className="card-glass border-line-solid p-6 flex-col items-center gap-md">
+            <div className="kuro-status-identity card-glass border-line-solid p-6 flex-col items-center gap-md">
               <div className="flex-col w-full gap-sm">
                 <div className="flex-between">
                   <span className="muted uppercase text-xs">Nome Ninja:</span>

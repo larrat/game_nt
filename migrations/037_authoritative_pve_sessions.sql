@@ -376,6 +376,78 @@ REVOKE ALL ON FUNCTION public.iniciar_exame_chunin(integer,integer) FROM PUBLIC,
 GRANT EXECUTE ON FUNCTION public.iniciar_exame_chunin(integer,integer) TO authenticated, service_role;
 
 
+-- The frontend already supports a second element, but the live table lacked its column.
+ALTER TABLE public.players ADD COLUMN IF NOT EXISTS element2 text;
+
+CREATE OR REPLACE FUNCTION public.aprender_elemento(
+    p_player_id integer,
+    p_element_id text
+) RETURNS jsonb
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public, pg_temp
+AS $function$
+DECLARE
+    v_player public.players%ROWTYPE;
+    v_element public.elements%ROWTYPE;
+    v_rank integer;
+    v_slot text;
+BEGIN
+    IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória.'; END IF;
+    IF p_element_id IS NULL OR length(trim(p_element_id)) = 0 OR length(p_element_id) > 40 THEN
+        RETURN jsonb_build_object('success',false,'error','Elemento inválido.');
+    END IF;
+
+    SELECT * INTO v_player
+    FROM public.players
+    WHERE id=p_player_id AND user_id=auth.uid()
+    FOR UPDATE;
+    IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não encontrado ou ação não autorizada.'; END IF;
+
+    SELECT * INTO v_element
+    FROM public.elements
+    WHERE name_id=p_element_id;
+    IF NOT FOUND THEN RETURN jsonb_build_object('success',false,'error','Elemento não encontrado no catálogo.'); END IF;
+
+    IF v_player.element = p_element_id OR v_player.element2 = p_element_id THEN
+        RETURN jsonb_build_object('success',false,'error','Você já possui este elemento.');
+    END IF;
+
+    v_rank := CASE lower(COALESCE(v_player.rank,''))
+        WHEN 'genin' THEN 1
+        WHEN 'chunin' THEN 2
+        WHEN 'jounin' THEN 3
+        WHEN 'jonin' THEN 3
+        WHEN 'anbu' THEN 4
+        WHEN 'sannin' THEN 5
+        WHEN 'sanin' THEN 5
+        WHEN 'herói' THEN 6
+        WHEN 'heroi' THEN 6
+        ELSE 0 END;
+
+    IF COALESCE(v_player.element,'') = '' THEN
+        IF COALESCE(v_player.level,1) < 5 OR v_rank < 1 THEN
+            RETURN jsonb_build_object('success',false,'error','O primeiro elemento exige nível 5 e graduação Genin.');
+        END IF;
+        UPDATE public.players SET element=p_element_id WHERE id=p_player_id;
+        v_slot := 'element';
+    ELSIF COALESCE(v_player.element2,'') = '' THEN
+        IF COALESCE(v_player.level,1) < 15 OR v_rank < 2 THEN
+            RETURN jsonb_build_object('success',false,'error','O segundo elemento exige nível 15 e graduação Chunin.');
+        END IF;
+        UPDATE public.players SET element2=p_element_id WHERE id=p_player_id;
+        v_slot := 'element2';
+    ELSE
+        RETURN jsonb_build_object('success',false,'error','Você já dominou os dois elementos disponíveis.');
+    END IF;
+
+    RETURN jsonb_build_object('success',true,'element',p_element_id,'slot',v_slot);
+END;
+$function$;
+
+REVOKE ALL ON FUNCTION public.aprender_elemento(integer,text) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.aprender_elemento(integer,text) TO authenticated, service_role;
+
 CREATE OR REPLACE FUNCTION public.iniciar_combate_sessao(
     p_player_id integer,
     p_enemy_id integer,
@@ -1386,7 +1458,7 @@ GRANT EXECUTE ON FUNCTION public.usar_consumivel_inventario(integer,uuid) TO aut
 REVOKE UPDATE (tai, nin, gen, buk, taijutsu, bukijutsu, ninjutsu, genjutsu,
     forca, agilidade, inteligencia, selo, resistencia, energia,
     jutsus_learned, inventory_essences, daily_chakra_spent,
-    passou_exame_chunin)
+    passou_exame_chunin, element, element2)
 ON public.players FROM PUBLIC, anon, authenticated;
 
 

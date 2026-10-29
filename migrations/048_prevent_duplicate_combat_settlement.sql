@@ -182,12 +182,32 @@ BEGIN
         RETURN jsonb_build_object('success', false, 'error', 'Você está inconsciente e não pode iniciar um combate.');
     END IF;
 
-    -- Clean up expired wins; only one unresolved, unexpired victory may be recovered.
+    -- Expired defeats cannot be recovered.
     UPDATE public.player_combat_sessions
     SET status = 'expired', awaiting_enemy_turn = false
     WHERE player_id = p_player_id
       AND status = 'defeated'
       AND expires_at <= now();
+
+    -- Legacy duplicate starts may have left an older victory beside a later session.
+    -- Retire only stale ordinary PvE wins; exam wins are reconciled through the exam pointer below.
+    UPDATE public.player_combat_sessions AS older
+    SET status = 'abandoned', awaiting_enemy_turn = false
+    WHERE older.player_id = p_player_id
+      AND older.is_exam IS NOT TRUE
+      AND older.status = 'defeated'
+      AND EXISTS (
+          SELECT 1
+          FROM public.player_combat_sessions AS newer
+          WHERE newer.player_id = older.player_id
+            AND (
+                newer.created_at > older.created_at
+                OR (
+                    newer.created_at = older.created_at
+                    AND newer.session_id > older.session_id
+                )
+            )
+      );
 
     SELECT * INTO v_pending_session
     FROM public.player_combat_sessions

@@ -304,7 +304,7 @@ function App() {
               <Route path="/vila" element={<Vila player={playerState} updatePlayer={updatePlayer} />} />
               <Route path="/hospital" element={<Hospital player={playerState} updatePlayer={updatePlayer} />} />
               <Route path="/mapa" element={<VipMissionBlock player={playerState}><Mapa player={playerState} updatePlayer={updatePlayer} /></VipMissionBlock>} />
-              <Route path="/dojo" element={<VipMissionBlock player={playerState}><Dojo player={playerState} /></VipMissionBlock>} />
+              <Route path="/dojo" element={<VipMissionBlock player={playerState}><Dojo player={playerState} updatePlayer={updatePlayer} /></VipMissionBlock>} />
               <Route path="/combate" element={<Combate player={playerState} updatePlayer={updatePlayer} setPlayerState={setPlayerState} />} />
               <Route path="/ranking" element={<Ranking player={playerState} updatePlayer={updatePlayer} />} />
               <Route path="/portoes" element={<Portoes player={playerState} updatePlayer={updatePlayer} />} />

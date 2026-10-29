@@ -9,7 +9,7 @@ const VILLAGES = {
   4: 'Pedra', 5: 'Nuvem', 6: 'Som', 7: 'Chuva', 8: 'Akatsuki'
 };
 
-export default function TopBar({ player, updatePlayer }) {
+export default function TopBar({ player, updatePlayer, onMenuClick, mobileNavOpen = false }) {
   const [isInventoryOpen, setIsInventoryOpen] = useState(false);
   const [ryousFlash, setRyousFlash] = useState(false);
   const [prevRyous, setPrevRyous] = useState(player?.ryous || 0);
@@ -95,7 +95,17 @@ export default function TopBar({ player, updatePlayer }) {
     <div className="topbar-wrapper">
       
       {/* Esquerda: Identidade (Vila, Clan, Nome) */}
-      <div className="flex-row">
+      <div className="flex-row topbar-identity-group">
+        <button
+          type="button"
+          className="mobile-nav-toggle"
+          aria-label={mobileNavOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={mobileNavOpen}
+          title={mobileNavOpen ? "Fechar navegação" : "Abrir navegação"}
+          onClick={onMenuClick}
+        >
+          <span aria-hidden="true">{mobileNavOpen ? "×" : "☰"}</span>
+        </button>
         <div className="topbar-avatar">
           {player.avatar?.startsWith('/') ? (
             <img src={player.avatar} alt="Avatar" />

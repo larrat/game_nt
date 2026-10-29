@@ -6,34 +6,23 @@ import SidebarIcon from './SidebarIcon';
 
 const NAV = [
   {
-    group: 'Personagem',
+    group: 'Central',
     items: [
-      { to: '/dashboard', icon: '/images/imgi_29_index.png', label: 'Ficha' },
-      { to: '/status', icon: '👤', label: 'Status' },
-      { to: '/treino', icon: '/images/imgi_10_stamina.png', label: 'Treinamento' },
-      { to: '/elementos', icon: '/images/imgi_9_chakra.png', label: 'Elementos' },
-      { to: '/tecnicas', icon: '/images/imgi_13_passe.png', label: 'Técnicas' },
+      { to: '/dashboard', icon: '/images/imgi_29_index.png', label: 'Painel inicial' },
+    ]
+  },
+  {
+    group: 'Meu Ninja',
+    items: [
+      { to: '/status', icon: '👤', label: 'Status do Ninja' },
+      { to: '/equipamentos', icon: '/images/imgi_21_Mochila.png', label: 'Equipamentos' },
+      { to: '/tecnicas', icon: '/images/imgi_13_passe.png', label: 'Técnicas e Jutsus' },
       { to: '/aprimorar-jutsus', icon: '/images/imgi_46_scroll.png', label: 'Aprimorar Jutsus' },
-      { to: '/equipamentos', icon: '/images/imgi_21_Mochila.png', label: 'Inventário' },
-      { to: '/portoes', icon: '/images/imgi_8_heart.png', label: '8 Portões' },
-      { to: '/templo', icon: '/images/imgi_12_templo.png', label: 'Templo Ninja' },
+      { to: '/treino', icon: '/images/imgi_10_stamina.png', label: 'Treinamento' },
     ]
   },
   {
-    group: 'Premium',
-    items: [
-      { to: '/vip', icon: '/images/imgi_172_vip.png', label: 'Vantagens VIP' },
-    ]
-  },
-  {
-    group: 'Linhagem',
-    items: [
-      { to: '/clas', icon: '/images/imgi_32_star.png', label: 'Clãs' },
-      { to: '/invocacoes', icon: '🐾', label: 'Invocações' },
-    ]
-  },
-  {
-    group: 'Academia',
+    group: 'Progressão',
     items: [
       { to: '/tarefas', icon: '/images/imgi_14_rotina.png', label: 'Missões' },
       { to: '/exame', icon: '📜', label: 'Exame Ninja' },
@@ -41,25 +30,49 @@ const NAV = [
     ]
   },
   {
-    group: 'Mundo',
+    group: 'Mundo Shinobi',
     items: [
-      { to: '/dojo', icon: '/images/imgi_112_1.png', label: 'Dojo' },
-      { to: '/historico', icon: '📜', label: 'Histórico' },
       { to: '/historia', icon: '📖', label: 'Modo História' },
-      { to: '/ranking', icon: '/images/imgi_11_round46.png', label: 'Ranking' },
-      { to: '/vila', icon: '/images/imgi_108_Noticias.png', label: 'Vila' },
-      { to: '/evento', icon: '🌎', label: 'Evento Global' },
-      { to: '/ferreiro', icon: '🔨', label: 'Ferreiro' },
       { to: '/mapa', icon: '/images/imgi_135_shield.png', label: 'Mapa-múndi' },
+      { to: '/vila', icon: '/images/imgi_108_Noticias.png', label: 'Vila' },
+      { to: '/dojo', icon: '/images/imgi_112_1.png', label: 'Dojo' },
+      { to: '/evento', icon: '🌎', label: 'Eventos globais' },
+      { to: '/ranking', icon: '/images/imgi_11_round46.png', label: 'Ranking' },
+      { to: '/historico', icon: '📜', label: 'Histórico' },
+    ]
+  },
+  {
+    group: 'Especializações',
+    items: [
+      { to: '/clas', icon: '/images/imgi_32_star.png', label: 'Clãs' },
+      { to: '/invocacoes', icon: '🐾', label: 'Invocações' },
+      { to: '/elementos', icon: '/images/imgi_9_chakra.png', label: 'Elementos' },
+      { to: '/portoes', icon: '/images/imgi_8_heart.png', label: '8 Portões' },
+      { to: '/templo', icon: '/images/imgi_12_templo.png', label: 'Templo Ninja' },
+    ]
+  },
+  {
+    group: 'Serviços',
+    items: [
+      { to: '/hospital', icon: '✚', label: 'Hospital' },
+      { to: '/ferreiro', icon: '🔨', label: 'Ferreiro' },
       { to: '/ichiraku', icon: '/images/imgi_21_Mochila.png', label: 'Ichiraku Ramen' },
+    ]
+  },
+  {
+    group: 'Premium',
+    items: [
+      { to: '/vip', icon: '/images/imgi_172_vip.png', label: 'Vantagens VIP' },
     ]
   }
 ];
 
-export default function Sidebar({ player }) {
+export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
   const [expanded, setExpanded] = useState({
-    'Personagem': true,
-    'Mundo': true,
+    'Central': true,
+    'Meu Ninja': true,
+    'Progressão': true,
+    'Mundo Shinobi': true,
   });
 
   const [audioOn, setAudioOn] = useState(window.kurokageAudioEnabled);
@@ -87,7 +100,7 @@ export default function Sidebar({ player }) {
   // XP logic moved to TopBar
 
   return (
-    <aside className="sidebar">
+    <aside className={"sidebar" + (isMobileOpen ? " is-mobile-open" : "")}>
       <div className="sidebar-brand-wrap">
         <div className="brand">
           <div className="mark"></div>
@@ -116,7 +129,7 @@ export default function Sidebar({ player }) {
                   <NavLink
                     key={item.to}
                     to={item.to}
-                    onClick={handleLinkClick}
+                    onClick={() => { handleLinkClick(); if (onNavigate) onNavigate(); }}
                     onMouseEnter={handleMouseEnter}
                     className={({ isActive }) => `navitem${isActive ? ' active' : ''} ${group.group === 'Premium' ? 'premium' : ''}`}
                   >

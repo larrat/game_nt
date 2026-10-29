@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { calculateXPForLevel, calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateAtkNinGen, getGlobalDebuffs } from '../utils/engine';
+import { calculateXPForLevel, calculateLevelFromXP, calculateHP, calculateChakra, calculateStamina, getGlobalDebuffs } from '../utils/engine';
 import { supabase } from '../supabaseClient';
 import { fetchActiveGlobalEvents } from '../utils/eventUtils';
 import { useToast } from '../context/ToastContext';
-import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import AvatarModal from '../components/AvatarModal';
-import PageHeader from '../components/PageHeader';
 import '../styles/main.css';
 
 const VILLAGES = {
@@ -14,38 +12,31 @@ const VILLAGES = {
   4: 'Pedra', 5: 'Nuvem', 6: 'Som', 7: 'Chuva', 8: 'Akatsuki'
 };
 
-const DailyTaskItem = ({ 
-  taskId, title, titleIcon, rewardText, 
-  progressValue, progressMax, progressColor, 
-  claimedList, handleClaimTask, claiming 
+const DailyTaskItem = ({
+  taskId, title, titleIcon, rewardText,
+  progressValue, progressMax, progressColor,
+  claimedList, handleClaimTask, claiming
 }) => {
-  const progressPercent = Math.min(100, (progressValue / progressMax) * 100);
+  const progressPercent = Math.min(100, Math.max(0, (progressValue / progressMax) * 100));
   const isDone = progressValue >= progressMax;
   const isClaimed = claimedList.includes(taskId);
 
   return (
-    <div className="bg-ink-raised p-3 rounded-sm border-line-solid">
-      <div className="flex-between mb-2">
-        <span className="paper flex-row items-center gap-xs text-sm">
-          <img src={titleIcon} className="w-3" alt="Icon" /> {title}
-        </span>
-        <span className="mono gold flex-row items-center gap-xs text-xs">
-          <img src="/images/imgi_20_ryous.png" className="w-3" alt="Ryous" /> {rewardText}
-        </span>
-      </div>
-      <div className="flex-between items-center gap-sm">
-        <div className="progress-track flex-1 h-2">
-          <div className={`progress-fill ${progressColor}`} style={{ width: `${progressPercent}%` }} />
+    <article className={"kuro-quest " + (isClaimed ? "is-claimed" : isDone ? "is-complete" : "")}>
+      <div className="kuro-quest__icon"><img src={titleIcon} alt="" /></div>
+      <div className="kuro-quest__body">
+        <div className="kuro-quest__topline"><span className="kuro-quest__title">{title}</span><span className="kuro-quest__reward">{rewardText}</span></div>
+        <div className="kuro-quest__progress">
+          <div className="kuro-quest__track"><div className={"kuro-quest__fill " + progressColor} style={{ width: progressPercent + "%" }} /></div>
+          <span className="kuro-quest__count">{progressValue}/{progressMax}</span>
         </div>
-        {isClaimed ? (
-          <span className="success mono text-xs">✓ FEITO</span>
-        ) : isDone ? (
-          <button className="btn-ghost p-1 text-xs text-seal-bright border-seal-bright" onClick={() => handleClaimTask(taskId, 'ryous', 20)} disabled={claiming}>RESGATAR</button>
-        ) : (
-          <span className="muted mono text-xs">{progressValue}/{progressMax}</span>
-        )}
       </div>
-    </div>
+      <div className="kuro-quest__action">
+        {isClaimed ? <span className="kuro-state-tag is-done">Resgatado</span> : isDone ? (
+          <button className="kuro-button kuro-button--small" onClick={() => handleClaimTask(taskId)} disabled={claiming}>Resgatar</button>
+        ) : <span className="kuro-state-tag">Em andamento</span>}
+      </div>
+    </article>
   );
 };
 
@@ -65,7 +56,6 @@ export default function Dashboard({ player, updatePlayer }) {
       const { data: eventsData } = await supabase.from('world_events').select('*').order('start_time', { ascending: true });
       if (eventsData) setUpcomingEvents(eventsData);
     }
-    if (player) loadData();
     if (player) loadData();
   }, [player]);
 
@@ -206,343 +196,167 @@ export default function Dashboard({ player, updatePlayer }) {
   const todayStr = new Date().toISOString().split('T')[0];
   const fidelityClaimed = player.last_daily_claim === todayStr;
   const claimedList = Array.isArray(player.daily_rewards_claimed) ? player.daily_rewards_claimed : [];
-  const VILLAGES = { 1: 'Folha', 2: 'Areia', 3: 'Névoa', 4: 'Nuvem', 5: 'Pedra' };
   const bgImage = player.village_id ? `/images/bg_${player.village_id}.jpg` : '/images/bg_default.jpg';
 
+  const currentLevel = calculateLevelFromXP(player.xp || 0);
+  const maxHp = Math.max(1, calculateHP(player));
+  const maxChakra = Math.max(1, calculateChakra(player));
+  const maxStamina = Math.max(1, calculateStamina(player));
+  const currentHp = Math.max(0, Math.min(player.hp ?? maxHp, maxHp));
+  const currentChakra = Math.max(0, Math.min(player.chakra ?? maxChakra, maxChakra));
+  const currentStamina = Math.max(0, Math.min(player.stamina ?? maxStamina, maxStamina));
+  const levelStartXp = calculateXPForLevel(currentLevel);
+  const nextLevelXp = calculateXPForLevel(currentLevel + 1);
+  const xpToNextLevel = Math.max(1, nextLevelXp - levelStartXp);
+  const currentLevelXp = Math.max(0, (player.xp || 0) - levelStartXp);
+  const xpPercent = Math.max(0, Math.min(100, (currentLevelXp / xpToNextLevel) * 100));
+  const hpPercent = currentHp / maxHp * 100;
+  const chakraPercent = currentChakra / maxChakra * 100;
+  const staminaPercent = currentStamina / maxStamina * 100;
+  const villageName = VILLAGES[player.village_id] || "Vila desconhecida";
+  const dailyTasks = [
+    { key: "t1", complete: (player.daily_npcs_defeated || 0) >= 3 },
+    { key: "t2", complete: (player.daily_chakra_spent || 0) >= 100 },
+    { key: "t3", complete: (player.daily_trainings || 0) >= 1 }
+  ];
+  const dailyCompleted = dailyTasks.filter(task => task.complete).length;
+  const claimedTasks = dailyTasks.filter(task => claimedList.includes(task.key)).length;
+
   return (
-    <div className="bg-cover bg-center min-h-screen text-paper bg-fixed" style={{ backgroundImage: `url(${bgImage})` }}>
-      <div className="page relative z-10 p-8">
-        
-        <PageHeader 
-          eyebrow="Painel Ninja"
-          title="Dashboard"
-          subtitle="Acompanhe seu progresso diário e eventos do mundo."
-        />
+    <div className="kuro-dashboard">
+      <header className="kuro-dashboard__header">
+        <div>
+          <div className="kuro-eyebrow"><span className="kuro-eyebrow__line" /> CENTRAL SHINOBI <span className="kuro-eyebrow__season">TEMPORADA I</span></div>
+          <h1>Painel do Ninja</h1>
+          <p>Seu caminho, suas escolhas, sua lenda. Veja o que está acontecendo no mundo shinobi.</p>
+        </div>
+        <button className="kuro-button kuro-button--primary" onClick={() => navigate("/historia")}>Continuar jornada <span aria-hidden="true">↗</span></button>
+      </header>
 
-        {/* SÉTIMA VERSÃO: HERO BANNER (SLIM) */}
-        <div className="card-glass flex-between p-6 rounded-lg items-center flex-wrap gap-lg mb-8 border-line-solid shadow-xl bg-ink-transparent">
-          {/* Esquerda: Avatar e Info Básica */}
-          <div className="flex-row items-center gap-lg">
-            <div 
-              className="w-20 h-20 rounded-full overflow-hidden border-gold border-2 bg-ink relative cursor-pointer shadow-md avatar-container flex-col items-center justify-center"
-              onClick={() => setIsAvatarModalOpen(true)}
-              title="Trocar Imagem"
-            >
-              {player.avatar?.startsWith('/') ? (
-                <img src={player.avatar} alt="Avatar" className="w-full h-full object-cover" />
-              ) : (
-                <span className="dash-avatar-glyph text-4xl flex-col items-center justify-center w-full h-full">{player.avatar || '👤'}</span>
-              )}
+      <section className="kuro-hero" style={{ backgroundImage: "url(" + bgImage + ")" }}>
+        <div className="kuro-hero__shade" />
+        <div className="kuro-hero__identity">
+          <button className="kuro-hero__portrait" onClick={() => setIsAvatarModalOpen(true)} title="Personalizar avatar" aria-label="Personalizar avatar">
+            {player.avatar?.startsWith("/") ? <img src={player.avatar} alt={"Avatar de " + player.name} /> : <span>{player.avatar || "忍"}</span>}
+            <span className="kuro-hero__portrait-edit">Editar</span>
+          </button>
+          <div className="kuro-hero__profile">
+            <span className="kuro-hero__kicker">SHINOBI IDENTIFICADO</span>
+            <h2>{player.name}</h2>
+            <div className="kuro-hero__badges">
+              <span className="kuro-chip kuro-chip--gold">{player.rank || "Estudante da Academia"}</span>
+              <span className="kuro-chip">{villageName}</span>
+              {player.clan && <span className="kuro-chip">{player.clan}</span>}
             </div>
-
-            <div className="flex-col gap-xs">
-              <div className="muted mono text-xs tracking-wide uppercase">Bem-vindo de volta,</div>
-              <h2 className="paper text-3xl m-0 tracking-wide text-shadow">{player.name}</h2>
-            </div>
-          </div>
-
-          {/* Direita: Badges de Identidade */}
-          <div className="flex-row items-center gap-md">
-            <div className="badge badge-gold uppercase tracking-wide px-4 py-2 text-sm shadow-md">
-              {player.rank || 'Estudante da Academia'}
-            </div>
-            <div className="badge uppercase px-4 py-2 text-sm shadow-md border-line-solid bg-ink-transparent text-shadow">
-              Vila da {VILLAGES[player.village_id]}
-            </div>
+            <div className="kuro-hero__level"><span>NÍVEL <strong>{currentLevel}</strong></span><span className="kuro-hero__xp-copy">{Math.floor(currentLevelXp).toLocaleString()} / {xpToNextLevel.toLocaleString()} XP</span></div>
+            <div className="kuro-meter kuro-meter--xp"><div style={{ width: xpPercent + "%" }} /></div>
           </div>
         </div>
 
-      {/* CALENDÁRIO DE EVENTOS */}
-      {/* CALENDÁRIO DE EVENTOS */}
-      {upcomingEvents.length > 0 ? (
-        <div className="card-glass mb-6">
-          <div className="flex-between mb-4 border-line-solid pb-3 border-b">
-            <h3 className="paper flex-row items-center gap-xs text-lg font-shippori">
-              <span className="text-base">📅</span> Próximos Eventos
-            </h3>
-            <span className="muted mono text-xs">Cronograma Oficial</span>
+        <div className="kuro-hero__resources">
+          <div className="kuro-resource">
+            <div className="kuro-resource__label"><span className="kuro-resource__symbol is-hp">♥</span><span>VIDA</span><strong>{currentHp.toLocaleString()} <i>/ {maxHp.toLocaleString()}</i></strong></div>
+            <div className="kuro-meter"><div className="is-hp" style={{ width: hpPercent + "%" }} /></div>
           </div>
-          <div className="grid-4">
-            {upcomingEvents.map((evt, idx) => {
-              let color = 'var(--gold)';
-              if (evt.is_world_boss) color = '#ef4444';
-              else if (idx % 2 === 0) color = '#3b82f6';
+          <div className="kuro-resource">
+            <div className="kuro-resource__label"><span className="kuro-resource__symbol is-chakra">✦</span><span>CHAKRA</span><strong>{currentChakra.toLocaleString()} <i>/ {maxChakra.toLocaleString()}</i></strong></div>
+            <div className="kuro-meter"><div className="is-chakra" style={{ width: chakraPercent + "%" }} /></div>
+          </div>
+          <div className="kuro-resource">
+            <div className="kuro-resource__label"><span className="kuro-resource__symbol is-stamina">ϟ</span><span>STAMINA</span><strong>{currentStamina.toLocaleString()} <i>/ {maxStamina.toLocaleString()}</i></strong></div>
+            <div className="kuro-meter"><div className="is-stamina" style={{ width: staminaPercent + "%" }} /></div>
+          </div>
+        </div>
+        <div className="kuro-hero__ornament" aria-hidden="true">影</div>
+      </section>
 
+      <section className="kuro-kpis" aria-label="Resumo do personagem">
+        <article className="kuro-kpi"><span className="kuro-kpi__icon">⚔</span><div><span className="kuro-kpi__label">Vitórias no dojo</span><strong>{(player.wins_dojo || 0).toLocaleString()}</strong><small>Combates vencidos</small></div></article>
+        <article className="kuro-kpi"><span className="kuro-kpi__icon">巻</span><div><span className="kuro-kpi__label">Missões concluídas</span><strong>{((player.missions_s || 0) + (player.missions_a || 0) + (player.missions_b || 0) + (player.missions_c || 0) + (player.missions_d || 0)).toLocaleString()}</strong><small>Ranks S a D</small></div></article>
+        <article className="kuro-kpi"><span className="kuro-kpi__icon is-gold">¥</span><div><span className="kuro-kpi__label">Ryous disponíveis</span><strong>{(player.ryous || 0).toLocaleString()}</strong><small>Moeda shinobi</small></div></article>
+        <article className="kuro-kpi"><span className="kuro-kpi__icon">✧</span><div><span className="kuro-kpi__label">Pontos de atributo</span><strong>{(player.pontos_atributos || 0).toLocaleString()}</strong><small>Prontos para distribuir</small></div></article>
+      </section>
+
+      <section className="kuro-section">
+        <div className="kuro-section__heading"><div><span className="kuro-section__eyebrow">ACESSO RÁPIDO</span><h2>Escolha seu próximo passo</h2></div><span className="kuro-section__hint">Sua próxima evolução começa aqui</span></div>
+        <div className="kuro-shortcuts">
+          <button className="kuro-shortcut" onClick={() => navigate("/dojo")}><span className="kuro-shortcut__icon">⚔</span><span><strong>Entrar no Dojo</strong><small>Teste sua força</small></span><b>↗</b></button>
+          <button className="kuro-shortcut" onClick={() => navigate("/treino")}><span className="kuro-shortcut__icon">ϟ</span><span><strong>Treinar atributos</strong><small>Fortaleça seu ninja</small></span><b>↗</b></button>
+          <button className="kuro-shortcut" onClick={() => navigate("/equipamentos")}><span className="kuro-shortcut__icon">◈</span><span><strong>Ver equipamentos</strong><small>Prepare seu arsenal</small></span><b>↗</b></button>
+          <button className="kuro-shortcut" onClick={() => navigate("/ranking")}><span className="kuro-shortcut__icon">♛</span><span><strong>Ver ranking</strong><small>Compare seu poder</small></span><b>↗</b></button>
+        </div>
+      </section>
+
+      <section className="kuro-section">
+        <div className="kuro-section__heading"><div><span className="kuro-section__eyebrow">MUNDO SHINOBI</span><h2>Eventos e alertas</h2></div><button className="kuro-text-button" onClick={() => navigate("/evento")}>Central de eventos <span aria-hidden="true">→</span></button></div>
+        {activeEvents.length > 0 ? (
+          <div className="kuro-events">
+            {activeEvents.map(event => {
+              const debuffs = event.is_world_boss ? getGlobalDebuffs(event) : null;
+              const bossHpPercent = event.boss_max_hp > 0 ? Math.max(0, Math.min(100, (event.boss_hp / event.boss_max_hp) * 100)) : 0;
               return (
-                <div key={evt.id} className="bg-ink-raised p-4 rounded-sm border-line-solid border-line-bright border-l-3" style={{ borderLeftColor: color }}>
-                  <div className="mono text-xs mb-1" style={{ color }}>{evt.ends_at ? new Date(evt.ends_at).toLocaleString() : 'Em breve'}</div>
-                  <div className="paper font-bold text-sm mb-1">{evt.name}</div>
-                  <div className="muted text-xs line-clamp-2">{evt.description}</div>
-                </div>
+                <article key={event.id} className={"kuro-event-card " + (event.is_world_boss ? "is-boss" : "")}>
+                  <div className="kuro-event-card__mark">{event.is_world_boss ? "☠" : "✦"}</div>
+                  <div className="kuro-event-card__content">
+                    <span className="kuro-section__eyebrow">{event.is_world_boss ? "CHEFE MUNDIAL" : "EVENTO GLOBAL"} · ATIVO</span>
+                    <h3>{event.name}</h3><p>{event.description || "Um evento está movimentando o mundo shinobi."}</p>
+                    {event.is_world_boss && event.boss_hp !== null && event.boss_hp !== undefined && event.boss_max_hp > 0 && (
+                      <div className="kuro-boss-meter"><div className="kuro-boss-meter__label"><span>VITALIDADE DO CHEFE</span><strong>{event.boss_hp.toLocaleString()} <i>/ {event.boss_max_hp.toLocaleString()}</i></strong></div><div className="kuro-meter"><div style={{ width: bossHpPercent + "%" }} /></div></div>
+                    )}
+                    {debuffs && debuffs.currentPhase > 0 && <span className="kuro-chip kuro-chip--danger">Fase de ameaça {debuffs.currentPhase}/4</span>}
+                  </div>
+                  <div className="kuro-event-card__action"><span className="kuro-live"><i /> AO VIVO</span><strong>{timeRemaining[event.id] || "Atualizando…"}</strong><button className="kuro-button kuro-button--primary" onClick={() => navigate("/evento")} disabled={timeRemaining[event.id] === "Evento Encerrado"}>{timeRemaining[event.id] === "Evento Encerrado" ? "Encerrado" : "Participar"}</button></div>
+                </article>
               );
             })}
           </div>
-        </div>
-      ) : (
-        <div className="card-glass flex-between p-3 px-6 mb-6 items-center">
-          <div className="flex-row items-center gap-sm">
-            <span className="text-lg opacity-60">📅</span>
-            <div className="muted mono text-xs">Nenhum evento futuro agendado no momento.</div>
+        ) : upcomingEvents.length > 0 ? (
+          <div className="kuro-event-grid">{upcomingEvents.slice(0, 3).map((event, index) => (
+            <article key={event.id} className="kuro-upcoming-event"><span className="kuro-upcoming-event__number">0{index + 1}</span><span className="kuro-section__eyebrow">{event.ends_at ? new Date(event.ends_at).toLocaleDateString() : "EM BREVE"}</span><h3>{event.name}</h3><p>{event.description || "Prepare-se para o próximo desafio."}</p></article>
+          ))}</div>
+        ) : <div className="kuro-empty-state"><span>◌</span><div><strong>Sem eventos ativos neste momento</strong><p>Continue treinando. Novos desafios aparecerão aqui quando forem publicados.</p></div></div>}
+      </section>
+
+      <div className="kuro-dashboard__columns">
+        <section className="kuro-panel">
+          <div className="kuro-section__heading"><div><span className="kuro-section__eyebrow">PROGRESSO DIÁRIO</span><h2>Rotina do shinobi</h2></div><span className="kuro-progress-pill">{dailyCompleted}/3 concluídas</span></div>
+          <div className="kuro-daily-summary">
+            <div className="kuro-daily-summary__ring"><strong>{Math.round(dailyCompleted / 3 * 100)}<small>%</small></strong></div>
+            <div><strong>Treino de hoje</strong><p>Complete objetivos para receber ryous e liberar o baú diário.</p><div className="kuro-meter"><div style={{ width: (dailyCompleted / 3 * 100) + "%" }} /></div><small>{claimedTasks}/3 recompensas resgatadas</small></div>
           </div>
-        </div>
-      )}
-
-      {/* ALERTA DE MÚLTIPLOS EVENTOS GLOBAIS */}
-      {activeEvents.length > 0 && (
-        <div className="grid-responsive gap-lg mb-6">
-          {activeEvents.map(event => (
-            <div key={event.id} className="card relative overflow-hidden p-6 flex-col justify-between border-line-solid border-danger bg-event-card shadow-event">
-              <div className="absolute top-0 left-0 w-1 h-full animate-pulse shadow-pulse bg-gradient-to-b from-red-500 to-red-800"></div>
-
-              <div className="flex-between items-start flex-wrap gap-lg">
-                <div className="flex-1 relative z-10 min-w-[200px]">
-                  <h4 className="danger mono mb-2 text-xs flex-row items-center gap-sm tracking-wide">
-                    <span className="text-sm drop-shadow-red">🦊</span>
-                    EVENTO GLOBAL
-                  </h4>
-                  <div className="paper text-xl font-bold uppercase tracking-wide mb-2 text-shadow min-h-[44px]">
-                    {event.name}
-                  </div>
-                  <div className="muted text-sm leading-relaxed max-w-[90%]">
-                    {event.description}
-                  </div>
-                </div>
-
-                <div className="flex-col items-center gap-sm p-4 rounded-sm border-dashed border-danger bg-black-alpha-30 min-w-[150px]">
-                  <span className="mono muted text-xs uppercase">Tempo Restante</span>
-                  <span className="mono danger text-xl font-bold text-shadow-red">
-                    {timeRemaining[event.id] || 'Calculando...'}
-                  </span>
-                  <button 
-                    className={`btn-primary w-full p-2 text-xs mt-1 ${timeRemaining[event.id] === 'Evento Encerrado' ? 'bg-[#555] border-[#555]' : 'bg-red-500 border-red-500'}`}
-                    onClick={() => navigate('/evento')}
-                    disabled={timeRemaining[event.id] === 'Evento Encerrado'}
-                  >
-                    {timeRemaining[event.id] === 'Evento Encerrado' ? 'Encerrado' : 'Participar'}
-                  </button>
-                </div>
-              </div>
-
-              {/* Barra de Vida Cinematográfica do Boss */}
-              {event.boss_hp !== null && (
-                <div className="mt-7 relative z-10">
-                  <div className="flex-between mb-2 text-xs">
-                    <span className="danger mono flex-row items-center gap-sm font-bold">
-                      <span className="text-xs">❤️</span> HP DO CHEFE
-                    </span>
-                    <span className="mono text-white text-shadow">
-                      {event.boss_hp.toLocaleString()} <span className="muted">/ {event.boss_max_hp.toLocaleString()}</span>
-                    </span>
-                  </div>
-                  <div className="relative h-3 rounded-sm bg-black-alpha-60 border-line-solid border-danger-alpha overflow-hidden shadow-inner-dark">
-                    <div className="h-full rounded-sm transition-all duration-500 ease-out shadow-bar-glow bg-gradient-to-r from-red-900 via-red-500 to-red-400" style={{
-                      width: `${Math.max(0, Math.min(100, (event.boss_hp / event.boss_max_hp) * 100))}%`
-                    }}></div>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* 3 Cards de Resumo */}
-      <div className="grid-3">
-        <div className="dashboard-card">
-          <h4 className="flex-row gap-xs items-center">
-            <img src="/images/imgi_112_1.png" className="w-4" alt="Combates" /> Combates
-          </h4>
-          <div className="stats-list">
-            <div className="stat-win"><span>Vitórias Dojo:</span><span>{player.wins_dojo || 0}</span></div>
-            <div className="stat-win"><span>Vitórias PVP:</span><span>{player.wins_pvp || 0}</span></div>
-            <div className="stat-loss"><span>Derrotas Dojo:</span><span>{player.losses_dojo || 0}</span></div>
-            <div className="stat-loss"><span>Derrotas PVP:</span><span>{player.losses_pvp || 0}</span></div>
-            <div className="stat-neutral"><span>Fugas:</span><span>{player.fugas || 0}</span></div>
+          <div className="kuro-quest-list">
+            <DailyTaskItem taskId="t1" title="Derrote 3 inimigos" titleIcon="/images/imgi_112_1.png" rewardText="RY$ 20" progressValue={player.daily_npcs_defeated || 0} progressMax={3} progressColor="green" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
+            <DailyTaskItem taskId="t2" title="Gaste 100 de Chakra" titleIcon="/images/imgi_9_chakra.png" rewardText="RY$ 20" progressValue={player.daily_chakra_spent || 0} progressMax={100} progressColor="blue" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
+            <DailyTaskItem taskId="t3" title="Treine 1 vez" titleIcon="/images/imgi_10_stamina.png" rewardText="RY$ 20" progressValue={player.daily_trainings || 0} progressMax={1} progressColor="red" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
           </div>
-        </div>
-
-        <div className="dashboard-card">
-          <h4 className="flex-row gap-xs items-center">
-            <img src="/images/imgi_13_passe.png" className="w-4" alt="Missões" /> Missões
-          </h4>
-          <div className="stats-list">
-            <div className="stat-win"><span>Rank S:</span><span>{player.missions_s || 0}</span></div>
-            <div className="stat-win"><span>Rank A:</span><span>{player.missions_a || 0}</span></div>
-            <div className="stat-neutral"><span>Rank B:</span><span>{player.missions_b || 0}</span></div>
-            <div className="stat-neutral"><span>Rank C:</span><span>{player.missions_c || 0}</span></div>
-            <div className="stat-neutral"><span>Rank D:</span><span>{player.missions_d || 0}</span></div>
-            <div className="stat-highlight mt-2 pt-2 border-t border-white/5">
-              <span className="flex-row items-center gap-xs">
-                <img src="/images/imgi_14_rotina.png" className="w-3" alt="Tarefas" /> Tarefas:
-              </span>
-              <span>{player.tasks_completed || 0}/10</span>
-            </div>
+          <div className="kuro-daily-chest">
+            <div className="kuro-daily-chest__icon">▣</div><div className="kuro-daily-chest__copy"><strong>Baú de esforço diário</strong><p>Complete as três tarefas e receba Kuro Coins.</p></div>
+            {claimedList.includes("chest") ? <span className="kuro-state-tag is-done">Aberto hoje</span> : claimedList.includes("t1") && claimedList.includes("t2") && claimedList.includes("t3") ? <button className="kuro-button kuro-button--gold" onClick={handleClaimDailyChest} disabled={claiming}>{claiming ? "Abrindo…" : "Abrir baú"}</button> : <span className="kuro-state-tag">Bloqueado</span>}
           </div>
-        </div>
+        </section>
 
-        <div className="dashboard-card">
-          <h4 className="flex-row gap-xs items-center">
-            <img src="/images/imgi_32_star.png" className="w-4" alt="Extras" /> Extras
-          </h4>
-          <div className="stats-list">
-            <div className="stat-gold">
-              <span className="flex-row items-center gap-xs">
-                <img src="/images/imgi_20_ryous.png" className="w-3" alt="Ryous" /> Ryous:
-              </span>
-              <span>RY$ {player.ryous}</span>
-            </div>
-            <div className="stat-highlight">
-              <span className="flex-row items-center gap-xs">
-                <img src="/images/imgi_126_star.png" className="w-3" alt="Pts" /> Pts. Atrib.:
-              </span>
-              <span>{player.pontos_atributos}</span>
-            </div>
-            <div className="stat-neutral"><span>Bingo Book:</span><span>0</span></div>
-            <div className="stat-neutral"><span>Torneios:</span><span>0</span></div>
-            <div className="stat-neutral"><span>Arenas:</span><span>0</span></div>
-          </div>
-        </div>
+        <aside className="kuro-side-column">
+          <section className={"kuro-panel kuro-fidelity " + (fidelityClaimed ? "is-claimed" : "")}>
+            <div className="kuro-fidelity__top"><span className="kuro-section__eyebrow">RECOMPENSA DE PRESENÇA</span><span className="kuro-fidelity__seal">日</span></div>
+            <h2>Bônus diário</h2><p>Entre no Kurokage todos os dias para manter sua jornada em movimento.</p>
+            <div className="kuro-fidelity__reward"><img src="/images/imgi_20_ryous.png" alt="" /><strong>RY$ 50</strong><span>por dia</span></div>
+            <button className={"kuro-button " + (fidelityClaimed ? "kuro-button--muted" : "kuro-button--primary")} onClick={handleDailyFidelity} disabled={fidelityClaimed || claiming}>{fidelityClaimed ? "Resgatado hoje" : claiming ? "Processando…" : "Resgatar bônus"}</button>
+          </section>
+
+          <section className="kuro-panel kuro-records">
+            <div className="kuro-section__heading"><div><span className="kuro-section__eyebrow">HISTÓRICO</span><h2>Seu legado</h2></div></div>
+            <div className="kuro-record-row"><span>Vitórias no dojo</span><strong>{(player.wins_dojo || 0).toLocaleString()}</strong></div>
+            <div className="kuro-record-row"><span>Vitórias PvP</span><strong>{(player.wins_pvp || 0).toLocaleString()}</strong></div>
+            <div className="kuro-record-row"><span>Derrotas no dojo</span><strong>{(player.losses_dojo || 0).toLocaleString()}</strong></div>
+            <div className="kuro-record-row"><span>Derrotas PvP</span><strong>{(player.losses_pvp || 0).toLocaleString()}</strong></div>
+            <div className="kuro-record-row"><span>Tarefas completas</span><strong>{(player.tasks_completed || 0).toLocaleString()}</strong></div>
+            <button className="kuro-text-button kuro-records__link" onClick={() => navigate("/historico")}>Ver histórico <span aria-hidden="true">→</span></button>
+          </section>
+
+          {player.pending_boss_boxes > 0 && <section className="kuro-pending-reward"><div className="kuro-pending-reward__mark">✦</div><div><span className="kuro-section__eyebrow">RECOMPENSA PENDENTE</span><h3>{player.pending_boss_boxes} Baús do Colapso</h3><p>Há recompensas antigas associadas à sua conta.</p></div><button className="kuro-button kuro-button--muted" onClick={handleOpenBossChest} disabled={claiming}>Ver detalhes</button></section>}
+        </aside>
       </div>
-
-      {player.pending_boss_boxes > 0 && (
-        <div className="card-glass mb-6 border-line-solid border-seal-bright bg-danger-alpha-5">
-          <div className="flex-between flex-wrap gap-md">
-            <div>
-              <h3 className="gold text-lg mb-2 flex-row items-center gap-xs">
-                🦊 Recompensa do Evento!
-              </h3>
-              <p className="muted text-xs">
-                Você tem <strong className="danger">{player.pending_boss_boxes} Baús do Colapso</strong> prontos para serem abertos. Podem conter itens Comuns, Raros, Épicos, Lendários e até mesmo os míticos itens <strong>Únicos</strong>!
-              </p>
-            </div>
-            <button className="btn-primary min-w-[150px]" onClick={handleOpenBossChest} disabled={claiming}>
-              {claiming ? 'Abrindo...' : 'Abrir Baús agora!'}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* ── PAINEL DE OBJETIVOS DIÁRIOS ── */}
-      <div className="grid-2 mt-6">
-        {/* 3. Coluna Principal: Atividades Diárias */}
-        <div className="flex-col gap-lg flex-[2_1_400px]">
-
-          {/* AVISO DE DEBUFF GLOBAL */}
-          {activeEvents.filter(e => e.is_world_boss).map(boss => {
-            const debuffs = getGlobalDebuffs(boss);
-            if (debuffs.currentPhase === 0) return null;
-            return (
-              <div key={boss.id} className="card border-l-4 border-danger">
-                <h4 className="card-title danger mb-2">⚠️ Alerta Global: {boss.name}</h4>
-                <div className="muted text-sm mb-3">A fúria deste evento está desestabilizando a economia e o chakra de todos os ninjas.</div>
-                <div className="grid-2 gap-sm">
-                  <div className="badge badge-muted">Fase Atual: {debuffs.currentPhase}/4</div>
-                  {debuffs.currentPhase >= 1 && <div className="badge badge-danger">Stamina +30% (Combate)</div>}
-                  {debuffs.currentPhase >= 2 && <div className="badge badge-danger">Precisão -15% (Combate)</div>}
-                  {debuffs.currentPhase >= 3 && <div className="badge badge-danger">Custo do Hospital Dobrado</div>}
-                  {debuffs.currentPhase >= 4 && <div className="badge badge-danger">Ryous ganhos -50%</div>}
-                </div>
-              </div>
-            );
-          })}
-
-          {/* Fidelidade Diária */}
-          <div className={`card ${fidelityClaimed ? 'border-line bg-ink' : 'border-seal-bright bg-seal-glow'}`}>
-            <h4 className="card-title flex-row items-center gap-xs mb-2">
-              <img src="/images/imgi_16_fidelidade.png" className="w-4" alt="Fidelidade" /> Bônus de Fidelidade
-            </h4>
-            <p className="muted text-sm mb-4 leading-relaxed">
-              Entre todos os dias no Kurokage e colete sua recompensa diária de sobrevivência.
-            </p>
-            <div className="flex-between items-center">
-              <span className="gold mono flex-row items-center gap-xs">
-                <img src="/images/imgi_20_ryous.png" className="w-3" alt="Ryous" /> RY$ 50
-              </span>
-              <button
-                className={`p-2 text-xs ${fidelityClaimed ? "btn-ghost" : "btn-primary"}`}
-                onClick={handleDailyFidelity}
-                disabled={fidelityClaimed || claiming}
-              >
-                {fidelityClaimed ? 'Resgatado Hoje' : 'Resgatar Bônus'}
-              </button>
-            </div>
-          </div>
-
-          {/* Tarefas Diárias */}
-          <div className="card">
-            <h4 className="card-title flex-row items-center gap-xs mb-4">
-              <img src="/images/imgi_14_rotina.png" className="w-4" alt="Tarefas" /> Objetivos Diários
-            </h4>
-            <div className="flex-col gap-md">
-
-              {/* Tarefa 1 */}
-              <DailyTaskItem 
-                taskId="t1" 
-                title="Derrote 3 inimigos" 
-                titleIcon="/images/imgi_112_1.png" 
-                rewardText="RY$ 20" 
-                progressValue={player.daily_npcs_defeated || 0} 
-                progressMax={3} 
-                progressColor="green" 
-                claimedList={claimedList} 
-                handleClaimTask={handleClaimTask} 
-                claiming={claiming} 
-              />
-
-              {/* Tarefa 2 */}
-              <DailyTaskItem 
-                taskId="t2" 
-                title="Gaste 100 de Chakra" 
-                titleIcon="/images/imgi_9_chakra.png" 
-                rewardText="RY$ 20" 
-                progressValue={player.daily_chakra_spent || 0} 
-                progressMax={100} 
-                progressColor="blue" 
-                claimedList={claimedList} 
-                handleClaimTask={handleClaimTask} 
-                claiming={claiming} 
-              />
-
-              {/* Tarefa 3 */}
-              <DailyTaskItem 
-                taskId="t3" 
-                title="Treine 1 vez" 
-                titleIcon="/images/imgi_10_stamina.png" 
-                rewardText="RY$ 20" 
-                progressValue={player.daily_trainings || 0} 
-                progressMax={1} 
-                progressColor="red" 
-                claimedList={claimedList} 
-                handleClaimTask={handleClaimTask} 
-                claiming={claiming} 
-              />
-
-              {/* Baú Diário de Esforço */}
-              <div className="bg-ink-card p-4 rounded-sm border-line-solid border-gold mt-2 text-center">
-                <h4 className="gold mono mb-2">📦 Baú de Esforço Diário</h4>
-                <p className="muted text-xs mb-3">Complete as 3 tarefas acima para desbloquear Kuro Coins.</p>
-                {claimedList.includes('chest') ? (
-                  <span className="success mono text-xs">✓ BAÚ ABERTO HOJE</span>
-                ) : claimedList.includes('t1') && claimedList.includes('t2') && claimedList.includes('t3') ? (
-                  <button className="btn-primary w-full bg-gradient-to-r from-amber-700 to-amber-600 border-amber-600" onClick={handleClaimDailyChest} disabled={claiming}>
-                    Abrir Baú (🪙 2 a 5 Coins)
-                  </button>
-                ) : (
-                  <span className="danger mono text-xs">🔒 COMPLETE AS TAREFAS PRIMEIRO</span>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <AvatarModal
-        isOpen={isAvatarModalOpen}
-        onClose={() => setIsAvatarModalOpen(false)}
-        player={player}
-        updatePlayer={updatePlayer}
-      />
-    </div>
+      <AvatarModal isOpen={isAvatarModalOpen} onClose={() => setIsAvatarModalOpen(false)} player={player} updatePlayer={updatePlayer} />
     </div>
   );
 }

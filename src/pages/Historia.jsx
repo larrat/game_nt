@@ -30,6 +30,12 @@ export default function Historia({ player, updatePlayer }) {
       return;
     }
 
+    const { data: defeatedRows } = await supabase
+      .from('player_defeated_npcs')
+      .select('npc_id')
+      .eq('player_id', player.id);
+    const defeatedNpcIds = new Set((defeatedRows || []).map(row => Number(row.npc_id)));
+
     let current = null;
 
     if (!pQuests || pQuests.length === 0) {
@@ -55,6 +61,14 @@ export default function Historia({ player, updatePlayer }) {
       }
     }
 
+    if (current?.story_quests?.objective_type === 'combat') {
+      const requiredNpcId = Number(current.story_quests.objective_target?.npc_id);
+      current = {
+        ...current,
+        objectiveSatisfied: Number.isInteger(requiredNpcId) && defeatedNpcIds.has(requiredNpcId)
+      };
+    }
+
     setActiveQuest(current);
     setLoading(false);
   };
@@ -76,55 +90,76 @@ export default function Historia({ player, updatePlayer }) {
       // Fim do diálogo
       setShowDialog(false);
       
-      // Se a quest for do tipo 'talk', conclui na hora
+      // A transição de status é feita no servidor, nunca por INSERT direto do cliente.
       if (activeQuest.story_quests.objective_type === 'talk') {
-        completeQuest();
+        await completeQuest();
       } else if (activeQuest.status === 'pending') {
-        // Se ainda não iniciou no BD, salva como ativa
-        await supabase.from('player_quests').insert({
-          player_id: player.id,
-          quest_id: activeQuest.story_quests.id,
-          status: 'active'
+        const { data, error } = await supabase.rpc('iniciar_story_quest', {
+          p_player_id: player.id,
+          p_quest_id: activeQuest.story_quests.id
         });
-        loadStoryProgress();
+
+        if (error || data?.success === false) {
+          addToast(data?.message || error?.message || 'Não foi possível iniciar a missão.', 'error');
+          return;
+        }
+        await loadStoryProgress();
       }
     }
   };
 
   const completeQuest = async () => {
+    const questId = activeQuest.story_quests.id;
+    const { data: startData, error: startError } = await supabase.rpc('iniciar_story_quest', {
+      p_player_id: player.id,
+      p_quest_id: questId
+    });
+
+    if (startError || startData?.success === false) {
+      addToast(startData?.message || startError?.message || 'Não foi possível iniciar a missão.', 'error');
+      return;
+    }
+
     const { data, error } = await supabase.rpc('concluir_story_quest', {
       p_player_id: player.id,
-      p_quest_id: activeQuest.story_quests.id
+      p_quest_id: questId
     });
-    if (error) {
-      addToast(error.message, "error");
-    } else if (data && data.success) {
-      addToast(`Quest Concluída! +${data.xp} XP | +${data.ryous} Ryous`, "success");
-      updatePlayer(player.id);
-      loadStoryProgress();
+
+    if (error || data?.success === false) {
+      addToast(data?.message || error?.message || 'A missão ainda não pode ser concluída.', 'warning');
+    } else if (data?.success) {
+      addToast(`Quest Concluída! +${data.xp} XP | +${data.ryous} Ryous`, 'success');
+      await updatePlayer(player.id);
+      await loadStoryProgress();
     }
   };
 
-  const handleCombat = () => {
+  const handleCombat = async () => {
     const target = activeQuest.story_quests.objective_target?.npc;
-    if (!target) return;
+    const npcId = Number(activeQuest.story_quests.objective_target?.npc_id);
+    if (!target || !Number.isInteger(npcId) || npcId <= 0) {
+      addToast('Esta missão ainda não possui um inimigo oficial configurado.', 'error');
+      return;
+    }
 
-    const bossNpc = {
-      id: `storyboss_${activeQuest.story_quests.id}`,
-      name: target.name,
-      avatar: target.avatar || '/images/imgi_26_scroll_blue.jpg',
-      level: target.level || 1,
-      hp: target.hp || 1000,
-      maxHp: target.hp || 1000,
-      chakra: target.chakra || 500,
-      atk: target.atk || 10,
-      def: target.def || 5,
-      element: target.element || 'Normal',
-      isStoryQuest: true,
-      storyQuestId: activeQuest.story_quests.id
-    };
+    const { data: npc, error } = await supabase
+      .from('npcs')
+      .select('*')
+      .eq('id', npcId)
+      .eq('is_active', true)
+      .single();
 
-    navigate('/combate', { state: { npc: bossNpc, isStoryQuest: true } });
+    if (error || !npc || !(npc.is_story_mode || npc.is_bingo_book)) {
+      addToast('Não foi possível carregar o inimigo oficial da missão.', 'error');
+      return;
+    }
+
+    navigate('/combate', {
+      state: {
+        npc: { ...npc, storyQuestId: activeQuest.story_quests.id },
+        isStoryQuest: true
+      }
+    });
   };
 
   if (loading) return <div className="page text-center muted p-8">Lendo pergaminhos de história...</div>;
@@ -167,9 +202,15 @@ export default function Historia({ player, updatePlayer }) {
                 Conversar com {activeQuest.story_quests.npc_name}
               </button>
             ) : activeQuest.story_quests.objective_type === 'combat' ? (
-              <button className="btn-danger flex-1" onClick={handleCombat}>
-                Ir para Batalha!
-              </button>
+              activeQuest.objectiveSatisfied ? (
+                <button className="btn-primary flex-1 bg-green border-green" onClick={completeQuest}>
+                  Relatar Conclusão
+                </button>
+              ) : (
+                <button className="btn-danger flex-1" onClick={handleCombat}>
+                  Ir para Batalha!
+                </button>
+              )
             ) : activeQuest.story_quests.objective_type === 'reach_level' ? (
               player.level >= (activeQuest.story_quests.objective_target?.level || 999) ? (
                  <button className="btn-primary flex-1 bg-green border-green" onClick={completeQuest}>

@@ -614,7 +614,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
 
     // Regra anti-stalemate (Exaustão total)
-    if (playerCP < 10 && playerSt < 10 && npcCP < 10 && npcSt < 10) {
+    if (!combatSessionId && playerCP < 10 && playerSt < 10 && npcCP < 10 && npcSt < 10) {
       addLog(`⚔️ EMPATE POR EXAUSTÃO: Nenhum dos ninjas possui Chakra ou Stamina para continuar a luta!`);
       setBattleResult('lose');
       setPlayerFainted();
@@ -1148,7 +1148,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       // +1 to compensate for the immediate decrement in startPlayerTurn
       if (jutsuCooldown > 0) setCooldowns(prev => ({ ...prev, [jutsu.id]: jutsuCooldown + 1 }));
 
-      if (newCP <= 0) {
+      if (newCP <= 0 && !combatSessionId) {
         addLog(`Você ficou sem Chakra usando [${jutsu.name}] e desmaiou de exaustão...`);
         setBattleResult('lose');
         setPlayerFainted();

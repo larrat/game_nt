@@ -22,9 +22,9 @@ async function seedCharacters() {
     },
     {
       id: 2,
-      name: 'Sasuke Uchiha',
-      description: 'O último sobrevivente do clã Uchiha.',
-      base_avatar_url: '/images/sasuke.jpg'
+      name: 'Sasuke Uchiha (Clássico)',
+      description: 'O último sobrevivente do clã Uchiha, movido pela vingança e em busca de poder a qualquer custo.',
+      base_avatar_url: '/images/avatares/sasuke_01_kunai.png'
     },
     {
       id: 3,

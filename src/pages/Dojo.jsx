@@ -57,6 +57,7 @@ export default function Dojo({ player }) {
         .from('npcs')
         .select('*')
         .eq('is_map_npc', false)
+        .eq('is_active', true)
         .lte('level', player.level + 5);
 
       if (dojoNpcs && dojoNpcs.length > 0) {

@@ -3996,3 +3996,178 @@ textarea {
 @media (max-width: 390px) {
   .kuro-equipment-page .kuro-equipment-backpack .grid-auto { grid-template-columns: minmax(0,1fr); }
 }
+
+
+/* =========================================================
+   KUROKAGE REDESIGN — Missions and training
+   ========================================================= */
+.kuro-missions-page,
+.kuro-training-page {
+  width: 100%;
+  max-width: 1640px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 8px 0 48px;
+}
+.kuro-mission-tabs {
+  padding: 6px;
+  gap: 7px;
+  border-color: var(--line-bright);
+  border-radius: 7px;
+  background: linear-gradient(100deg, rgba(212,162,42,.035), rgba(14,17,24,.96));
+}
+.kuro-mission-tabs .segmented-tab { border-radius: 4px; min-height: 40px; }
+.kuro-mission-tabs .segmented-tab.locked { color: #625e5c; }
+.kuro-active-missions-panel,
+.kuro-mission-catalog {
+  min-width: 0;
+  border-radius: 8px;
+  border-color: var(--line);
+  background: linear-gradient(145deg, rgba(20,24,32,.96), rgba(14,17,24,.98));
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+}
+.kuro-active-missions-panel > div:first-child h3 {
+  color: var(--paper);
+  font: 600 19px 'Shippori Mincho', serif;
+  margin-bottom: 8px;
+}
+.kuro-active-mission {
+  min-width: 0;
+  border-radius: 7px;
+  background: rgba(8,10,15,.5);
+  border-color: var(--line-bright);
+  padding: 17px;
+  transition: transform .2s, border-color .2s, background .2s;
+}
+.kuro-active-mission:hover { transform: translateY(-2px); background: rgba(8,10,15,.72); }
+.kuro-active-mission.border-success { border-color: rgba(76,206,128,.45); }
+.kuro-active-mission > .flex-between strong { font: 600 14px 'Shippori Mincho', serif; line-height: 1.4; }
+.kuro-active-mission > .flex-wrap { gap: 7px; }
+.kuro-active-mission > button { min-height: 39px; border-radius: 5px; }
+.kuro-mission-catalog .table-responsive { border-radius: 8px; }
+.kuro-mission-catalog .data-table { width: 100%; min-width: 740px; border-collapse: separate; border-spacing: 0; }
+.kuro-mission-catalog .data-table thead { background: rgba(8,10,15,.65); }
+.kuro-mission-catalog .data-table th {
+  padding: 14px 15px;
+  color: var(--gold);
+  font: 600 9px 'JetBrains Mono', monospace;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line-bright);
+}
+.kuro-mission-catalog .data-table td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255,255,255,.045);
+  vertical-align: middle;
+  font-size: 11px;
+}
+.kuro-mission-catalog .data-table tbody tr { transition: background .18s; }
+.kuro-mission-catalog .data-table tbody tr:hover { background: rgba(255,255,255,.025); }
+.kuro-mission-catalog .data-table tbody tr:last-child td { border-bottom: 0; }
+.kuro-mission-catalog .data-table td:first-child { min-width: 230px; }
+.kuro-mission-catalog .data-table td:first-child .paper { font-family: 'Shippori Mincho', serif; font-size: 13px; }
+.kuro-mission-catalog .data-table td button { min-height: 34px; border-radius: 4px; white-space: nowrap; }
+
+.kuro-training-points {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(212,162,42,.3);
+  border-radius: 8px;
+  background: radial-gradient(ellipse at 100% 0%, rgba(212,162,42,.11), transparent 38%), linear-gradient(110deg, #171a21, #10131a);
+}
+.kuro-training-points > span:last-child {
+  font-size: clamp(25px, 4vw, 37px);
+  line-height: 1;
+  color: var(--gold);
+}
+.kuro-training-layout {
+  display: grid;
+  grid-template-columns: minmax(310px,.95fr) minmax(0,1.05fr);
+  gap: 20px;
+  align-items: start;
+}
+.kuro-training-attributes,
+.kuro-training-simulator > .card,
+.kuro-training-simulator > div > .card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(145deg, rgba(20,24,32,.97), rgba(14,17,24,.99));
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+}
+.kuro-training-attributes > div:first-child {
+  border-bottom-color: var(--line-bright);
+  background: rgba(8,10,15,.4);
+}
+.kuro-training-attributes > div:first-child h3 {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+.kuro-training-attributes > .flex-col { gap: 0; }
+.kuro-training-attribute {
+  min-width: 0;
+  gap: 14px;
+  border-bottom-color: rgba(255,255,255,.055);
+  transition: background .2s, border-color .2s;
+}
+.kuro-training-attribute:hover { background: rgba(255,255,255,.025); }
+.kuro-training-attribute.bg-seal-glow {
+  background: linear-gradient(90deg, rgba(224,54,63,.12), rgba(224,54,63,.025));
+  border-bottom-color: rgba(224,54,63,.27);
+}
+.kuro-training-attribute > div:first-child { min-width: 0; }
+.kuro-training-attribute > div:first-child > div:last-child { min-width: 0; }
+.kuro-training-attribute > div:first-child img { object-fit: cover; }
+.kuro-training-attribute > div:first-child span:nth-child(2) {
+  color: var(--muted-bright);
+  font-size: 10px;
+  line-height: 1.5;
+}
+.kuro-training-attribute > div:last-child { flex-shrink: 0; }
+.kuro-training-attribute > div:last-child > div:first-child { font-size: 21px; }
+.kuro-training-simulator { min-width: 0; }
+.kuro-training-simulator > .card,
+.kuro-training-simulator > div > .card { padding: 22px; }
+.kuro-training-simulator h3 { font: 600 20px 'Shippori Mincho', serif; }
+.kuro-training-simulator .card-glass {
+  border-color: rgba(212,162,42,.22);
+  border-radius: 6px;
+  background: rgba(8,10,15,.36);
+}
+.kuro-training-simulator h4 { color: var(--muted-bright); font-size: 9px; letter-spacing: 1.3px; }
+.kuro-training-simulator .flex-between.py-2 {
+  gap: 14px;
+  border-bottom-color: rgba(255,255,255,.055);
+}
+.kuro-training-simulator .flex-between.py-2 > .mono { white-space: nowrap; }
+.kuro-training-simulator button.btn-primary { min-height: 48px; border-radius: 5px; }
+
+@media (max-width: 1000px) {
+  .kuro-training-layout { grid-template-columns: minmax(0,1fr); }
+  .kuro-training-simulator { position: static !important; top: auto !important; }
+}
+@media (max-width: 680px) {
+  .kuro-missions-page,
+  .kuro-training-page { padding: 12px 0 32px; }
+  .kuro-mission-tabs { margin-bottom: 15px; }
+  .kuro-mission-tabs .segmented-tab { flex: 1 0 auto; padding: 8px 10px; font-size: 9px; }
+  .kuro-active-missions-panel { padding: 15px; }
+  .kuro-active-missions-panel > .grid-3 { grid-template-columns: minmax(0,1fr); gap: 10px; }
+  .kuro-active-mission { padding: 14px; }
+  .kuro-mission-catalog { overflow: hidden; }
+  .kuro-mission-catalog .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .kuro-training-points { gap: 14px; padding: 15px; }
+  .kuro-training-points > span:first-child { max-width: 65%; font-size: 10px; line-height: 1.5; }
+  .kuro-training-points > span:last-child { font-size: 29px; }
+  .kuro-training-attributes > div:first-child { padding: 13px 15px; }
+  .kuro-training-attribute { padding: 13px 14px; gap: 9px; }
+  .kuro-training-attribute > div:first-child { gap: 9px; }
+  .kuro-training-attribute > div:first-child > div:first-child { width: 34px; height: 34px; flex-shrink: 0; }
+  .kuro-training-attribute > div:first-child span:nth-child(2) { display: none; }
+  .kuro-training-attribute > div:last-child > div:first-child { font-size: 19px; }
+  .kuro-training-simulator > .card,
+  .kuro-training-simulator > div > .card { padding: 15px; }
+  .kuro-training-simulator .flex-between.py-2 { flex-wrap: wrap; gap: 7px; }
+  .kuro-training-simulator .flex-between.py-2 > .mono { white-space: normal; font-size: 11px; }
+  .kuro-training-simulator h3 { font-size: 18px; line-height: 1.4; }
+}

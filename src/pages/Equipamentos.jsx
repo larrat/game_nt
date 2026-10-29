@@ -145,7 +145,7 @@ export default function Equipamentos({ player, updatePlayer }) {
     const equipped = getEquipped(type);
     
     return (
-      <div className={`flex-col items-center justify-center text-center w-[130px] ${equipped ? 'card-glass border-line-solid' : 'card border-line-dashed bg-transparent border-seal'}`} style={{ 
+      <div className={`kuro-equipment-slot flex-col items-center justify-center text-center w-[130px] ${equipped ? 'card-glass border-line-solid' : 'card border-line-dashed bg-transparent border-seal'}`} style={{ 
         background: equipped ? 'var(--ink-card)' : undefined, 
         borderColor: equipped ? getRarityColor(equipped.items.rarity) : undefined
       }}>

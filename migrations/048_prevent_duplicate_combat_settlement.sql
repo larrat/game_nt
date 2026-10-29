@@ -141,8 +141,7 @@ BEGIN
         'session_settled', true
     );
 END;
-$function$
-
+$function$;
 
 CREATE OR REPLACE FUNCTION public.iniciar_combate_sessao(p_player_id integer, p_enemy_id integer, p_from_map boolean DEFAULT false, p_is_dojo boolean DEFAULT false)
  RETURNS jsonb
@@ -374,8 +373,7 @@ BEGIN
         'is_dojo', v_is_dojo
     );
 END;
-$function$
-
+$function$;
 
 CREATE OR REPLACE FUNCTION public.iniciar_exame_chunin(p_player_id integer, p_round integer)
  RETURNS jsonb
@@ -573,8 +571,7 @@ BEGIN
         'is_exam',true,'exam_round',p_round
     );
 END;
-$function$
-
+$function$;
 
 REVOKE ALL ON FUNCTION public.finalizar_combate_sessao(integer, uuid, integer, jsonb) FROM PUBLIC, anon;
 GRANT EXECUTE ON FUNCTION public.finalizar_combate_sessao(integer, uuid, integer, jsonb) TO authenticated, service_role;

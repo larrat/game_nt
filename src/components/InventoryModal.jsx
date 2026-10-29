@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
-import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 import { useToast } from '../context/ToastContext';
 import { useLocation } from 'react-router-dom';
 import { playClickSound } from '../utils/audioEngine';
@@ -39,6 +38,11 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
 
   const handleUseItem = async (invItem) => {
     if (!player || !updatePlayer) return;
+    if (inCombat) {
+      addToast('Consumíveis não podem ser usados durante o combate.', 'error');
+      return;
+    }
+
     const consumable = invItem.consumables;
     if (!consumable) {
       addToast('Item inválido no inventário.', 'error');
@@ -48,58 +52,33 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
     setUsingId(invItem.id);
     playClickSound();
 
-    let newHp = player.hp ?? calculateHP(player);
-    let newCp = player.chakra ?? calculateChakra(player);
-    let newSp = player.stamina ?? calculateStamina(player);
+    try {
+      const { data, error } = await supabase.rpc('usar_consumivel_inventario', {
+        p_player_id: player.id,
+        p_inventory_id: invItem.id
+      });
 
-    const maxHp = calculateHP(player);
-    const maxCp = calculateChakra(player);
-    const maxSp = calculateStamina(player);
+      if (error || !data?.success) {
+        addToast('Erro ao usar item: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+        return;
+      }
 
-    let usedText = '';
+      await updatePlayer(player.id);
+      addToast(
+        `Você usou ${data.consumable_name || consumable.name} (${data.used_text || 'recursos atualizados'})`,
+        'success'
+      );
 
-    if (consumable.type === 'hp' || consumable.type === 'all') {
-      newHp = Math.min(maxHp, newHp + consumable.value);
-      usedText += '+HP ';
-    }
-    if (consumable.type === 'cp' || consumable.type === 'all') {
-      newCp = Math.min(maxCp, newCp + consumable.value);
-      usedText += '+Chakra ';
-    }
-    if (consumable.type === 'sp' || consumable.type === 'all') {
-      newSp = Math.min(maxSp, newSp + consumable.value);
-      usedText += '+Stamina ';
-    }
-
-    const { error: playerError } = await supabase.from('players').update({
-      hp: newHp,
-      chakra: newCp,
-      stamina: newSp,
-      is_fainted: false
-    }).eq('id', player.id);
-
-    if (playerError) {
-      addToast('Erro ao usar item: ' + playerError.message, 'error');
+      const newQuantity = Number(data.quantity_remaining ?? Math.max(0, invItem.quantity - 1));
+      setItems(prev => {
+        if (newQuantity <= 0) return prev.filter(i => i.id !== invItem.id);
+        return prev.map(i => i.id === invItem.id ? { ...i, quantity: newQuantity } : i);
+      });
+    } catch (error) {
+      addToast('Erro inesperado ao usar item: ' + (error?.message || 'tente novamente.'), 'error');
+    } finally {
       setUsingId(null);
-      return;
     }
-
-    const newQuantity = invItem.quantity - 1;
-    if (newQuantity <= 0) {
-      await supabase.from('player_consumables').delete().eq('id', invItem.id);
-    } else {
-      await supabase.from('player_consumables').update({ quantity: newQuantity }).eq('id', invItem.id);
-    }
-
-    await updatePlayer(player.id);
-    addToast(`Você usou ${consumable.name} (${usedText.trim()})`, 'success');
-
-    setItems(prev => {
-      if (newQuantity <= 0) return prev.filter(i => i.id !== invItem.id);
-      return prev.map(i => i.id === invItem.id ? { ...i, quantity: newQuantity } : i);
-    });
-
-    setUsingId(null);
   };
 
   if (!isOpen) return null;

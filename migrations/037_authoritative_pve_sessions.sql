@@ -1397,6 +1397,17 @@ BEGIN
         END IF;
     END IF;
 
+    -- Story and bounty progress is recorded only after the server confirms a session victory.
+    IF EXISTS (
+        SELECT 1 FROM public.npcs n
+        WHERE n.id = v_session.enemy_id
+          AND (COALESCE(n.is_story_mode,false) OR COALESCE(n.is_bingo_book,false))
+    ) THEN
+        INSERT INTO public.player_defeated_npcs (player_id, npc_id)
+        VALUES (p_player_id, v_session.enemy_id)
+        ON CONFLICT DO NOTHING;
+    END IF;
+
     v_reward := public.finalizar_combate(
         p_player_id,
         v_session.enemy_id,
@@ -1816,5 +1827,9 @@ GRANT EXECUTE ON FUNCTION public.aprender_jutsu(integer,integer,integer) TO auth
 REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jsonb) FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jsonb,integer,integer,text) FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON FUNCTION public.finalizar_combate(integer,integer,text,integer,jsonb,integer,integer,text,boolean) FROM PUBLIC, anon, authenticated;
+
+-- Defeated NPC records are written by server-side reward settlement, not from a client request.
+REVOKE INSERT, UPDATE, DELETE ON TABLE public.player_defeated_npcs FROM PUBLIC, anon, authenticated;
+GRANT SELECT ON TABLE public.player_defeated_npcs TO authenticated;
 
 NOTIFY pgrst, 'reload schema';

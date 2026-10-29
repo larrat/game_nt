@@ -17,7 +17,7 @@ const NAV = [
       { to: '/status', icon: '👤', label: 'Status do Ninja' },
       { to: '/equipamentos', icon: '/images/imgi_21_Mochila.png', label: 'Equipamentos' },
       { to: '/tecnicas', icon: '/images/imgi_13_passe.png', label: 'Técnicas e Jutsus' },
-      { to: '/aprimorar-jutsus', icon: '/images/imgi_46_scroll.png', label: 'Aprimorar Jutsus' },
+      { to: '/aprimorar-jutsus', icon: '/images/jutsus/jutsu_ninjutsu.jpg', label: 'Aprimorar Jutsus' },
       { to: '/treino', icon: '/images/imgi_10_stamina.png', label: 'Treinamento' },
     ]
   },

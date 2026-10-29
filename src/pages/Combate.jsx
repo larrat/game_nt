@@ -886,6 +886,19 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const handleConsumable = async (cons) => {
     if (!isPlayerTurn || battleResult || (combatSessionEligible && combatSessionLoading) || (combatSessionEligible && !combatSessionId)) return;
+
+    // World Boss uses its own session model; until it has a dedicated potion RPC, don't
+    // consume inventory items that would not update the boss session's resource state.
+    if (location.state?.isWorldBoss) {
+      addToast('Consumíveis ainda não estão disponíveis durante o Chefe Mundial.', 'warning');
+      return;
+    }
+
+    if (!cons?.pc_id) {
+      addToast('Este item não está vinculado a uma unidade do seu inventário.', 'error');
+      return;
+    }
+
     setIsPlayerTurn(false);
 
     if (combatSessionId) {
@@ -909,20 +922,24 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       return;
     }
 
-    if (cons.type === "hp") setPlayerHP(prev => Math.min(maxPlayerHP, prev + cons.effect_value));
-    else if (cons.type === "chakra" || cons.type === "cp") setPlayerCP(prev => Math.min(maxPlayerCP, prev + cons.effect_value));
-    else if (cons.type === "stamina" || cons.type === "sp") setPlayerSt(prev => Math.min(maxPlayerSt, prev + cons.effect_value));
-
-    addLog(`💊 Você usou [${cons.name}] e recuperou ${cons.effect_value} de ${cons.type.toUpperCase()}!`);
-
-    if (cons.pc_id) {
-      await supabase.from("player_consumables").update({ quantity: cons.quantity - 1 }).eq("id", cons.pc_id);
-      await updatePlayer(player.id);
+    // Legacy/special encounters do not maintain a server combat session. Inventory and
+    // player resource changes still go through an owner-checked, atomic server RPC.
+    const { data, error } = await supabase.rpc('usar_consumivel_inventario', {
+      p_player_id: player.id,
+      p_inventory_id: cons.pc_id
+    });
+    if (error || !data?.success) {
+      addToast('Não foi possível usar o consumível: ' + (error?.message || data?.error || 'operação recusada'), 'error');
+      setIsPlayerTurn(true);
+      return;
     }
 
-    setTimeout(() => {
-      npcTurn(npcHP);
-    }, 1000);
+    setPlayerHP(Number(data.hp));
+    setPlayerCP(Number(data.chakra));
+    setPlayerSt(Number(data.stamina));
+    addLog(`💊 Você usou [${cons.name}]. Recursos atualizados pelo servidor.`);
+    await updatePlayer(player.id);
+    npcTurn(npcHP);
   };
 
   const handleBasicAttack = async () => {

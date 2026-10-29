@@ -190,7 +190,7 @@ export default function Mapa({ player, updatePlayer }) {
     setLoadingMap(true);
 
     const { data: allNpcs, error: npcErr } = await supabase
-      .from('npcs').select('*').eq('is_map_npc', true);
+      .from('npcs').select('*').eq('is_map_npc', true).eq('is_active', true);
 
     const { data: defeated } = await supabase
       .from('player_defeated_npcs').select('npc_id').eq('player_id', player.id);

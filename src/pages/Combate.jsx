@@ -211,6 +211,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const [combatSessionFailed, setCombatSessionFailed] = useState(false);
   const combatSessionStartRef = useRef(false);
   const pendingVictoryRecoveryRef = useRef(false);
+  const resumedEnemyTurnRef = useRef(null);
   const handleWinRecoveryRef = useRef(null);
   const combatSessionEligible = Boolean(
     player?.id &&
@@ -256,6 +257,21 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       }
 
       setCombatSessionId(data.session_id);
+      if (data.resumed_session === true) {
+        setTurnCount(Math.max(1, Number(data.turn_count) || 1));
+        addLog('Combate ativo recuperado do servidor.');
+        if (data.awaiting_enemy_turn === true) {
+          resumedEnemyTurnRef.current = {
+            sessionId: data.session_id,
+            enemyId: Number(data.enemy_id),
+            enemyHP: Number(data.enemy_hp)
+          };
+          setIsPlayerTurn(false);
+        } else {
+          setIsPlayerTurn(true);
+          setTimeLeft(30);
+        }
+      }
       setNpcHP(data.enemy_hp);
       setNpcMaxHPVal(data.enemy_max_hp);
       setNpcCP(data.enemy_chakra);
@@ -902,6 +918,23 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }, 1000);
     timeoutRefs.current.push(t1);
   };
+
+  useEffect(() => {
+    const pending = resumedEnemyTurnRef.current;
+    if (
+      !pending ||
+      !combatSessionId ||
+      combatSessionId !== pending.sessionId ||
+      Number(npcInit?.id) !== pending.enemyId ||
+      Number(npcHP) !== pending.enemyHP ||
+      battleResult
+    ) return;
+
+    resumedEnemyTurnRef.current = null;
+    npcTurn(npcHP);
+    // npcTurn must use the latest session and enemy state at the moment of resumption.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [combatSessionId, npcInit?.id, npcHP, battleResult]);
 
   const handleConsumable = async (cons) => {
     if (!isPlayerTurn || battleResult || (combatSessionEligible && combatSessionLoading) || (combatSessionEligible && !combatSessionId)) return;

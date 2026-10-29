@@ -39,37 +39,36 @@ export default function Equipamentos({ player, updatePlayer }) {
       return;
     }
 
-    const typeToEquip = invItem.items.type;
-    const currentlyEquipped = inventory.find(i => i.is_equipped && i.items.type === typeToEquip);
+    const { data, error } = await supabase.rpc('alterar_equipamento_inventario', {
+      p_player_id: player.id,
+      p_inventory_item_id: invItem.id,
+      p_equipped: true
+    });
 
-    // Desequipa o atual se existir
-    if (currentlyEquipped) {
-      await supabase.from('player_inventory').update({ is_equipped: false }).eq('id', currentlyEquipped.id);
-    }
-
-    // Equipa o novo
-    const { error } = await supabase.from('player_inventory').update({ is_equipped: true }).eq('id', invItem.id);
-
-    if (error) {
-      addToast('Erro ao equipar: ' + error.message, 'error');
+    if (error || !data?.success) {
+      addToast('Erro ao equipar: ' + (error?.message || data?.error || 'Não foi possível equipar o item.'), 'error');
       return;
     }
 
     addToast(`${invItem.items.name} equipado com sucesso!`, 'success');
-    loadInventory();
-    updatePlayer(player.id);
+    await loadInventory();
+    await updatePlayer(player.id);
   };
 
   const handleUnequip = async (invItem) => {
     if (!invItem?.items) return;
-    const { error } = await supabase.from('player_inventory').update({ is_equipped: false }).eq('id', invItem.id);
-    if (error) {
-      addToast('Erro ao remover equipamento: ' + error.message, 'error');
+    const { data, error } = await supabase.rpc('alterar_equipamento_inventario', {
+      p_player_id: player.id,
+      p_inventory_item_id: invItem.id,
+      p_equipped: false
+    });
+    if (error || !data?.success) {
+      addToast('Erro ao remover equipamento: ' + (error?.message || data?.error || 'Não foi possível remover o item.'), 'error');
       return;
     }
     addToast(`${invItem.items.name} removido.`, 'info');
-    loadInventory();
-    updatePlayer(player.id);
+    await loadInventory();
+    await updatePlayer(player.id);
   };
 
   const handleFavorite = async (invItem) => {

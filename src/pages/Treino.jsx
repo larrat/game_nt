@@ -3,6 +3,8 @@ import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import { useToast } from '../context/ToastContext';
+import { findRankIndex } from '../utils/progression';
+import { getTrainingBudget, getTrainingRange, formatTrainingReceipt } from '../utils/training';
 import { 
   getEquipmentBonus, 
   calculateHP, 
@@ -23,38 +25,82 @@ export default function Treino({ player, updatePlayer }) {
   const [ranksData, setRanksData] = useState([]);
   const [selectedAttr, setSelectedAttr] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [catalogLoading, setCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState('');
+  const [catalogVersion, setCatalogVersion] = useState(0);
+  const [lastTraining, setLastTraining] = useState(null);
   const { addToast } = useToast();
 
   React.useEffect(() => {
+    let active = true;
     async function loadData() {
-      const [attrsRes, ranksRes] = await Promise.all([
-        supabase.from('attributes').select('*').order('id', { ascending: true }),
-        supabase.from('ranks').select('*')
-      ]);
-      if (attrsRes.data) setAttrsData(attrsRes.data);
-      if (ranksRes.data) setRanksData(ranksRes.data);
+      setCatalogLoading(true);
+      setCatalogError('');
+      try {
+        const [attrsRes, ranksRes] = await Promise.all([
+          supabase.from('attributes').select('*').order('id', { ascending: true }),
+          supabase.from('ranks').select('*').order('id', { ascending: true })
+        ]);
+        if (attrsRes.error || ranksRes.error) {
+          throw new Error(attrsRes.error?.message || ranksRes.error?.message || 'Falha ao carregar catálogo.');
+        }
+        if (!active) return;
+        const attributes = attrsRes.data || [];
+        const ranks = ranksRes.data || [];
+        setAttrsData(attributes);
+        setRanksData(ranks);
+        setSelectedAttr(previous =>
+          attributes.find(attr => attr.field === previous?.field) ||
+          attributes.find(attr => attr.field === 'energia') ||
+          attributes[0] || null
+        );
+        if (!attributes.length || !ranks.length) {
+          setCatalogError('Não foi possível encontrar os atributos ou as graduações do servidor.');
+        }
+      } catch (error) {
+        if (active) setCatalogError('Não foi possível carregar os dados de treinamento. Verifique sua conexão e tente novamente.');
+      } finally {
+        if (active) setCatalogLoading(false);
+      }
     }
     loadData();
-  }, []);
+    return () => { active = false; };
+  }, [catalogVersion]);
 
-  if (!player || attrsData.length === 0 || ranksData.length === 0) return null;
+  if (!player) return null;
 
-  const playerRank = player.rank || 'Genin';
-  const rankKey = String(playerRank).toLowerCase();
-  const playerRankData = ranksData.find(r =>
-    r.title?.toLowerCase() === rankKey ||
-    r.name_id?.toLowerCase() === rankKey ||
-    (rankKey === 'jounin' && r.name_id === 'jonin') ||
-    (rankKey === 'herói' && r.name_id === 'heroi')
-  ) || ranksData.find(r => r.name_id === 'estudante') || ranksData[0];
-  const maxQuantity = Math.min(5, Math.max(0, Number(player.pontos_atributos) || 0));
-  const quantity = Math.max(1, Math.min(selectedQuantity, maxQuantity));
-  
-  const rankMultiplier = {
-    minMult: playerRankData.train_min_mult,
-    maxMult: playerRankData.train_max_mult,
-    bonus: playerRankData.train_bonus
-  };
+  if (catalogLoading) {
+    return (
+      <div className="page kuro-training-page" role="status" aria-live="polite">
+        <PageHeader eyebrow="Academia Ninja" title="Centro de Treinamento" subtitle="Carregando atributos..." />
+        <div className="card p-6 muted">Preparando simulador de treinamento...</div>
+      </div>
+    );
+  }
+
+  if (catalogError) {
+    return (
+      <div className="page kuro-training-page" role="alert">
+        <PageHeader eyebrow="Academia Ninja" title="Centro de Treinamento" subtitle="Os atributos não estão disponíveis no momento." />
+        <div className="card p-6">
+          <p className="text-danger mb-4">{catalogError}</p>
+          <button type="button" className="btn-ghost" onClick={() => setCatalogVersion(version => version + 1)}>
+            Tentar novamente
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const playerRank = player.rank || 'Estudante da Academia';
+  const rankIndex = findRankIndex(ranksData.map(rank => ({ id: rank.name_id, title: rank.title })), playerRank);
+  const playerRankData = rankIndex >= 0 ? ranksData[rankIndex] : ranksData[0];
+  const {
+    points: availablePoints,
+    maxPerAction: maxQuantity,
+    quantity,
+    remaining
+  } = getTrainingBudget(player.pontos_atributos, selectedQuantity);
 
   const attrDesc = {
     ninjutsu: { text: "Aumenta dano de Ninjutsu.", detail: "Jutsus elementais usam este valor.", color: '#60a5fa' },
@@ -69,17 +115,13 @@ export default function Treino({ player, updatePlayer }) {
     bukijutsu: { text: "Manejo de Armas.", detail: "Dano com espadas e ferramentas.", color: '#9ca3af' }
   };
 
-  const getRange = (heroMin, heroMax) => {
-    const minBase = Math.max(1, Math.floor(heroMin * (rankMultiplier.minMult ?? 0.2)));
-    const maxBase = Math.max(minBase, Math.floor(heroMax * (rankMultiplier.maxMult ?? 0.3)));
-    const bonus = rankMultiplier.bonus ?? 1;
-    return { min: minBase + bonus, max: maxBase + bonus, bonus };
-  };
+  const getRange = (heroMin, heroMax) =>
+    getTrainingRange({ hero_min: heroMin, hero_max: heroMax }, playerRankData);
 
   const handleTrain = async () => {
-    if (!selectedAttr) return;
-    if (maxQuantity < 1) {
-      addToast('Você não tem Pontos de Atributo disponíveis!', 'error');
+    if (!selectedAttr || loading) return;
+    if (quantity < 1) {
+      addToast('Você não tem pontos disponíveis para treinar.', 'error');
       return;
     }
 
@@ -91,14 +133,25 @@ export default function Treino({ player, updatePlayer }) {
         p_quantidade: quantity
       });
 
-      if (error || !data?.success) {
-        addToast('Erro no treinamento: ' + (error?.message || data?.error || 'Não foi possível treinar.'), 'error');
-        return;
+      if (error || data?.success !== true) {
+        throw new Error(error?.message || data?.error || 'Não foi possível treinar.');
       }
-      addToast(`Você ganhou +${data.gained} em ${selectedAttr.label} usando ${data.quantity} ponto(s)!`, 'success');
-      await updatePlayer(player.id);
-    } catch (err) {
-      addToast('Erro no treinamento: ' + (err?.message || 'Falha inesperada.'), 'error');
+      const receipt = formatTrainingReceipt(data, selectedAttr.label);
+      setLastTraining({
+        playerId: player.id,
+        attribute: selectedAttr.label,
+        gained: data.gained,
+        quantity: data.quantity,
+        remaining: data.remaining_points
+      });
+      addToast(receipt || 'Treino registrado! Atualizando atributos.', 'success');
+      try {
+        await updatePlayer(player.id);
+      } catch {
+        addToast('Treino concluído, mas os dados não foram atualizados. Recarregue a página.', 'info');
+      }
+    } catch (error) {
+      addToast('Erro no treinamento: ' + (error?.message || 'Falha inesperada.'), 'error');
     } finally {
       setLoading(false);
     }
@@ -106,7 +159,7 @@ export default function Treino({ player, updatePlayer }) {
 
   // Funções de Simulação
   const getSimulatedPlayer = (attrField, amountAdded) => {
-    return { ...player, [attrField]: (player[attrField] || 0) + amountAdded };
+    return { ...player, [attrField]: (Number(player[attrField]) || 0) + amountAdded };
   };
 
   const renderSimChange = (currentVal, attrField, gainMin, gainMax, calcFunc) => {
@@ -133,13 +186,40 @@ export default function Treino({ player, updatePlayer }) {
       <PageHeader 
         eyebrow={`Graduação: ${playerRank}`} 
         title='Centro de Treinamento' 
-        subtitle='Simule e distribua até 5 Pontos de Atributo por treinamento.' 
+        subtitle='Escolha seu atributo, simule os efeitos e confirme a distribuição de até 5 pontos por ação.' 
       />
 
-      <div className="kuro-training-points flex-between bg-ink-raised px-6 py-4 rounded-md border-line-solid border-seal-bright mb-6">
-        <span className="muted uppercase mono tracking-wider text-sm">Pontos de Treino Disponíveis</span>
-        <span className="gold mono text-4xl">{player.pontos_atributos || 0}</span>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6" aria-label="Resumo dos pontos de treinamento">
+        <div className="card border-line-solid border-seal-bright p-4">
+          <p className="muted uppercase mono tracking-wider text-xs mb-2">Pontos disponíveis</p>
+          <p className="gold mono text-3xl m-0">{availablePoints}</p>
+          <p className="muted text-xs mt-2">Saldo oficial do personagem</p>
+        </div>
+        <div className="card border-line-solid p-4">
+          <p className="muted uppercase mono tracking-wider text-xs mb-2">Limite nesta ação</p>
+          <p className="paper mono text-3xl m-0">{maxQuantity} <span className="muted text-sm">/ 5</span></p>
+          <p className="muted text-xs mt-2">Respeita o saldo disponível</p>
+        </div>
+        <div className="card border-line-solid p-4">
+          <p className="muted uppercase mono tracking-wider text-xs mb-2">Contador de treinos</p>
+          <p className="paper mono text-3xl m-0">{Math.max(0, Number(player.daily_trainings) || 0)}</p>
+          <p className="muted text-xs mt-2">Contagem registrada no servidor</p>
+        </div>
       </div>
+
+      {lastTraining?.playerId === player.id && (
+        <div className="card border border-success mb-6 p-4" role="status" aria-live="polite">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <p className="text-success font-semibold text-sm">Último treino desta visita</p>
+              <p className="paper mt-1">+{Number(lastTraining.gained).toLocaleString('pt-BR')} em {lastTraining.attribute} usando {lastTraining.quantity} ponto(s).</p>
+            </div>
+            {Number.isFinite(Number(lastTraining.remaining)) && (
+              <span className="badge badge-green">Saldo informado pelo servidor: {lastTraining.remaining}</span>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="kuro-training-layout grid-sidebar gap-6 items-start">
         
@@ -158,9 +238,13 @@ export default function Treino({ player, updatePlayer }) {
               const totalValue = baseValue + equipValue;
               
               return (
-                <div 
-                  key={attr.field} 
-                  className={`kuro-training-attribute flex-between px-6 py-4 border-b border-line-alpha-05 items-center cursor-pointer transition-all ${isSelected ? 'bg-seal-glow border-l-4 border-l-seal-bright' : 'bg-transparent border-l-4 border-l-transparent'}`}
+                <button
+                  key={attr.field}
+                  type="button"
+                  aria-pressed={isSelected}
+                  aria-label={`Simular treino de ${attr.label}`}
+                  disabled={loading}
+                  className={`kuro-training-attribute flex-between w-full text-left px-6 py-4 border-b border-line-alpha-05 items-center cursor-pointer transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-gold ${isSelected ? 'bg-seal-glow border-l-4 border-l-seal-bright' : 'bg-transparent border-l-4 border-l-transparent'}`}
                   onClick={() => setSelectedAttr(attr)}
                 >
                   <div className="flex-row gap-3 items-center">
@@ -177,7 +261,7 @@ export default function Treino({ player, updatePlayer }) {
                     <div className="gold mono text-xl">{totalValue}</div>
                     {equipValue > 0 && <div className="success mono text-xs">+{equipValue} (Equip)</div>}
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -204,8 +288,11 @@ export default function Treino({ player, updatePlayer }) {
                     <div className="flex-col gap-2">
                       <span className="muted uppercase mono text-xs">GANHO ESTIMADO POR {quantity} PONTO(S):</span>
                       <span className="paper mono text-md">
-                        +{min * quantity} a +{max * quantity} <span className="gold text-xs">(+{bonus} por ponto de Rank, já incluído)</span>
+                        +{min * quantity} a +{max * quantity} <span className="gold text-xs">({bonus} de bônus por ponto, já incluído)</span>
                       </span>
+                      <p className="muted text-xs leading-relaxed">
+                        Estimativa baseada nas regras atuais. O servidor sorteia o resultado de cada ponto separadamente.
+                      </p>
                     </div>
                   );
                 })()}
@@ -248,12 +335,17 @@ export default function Treino({ player, updatePlayer }) {
                   ))}
                 </select>
               </div>
+              <div className="flex items-center justify-between text-sm muted border-t border-line-solid pt-3 mb-4" aria-live="polite">
+                <span>Saldo após esta ação</span>
+                <strong className="gold mono">{remaining} ponto(s)</strong>
+              </div>
               <button
+                type="button"
                 className="btn-primary w-full p-4 text-md"
                 onClick={handleTrain}
                 disabled={loading || maxQuantity === 0}
               >
-                {loading ? 'Treinando...' : `Gastar ${quantity} Ponto(s) em ${selectedAttr.label}`}
+                <span>{loading ? 'Treinando...' : maxQuantity === 0 ? 'Sem pontos disponíveis' : `Confirmar ${quantity} ponto(s) em ${selectedAttr.label}`}</span>
               </button>
             </div>
           ) : (

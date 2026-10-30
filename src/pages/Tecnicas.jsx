@@ -1,290 +1,268 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import { useToast } from '../context/ToastContext';
 import PageHeader from '../components/PageHeader';
-import JutsuIcon from '../components/JutsuIcon';
 import JutsuCard from '../components/JutsuCard';
-
-const rankValue = (rank) => {
-  if (!rank) return 0;
-  const r = rank.toLowerCase();
-  if (r.includes('estudante')) return 0;
-  if (r.includes('genin')) return 1;
-  if (r.includes('chunin')) return 2;
-  if (r.includes('jounin')) return 3;
-  if (r.includes('anbu')) return 4;
-  if (r.includes('sannin') || r.includes('sanin')) return 5;
-  if (r.includes('heroi') || r.includes('herói')) return 6;
-  return 0;
-};
-
-const CATEGORIES = ['Ninjutsu', 'Taijutsu', 'Genjutsu', 'Bukijutsu', 'Elementar'];
+import {
+  filterJutsuCatalog, getJutsuEligibility, jutsuCatalogTabs,
+  selectBulkJutsus, toJutsuId
+} from '../utils/jutsuEligibility';
 
 export default function Tecnicas({ player, updatePlayer }) {
-  const getHighestAttr = () => {
-    if (!player) return 'Ninjutsu';
-    const attrs = [
-      { name: 'Ninjutsu', val: player.ninjutsu || 0 },
-      { name: 'Taijutsu', val: player.taijutsu || 0 },
-      { name: 'Genjutsu', val: player.genjutsu || 0 },
-      { name: 'Bukijutsu', val: player.bukijutsu || 0 },
-    ];
-    attrs.sort((a,b) => b.val - a.val);
-    return attrs[0].val > 0 ? attrs[0].name : 'Ninjutsu';
-  };
-
   const [allJutsus, setAllJutsus] = useState([]);
   const [tab, setTab] = useState('tecnicas');
-  const [filterCat, setFilterCat] = useState(getHighestAttr);
+  const [filterCat, setFilterCat] = useState('Todos');
   const [confirmBulk, setConfirmBulk] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [catalogLoading, setCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState('');
+  const [catalogVersion, setCatalogVersion] = useState(0);
+  const [search, setSearch] = useState('');
   const { addToast } = useToast();
 
-  const rawLearned = Array.isArray(player?.jutsus_learned) ? player.jutsus_learned : [];
-  const learnedIds = rawLearned.map(j => typeof j === 'string' ? j : j.id);
-
   useEffect(() => {
+    let active = true;
     async function fetchJutsus() {
-      const { data } = await supabase.from('jutsus').select('*').eq('is_active', true).order('id', { ascending: true });
-      if (data) {
-        const formatted = data.map(j => ({
-          id: j.id,
+      setCatalogLoading(true);
+      setCatalogError('');
+      const { data, error } = await supabase.from('jutsus')
+        .select('*')
+        .eq('is_active', true)
+        .order('id', { ascending: true });
+      if (!active) return;
+      if (error) {
+        setCatalogError('Não foi possível carregar os jutsus. Tente novamente.');
+        setAllJutsus([]);
+      } else {
+        setAllJutsus((data || []).map(j => ({
+          ...j,
           lvl: j.req_level,
-          name: j.name,
           reqRank: j.req_rank,
           desc: j.description,
-          type: j.type,
           cost: j.cost_ryous,
           chakraCost: j.chakra_cost,
-          damage: j.damage,
-          accuracy: j.accuracy,
-          category: j.category,
-          reqAttrValue: j.req_attr_value,
-          req_seals: j.req_seals,
-          req_stats: j.req_stats,
-          cooldown: j.cooldown,
-          element: j.element
-        }));
-        setAllJutsus(formatted);
+          reqAttrValue: j.req_attr_value
+        })));
       }
+      setCatalogLoading(false);
     }
-    fetchJutsus();
-  }, []);
+    fetchJutsus().catch(() => {
+      if (active) {
+        setCatalogError('Falha ao carregar o catálogo. Verifique a conexão.');
+        setCatalogLoading(false);
+      }
+    });
+    return () => { active = false; };
+  }, [catalogVersion]);
 
-  const hasRequirements = (jutsu, playerObj) => {
-    if (jutsu.req_stats && Object.keys(jutsu.req_stats).length > 0) {
-      for (const [statName, reqValue] of Object.entries(jutsu.req_stats)) {
-        if ((playerObj[statName.toLowerCase()] || 0) < reqValue) return false;
-      }
-      return true;
+  const learnedIds = useMemo(() => new Set(
+    (Array.isArray(player?.jutsus_learned) ? player.jutsus_learned : []).map(toJutsuId)
+  ), [player?.jutsus_learned]);
+
+  const categories = useMemo(() => jutsuCatalogTabs(allJutsus), [allJutsus]);
+  const displayedJutsus = useMemo(() => filterJutsuCatalog(allJutsus, filterCat)
+    .filter(j => j.name?.toLocaleLowerCase('pt-BR').includes(search.trim().toLocaleLowerCase('pt-BR'))),
+  [allJutsus, filterCat, search]);
+  const bulk = useMemo(() => selectBulkJutsus(allJutsus, player, learnedIds), [allJutsus, player, learnedIds]);
+
+  const updatePlayerSafely = async () => {
+    try {
+      await updatePlayer(player.id);
+    } catch {
+      addToast('Operação concluída, mas o personagem não foi recarregado. Atualize a página.', 'info');
     }
-    const playerMastery = playerObj?.[jutsu.category?.toLowerCase()] || 0;
-    if (jutsu.reqAttrValue && playerMastery < jutsu.reqAttrValue) return false;
-    if (jutsu.req_seals && (playerObj.selo || 0) < jutsu.req_seals) return false;
-    return true;
   };
 
   const handleLearn = async (jutsu) => {
-    if (learnedIds.includes(jutsu.id)) {
-      addToast(`Você já conhece ${jutsu.name}!`, 'info');
-      return;
-    }
-    if (player.level < jutsu.lvl) {
-      addToast(`Nível insuficiente! Precisa de Nv.${jutsu.lvl}.`, 'error');
-      return;
-    }
-    if (jutsu.reqRank && rankValue(player.rank) < rankValue(jutsu.reqRank)) {
-      addToast(`Graduação insuficiente! Precisa ser ${jutsu.reqRank}.`, 'error');
-      return;
-    }
-    
-    if (!hasRequirements(jutsu, player)) {
-      addToast(`Atributos insuficientes! Verifique os requisitos na carta.`, 'error');
-      return;
-    }
-
-    if (player?.ryous < jutsu.cost) {
-      addToast(`Ryous insuficientes! Precisa de RY$ ${jutsu.cost}.`, 'error');
+    if (loading || !player) return;
+    const eligibility = getJutsuEligibility(jutsu, player, learnedIds.has(toJutsuId(jutsu.id)));
+    if (!eligibility.eligible) {
+      addToast('Requisitos pendentes: ' + eligibility.reasons.join(', '), 'error');
       return;
     }
 
     setLoading(true);
-    const { data, error } = await supabase.rpc('aprender_jutsu', {
-      p_player_id: player.id,
-      p_jutsu_id: jutsu.id,
-      p_cost: jutsu.cost
-    });
-
-    if (error || !data?.success) {
-      addToast('Erro ao aprender jutsu: ' + (error?.message || data?.error || 'operação recusada'), 'error');
-    } else {
-      await updatePlayer(player.id);
-      addToast(`${jutsu.name} aprendido com sucesso! -RY$ ${data?.cost ?? jutsu.cost}`, 'success');
+    try {
+      const { data, error } = await supabase.rpc('aprender_jutsu', {
+        p_player_id: player.id,
+        p_jutsu_id: jutsu.id,
+        p_cost: jutsu.cost
+      });
+      if (error || data?.success !== true) {
+        throw new Error(error?.message || data?.error || 'Aprendizado recusado.');
+      }
+      const actualCost = Number(data.cost);
+      addToast(`${jutsu.name} aprendido! ${Number.isFinite(actualCost) ? `Custo confirmado: RY$ ${actualCost.toLocaleString('pt-BR')}` : 'Saldo atualizado pelo servidor.'}`, 'success');
+      await updatePlayerSafely();
+    } catch (error) {
+      addToast('Não foi possível aprender: ' + (error?.message || 'falha inesperada'), 'error');
+    } finally {
+      setLoading(false);
     }
+  };
 
-    setLoading(false);
+  const handleBulkPreview = () => {
+    if (!player?.is_vip) {
+      addToast('Aprendizado em massa é exclusivo de jogadores VIP.', 'error');
+      return;
+    }
+    if (bulk.selected.length === 0) {
+      addToast('Não há jutsus elegíveis para aprender no momento.', 'info');
+      return;
+    }
+    if (Number(player.ryous || 0) < bulk.totalCost) {
+      addToast(`Saldo insuficiente para o lote: RY$ ${bulk.totalCost.toLocaleString('pt-BR')} necessários.`, 'error');
+      return;
+    }
+    setConfirmBulk(true);
   };
 
   const handleBulkLearn = async () => {
-    // Apenas filtra o que ele AINDA NÃO TEM e PODE COMPRAR (Lv + Rank)
-    const availableToLearn = allJutsus.filter(j =>
-      !learnedIds.includes(j.id) &&
-      player.level >= j.lvl &&
-      (!j.reqRank || rankValue(player.rank) >= rankValue(j.reqRank)) &&
-      (!j.element || j.element === player?.element) &&
-      hasRequirements(j, player)
-    );
-
-    if (availableToLearn.length === 0) {
-      addToast('Você já aprendeu tudo que estava disponível para o seu nível/graduação!', 'info');
+    if (loading || !confirmBulk || !player?.is_vip) return;
+    if (bulk.selected.length === 0 || Number(player.ryous || 0) < bulk.totalCost) {
       setConfirmBulk(false);
+      addToast('Requisitos ou saldo alterados. Confira a lista antes de tentar novamente.', 'error');
       return;
     }
-
-    // VERIFICAR VIP
-    if (!player.is_vip) {
-      addToast('Aprender em massa é um recurso exclusivo para jogadores VIP!', 'error');
-      return;
-    }
-
-    // Calcula o custo total
-    const totalCost = availableToLearn.reduce((sum, j) => sum + j.cost, 0);
-
-    if (player.ryous < totalCost) {
-      addToast(`Você precisa de RY$ ${totalCost} para aprender as ${availableToLearn.length} técnicas disponíveis.`, 'error');
-      setConfirmBulk(false);
-      return;
-    }
-
-    if (!confirmBulk) {
-      addToast(`Atenção: Aprender ${availableToLearn.length} jutsus de uma vez custará RY$ ${totalCost}. Clique novamente para confirmar.`, 'info');
-      setConfirmBulk(true);
-      setTimeout(() => setConfirmBulk(false), 3000);
-      return;
-    }
-    setConfirmBulk(false);
 
     setLoading(true);
-
-    const newObjs = availableToLearn.map(j => ({ id: j.id, level: 1, slots: [null, null, null] }));
-    const { data, error } = await supabase.rpc('aprender_jutsus_massa', {
-      p_player_id: player.id,
-      p_jutsus: newObjs,
-      p_total_cost: totalCost
-    });
-
-    if (error || !data?.success) {
-      addToast('Erro ao aprender em massa: ' + (error?.message || data?.error || 'operação recusada'), 'error');
-    } else {
-      await updatePlayer(player.id);
-      addToast(`Prodígio da Academia ativado! Você aprendeu ${data.learned_count} jutsus por RY$ ${data.total_cost}!`, 'success');
+    try {
+      const { data, error } = await supabase.rpc('aprender_jutsus_massa', {
+        p_player_id: player.id,
+        p_jutsus: bulk.selected.map(j => ({ id: j.id, level: 1, slots: [null, null, null] })),
+        p_total_cost: bulk.totalCost
+      });
+      if (error || data?.success !== true) {
+        throw new Error(error?.message || data?.error || 'Aprendizado em massa recusado.');
+      }
+      setConfirmBulk(false);
+      addToast(`Academia VIP: ${data.learned_count} jutsu(s) aprendidos. Total confirmado: RY$ ${Number(data.total_cost).toLocaleString('pt-BR')}.`, 'success');
+      await updatePlayerSafely();
+    } catch (error) {
+      addToast('Não foi possível aprender em massa: ' + (error?.message || 'falha inesperada'), 'error');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   if (!player) return null;
 
   return (
-    <div className="page">
-      {/* PAGE HEADER */}
+    <div className="page kuro-jutsu-academy-page">
       <PageHeader
         eyebrow={`${player.name} · Graduação: ${player.rank}`}
-        title="Academia Ninja"
-        subtitle="Aprenda jutsus usando Ryous. Todos os jutsus aprendidos ficam disponíveis automaticamente no combate."
+        title="Academia de Jutsus"
+        subtitle="Explore as técnicas, veja os requisitos reais e aprenda com segurança."
         actions={
           <div className="card text-center">
             <div className="muted mono uppercase text-[10px] tracking-[2px] mb-1">RYOUS</div>
-            <div className="gold mono text-2xl">RY$ {player.ryous || 0}</div>
+            <div className="gold mono text-2xl">RY$ {Number(player.ryous || 0).toLocaleString('pt-BR')}</div>
+            <div className="muted text-xs mt-2">Classe: {player.class || 'Não definida'}</div>
           </div>
         }
       />
 
-      {/* TABS */}
-      <div className="tabs mb-8">
-        <div className={`tab cursor-pointer ${tab === 'tecnicas' ? 'active' : ''}`} onClick={() => setTab('tecnicas')}>Técnicas</div>
-        <div className={`tab cursor-pointer ${tab === 'aprendidas' ? 'active' : ''}`} onClick={() => setTab('aprendidas')}>
-          Aprendidas <span className="ml-[6px] bg-seal-glow border border-solid border-seal-bright text-seal-bright rounded-full px-2 py-[1px] text-[10px] font-mono">{learnedIds.length}</span>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+        <div className="card p-4">
+          <p className="muted text-xs uppercase mb-1">Técnicas no catálogo</p>
+          <p className="gold text-3xl mono">{allJutsus.length}</p>
+        </div>
+        <div className="card p-4">
+          <p className="muted text-xs uppercase mb-1">Jutsus aprendidos</p>
+          <p className="paper text-3xl mono">{learnedIds.size}</p>
+        </div>
+        <div className="card p-4">
+          <p className="muted text-xs uppercase mb-1">Disponíveis para aprender</p>
+          <p className="text-success text-3xl mono">{allJutsus.filter(j =>
+            getJutsuEligibility(j, player, learnedIds.has(toJutsuId(j.id))).eligible).length}</p>
         </div>
       </div>
 
-      {/* LISTA DE TÉCNICAS */}
-      {tab === 'tecnicas' && (
+      <div className="tabs mb-6" role="tablist" aria-label="Abas da academia">
+        <button type="button" role="tab" aria-selected={tab === 'tecnicas'}
+          className={`tab ${tab === 'tecnicas' ? 'active' : ''}`}
+          onClick={() => setTab('tecnicas')}>Técnicas</button>
+        <button type="button" role="tab" aria-selected={tab === 'aprendidas'}
+          className={`tab ${tab === 'aprendidas' ? 'active' : ''}`}
+          onClick={() => setTab('aprendidas')}>Aprendidas ({learnedIds.size})</button>
+      </div>
+
+      {catalogLoading ? (
+        <div className="card p-8 muted" role="status">Carregando academia...</div>
+      ) : catalogError ? (
+        <div className="card p-8" role="alert">
+          <p className="text-danger mb-4">{catalogError}</p>
+          <button type="button" className="btn-ghost"
+            onClick={() => setCatalogVersion(v => v + 1)}>Tentar novamente</button>
+        </div>
+      ) : tab === 'tecnicas' ? (
         <>
-          {/* Filtros por categoria e Bulk Learn */}
-          <div className="flex-between mb-6 flex-wrap gap-4">
-            <div className="flex-row gap-2 flex-wrap">
-              {CATEGORIES.map(cat => (
-                <button
-                  key={cat}
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-5">
+            <div className="flex flex-wrap gap-2" aria-label="Categorias de jutsu">
+              {categories.map(cat => (
+                <button key={cat} type="button" aria-pressed={cat === filterCat}
                   onClick={() => setFilterCat(cat)}
-                  className={`mono uppercase px-4 py-[6px] rounded-sm text-[11px] tracking-[1px] cursor-pointer border border-solid transition-all duration-200 ${filterCat === cat ? 'border-seal-bright bg-seal-glow text-seal-bright' : 'border-line bg-transparent text-muted'}`}
-                >{cat}</button>
+                  className={`mono uppercase px-3 py-2 rounded-sm text-xs border border-solid transition-colors ${cat === filterCat ? 'border-seal-bright bg-seal-glow text-seal-bright' : 'border-line bg-transparent text-muted'}`}>
+                  {cat}
+                </button>
               ))}
             </div>
-
-            {/* Vantagem VIP: Prodígio da Academia */}
-            <button
-              className="btn-ghost border-gold text-gold px-4 py-[6px] text-xs"
-              onClick={handleBulkLearn}
-              disabled={loading}
-              title="Vantagem VIP: Aprender todos os Jutsus disponíveis para você de uma vez"
-            >
-              🌟 Aprender Todos (VIP)
+            <button type="button" className="btn-ghost border-gold text-gold px-4 py-2 text-xs"
+              onClick={handleBulkPreview} disabled={loading} title="Aprender técnicas elegíveis em lote (VIP)">
+              Aprender em massa (VIP)
             </button>
           </div>
-
-          <div className="grid-auto gap-4">
-            {allJutsus.filter(j => {
-              if (filterCat === 'Elementar') return !!j.element && j.element === player?.element;
-              return (filterCat === 'Todos' || j.category === filterCat) && (!j.element || j.element === player?.element);
-            }).map(jutsu => {
-              const isLearned = learnedIds.includes(jutsu.id);
-              return (
-                <JutsuCard 
-                  key={jutsu.id} 
-                  jutsu={jutsu} 
-                  player={player} 
-                  isLearned={isLearned} 
-                  learnCost={`RY$ ${jutsu.cost}`} 
-                  onLearn={() => handleLearn(jutsu)}
-                  showRequisites={true}
-                />
-              );
-            })}
+          <div className="mb-5">
+            <label htmlFor="jutsu-search" className="text-sm muted block mb-2">Buscar técnicas</label>
+            <input id="jutsu-search" type="search" className="w-full max-w-md bg-ink-raised border border-line-bright rounded-sm p-3 paper"
+              value={search} onChange={event => setSearch(event.target.value)}
+              placeholder="Nome do jutsu..." />
           </div>
-        </>
-      )}
-
-      {/* APRENDIDAS */}
-      {tab === 'aprendidas' && (
-        <div>
-          <div className="flex-between mb-6">
-            <h3 className="gold text-base">Jutsus Aprendidos: {learnedIds.length}</h3>
-            <span className="muted text-xs">Todos aparecem automaticamente durante as lutas.</span>
-          </div>
-          {learnedIds.length === 0 ? (
-            <div className="muted text-center py-16">
-              <div className="text-5xl mb-4">📖</div>
-              <div className="card-title text-lg mb-2">Nenhum jutsu aprendido</div>
-              <div className="text-[13px]">Vá até "Técnicas" e compre seus primeiros jutsus com Ryous.</div>
-            </div>
+          <p className="muted text-xs mb-4">{displayedJutsus.length} técnica(s) nesta seleção. Jutsus bloqueados continuam visíveis para consulta.</p>
+          {displayedJutsus.length === 0 ? (
+            <div className="card p-8 muted text-center">Nenhum jutsu encontrado. Altere os filtros ou a busca.</div>
           ) : (
             <div className="grid-auto gap-4">
-              {allJutsus.filter(j => learnedIds.includes(j.id)).map(jutsu => (
-                <JutsuCard 
-                  key={jutsu.id} 
-                  jutsu={jutsu} 
-                  player={player} 
-                  isLearned={true} 
-                  showRequisites={false}
-                />
+              {displayedJutsus.map(jutsu => (
+                <JutsuCard key={jutsu.id} jutsu={jutsu} player={player}
+                  isLearned={learnedIds.has(toJutsuId(jutsu.id))}
+                  onLearn={() => handleLearn(jutsu)} loading={loading} showRequisites />
               ))}
             </div>
           )}
-        </div>
+        </>
+      ) : (
+        learnedIds.size === 0 ? (
+          <div className="card p-8 muted text-center">Nenhum jutsu aprendido. Explore a aba Técnicas.</div>
+        ) : (
+          <div className="grid-auto gap-4">
+            {allJutsus.filter(j => learnedIds.has(toJutsuId(j.id))).map(jutsu => (
+              <JutsuCard key={jutsu.id} jutsu={jutsu} player={player} isLearned
+                showRequisites={false} />
+            ))}
+          </div>
+        )
       )}
 
+      {confirmBulk && (
+        <div className="fixed inset-0 z-[9999] bg-black/80 flex items-center justify-center p-4"
+          onClick={() => !loading && setConfirmBulk(false)}>
+          <div role="dialog" aria-modal="true" aria-labelledby="bulk-title"
+            className="card w-full max-w-md p-6" onClick={event => event.stopPropagation()}>
+            <h3 id="bulk-title" className="gold text-xl mb-3">Confirmar aprendizado VIP</h3>
+            <p className="paper mb-3">Aprender {bulk.selected.length} jutsu(s) elegíveis por até RY$ {bulk.totalCost.toLocaleString('pt-BR')}.</p>
+            <p className="muted text-sm mb-5">O servidor verifica cada requisito novamente e determina o custo real. A operação é atômica.</p>
+            {bulk.remaining > 0 && <p className="text-gold text-xs mb-4">Mais {bulk.remaining} técnica(s) ficarão para o próximo lote (limite de 50).</p>}
+            <div className="flex gap-3 justify-end">
+              <button type="button" className="btn-ghost" disabled={loading}
+                onClick={() => setConfirmBulk(false)}>Cancelar</button>
+              <button type="button" className="btn-primary" disabled={loading}
+                onClick={handleBulkLearn}><span>{loading ? 'Aprendendo...' : 'Confirmar compra'}</span></button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

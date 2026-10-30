@@ -1,0 +1,296 @@
+/* Kurokage Status 3.0 — nova composição, sem assets de terceiros.
+   As cores permanecem nos tokens próprios do jogo. */
+.kuro-status-page .kuro-status-v3__hero {
+  display: grid;
+  grid-template-columns: minmax(148px, 220px) minmax(0, 1fr);
+  gap: clamp(20px, 3.2vw, 42px);
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  margin: 12px 0 30px;
+  padding: clamp(18px, 3vw, 36px);
+  border: 1px solid rgba(212,162,42,.28);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 7% 0%, rgba(179,35,45,.16), transparent 40%),
+    linear-gradient(120deg, rgba(24,27,35,.97), rgba(10,13,19,.98));
+  box-shadow: 0 16px 52px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.045);
+  position: relative;
+  overflow: hidden;
+}
+.kuro-status-page .kuro-status-v3__hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 3px;
+  width: 180px;
+  background: linear-gradient(90deg, var(--gold), var(--seal-bright), transparent);
+  pointer-events: none;
+}
+.kuro-status-v3__portrait-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  min-width: 0;
+}
+.kuro-status-v3__portrait-button {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(212,162,42,.12), transparent 55%),
+    rgba(9,11,17,.95);
+  border: 1px solid rgba(212,162,42,.38);
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 0 0 6px rgba(212,162,42,.027), 0 16px 32px rgba(0,0,0,.25);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.kuro-status-v3__portrait-button:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 6px rgba(212,162,42,.05), 0 22px 35px rgba(0,0,0,.35);
+}
+.kuro-status-v3__portrait-button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+.kuro-status-v3__portrait-button img {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.5));
+}
+.kuro-status-v3__portrait-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%; height: 100%;
+  color: var(--gold);
+  font: 700 86px 'Shippori Mincho', serif;
+}
+.kuro-status-v3__portrait-caption {
+  text-align: center;
+  color: var(--muted-bright);
+  letter-spacing: 1.7px;
+  font: 600 9px 'JetBrains Mono', monospace;
+}
+.kuro-status-v3__summary { min-width: 0; }
+.kuro-status-v3__eyebrow {
+  font: 600 10px/1.5 'JetBrains Mono', monospace;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  margin-bottom: 9px;
+}
+.kuro-status-v3__name {
+  color: var(--paper);
+  font: 600 clamp(26px,3vw,39px)/1.15 'Shippori Mincho', serif;
+  overflow-wrap: anywhere;
+  margin: 0 0 20px;
+}
+.kuro-status-v3__milestones {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 17px;
+  margin-bottom: 19px;
+  border-bottom: 1px solid rgba(212,162,42,.16);
+}
+.kuro-status-v3__level,
+.kuro-status-v3__next,
+.kuro-status-v3__clan {
+  padding: 6px 10px;
+  border: 1px solid rgba(212,162,42,.2);
+  border-radius: 4px;
+  background: rgba(212,162,42,.045);
+  color: var(--muted-bright);
+  font: 500 10px/1.3 'JetBrains Mono', monospace;
+}
+.kuro-status-v3__level { color: var(--gold); border-color: rgba(212,162,42,.4); }
+.kuro-status-v3__level strong,
+.kuro-status-v3__next strong {
+  color: var(--paper);
+  font-size: 13px;
+  margin-left: 5px;
+}
+.kuro-status-v3__resources {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 26px;
+}
+.kuro-status-v3__resource { min-width: 0; }
+.kuro-status-v3__resource-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 9px;
+  color: var(--paper);
+}
+.kuro-status-v3__resource-label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; }
+.kuro-status-v3__resource-icon {
+  width: 23px; height: 23px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 4px;
+  color: var(--gold);
+}
+.kuro-status-v3__resource-value {
+  color: var(--paper);
+  font: 600 11px/1.3 'JetBrains Mono', monospace;
+  white-space: nowrap;
+}
+.kuro-status-v3__resource-value span { color: var(--muted-bright); font-weight: 400; }
+.kuro-status-v3__meter {
+  display: block;
+  appearance: none; -webkit-appearance: none;
+  width: 100%; height: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 4px;
+  background: #070b10;
+}
+.kuro-status-v3__meter::-webkit-progress-bar { background: #070b10; }
+.kuro-status-v3__meter::-webkit-progress-value { background: linear-gradient(90deg, #a72e32, #f14d52); }
+.kuro-status-v3__meter::-moz-progress-bar { background: linear-gradient(90deg, #a72e32, #f14d52); }
+.kuro-status-v3__meter.is-chakra::-webkit-progress-value { background: linear-gradient(90deg, #2865a9, #54aeff); }
+.kuro-status-v3__meter.is-chakra::-moz-progress-bar { background: linear-gradient(90deg, #2865a9, #54aeff); }
+.kuro-status-v3__meter.is-stamina::-webkit-progress-value { background: linear-gradient(90deg, #a87520, #eab83c); }
+.kuro-status-v3__meter.is-stamina::-moz-progress-bar { background: linear-gradient(90deg, #a87520, #eab83c); }
+.kuro-status-v3__meter.is-xp::-webkit-progress-value { background: linear-gradient(90deg, #38784d, #5ac580); }
+.kuro-status-v3__meter.is-xp::-moz-progress-bar { background: linear-gradient(90deg, #38784d, #5ac580); }
+
+@media (max-width: 920px) {
+  .kuro-status-page .kuro-status-v3__hero {
+    grid-template-columns: minmax(122px, 165px) minmax(0, 1fr);
+    gap: 22px;
+  }
+  .kuro-status-v3__resources { gap: 15px; }
+}
+@media (max-width: 680px) {
+  .kuro-status-page .kuro-status-v3__hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 18px;
+    margin: 6px 0 22px;
+    gap: 18px;
+  }
+  .kuro-status-v3__portrait-column { width: min(180px, 60vw); margin: 0 auto; }
+  .kuro-status-v3__summary { text-align: center; }
+  .kuro-status-v3__milestones { justify-content: center; }
+  .kuro-status-v3__resources { text-align: left; }
+  .kuro-status-v3__name { margin-bottom: 14px; }
+}
+@media (max-width: 370px) {
+  .kuro-status-v3__resources { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kuro-status-v3__portrait-button { transition: none; }
+  .kuro-status-v3__portrait-button:hover { transform: none; }
+}
+
+/* Atributos verificáveis: dez colunas do personagem e treze fórmulas do motor. */
+.kuro-status-v3__attribute-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+  margin: 0 0 24px;
+}
+.kuro-status-v3__attributes {
+  padding: clamp(17px, 2.2vw, 25px);
+  border: 1px solid rgba(212,162,42,.16);
+  border-radius: 9px;
+  background: linear-gradient(145deg,rgba(20,24,32,.96),rgba(11,14,20,.98));
+  box-shadow: 0 10px 28px rgba(0,0,0,.13);
+  min-width: 0;
+}
+.kuro-status-v3__section-heading {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(212,162,42,.17);
+}
+.kuro-status-v3__section-eyebrow {
+  color: var(--gold);
+  font: 600 9px/1.4 'JetBrains Mono', monospace;
+  letter-spacing: 1.2px;
+}
+.kuro-status-v3__section-heading h2 {
+  color: var(--paper);
+  margin: 3px 0 0;
+  font: 600 clamp(17px, 1.8vw, 22px)/1.25 'Shippori Mincho', serif;
+}
+.kuro-status-v3__count {
+  font: 500 10px/1.4 'JetBrains Mono', monospace;
+  color: var(--muted-bright);
+  white-space: nowrap;
+}
+.kuro-status-v3__hint {
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--muted-bright);
+  margin: 12px 0 18px;
+}
+.kuro-status-v3__stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 7px 14px;
+}
+.kuro-status-v3__stat-row,
+.kuro-status-v3__account-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 34px;
+  padding: 8px 10px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.045);
+  border-radius: 4px;
+  font: 400 11px/1.35 'Inter', sans-serif;
+}
+.kuro-status-v3__stat-row span,
+.kuro-status-v3__account-row span {
+  min-width: 0;
+  color: var(--muted-bright);
+}
+.kuro-status-v3__stat-row strong,
+.kuro-status-v3__account-row strong {
+  color: var(--paper);
+  flex-shrink: 0;
+  font: 600 12px/1.3 'JetBrains Mono', monospace;
+  text-align: right;
+}
+.kuro-status-v3__stat-row strong small {
+  color: #6fd4a5;
+  font-size: 9px;
+}
+.kuro-status-v3__account-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+}
+.kuro-status-v3__account-row {
+  background: rgba(255,255,255,.02);
+}
+@media (max-width: 1120px) {
+  .kuro-status-v3__attribute-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 680px) {
+  .kuro-status-v3__attribute-grid { gap: 13px; margin-bottom: 18px; }
+  .kuro-status-v3__attributes { padding: 16px; }
+  .kuro-status-v3__stat-grid, .kuro-status-v3__account-grid { grid-template-columns: minmax(0, 1fr); }
+}

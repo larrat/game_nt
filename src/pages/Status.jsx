@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { VILLAGES } from '../constants';
 import PageHeader from '../components/PageHeader';
 import AvatarModal from '../components/AvatarModal';
-import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP } from '../utils/engine';
+import CharacterResourceMeter from '../components/CharacterResourceMeter';
+import '../styles/character-status-v3.css';
+import {
+  calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP,
+  getTotalStat, calculateAtkTaiBuk, calculateAtkNinGen, calculateDefTaiBuk,
+  calculateDefNinGen, calculatePerfuracao, calculatePrecisao, calculateConcentracao,
+  calculatePercepcao, calculateConviccao, calculateDeterminacao,
+  calculateCritChance, calculateDodgeChance, calculateChakraDiscount
+} from '../utils/engine';
+import { BASIC_ATTRIBUTES, getStatusAccountRows, formatStatusNumber } from '../utils/statusPresentation';
 
 const TITLES = [
   'Nenhum(a)',
@@ -32,6 +42,11 @@ export default function Status({ player, updatePlayer }) {
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
   const [savingTitle, setSavingTitle] = useState(false);
   const [currentTitle, setCurrentTitle] = useState(player?.title || 'Nenhum(a)');
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    setCurrentTitle(player?.title || 'Nenhum(a)');
+  }, [player?.id, player?.title]);
 
   if (!player) return null;
 
@@ -61,28 +76,38 @@ export default function Status({ player, updatePlayer }) {
   const ninjaPower = ((player.taijutsu || 0) + (player.ninjutsu || 0) + (player.genjutsu || 0) + (player.bukijutsu || 0)) * 10 + (player.level || 1) * 100;
 
   const maxHp = calculateHP(player);
-  const currentHp = player.hp !== undefined ? Math.min(player.hp, maxHp) : maxHp;
-  const hpPercent = Math.max(0, Math.min(100, (currentHp / maxHp) * 100));
-
   const maxCp = calculateChakra(player);
-  const currentCp = player.chakra !== undefined ? Math.min(player.chakra, maxCp) : maxCp;
-  const cpPercent = Math.max(0, Math.min(100, (currentCp / maxCp) * 100));
-
   const maxSp = calculateStamina(player);
-  const currentSp = player.stamina !== undefined ? Math.min(player.stamina, maxSp) : maxSp;
-  const spPercent = Math.max(0, Math.min(100, (currentSp / maxSp) * 100));
-
-  let xpPercent = 0;
-  let currentRelativeXp = 0;
-  let requiredRelativeXp = 100;
   const currentLvl = calculateLevelFromXP(player.xp || 0);
   const nextLvl = currentLvl + 1;
   const startXp = calculateXPForLevel(currentLvl);
   const nextLvlXp = calculateXPForLevel(nextLvl);
-  
-  requiredRelativeXp = nextLvlXp - startXp;
-  currentRelativeXp = (player.xp || 0) - startXp;
-  xpPercent = Math.min(100, Math.max(0, (currentRelativeXp / requiredRelativeXp) * 100));
+  const requiredRelativeXp = Math.max(1, nextLvlXp - startXp);
+  const currentRelativeXp = Math.max(0, (Number(player.xp) || 0) - startXp);
+
+  const resources = [
+    { kind: 'hp', label: 'Vida', icon: '♥', current: player.hp, max: maxHp },
+    { kind: 'chakra', label: 'Chakra', icon: '✧', current: player.chakra, max: maxCp },
+    { kind: 'stamina', label: 'Stamina', icon: '⚡', current: player.stamina, max: maxSp },
+    { kind: 'xp', label: 'Experiência', icon: '★', current: currentRelativeXp, max: requiredRelativeXp }
+  ];
+
+  const derivedAttributes = [
+    { label: 'Ataque Tai/Buk', value: calculateAtkTaiBuk(player) },
+    { label: 'Ataque Nin/Gen', value: calculateAtkNinGen(player) },
+    { label: 'Defesa Tai/Buk', value: calculateDefTaiBuk(player) },
+    { label: 'Defesa Nin/Gen', value: calculateDefNinGen(player) },
+    { label: 'Perfuração', value: calculatePerfuracao(player) },
+    { label: 'Precisão', value: calculatePrecisao(player) },
+    { label: 'Concentração', value: calculateConcentracao(player) },
+    { label: 'Percepção', value: calculatePercepcao(player) },
+    { label: 'Convicção', value: calculateConviccao(player) },
+    { label: 'Determinação', value: calculateDeterminacao(player) },
+    { label: 'Chance crítica', value: calculateCritChance(player), suffix: '%' },
+    { label: 'Esquiva', value: calculateDodgeChance(player), suffix: '%' },
+    { label: 'Redução de Chakra', value: calculateChakraDiscount(player), suffix: '%' }
+  ];
+  const accountRows = getStatusAccountRows(player);
 
   return (
     <div className="kuro-status-page bg-cover bg-center min-h-screen text-paper bg-fixed" style={{ backgroundImage: `url(${bgImage})` }}>
@@ -94,90 +119,96 @@ export default function Status({ player, updatePlayer }) {
           subtitle="Visualize seus atributos detalhados, poderes especiais e histórico de conta."
         />
 
-        {/* BIG STATUS BAR BANNER */}
-        <div className="kuro-status-hero card border-line-solid p-6 mb-8 flex-col items-center bg-ink shadow-xl relative mt-[120px]">
-           
-           {/* Imagem do personagem pulando pra fora do banner (ESTILO A IMAGEM REFERÊNCIA) */}
-           <div 
-             className="absolute cursor-pointer transition-transform hover:scale-105 top-[-160px] left-1/2 -translate-x-1/2 z-10" 
-             onClick={() => setIsAvatarModalOpen(true)}
-             title="Trocar Avatar"
-           >
+        {/* Cartão de personagem com recursos autênticos do motor — sem reescrever regras de jogo. */}
+        <motion.section
+          className="kuro-status-v3__hero"
+          aria-label="Resumo do personagem"
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.34, ease: 'easeOut' }}
+        >
+          <div className="kuro-status-v3__portrait-column">
+            <button
+              type="button"
+              className="kuro-status-v3__portrait-button"
+              onClick={() => setIsAvatarModalOpen(true)}
+              aria-label={`Alterar avatar de ${player.name}`}
+              title="Alterar avatar"
+            >
               {player.avatar?.startsWith('/') ? (
-                <img src={player.avatar} alt="Avatar" className="h-[300px] object-contain drop-shadow-2xl" />
+                <img src={player.avatar} alt="" />
               ) : (
-                <div className="w-[200px] h-[200px] bg-seal rounded-full flex items-center justify-center text-6xl border-4 border-gold shadow-2xl">👤</div>
+                <span aria-hidden="true" className="kuro-status-v3__portrait-fallback">忍</span>
               )}
-           </div>
+            </button>
+            <span className="kuro-status-v3__portrait-caption">ALTERAR AVATAR</span>
+          </div>
 
-           <div className="flex-between w-full relative z-10 pt-20">
-              
-              {/* Level Atual */}
-              <div className="flex-col items-center w-[100px]">
-                 <span className="muted text-lg tracking-widest">LVL</span>
-                 <span className="text-5xl font-bold text-white text-shadow">{currentLvl}</span>
+          <div className="kuro-status-v3__summary">
+            <p className="kuro-status-v3__eyebrow">
+              {VILLAGES[player.village_id] || 'Nukenin'} · {player.rank || 'Estudante da Academia'}
+            </p>
+            <h2 className="kuro-status-v3__name">{player.name}</h2>
+            <div className="kuro-status-v3__milestones" aria-label="Progressão de nível">
+              <span className="kuro-status-v3__level">NÍVEL <strong>{currentLvl}</strong></span>
+              <span className="kuro-status-v3__next">PRÓXIMO NÍVEL <strong>{nextLvl}</strong></span>
+              <span className="kuro-status-v3__clan">{player.clan || 'Sem clã'}</span>
+            </div>
+            <div className="kuro-status-v3__resources">
+              {resources.map(resource => (
+                <CharacterResourceMeter key={resource.kind} {...resource} />
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+<div className="kuro-status-v3__attribute-grid" aria-label="Atributos do ninja">
+          <section className="kuro-status-v3__attributes" aria-labelledby="kuro-basic-title">
+            <div className="kuro-status-v3__section-heading">
+              <div>
+                <span className="kuro-status-v3__section-eyebrow">TREINAMENTO</span>
+                <h2 id="kuro-basic-title">Atributos básicos</h2>
               </div>
-
-              {/* Centro: Barras (Vida, Chakra, Stamina, XP) */}
-              <div className="flex-col items-center gap-md flex-1 max-w-[700px]">
-                 
-                 <div className="flex-between w-full gap-md">
-                    {/* Vida */}
-                    <div className="flex-row items-center gap-sm flex-1">
-                       <span className="text-[32px]">❤️</span>
-                       <div className="flex-col w-full">
-                          <span className="text-xs font-bold text-center mb-1 text-shadow">{currentHp}/{maxHp}</span>
-                          <div className="h-2 w-full bg-black-alpha-60 rounded-full overflow-hidden border border-line-bright shadow-inner-dark">
-                             <div className="h-full bg-danger transition-all duration-300" style={{ width: `${hpPercent}%` }}></div>
-                          </div>
-                       </div>
-                    </div>
-
-                    {/* Chakra */}
-                    <div className="flex-row items-center gap-sm flex-1">
-                       <span className="text-[32px] text-blue-500">🔥</span>
-                       <div className="flex-col w-full">
-                          <span className="text-xs font-bold text-center mb-1 text-shadow">{currentCp}/{maxCp}</span>
-                          <div className="h-2 w-full bg-black-alpha-60 rounded-full overflow-hidden border border-line-bright shadow-inner-dark">
-                             <div className="h-full bg-blue transition-all duration-300" style={{ width: `${cpPercent}%` }}></div>
-                          </div>
-                       </div>
-                    </div>
-
-                    {/* Stamina */}
-                    <div className="flex-row items-center gap-sm flex-1">
-                       <span className="text-[32px]">⚡</span>
-                       <div className="flex-col w-full">
-                          <span className="text-xs font-bold text-center mb-1 text-shadow">{currentSp}/{maxSp}</span>
-                          <div className="h-2 w-full bg-black-alpha-60 rounded-full overflow-hidden border border-line-bright shadow-inner-dark">
-                             <div className="h-full bg-warning transition-all duration-300" style={{ width: `${spPercent}%` }}></div>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-
-                 {/* XP BAR */}
-                 <div className="w-full flex-row items-center mt-2 relative">
-                    <div className="h-4 w-full bg-black-alpha-60 rounded-sm overflow-hidden border border-line-bright shadow-inner-dark">
-                       <div className="h-full bg-success transition-all duration-300 bg-[repeating-linear-gradient(-45deg,rgba(255,255,255,0.1),rgba(255,255,255,0.1)_8px,transparent_8px,transparent_16px)]" style={{ width: `${xpPercent}%` }}></div>
-                    </div>
-                    <span className="absolute w-full text-center text-xs font-bold text-white text-shadow-dark pointer-events-none">
-                       EXP: {currentRelativeXp}/{requiredRelativeXp}
-                    </span>
-                 </div>
-
+              <span className="kuro-status-v3__count">10 atributos</span>
+            </div>
+            <p className="kuro-status-v3__hint">Valores atuais do personagem, incluindo bônus de clã quando aplicáveis.</p>
+            <div className="kuro-status-v3__stat-grid">
+              {BASIC_ATTRIBUTES.map(attribute => {
+                const base = player[attribute.key];
+                const total = base == null ? null : getTotalStat(player, attribute.key);
+                const difference = total === null ? 0 : total - Number(base);
+                return (
+                  <div className="kuro-status-v3__stat-row" key={attribute.key}>
+                    <span>{attribute.label}</span>
+                    <strong>{formatStatusNumber(total)}
+                      {difference > 0 && <small title="Bônus de clã"> +{formatStatusNumber(difference)}</small>}
+                    </strong>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+          <section className="kuro-status-v3__attributes" aria-labelledby="kuro-derived-title">
+            <div className="kuro-status-v3__section-heading">
+              <div>
+                <span className="kuro-status-v3__section-eyebrow">MOTOR DE JOGO</span>
+                <h2 id="kuro-derived-title">Atributos derivados</h2>
               </div>
-
-              {/* Level Seguinte */}
-              <div className="flex-col items-center opacity-50 w-[100px]">
-                 <span className="muted text-lg tracking-widest">LVL</span>
-                 <span className="text-5xl font-bold text-white text-shadow">{nextLvl}</span>
-              </div>
-
-           </div>
+              <span className="kuro-status-v3__count">13 indicadores</span>
+            </div>
+            <p className="kuro-status-v3__hint">Calculados pelas fórmulas atuais do Kurokage. Não são valores do Naruto Game.</p>
+            <div className="kuro-status-v3__stat-grid">
+              {derivedAttributes.map(attribute => (
+                <div className="kuro-status-v3__stat-row" key={attribute.label}>
+                  <span>{attribute.label}</span>
+                  <strong>{formatStatusNumber(attribute.value)}{attribute.suffix || ''}</strong>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
 
-<div className="kuro-status-layout grid-responsive gap-lg">
+        <div className="kuro-status-layout grid-responsive gap-lg">
           {/* Coluna Esquerda: Títulos */}
           <div className="flex-col gap-md flex-[1_1_300px]">
             <div className="kuro-status-identity card-glass border-line-solid p-6 flex-col items-center gap-md">
@@ -215,20 +246,20 @@ export default function Status({ player, updatePlayer }) {
                   <span className="paper">{VILLAGES[player.village_id] || 'Nenhuma'}</span>
                 </div>
                 <div className="flex-between">
-                  <span className="muted">Profissão:</span>
-                  <span className="paper">-</span>
+                  <span className="muted">Graduação:</span>
+                  <span className="paper">{player.rank || 'Não informada'}</span>
                 </div>
                 <div className="flex-between">
-                  <span className="muted">Level:</span>
-                  <span className="gold font-bold">{player.level || 1}</span>
+                  <span className="muted">Nível calculado:</span>
+                  <span className="gold font-bold">{currentLvl}</span>
                 </div>
                 <div className="flex-between">
-                  <span className="muted">Poder Ninja:</span>
+                  <span className="muted" title="Índice indicativo calculado no cliente, não valor de combate registrado no banco">Índice de poder (estimado):</span>
                   <span className="paper font-bold">{ninjaPower}</span>
                 </div>
                 <div className="flex-between">
                   <span className="muted">Kuro Coins:</span>
-                  <span className="gold">{player.vip_coins || 0}</span>
+                  <span className="gold">{formatStatusNumber(player.vip_coins)}</span>
                 </div>
               </div>
             </div>
@@ -244,78 +275,31 @@ export default function Status({ player, updatePlayer }) {
               <p className="muted text-sm mb-4">Essas habilidades especiais podem ser adquiridas em eventos ou missões raras pelo mundo.</p>
               
               <div className="grid-3 gap-sm">
-                <StatusPowerSlot label="Bijuu" value="Nenhum" icon="🦊" />
-                <StatusPowerSlot label="Espada da Névoa" value="Nenhum" icon="🗡️" />
+                <StatusPowerSlot label="Bijuu" value="Não disponível" icon="🦊" />
+                <StatusPowerSlot label="Espada da Névoa" value="Não disponível" icon="🗡️" />
                 <StatusPowerSlot label="Clã" value={player.clan || 'Sem Clã'} icon="⛩️" isActive={!!player.clan} />
-                <StatusPowerSlot label="Selo Amaldiçoado" value="Nenhum" icon="🌑" />
-                <StatusPowerSlot label="Invocação" value="Nenhum" icon="🐸" />
-                <StatusPowerSlot label="Modo Sennin" value="Desativado" icon="🐸" />
-                <StatusPowerSlot label="Hachimon Tonkou" value="Desativado" icon="🚪" />
-                <StatusPowerSlot label="Karma" value="Nenhum" icon="♦️" />
-                <StatusPowerSlot label="Elemento" value="Vento" icon="🌪️" isActive={true} />
+                <StatusPowerSlot label="Selo Amaldiçoado" value="Não disponível" icon="🌑" />
+                <StatusPowerSlot label="Invocação" value="Não disponível" icon="🐸" />
+                <StatusPowerSlot label="Modo Sennin" value="Não disponível" icon="🐸" />
+                <StatusPowerSlot label="Hachimon Tonkou" value="Não disponível" icon="🚪" />
+                <StatusPowerSlot label="Karma" value="Não disponível" icon="♦️" />
+                <StatusPowerSlot label="Elemento" value={player.element || 'Não definido'} icon="🌪️" isActive={!!player.element} />
+                <StatusPowerSlot label="Segundo elemento" value={player.element2 || 'Não definido'} icon="❄️" isActive={!!player.element2} />
               </div>
             </div>
 
-            <div className="kuro-status-account card-glass border-line-solid p-6">
-              <h3 className="gold mb-4 border-b border-line-bright pb-2">Estatísticas da Conta</h3>
-              <div className="grid-2 gap-x-8 gap-y-3 text-sm">
-                
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Dias no round:</span>
-                  <span className="paper">1</span>
-                </div>
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Pacotes abertos:</span>
-                  <span className="paper">0</span>
-                </div>
-                
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Pts. de Fidelidade:</span>
-                  <span className="paper">0</span>
-                </div>
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Fragmentos:</span>
-                  <span className="paper">0</span>
-                </div>
-
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Qtd. Reforjas:</span>
-                  <span className="paper">0</span>
-                </div>
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Fragmentos Gastos:</span>
-                  <span className="paper">0</span>
-                </div>
-
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Ranking (Vila):</span>
-                  <span className="paper">-</span>
-                </div>
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Ranking (Geral):</span>
-                  <span className="paper">-</span>
-                </div>
-
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Score PVP:</span>
-                  <span className="paper">0</span>
-                </div>
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Pts. de Conquistas:</span>
-                  <span className="gold font-bold">0</span>
-                </div>
-
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Equipe:</span>
-                  <span className="paper">{player.team || 'Nenhuma'}</span>
-                </div>
-                <div className="flex-between border-b border-line-bright border-dashed pb-1">
-                  <span className="muted">Organização:</span>
-                  <span className="paper">{player.organization || 'Nenhuma'}</span>
-                </div>
-
+            <section className="kuro-status-account card-glass border-line-solid p-6" aria-labelledby="account-stats-title">
+              <h3 id="account-stats-title" className="gold mb-4 border-b border-line-bright pb-2">Histórico registrado</h3>
+              <p className="kuro-status-v3__hint">Dados registrados no personagem. Informações ainda não armazenadas aparecem como “—”.</p>
+              <div className="kuro-status-v3__account-grid">
+                {accountRows.map(stat => (
+                  <div className="kuro-status-v3__account-row" key={stat.key}>
+                    <span>{stat.label}</span>
+                    <strong>{stat.value}</strong>
+                  </div>
+                ))}
               </div>
-            </div>
+            </section>
 
           </div>
         </div>

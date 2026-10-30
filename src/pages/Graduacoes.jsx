@@ -4,6 +4,7 @@ import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
+import { findRankIndex } from '../utils/progression';
 
 export default function Graduacoes({ player, updatePlayer }) {
   const { addToast } = useToast();
@@ -37,7 +38,7 @@ export default function Graduacoes({ player, updatePlayer }) {
           if (r.req_missions_s > 0) reqs.push({ label: `Completar ${r.req_missions_s} Missões Rank S`, check: (p) => (p.missions_s || 0) >= r.req_missions_s, progress: (p) => `${p.missions_s || 0}/${r.req_missions_s}` });
           
           // Novos requisitos
-          if (r.name_id === 'Chunin') {
+          if (r.name_id === 'chunin') {
             reqs.push({
               label: 'Aprovação na Floresta da Morte (Exame Chunin)',
               check: (p) => p.passou_exame_chunin === true,
@@ -81,8 +82,10 @@ export default function Graduacoes({ player, updatePlayer }) {
 
   if (!player || ranksData.length === 0) return <div>Carregando...</div>;
 
-  const currentIndex = ranksData.findIndex(r => r.id === player.rank);
-  const nextRank = ranksData[currentIndex + 1];
+  const currentIndex = findRankIndex(ranksData, player.rank);
+  const nextRank = currentIndex >= 0 ? ranksData[currentIndex + 1] : null;
+  const ceremonyRankIndex = findRankIndex(ranksData, newRank);
+  const ceremonyRank = ceremonyRankIndex >= 0 ? ranksData[ceremonyRankIndex] : null;
 
   const canGraduate = nextRank ? nextRank.reqs.every(req => req.check(player)) : false;
 
@@ -115,6 +118,12 @@ export default function Graduacoes({ player, updatePlayer }) {
         title="Graduações" 
         subtitle="Prove seu valor e suba na hierarquia shinobi." 
       />
+
+      {currentIndex < 0 && (
+        <div className="info-banner mb-5" role="alert">
+          Sua graduação atual não foi encontrada no catálogo. Atualize o personagem antes de tentar uma promoção.
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full pt-4">
         {ranksData.map((rank, idx) => {
@@ -178,7 +187,7 @@ export default function Graduacoes({ player, updatePlayer }) {
                 {isPassed ? (
                   <div className="text-success font-bold text-sm tracking-widest uppercase">Graduado ✓</div>
                 ) : isNextRank ? (
-                  rank.id === 'Chunin' && !player.passou_exame_chunin ? (
+                  rank.id === 'chunin' && !player.passou_exame_chunin ? (
                     <button 
                       className="btn-primary w-full max-w-[200px]" 
                       onClick={() => navigate('/exame')}
@@ -209,8 +218,8 @@ export default function Graduacoes({ player, updatePlayer }) {
       {isCeremonyActive && (
         <div className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center animate-fade-in">
           <div className="text-8xl mb-6 animate-zoom-in drop-shadow-md">
-            {ranksData.find(r => r.id === newRank)?.iconSrc ? (
-              <img src={ranksData.find(r => r.id === newRank).iconSrc} alt={newRank} className="max-w-[150px] max-h-[150px]" />
+            {ceremonyRank?.iconSrc ? (
+              <img src={ceremonyRank.iconSrc} alt={newRank} className="max-w-[150px] max-h-[150px]" />
             ) : (
               <span>🥷</span>
             )}

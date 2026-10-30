@@ -5,21 +5,37 @@ on:
     paths:
       - 'src/**'
       - 'migrations/**'
+      - 'scripts/**'
       - 'tests/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'tsconfig.json'
+      - 'vite.config.js'
+      - 'vercel.json'
+      - '.vercelignore'
       - '.github/workflows/engine-tests.yml'
   push:
     branches:
-      - 'audit/security-and-engine-tests-2026-10'
-      - 'fix/rpc-auth-and-rewards-2026-10'
+      - master
     paths:
       - 'src/**'
       - 'migrations/**'
+      - 'scripts/**'
       - 'tests/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'tsconfig.json'
+      - 'vite.config.js'
+      - 'vercel.json'
+      - '.vercelignore'
       - '.github/workflows/engine-tests.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: engine-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test-and-build:

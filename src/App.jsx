@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { supabase } from './supabaseClient';
 import { normalizeBonusStats } from './utils/engine';
 import './styles/main.css';
+import './styles/rpg-shell.css';
 import { ToastProvider } from './context/ToastContext';
 
 import Sidebar from './components/Sidebar';

@@ -4,6 +4,7 @@ import '../styles/main.css';
 import { useToast } from '../context/ToastContext';
 import PageHeader from '../components/PageHeader';
 import JutsuCard from '../components/JutsuCard';
+import '../styles/academy-v3.css';
 import {
   filterJutsuCatalog, getJutsuEligibility, jutsuCatalogTabs,
   selectBulkJutsus, toJutsuId
@@ -223,7 +224,7 @@ export default function Tecnicas({ player, updatePlayer }) {
           {displayedJutsus.length === 0 ? (
             <div className="card p-8 muted text-center">Nenhum jutsu encontrado. Altere os filtros ou a busca.</div>
           ) : (
-            <div className="grid-auto gap-4">
+            <div className="kuro-academy-v3__catalog-grid grid-auto gap-4">
               {displayedJutsus.map(jutsu => (
                 <JutsuCard key={jutsu.id} jutsu={jutsu} player={player}
                   isLearned={learnedIds.has(toJutsuId(jutsu.id))}
@@ -236,7 +237,7 @@ export default function Tecnicas({ player, updatePlayer }) {
         learnedIds.size === 0 ? (
           <div className="card p-8 muted text-center">Nenhum jutsu aprendido. Explore a aba Técnicas.</div>
         ) : (
-          <div className="grid-auto gap-4">
+          <div className="kuro-academy-v3__catalog-grid grid-auto gap-4">
             {allJutsus.filter(j => learnedIds.has(toJutsuId(j.id))).map(jutsu => (
               <JutsuCard key={jutsu.id} jutsu={jutsu} player={player} isLearned
                 showRequisites={false} />

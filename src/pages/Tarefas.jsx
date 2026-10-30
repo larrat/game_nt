@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import PageHeader from '../components/PageHeader';
+import '../styles/academy-v3.css';
 import { MISSION_TABS, getMissionBlockReason as missionBlockReason, formatMissionCompletionMessage } from '../utils/progression';
 
 const EMPTY_MISSIONS = [];
@@ -172,10 +173,10 @@ export default function Tarefas({ player, updatePlayer }) {
         })}
       </div>
 
-      <div className="kuro-active-missions-panel card mb-6">
+      <section className="kuro-active-missions-panel kuro-academy-v3__missions card mb-6" aria-labelledby="active-missions-heading">
         <div className={`flex-between flex-wrap gap-md ${activeMissions.length ? 'mb-[18px]' : 'mb-0'}`}>
           <div>
-            <h3 className="card-title mb-2">Missões em andamento</h3>
+            <h2 id="active-missions-heading" className="card-title mb-2">Missões em andamento</h2>
             <p className="muted text-xs">
               Slots ocupados: <span className="gold mono">{activeMissions.length}/{slots}</span>
             </p>
@@ -200,6 +201,7 @@ export default function Tarefas({ player, updatePlayer }) {
                       {isDone ? 'Pronta' : formatTime(remaining)}
                     </span>
                   </div>
+                  <p className="kuro-academy-v3__preview-label">Catálogo · Recompensa prevista</p>
                   <div className="flex-wrap mb-4">
                     <span className="badge badge-muted">XP {tDef.xp}</span>
                     <span className="badge badge-gold">RY$ {tDef.ryous}</span>
@@ -217,9 +219,12 @@ export default function Tarefas({ player, updatePlayer }) {
             })}
           </div>
         )}
-      </div>
-
-      <div className="kuro-mission-catalog card p-0">
+      </section>
+      <p className="kuro-academy-v3__catalog-note" role="note">
+        <strong>Recompensas previstas:</strong> os valores abaixo são os do catálogo.
+        O servidor confirma os valores efetivamente creditados ao concluir cada missão.
+      </p>
+      <div className="kuro-mission-catalog kuro-academy-v3__catalog card p-0">
         <div className="table-responsive m-0 border-none">
           <table className="data-table">
             <thead>
@@ -227,8 +232,8 @@ export default function Tarefas({ player, updatePlayer }) {
                 <th>Missão</th>
                 <th>Requisito</th>
                 <th>Tempo</th>
-                <th>XP</th>
-                <th>Ryous</th>
+                <th>XP previsto</th>
+                <th>Ryous previstos</th>
                 <th>Ação</th>
               </tr>
             </thead>

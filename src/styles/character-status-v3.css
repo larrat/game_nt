@@ -196,3 +196,101 @@
   .kuro-status-v3__portrait-button { transition: none; }
   .kuro-status-v3__portrait-button:hover { transform: none; }
 }
+
+/* Atributos verificáveis: dez colunas do personagem e treze fórmulas do motor. */
+.kuro-status-v3__attribute-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+  margin: 0 0 24px;
+}
+.kuro-status-v3__attributes {
+  padding: clamp(17px, 2.2vw, 25px);
+  border: 1px solid rgba(212,162,42,.16);
+  border-radius: 9px;
+  background: linear-gradient(145deg,rgba(20,24,32,.96),rgba(11,14,20,.98));
+  box-shadow: 0 10px 28px rgba(0,0,0,.13);
+  min-width: 0;
+}
+.kuro-status-v3__section-heading {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(212,162,42,.17);
+}
+.kuro-status-v3__section-eyebrow {
+  color: var(--gold);
+  font: 600 9px/1.4 'JetBrains Mono', monospace;
+  letter-spacing: 1.2px;
+}
+.kuro-status-v3__section-heading h2 {
+  color: var(--paper);
+  margin: 3px 0 0;
+  font: 600 clamp(17px, 1.8vw, 22px)/1.25 'Shippori Mincho', serif;
+}
+.kuro-status-v3__count {
+  font: 500 10px/1.4 'JetBrains Mono', monospace;
+  color: var(--muted-bright);
+  white-space: nowrap;
+}
+.kuro-status-v3__hint {
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--muted-bright);
+  margin: 12px 0 18px;
+}
+.kuro-status-v3__stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 7px 14px;
+}
+.kuro-status-v3__stat-row,
+.kuro-status-v3__account-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 34px;
+  padding: 8px 10px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.045);
+  border-radius: 4px;
+  font: 400 11px/1.35 'Inter', sans-serif;
+}
+.kuro-status-v3__stat-row span,
+.kuro-status-v3__account-row span {
+  min-width: 0;
+  color: var(--muted-bright);
+}
+.kuro-status-v3__stat-row strong,
+.kuro-status-v3__account-row strong {
+  color: var(--paper);
+  flex-shrink: 0;
+  font: 600 12px/1.3 'JetBrains Mono', monospace;
+  text-align: right;
+}
+.kuro-status-v3__stat-row strong small {
+  color: #6fd4a5;
+  font-size: 9px;
+}
+.kuro-status-v3__account-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+}
+.kuro-status-v3__account-row {
+  background: rgba(255,255,255,.02);
+}
+@media (max-width: 1120px) {
+  .kuro-status-v3__attribute-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 680px) {
+  .kuro-status-v3__attribute-grid { gap: 13px; margin-bottom: 18px; }
+  .kuro-status-v3__attributes { padding: 16px; }
+  .kuro-status-v3__stat-grid, .kuro-status-v3__account-grid { grid-template-columns: minmax(0, 1fr); }
+}

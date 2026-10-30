@@ -1,0 +1,9 @@
+# Avoid transferring repository-only artifacts into Vercel's build input.
+node_modules
+dist
+docs
+tests
+migrations
+.agents
+.github
+*.log

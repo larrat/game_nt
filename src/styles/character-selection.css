@@ -180,3 +180,22 @@
   .kuro-character-select .selection-btn-play:hover,
   .kuro-character-select .selection-nav-arrow:hover { transform: none; }
 }
+
+/* Selection v3 uses Motion for character transitions, avoiding duplicate CSS keyframes. */
+.kuro-character-select .selection-showcase { animation:none; }
+.kuro-character-select__error {
+  position:relative; z-index:2;
+  max-width:560px; margin:20px auto;
+  padding:26px;
+  text-align:center;
+  color:var(--paper);
+  border:1px solid rgba(225,84,84,.45);
+}
+.kuro-character-select__error p {margin:0 0 20px;line-height:1.6;}
+.kuro-character-select__loading {min-height:70dvh;}
+.kuro-character-select .selection-btn-play:disabled,
+.kuro-character-select .selection-btn-delete:disabled,
+.kuro-character-select .selection-nav-arrow:disabled {opacity:.55;cursor:progress;}
+@media(prefers-reduced-motion:reduce) {
+  .kuro-character-select .selection-showcase {animation:none;transition:none;}
+}

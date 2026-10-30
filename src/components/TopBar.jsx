@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP, getGlobalDebuffs } from '../utils/engine';
 import InventoryModal from './InventoryModal';
+import { getResourceProgress } from '../utils/resourceProgress';
 import { supabase } from '../supabaseClient';
 import { fetchActiveWorldBoss } from '../utils/eventUtils';
 
@@ -65,16 +66,19 @@ export default function TopBar({ player, updatePlayer, onMenuClick, mobileNavOpe
   if (!player) return null;
 
   const maxHp = calculateHP(player);
-  const currentHp = player.hp !== undefined && player.hp !== null ? Math.min(player.hp, maxHp) : maxHp;
-  const hpPercent = Math.max(0, Math.min(100, (currentHp / maxHp) * 100));
+  const hp = getResourceProgress(player.hp ?? maxHp, maxHp);
+  const currentHp = hp.current;
+  const hpPercent = hp.percent;
 
   const maxCp = calculateChakra(player);
-  const currentCp = player.chakra !== undefined && player.chakra !== null ? Math.min(player.chakra, maxCp) : maxCp;
-  const cpPercent = Math.max(0, Math.min(100, (currentCp / maxCp) * 100));
+  const chakra = getResourceProgress(player.chakra ?? maxCp, maxCp);
+  const currentCp = chakra.current;
+  const cpPercent = chakra.percent;
 
   const maxSp = calculateStamina(player);
-  const currentSp = player.stamina !== undefined && player.stamina !== null ? Math.min(player.stamina, maxSp) : maxSp;
-  const spPercent = Math.max(0, Math.min(100, (currentSp / maxSp) * 100));
+  const stamina = getResourceProgress(player.stamina ?? maxSp, maxSp);
+  const currentSp = stamina.current;
+  const spPercent = stamina.percent;
 
   let xpPercent = 0;
   let currentXp = 0;
@@ -85,7 +89,7 @@ export default function TopBar({ player, updatePlayer, onMenuClick, mobileNavOpe
     const nextLvlXp = calculateXPForLevel(currentLvl + 1);
     requiredXp = nextLvlXp - startXp;
     currentXp = player.xp - startXp;
-    xpPercent = Math.min(100, Math.max(0, (currentXp / requiredXp) * 100));
+    xpPercent = getResourceProgress(currentXp, requiredXp).percent;
   }
 
   const debuffs = getGlobalDebuffs(activeEvent);

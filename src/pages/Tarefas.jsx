@@ -3,15 +3,11 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import PageHeader from '../components/PageHeader';
+import { MISSION_TABS, getMissionBlockReason as missionBlockReason, formatMissionCompletionMessage } from '../utils/progression';
 
 const EMPTY_MISSIONS = [];
 
-const TABS = [
-  { id: 'tarefa_academia', label: 'Academia', minLevel: 1 },
-  { id: 'D', label: 'Rank D', minLevel: 5 },
-  { id: 'C', label: 'Rank C', minLevel: 15 },
-  { id: 'B', label: 'Rank B', minLevel: 25 }
-];
+const TABS = MISSION_TABS;
 
 export default function Tarefas({ player, updatePlayer }) {
   const [tarefas, setTarefas] = useState([]);
@@ -66,19 +62,16 @@ export default function Tarefas({ player, updatePlayer }) {
   const isMissionActive = (missionId) =>
     activeMissions.some(m => m.mission_id === missionId);
 
-  const getMissionBlockReason = (task) => {
-    if (player.level < task.reqLevel) return `Nv.${task.reqLevel}`;
-    const tabReq = TABS.find(t => t.id === task.type);
-    if (tabReq && player.level < tabReq.minLevel) {
-      return `Rank ${tabReq.label.split(' ').pop()}`;
-    }
-    if (activeMissions.length >= slots) return 'Sem slots';
-    return null;
-  };
+  const getMissionBlockReason = (task) =>
+    missionBlockReason(task, player.level, activeMissions.length, slots);
 
   const startTask = async (task) => {
     if (loading || startingTaskIds[task.id]) return;
 
+    if ((player.completed_missions || []).includes(task.id)) {
+      addToast('Esta missão já foi concluída pelo personagem.', 'info');
+      return;
+    }
     const blockReason = getMissionBlockReason(task);
     if (blockReason) {
       addToast(`Requisito não atendido: ${blockReason}`, 'error');
@@ -112,9 +105,9 @@ export default function Tarefas({ player, updatePlayer }) {
   };
 
   const finishTask = async (taskDef) => {
+    if (loading) return;
     setLoading(true);
     try {
-      // Chama a função RPC segura no banco de dados
       const { data, error } = await supabase.rpc('finalizar_missao', {
         p_player_id: player.id,
         p_mission_id: taskDef.id,
@@ -123,25 +116,17 @@ export default function Tarefas({ player, updatePlayer }) {
         p_mission_type: taskDef.type
       });
 
-      if (error || data?.error) {
-        addToast(error?.message || data?.error, "error");
-        return;
+      if (error || data?.success !== true) {
+        throw new Error(error?.message || data?.error || 'Não foi possível finalizar a missão.');
       }
 
-      let toastMsg = `Tarefa concluída! Você ganhou ${taskDef.xp} XP e RY$ ${taskDef.ryous}.`;
-      if (data?.levels_gained > 0) {
-        toastMsg += ` Subiu para o Nível ${player.level + data.levels_gained}!`;
-      }
-      if (data?.new_rank === 'Genin' && player.rank === 'Estudante da Academia') {
-        toastMsg += ` 🎓 Parabéns! Você se graduou como Genin!`;
-      }
-      
-      addToast(toastMsg, "success");
       await updatePlayer(player.id);
+      addToast(formatMissionCompletionMessage(data, player.rank), 'success');
     } catch (err) {
-      addToast(err.message, 'error');
+      addToast(err?.message || 'Erro ao resgatar missão.', 'error');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const formatTime = (secs) => {
@@ -164,7 +149,7 @@ export default function Tarefas({ player, updatePlayer }) {
       <PageHeader
         eyebrow="Rotina Shinobi"
         title="Missões Ninja"
-        subtitle="Envie seu personagem em missões cronometradas e resgate as recompensas quando o tempo terminar."
+        subtitle="Explore todas as categorias, confira requisitos e resgate as recompensas confirmadas pelo servidor."
       />
 
       <div className="segmented-tabs kuro-mission-tabs" role="tablist" aria-label="Categorias de missão">
@@ -173,18 +158,12 @@ export default function Tarefas({ player, updatePlayer }) {
           return (
             <button
               key={tab.id}
-              className={`segmented-tab ${activeTab === tab.id ? 'active' : ''} ${locked ? 'locked' : ''}`}
-              onClick={() => {
-                if (locked) {
-                  addToast(`${tab.label} requer nível ${tab.minLevel}+`, 'error');
-                  return;
-                }
-                setActiveTab(tab.id);
-              }}
+              className={`segmented-tab ${activeTab === tab.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(tab.id)}
               type="button"
               role="tab"
               aria-selected={activeTab === tab.id}
-              title={locked ? `Requer Nv.${tab.minLevel}` : undefined}
+              title={locked ? `Missões visíveis para consulta; requer Nv.${tab.minLevel} para iniciar` : undefined}
             >
               {locked ? '🔒 ' : ''}{tab.label}
               <span className="count">{missionsByType[tab.id] || 0}</span>
@@ -211,7 +190,7 @@ export default function Tarefas({ player, updatePlayer }) {
             {activeMissions.map((m, idx) => {
               const tDef = tarefas.find(t => t.id === m.mission_id);
               if (!tDef) return null;
-              const remaining = timers[m.mission_id] || 0;
+              const remaining = timers[m.mission_id] ?? Math.max(0, Math.ceil((new Date(m.end_time).getTime() - Date.now()) / 1000));
               const isDone = remaining <= 0;
               return (
                 <div key={`${m.mission_id}-${idx}`} className={`kuro-active-mission card transition-colors border border-solid ${isDone ? 'border-success' : 'border-line-bright'}`}>

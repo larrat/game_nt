@@ -41,7 +41,7 @@ As páginas externas e o manual histórico são referência para organização e
 - Menu lateral com seção de personagem, indicadores de área ativa, acessibilidade por teclado e abertura automática do grupo da rota.
 - Cabeçalho permanente com status quantificado, moeda e acesso ao inventário.
 - `PageHeader` centralizado em classes de estilo reutilizáveis.
-- CSS de escopo `.app` em `src/styles/rpg-shell.css`, sem alterar login e seleção de personagens.
+- CSS concentrado no layout autenticado em `src/styles/rpg-shell.css`; o cabeçalho compartilhado também estiliza a tela de seleção. A tela de login não foi redesenhada.
 - Testes da navegação, integridade de rotas, apresentação numérica de recursos e cobertura mobile.
 - **Zero alteração em Supabase, fórmulas de status, preços ou recompensas.**
 

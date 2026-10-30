@@ -2,6 +2,8 @@
  * Fórmulas Matemáticas do Motor (Engine) do Kurokage
  */
 
+import { normalizeRankName } from './progression.js';
+
 const STAT_KEY_MAP = {
   HP: 'hp', hp: 'hp',
   Chakra: 'chakra', chakra: 'chakra',
@@ -48,30 +50,25 @@ export const getEquipmentBonus = (player, statName) => {
 
 
 // --- BÔNUS DE GRADUAÇÃO ---
-export const getRankBonus = (rankName) => {
-  const bonuses = {
-    "Estudante da Academia": { hp: 0, chakra: 0, stamina: 0 },
-    "Genin": { hp: 150, chakra: 150, stamina: 150 },
-    "Chunin": { hp: 350, chakra: 300, stamina: 300 },
-    "Jounin": { hp: 600, chakra: 500, stamina: 500 },
-    "ANBU": { hp: 1000, chakra: 800, stamina: 800 },
-    "Sannin": { hp: 1500, chakra: 1200, stamina: 1200 },
-    "Herói": { hp: 2500, chakra: 2000, stamina: 2000 }
-  };
-  return bonuses[rankName] || { hp: 0, chakra: 0, stamina: 0 };
+// Reuse the canonical rank identifiers from the progression catalog.
+const RANK_BONUSES = {
+  estudante: { hp: 0, chakra: 0, stamina: 0 },
+  genin: { hp: 150, chakra: 150, stamina: 150 },
+  chunin: { hp: 350, chakra: 300, stamina: 300 },
+  jonin: { hp: 600, chakra: 500, stamina: 500 },
+  anbu: { hp: 1000, chakra: 800, stamina: 800 },
+  sannin: { hp: 1500, chakra: 1200, stamina: 1200 },
+  heroi: { hp: 2500, chakra: 2000, stamina: 2000 }
 };
 
+const RANK_ORDER = ['estudante', 'genin', 'chunin', 'jonin', 'anbu', 'sannin', 'heroi'];
+
+export const getRankBonus = (rankName) =>
+  RANK_BONUSES[normalizeRankName(rankName)] || RANK_BONUSES.estudante;
+
 export const rankValue = (rank) => {
-  if (!rank) return 0;
-  const r = rank.toLowerCase();
-  if (r.includes('estudante')) return 0;
-  if (r.includes('genin')) return 1;
-  if (r.includes('chunin')) return 2;
-  if (r.includes('jounin')) return 3;
-  if (r.includes('anbu')) return 4;
-  if (r.includes('sannin') || r.includes('sanin')) return 5;
-  if (r.includes('heroi') || r.includes('herói')) return 6;
-  return 0;
+  const index = RANK_ORDER.indexOf(normalizeRankName(rank));
+  return index < 0 ? 0 : index;
 };
 
 // Retorna a quantidade TOTAL de XP necessária para o jogador ALCANÇAR o nível especificado.

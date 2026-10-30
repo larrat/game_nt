@@ -16,6 +16,7 @@ import {
   normalizeBonusStats,
   getElementalMultiplier,
   getRankBonus,
+  rankValue,
 } from '../src/utils/engine.js';
 
 test('curva de XP do personagem preserva os limiares documentados no motor', () => {
@@ -54,6 +55,43 @@ test('bônus de graduação permanecem compatíveis com a tabela atual', () => {
   assert.deepEqual(getRankBonus('graduação desconhecida'), {
     hp: 0, chakra: 0, stamina: 0,
   });
+});
+
+test('graduações avançadas usam os mesmos bônus com título, id e nome alternativo', () => {
+  const cases = [
+    [['Jonin', 'Jounin', 'jonin'], { hp: 600, chakra: 500, stamina: 500 }, 3],
+    [['Sannin', 'Sannin Lendário', 'sannin'], { hp: 1500, chakra: 1200, stamina: 1200 }, 5],
+    [['Herói', 'Herói Mundial', 'heroi'], { hp: 2500, chakra: 2000, stamina: 2000 }, 6],
+    [['Estudante da Academia', 'estudante'], { hp: 0, chakra: 0, stamina: 0 }, 0],
+    [['Genin', 'genin'], { hp: 150, chakra: 150, stamina: 150 }, 1],
+    [['Chunin', 'chunin'], { hp: 350, chakra: 300, stamina: 300 }, 2],
+    [['ANBU', 'anbu'], { hp: 1000, chakra: 800, stamina: 800 }, 4]
+  ];
+  for (const [aliases, expectedBonus, expectedRank] of cases) {
+    for (const label of aliases) {
+      assert.deepEqual(getRankBonus(label), expectedBonus, label);
+      assert.equal(rankValue(label), expectedRank, label);
+    }
+  }
+  assert.equal(rankValue('graduação inválida'), 0);
+});
+
+test('personagens com rank Jonin ou superior recebem bônus de HP, chakra e stamina', () => {
+  const novice = {
+    level: 1, rank: 'estudante', resistencia: 0, energia: 0,
+    ninjutsu: 0, genjutsu: 0, taijutsu: 0, bukijutsu: 0,
+    equipped_items: []
+  };
+  for (const [rank, hpBonus, chakraBonus, staminaBonus] of [
+    ['Jonin', 600, 500, 500],
+    ['Sannin Lendário', 1500, 1200, 1200],
+    ['Herói Mundial', 2500, 2000, 2000]
+  ]) {
+    const promoted = { ...novice, rank };
+    assert.equal(calculateHP(promoted) - calculateHP(novice), hpBonus);
+    assert.equal(calculateChakra(promoted) - calculateChakra(novice), chakraBonus);
+    assert.equal(calculateStamina(promoted) - calculateStamina(novice), staminaBonus);
+  }
 });
 
 test('normalização de bônus de equipamento mapeia chaves conhecidas', () => {

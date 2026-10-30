@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { VILLAGES } from '../constants';
@@ -12,36 +13,60 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loadError, setLoadError] = useState('');
+  const [retryVersion, setRetryVersion] = useState(0);
+  const [joining, setJoining] = useState(null);
+  const reduceMotion = useReducedMotion();
   const navigate = useNavigate();
   const { addToast } = useToast();
 
   useEffect(() => {
+    let active = true;
     async function loadCharacters() {
-      const { data, error } = await supabase
-        .from('players')
-        .select('*')
-        .eq('user_id', session.user.id)
-        .order('id');
-      
-      if (!error && data) {
-        setCharacters(data);
+      setLoading(true);
+      setLoadError('');
+      try {
+        const { data, error } = await supabase
+          .from('players')
+          .select('*')
+          .eq('user_id', session.user.id)
+          .order('id');
+        if (error) throw error;
+        if (!active) return;
+        setCharacters(data || []);
+        setCurrentIndex(previous => Math.min(previous, Math.max(0, (data || []).length - 1)));
+      } catch {
+        if (active) {
+          setLoadError('Não foi possível carregar seus personagens. Verifique a conexão e tente novamente.');
+          setCharacters([]);
+        }
+      } finally {
+        if (active) setLoading(false);
       }
-      setLoading(false);
     }
-    loadCharacters();
-  }, [session]);
+    if (session?.user?.id) loadCharacters();
+    return () => { active = false; };
+  }, [session?.user?.id, retryVersion]);
 
   const handleSelect = async (char) => {
-    if (updatePlayer) {
-      await updatePlayer(char.id);
-    } else {
-      setPlayerState({
-        ...char,
-        rank: char.rank || 'Estudante da Academia',
-        ryous: char.ryous || 0,
-        tasks_completed: char.tasks_completed || 0,
-        activeJutsus: []
-      });
+    if (joining !== null) return;
+    setJoining(char.id);
+    try {
+      if (updatePlayer) {
+        await updatePlayer(char.id);
+      } else {
+        setPlayerState({
+          ...char,
+          rank: char.rank || 'Estudante da Academia',
+          ryous: char.ryous || 0,
+          tasks_completed: char.tasks_completed || 0,
+          activeJutsus: []
+        });
+      }
+    } catch {
+      addToast('Não foi possível entrar com este personagem. Tente novamente.', 'error');
+    } finally {
+      setJoining(null);
     }
   };
 
@@ -52,7 +77,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   const handleDelete = async (char) => {
     if (window.confirm(`Tem certeza que deseja deletar o personagem ${char.name}? Esta ação é irreversível.`)) {
       setLoading(true);
-      const { error } = await supabase.from('players').delete().eq('id', char.id);
+      const { error } = await supabase.from('players').delete().eq('id', char.id).eq('user_id', session.user.id);
       if (error) {
         addToast('Erro ao deletar personagem: ' + error.message, 'error');
       } else {
@@ -73,7 +98,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
     setCurrentIndex((prev) => (prev - 1 + characters.length) % characters.length);
   };
 
-  if (loading) return <div className="page flex-col items-center justify-center">Carregando personagens...</div>;
+  if (loading) return <div className="page flex-col items-center justify-center kuro-character-select__loading" role="status" aria-live="polite">Carregando personagens...</div>;
 
   const char = characters[currentIndex];
   const characterResources = char ? getCharacterResources(char, {
@@ -103,7 +128,13 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
         />
       </div>
 
-      {characters.length === 0 ? (
+      {loadError ? (
+        <div className="kuro-character-select__error card" role="alert">
+          <p>{loadError}</p>
+          <button type="button" className="btn-primary"
+            onClick={() => setRetryVersion(v => v + 1)}>Tentar novamente</button>
+        </div>
+      ) : characters.length === 0 ? (
         <div className="text-center relative z-[2]">
           <p className="muted mb-6">Você não possui nenhum personagem criado.</p>
           <button className="btn-primary" onClick={() => navigate('/criar')}><span>Criar Personagem</span><div className="stamp"></div></button>
@@ -114,9 +145,17 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
           <span>PERSONAGEM {currentIndex + 1} / {characters.length}</span>
           <span>{char.rank || 'Estudante da Academia'}</span>
         </div>
-        <div className="selection-showcase" key={char.id}>
+        <AnimatePresence mode="wait">
+        <motion.div
+          className="selection-showcase"
+          key={char.id}
+          initial={reduceMotion ? false : { opacity: 0, x: 18 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, x: -14 }}
+          transition={{ duration: 0.24, ease: 'easeOut' }}
+        >
           {characters.length > 1 && (
-            <button type="button" className="selection-nav-arrow" onClick={prevChar}
+            <button type="button" className="selection-nav-arrow" onClick={prevChar} disabled={joining !== null}
               aria-label="Personagem anterior">‹</button>
           )}
 
@@ -179,20 +218,21 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
             </div>
 
             <div className="selection-actions">
-              <button type="button" className="selection-btn-play" onClick={() => handleSelect(char)}>
-                Entrar no mundo ninja <span aria-hidden="true">↗</span>
+              <button type="button" className="selection-btn-play" disabled={joining !== null} onClick={() => handleSelect(char)}>
+                {joining === char.id ? 'Entrando...' : 'Entrar no mundo ninja'} <span aria-hidden="true">↗</span>
               </button>
-              <button type="button" className="selection-btn-delete" onClick={() => handleDelete(char)}>
+              <button type="button" className="selection-btn-delete" disabled={joining !== null} onClick={() => handleDelete(char)}>
                 Remover personagem
               </button>
             </div>
           </div>
           
           {characters.length > 1 && (
-            <button type="button" className="selection-nav-arrow" onClick={nextChar}
+            <button type="button" className="selection-nav-arrow" onClick={nextChar} disabled={joining !== null}
               aria-label="Próximo personagem">›</button>
           )}
-        </div>
+        </motion.div>
+        </AnimatePresence>
         </div>
       )}
 

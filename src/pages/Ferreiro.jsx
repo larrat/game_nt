@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import PageHeader from '../components/PageHeader';
+import { getRefinableItems } from '../utils/refinement';
 
 export default function Ferreiro({ player, updatePlayer }) {
   const { addToast } = useToast();
@@ -28,7 +29,7 @@ export default function Ferreiro({ player, updatePlayer }) {
   };
 
   const handleUpgrade = async () => {
-    if (!selectedItem) return;
+    if (!selectedItem || loading) return;
     setLoading(true);
     const { data, error } = await supabase.rpc('aprimorar_equipamento', {
       p_player_id: player.id,
@@ -48,14 +49,8 @@ export default function Ferreiro({ player, updatePlayer }) {
     setLoading(false);
   };
 
-  // Agrupar itens por ID base para saber se temos cópias
-  const itemCounts = inventory.reduce((acc, curr) => {
-    acc[curr.item_id] = (acc[curr.item_id] || 0) + 1;
-    return acc;
-  }, {});
-
-  // Itens que podem ser refinados: qualquer item que tenha pelo menos 2 cópias totais no inventário
-  const upgradableItems = inventory.filter(i => itemCounts[i.item_id] >= 2);
+  // O servidor só consome uma duplicata não equipada nem favoritada.
+  const upgradableItems = getRefinableItems(inventory);
 
   const cost = selectedItem ? 500 * ((selectedItem.upgrade_level || 0) + 1) : 0;
   const canAfford = player.ryous >= cost;
@@ -65,7 +60,7 @@ export default function Ferreiro({ player, updatePlayer }) {
       <PageHeader 
         eyebrow="Forja" 
         title="Ferreiro da Vila" 
-        subtitle="Refine seus equipamentos fundindo duplicatas. Aumente seus atributos bônus."
+        subtitle="Refine equipamentos fundindo duplicatas. Itens favoritos e equipados nunca são consumidos."
       />
 
       <div className="grid-2">
@@ -73,7 +68,7 @@ export default function Ferreiro({ player, updatePlayer }) {
           <h3 className="section-title">Itens Disponíveis para Refino</h3>
           {upgradableItems.length === 0 ? (
             <div className="muted mono text-sm p-4 text-center border-line-dashed">
-              Você não possui itens duplicados para refinar.
+              Você precisa de uma duplicata não equipada e não favoritada para refinar um item.
             </div>
           ) : (
             <div className="flex-col gap-3">
@@ -105,7 +100,7 @@ export default function Ferreiro({ player, updatePlayer }) {
                 <div className="text-4xl mb-4 filter drop-shadow-md">⚔️</div>
                 <h4 className="gold text-lg mb-2">{selectedItem.items.name} +{(selectedItem.upgrade_level || 0)} ➔ +{(selectedItem.upgrade_level || 0) + 1}</h4>
                 <p className="muted text-sm text-center max-w-400 mb-6">
-                  Este processo consumirá uma cópia não equipada deste item.
+                  Este processo consumirá uma cópia não equipada e não favoritada deste item.
                 </p>
                 <div className="flex-between w-full p-3 bg-ink rounded-md border-line-solid mb-4">
                   <span className="muted">Custo de Refino:</span>

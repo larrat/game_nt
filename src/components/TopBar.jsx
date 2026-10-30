@@ -132,17 +132,13 @@ export default function TopBar({ player, updatePlayer, onMenuClick, mobileNavOpe
               <span>{resource.label}</span>
               <strong>{displayNumber(resource.current)} <span>/ {displayNumber(resource.max)}</span></strong>
             </div>
-            <div
-              className="topbar-stat-bar-bg kuro-rpg-topbar__meter"
-              role="progressbar"
+            <progress
+              className={'kuro-rpg-topbar__meter is-' + resource.tone}
+              value={Math.max(0, Math.min(100, Number(resource.percent) || 0))}
+              max={100}
               aria-label={resource.label}
-              aria-valuemin={0}
-              aria-valuemax={Math.max(1, Number(resource.max) || 1)}
-              aria-valuenow={Math.max(0, Math.min(Number(resource.current) || 0, Math.max(1, Number(resource.max) || 1)))}
-            >
-              <div className={'topbar-stat-bar-fill ' + resource.tone}
-                style={{ width: resource.percent + '%' }} />
-            </div>
+              aria-valuetext={displayNumber(resource.current) + ' de ' + displayNumber(resource.max)}
+            />
           </div>
         ))}
       </div>

@@ -106,3 +106,6 @@
   .kuro-combat-page .combat-jutsu-btn,.kuro-combat-page .combat-fighter-v2 {transition:none;}
   .kuro-combat-page .combat-jutsu-btn:hover:not(:disabled) {transform:none;}
 }
+
+/* Hidden log stays mounted so aria-controls resolves. */
+.kuro-combat-page .kuro-combat-v3__log[hidden] { display:none; }

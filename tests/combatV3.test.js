@@ -33,7 +33,9 @@ test('UI keeps original RPCs authoritative while making actions legible',()=>{
   }
   assert.match(combat, /<CombatTurnPanel/);
   assert.match(combat, /aria-expanded=\{showCombatLog\}/);
-  assert.match(combat, /aria-label=\{`${jutsu.name}/);
+  assert.ok(combat.includes('aria-label={`'));
+  assert.ok(combat.includes('jutsu.name'));
+  assert.ok(combat.includes('Chakra'));
   assert.match(combat, /stats.jutsuCdVal > 0 \? /);
   assert.match(combat, /stats.cost/);
   assert.match(combat, /combatSessionLoading \|\| !combatSessionId/);

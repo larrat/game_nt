@@ -7,13 +7,13 @@ Introduzir TypeScript e um padrão de transições na seleção de personagens d
 - `src/utils/characterPresentation.ts` é o primeiro módulo TypeScript tipado: define `CharacterSelectionRecord`, `CharacterResource`, `ResourceMaximums` e os cálculos **de apresentação** de Vida, Chakra e Stamina.
 - `src/pages/Selecionar.jsx` usa o módulo tipado. Diferentemente da tela anterior, barras de recursos não assumem que todos os personagens estão com Vida/Chakra/Stamina cheios: `0` aparece como `0`, e valores nulos têm fallback de exibição para o máximo calculado pelo motor atual.
 - `src/styles/character-selection.css` traz um layout de escolha do personagem com entrada animada, cartões, ajuste mobile e `prefers-reduced-motion: reduce`.
-- `tsconfig.json` prepara a migração gradual sem tentar verificar o JavaScript legado de uma só vez.
+- A configuração do compilador fica centralizada na PR #43 de TypeScript/Motion, evitando uma segunda definição de `tsconfig.json`.
 - `tests/characterPresentation.test.js` exercita o utilitário TypeScript (strip types nativo do Node 22) com recursos baixos, superiores ao máximo, nulos e moeda negativa.
 
 ## Limites e dependências
-O Vite já transpila arquivos `.ts` nativamente; **esta PR não declara que o projeto inteiro foi tipado**. O `tsconfig` prepara `tsc` mas o pacote `typescript` ainda não consta do lockfile. A verificação estática com `tsc --noEmit` será habilitada na PR de dependências, com `package-lock.json` gerado e validado.
+O Vite já transpila arquivos `.ts` nativamente; **esta PR não declara que o projeto inteiro foi tipado**. A instalação do compilador e o `tsconfig.json` serão integrados pela PR #43 **somente após a validação das dependências e do lockfile**.
 
-A biblioteca **Motion for React** ainda não está instalada: os efeitos iniciais são CSS nativo, sem adicionar dependência remota ou alterar o `npm ci` da CI. Após atualizar de forma atômica `package.json` e `package-lock.json`, adotar `motion/react` nos componentes mais interativos e `useReducedMotion`. Nunca usar CDN em produção para contornar lockfile.
+Esta PR usa CSS nativo; a integração com **Motion for React** é tratada em paralelo pela PR #43, com atualização coordenada de `package.json` e `package-lock.json`. Nunca usar CDN em produção para contornar lockfile.
 
 **Phaser** fica para um protótipo de combate isolado, posteriormente. Regras de custo, dano, XP e vitória permanecem autoritativas no banco.
 

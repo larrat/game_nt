@@ -1,10 +1,10 @@
-# Naruto Game × game_nt — inspeção autenticada de 29/10/2026
+# Naruto Game × game_nt — inspeção autenticada de 29–30/10/2026
 
 ## Escopo e confiança
 
-Complemento ao dossiê existente. Foram inspecionadas seleção de personagem, status, treinamento de atributos, graduações, academia de jutsus e temas VIP, em uma sessão já autenticada fornecida pelo usuário. A única entrada no jogo foi selecionar o personagem pelo botão Jogar; não foram realizados treinos, compras, promoções ou combates.
+Complemento ao dossiê existente. Foram inspecionadas seleção de personagem, status, treinamento de atributos, graduações, academia de jutsus e temas VIP, em uma sessão já autenticada fornecida pelo usuário. A coleta foi ampliada para 76 rotas do menu. Foram executados um treino de Energia e a Primeira Lição. Não foram realizados compras, promoções ou combates.
 
-As observações são de interface, não acesso ao código do servidor. Regras escritas na tela são evidência declarativa; não foram testadas por transações. Esta etapa não é uma reconstrução completa do jogo. A amostra é um personagem de nível 1, Estudante, Vila da Folha. Identificadores da conta e conversas do chat foram omitidos.
+As observações são de interface, não acesso ao código do servidor. Regras escritas na tela são evidência declarativa; somente os testes explicitamente descritos abaixo tiveram execução e observação do resultado. Esta etapa não é uma reconstrução completa do jogo. A amostra é um personagem de nível 1, Estudante, Vila da Folha. Identificadores da conta e conversas do chat foram omitidos.
 
 O dossiê anterior permanece histórico: suas afirmações sobre não ter usado uma sessão autenticada descrevem a coleta anterior. Também não se deve tratar os riscos antigos como vulnerabilidades atuais sem revisar as migrações posteriores.
 
@@ -104,3 +104,42 @@ Para futuros testes controlados, registrar estado antes/depois, ação, custo, r
 ## Limites da entrega
 
 Este documento entrega evidências novas e um mapa de diferenças acionável. Não altera gameplay, migrações ou dados de produção. Não afirma equivalência completa, não recupera o backend do Naruto Game e não valida segurança do banco do Kurokage.
+
+## Atualização de 30/10/2026 — testes executados
+
+### Treino de Energia
+
+Ação: treinar quantidade 1 em Energia. Após a atualização da tela e nova abertura de Status:
+
+| Medida | Antes | Depois |
+|---|---:|---:|
+| Pontos livres | 12 | 11 |
+| Pontos treináveis | 5 | 4 |
+| Energia | 10 | 11 |
+| Vida máxima | 136 | 138 |
+| Chakra máximo | 231 | 238 |
+| Stamina máxima | 96 | 103 |
+| Pontos distribuídos | 0 | 1 |
+| Ryous | 1000 | 1000 |
+
+O resultado confirma, nesta amostra, +2 Vida, +7 Chakra e +7 Stamina para um ponto de Energia. Os valores persistiram ao selecionar novamente o personagem em outra sessão. Não inferir coeficientes globais ou ausência de modificadores a partir de um único ponto.
+
+### Primeira Lição
+
+Pré-condições exibidas: Estudante, nível 1. Lista anunciava duração de 15 segundos e RY$ 200,00. Ação: Aceitar na primeira linha de Tarefas Iniciais. O site navegou para `missoes_espera` e exibiu “MISSÃO CONCLUÍDA COM SUCESSO!”.
+
+| Medida | Antes | Resultado observado |
+|---|---:|---:|
+| XP | 0/3240 | 1782/3240 |
+| Ryous | 1000 | 1220 |
+| Vida / Chakra / Stamina | 138 / 238 / 103 | 138 / 238 / 103 |
+
+O painel de conclusão informou 1782 XP e RY$ 220,00, coincidentes com as alterações do cabeçalho. A diferença entre 200 anunciados e 220 efetivos equivale a 10%, mas a origem do bônus permanece desconhecida. Não registrar esse percentual como regra geral. O botão Finalizar foi acionado; a captura imediatamente seguinte permaneceu na tela de conclusão. Contador de tarefas, bloqueio de repetição e estado posterior ainda precisam de verificação.
+
+### Cobertura da coleta
+
+Foram visitadas 76 rotas distintas do menu, incluindo variantes de academia, progressão, lojas, vila, batalhas e rankings. Capturas textuais locais foram mantidas como evidência de trabalho; não são prova de validação integral de cada tela. Academia de jutsus (base e seis variantes) e treinamento apresentaram conteúdo ainda carregando em parte das capturas e exigem nova coleta estabilizada. Abas, filtros, diálogos, condições de desbloqueio e fluxos avançados permanecem pendentes.
+
+Dados de conta e conversas não são incluídos neste documento. Os arquivos brutos locais não foram publicados no repositório.
+
+Próximas verificações: finalizar e conferir contador da lição; observar elegibilidade/repetição; recapturar academia; testar aprendizado e combate disponível; ampliar amostras de atributos e recompensas. A comparação do código do game_nt acima corresponde à revisão inspecionada na coleta inicial, sem nova auditoria nesta atualização.

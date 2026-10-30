@@ -1,5 +1,8 @@
 # Matriz funcional — Naruto Game x Kurokage
 
+> **Nota de versão (30/10/2026):** matriz histórica de comparação funcional produzida antes das PRs #34–#41. As observações visuais atuais estão em [observações autenticadas](authenticated-observations-2026-10-29.md) e no [mapa das telas](../design/screen-catalog-and-visual-direction-2026-10-30.md). As avaliações de segurança abaixo retratam código antigo e **não devem ser interpretadas como vulnerabilidades presentes no Supabase atual**.
+
+
 Legenda: **Presente** = há código relacionado no Kurokage; **Parcial** = parte do fluxo existe, mas há divergência ou validação pendente; **Não confirmado** = evidência pública insuficiente para declarar equivalência.
 
 | Área/sistema | Evidência pública do Naruto Game | Implementação no Kurokage | Status e observações |

@@ -91,119 +91,83 @@ export default function TopBar({ player, updatePlayer, onMenuClick, mobileNavOpe
   const debuffs = getGlobalDebuffs(activeEvent);
   const isCursed = debuffs.staminaCostMultiplier > 1;
 
+  const resources = [
+    { id: 'hp', label: 'Vida', icon: '/images/imgi_98_heart.png', current: currentHp, max: maxHp, percent: hpPercent, tone: 'red' },
+    { id: 'chakra', label: 'Chakra', icon: '/images/imgi_99_chakra.png', current: currentCp, max: maxCp, percent: cpPercent, tone: 'blue' },
+    { id: 'stamina', label: 'Stamina', icon: '/images/imgi_100_stamina.png', current: currentSp, max: maxSp, percent: spPercent, tone: isCursed ? 'purple' : 'yellow' },
+    { id: 'xp', label: 'Experiência', icon: '/images/imgi_32_star.png', current: currentXp, max: requiredXp, percent: xpPercent, tone: 'green' }
+  ];
+  const displayNumber = (value) => Math.max(0, Number(value) || 0).toLocaleString('pt-BR');
+
   return (
-    <div className="topbar-wrapper">
-      
-      {/* Esquerda: Identidade (Vila, Clan, Nome) */}
-      <div className="flex-row topbar-identity-group">
+    <header className="topbar-wrapper kuro-rpg-topbar" aria-label="Dados do personagem">
+      <div className="kuro-rpg-topbar__identity topbar-identity-group">
         <button
           type="button"
           className="mobile-nav-toggle"
-          aria-label={mobileNavOpen ? "Fechar menu" : "Abrir menu"}
+          aria-label={mobileNavOpen ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={mobileNavOpen}
-          title={mobileNavOpen ? "Fechar navegação" : "Abrir navegação"}
           onClick={onMenuClick}
+          title={mobileNavOpen ? 'Fechar navegação' : 'Abrir navegação'}
         >
-          <span aria-hidden="true">{mobileNavOpen ? "×" : "☰"}</span>
+          <span aria-hidden="true">{mobileNavOpen ? '×' : '☰'}</span>
         </button>
-        <div className="topbar-avatar">
-          {player.avatar?.startsWith('/') ? (
-            <img src={player.avatar} alt="Avatar" />
-          ) : (
-            <img src={`https://placehold.co/100x100/1c1c22/b3232d?text=${player.name?.charAt(0)}`} alt="Avatar" />
-          )}
+        <div className="topbar-avatar kuro-rpg-topbar__portrait">
+          {player.avatar?.startsWith('/') ?
+            <img src={player.avatar} alt="" /> :
+            <span aria-hidden="true">忍</span>}
         </div>
-        
-        <div className="flex-col gap-1">
-          <div className="flex-row gap-2">
-            <span className="mono gold text-xs uppercase">{VILLAGES[player.village_id] || 'Nukenin'}</span>
-            <span className="mono muted text-xs uppercase">{player.clan || 'Sem Clã'}</span>
-          </div>
-          <div className="flex-row gap-2">
-            <span className="text-paper font-bold text-[15px] tracking-wide">{player.name}</span>
-            <span className="badge badge-muted px-1.5 py-0.5 text-[10px]">Nv {calculateLevelFromXP(player.xp)}</span>
-          </div>
+        <div className="kuro-rpg-topbar__name">
+          <span className="kuro-rpg-topbar__village">{VILLAGES[player.village_id] || 'Nukenin'} · {player.rank || 'Estudante da Academia'}</span>
+          <strong>{player.name}</strong>
+          <span className="kuro-rpg-topbar__level">NÍVEL {calculateLevelFromXP(player.xp || 0)}</span>
         </div>
       </div>
 
-      {/* Centro: Barras de Status Pessoais */}
-      <div className="flex-row gap-6">
-        
-        {/* HP */}
-        <div className="topbar-stat-container" title={`HP: ${currentHp} / ${maxHp}`}>
-          <img src="/images/imgi_98_heart.png" alt="HP" className="topbar-stat-icon" />
-          <div className="topbar-stat-bar-bg">
-            <div className="topbar-stat-bar-fill red" style={{ width: `${hpPercent}%` }} />
+      <div className="kuro-rpg-topbar__resources" aria-label="Vida, chakra, stamina e experiência">
+        {resources.map(resource => (
+          <div key={resource.id} className={'kuro-rpg-topbar__resource is-' + resource.tone}>
+            <div className="kuro-rpg-topbar__resource-line">
+              <img src={resource.icon} alt="" width="16" height="16" />
+              <span>{resource.label}</span>
+              <strong>{displayNumber(resource.current)} <span>/ {displayNumber(resource.max)}</span></strong>
+            </div>
+            <progress
+              className={'kuro-rpg-topbar__meter is-' + resource.tone}
+              value={Math.max(0, Math.min(100, Number(resource.percent) || 0))}
+              max={100}
+              aria-label={resource.label}
+              aria-valuetext={displayNumber(resource.current) + ' de ' + displayNumber(resource.max)}
+            />
           </div>
-        </div>
-
-        {/* Chakra */}
-        <div className="topbar-stat-container" title={`Chakra: ${currentCp} / ${maxCp}`}>
-          <img src="/images/imgi_99_chakra.png" alt="CP" className="topbar-stat-icon" />
-          <div className="topbar-stat-bar-bg">
-            <div className="topbar-stat-bar-fill blue" style={{ width: `${cpPercent}%` }} />
-          </div>
-        </div>
-
-        {/* Stamina */}
-        <div className="topbar-stat-container" title={`Stamina: ${currentSp} / ${maxSp}`}>
-          <img src="/images/imgi_100_stamina.png" alt="SP" className="topbar-stat-icon" style={{ filter: isCursed ? 'hue-rotate(240deg) saturate(2)' : 'none' }} />
-          <div className="topbar-stat-bar-bg">
-            <div className="topbar-stat-bar-fill yellow" style={{ width: `${spPercent}%`, filter: isCursed ? 'hue-rotate(240deg) saturate(2)' : 'none' }} />
-          </div>
-        </div>
-
-        {/* XP */}
-        <div className="topbar-stat-container" title={`XP: ${currentXp} / ${requiredXp}`}>
-          <img src="/images/imgi_32_star.png" alt="XP" className="topbar-stat-icon" />
-          <div className="topbar-stat-bar-bg">
-            <div className="topbar-stat-bar-fill green" style={{ width: `${xpPercent}%` }} />
-          </div>
-        </div>
+        ))}
       </div>
 
-      {/* Direita: Economia e Ações */}
-      <div className="flex-row gap-6">
-        
-        {/* Ryous */}
-        <div 
-          className="flex-row gap-2 px-3 py-1 rounded border border-line-bright transition-colors duration-300"
-          style={{ 
-            backgroundColor: ryousFlash ? 'rgba(212, 162, 42, 0.3)' : 'var(--ink-card)'
-          }}
-          title="Ryous (Dinheiro)"
-        >
-          <img src="/images/imgi_110_ryous.png" alt="Ryous" className="w-[18px] h-[18px]" />
-          <span className="font-mono text-gold text-[13px] font-semibold">
-            {player.ryous?.toLocaleString() || 0}
-          </span>
+      <div className="kuro-rpg-topbar__wallet">
+        <div className={'kuro-rpg-topbar__currency' + (ryousFlash ? ' is-updated' : '')} title="Ryous">
+          <img src="/images/imgi_110_ryous.png" alt="" width="18" height="18" />
+          <span className="kuro-rpg-topbar__currency-type">RYOUS</span>
+          <strong>{displayNumber(player.ryous)}</strong>
         </div>
-        
-        <div 
-          className="flex-row gap-2 bg-ink-card px-3 py-1 rounded border border-line-bright"
-          title="VIP Coins"
-        >
-          <img src="/images/imgi_88_vip.png" alt="VIP Coins" className="w-[18px] h-[18px]" />
-          <span className="font-mono text-muted-bright text-[13px] font-semibold">
-            {player.vip_coins?.toLocaleString() || 0}
-          </span>
+        <div className="kuro-rpg-topbar__currency" title="Kuro Coins">
+          <img src="/images/imgi_88_vip.png" alt="" width="18" height="18" />
+          <span className="kuro-rpg-topbar__currency-type">COINS</span>
+          <strong>{displayNumber(player.vip_coins)}</strong>
         </div>
-
-        <button 
-          className="btn-attr w-9 h-9 p-0 flex items-center justify-center"
+        <button
+          type="button"
+          className="btn-attr kuro-rpg-topbar__inventory"
           onClick={() => setIsInventoryOpen(true)}
-          title="Abrir Inventário (Mochila)"
-        >
-          🎒
-        </button>
+          aria-label="Abrir inventário"
+          title="Abrir inventário"
+        >🎒</button>
       </div>
 
-      <InventoryModal 
-        isOpen={isInventoryOpen} 
-        onClose={() => setIsInventoryOpen(false)} 
-        player={player} 
+      <InventoryModal isOpen={isInventoryOpen}
+        onClose={() => setIsInventoryOpen(false)}
+        player={player}
         updatePlayer={updatePlayer}
       />
-    </div>
+    </header>
   );
 }

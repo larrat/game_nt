@@ -20,10 +20,12 @@ test('network error cannot be mistaken for no characters and can be retried',()=
   assert.ok(select.includes('characters.length === 0 ? ('));
   assert.ok(select.indexOf('{loadError ? (') < select.indexOf('characters.length === 0 ? ('));
 });
-test('player switching is guarded against duplicate clicks and deletion is scoped to owner',()=>{
+test('player switching prevents duplicate clicks; removal uses an owner-only RPC',()=>{
   assert.ok(select.includes('if (joining !== null) return'));
-  assert.ok(select.includes('disabled={joining !== null}'));
-  assert.ok(select.includes('.eq(\'user_id\', session.user.id)'));
+  assert.ok(select.includes('disabled={joining !== null || loading}'));
+  assert.ok(select.includes("rpc('excluir_personagem'"));
+  assert.ok(select.includes('p_confirmation: confirmation'));
+  assert.ok(!select.includes("from('players').delete()"));
   assert.ok(select.includes('setJoining(null)'));
   assert.ok(select.includes('onClick={() => handleSelect(char)}'));
 });

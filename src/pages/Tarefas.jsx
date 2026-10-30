@@ -158,7 +158,7 @@ export default function Tarefas({ player, updatePlayer }) {
           return (
             <button
               key={tab.id}
-              className={`segmented-tab ${activeTab === tab.id ? 'active' : ''} ${locked ? 'locked' : ''}`}
+              className={`segmented-tab ${activeTab === tab.id ? 'active' : ''}`}
               onClick={() => setActiveTab(tab.id)}
               type="button"
               role="tab"

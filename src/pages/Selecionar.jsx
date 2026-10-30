@@ -53,7 +53,8 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
     setJoining(char.id);
     try {
       if (updatePlayer) {
-        await updatePlayer(char.id);
+        const loaded = await updatePlayer(char.id);
+      if (loaded === false) throw new Error('Personagem não encontrado ou não pertence à conta.');
       } else {
         setPlayerState({
           ...char,
@@ -75,17 +76,31 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   };
 
   const handleDelete = async (char) => {
-    if (window.confirm(`Tem certeza que deseja deletar o personagem ${char.name}? Esta ação é irreversível.`)) {
-      setLoading(true);
-      const { error } = await supabase.from('players').delete().eq('id', char.id).eq('user_id', session.user.id);
-      if (error) {
-        addToast('Erro ao deletar personagem: ' + error.message, 'error');
-      } else {
-        addToast('Personagem deletado com sucesso.', 'success');
-        const updated = characters.filter(c => c.id !== char.id);
-        setCharacters(updated);
-        setCurrentIndex(Math.max(0, currentIndex - 1));
+    if (loading || joining !== null) return;
+    const confirmation = window.prompt(
+      `Esta ação é irreversível e apagará o progresso, itens e histórico de ${char.name}. Para confirmar, digite exatamente: ${char.name}`
+    );
+    if (confirmation === null) return;
+    if (confirmation !== char.name) {
+      addToast('O nome digitado não corresponde ao personagem. Nada foi excluído.', 'error');
+      return;
+    }
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.rpc('excluir_personagem', {
+        p_player_id: char.id,
+        p_confirmation: confirmation
+      });
+      if (error || !data?.success || Number(data?.deleted_id) !== Number(char.id)) {
+        throw new Error(error?.message || 'O servidor não confirmou a exclusão.');
       }
+      addToast('Personagem removido com sucesso.', 'success');
+      const updated = characters.filter(c => c.id !== char.id);
+      setCharacters(updated);
+      setCurrentIndex(index => Math.min(index, Math.max(0, updated.length - 1)));
+    } catch (error) {
+      addToast('Não foi possível remover o personagem: ' + (error?.message || 'Tente novamente.'), 'error');
+    } finally {
       setLoading(false);
     }
   };
@@ -155,7 +170,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
           transition={{ duration: 0.24, ease: 'easeOut' }}
         >
           {characters.length > 1 && (
-            <button type="button" className="selection-nav-arrow" onClick={prevChar} disabled={joining !== null}
+            <button type="button" className="selection-nav-arrow" onClick={prevChar} disabled={joining !== null || loading}
               aria-label="Personagem anterior">‹</button>
           )}
 
@@ -218,17 +233,17 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
             </div>
 
             <div className="selection-actions">
-              <button type="button" className="selection-btn-play" disabled={joining !== null} onClick={() => handleSelect(char)}>
+              <button type="button" className="selection-btn-play" disabled={joining !== null || loading} onClick={() => handleSelect(char)}>
                 {joining === char.id ? 'Entrando...' : 'Entrar no mundo ninja'} <span aria-hidden="true">↗</span>
               </button>
-              <button type="button" className="selection-btn-delete" disabled={joining !== null} onClick={() => handleDelete(char)}>
+              <button type="button" className="selection-btn-delete" disabled={joining !== null || loading} onClick={() => handleDelete(char)}>
                 Remover personagem
               </button>
             </div>
           </div>
           
           {characters.length > 1 && (
-            <button type="button" className="selection-nav-arrow" onClick={nextChar} disabled={joining !== null}
+            <button type="button" className="selection-nav-arrow" onClick={nextChar} disabled={joining !== null || loading}
               aria-label="Próximo personagem">›</button>
           )}
         </motion.div>

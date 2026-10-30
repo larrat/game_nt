@@ -40,7 +40,7 @@ test('menu usa botões de grupo e se mantém legível em telas pequenas', () => 
   assert.match(sidebar, /aria-expanded=\{open\}/);
   assert.match(sidebar, /aria-controls=/);
   assert.match(sidebar, /<nav /);
-  assert.match(sidebar, /player\?\.rank/);
+  assert.match(sidebar, /player\.rank/);
   assert.match(css, /@media \(max-width: 980px\)/);
   assert.match(css, /@media \(max-width: 600px\)/);
   assert.match(css, /prefers-reduced-motion/);

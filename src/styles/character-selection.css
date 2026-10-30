@@ -1,0 +1,182 @@
+/* Character selection • modernization v1.
+ * Built with native CSS until Motion is added with a validated lockfile.
+ * Scoped to the selection route; no effect on combat or economy.
+ */
+.kuro-character-select {
+  position: relative;
+  isolation: isolate;
+  padding-top: clamp(22px, 4vw, 56px);
+  min-height: 100dvh;
+  background:
+    radial-gradient(ellipse at 48% 4%, rgba(166, 47, 52, .12), transparent 48%),
+    radial-gradient(circle at 87% 58%, rgba(212, 162, 42, .065), transparent 35%);
+}
+.kuro-character-select .auth-bg-title {
+  top: 19%;
+  font-size: clamp(42px, 7vw, 105px);
+  opacity: .8;
+}
+.kuro-character-select .auth-title-container { max-width: 1040px; margin: 12px auto 27px; }
+.kuro-character-select__stage {
+  max-width: 1070px;
+  margin: 0 auto;
+  padding: clamp(15px, 2.5vw, 28px);
+  border: 1px solid rgba(212,162,42,.22);
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(25, 27, 34, .97), rgba(9, 12, 18, .97));
+  box-shadow: 0 24px 75px rgba(0,0,0,.42), inset 0 1px rgba(255,255,255,.035);
+  position: relative;
+  z-index: 2;
+}
+.kuro-character-select__stage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.kuro-character-select__counter {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 15px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,.075);
+  color: var(--gold);
+  font: 500 10px/1.4 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+.kuro-character-select .selection-showcase {
+  max-width: none;
+  gap: clamp(16px, 2.5vw, 34px);
+  animation: kuro-character-enter .36s cubic-bezier(.17,.74,.24,1) both;
+}
+.kuro-character-select .selection-avatar-container {
+  flex: 0 0 clamp(156px, 22vw, 250px);
+  width: clamp(156px, 22vw, 250px);
+  height: clamp(196px, 28vw, 300px);
+  position: relative;
+  border: 1px solid rgba(212,162,42,.5);
+  border-radius: 7px;
+  box-shadow: 0 0 0 7px rgba(212,162,42,.035), 0 24px 40px rgba(0,0,0,.25);
+}
+.kuro-character-select .selection-avatar-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(0deg, rgba(8,10,15,.48), transparent 45%);
+}
+.kuro-character-select__avatar-fallback {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  font: 700 85px 'Shippori Mincho', serif;
+  color: var(--gold);
+  background: radial-gradient(circle at 50% 30%, rgba(212,162,42,.15), rgba(10,12,17,.9));
+}
+.kuro-character-select .selection-details-container { gap: 20px; min-width: 0; }
+.kuro-character-select .selection-info-grid { gap: clamp(14px, 2vw, 30px); }
+.kuro-character-select .selection-info-col h3 {
+  font: 600 15px 'Shippori Mincho', serif;
+  color: var(--paper);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(212,162,42,.2);
+  margin-bottom: 17px;
+}
+.kuro-character-select .selection-info-col h3::before { color: var(--gold); }
+.kuro-character-select .selection-stat-row { justify-content: space-between; gap: 9px; line-height: 1.5; }
+.kuro-character-select .selection-stat-label { width: auto; color: var(--muted-bright); }
+.kuro-character-select .selection-stat-value { font-weight: 600; text-align: right; }
+.kuro-character-select__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 7px;
+  margin-bottom: 15px;
+}
+.kuro-character-select__stat-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.kuro-character-select__stat-numbers {
+  color: var(--paper);
+  font: 600 10px 'JetBrains Mono', monospace;
+}
+.kuro-character-select__meter {
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.075);
+  border-radius: 4px;
+  background: #090e14;
+}
+.kuro-character-select__meter::-webkit-progress-bar { background: #090e14; }
+.kuro-character-select__meter::-webkit-progress-value { background: linear-gradient(90deg,#9b343b,#ed575c); }
+.kuro-character-select__meter::-moz-progress-bar { background: linear-gradient(90deg,#9b343b,#ed575c); }
+.kuro-character-select__meter.is-chakra::-webkit-progress-value { background: linear-gradient(90deg,#2459a7,#58abf5); }
+.kuro-character-select__meter.is-chakra::-moz-progress-bar { background: linear-gradient(90deg,#2459a7,#58abf5); }
+.kuro-character-select__meter.is-stamina::-webkit-progress-value { background: linear-gradient(90deg,#9a6f23,#e9be4b); }
+.kuro-character-select__meter.is-stamina::-moz-progress-bar { background: linear-gradient(90deg,#9a6f23,#e9be4b); }
+.kuro-character-select .selection-actions { flex-wrap: wrap; gap: 10px; border-top: 1px solid rgba(255,255,255,.07); padding-top: 17px; margin-top: 0; }
+.kuro-character-select .selection-btn-play {
+  border: 1px solid #e3484f;
+  background: linear-gradient(125deg, #b3232d, #81191e);
+  color: #fff;
+  min-height: 43px;
+  padding: 10px 22px;
+  font-size: 12px;
+  letter-spacing: .3px;
+  box-shadow: 0 7px 22px rgba(179,35,45,.2);
+}
+.kuro-character-select .selection-btn-play:hover { background: linear-gradient(125deg, #d43c47, #9c242a); transform: translateY(-2px); }
+.kuro-character-select .selection-btn-delete {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.13);
+  color: var(--muted-bright);
+  min-height: 43px;
+  padding: 10px 18px;
+  font-size: 12px;
+}
+.kuro-character-select .selection-btn-delete:hover { color: #ffa6ad; border-color: var(--seal); background: rgba(179,35,45,.08); }
+.kuro-character-select .selection-nav-arrow {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 48px;
+  border: 1px solid rgba(212,162,42,.35);
+  background: rgba(212,162,42,.09);
+  color: var(--gold);
+  font-size: 29px;
+  border-radius: 5px;
+}
+.kuro-character-select .selection-nav-arrow:hover { background: rgba(212,162,42,.2); color: var(--paper); }
+.kuro-character-select button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+@keyframes kuro-character-enter {
+  from { opacity: 0; transform: translateY(9px) scale(.992); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 850px) {
+  .kuro-character-select .selection-showcase { flex-wrap: wrap; }
+  .kuro-character-select .selection-avatar-container { margin-inline: auto; }
+  .kuro-character-select .selection-details-container { flex: 1 1 100%; order: 3; }
+  .kuro-character-select .selection-showcase > .selection-nav-arrow:first-child { order: 1; margin-inline: auto; }
+  .kuro-character-select .selection-showcase > .selection-nav-arrow:last-child { order: 2; margin-inline: auto; }
+}
+@media (max-width: 520px) {
+  .kuro-character-select { padding: 18px 12px; }
+  .kuro-character-select__stage { padding: 15px; }
+  .kuro-character-select .selection-info-grid { grid-template-columns: 1fr; gap: 14px; }
+  .kuro-character-select .selection-avatar-container { width: 150px; height: 175px; flex-basis: 150px; }
+  .kuro-character-select .selection-actions > button { width: 100%; }
+  .kuro-character-select__counter { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kuro-character-select .selection-showcase { animation: none; }
+  .kuro-character-select .selection-btn-play:hover,
+  .kuro-character-select .selection-nav-arrow:hover { transform: none; }
+}

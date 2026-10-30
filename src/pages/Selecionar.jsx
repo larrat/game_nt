@@ -5,6 +5,8 @@ import { VILLAGES } from '../constants';
 import { useToast } from '../context/ToastContext';
 import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 import PageHeader from '../components/PageHeader';
+import '../styles/character-selection.css';
+import { getCharacterResources, formatCharacterRyous, getCharacterLevel } from '../utils/characterPresentation';
 
 export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   const [characters, setCharacters] = useState([]);
@@ -74,9 +76,14 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   if (loading) return <div className="page flex-col items-center justify-center">Carregando personagens...</div>;
 
   const char = characters[currentIndex];
+  const characterResources = char ? getCharacterResources(char, {
+    hp: calculateHP(char),
+    chakra: calculateChakra(char),
+    stamina: calculateStamina(char)
+  }) : [];
 
   return (
-    <div className="page auth-screen-layout">
+    <div className="page auth-screen-layout kuro-character-select">
       <div className="auth-bg-title">SELECIONE SEU PERSONAGEM</div>
       
       <header className="auth-header">
@@ -102,16 +109,22 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
           <button className="btn-primary" onClick={() => navigate('/criar')}><span>Criar Personagem</span><div className="stamp"></div></button>
         </div>
       ) : (
-        <div className="selection-showcase">
+        <div className="kuro-character-select__stage" aria-live="polite">
+        <div className="kuro-character-select__counter">
+          <span>PERSONAGEM {currentIndex + 1} / {characters.length}</span>
+          <span>{char.rank || 'Estudante da Academia'}</span>
+        </div>
+        <div className="selection-showcase" key={char.id}>
           {characters.length > 1 && (
-            <button className="selection-nav-arrow" onClick={prevChar}>◀</button>
+            <button type="button" className="selection-nav-arrow" onClick={prevChar}
+              aria-label="Personagem anterior">‹</button>
           )}
 
           <div className="selection-avatar-container">
             {char.avatar?.startsWith('/') ? (
               <img src={char.avatar} alt={char.name} />
             ) : (
-              <img src={`https://placehold.co/250x250/1c1c22/b3232d?text=${char.name.charAt(0)}`} alt={char.name} />
+              <span className="kuro-character-select__avatar-fallback" aria-label={char.name}>忍</span>
             )}
           </div>
 
@@ -126,7 +139,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
                 </div>
                 <div className="selection-stat-row">
                   <span className="selection-stat-label">Level:</span>
-                  <span className="selection-stat-value">{char.level}</span>
+                  <span className="selection-stat-value">{getCharacterLevel(char.level)}</span>
                 </div>
                 <div className="selection-stat-row">
                   <span className="selection-stat-label">Graduação:</span>
@@ -134,7 +147,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
                 </div>
                 <div className="selection-stat-row">
                   <span className="selection-stat-label">Ryous:</span>
-                  <span className="selection-stat-value">{char.ryous}</span>
+                  <span className="selection-stat-value">RY$ {formatCharacterRyous(char.ryous)}</span>
                 </div>
                 <div className="selection-stat-row">
                   <span className="selection-stat-label">Vila:</span>
@@ -145,42 +158,41 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
               <div className="selection-info-col">
                 <h3>Atributos</h3>
                 
-                <div className="selection-bar-row">
-                  <div className="selection-bar-label">Vida</div>
-                  <div className="selection-bar-track">
-                    <div className="selection-bar-fill hp w-full"></div>
-                    <span className="selection-bar-text">{calculateHP(char)} / {calculateHP(char)}</span>
+                {characterResources.map(resource => (
+                  <div className="selection-bar-row kuro-character-select__stat" key={resource.key}>
+                    <div className="kuro-character-select__stat-heading">
+                      <span className="selection-bar-label">{resource.label}</span>
+                      <span className="kuro-character-select__stat-numbers">
+                        {resource.current.toLocaleString('pt-BR')} / {resource.max.toLocaleString('pt-BR')}
+                      </span>
+                    </div>
+                    <progress
+                      className={'kuro-character-select__meter is-' + resource.key}
+                      aria-label={resource.label}
+                      value={resource.current}
+                      max={resource.max}
+                    />
                   </div>
-                </div>
-
-                <div className="selection-bar-row">
-                  <div className="selection-bar-label">Chakra</div>
-                  <div className="selection-bar-track">
-                    <div className="selection-bar-fill cp w-full"></div>
-                    <span className="selection-bar-text">{calculateChakra(char)} / {calculateChakra(char)}</span>
-                  </div>
-                </div>
-
-                <div className="selection-bar-row">
-                  <div className="selection-bar-label">Stamina</div>
-                  <div className="selection-bar-track">
-                    <div className="selection-bar-fill sp w-full"></div>
-                    <span className="selection-bar-text">{calculateStamina(char)} / {calculateStamina(char)}</span>
-                  </div>
-                </div>
+                ))}
               </div>
 
             </div>
 
             <div className="selection-actions">
-              <button className="selection-btn-play" onClick={() => handleSelect(char)}>Jogar</button>
-              <button className="selection-btn-delete" onClick={() => handleDelete(char)}>Remover</button>
+              <button type="button" className="selection-btn-play" onClick={() => handleSelect(char)}>
+                Entrar no mundo ninja <span aria-hidden="true">↗</span>
+              </button>
+              <button type="button" className="selection-btn-delete" onClick={() => handleDelete(char)}>
+                Remover personagem
+              </button>
             </div>
           </div>
           
           {characters.length > 1 && (
-            <button className="selection-nav-arrow" onClick={nextChar}>▶</button>
+            <button type="button" className="selection-nav-arrow" onClick={nextChar}
+              aria-label="Próximo personagem">›</button>
           )}
+        </div>
         </div>
       )}
 

@@ -40,12 +40,10 @@ export default function Criar({ session, setPlayerState }) {
       setAccountCount(null);
 
       try {
-        const [catalogResult, accountResult, ...villageResults] = await Promise.all([
+        const [catalogResult, accountResult, villageResult] = await Promise.all([
           supabase.from('characters').select('id,name,base_avatar_url').order('id'),
           supabase.from('players').select('id', { count: 'exact', head: true }).eq('user_id', session.user.id),
-          ...VILLAGES_LIST.filter(v => v.id !== 8).map(v =>
-            supabase.from('players').select('id', { count: 'exact', head: true }).eq('village_id', v.id)
-          )
+          supabase.rpc('contar_ninjas_vila')
         ]);
         if (!active) return;
 
@@ -62,9 +60,12 @@ export default function Criar({ session, setPlayerState }) {
           setAccountCount(accountResult.count);
         }
         const stats = {};
-        VILLAGES_LIST.filter(v => v.id !== 8).forEach((v, index) => {
-          const answer = villageResults[index];
-          stats[v.id] = answer.error ? null : answer.count;
+        VILLAGES_LIST.filter(v => v.id !== 8).forEach(v => {
+          if (villageResult.error) {
+            stats[v.id] = null;
+          } else {
+            stats[v.id] = (villageResult.data || []).find(x => x.village_id === v.id)?.count ?? 0;
+          }
         });
         setVillageStats(stats);
       } catch {

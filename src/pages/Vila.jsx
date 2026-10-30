@@ -39,14 +39,8 @@ export default function Vila({ player, updatePlayer }) {
       if (vData) setVillageData(vData);
 
       // Kage
-      const { data: kageData } = await supabase
-        .from('players')
-        .select('name, level, class')
-        .eq('village_id', player.village_id)
-        .order('level', { ascending: false })
-        .order('xp', { ascending: false })
-        .limit(1);
-      if (kageData && kageData.length > 0) setKage(kageData[0]);
+      const { data: kageData, error: kageError } = await supabase.rpc('listar_lideres_vila');
+      if (!kageError) setKage((kageData || []).find(k => k.village_id === player.village_id) || null);
 
       // Buildings
       try {

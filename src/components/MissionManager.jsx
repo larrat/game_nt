@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
+import { formatMissionCompletionMessage } from '../utils/progression';
 
 export default function MissionManager({ player, updatePlayer }) {
   const [tarefas, setTarefas] = useState([]);
@@ -40,10 +41,10 @@ export default function MissionManager({ player, updatePlayer }) {
         p_mission_type: taskDef.type
       });
 
-      if (error || data?.error) throw new Error(error?.message || data?.error);
+      if (error || data?.success !== true) throw new Error(error?.message || data?.error || 'Falha ao finalizar missão.');
 
       await updatePlayer(player.id);
-      addToast(`Missão concluída! +${taskDef.xp} XP e RY$ ${taskDef.ryous}.`, 'success');
+      addToast(formatMissionCompletionMessage(data, player.rank), 'success');
     } catch (err) {
       addToast(err.message || 'Erro ao finalizar missão.', 'error');
     }

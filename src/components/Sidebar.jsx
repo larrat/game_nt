@@ -1,167 +1,166 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { calculateXPForLevel, calculateLevelFromXP } from '../utils/engine';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { playHoverSound, playClickSound } from '../utils/audioEngine';
 import SidebarIcon from './SidebarIcon';
 
-const NAV = [
+// Navegação organizada pelas famílias documentadas das telas de RPG.
+// Mantém todas as rotas atuais e a identidade própria do Kurokage.
+export const SCREEN_NAV = [
   {
-    group: 'Central',
+    id: 'central', group: 'Central',
+    items: [{ to: '/dashboard', label: 'Painel inicial' }]
+  },
+  {
+    id: 'personagem', group: 'Personagem',
     items: [
-      { to: '/dashboard', icon: '/images/imgi_29_index.png', label: 'Painel inicial' },
+      { to: '/status', label: 'Status do Ninja' },
+      { to: '/equipamentos', label: 'Equipamentos' },
+      { to: '/clas', label: 'Clãs' },
+      { to: '/elementos', label: 'Elementos' },
+      { to: '/invocacoes', label: 'Invocações' }
     ]
   },
   {
-    group: 'Meu Ninja',
+    id: 'academia', group: 'Academia Ninja',
     items: [
-      { to: '/status', icon: '👤', label: 'Status do Ninja' },
-      { to: '/equipamentos', icon: '/images/imgi_21_Mochila.png', label: 'Equipamentos' },
-      { to: '/tecnicas', icon: '/images/imgi_13_passe.png', label: 'Técnicas e Jutsus' },
-      { to: '/aprimorar-jutsus', icon: '/images/jutsus/jutsu_ninjutsu.jpg', label: 'Aprimorar Jutsus' },
-      { to: '/treino', icon: '/images/imgi_10_stamina.png', label: 'Treinamento' },
+      { to: '/treino', label: 'Treinamento' },
+      { to: '/tecnicas', label: 'Técnicas e Jutsus' },
+      { to: '/aprimorar-jutsus', label: 'Aprimorar Jutsus' },
+      { to: '/tarefas', label: 'Missões' },
+      { to: '/graduacoes', label: 'Graduações' },
+      { to: '/exame', label: 'Exame Ninja' }
     ]
   },
   {
-    group: 'Progressão',
+    id: 'combates', group: 'Combates e Jornada',
     items: [
-      { to: '/tarefas', icon: '/images/imgi_14_rotina.png', label: 'Missões' },
-      { to: '/exame', icon: '📜', label: 'Exame Ninja' },
-      { to: '/graduacoes', icon: '/images/imgi_126_star.png', label: 'Graduações' },
+      { to: '/dojo', label: 'Dojo' },
+      { to: '/mapa', label: 'Mapa-múndi' },
+      { to: '/historia', label: 'Modo História' },
+      { to: '/evento', label: 'Eventos globais' },
+      { to: '/historico', label: 'Histórico' },
+      { to: '/ranking', label: 'Ranking' }
     ]
   },
   {
-    group: 'Mundo Shinobi',
+    id: 'vila', group: 'Vila e Serviços',
     items: [
-      { to: '/historia', icon: '📖', label: 'Modo História' },
-      { to: '/mapa', icon: '/images/imgi_135_shield.png', label: 'Mapa-múndi' },
-      { to: '/vila', icon: '/images/imgi_108_Noticias.png', label: 'Vila' },
-      { to: '/dojo', icon: '/images/imgi_112_1.png', label: 'Dojo' },
-      { to: '/evento', icon: '🌎', label: 'Eventos globais' },
-      { to: '/ranking', icon: '/images/imgi_11_round46.png', label: 'Ranking' },
-      { to: '/historico', icon: '📜', label: 'Histórico' },
+      { to: '/vila', label: 'Vila' },
+      { to: '/hospital', label: 'Hospital' },
+      { to: '/ferreiro', label: 'Ferreiro' },
+      { to: '/ichiraku', label: 'Ichiraku Ramen' },
+      { to: '/portoes', label: '8 Portões' },
+      { to: '/templo', label: 'Templo Ninja' }
     ]
   },
   {
-    group: 'Especializações',
-    items: [
-      { to: '/clas', icon: '/images/imgi_32_star.png', label: 'Clãs' },
-      { to: '/invocacoes', icon: '🐾', label: 'Invocações' },
-      { to: '/elementos', icon: '/images/imgi_9_chakra.png', label: 'Elementos' },
-      { to: '/portoes', icon: '/images/imgi_8_heart.png', label: '8 Portões' },
-      { to: '/templo', icon: '/images/imgi_12_templo.png', label: 'Templo Ninja' },
-    ]
-  },
-  {
-    group: 'Serviços',
-    items: [
-      { to: '/hospital', icon: '✚', label: 'Hospital' },
-      { to: '/ferreiro', icon: '🔨', label: 'Ferreiro' },
-      { to: '/ichiraku', icon: '/images/imgi_21_Mochila.png', label: 'Ichiraku Ramen' },
-    ]
-  },
-  {
-    group: 'Premium',
-    items: [
-      { to: '/vip', icon: '/images/imgi_172_vip.png', label: 'Vantagens VIP' },
-    ]
+    id: 'premium', group: 'Premium',
+    items: [{ to: '/vip', label: 'Vantagens VIP' }]
   }
 ];
 
-export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
-  const [expanded, setExpanded] = useState({
-    'Central': true,
-    'Meu Ninja': true,
-    'Progressão': true,
-    'Mundo Shinobi': true,
-  });
+export const findScreenGroup = (pathname) =>
+  SCREEN_NAV.find(group => group.items.some(item => item.to === pathname))?.id || null;
 
-  const [audioOn, setAudioOn] = useState(window.kurokageAudioEnabled);
+export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
+  const location = useLocation();
+  const activeGroup = findScreenGroup(location.pathname);
+  const [expanded, setExpanded] = useState(() => ({
+    central: true,
+    personagem: true,
+    academia: true,
+    ...(activeGroup ? { [activeGroup]: true } : {})
+  }));
+  const [audioOn, setAudioOn] = useState(() => Boolean(window.kurokageAudioEnabled));
 
   useEffect(() => {
     window.kurokageAudioEnabled = audioOn;
   }, [audioOn]);
 
-  const toggleGroup = (groupName) => {
-    playClickSound();
-    setExpanded(prev => ({
-      ...prev,
-      [groupName]: !prev[groupName]
-    }));
-  };
+  useEffect(() => {
+    if (activeGroup) setExpanded(prev => (prev[activeGroup] ? prev : { ...prev, [activeGroup]: true }));
+  }, [activeGroup]);
 
+  const toggleGroup = (id) => {
+    playClickSound();
+    setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+  };
   const handleLinkClick = () => {
     playClickSound();
+    if (onNavigate) onNavigate();
   };
-
-  const handleMouseEnter = () => {
-    playHoverSound();
-  };
-
-  // XP logic moved to TopBar
 
   return (
-    <aside className={"sidebar" + (isMobileOpen ? " is-mobile-open" : "")}>
+    <aside className={'sidebar kuro-rpg-sidebar' + (isMobileOpen ? ' is-mobile-open' : '')} aria-label="Navegação principal do jogo">
       <div className="sidebar-brand-wrap">
-        <div className="brand">
-          <div className="mark"></div>
-          KUROKAGE
-        </div>
+        <div className="brand"><div className="mark" />KUROKAGE</div>
+        <span className="kuro-rpg-sidebar__edition">NINJA RPG</span>
       </div>
 
-      <div className="flex-1 overflow-y-auto">
-        {NAV.map((group) => {
-          const isOpen = expanded[group.group];
+      {player && (
+        <div className="kuro-rpg-sidebar__player" aria-label="Personagem selecionado">
+          <div className="kuro-rpg-sidebar__portrait">
+            {player.avatar?.startsWith('/') ? <img src={player.avatar} alt="" /> : <span aria-hidden="true">忍</span>}
+          </div>
+          <div className="kuro-rpg-sidebar__player-text">
+            <strong title={player.name}>{player.name}</strong>
+            <span>Nv. {player.level || 1} · {player.rank || 'Estudante'}</span>
+          </div>
+        </div>
+      )}
+
+      <nav className="kuro-rpg-sidebar__navigation" aria-label="Áreas do Kurokage">
+        {SCREEN_NAV.map(group => {
+          const open = Boolean(expanded[group.id]);
           return (
-            <div className="navgroup" key={group.group}>
-              <div 
-                className={`navgroup-header ${isOpen ? 'open' : ''}`} 
-                onClick={() => toggleGroup(group.group)}
-                onMouseEnter={handleMouseEnter}
-              >
-                <div className={`label ${group.group === 'Premium' ? 'text-gold' : 'text-muted'}`}>
-                  {group.group}
-                </div>
-                <div className="arrow">▼</div>
-              </div>
-              
-              <div className={`navgroup-content ${isOpen ? 'open' : ''}`}>
-                {group.items.map((item) => (
+            <section className="navgroup kuro-rpg-sidebar__group" key={group.id}>
+              <h2 className="kuro-rpg-sidebar__heading">
+                <button
+                  type="button"
+                  className={'navgroup-header kuro-rpg-sidebar__toggle' + (open ? ' open' : '')}
+                  onClick={() => toggleGroup(group.id)}
+                  onMouseEnter={playHoverSound}
+                  aria-expanded={open}
+                  aria-controls={'kuro-nav-' + group.id}
+                >
+                  <span className={'label' + (group.id === 'premium' ? ' text-gold' : '')}>{group.group}</span>
+                  <span className="arrow" aria-hidden="true">▼</span>
+                </button>
+              </h2>
+              <div className={'navgroup-content' + (open ? ' open' : '')}
+                id={'kuro-nav-' + group.id} hidden={!open}>
+                {group.items.map(item => (
                   <NavLink
                     key={item.to}
                     to={item.to}
-                    onClick={() => { handleLinkClick(); if (onNavigate) onNavigate(); }}
-                    onMouseEnter={handleMouseEnter}
-                    className={({ isActive }) => `navitem${isActive ? ' active' : ''} ${group.group === 'Premium' ? 'premium' : ''}`}
+                    onClick={handleLinkClick}
+                    onMouseEnter={playHoverSound}
+                    className={({ isActive }) =>
+                      'navitem' + (isActive ? ' active' : '') + (group.id === 'premium' ? ' premium' : '')
+                    }
                   >
-                    <span className="flex items-center justify-center w-5 h-5 shrink-0 text-inherit">
+                    <span className="kuro-rpg-sidebar__link-icon" aria-hidden="true">
                       <SidebarIcon label={item.label} />
                     </span>
-                    {item.label}
+                    <span>{item.label}</span>
                   </NavLink>
                 ))}
               </div>
-            </div>
+            </section>
           );
         })}
-      </div>
+      </nav>
 
-      <div className="sidebar-footer border-t border-line p-4 flex flex-col gap-2">
-        
-        <div className="flex-between mt-0">
-          <div className="flex-col">
-            <div className="text-gold mb-1 font-semibold text-xs">S1 · {player?.name || '---'}</div>
-            <div className="opacity-50 text-[11px]">v2.0 Kurokage</div>
-          </div>
-          
-          <button 
-            className="btn-ghost p-1.5 text-base rounded border border-line"
-            onClick={() => { playClickSound(); setAudioOn(!audioOn); }}
-            title={audioOn ? 'Desativar Som' : 'Ativar Som'}
-          >
-            {audioOn ? '🔊' : '🔇'}
-          </button>
-        </div>
-
+      <div className="sidebar-footer kuro-rpg-sidebar__footer">
+        <span>ERA DOS SHINOBI · TEMPORADA I</span>
+        <button
+          type="button"
+          className="btn-ghost kuro-rpg-sidebar__sound"
+          onClick={() => { playClickSound(); setAudioOn(value => !value); }}
+          aria-pressed={audioOn}
+          aria-label={audioOn ? 'Desativar som' : 'Ativar som'}
+          title={audioOn ? 'Desativar som' : 'Ativar som'}
+        >{audioOn ? '🔊' : '🔇'}</button>
       </div>
     </aside>
   );

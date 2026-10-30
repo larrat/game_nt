@@ -1,0 +1,108 @@
+
+/* Combate 3.0 — apresentação apenas; validação e liquidação ficam nas RPCs. */
+.kuro-combat-page .kuro-combat-v3__turn {
+  padding: 17px 22px;
+  margin-bottom: 19px;
+  border: 1px solid rgba(212,162,42,.28);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  background: linear-gradient(110deg,rgba(212,162,42,.1),rgba(12,16,24,.96) 48%);
+  box-shadow: 0 8px 26px rgba(0,0,0,.2);
+}
+.kuro-combat-page .kuro-combat-v3__turn.is-enemy-turn {
+  border-left-color: #dd5454;
+  background: linear-gradient(110deg,rgba(218,59,67,.1),rgba(12,16,24,.96) 48%);
+}
+.kuro-combat-v3__turn-top { display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+.kuro-combat-v3__phase {display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+.kuro-combat-v3__round {
+  display:inline-flex;
+  padding:7px 11px;
+  border:1px solid rgba(212,162,42,.36);
+  border-radius:4px;
+  color:var(--gold);
+  background:rgba(212,162,42,.085);
+  font:600 11px/1.3 'JetBrains Mono',monospace;
+  letter-spacing:1.2px;
+}
+.kuro-combat-v3__phase strong {
+  color:var(--paper);
+  font:600 clamp(14px,1.6vw,19px)/1.35 'Shippori Mincho',serif;
+}
+.kuro-combat-v3__timer { display:flex; gap:10px; align-items:center; font-size:11px; color:var(--muted-bright); }
+.kuro-combat-v3__timer strong { font:700 18px/1.2 'JetBrains Mono',monospace; color:var(--gold); }
+.kuro-combat-v3__timer strong.is-urgent {color:#ff6666;}
+.kuro-combat-v3__timer-bar {
+  appearance:none; -webkit-appearance:none;
+  width:100%; height:7px; display:block; margin-top:13px;
+  background:rgba(255,255,255,.055); border:0; border-radius:4px; overflow:hidden;
+}
+.kuro-combat-v3__timer-bar::-webkit-progress-bar {background:rgba(255,255,255,.055);}
+.kuro-combat-v3__timer-bar::-webkit-progress-value {background:linear-gradient(90deg,#a87420,#eec452);}
+.kuro-combat-v3__timer-bar::-moz-progress-bar {background:linear-gradient(90deg,#a87420,#eec452);}
+.kuro-combat-v3__turn-note { margin:10px 0 0; color:var(--muted-bright); font-size:11px; line-height:1.5;}
+.kuro-combat-v3__log-heading {
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:8px;
+  min-height:40px; padding:8px 11px;
+  border:1px solid rgba(212,162,42,.17);
+  border-radius:6px;
+  background:rgba(5,7,12,.6);
+}
+.kuro-combat-v3__log-heading strong {color:var(--paper); font:600 12px 'Inter',sans-serif;}
+.kuro-combat-v3__log-toggle {
+  color:var(--gold); background:transparent;
+  border:1px solid rgba(212,162,42,.2); border-radius:4px;
+  padding:6px 10px; font:600 10px 'Inter',sans-serif;
+  cursor:pointer;
+}
+.kuro-combat-v3__log-toggle:focus-visible,
+.kuro-combat-page .combat-jutsu-btn:focus-visible,
+.kuro-combat-page .combat-jutsu-section button:focus-visible { outline:2px solid var(--gold); outline-offset:2px;}
+.kuro-combat-page .kuro-combat-v3__log { max-height:290px; min-height:100px; scrollbar-width:thin; }
+.kuro-combat-page .combat-actions.kuro-combat-v3__actions {
+  border:1px solid rgba(212,162,42,.22);
+  border-radius:8px;
+  background:linear-gradient(180deg,rgba(20,24,32,.97),rgba(10,13,19,.98));
+}
+.kuro-combat-v3__actions-note {color:var(--muted-bright); font-size:11px; line-height:1.45;}
+.kuro-combat-page .kuro-combat-v3__action-status {
+  display:block; margin-top:5px; color:#e9ce8c;
+  font:600 9px/1.25 'JetBrains Mono',monospace;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.kuro-combat-page .combat-jutsu-btn {
+  flex-basis:100px; width:100px; min-height:110px;
+  border-color:rgba(212,162,42,.25);
+  box-shadow:0 5px 16px rgba(0,0,0,.16);
+}
+.kuro-combat-page .combat-jutsu-btn.on-cooldown {border-color:rgba(208,90,92,.4);}
+.kuro-combat-page .combat-jutsu-btn .jutsu-name {padding:5px 4px;}
+.kuro-combat-page .combat-jutsu-btn .jutsu-cost {color:#87bcff;}
+.kuro-combat-page .combat-jutsu-bar {gap:12px; padding:4px 2px 11px;}
+.kuro-combat-page .combat-fighter-v2 {box-shadow:0 15px 38px rgba(0,0,0,.26);}
+.kuro-combat-page .combat-fighter-v2:first-child {border-top:3px solid var(--gold);}
+.kuro-combat-page .combat-fighter-v2:last-child {border-top:3px solid #db5454;}
+@media(max-width:960px) {
+  .kuro-combat-page .kuro-combat-arena { grid-template-columns:minmax(0,1fr) minmax(160px,210px) minmax(0,1fr); gap:10px; }
+}
+@media(max-width:720px) {
+  .kuro-combat-page .kuro-combat-v3__turn {padding:14px; }
+  .kuro-combat-page .kuro-combat-arena {grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;}
+  .kuro-combat-page .combat-center-col { grid-column:1/-1; grid-row:2; min-height:0; }
+  .kuro-combat-page .combat-fighter-v2 {min-height:280px;}
+  .kuro-combat-page .combat-portrait-wrap {min-height:130px; max-height:185px; flex-basis:140px;}
+  .kuro-combat-page .combat-portrait-wrap img {max-height:175px;}
+  .kuro-combat-page .combat-fighter-info {padding:12px;}
+  .kuro-combat-page .combat-actions.kuro-combat-v3__actions {padding:15px;}
+}
+@media(max-width:380px) {
+  .kuro-combat-page .combat-arena {gap:6px;}
+  .kuro-combat-page .combat-fighter-info {padding:9px;}
+  .kuro-combat-page .combat-portrait-wrap {min-height:115px; max-height:150px;}
+  .kuro-combat-v3__phase {gap:7px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .kuro-combat-page .combat-jutsu-btn,.kuro-combat-page .combat-fighter-v2 {transition:none;}
+  .kuro-combat-page .combat-jutsu-btn:hover:not(:disabled) {transform:none;}
+}

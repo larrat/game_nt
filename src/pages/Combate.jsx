@@ -24,6 +24,8 @@ import {
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import PageHeader from '../components/PageHeader';
 import CombatFighterCard from '../components/CombatFighterCard';
+import CombatTurnPanel from '../components/CombatTurnPanel';
+import '../styles/combat-v3.css';
 import { useToast } from '../context/ToastContext';
 import { playHitSound, playCritSound, playJutsuSound } from '../utils/audioEngine';
 
@@ -191,6 +193,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     location.state?.isWorldBoss ? `🔥 O céu escurece... ${npcInit?.name} surgiu! Prepare-se!` :
       isMirror ? `⚠️ INVASÃO! Você foi emboscado pelo ninja rival ${npcInit?.name}!` : `Um combate se inicia contra ${npcInit?.name}!`
   ]);
+  const [showCombatLog, setShowCombatLog] = useState(true);
   const [isPlayerTurn, setIsPlayerTurn] = useState(!isAltAutoBattle);
   const [battleResult, setBattleResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -1468,6 +1471,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     ))
   ].filter(Boolean);
 
+  const blockedByServer = combatSessionEligible && (combatSessionLoading || !combatSessionId);
   const npcBadges = [
     npcInit?.clan && (
       <div key="clan" className="badge badge-muted text-xs">Clã {npcInit.clan}</div>
@@ -1485,21 +1489,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       <PageHeader eyebrow={combatModeEyebrow} title={combatModeTitle} subtitle={combatModeSubtitle} />
 
       {!battleResult && (
-        <div className="combat-turn-bar kuro-combat-turn-bar">
-          <div className="flex-between mb-2 text-xs">
-            <span className="mono gold">
-              {isPlayerTurn ? 'SEU TURNO' : 'TURNO INIMIGO'} — Rodada {roundCount}
-            </span>
-            {isPlayerTurn && (
-              <span className={`mono ${timeLeft <= 10 ? 'danger' : 'muted'}`}>{timeLeft}s</span>
-            )}
-          </div>
-          {isPlayerTurn && (
-            <div className="progress-track bg-black-alpha-50 h-1">
-              <div className={`progress-fill transition-all duration-1000 ${timeLeft <= 10 ? 'red' : 'gold'}`} style={{ width: `${(timeLeft / 30) * 100}%` }} />
-            </div>
-          )}
-        </div>
+        <CombatTurnPanel
+          round={roundCount}
+          isPlayerTurn={isPlayerTurn}
+          remainingSeconds={timeLeft}
+          sessionPending={combatSessionEligible && combatSessionLoading}
+          sessionFailed={combatSessionEligible && combatSessionFailed}
+          autoBattle={isAltAutoBattle || autoBattle}
+        />
       )}
 
       <div className="flex-col w-full gap-md">
@@ -1535,7 +1532,27 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 Incursão {raidCurrent}/{raidTotal}
               </div>
             )}
-            <div className="combat-log combat-log-center" ref={logsContainerRef}>
+            <div className="kuro-combat-v3__log-heading">
+              <strong>Registro de combate <span className="muted mono">({logs.length})</span></strong>
+              <button
+                type="button"
+                className="kuro-combat-v3__log-toggle"
+                onClick={() => setShowCombatLog(value => !value)}
+                aria-expanded={showCombatLog}
+                aria-controls="combat-log-events"
+              >
+                {showCombatLog ? 'Ocultar eventos' : 'Mostrar eventos'}
+              </button>
+            </div>
+            <div
+              id="combat-log-events"
+              className="combat-log combat-log-center kuro-combat-v3__log"
+              ref={logsContainerRef}
+              aria-label="Eventos do combate"
+              role="log"
+              aria-live="off"
+              hidden={!showCombatLog}
+            >
               {logs.map((log, idx) => (
                 <div
                   key={idx}
@@ -1584,9 +1601,12 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               <p className="muted text-xs">O Wintrading Shield foi ativado. Você não pode interferir no combate contra seu próprio alter ego. O sistema resolverá a batalha com base nos atributos e na sorte de ambos.</p>
             </div>
           ) : (
-            <div className="combat-actions kuro-combat-actions">
+            <div className="combat-actions kuro-combat-actions kuro-combat-v3__actions">
               <div className="combat-actions-header">
-                <span className="mono uppercase text-xs tracking-wider text-muted">Ações</span>
+                <div>
+                  <span className="mono uppercase text-xs tracking-wider text-muted">Ações do ninja</span>
+                  <p className="kuro-combat-v3__actions-note">Confira o custo e a recarga antes de agir.</p>
+                </div>
                 <span className="badge badge-muted">{getCombatJutsus(player).length + 1} técnicas</span>
               </div>
 
@@ -1610,14 +1630,14 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                 <div className="combat-jutsu-bar">
                   <button
                     className="combat-jutsu-btn combat-basic-btn"
-                    disabled={!isPlayerTurn}
+                    disabled={!isPlayerTurn || blockedByServer}
                     onClick={handleBasicAttack}
                     title={`Ataque Básico\n${Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2))} DMG | ${BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty}% ACC`}
                     type="button"
                   >
                     <span className="combat-basic-icon">👊</span>
                     <span className="jutsu-name">Básico</span>
-                    <span className="jutsu-cost">{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2))}</span>
+                    <span className="jutsu-cost">{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2))} DMG</span>
                   </button>
 
                   {getCombatJutsus(player)
@@ -1629,8 +1649,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                         <button
                           key={jutsu.id}
                           className={`combat-jutsu-btn ${stats.isOnCooldown ? 'on-cooldown' : ''} ${stats.hasEssences ? 'enhanced' : ''}`}
-                          disabled={!isPlayerTurn || stats.isOnCooldown}
+                          disabled={!isPlayerTurn || stats.isOnCooldown || blockedByServer}
                           onClick={() => handleJutsu(jutsu)}
+                          aria-label={`${jutsu.name}, custo ${stats.cost} de Chakra, dano estimado ${stats.estDamage}, ${stats.jutsuCdVal > 0 ? 'recarga de ' + stats.jutsuCdVal + ' turnos' : 'pronto'}`}
+                          aria-disabled={!isPlayerTurn || stats.isOnCooldown || blockedByServer}
                           title={`${jutsu.name}\n${stats.cost} CP | ${stats.estDamage} DMG | ${stats.finalAcc}% ACC\nSelos req.: ${jutsu.req_seals || 0}\nCD: ${jutsu.cooldown || 0}T`}
                           type="button"
                         >
@@ -1641,8 +1663,11 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                             <div className="jutsu-cd-overlay">{stats.jutsuCdVal}</div>
                           )}
                           <span className="jutsu-name">{jutsu.name}</span>
-                          <span className="jutsu-cost">{stats.cost}</span>
+                          <span className="jutsu-cost">{stats.cost} CP</span>
                           <span className="jutsu-level">Lv.{stats.jutsuLevel}</span>
+                          <span className="kuro-combat-v3__action-status">
+                            {stats.jutsuCdVal > 0 ? 'CD: ' + stats.jutsuCdVal + ' turno(s)' : 'Pronto'}
+                          </span>
                         </button>
                       );
                     })}

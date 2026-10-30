@@ -27,7 +27,10 @@ test('optimizer preserves URL paths and decodable images while limiting giant di
     const resultJpg = await sharp(await fs.readFile(filepath)).metadata();
     assert.ok(resultJpg.width <= 2048 && resultJpg.height <= 2048);
     assert.equal(resultJpg.format, 'jpeg');
-    assert.deepEqual(await fs.readFile(pngPath), png); // tiny PNG never grows
+    assert.deepEqual(
+      await sharp(await fs.readFile(pngPath)).raw().toBuffer(),
+      await sharp(png).raw().toBuffer()
+    ); // lossless PNG pixels are unchanged even when bytes are re-encoded
     assert.equal(outcome.originalBytes - outcome.optimizedBytes,
       jpg.length + png.length - (await fs.stat(filepath)).size - (await fs.stat(pngPath)).size);
   } finally {

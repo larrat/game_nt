@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { VILLAGES_LIST } from '../constants';
 import PageHeader from '../components/PageHeader';
+import { canCreateCharacter, MAX_CHARACTERS_PER_ACCOUNT, validateCharacterName } from '../utils/characterCreationRules';
+import '../styles/character-creation.css';
 
 const CLASSES = [
   { id: 'NIN', name: 'Ninjutsu', icon: '📜', desc: 'Especialista em magias.', stats: { ninjutsu: 5, inteligencia: 4, selo: 3, energia: 3, agilidade: 2, resistencia: 1, genjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
@@ -22,65 +24,113 @@ export default function Criar({ session, setPlayerState }) {
   const [loading, setLoading] = useState(false);
   const [characters, setCharacters] = useState([]);
   const [villageStats, setVillageStats] = useState({});
+  const [accountCount, setAccountCount] = useState(null);
+  const [catalogLoading, setCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState('');
+  const [loadVersion, setLoadVersion] = useState(0);
+  const creatingRef = useRef(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function loadData() {
-      const { data: chars } = await supabase.from('characters').select('*').order('id');
-      if (chars && chars.length > 0) {
-        setCharacters(chars);
-        setSelectedCharacter(chars[0].id);
-        setSelectedAvatar(chars[0].base_avatar_url);
-      }
+    let active = true;
 
-      const { data: accData } = await supabase.from('players').select('avatar').eq('user_id', session.user.id);
-      if (accData) {
-        const aggregated = new Set();
-        accData.forEach(p => {
-          if (p.avatar) aggregated.add(p.avatar);
+    async function loadData() {
+      setCatalogLoading(true);
+      setCatalogError('');
+      setAccountCount(null);
+
+      try {
+        const [catalogResult, accountResult, ...villageResults] = await Promise.all([
+          supabase.from('characters').select('id,name,base_avatar_url').order('id'),
+          supabase.from('players').select('id', { count: 'exact', head: true }).eq('user_id', session.user.id),
+          ...VILLAGES_LIST.filter(v => v.id !== 8).map(v =>
+            supabase.from('players').select('id', { count: 'exact', head: true }).eq('village_id', v.id)
+          )
+        ]);
+        if (!active) return;
+
+        if (catalogResult.error) throw catalogResult.error;
+        const available = (catalogResult.data || []).filter(item => item.id && item.base_avatar_url);
+        if (!available.length) throw new Error('Nenhum visual está disponível no catálogo.');
+        setCharacters(available);
+        setSelectedCharacter(previous => available.some(item => item.id === previous) ? previous : available[0].id);
+        setSelectedAvatar(previous => available.some(item => item.base_avatar_url === previous) ? previous : available[0].base_avatar_url);
+
+        if (accountResult.error || accountResult.count == null) {
+          setCatalogError('Não foi possível verificar seus espaços de personagem. Tente novamente.');
+        } else {
+          setAccountCount(accountResult.count);
+        }
+        const stats = {};
+        VILLAGES_LIST.filter(v => v.id !== 8).forEach((v, index) => {
+          const answer = villageResults[index];
+          stats[v.id] = answer.error ? null : answer.count;
         });
+        setVillageStats(stats);
+      } catch {
+        if (active) {
+          setCharacters([]);
+          setCatalogError('Não foi possível carregar os personagens disponíveis. Tente novamente.');
+        }
+      } finally {
+        if (active) setCatalogLoading(false);
       }
-      
-      const vStats = {};
-      for (const v of VILLAGES_LIST) {
-        if (v.id === 8) continue; // Skip Akatsuki for creation
-        const { count } = await supabase
-          .from('players')
-          .select('id', { count: 'exact', head: true })
-          .eq('village_id', v.id);
-        vStats[v.id] = count || 0;
-      }
-      setVillageStats(vStats);
     }
-    loadData();
-  }, [session.user.id]);
+
+    if (session?.user?.id) loadData();
+    else {
+      setCatalogError('Entre na sua conta antes de criar um personagem.');
+      setCatalogLoading(false);
+    }
+    return () => { active = false; };
+  }, [session?.user?.id, loadVersion]);
 
   const handleCreate = async () => {
-    if (!name) { addToast('Digite um nome para o personagem!', 'error'); return; }
+    if (creatingRef.current || loading) return;
+    const cleanedName = name.trim();
+    const nameError = validateCharacterName(cleanedName);
+    if (nameError) {
+      addToast(nameError, 'error');
+      return;
+    }
+    if (catalogLoading || catalogError || !canCreateCharacter(accountCount, characters.length)) {
+      addToast(accountCount !== null && accountCount >= MAX_CHARACTERS_PER_ACCOUNT
+        ? 'Você atingiu o limite de três personagens nesta conta.'
+        : 'O catálogo ou os espaços da conta não estão disponíveis. Tente novamente.', 'error');
+      return;
+    }
+    if (!characters.some(item => item.id === selectedCharacter && item.base_avatar_url === selectedAvatar)) {
+      addToast('Selecione um visual válido para o personagem.', 'error');
+      return;
+    }
+
+    creatingRef.current = true;
     setLoading(true);
-
-    const { data, error } = await supabase.rpc('criar_personagem', {
-      p_name: name.trim(),
-      p_village_id: selectedVillage,
-      p_character_id: selectedCharacter,
-      p_avatar: selectedAvatar,
-      p_class: selectedClass
-    });
-
-    if (error || !data?.success || !data?.player) {
-      addToast('Erro ao criar personagem: ' + (error?.message || data?.error || 'Não foi possível criar o personagem.'), 'error');
-      setLoading(false);
-    } else {
-      addToast('Personagem criado com sucesso!', 'success');
-      setPlayerState({
-        ...data.player,
-        activeJutsus: []
+    try {
+      const { data, error } = await supabase.rpc('criar_personagem', {
+        p_name: cleanedName,
+        p_village_id: selectedVillage,
+        p_character_id: selectedCharacter,
+        p_avatar: selectedAvatar,
+        p_class: selectedClass
       });
+      if (error || !data?.success || !data?.player) {
+        throw new Error(error?.message || data?.error || 'Não foi possível criar o personagem.');
+      }
+
+      addToast('Personagem criado com sucesso!', 'success');
+      setPlayerState({ ...data.player, activeJutsus: [] });
       // O estado do personagem redireciona para o dashboard.
+    } catch (error) {
+      addToast('Erro ao criar personagem: ' + (error?.message || 'Tente novamente.'), 'error');
+    } finally {
+      creatingRef.current = false;
+      setLoading(false);
     }
   };
 
-  const currentClass = CLASSES.find(c => c.id === selectedClass);
+  const currentClass = CLASSES.find(c => c.id === selectedClass) || CLASSES[0];
+  const creationBlocked = loading || catalogLoading || Boolean(catalogError) || !canCreateCharacter(accountCount, characters.length);
 
   return (
     <div className="page auth-screen-layout">
@@ -102,50 +152,62 @@ export default function Criar({ session, setPlayerState }) {
         />
       </div>
 
-      <div className="selection-showcase" style={{ alignItems: 'flex-start' }}>
+<div className="kuro-character-create__feedback" role="status" aria-live="polite">
+        <strong>Espaços de personagens:</strong> {accountCount ?? '—'} / {MAX_CHARACTERS_PER_ACCOUNT}
+        {catalogLoading && <span> · Carregando visuais...</span>}
+        {accountCount !== null && accountCount >= MAX_CHARACTERS_PER_ACCOUNT &&
+          <p>Limite atingido. Volte à seleção para entrar com um personagem existente.</p>}
+        {catalogError && <div className="kuro-character-create__error" role="alert">
+          {catalogError}
+          <button type="button" className="btn-ghost" onClick={() => setLoadVersion(v => v + 1)}>Tentar novamente</button>
+        </div>}
+      </div>
+
+      <div className="selection-showcase kuro-character-create__layout" style={{ alignItems: 'flex-start' }}>
         
         {/* Lado Esquerdo: Avatar e Nome */}
-        <div className="flex-col" style={{ width: '300px', flexShrink: 0 }}>
+        <div className="flex-col kuro-character-create__portrait-panel">
           
           <div className="card card-glass flex-col" style={{ alignItems: 'center' }}>
              <div className="selection-avatar-container mb-4">
                 {selectedAvatar?.startsWith('/') ? (
                   <img src={selectedAvatar} alt="Avatar" />
                 ) : (
-                  <img src={`https://placehold.co/250x250/1c1c22/b3232d?text=?`} alt="Avatar" />
+                  <span className="kuro-character-create__fallback" aria-label="Avatar não selecionado">忍</span>
                 )}
              </div>
 
              <div className="w-full mb-4">
-                <label className="muted uppercase block mb-2">Nome Ninja</label>
+                <label htmlFor="character-create-name" className="muted uppercase block mb-2">Nome Ninja</label>
                 <input 
+                  id="character-create-name"
                   className="input" 
                   type="text" 
                   placeholder="Nome do personagem..."
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  maxLength={20}
+                  minLength={3}
+                  maxLength={24}
+                  autoComplete="off"
+                  disabled={loading}
                 />
              </div>
 
              <div className="w-full">
-                <label className="muted uppercase block mb-2">Selecione o Visual</label>
-                <div className="flex-wrap">
+                <p id="character-create-visual-label" className="muted uppercase block mb-2">Selecione o Visual</p>
+                <div className="flex-wrap kuro-character-create__visuals" role="group" aria-labelledby="character-create-visual-label">
                   {characters.map(c => (
-                    <img 
-                      key={c.id} 
-                      src={c.base_avatar_url} 
-                      alt={c.name}
+                    <button
+                      key={c.id}
+                      type="button"
+                      className={'kuro-character-create__visual-choice ' + (selectedCharacter === c.id ? 'active' : '')}
+                      aria-label={'Escolher visual ' + c.name}
+                      aria-pressed={selectedCharacter === c.id}
                       onClick={() => { setSelectedCharacter(c.id); setSelectedAvatar(c.base_avatar_url); }}
-                      style={{ 
-                        width: '48px', 
-                        height: '48px', 
-                        borderRadius: '4px', 
-                        cursor: 'pointer',
-                        border: selectedCharacter === c.id ? '2px solid var(--gold)' : '1px solid var(--line-bright)',
-                        opacity: selectedCharacter === c.id ? 1 : 0.6
-                      }}
-                    />
+                      disabled={loading || catalogLoading}
+                    >
+                      <img src={c.base_avatar_url} alt="" loading="lazy" />
+                    </button>
                   ))}
                 </div>
              </div>
@@ -159,15 +221,18 @@ export default function Criar({ session, setPlayerState }) {
             <h3 className="card-title">Vila Oculta</h3>
             <div className="grid-3">
               {VILLAGES_LIST.filter(v => v.id !== 8).map(v => (
-                <div 
-                  key={v.id} 
+                <button
+                  key={v.id}
+                  type="button"
                   className={`create-class-card ${selectedVillage === v.id ? 'active' : ''}`}
                   onClick={() => setSelectedVillage(v.id)}
+                  aria-pressed={selectedVillage === v.id}
+                  disabled={loading}
                 >
                   <img src={`/images/bg_${v.id}.jpg`} alt={`Paisagem da ${v.name}`} className="w-12 h-12 mb-2 rounded-md object-cover border border-line-bright" loading="lazy" />
                   <div className="gold mb-1">{v.name}</div>
-                  <div className="muted text-xs">Habitantes: {villageStats[v.id] || 0}</div>
-                </div>
+                  <div className="muted text-xs">Habitantes: {villageStats[v.id] ?? '—'}</div>
+                </button>
               ))}
             </div>
           </div>
@@ -176,15 +241,18 @@ export default function Criar({ session, setPlayerState }) {
             <h3 className="card-title">Classe Ninja (Especialização)</h3>
             <div className="grid-2">
               {CLASSES.map(c => (
-                <div 
+                <button
                   key={c.id}
+                  type="button"
                   className={`create-class-card ${selectedClass === c.id ? 'active' : ''}`}
                   onClick={() => setSelectedClass(c.id)}
+                  aria-pressed={selectedClass === c.id}
+                  disabled={loading}
                 >
                   <div className="text-2xl mb-2">{c.icon}</div>
                   <div className="gold mb-1">{c.name}</div>
                   <div className="muted text-xs">{c.desc}</div>
-                </div>
+                </button>
               ))}
             </div>
 
@@ -201,8 +269,8 @@ export default function Criar({ session, setPlayerState }) {
           </div>
           
           <div className="flex-row mt-4 justify-end">
-             <button className="btn-primary py-3 px-8 text-base" onClick={handleCreate} disabled={loading}>
-               <span>{loading ? 'Criando...' : 'Criar Personagem'}</span>
+             <button className="btn-primary py-3 px-8 text-base" onClick={handleCreate} disabled={creationBlocked}>
+               <span>{loading ? 'Criando...' : catalogLoading ? 'Carregando...' : accountCount >= MAX_CHARACTERS_PER_ACCOUNT ? 'Limite atingido' : 'Criar Personagem'}</span>
                <div className="stamp"></div>
              </button>
           </div>

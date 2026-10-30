@@ -131,16 +131,17 @@ function App() {
       currentPlayerId = explicitPlayerId;
     }
 
-    if (!currentPlayerId) return;
+    if (!currentPlayerId || !session?.user?.id) return false;
     const { data: dbPlayer, error: dbError } = await supabase
       .from('players')
       .select('*')
       .eq('id', currentPlayerId)
+      .eq('user_id', session.user.id)
       .single();
 
     if (dbError) {
       console.error('Erro ao buscar jogador:', dbError);
-      return;
+      return false;
     }
 
     if (dbPlayer) {
@@ -212,8 +213,10 @@ function App() {
         equipped_items: equippedItems,
         consumables: playerConsumables
       });
+      return true;
     }
-  }, [currentPlayerIdFromState]);
+    return false;
+  }, [currentPlayerIdFromState, session?.user?.id]);
 
   if (loading) {
     return <div className="app"><div className="main flex items-center justify-center h-full">Carregando Kurokage...</div></div>;

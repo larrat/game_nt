@@ -1,0 +1,96 @@
+/* Kurokage character creation: original responsive and keyboard-accessible controls. */
+.kuro-character-create__feedback {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:5px;
+  max-width:1050px;
+  margin:0 auto 22px;
+  padding:13px 16px;
+  border:1px solid rgba(212,162,42,.23);
+  border-radius:6px;
+  background:rgba(13,17,24,.8);
+  color:var(--muted-bright);
+  font-size:12px;
+}
+.kuro-character-create__feedback strong {color:var(--gold);}
+.kuro-character-create__feedback p { flex-basis:100%; margin:5px 0 0; color:var(--paper); }
+.kuro-character-create__error {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  color:#ef9c9c;
+  line-height:1.5;
+}
+.kuro-character-create__error button {padding:7px 10px;}
+.kuro-character-create__layout {
+  max-width:1080px;
+  margin:0 auto;
+  gap:clamp(15px,3vw,32px);
+}
+.kuro-character-create__portrait-panel {
+  width:min(300px,100%);
+  flex:0 1 300px;
+  min-width:0;
+}
+.kuro-character-create__fallback {
+  display:grid;place-items:center;
+  width:100%;height:100%;
+  color:var(--gold);
+  font:700 82px 'Shippori Mincho',serif;
+  background:radial-gradient(circle at 50% 30%,rgba(212,162,42,.12),transparent 66%);
+}
+.kuro-character-create__visuals {gap:8px;}
+.kuro-character-create__visual-choice {
+  appearance:none;
+  width:52px;height:52px;
+  padding:0;
+  overflow:hidden;
+  background:rgba(255,255,255,.045);
+  border:1px solid var(--line-bright);
+  border-radius:5px;
+  opacity:.66;
+  cursor:pointer;
+}
+.kuro-character-create__visual-choice.active {
+  border:2px solid var(--gold);
+  box-shadow:0 0 0 2px rgba(212,162,42,.13);
+  opacity:1;
+}
+.kuro-character-create__visual-choice img {width:100%;height:100%;object-fit:contain;}
+.auth-screen-layout .create-class-card {
+  appearance:none;
+  cursor:pointer;
+  text-align:left;
+  color:var(--paper);
+  font:inherit;
+  min-width:0;
+}
+.auth-screen-layout .create-class-card:focus-visible,
+.auth-screen-layout .kuro-character-create__visual-choice:focus-visible {
+  outline:2px solid var(--gold);
+  outline-offset:3px;
+}
+.auth-screen-layout .create-class-card:disabled,
+.auth-screen-layout .kuro-character-create__visual-choice:disabled {
+  cursor:wait;opacity:.55;
+}
+@media(max-width:760px) {
+  .kuro-character-create__layout {flex-wrap:wrap; padding:0 12px 22px;}
+  .kuro-character-create__portrait-panel {width:100%;flex:1 1 100%;}
+  .kuro-character-create__portrait-panel .card {width:100%;}
+  .kuro-character-create__feedback {margin-inline:12px;}
+}
+@media(max-width:390px) {
+  .kuro-character-create__layout .grid-3,.kuro-character-create__layout .grid-2 {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+  .auth-screen-layout .create-class-card {padding:10px;min-width:0;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .auth-screen-layout .create-class-card {transition:none;}
+  .auth-screen-layout .create-class-card:hover {transform:none;}
+}

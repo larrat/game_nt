@@ -5,6 +5,7 @@ import { VILLAGES } from '../constants';
 import { useToast } from '../context/ToastContext';
 import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 import PageHeader from '../components/PageHeader';
+import '../styles/character-selection.css';
 import { getCharacterResources, formatCharacterRyous, getCharacterLevel } from '../utils/characterPresentation';
 
 export default function Selecionar({ session, setPlayerState, updatePlayer }) {

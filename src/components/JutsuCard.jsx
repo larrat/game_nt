@@ -1,206 +1,89 @@
 import React from 'react';
-import JutsuIcon from './JutsuIcon';
-import { rankValue } from '../utils/engine';
+import { getJutsuEligibility } from '../utils/jutsuEligibility';
 
-export default function JutsuCard({ 
-  jutsu, 
-  player, 
-  isLearned, 
-  onLearn, 
-  learnCost, 
-  showRequisites = true 
+// The card and purchase handlers share the same pure, server-aligned eligibility check.
+export default function JutsuCard({
+  jutsu, player, isLearned = false, onLearn,
+  showRequisites = true, loading = false
 }) {
-  const isUnlockedLvl = player.level >= (jutsu.req_level || jutsu.lvl || 1);
-  const jutsuRank = jutsu.req_rank || jutsu.reqRank || 'Genin';
-  const isUnlockedRank = rankValue(player.rank) >= rankValue(jutsuRank);
-  
-  const reqAttr = jutsu.type || jutsu.category || 'Ninjutsu';
-  const playerAttrVal = player[reqAttr.toLowerCase()] || 0;
-  const reqAttrValue = jutsu.req_attr_value || jutsu.reqAttrValue || 0;
-  
-  let isAttrUnlocked = true;
-  if (jutsu.req_stats && Object.keys(jutsu.req_stats).length > 0) {
-    for (const [statName, reqValue] of Object.entries(jutsu.req_stats)) {
-      if ((player[statName.toLowerCase()] || 0) < reqValue) isAttrUnlocked = false;
-    }
-  } else {
-    isAttrUnlocked = playerAttrVal >= reqAttrValue;
-    if (jutsu.req_seals && (player.selo || 0) < jutsu.req_seals) isAttrUnlocked = false;
-  }
-  
-  const isUnlocked = isUnlockedLvl && isUnlockedRank && isAttrUnlocked;
-
-  const damage = jutsu.damage || 0;
-  const cp = jutsu.chakra_cost || jutsu.chakraCost || jutsu.cost || 0;
-  const accuracy = jutsu.accuracy || 0;
-  const cooldown = jutsu.cooldown || 0;
-  const seals = jutsu.req_seals || 0;
-  const levelReq = jutsu.req_level || jutsu.lvl || 1;
+  const status = getJutsuEligibility(jutsu, player, isLearned);
+  const level = Number(jutsu.req_level ?? jutsu.lvl ?? 1);
+  const rank = jutsu.req_rank ?? jutsu.reqRank;
+  const chakra = Number(jutsu.chakra_cost ?? jutsu.chakraCost ?? 0);
+  const damage = Number(jutsu.damage ?? 0);
+  const accuracy = Number(jutsu.accuracy ?? 0);
+  const cooldown = Number(jutsu.cooldown ?? 0);
+  const disabled = isLearned || !status.eligible || loading || typeof onLearn !== 'function';
 
   return (
-    <div className="card" style={{ 
-      position: 'relative',
-      opacity: isUnlocked || isLearned ? 1 : 0.7,
-      minWidth: '220px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      textAlign: 'center',
-      transition: 'transform 0.2s',
-      cursor: 'default'
-    }}
-    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-    >
-      {/* Top right icon indicating type (Ninjutsu, Taijutsu etc) */}
-      <div style={{
-        position: 'absolute',
-        top: '8px',
-        right: '8px',
-        background: '#3b82f6',
-        padding: '4px',
-        borderRadius: '4px',
-        border: '1px solid var(--line-solid)',
-        color: 'white',
-        fontSize: '12px'
-      }}>
-        🥷
+    <article className={`card flex flex-col items-center text-center min-w-0 relative p-5 ${!status.eligible && !isLearned ? 'opacity-85' : ''}`}>
+      <div className="flex flex-wrap justify-center gap-2 mb-4 w-full">
+        <span className="badge badge-muted">{jutsu.category || jutsu.type || 'Jutsu'}</span>
+        {jutsu.element && <span className="badge badge-gold">{jutsu.element}</span>}
+        {isLearned ? (
+          <span className="badge badge-green">Aprendido</span>
+        ) : status.eligible ? (
+          <span className="badge badge-green">Disponível</span>
+        ) : (
+          <span className="badge badge-red">Bloqueado</span>
+        )}
       </div>
 
-      {/* Jutsu Image */}
-      <div style={{
-        width: '64px',
-        height: '64px',
-        background: 'rgba(0, 0, 0, 0.4)',
-        border: '1px solid var(--line)',
-        borderRadius: '4px',
-        marginTop: '8px',
-        marginBottom: '16px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden'
-      }}>
-         {jutsu.icon_url ? (
-           <img src={jutsu.icon_url} alt={jutsu.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-         ) : (
-           <span style={{ fontSize: '32px' }}>📜</span>
-         )}
+      <div className="w-16 h-16 rounded-md bg-ink-raised border border-line-bright flex items-center justify-center overflow-hidden mb-3">
+        {jutsu.icon_url ? (
+          <img src={jutsu.icon_url} alt="" className="w-full h-full object-cover" loading="lazy" />
+        ) : (
+          <span className="text-3xl" aria-hidden="true">📜</span>
+        )}
       </div>
 
-      {/* Title */}
-      <h4 style={{ color: '#60a5fa', fontWeight: 'bold', fontSize: '18px', marginBottom: '8px' }}>
-        {jutsu.name}
-      </h4>
-
-      {/* Rank */}
-      <div className="muted mono uppercase" style={{ fontSize: '12px', letterSpacing: '2px', marginBottom: '16px' }}>
-        {jutsuRank}
+      <h3 className="paper font-bold text-base mb-2">{jutsu.name}</h3>
+      <p className="muted text-xs mb-3">
+        {rank ? `Graduação: ${rank}` : 'Sem requisito de graduação'}
+        {' · '}Nível {level}
+      </p>
+      {jutsu.description && (
+        <p className="muted text-xs leading-relaxed mb-3 line-clamp-3">{jutsu.description}</p>
+      )}
+      <div className="grid grid-cols-2 gap-2 text-xs w-full mb-4">
+        <span className="bg-ink-raised rounded p-2 muted">Dano <strong className="paper">{damage}</strong></span>
+        <span className="bg-ink-raised rounded p-2 muted">Chakra <strong className="paper">{chakra}</strong></span>
+        <span className="bg-ink-raised rounded p-2 muted">Precisão <strong className="paper">{accuracy}</strong></span>
+        <span className="bg-ink-raised rounded p-2 muted">Recarga <strong className="paper">{cooldown}</strong></span>
       </div>
 
-      {/* Requirements Icon with Tooltip */}
       {showRequisites && (
-        <div style={{ position: 'relative', marginBottom: '16px', display: 'inline-block' }} 
-             onMouseEnter={(e) => {
-               const tooltip = e.currentTarget.querySelector('.jutsu-tooltip');
-               if (tooltip) { tooltip.style.opacity = '1'; tooltip.style.visibility = 'visible'; }
-             }}
-             onMouseLeave={(e) => {
-               const tooltip = e.currentTarget.querySelector('.jutsu-tooltip');
-               if (tooltip) { tooltip.style.opacity = '0'; tooltip.style.visibility = 'hidden'; }
-             }}
-        >
-          <div style={{ fontSize: '32px', color: 'var(--seal)', cursor: 'help', transition: 'color 0.2s' }}
-               onMouseEnter={(e) => e.currentTarget.style.color = 'var(--seal-bright)'}
-               onMouseLeave={(e) => e.currentTarget.style.color = 'var(--seal)'}
-          >
-            📋
-          </div>
-          
-          {/* Tooltip Content */}
-          <div className="jutsu-tooltip" style={{
-            position: 'absolute',
-            bottom: '100%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            marginBottom: '8px',
-            width: '220px',
-            background: 'rgba(10, 10, 10, 0.95)',
-            border: '1px solid var(--line-bright)',
-            padding: '12px',
-            borderRadius: '6px',
-            fontSize: '12px',
-            zIndex: 50,
-            opacity: 0,
-            visibility: 'hidden',
-            transition: 'all 0.2s',
-            textAlign: 'left',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.5)',
-            pointerEvents: 'none'
-          }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <div style={{ color: player.level >= levelReq ? 'var(--muted)' : 'var(--danger)' }}>
-                Requer nível {levelReq}
-              </div>
-              <div style={{ color: rankValue(player.rank) >= rankValue(jutsuRank) ? 'var(--muted)' : 'var(--danger)' }}>
-                Requer graduação: {jutsuRank}
-              </div>
-              {jutsu.req_stats && Object.keys(jutsu.req_stats).length > 0 ? (
-                Object.entries(jutsu.req_stats).map(([statName, reqValue]) => {
-                  const playerVal = player[statName.toLowerCase()] || 0;
-                  return (
-                    <div key={statName} style={{ color: playerVal >= reqValue ? 'var(--muted)' : 'var(--danger)' }}>
-                      Requer {reqValue} ponto(s) em {statName}
-                    </div>
-                  );
-                })
-              ) : (
-                <>
-                  {reqAttrValue > 0 && (
-                    <div style={{ color: playerAttrVal >= reqAttrValue ? 'var(--muted)' : 'var(--danger)' }}>
-                      Requer {reqAttrValue} ponto(s) em {reqAttr.toLowerCase()}
-                    </div>
-                  )}
-                  {seals > 0 && (
-                    <div style={{ color: (player.selo || 0) >= seals ? 'var(--muted)' : 'var(--danger)' }}>
-                      Requer {seals} ponto(s) em selo
-                    </div>
-                  )}
-                </>
-              )}
-              <div style={{ marginTop: '8px', paddingTop: '8px', borderTop: '1px solid var(--line)', color: 'var(--gold)' }}>
-                Custo: {learnCost}
-              </div>
-            </div>
-          </div>
-        </div>
+        <details className="w-full text-left mb-4 rounded border border-line-bright p-3">
+          <summary className="text-gold text-xs cursor-pointer select-none">
+            Ver requisitos ({status.requirements.filter(req => !req.met).length} pendente(s))
+          </summary>
+          <ul className="mt-3 flex flex-col gap-2">
+            {status.requirements.map(req => (
+              <li key={req.key} className={`text-xs ${req.met ? 'muted' : 'text-danger'}`}>
+                <span aria-hidden="true">{req.met ? '✓' : '✕'} </span>{req.label}
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+      {!isLearned && !status.eligible && (
+        <p className="text-danger text-xs mb-3 w-full">
+          Pendente: {status.reasons.slice(0, 2).join(', ')}
+          {status.reasons.length > 2 ? ` e mais ${status.reasons.length - 2}` : ''}
+        </p>
       )}
 
-      {/* Action Button */}
-      {isLearned ? (
-        <button className="btn-ghost" style={{ width: '100%', padding: '6px', fontSize: '12px', color: 'var(--success)', borderColor: 'var(--success)', cursor: 'default' }}>
-           ✓ Aprendido
-        </button>
-      ) : (
-        <button 
-          className="btn-primary"
-          style={{ 
-            width: '100%', 
-            padding: '8px', 
-            fontSize: '14px', 
-            fontWeight: 'bold', 
-            background: isUnlocked ? 'var(--seal-bright)' : 'rgba(0,0,0,0.4)',
-            color: isUnlocked ? 'white' : 'var(--muted)',
-            border: `1px solid ${isUnlocked ? 'var(--seal-bright)' : 'var(--line)'}`,
-            cursor: isUnlocked ? 'pointer' : 'not-allowed'
-          }}
-          onClick={isUnlocked ? onLearn : undefined}
-          disabled={!isUnlocked}
+      <div className="mt-auto w-full">
+        <p className="gold mono text-sm mb-3">RY$ {status.cost.toLocaleString('pt-BR')}</p>
+        <button type="button"
+          className={isLearned ? 'btn-ghost w-full' : 'btn-primary w-full'}
+          disabled={disabled}
+          onClick={disabled ? undefined : onLearn}
+          aria-label={isLearned ? `${jutsu.name} aprendido` : `Aprender ${jutsu.name}`}
         >
-          Treinar
+          <span>{isLearned ? '✓ Aprendido' : loading ? 'Aguarde...' : status.eligible ? 'Aprender jutsu' : 'Requisitos pendentes'}</span>
         </button>
-      )}
-
-    </div>
+      </div>
+    </article>
   );
 }

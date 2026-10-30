@@ -197,12 +197,9 @@ export default function Mapa({ player, updatePlayer }) {
 
     const defeatedIds = defeated ? defeated.map(d => d.npc_id) : [];
 
-    const { data: topPlayers } = await supabase
-      .from('players')
-      .select('id, name, level, hp, chakra, stamina, avatar, element, atk, def, ninjutsu, genjutsu, taijutsu, bukijutsu')
-      .neq('id', player.id)
-      .order('level', { ascending: false })
-      .limit(100);
+    const { data: topPlayers, error: profileError } = await supabase.rpc('listar_perfis_ninja', {
+      p_limit: 100
+    });
 
     const { data: villagesData } = await supabase.from('villages').select('*');
     if (villagesData) {
@@ -225,17 +222,18 @@ export default function Mapa({ player, updatePlayer }) {
       });
     }
 
-    if (topPlayers?.length > 0) {
-      const shuffled = [...topPlayers].sort(() => Math.random() - 0.5).slice(0, 5);
+    if (!profileError && topPlayers?.length > 0) {
+      const shuffled = topPlayers.filter(p => p.id !== player.id)
+        .sort(() => Math.random() - 0.5).slice(0, 5);
       const ghosts = shuffled.map(p => ({
         id: `ghost_${p.id}`, name: p.name, level: p.level,
-        avatar: '🥷', hp: p.hp || p.level * 50, chakra: p.chakra || p.level * 50,
-        atk: p.atk || p.level * 5, def: p.def || p.level * 3,
-        nin: p.ninjutsu || p.level, element: p.element || 'Katon',
+        avatar: '🥷', hp: Math.max(1, p.level * 50), chakra: Math.max(1, p.level * 50),
+        atk: Math.max(1, p.level * 5), def: Math.max(1, p.level * 3),
+        nin: Math.max(1, p.level), element: p.element || 'Katon',
         is_ghost: true,
         xpReward: Math.floor(p.level * 3), ryouReward: Math.floor(p.level * 2),
-        x: 10 + ((p.id.charCodeAt(0) * 17) % 80),
-        y: 10 + ((p.id.charCodeAt(p.id.length - 1) * 23) % 80),
+        x: 10 + ((Number(p.id) * 17) % 80),
+        y: 10 + ((Number(p.id) * 23) % 80),
       }));
       activeNpcs = [...activeNpcs, ...ghosts];
     }

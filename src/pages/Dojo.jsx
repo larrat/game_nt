@@ -22,14 +22,8 @@ export default function Dojo({ player, updatePlayer }) {
 
   if (!player) return null;
 
-  const fetchRivalJutsus = async (rivalId) => {
-    const { data: rival } = await supabase
-      .from('players')
-      .select('jutsus_learned')
-      .eq('id', rivalId)
-      .single();
-
-    const learned = Array.isArray(rival?.jutsus_learned) ? rival.jutsus_learned : [];
+  const fetchRivalJutsus = async (jutsuIds) => {
+    const learned = Array.isArray(jutsuIds) ? jutsuIds : [];
     const ids = learned.map(j => typeof j === 'string' ? j : j.id).filter(Boolean);
     if (!ids.length) return [];
 
@@ -81,26 +75,20 @@ export default function Dojo({ player, updatePlayer }) {
 
     const rules = getPvPMatchRules(player.rank, player.level);
 
-    let query = supabase
-      .from('players')
-      .select('*')
-      .neq('id', player.id)
-      .eq('village_id', player.village_id)
-      .gte('level', rules.minLvl)
-      .lte('level', rules.maxLvl)
-      .limit(5);
-
-    if (rules.targetRanks && rules.targetRanks.length > 0) {
-      query = query.in('rank', rules.targetRanks);
-    }
-
-    const { data: targets } = await query;
+    const { data: targets, error: rivalError } = await supabase.rpc('listar_rivais_dojo', {
+      p_player_id: player.id,
+      p_min_level: Math.max(1, rules.minLvl),
+      p_max_level: rules.maxLvl,
+      p_target_ranks: rules.targetRanks?.length ? rules.targetRanks : null
+    });
 
     setLoadingId(null);
 
-    if (targets && targets.length > 0) {
+    if (rivalError) {
+      addToast('Não foi possível consultar rivais do Dojo.', 'error');
+    } else if (targets && targets.length > 0) {
       const target = targets[Math.floor(Math.random() * targets.length)];
-      const targetJutsus = await fetchRivalJutsus(target.id);
+      const targetJutsus = await fetchRivalJutsus(target.jutsu_ids);
 
       const mirrorNpc = {
         id: `rival_${target.id}`,
@@ -124,42 +112,8 @@ export default function Dojo({ player, updatePlayer }) {
   };
 
   const handleBijuuHunt = async () => {
-    setLoadingId('hunt');
-    await new Promise(r => setTimeout(r, 2000));
-
-    // Busca Jinchuurikis (tem_bijuu = true)
-    const { data: targets } = await supabase
-      .from('players')
-      .select('*')
-      .neq('id', player.id)
-      .eq('has_bijuu', true)
-      .limit(5);
-
-    setLoadingId(null);
-
-    if (targets && targets.length > 0) {
-      const target = targets[Math.floor(Math.random() * targets.length)];
-      const targetJutsus = await fetchRivalJutsus(target.id);
-      const mirrorNpc = {
-        id: `bijuu_${target.id}`,
-        real_id: target.id,
-        name: target.name + ' (Jinchuuriki)',
-        avatar: target.avatar || '👤',
-        level: target.level + 5, // Jinchuurikis são buffados no pvp assimétrico
-        hp: calculateHP(target) * (Number(gameConfig?.bijuu_hp_mult) || 2.0), // Multiplicador de HP
-        chakra: calculateChakra(target) * (Number(gameConfig?.bijuu_chakra_mult) || 3.0),
-        atk: calculateAtkTaiBuk(target) * 1.5,
-        def: calculateDefTaiBuk(target) * 1.5,
-        element: target.element,
-        activeJutsus: targetJutsus,
-        desc: 'Você rastreou uma Bijuu! Extraia o chakra para a Akatsuki!',
-        isBijuuHunt: true
-      };
-      
-      return navigate('/combate', { state: { bgType: 'dojo', npc: mirrorNpc, isMirror: true, isBijuuHunt: true } });
-    } else {
-      addToast('O radar da Akatsuki não encontrou nenhum Jinchuuriki no momento.', 'info');
-    }
+    // No has_bijuu attribute exists in the current players schema.
+    addToast('Caçada às Bijuus indisponível até o cadastro de Jinchuurikis no servidor.', 'info');
   };
 
   const RAID_STAMINA_COST = 25;

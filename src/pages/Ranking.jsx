@@ -15,39 +15,19 @@ export default function Ranking({ player }) {
   useEffect(() => {
     async function fetchRanking() {
       setLoading(true);
-      let query = supabase
-        .from('players')
-        .select('name, class, level, xp, village_id')
-        .order('level', { ascending: false })
-        .order('xp', { ascending: false })
-        .limit(50);
-
-      if (filter === 'vila' && player) {
-        query = query.eq('village_id', player.village_id);
-      }
-
-      const { data, error } = await query;
-      if (!error && data) {
-        setRanking(data);
-      }
-
-      // Fetch kages for all villages
-      const { data: allPlayers } = await supabase
-        .from('players')
-        .select('name, village_id')
-        .order('level', { ascending: false })
-        .order('xp', { ascending: false });
-      
+      const [rankResult, leadersResult] = await Promise.all([
+        supabase.rpc('listar_perfis_ninja', {
+          p_village_id: filter === 'vila' && player ? player.village_id : null,
+          p_limit: 50
+        }),
+        supabase.rpc('listar_lideres_vila')
+      ]);
+      setRanking(rankResult.error ? [] : (rankResult.data || []));
       const kageMap = {};
-      if (allPlayers) {
-        allPlayers.forEach(p => {
-          if (!kageMap[p.village_id]) {
-            kageMap[p.village_id] = p.name;
-          }
-        });
+      if (!leadersResult.error) {
+        (leadersResult.data || []).forEach(p => { kageMap[p.village_id] = p.name; });
       }
       setKages(kageMap);
-
       setLoading(false);
     }
 

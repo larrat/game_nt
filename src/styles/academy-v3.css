@@ -1,0 +1,119 @@
+/* Academia 3.0: information-first layouts for training, jutsu and missions. */
+.kuro-jutsu-academy-page .kuro-academy-v3__catalog-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,410px),1fr));
+  align-items:stretch;
+  gap:16px;
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-card {
+  min-width:0;
+  width:100%;
+  height:100%;
+  text-align:left;
+  align-items:stretch;
+  border:1px solid rgba(212,162,42,.2);
+  border-radius:8px;
+  background:linear-gradient(150deg,rgba(28,29,35,.98),rgba(11,14,20,.99));
+  box-shadow:0 9px 30px rgba(0,0,0,.14);
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-card:hover {
+  border-color:rgba(212,162,42,.43);
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-art {
+  flex:none; border-color:rgba(212,162,42,.3);
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-title {
+  width:100%; margin-bottom:7px; font:600 18px/1.3 'Shippori Mincho',serif;
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-rank,
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-description {
+  width:100%; text-align:left; line-height:1.55;
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-metrics {
+  background:rgba(6,9,14,.45); border:1px solid rgba(255,255,255,.045);
+  border-radius:5px; padding:10px;
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-metrics span {
+  min-width:0; line-height:1.4;
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px;
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-details {
+  background:rgba(10,13,18,.56);
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-details summary:focus-visible {
+  outline:2px solid var(--gold); outline-offset:3px;
+}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-blocked {line-height:1.55;}
+.kuro-jutsu-academy-page .kuro-academy-v3__jutsu-footer {
+  border-top:1px solid rgba(212,162,42,.13);
+  padding-top:13px;
+}
+.kuro-academy-v3__cost-label {
+  display:block;
+  font:500 9px/1.4 'JetBrains Mono',monospace;
+  color:var(--muted-bright);
+  letter-spacing:.6px;
+  margin-bottom:4px;
+}
+.kuro-training-page .kuro-academy-v3__estimate {
+  background:linear-gradient(100deg,rgba(212,162,42,.085),rgba(14,17,23,.95));
+  border:1px dashed rgba(212,162,42,.37);
+  border-radius:6px;
+}
+.kuro-training-page .kuro-academy-v3__receipt {
+  box-shadow:inset 3px 0 0 #4ade80;
+}
+.kuro-missions-page .kuro-academy-v3__missions {
+  border:1px solid rgba(212,162,42,.22);
+  background:linear-gradient(120deg,rgba(25,27,33,.98),rgba(11,14,19,.99));
+}
+.kuro-missions-page .kuro-academy-v3__active-card {
+  background:rgba(7,11,16,.58);
+  border-radius:6px;
+}
+.kuro-academy-v3__preview-label {
+  margin-bottom:8px;
+  color:var(--muted-bright);
+  font:500 10px/1.5 'JetBrains Mono',monospace;
+}
+.kuro-academy-v3__catalog-note {
+  padding:12px 15px;
+  margin:0 0 13px;
+  border:1px solid rgba(212,162,42,.19);
+  border-radius:5px;
+  background:rgba(212,162,42,.045);
+  color:var(--muted-bright);font-size:12px;line-height:1.5;
+}
+.kuro-academy-v3__catalog-note strong { color:var(--gold); }
+.kuro-missions-page .kuro-academy-v3__catalog {
+  border:1px solid rgba(212,162,42,.16);
+}
+.kuro-missions-page .kuro-academy-v3__catalog th {white-space:nowrap;}
+@media(min-width:1000px) {
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-card {
+    display:grid;
+    grid-template-columns:80px minmax(0,1fr);
+    gap:5px 15px;
+    align-content:start;
+  }
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-badges {grid-column:1/-1; justify-content:flex-start; margin-bottom:10px;}
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-art {grid-column:1;grid-row:2/span 3;}
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-title {grid-column:2;grid-row:2;}
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-rank {grid-column:2;grid-row:3;}
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-description {grid-column:2;grid-row:4;}
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-metrics,
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-details,
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-blocked,
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-footer {grid-column:1/-1;}
+}
+@media(max-width:920px) {
+  .kuro-training-page .kuro-academy-v3__training-simulator {position:static;}
+}
+@media(max-width:640px) {
+  .kuro-jutsu-academy-page .kuro-academy-v3__catalog-grid {grid-template-columns:minmax(0,1fr);}
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-card {padding:17px;}
+  .kuro-academy-v3__catalog-note {font-size:11px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-card {transition:none;}
+}

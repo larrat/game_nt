@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import '../styles/academy-v3.css';
 import { useToast } from '../context/ToastContext';
 import { findRankIndex } from '../utils/progression';
 import { getTrainingBudget, getTrainingRange, formatTrainingReceipt } from '../utils/training';
@@ -208,7 +209,7 @@ export default function Treino({ player, updatePlayer }) {
       </div>
 
       {lastTraining?.playerId === player.id && (
-        <div className="card border border-success mb-6 p-4" role="status" aria-live="polite">
+        <div className="card kuro-academy-v3__receipt border border-success mb-6 p-4" role="status" aria-live="polite">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
               <p className="text-success font-semibold text-sm">Último treino desta visita</p>
@@ -268,7 +269,7 @@ export default function Treino({ player, updatePlayer }) {
         </div>
 
         {/* SIMULADOR DE BUILD (PAINEL DIREITO) */}
-        <div className="kuro-training-simulator sticky top-6">
+        <div className="kuro-training-simulator kuro-academy-v3__training-simulator sticky top-6">
           {selectedAttr ? (
             <div className="card border-line-solid border-seal-bright bg-ink">
               <div className="flex-row gap-3 items-center mb-4">
@@ -281,7 +282,7 @@ export default function Treino({ player, updatePlayer }) {
                 </div>
               </div>
 
-              <div className="card-glass p-4 mb-6 border-line-dashed-bright">
+              <div className="card-glass kuro-academy-v3__estimate p-4 mb-6 border-line-dashed-bright" role="note">
                 {(() => {
                   const { min, max, bonus } = getRange(selectedAttr.hero_min, selectedAttr.hero_max);
                   return (

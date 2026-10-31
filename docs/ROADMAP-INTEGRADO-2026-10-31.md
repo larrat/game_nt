@@ -2,6 +2,8 @@
 
 **Snapshot:** 31/10/2026. **Repositório:** `larrat/game_nt`. **Ambiente:** Supabase `gvtbixbyqayhdwowgqrp`; Vercel `game-nt`, branch de produção `master`.
 
+**Documentos operacionais relacionados:** [quadro de execução](EXECUTION-BOARD-2026-10-31.md), [inventário de módulos](MODULOS-SITUACAO-ATUAL-2026-10-31.md), [matriz QA](qa/JORNADA-CRITICA-2026-10-31.md) e [ADR-001 visual](design/ADR-001-identidade-visual-2026-10-31.md).
+
 ## 1. Inventário e confiança
 
 Na `master` **após o merge da PR #65**: 45 documentos Markdown sob `docs/`, 30 arquivos `src/pages/*.jsx`, 21 arquivos de testes, 71 arquivos de migração SQL, aproximadamente 91,8 MB de assets em `public/` e `src/styles/main.css` de aproximadamente 160 kB. A PR #65 acrescentou mídias coletadas em `docs/`, fora do diretório público da aplicação. A UI documenta 25 rotas autenticadas. Código versionado, testes de contrato e deploy READY **não** são E2E funcional.

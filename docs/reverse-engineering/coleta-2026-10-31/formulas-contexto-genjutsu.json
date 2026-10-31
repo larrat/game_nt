@@ -1,0 +1,1437 @@
+{
+  "observedAt": "2026-10-31",
+  "playerClass": "Genjutsu",
+  "note": "A própria tela declara que as fórmulas variam conforme a classe. HTML preservado apenas como string de evidência, sem execução.",
+  "headings": [
+    "5",
+    "6",
+    "Fórmulas",
+    "Sobre as Fórmulas",
+    "Atributos e Fórmulas ( Nome / Descrição / Bônus)",
+    "Fórmula do Ranking de Ninjas ( Pontos / Descrição)",
+    "Fórmula do Ranking de Equipes ( Pontos / Descrição)",
+    "Fórmula do Ranking de Organizações ( Pontos / Descrição)",
+    "Fórmula da Experiência Ninja ( Pontos / Descrição )"
+  ],
+  "tables": [
+    [
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_hp.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Vida",
+          "text": "Vida"
+        },
+        {
+          "icons": [],
+          "markup": "Fórmula da Vida",
+          "text": "Fórmula da Vida"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/ene.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ene.png\" width=\"24\" height=\"24\"> * 8",
+          "text": "* 8"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Chakra",
+          "text": "Chakra"
+        },
+        {
+          "icons": [],
+          "markup": "Fórmula do Chakra<br>",
+          "text": "Fórmula do Chakra"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/ene.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/nin.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/gen.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ene.png\" width=\"24\" height=\"24\"> * 4 +  ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/nin.png\" width=\"24\" height=\"24\"> ) * 7 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/gen.png\" width=\"24\" height=\"24\"> ) * 20",
+          "text": "* 4 + ( ) * 7 + ( ) * 20"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Stamina",
+          "text": "Stamina"
+        },
+        {
+          "icons": [],
+          "markup": "Fórmula da Stamina<br>",
+          "text": "Fórmula da Stamina"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/ene.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/tai.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/ken.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ene.png\" width=\"24\" height=\"24\"> * 4  + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/tai.png\" width=\"24\" height=\"24\"> ) * 7 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ken.png\" width=\"24\"> ) * 7",
+          "text": "* 4 + ( ) * 7 + ( ) * 7"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/atk_fisico.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Ataque ( Tai / Buk )",
+          "text": "Ataque ( Tai / Buk )"
+        },
+        {
+          "icons": [],
+          "markup": "+1 de Ataque ( Tai / Buk )",
+          "text": "+1 de Ataque ( Tai / Buk )"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/forc.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/forc.png\" width=\"24\" height=\"24\"> / 2 )",
+          "text": "( / 2 )"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\" alt=\"\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Ataque ( Nin / Gen )",
+          "text": "Ataque ( Nin / Gen )"
+        },
+        {
+          "icons": [],
+          "markup": "+1 de Ataque ( Nin / Gen )",
+          "text": "+1 de Ataque ( Nin / Gen )"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/inte.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/inte.png\" width=\"24\" height=\"24\"> / 2 )",
+          "text": "( / 2 )"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/shield.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/shield.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Defesa ( Nin / Gen)",
+          "text": "Defesa ( Nin / Gen)"
+        },
+        {
+          "icons": [],
+          "markup": "+1 Defesa ( Nin / Gen)",
+          "text": "+1 Defesa ( Nin / Gen)"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/defense.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/defense.png\" width=\"24\" height=\"24\"> / 2 ) ",
+          "text": "( / 2 )"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/shield.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/shield.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Defesa ( Tai / Buk)",
+          "text": "Defesa ( Tai / Buk)"
+        },
+        {
+          "icons": [],
+          "markup": "+1 Defesa ( Tai / Buk)",
+          "text": "+1 Defesa ( Tai / Buk)"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/defense.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/defense.png\" width=\"24\" height=\"24\"> / 2 )",
+          "text": "( / 2 )"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/precisao.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/precisao.png\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Precisão",
+          "text": "Precisão"
+        },
+        {
+          "icons": [],
+          "markup": "+1 de Precisão",
+          "text": "+1 de Precisão"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/conhe.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/conhe.png\"> * 1",
+          "text": "* 1"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images//icones/prec_tai.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images//icones/prec_tai.png\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Perfuração",
+          "text": "Perfuração"
+        },
+        {
+          "icons": [],
+          "markup": "+1 de Perfuração",
+          "text": "+1 de Perfuração"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/agi.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/agi.png\"> * 1",
+          "text": "* 1"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/esquiva.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/esquiva.png\" alt=\"\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Incremento de Absorção",
+          "text": "Incremento de Absorção"
+        },
+        {
+          "icons": [],
+          "markup": "% de Incremento de Absorção",
+          "text": "% de Incremento de Absorção"
+        },
+        {
+          "icons": [],
+          "markup": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%",
+          "text": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/target2.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\" alt=\"\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Incremento de Crítico",
+          "text": "Incremento de Crítico"
+        },
+        {
+          "icons": [],
+          "markup": "% de Incremento de Crítico",
+          "text": "% de Incremento de Crítico"
+        },
+        {
+          "icons": [],
+          "markup": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%",
+          "text": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/det.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/det.png\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Determinação",
+          "text": "Determinação"
+        },
+        {
+          "icons": [],
+          "markup": "+1% de Determinação",
+          "text": "+1% de Determinação"
+        },
+        {
+          "icons": [],
+          "markup": "Estudante e Genin: Level do player, Chunin: Level do player / 1.5, Jounin: Level do player / 2, ANBU: Level do player / 3, Sanin e Heroi: Level do Player / 4",
+          "text": "Estudante e Genin: Level do player, Chunin: Level do player / 1.5, Jounin: Level do player / 2, ANBU: Level do player / 3, Sanin e Heroi: Level do Player / 4"
+        }
+      ],
+      [
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/poder-ninja.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/poder-ninja.png\" alt=\"\">",
+          "text": ""
+        },
+        {
+          "icons": [],
+          "markup": "Poder Ninja",
+          "text": "Poder Ninja"
+        },
+        {
+          "icons": [],
+          "markup": "% de Poder Ninja",
+          "text": "% de Poder Ninja"
+        },
+        {
+          "icons": [
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/ene.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/forc.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/inte.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/defense.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/nin.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/gen.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/tai.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/ken.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/agi.png",
+              "title": "",
+              "tooltip": null
+            },
+            {
+              "alt": "",
+              "src": "https://narutogame.com.br/assets/images/logado/icones/conhe.png",
+              "title": "",
+              "tooltip": null
+            }
+          ],
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ene.png\" width=\"24\" height=\"24\"> ) * 200 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/forc.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/inte.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/defense.png\" width=\"24\" height=\"24\"> ) * 150 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/nin.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/gen.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/tai.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ken.png\" width=\"24\">) * 200 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/agi.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/conhe.png\" width=\"24\" height=\"24\">) * 100",
+          "text": "( ) * 200 + ( + + ) * 150 + ( + + + ) * 200 + ( + ) * 100"
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "icons": [],
+          "markup": "Por level do Jogador",
+          "text": "Por level do Jogador"
+        },
+        {
+          "icons": [],
+          "markup": "( Level * 1000)",
+          "text": "( Level * 1000)"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+2000</b>",
+          "text": "+2000"
+        },
+        {
+          "icons": [],
+          "markup": "Por graduação do player",
+          "text": "Por graduação do player"
+        },
+        {
+          "icons": [],
+          "markup": "( A cada graduação + 2000 pontos )",
+          "text": "( A cada graduação + 2000 pontos )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+80</b>",
+          "text": "+80"
+        },
+        {
+          "icons": [],
+          "markup": "Por Vitória Mapa PVP",
+          "text": "Por Vitória Mapa PVP"
+        },
+        {
+          "icons": [],
+          "markup": "( vitória mapa pvp * 80 )",
+          "text": "( vitória mapa pvp * 80 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+80</b>",
+          "text": "+80"
+        },
+        {
+          "icons": [],
+          "markup": "Por Vitória Dojo PVP",
+          "text": "Por Vitória Dojo PVP"
+        },
+        {
+          "icons": [],
+          "markup": "( vitória dojo pvp * 80 )",
+          "text": "( vitória dojo pvp * 80 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+20</b>",
+          "text": "+20"
+        },
+        {
+          "icons": [],
+          "markup": "Por Vitória Dojo NPC",
+          "text": "Por Vitória Dojo NPC"
+        },
+        {
+          "icons": [],
+          "markup": "( vitória dojo npc * 20 )",
+          "text": "( vitória dojo npc * 20 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-10</b>",
+          "text": "-10"
+        },
+        {
+          "icons": [],
+          "markup": "Por Derrota Mapa PVP",
+          "text": "Por Derrota Mapa PVP"
+        },
+        {
+          "icons": [],
+          "markup": "( derrota mapa pvp * -10 )",
+          "text": "( derrota mapa pvp * -10 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-10</b>",
+          "text": "-10"
+        },
+        {
+          "icons": [],
+          "markup": "Por Derrota Dojo PVP",
+          "text": "Por Derrota Dojo PVP"
+        },
+        {
+          "icons": [],
+          "markup": "( derrota dojo pvp * -10 )",
+          "text": "( derrota dojo pvp * -10 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-10</b>",
+          "text": "-10"
+        },
+        {
+          "icons": [],
+          "markup": "Por Derrota Dojo NPC",
+          "text": "Por Derrota Dojo NPC"
+        },
+        {
+          "icons": [],
+          "markup": "( derrota dojo npc * -10 )",
+          "text": "( derrota dojo npc * -10 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+5</b>",
+          "text": "+5"
+        },
+        {
+          "icons": [],
+          "markup": "Por empate",
+          "text": "Por empate"
+        },
+        {
+          "icons": [],
+          "markup": "( fuga * 5 )",
+          "text": "( fuga * 5 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+ Treino/100</b>",
+          "text": "+ Treino/100"
+        },
+        {
+          "icons": [],
+          "markup": "Total de treino",
+          "text": "Total de treino"
+        },
+        {
+          "icons": [],
+          "markup": "( Total do Treino / 100 )",
+          "text": "( Total do Treino / 100 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+25</b>",
+          "text": "+25"
+        },
+        {
+          "icons": [],
+          "markup": "Por tarefa concluída",
+          "text": "Por tarefa concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de Tarefa * 25 )",
+          "text": "( Total de Tarefa * 25 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+50</b>",
+          "text": "+50"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão D concluída",
+          "text": "Por missão D concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão D * 50 )",
+          "text": "( Total de missão D * 50 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+75</b>",
+          "text": "+75"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão C concluída",
+          "text": "Por missão C concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão C * 75 )",
+          "text": "( Total de missão C * 75 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão B concluída",
+          "text": "Por missão B concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão B * 100 )",
+          "text": "( Total de missão B * 100 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+125</b>",
+          "text": "+125"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão A concluída",
+          "text": "Por missão A concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão A * 125 )",
+          "text": "( Total de missão A * 125 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+150</b>",
+          "text": "+150"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão S concluída",
+          "text": "Por missão S concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão S * 150 )",
+          "text": "( Total de missão S * 150 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "icons": [],
+          "markup": "Por Missão de Invasão concluída",
+          "text": "Por Missão de Invasão concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão invasão * 1000 )",
+          "text": "( Total de missão invasão * 1000 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "icons": [],
+          "markup": "Por Missão de Invasão falha",
+          "text": "Por Missão de Invasão falha"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão invasão * 100 )",
+          "text": "( Total de missão invasão * 100 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+75</b>",
+          "text": "+75"
+        },
+        {
+          "icons": [],
+          "markup": "Por Objetivo de Organização Solo",
+          "text": "Por Objetivo de Organização Solo"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão solo * 75 )",
+          "text": "( Total de missão solo * 75 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+500</b>",
+          "text": "+500"
+        },
+        {
+          "icons": [],
+          "markup": "Por Torneio Npc Vencido",
+          "text": "Por Torneio Npc Vencido"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de torneio npc * 500 )",
+          "text": "( Total de torneio npc * 500 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "icons": [],
+          "markup": "Por Torneio PVP Vencido",
+          "text": "Por Torneio PVP Vencido"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de torneio pvp * 1000 )",
+          "text": "( Total de torneio pvp * 1000 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+1500</b>",
+          "text": "+1500"
+        },
+        {
+          "icons": [],
+          "markup": "Por Alvo do Bingo Book Derrotado",
+          "text": "Por Alvo do Bingo Book Derrotado"
+        },
+        {
+          "icons": [],
+          "markup": "( Total derrotado * 1500 )",
+          "text": "( Total derrotado * 1500 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-250</b>",
+          "text": "-250"
+        },
+        {
+          "icons": [],
+          "markup": "Por mortes à quem tiver você como BB",
+          "text": "Por mortes à quem tiver você como BB"
+        },
+        {
+          "icons": [],
+          "markup": "( Total derrotado * -250 )",
+          "text": "( Total derrotado * -250 )"
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "icons": [],
+          "markup": "Por level da Equipe",
+          "text": "Por level da Equipe"
+        },
+        {
+          "icons": [],
+          "markup": "( Level * 1000)",
+          "text": "( Level * 1000)"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "icons": [],
+          "markup": "Por Vitória nos Desafios de Equipe",
+          "text": "Por Vitória nos Desafios de Equipe"
+        },
+        {
+          "icons": [],
+          "markup": "( Vitória * 100 )",
+          "text": "( Vitória * 100 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-10</b>",
+          "text": "-10"
+        },
+        {
+          "icons": [],
+          "markup": "Por Derrota nos Desafios de Equipe",
+          "text": "Por Derrota nos Desafios de Equipe"
+        },
+        {
+          "icons": [],
+          "markup": "( derrota mapa pvp * -10 )",
+          "text": "( derrota mapa pvp * -10 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "icons": [],
+          "markup": "Por Vitória no Evento de Equipe",
+          "text": "Por Vitória no Evento de Equipe"
+        },
+        {
+          "icons": [],
+          "markup": "( Vitória * 1000 )",
+          "text": "( Vitória * 1000 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-500</b>",
+          "text": "-500"
+        },
+        {
+          "icons": [],
+          "markup": "Por Derrota no Evento de Equipe",
+          "text": "Por Derrota no Evento de Equipe"
+        },
+        {
+          "icons": [],
+          "markup": "( derrota mapa pvp * -500 )",
+          "text": "( derrota mapa pvp * -500 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+50</b>",
+          "text": "+50"
+        },
+        {
+          "icons": [],
+          "markup": "Por tarefa concluída",
+          "text": "Por tarefa concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de Tarefa * 50 )",
+          "text": "( Total de Tarefa * 50 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão D concluída",
+          "text": "Por missão D concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão D * 100 )",
+          "text": "( Total de missão D * 100 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+150</b>",
+          "text": "+150"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão C concluída",
+          "text": "Por missão C concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão C * 150 )",
+          "text": "( Total de missão C * 150 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+200</b>",
+          "text": "+200"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão B concluída",
+          "text": "Por missão B concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão B * 200 )",
+          "text": "( Total de missão B * 200 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+250</b>",
+          "text": "+250"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão A concluída",
+          "text": "Por missão A concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão A * 250 )",
+          "text": "( Total de missão A * 250 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+300</b>",
+          "text": "+300"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão S concluída",
+          "text": "Por missão S concluída"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão S * 300 )",
+          "text": "( Total de missão S * 300 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-50</b>",
+          "text": "-50"
+        },
+        {
+          "icons": [],
+          "markup": "Por tarefa falha",
+          "text": "Por tarefa falha"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de Tarefa * -50 )",
+          "text": "( Total de Tarefa * -50 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-100</b>",
+          "text": "-100"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão D falha",
+          "text": "Por missão D falha"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão D * -100 )",
+          "text": "( Total de missão D * -100 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-150</b>",
+          "text": "-150"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão C falha",
+          "text": "Por missão C falha"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão C * -150 )",
+          "text": "( Total de missão C * -150 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-200</b>",
+          "text": "-200"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão B falha",
+          "text": "Por missão B falha"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão B * -200 )",
+          "text": "( Total de missão B * -200 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-250</b>",
+          "text": "-250"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão A falha",
+          "text": "Por missão A falha"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão A * -250 )",
+          "text": "( Total de missão A * -250 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">-300</b>",
+          "text": "-300"
+        },
+        {
+          "icons": [],
+          "markup": "Por missão S falha",
+          "text": "Por missão S falha"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de missão S * -300 )",
+          "text": "( Total de missão S * -300 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+200</b>",
+          "text": "+200"
+        },
+        {
+          "icons": [],
+          "markup": "Por Bingo Book de Equipe Morto",
+          "text": "Por Bingo Book de Equipe Morto"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de Alvos Mortos * 200 )",
+          "text": "( Total de Alvos Mortos * 200 )"
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "icons": [],
+          "markup": "Por vitória da Organização em missão de invasão",
+          "text": "Por vitória da Organização em missão de invasão"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de Vitórias * 1000 )",
+          "text": "( Total de Vitórias * 1000 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "icons": [],
+          "markup": "Por derrota da Organização em missão de invasão",
+          "text": "Por derrota da Organização em missão de invasão"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de Derrotas * 100  )",
+          "text": "( Total de Derrotas * 100 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+75</b>",
+          "text": "+75"
+        },
+        {
+          "icons": [],
+          "markup": "Por Objetivo de Organização Solo Completo",
+          "text": "Por Objetivo de Organização Solo Completo"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de Missões * 75  )",
+          "text": "( Total de Missões * 75 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+500</b>",
+          "text": "+500"
+        },
+        {
+          "icons": [],
+          "markup": "Por Objetivo de Organização Grupo Completo",
+          "text": "Por Objetivo de Organização Grupo Completo"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de Missões * 500  )",
+          "text": "( Total de Missões * 500 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+200</b>",
+          "text": "+200"
+        },
+        {
+          "icons": [],
+          "markup": "Por Bingo Book de Organização Morto",
+          "text": "Por Bingo Book de Organização Morto"
+        },
+        {
+          "icons": [],
+          "markup": "( Total de Alvos Mortos * 200 )",
+          "text": "( Total de Alvos Mortos * 200 )"
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "icons": [],
+          "markup": "Bingo Book morto",
+          "text": "Bingo Book morto"
+        },
+        {
+          "icons": [],
+          "markup": "( Bingo Book morto * 100 )",
+          "text": "( Bingo Book morto * 100 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+25</b>",
+          "text": "+25"
+        },
+        {
+          "icons": [],
+          "markup": "Batalhas PVP",
+          "text": "Batalhas PVP"
+        },
+        {
+          "icons": [],
+          "markup": "( Batalhas PVP * 25  )",
+          "text": "( Batalhas PVP * 25 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+5</b>",
+          "text": "+5"
+        },
+        {
+          "icons": [],
+          "markup": "Vitórias NPC",
+          "text": "Vitórias NPC"
+        },
+        {
+          "icons": [],
+          "markup": "( Vitórias NPC * 5  )",
+          "text": "( Vitórias NPC * 5 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+50</b>",
+          "text": "+50"
+        },
+        {
+          "icons": [],
+          "markup": "Vitórias PVP",
+          "text": "Vitórias PVP"
+        },
+        {
+          "icons": [],
+          "markup": "( Vitórias PVP * 50  )",
+          "text": "( Vitórias PVP * 50 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+20</b>",
+          "text": "+20"
+        },
+        {
+          "icons": [],
+          "markup": "Missões",
+          "text": "Missões"
+        },
+        {
+          "icons": [],
+          "markup": "( Missões * 20 )",
+          "text": "( Missões * 20 )"
+        }
+      ],
+      [
+        {
+          "icons": [],
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "icons": [],
+          "markup": "Vitórias 4x4 PVP",
+          "text": "Vitórias 4x4 PVP"
+        },
+        {
+          "icons": [],
+          "markup": "( Vitórias 4x4 PVP * 100 )",
+          "text": "( Vitórias 4x4 PVP * 100 )"
+        }
+      ]
+    ]
+  ]
+}

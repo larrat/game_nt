@@ -1,0 +1,616 @@
+{
+  "observedAt": "2026-10-31",
+  "playerClass": "Genjutsu",
+  "jutsus": [
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1494700",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/kekkei_portao.jpg",
+      "name": "Portão da velocidade",
+      "rank": "Genin",
+      "requirements": [
+        "Requer graduação: Genin",
+        "Requer o item: 1° portão - Portão Inicial",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:5 em Taijutsu5 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "2",
+          "resource": "chakra",
+          "value": 2
+        },
+        {
+          "context": "combat",
+          "raw": "22",
+          "resource": "stamina",
+          "value": 22
+        },
+        {
+          "context": "learning",
+          "raw": "4",
+          "resource": "chakra",
+          "value": 4
+        },
+        {
+          "context": "learning",
+          "raw": "44",
+          "resource": "stamina",
+          "value": 44
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Portão da velocidade"
+        ],
+        [
+          "Jutsu - Buff"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Efeitos no seu personagem"
+        ],
+        [
+          "Incremento de Crítico",
+          "15"
+        ],
+        [
+          "Concentração",
+          "15"
+        ],
+        [
+          "Custo em batalha 2 22 Intervalo de uso: 99 turno(s) Duração: 99 turno(s)"
+        ]
+      ],
+      "tooltipText": "Portão da velocidade Jutsu - Buff Valores para Combate Efeitos no seu personagem Incremento de Crítico 15 Concentração 15 Custo em batalha 2 22 Intervalo de uso: 99 turno(s) Duração: 99 turno(s) Aprenda esse jutsu com: 4 44",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Portão da velocidade</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Buff\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">Efeitos no seu personagem</td>\n\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\"> Incremento de Crítico</td>\n\t\t\t\t\t<td>\n\n\t\t\t\t\t15\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\"> Concentração</td>\n\t\t\t\t\t<td>\n\n\t\t\t\t\t15\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 2\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 22\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 99 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t\tDuração: 99 turno(s)\n\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 4 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 44\t\t"
+    },
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1084",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/gorai_renge.jpg",
+      "name": "Gorai Renge",
+      "rank": "Genin",
+      "requirements": [
+        "Requer 9 ponto(s) em selo",
+        "Requer 20 ponto(s) em força",
+        "Requer graduação: Genin",
+        "Requer o item: 1° portão - Portão Inicial",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:13 em Taijutsu13 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "12",
+          "resource": "chakra",
+          "value": 12
+        },
+        {
+          "context": "combat",
+          "raw": "71",
+          "resource": "stamina",
+          "value": 71
+        },
+        {
+          "context": "learning",
+          "raw": "24",
+          "resource": "chakra",
+          "value": 24
+        },
+        {
+          "context": "learning",
+          "raw": "142",
+          "resource": "stamina",
+          "value": 142
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Gorai Renge"
+        ],
+        [
+          "Jutsu - Técnica de Ataque"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Ataque ( Tai / Buk )",
+          "+ 61"
+        ],
+        [
+          "Custo em batalha 12 71 Intervalo de uso: 4 turno(s)"
+        ]
+      ],
+      "tooltipText": "Gorai Renge Jutsu - Técnica de Ataque Valores para Combate Ataque ( Tai / Buk ) + 61 Custo em batalha 12 71 Intervalo de uso: 4 turno(s) Aprenda esse jutsu com: 24 142",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Gorai Renge</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\"> Ataque ( Tai / Buk )</td>\n\t\t\t\t\t<td align=\"left\">+ 61</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 12\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 71\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 4 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 24 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 142\t\t"
+    },
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1085",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/omote_renge.jpg",
+      "name": "Omote Renge",
+      "rank": "Chuunin",
+      "requirements": [
+        "Requer 10 ponto(s) em selo",
+        "Requer 24 ponto(s) em força",
+        "Requer graduação: Chuunin",
+        "Requer o item: 2° portão - Portão da Energia",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:16 em Taijutsu16 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "14",
+          "resource": "chakra",
+          "value": 14
+        },
+        {
+          "context": "combat",
+          "raw": "86",
+          "resource": "stamina",
+          "value": 86
+        },
+        {
+          "context": "learning",
+          "raw": "28",
+          "resource": "chakra",
+          "value": 28
+        },
+        {
+          "context": "learning",
+          "raw": "172",
+          "resource": "stamina",
+          "value": 172
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Omote Renge"
+        ],
+        [
+          "Jutsu - Técnica de Ataque"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Ataque ( Tai / Buk )",
+          "+ 74"
+        ],
+        [
+          "Custo em batalha 14 86 Intervalo de uso: 4 turno(s)"
+        ]
+      ],
+      "tooltipText": "Omote Renge Jutsu - Técnica de Ataque Valores para Combate Ataque ( Tai / Buk ) + 74 Custo em batalha 14 86 Intervalo de uso: 4 turno(s) Aprenda esse jutsu com: 28 172",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Omote Renge</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\"> Ataque ( Tai / Buk )</td>\n\t\t\t\t\t<td align=\"left\">+ 74</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 14\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 86\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 4 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 28 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 172\t\t"
+    },
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1086",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/ura_renge.jpg",
+      "name": "Ura Renge",
+      "rank": "Chuunin",
+      "requirements": [
+        "Requer 15 ponto(s) em selo",
+        "Requer 34 ponto(s) em força",
+        "Requer graduação: Chuunin",
+        "Requer o item: 2° portão - Portão da Energia",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:23 em Taijutsu23 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "21",
+          "resource": "chakra",
+          "value": 21
+        },
+        {
+          "context": "combat",
+          "raw": "124",
+          "resource": "stamina",
+          "value": 124
+        },
+        {
+          "context": "learning",
+          "raw": "42",
+          "resource": "chakra",
+          "value": 42
+        },
+        {
+          "context": "learning",
+          "raw": "248",
+          "resource": "stamina",
+          "value": 248
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Ura Renge"
+        ],
+        [
+          "Jutsu - Técnica de Ataque"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Ataque ( Tai / Buk )",
+          "+ 108"
+        ],
+        [
+          "Custo em batalha 21 124 Intervalo de uso: 6 turno(s)"
+        ]
+      ],
+      "tooltipText": "Ura Renge Jutsu - Técnica de Ataque Valores para Combate Ataque ( Tai / Buk ) + 108 Custo em batalha 21 124 Intervalo de uso: 6 turno(s) Aprenda esse jutsu com: 42 248",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Ura Renge</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\"> Ataque ( Tai / Buk )</td>\n\t\t\t\t\t<td align=\"left\">+ 108</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 21\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 124\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 6 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 42 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 248\t\t"
+    },
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1087",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/asa_kujaku.jpg",
+      "name": "Asa Kujaku",
+      "rank": "Jounin",
+      "requirements": [
+        "Requer 16 ponto(s) em selo",
+        "Requer 40 ponto(s) em força",
+        "Requer graduação: Jounin",
+        "Requer o item: 4º portão - Portão do Ferimento",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:26 em Taijutsu26 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "23",
+          "resource": "chakra",
+          "value": 23
+        },
+        {
+          "context": "combat",
+          "raw": "139",
+          "resource": "stamina",
+          "value": 139
+        },
+        {
+          "context": "learning",
+          "raw": "46",
+          "resource": "chakra",
+          "value": 46
+        },
+        {
+          "context": "learning",
+          "raw": "278",
+          "resource": "stamina",
+          "value": 278
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Asa Kujaku"
+        ],
+        [
+          "Jutsu - Técnica de Ataque"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Ataque ( Tai / Buk )",
+          "+ 121"
+        ],
+        [
+          "Custo em batalha 23 139 Intervalo de uso: 6 turno(s)"
+        ]
+      ],
+      "tooltipText": "Asa Kujaku Jutsu - Técnica de Ataque Valores para Combate Ataque ( Tai / Buk ) + 121 Custo em batalha 23 139 Intervalo de uso: 6 turno(s) Aprenda esse jutsu com: 46 278",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Asa Kujaku</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\"> Ataque ( Tai / Buk )</td>\n\t\t\t\t\t<td align=\"left\">+ 121</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 23\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 139\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 6 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 46 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 278\t\t"
+    },
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1088",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/hirudora.jpg",
+      "name": "Hirudora",
+      "rank": "Jounin",
+      "requirements": [
+        "Requer 21 ponto(s) em selo",
+        "Requer 50 ponto(s) em força",
+        "Requer graduação: Jounin",
+        "Requer o item: 4º portão - Portão do Ferimento",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:33 em Taijutsu33 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "30",
+          "resource": "chakra",
+          "value": 30
+        },
+        {
+          "context": "combat",
+          "raw": "177",
+          "resource": "stamina",
+          "value": 177
+        },
+        {
+          "context": "learning",
+          "raw": "60",
+          "resource": "chakra",
+          "value": 60
+        },
+        {
+          "context": "learning",
+          "raw": "354",
+          "resource": "stamina",
+          "value": 354
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Hirudora"
+        ],
+        [
+          "Jutsu - Técnica de Ataque"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Ataque ( Tai / Buk )",
+          "+ 153"
+        ],
+        [
+          "Custo em batalha 30 177 Intervalo de uso: 8 turno(s)"
+        ]
+      ],
+      "tooltipText": "Hirudora Jutsu - Técnica de Ataque Valores para Combate Ataque ( Tai / Buk ) + 153 Custo em batalha 30 177 Intervalo de uso: 8 turno(s) Aprenda esse jutsu com: 60 354",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Hirudora</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\"> Ataque ( Tai / Buk )</td>\n\t\t\t\t\t<td align=\"left\">+ 153</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 30\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 177\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 8 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 60 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 354\t\t"
+    },
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1494718",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/kekkei_portao.jpg",
+      "name": "Portão da velocidade",
+      "rank": "ANBU",
+      "requirements": [
+        "Requer graduação: ANBU",
+        "Requer o item: 4º portão - Portão do Ferimento",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:35 em Taijutsu35 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "16",
+          "resource": "chakra",
+          "value": 16
+        },
+        {
+          "context": "combat",
+          "raw": "166",
+          "resource": "stamina",
+          "value": 166
+        },
+        {
+          "context": "learning",
+          "raw": "32",
+          "resource": "chakra",
+          "value": 32
+        },
+        {
+          "context": "learning",
+          "raw": "332",
+          "resource": "stamina",
+          "value": 332
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Portão da velocidade"
+        ],
+        [
+          "Jutsu - Buff"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Efeitos no seu personagem"
+        ],
+        [
+          "Incremento de Crítico",
+          "20"
+        ],
+        [
+          "Concentração",
+          "20"
+        ],
+        [
+          "Custo em batalha 16 166 Intervalo de uso: 99 turno(s) Duração: 99 turno(s)"
+        ]
+      ],
+      "tooltipText": "Portão da velocidade Jutsu - Buff Valores para Combate Efeitos no seu personagem Incremento de Crítico 20 Concentração 20 Custo em batalha 16 166 Intervalo de uso: 99 turno(s) Duração: 99 turno(s) Aprenda esse jutsu com: 32 332",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Portão da velocidade</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Buff\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">Efeitos no seu personagem</td>\n\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\"> Incremento de Crítico</td>\n\t\t\t\t\t<td>\n\n\t\t\t\t\t20\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\"> Concentração</td>\n\t\t\t\t\t<td>\n\n\t\t\t\t\t20\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 16\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 166\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 99 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t\tDuração: 99 turno(s)\n\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 32 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 332\t\t"
+    },
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1089",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/kakuyoku.jpg",
+      "name": "Kakuyoku no Jin",
+      "rank": "ANBU",
+      "requirements": [
+        "Requer 22 ponto(s) em selo",
+        "Requer 54 ponto(s) em força",
+        "Requer graduação: ANBU",
+        "Requer o item: 5º portão - Portão da Floresta",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:36 em Taijutsu36 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "32",
+          "resource": "chakra",
+          "value": 32
+        },
+        {
+          "context": "combat",
+          "raw": "192",
+          "resource": "stamina",
+          "value": 192
+        },
+        {
+          "context": "learning",
+          "raw": "64",
+          "resource": "chakra",
+          "value": 64
+        },
+        {
+          "context": "learning",
+          "raw": "384",
+          "resource": "stamina",
+          "value": 384
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Kakuyoku no Jin"
+        ],
+        [
+          "Jutsu - Técnica de Ataque"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Ataque ( Tai / Buk )",
+          "+ 166"
+        ],
+        [
+          "Custo em batalha 32 192 Intervalo de uso: 8 turno(s)"
+        ]
+      ],
+      "tooltipText": "Kakuyoku no Jin Jutsu - Técnica de Ataque Valores para Combate Ataque ( Tai / Buk ) + 166 Custo em batalha 32 192 Intervalo de uso: 8 turno(s) Aprenda esse jutsu com: 64 384",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Kakuyoku no Jin</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\"> Ataque ( Tai / Buk )</td>\n\t\t\t\t\t<td align=\"left\">+ 166</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 32\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 192\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 8 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 64 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 384\t\t"
+    },
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1090",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/sekizou.jpg",
+      "name": "Sekizou",
+      "rank": "ANBU",
+      "requirements": [
+        "Requer 27 ponto(s) em selo",
+        "Requer 64 ponto(s) em força",
+        "Requer graduação: ANBU",
+        "Requer o item: 5º portão - Portão da Floresta",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:43 em Taijutsu43 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "37",
+          "resource": "chakra",
+          "value": 37
+        },
+        {
+          "context": "combat",
+          "raw": "230",
+          "resource": "stamina",
+          "value": 230
+        },
+        {
+          "context": "learning",
+          "raw": "74",
+          "resource": "chakra",
+          "value": 74
+        },
+        {
+          "context": "learning",
+          "raw": "460",
+          "resource": "stamina",
+          "value": 460
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Sekizou"
+        ],
+        [
+          "Jutsu - Técnica de Ataque"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Ataque ( Tai / Buk )",
+          "+ 199"
+        ],
+        [
+          "Custo em batalha 37 230 Intervalo de uso: 10 turno(s)"
+        ]
+      ],
+      "tooltipText": "Sekizou Jutsu - Técnica de Ataque Valores para Combate Ataque ( Tai / Buk ) + 199 Custo em batalha 37 230 Intervalo de uso: 10 turno(s) Aprenda esse jutsu com: 74 460",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Sekizou</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\"> Ataque ( Tai / Buk )</td>\n\t\t\t\t\t<td align=\"left\">+ 199</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 37\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 230\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 10 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 74 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 460\t\t"
+    },
+    {
+      "classIcon": "https://narutogame.com.br/assets/images/icones/habilidade-1.png",
+      "id": "i-jutsu-1091",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/yagai.jpg",
+      "name": "Yagai",
+      "rank": "Sannin da Folha",
+      "requirements": [
+        "Requer 28 ponto(s) em selo",
+        "Requer 70 ponto(s) em força",
+        "Requer graduação: Sannin da Folha",
+        "Requer o item: 7º portão - Portão da Insanidade",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:46 em Taijutsu46 em Bukijutsu"
+      ],
+      "resources": [
+        {
+          "context": "combat",
+          "raw": "41",
+          "resource": "chakra",
+          "value": 41
+        },
+        {
+          "context": "combat",
+          "raw": "245",
+          "resource": "stamina",
+          "value": 245
+        },
+        {
+          "context": "learning",
+          "raw": "82",
+          "resource": "chakra",
+          "value": 82
+        },
+        {
+          "context": "learning",
+          "raw": "490",
+          "resource": "stamina",
+          "value": 490
+        }
+      ],
+      "tooltipRows": [
+        [
+          "Yagai"
+        ],
+        [
+          "Jutsu - Técnica de Ataque"
+        ],
+        [
+          "Valores para Combate"
+        ],
+        [
+          "Ataque ( Tai / Buk )",
+          "+ 212"
+        ],
+        [
+          "Custo em batalha 41 245 Intervalo de uso: 10 turno(s)"
+        ]
+      ],
+      "tooltipText": "Yagai Jutsu - Técnica de Ataque Valores para Combate Ataque ( Tai / Buk ) + 212 Custo em batalha 41 245 Intervalo de uso: 10 turno(s) Aprenda esse jutsu com: 82 490",
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Yagai</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\"> Ataque ( Tai / Buk )</td>\n\t\t\t\t\t<td align=\"left\">+ 212</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 41\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 245\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 10 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 82 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 490\t\t"
+    }
+  ]
+}

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
+import { getAuthErrorMessage, isUnconfirmedEmailError } from '../utils/authFeedback';
 
-const AUTH_MODES = ['login', 'signup', 'forgot'];
+const AUTH_MODES = ['login', 'signup', 'forgot', 'pending'];
 
 export default function Login() {
   const [mode, setMode] = useState('login');
@@ -10,13 +11,43 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [confirmationNotice, setConfirmationNotice] = useState('');
+  const [resendRequested, setResendRequested] = useState(false);
   const { addToast } = useToast();
 
   const selectMode = (nextMode) => {
     if (!AUTH_MODES.includes(nextMode)) return;
     setMode(nextMode);
+    setConfirmationNotice('');
+    setResendRequested(false);
     setPassword('');
     setShowPassword(false);
+  };
+
+  const handleResend = async () => {
+    if (loading || resendRequested) return;
+    const normalizedEmail = email.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+      addToast('Informe um e-mail válido.', 'error');
+      return;
+    }
+    setLoading(true);
+    try {
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email: normalizedEmail,
+        options: { emailRedirectTo: new URL('/selecionar', window.location.origin).toString() }
+      });
+      if (error) throw error;
+      // Supabase may return a generic response for existing accounts.
+      // Never claim that an email was delivered based on a successful API response.
+      setResendRequested(true);
+      addToast('Solicitação recebida. Se houver confirmação pendente e envio habilitado, verifique o e-mail e o spam.', 'info');
+    } catch (error) {
+      addToast(getAuthErrorMessage(error, 'resend'), 'error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -54,8 +85,11 @@ export default function Login() {
         });
         if (error) throw error;
         if (!data?.session) {
-          addToast('Cadastro recebido! Confirme seu e-mail para entrar, caso seja solicitado.', 'success');
-          selectMode('login');
+          // A success response can be intentionally obfuscated for repeated signups.
+          setConfirmationNotice('Se esta for uma conta nova, confira a caixa de entrada e o spam. Se você já tinha cadastro, utilize Entrar ou Esqueci minha senha.');
+          setResendRequested(false);
+          setPassword('');
+          setMode('pending');
         } else {
           addToast('Conta criada com sucesso!', 'success');
         }
@@ -69,10 +103,14 @@ export default function Login() {
         selectMode('login');
       }
     } catch (error) {
-      const message = mode === 'login' && (error?.status === 400 || error?.message?.includes('Invalid login credentials'))
-        ? 'E-mail ou senha incorretos.'
-        : error?.message || 'Não foi possível concluir a operação. Tente novamente.';
-      addToast(message, 'error');
+      if (mode === 'login' && isUnconfirmedEmailError(error)) {
+        setConfirmationNotice('Este endereço ainda precisa de confirmação. Você pode solicitar o reenvio abaixo; se o e-mail não chegar, o administrador precisa verificar o serviço de envio.');
+        setResendRequested(false);
+        setPassword('');
+        setMode('pending');
+      } else {
+        addToast(getAuthErrorMessage(error, mode), 'error');
+      }
     } finally {
       setLoading(false);
     }
@@ -100,10 +138,10 @@ export default function Login() {
         <div className="brand mb-10 min-[861px]:hidden"><div className="mark"></div>KUROKAGE</div>
         <p className="text-gold text-xs uppercase tracking-[.22em] mb-3">Portal shinobi</p>
         <h1 className="font-shippori text-3xl font-semibold text-paper mb-2">
-          {mode === 'login' ? 'Bem-vindo de volta' : mode === 'signup' ? 'Comece sua lenda' : 'Recuperar acesso'}
+          {mode === 'login' ? 'Bem-vindo de volta' : mode === 'signup' ? 'Comece sua lenda' : mode === 'pending' ? 'Verifique seu acesso' : 'Recuperar acesso'}
         </h1>
         <p className="text-muted-bright text-sm mb-8">
-          {mode === 'login' ? 'Entre na sua conta para continuar sua jornada.' : mode === 'signup' ? 'Crie sua conta e escolha seu personagem.' : 'Enviaremos um link para redefinir sua senha.'}
+          {mode === 'login' ? 'Entre na sua conta para continuar sua jornada.' : mode === 'signup' ? 'Crie sua conta e escolha seu personagem.' : mode === 'pending' ? 'Uma resposta de cadastro não garante que um novo e-mail foi enviado.' : 'Enviaremos um link para redefinir sua senha.'}
         </p>
 
         <div className="tabs" aria-label="Acesso à conta">
@@ -111,14 +149,23 @@ export default function Login() {
           <button type="button" className={'tab border-0 bg-transparent ' + (mode === 'signup' ? 'active' : '')} aria-pressed={mode === 'signup'} onClick={() => selectMode('signup')}>Criar conta</button>
         </div>
 
+        {mode === 'pending' && (
+          <div className="mb-6 rounded-md border border-gold/30 bg-gold/5 p-4 text-sm text-paper" role="status" aria-live="polite">
+            <p className="leading-relaxed">{confirmationNotice}</p>
+            <p className="mt-3 text-xs text-muted-bright">
+              O envio depende da configuração de e-mail do jogo. Não crie novamente uma conta que já existe.
+            </p>
+          </div>
+        )}
+
         <div className="field">
           <label htmlFor="auth-email">E-mail</label>
           <input id="auth-email" name="email" type="email" placeholder="seu@email.com"
             value={email} onChange={(event) => setEmail(event.target.value)}
-            autoComplete="email" inputMode="email" required disabled={loading} />
+            autoComplete="email" inputMode="email" required disabled={loading || mode === 'pending'} />
         </div>
 
-        {mode !== 'forgot' && (
+        {mode !== 'forgot' && mode !== 'pending' && (
           <div className="field">
             <label htmlFor="auth-password">Senha</label>
             <div className="relative">
@@ -151,17 +198,32 @@ export default function Login() {
             onClick={() => selectMode('login')}>Voltar ao login</button>
         )}
 
-        <button type="submit" className="btn-primary w-full min-h-12 disabled:opacity-60 disabled:cursor-not-allowed"
-          disabled={loading}>
-          <span>{loading ? 'Processando...' : mode === 'login' ? 'Acessar jogo' : mode === 'signup' ? 'Criar minha conta' : 'Enviar link de recuperação'}</span>
-        </button>
+        {mode === 'pending' ? (
+          <div className="flex flex-col gap-3">
+            <button type="button" className="btn-primary w-full min-h-12 disabled:opacity-60"
+              disabled={loading || resendRequested} onClick={handleResend}>
+              {loading ? 'Solicitando...' : resendRequested ? 'Reenvio solicitado' : 'Reenviar confirmação'}
+            </button>
+            <button type="button" className="btn-ghost w-full" disabled={loading}
+              onClick={() => selectMode('login')}>Já tenho conta — Entrar</button>
+            <button type="button" className="text-gold text-xs underline" disabled={loading}
+              onClick={() => selectMode('forgot')}>Esqueci minha senha</button>
+          </div>
+        ) : (
+          <button type="submit" className="btn-primary w-full min-h-12 disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled={loading}>
+            <span>{loading ? 'Processando...' : mode === 'login' ? 'Acessar jogo' : mode === 'signup' ? 'Criar minha conta' : 'Enviar link de recuperação'}</span>
+          </button>
+        )}
 
         <p className="text-xs text-muted-bright mt-7 text-center leading-relaxed">
           {mode === 'login'
             ? 'Sua sessão permanecerá ativa até você sair da conta.'
             : mode === 'signup'
               ? 'Já possui uma conta? Use a opção Entrar acima.'
-              : 'Confira também a pasta de spam do seu e-mail.'}
+              : mode === 'pending'
+                ? 'O reenvio não altera uma conta já confirmada. Nesse caso, use Entrar.'
+                : 'Confira também a pasta de spam do seu e-mail.'}
         </p>
       </form>
     </div>

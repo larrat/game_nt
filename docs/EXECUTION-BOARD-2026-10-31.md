@@ -14,7 +14,7 @@
 
 | Ordem | Entrega concreta | Estado em 31/10 | Saída de trabalho | Dependência / issue |
 |---|---|---|---|---|
-| A01 | Validar consultas de perfil público e acesso owner-only; aplicar política `064` em staging e depois produção | **Bloqueado para homologação**; `063` aplicada, `064` pendente | Relatório de duas contas + políticas/grants pós-migração | #59 e #52 |
+| A01 | Validar consultas de perfil público e acesso owner-only; aplicar política `064` em staging e depois produção | **Preflight preparado na [PR #71](https://github.com/larrat/game_nt/pull/71); staging E2E bloqueado**; `063` aplicada, `064` pendente | [Readiness 064](security/rls-phase2-readiness-2026-10-31.md), duas contas + políticas/grants pós-migração | #59 e #52 |
 | A02 | Cadastro com e-mail novo, confirmação, login, reset, reenvio; SMTP, redirects, senha vazada | **Bloqueado por configuração/caixa de teste** | E2E de autenticação e segurança dos callbacks | #60, #53 |
 | A03 | Testes de autorização e economia: missão/replay, treino, venda, inventário, jutsus, combate | **Implementação presente; não homologada** | Evidências antes/depois, recusa de usuário B e dupla liquidação | #52 |
 | A04 | Revisão orientada a risco das 52 RPCs `SECURITY DEFINER` | **Inventariado; revisão parcial** | Matriz função → ownership → custos → replay → grants → testes | #53 |

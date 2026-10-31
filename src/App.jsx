@@ -5,6 +5,7 @@ import { normalizeBonusStats } from './utils/engine';
 import './styles/main.css';
 import './styles/rpg-shell.css';
 import './styles/design-foundations-v2.css';
+import './styles/experience-v2.css';
 import { ToastProvider } from './context/ToastContext';
 
 import Sidebar from './components/Sidebar';

@@ -1,0 +1,91 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=invocacao".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php?secao=invocacao
+	2 container
+		3 container
+			4 image Naruto
+			5 image dayIcon
+			6 image nightIcon
+			7 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php?secao=invocacao#
+			8 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php?secao=invocacao#
+			9 link javascript:logoff()
+		10 image
+		11 image
+		12 container level-start
+			13 text LVL
+			14 heading 5, Value: 1
+				15 text 5
+		16 image Vida
+		17 text 362/362
+		18 image Chakra
+		19 text 574/574
+		20 image Stamina
+		21 text 271/271
+		22 text EXP: 42/3240
+		23 container level-end
+			24 text LVL
+			25 heading 6, Value: 1
+				26 text 6
+		27 container
+			28 image
+			29 text 8
+		30 container
+			31 image
+			32 text 8
+		33 container
+			34 image
+			35 text 4
+		36 link Description: 1, Value: narutogame.com.br/index.php?secao=fidelidade
+		37 link narutogame.com.br/index.php?secao=mensagens
+		38 link Description: 5, Value: narutogame.com.br/index.php?secao=noticias
+		39 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php?secao=jogador_vip
+		40 text 2980
+		41 heading INVOCAÇÕES, Value: 1
+			42 text INVOCAÇÕES
+		43 container
+			44 heading Escolha sua Invocação, Value: 3
+				45 text Escolha sua Invocação
+			46 container
+				47 container Invocação Sapos
+					48 image Invocação Sapos
+				49 container Invocação Cobras
+					50 image Invocação Cobras
+				51 container Invocação Lesmas
+					52 image Invocação Lesmas
+				53 container Invocação Armas Ninja
+					54 image Invocação Armas Ninja
+		55 heading Personalize os atributos da sua Invocação, Value: 2
+			56 text Personalize os atributos da sua Invocação
+		57 container invocacao-selector
+			58 image
+			59 pop up button (collapsed, settable) ID: invocacao-selector-ene, Secondary Actions: Expand
+			60 image
+			61 pop up button (collapsed, settable) ID: invocacao-selector-tai, Secondary Actions: Expand
+			62 image
+			63 pop up button (collapsed, settable) ID: invocacao-selector-ken, Secondary Actions: Expand
+			64 image
+			65 pop up button (collapsed, settable) ID: invocacao-selector-nin, Secondary Actions: Expand
+			66 image
+			67 pop up button (collapsed, settable) ID: invocacao-selector-gen, Secondary Actions: Expand
+			68 image
+			69 pop up button (collapsed, settable) ID: invocacao-selector-agi, Secondary Actions: Expand
+			70 image
+			71 pop up button (collapsed, settable) ID: invocacao-selector-con, Secondary Actions: Expand
+			72 image
+			73 pop up button (collapsed, settable) ID: invocacao-selector-forc, Secondary Actions: Expand
+			74 image
+			75 pop up button (collapsed, settable) ID: invocacao-selector-inte, Secondary Actions: Expand
+			76 image
+			77 pop up button (collapsed, settable) ID: invocacao-selector-res, Secondary Actions: Expand
+			78 image
+			79 pop up button (collapsed, settable) ID: invocacao-selector-esq, Secondary Actions: Expand
+			80 image
+			81 pop up button (collapsed, settable) ID: invocacao-selector-det, Secondary Actions: Expand
+			82 image
+			83 pop up button (collapsed, settable) ID: invocacao-selector-conv, Secondary Actions: Expand
+			84 image
+			85 pop up button (collapsed, settable) ID: invocacao-selector-conc, Secondary Actions: Expand
+		86 button Aceitar Pacto, ID: invocacao-join
+		87 container Description: Advertisement, ID: aswift_0
+			88 AXWebArea about:blank
+
+[Rodapé e chat omitidos na cópia pública]

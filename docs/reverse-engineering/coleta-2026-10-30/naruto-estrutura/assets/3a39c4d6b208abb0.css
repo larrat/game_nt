@@ -1,0 +1,1173 @@
+/* Main */
+body {
+    background: #252526 !important;
+}
+.modal-content{
+  background-color: #3c3c3e;
+
+}
+.bingo_book_pagina {
+  color: #FFF;
+}
+.modal-header{
+  border-bottom: 1px solid #4d4d4e;
+}
+.modal-header{
+  border-bottom: 1px solid #4d4d4e;
+}
+.modal-footer{
+  border-top: 1px solid #4d4d4e;
+}
+.close:focus, .close:hover {
+  color: #FFF;
+  text-decoration: none;
+  opacity: .75;
+}
+.bootbox-body{
+  color: #FFF;
+}
+button.close {
+  color: #FFF;
+}
+.modal-title{
+  color:#ccc;
+}
+
+.container .status, .container {
+    color:#ccc;
+}
+section h1{
+    color: #FFF;
+}
+.containerMain .slick-slide.slick-current{
+    background-image: url('../images/logado/bg-cla-azul.png');
+}
+.screen-lock {
+	background-color:#333;
+}
+.screen-lock-text {
+	color:white;
+}
+/* Header */
+.port {
+    color: #fff;
+}
+.header {
+    color: #e9e9e9;
+    background: rgb(0, 0, 0, 0.8);
+}
+a {
+    color: #e9e9e9;
+}
+a:hover {
+    color: #FF7844;
+}
+span {
+    color: #ccc;
+}
+.theme {
+    background: #000;
+}
+.moon {
+    background: #fff;
+}
+.up,
+.down {
+    color: #637ea0;
+}
+.dropdown-content {
+    background: #333;
+    box-shadow: rgb(0 0 0 / 17%) 0px -23px 25px 0px inset, rgb(0 0 0 / 15%) 0px -36px 30px 0px inset, rgb(0 0 0 / 10%) 0px -79px 40px 0px inset, rgb(0 0 0 / 6%) 0px 2px 1px, rgb(0 0 0 / 9%) 0px 4px 2px, rgb(0 0 0 / 9%) 0px 8px 4px, rgb(0 0 0 / 9%) 0px 16px 8px, rgb(0 0 0 / 9%) 0px 32px 16px;
+}
+.dropdown-content a {
+    color: #fff;
+}
+.dropdown-content a:hover {
+    color:#f8b764;
+}
+.panel {
+    background: linear-gradient(180deg,
+        #ff7200,
+        #ff7200 50%,
+        #fc8834 75%,
+        #fc8834 100%);
+    border-right: 2px solid #f3a75a;
+}
+.panel-content {
+    color: #0d316b;
+}
+form .md {
+    color: #fff;
+}
+.accordion-item {
+    background: #0d316b;
+}
+.accordion-button {
+    background: #fc8834;
+}
+
+.accordion-body {
+    color: #fff;
+}
+/* Info Card */
+.card {
+    background: #3c3c3e;
+}
+.level {
+    color: #fff;
+}
+.next-level {
+    color: #2c2c2e;
+}
+.specs {
+    color: #FFF;
+}
+.bar.red {
+    background: #ff0600;
+}
+
+.bar.blue {
+    background: #4395ff;
+}
+
+.bar.yellow {
+    background: #ff9c00;
+}
+.card-top .progress {
+    background: #1f1f1f;
+    color: #fff;
+}
+.card-bottom {
+    border-top: 1px solid #5f5f63;
+    background: #1d1d1e;
+    color: #fff;
+}
+.topMessages .red-badge{
+    border: solid 2px #FFF;
+    background-color: #DE1010;
+    color: #FFF;
+}
+.topMessages .yellow-badge{
+  border: solid 2px #FFF;
+  background-color: #faa303;
+  color: #FFF;
+}
+.ex_tooltip hr{
+	color: #c1c1c1;
+	border: 1px dotted #272727;
+}
+.ex_tooltip b{
+	color: #FF6600;
+}
+.ex_tooltip, .inventory-data {
+	background-color: #000 !important;
+	border-color: #B1B2B4 #434445 #2F3032;
+	color: #FFF;
+}
+.ex_tooltip_esp .bonus {
+	color: #09d96b
+}
+.ex_tooltip_esp .loss {
+	color: #ff0000
+}
+.inventory-container.shown .inventory-data {
+	box-shadow: 0px 0px 4px rgba(0,0,0,.9);
+}
+.arrow_box {
+	background: #111;
+	border: 2px solid #ccc;
+}
+.arrow_box:after {
+	border-color: rgba(17, 17, 17, 0);
+	border-bottom-color: #111;
+}
+.arrow_box:before {
+	border-color: rgba(204, 204, 204, 0);
+	border-bottom-color: #ccc;
+}
+.inventory-data .qty {
+	background-color: #333;
+	color: #FFF;
+}
+.inventory-data .item {
+	border: solid 1px #333;
+}
+.barra-exp-topo{
+    background-color:#1f1f1f;
+}
+.barra-exp-topo .fill{
+    background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+}
+.barra-exp-topo-exp .fill{
+    background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+}
+.barra-exp-topo-exp .fill div {
+    color: #FFF;
+    text-shadow: 1px 2px 1px rgb(0 0 0 / 80%);
+}
+/* Main Card */
+.containerMain {
+    background: #3c3c3e;
+    color: #fff;
+}
+.atributo-base{
+    background-color: #333335;
+}
+.atributo-full{
+    background: linear-gradient(-45deg, #ee7752, #834830, #ee7752, #834830);
+}
+.atributo-texto b{
+    color: #FFF;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+.atributo-texto p{
+    color: #FFF;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+.flex-borda{
+    border: solid white;
+    border-image-source: url(../images/home/backgrounds/border-chamfer-azul-dark.png);
+    border-width: 60px 64px 82px 88px;
+    border-image-slice: 120 128 164 176 fill;
+    border-image-outset: 15px;
+    padding: 0;
+    color: #cccccc;
+}
+.flex-borda b{
+    color: #FFF;
+}
+/* Points */
+.specs-points>div {
+    border: 2px solid #c4c4c4;
+}
+.specs-points>div label {
+    color: #d37d8d;
+}
+#cla-preview .slick-current, #invocacao-preview .slick-current{
+    background: #494d56;
+}
+.points-box {
+    box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.3),inset 0px 0px 20px 10px rgba(0, 0, 0, 0.3);
+}
+.points-box p {
+    color: #fc984b;
+}
+.points-box span {
+    color: #FFF;
+}
+.points-box i{
+    color: #999;
+}
+.text-box h3 {
+    color: #89ab9e;
+}
+.slick-prev:before {
+    color: #e1e1e1 !important;
+}
+.slick-next:before {
+    color: #e1e1e1 !important;
+}
+
+/* Footer */
+footer {
+    color: #fff;
+}
+footer a {
+    color: #fff;
+}
+.topFooter {
+    background-color: #1d1d1e;
+}
+.subFooter {
+    background: #161617;
+}
+.footerMenu li:not(:last-child):after {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.footerPrivacy li:not(:last-child):after {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+/* Menu Fixed */
+.menu-fixed .md {
+    color: #fff;
+}
+.menu-fixed div {
+    background: #FF7844;
+    color: #fff;
+}
+.menu-fixed-wrapper {
+    background: #101010;
+}
+.menu-fixed-wrapper ul {
+    color: #fff;
+}
+.menu-fixed-close {
+    color: #fff;
+}
+/* Alerts */
+.alert-success {
+    border-color: #e6e6e6;
+    border-left: 5px solid #00986a;
+    background-color: #fff;
+    color: #888;
+}
+.alert-info {
+    border-color: #e6e6e6;
+    border-left: 5px solid #00b3c8;
+    background-color: #fff;
+    color: #888;
+}
+.alert-warning {
+    border-color: #e6e6e6;
+    border-left: 5px solid #f9af2c;
+    background-color: #fff;
+    color: #888;
+}
+.alert-danger {
+    border-color: #e6e6e6;
+    border-left: 5px solid #c82630;
+    background-color: #fff;
+    color: #888;
+}
+@media (min-width: 768px) {
+    .alert {
+      border: 1px solid #e6e6e6;
+    }
+
+    .alert .close {
+      color: #888;
+    }
+
+    .alert .icon {
+      border: 1px solid #bdbdbd;
+    }
+
+    .alert .icon i {
+      color: #fff;
+    }
+
+    .alert .icon img {
+      color: #fff;
+    }
+    .alert.alert-success .icon,
+    .alert.alert-success .icon:after {
+      background: #00986a;
+    }
+
+    .alert.alert-info .icon,
+    .alert.alert-info .icon:after {
+      background: #00b3c8;
+    }
+
+    .alert.alert-warning .icon,
+    .alert.alert-warning .icon:after {
+      background: #f9af2c;
+    }
+
+    .alert.alert-danger .icon,
+    .alert.alert-danger .icon:after {
+      background: #c82630;
+    }
+}
+.menu-fixed-wrapper ul {
+    color: #fff;
+}
+.menu-fixed-close {
+    color: #fff;
+}
+/* Menu Mobile */
+.nav-side-menu {
+    background-color: #0d0f1d;
+    color: #e9e9e9;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+.nav-side-menu .brand {
+    background-color: #0d0f1d;
+}
+.nav-side-menu ul :not(collapsed) .arrow:before,
+.nav-side-menu li :not(collapsed) .arrow:before {
+    content: "\f078";
+}
+.nav-side-menu ul .active,
+.nav-side-menu li .active {
+    border-left: 3px solid #d19b3d;
+    background-color: #4f5b69;
+}
+.nav-side-menu ul .sub-menu li.active,
+.nav-side-menu li .sub-menu li.active {
+    color: #d19b3d;
+}
+.nav-side-menu ul .sub-menu li.active a,
+.nav-side-menu li .sub-menu li.active a {
+    color: #d19b3d;
+}
+.nav-side-menu ul .sub-menu li,
+.nav-side-menu li .sub-menu li {
+    background-color: #07152c;
+}
+.nav-side-menu ul .sub-menu li:hover,
+.nav-side-menu li .sub-menu li:hover {
+    background-color: #0d316b;
+}
+.nav-side-menu ul .sub-menu li:before,
+.nav-side-menu li .sub-menu li:before {
+    content: "\f105";
+}
+.nav-side-menu li {
+    border-left: 3px solid #2e353d;
+    border-bottom: 1px solid #23282e;
+}
+.nav-side-menu li a {
+    color:#e9e9e9;
+}
+.nav-side-menu li a:hover{
+    color: #f8b764;
+}
+.nav-side-menu li:hover {
+    border-left: 3px solid #d19b3d;
+    background-color: #4f5b69;
+}
+/* Personagem */
+#character-data{
+    color: #fff;
+}
+#character-info .name{
+    color: #f8b764;
+}
+.left-quests-container{
+    color: #fff;
+}
+.titulos-menu{
+    color: #4395ff;
+    border: 1px solid #4395ff;
+}
+.titulos li{
+    background-color: blue;
+}
+#character-attributes .box2 img, #character-attributes .box img{
+    border: 2px solid #4395ff;
+}
+.sc2::-webkit-scrollbar-thumb {
+    background-color: #333335;
+}
+.sc2::-webkit-scrollbar-thumb:hover {
+    background-color: #505052;
+}
+/* Personagem Criação */
+.personagem-selecionado .selecione_grande b{
+    color: #ff893a;
+}
+.personagem-selecionado .selecione_grande span{
+    color: #FFF;
+}
+.paginator a {
+    background-color: #1e1e1e;
+    border: 1px solid #000;
+    border-top-color: #3d3d3d;
+    border-left-color: #3d3d3d;
+    color: #FFF !important;
+}
+.paginator a:hover, .paginator .current {
+    background-color: #ff893a;
+}
+.info .ats .class-type .selected{
+    background-color: #ff893a;
+}
+.info .ats .class-type a{
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 30%), inset 0px 0px 20px 10px rgb(0 0 0 / 30%);
+}
+/* Bootstrap Theme */
+.popover {
+    color: #FFF;
+    border: 1px solid rgba(95,95,95, .85);
+    background-color: rgb(18, 18, 18, .95);
+}
+.popover-header {
+    border-bottom: 1px solid rgba(235, 235, 235, .1);
+}
+.bs-popover-top .arrow::before,
+.bs-popover-auto[x-placement^=top] .arrow::before {
+    border-top-color: rgba(95,95,95, .85)
+}
+.bs-popover-right .arrow::before,
+.bs-popover-auto[x-placement^=right] .arrow::before {
+    border-right-color: rgba(95,95,95, .85)
+}
+.bs-popover-bottom .arrow::before,
+.bs-popover-auto[x-placement^=bottom] .arrow::before {
+    border-bottom-color: rgba(95,95,95, .85)
+}
+.bs-popover-left .arrow::before,
+.bs-popover-auto[x-placement^=left] .arrow::before {
+    border-left-color: rgba(95,95,95, .85)
+}
+.bs-popover-top .arrow::after,
+.bs-popover-auto[x-placement^="top"] .arrow::after {
+    border-top-color: rgba(18, 18, 18, .95);
+}
+.bs-popover-right .arrow::after,
+.bs-popover-auto[x-placement^="right"] .arrow::after {
+    border-right-color: rgba(18, 18, 18, .95);
+}
+.bs-popover-bottom .arrow::after,
+.bs-popover-auto[x-placement^="bottom"] .arrow::after {
+    border-bottom-color: rgba(18, 18, 18, .95);
+}
+.bs-popover-left .arrow::after,
+.bs-popover-auto[x-placement^="left"] .arrow::after {
+    border-left-color: rgba(18, 18, 18, .95);
+}
+.popover .error i.fa {
+    color: #961212;
+}
+.popover .success i.fa {
+    color: #268227;
+}
+.tooltip-inner {
+    background-color: rgba(18, 18, 18, .95);
+    border: 1px solid rgba(95,95,95, .85);
+}
+.bs-tooltip-top .arrow::after,
+.bs-tooltip-auto[x-placement^="top"] .arrow::after {
+    border-top-color: rgba(18, 18, 18, .95);
+}
+.bs-tooltip-right .arrow::after,
+.bs-tooltip-auto[x-placement^="right"] .arrow::after {
+    border-right-color: rgba(18, 18, 18, .95);
+}
+.bs-tooltip-bottom .arrow::after,
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::after {
+    border-bottom-color: rgba(18, 18, 18, .95);
+}
+.bs-tooltip-left .arrow::after,
+.bs-tooltip-auto[x-placement^="left"] .arrow::after {
+    border-left-color: rgba(18, 18, 18, .95);
+}
+.bs-tooltip-top .arrow::before,
+.bs-tooltip-auto[x-placement^="top"] .arrow::before { border-top-color: rgba(95,95,95, .85) !important; }
+.bs-tooltip-right .arrow::before,
+.bs-tooltip-auto[x-placement^="right"] .arrow::before { border-right-color: rgba(95,95,95, .85) !important; }
+.bs-tooltip-bottom .arrow::before,
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::before { border-bottom-color: rgba(95,95,95, .85) !important; }
+.bs-tooltip-left .arrow::before,
+.bs-tooltip-auto[x-placement^="left"] .arrow::before { border-left-color: rgba(95,95,95, .85) !important; }
+/* Geral */
+.requerimento_ok{
+    text-decoration: line-through;
+    color: #2ea400;
+}
+.requerimento_nok{
+    color: #ff4a4a;
+}
+.conteudo-box-equipe, .container form, .ability-speciality-box .description, .table-dark, .container .text-right, .noticia,.topo-batalha .title, #cnLutadores .content {
+    color: #ccc !important;
+}
+.d-penality-timer{
+    color: #ff893a !important;
+}
+.atributos-page h2{
+    color: #ccc;
+}
+.equip_lendario{
+	color: #D12828 !important;
+}
+.highlight-text {
+	color: #FFF;
+	text-shadow: 0 0 0.2em #000, 0 0 0.2em #000, 0 0 0.2em #000;
+}
+.highlight-text span {
+	color: #24fd00 !important;
+}
+.gold{
+    color: #ffc600 !important;
+}
+.verde{
+    color: #2ea400 !important;
+}
+.vermelho{
+    color: #ff4a4a !important;
+}
+.laranja{
+    color: #ff893a !important;
+}
+.azul{
+    color: #007bff !important;
+}
+.cinza{
+    color: #929292 !important;
+}
+.amarelo_claro{
+    color: #ffb884 !important;
+}
+.character-info .name{
+    color:#ff893a;
+}
+form label{
+    color:#ff893a;
+}
+.mainTitle {
+    color: #000;
+}
+.subTitle {
+    color: #b65f44;
+}
+.boxNews .newsInfo p{
+    color: #fff;
+    color: #e9af64;
+}
+.boxNews .newsInfo a{
+    color: #fff;
+}
+.newsInfo {
+    color: #fff;
+}
+.newsInfo h3 a:hover{
+    color: #e9af64;
+}
+.newsInfo p {
+    color: #e9af64;
+}
+.newsImg {
+    box-shadow: inset 8rem 54rem 0rem 0rem #333335;
+}
+.with-n-tabs a{
+    color: #FFF !important;
+}
+.with-n-tabs .ui-state-hover{
+    background-color: #ff893a;
+}
+.mensagens-globais .box{
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 30%), inset 0px 0px 20px 10px rgb(0 0 0 / 30%);
+}
+.mensagens-globais .lido{
+    background-color: #22892a;
+}
+.mensagens-globais .box a{
+    color: #fc984b;
+}
+.mensagens-globais .box.lido a{
+    color: #FFF;
+}
+.arvore-talentos .points-box p {
+    color: #fc984b;
+}
+.arvore-talentos .d-itembox-total {
+    color: #FFF;
+    background-color: #052b40;
+}
+.arvore-talentos .active1{
+    background: #3b1614;
+    border: 1px solid #b81f17;
+    border-radius: 5px;
+}
+.arvore-talentos .active2{
+  background: #131936;
+  border: 1px solid #1732b8;
+  border-radius: 5px;
+}
+.arvore-talentos .active3{
+  background: #122811;
+  border: 1px solid #245421;
+  border-radius: 5px;
+}
+.conteudo-destaque a{
+    color: #fc984b;
+}
+.ex_tooltip strong{
+    color: #fc984b;
+}
+.paginas-destaques{
+    color: #FFF;
+}
+.paginas-destaques-laranja{
+    --shadow: #af4417;
+    --color: #FFF;
+    background-image: linear-gradient(90deg, #af4417 0%, #ff893a 63%, rgba(238,114,33,0) 100%);
+}
+.texto-imagem{
+    border: solid white;
+    border-image-source: url(../images/home/backgrounds/border-chamfer-orange-dark.png);
+    border-width: 60px 64px 82px 88px;
+    border-image-slice: 120 128 164 176 fill;
+    border-image-outset: 26px;
+    padding: 0;
+    color: #ccc;
+}
+.secao-titulo{
+    text-shadow: 0 2px 0px #af4417;
+}
+.barra-secoes {
+    background-color: #4f4f4f;
+}
+.barra-secoes .fill {
+    background-image: linear-gradient(
+45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+}
+.barra-secoes .fill div {
+    color: #FFF;
+    text-shadow: 1px 2px 1px rgb(0 0 0 / 80%);
+}
+.historia-saga .active{
+    background: #ffaa4e;
+}
+.historia-saga .completed{
+    background: #22892a;
+}
+.historia-saga-x{
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 30%), inset 0px 0px 20px 10px rgb(0 0 0 / 30%);
+}
+table b{
+    color: #ff893a;
+}
+table a{
+    color: #ff893a;
+}
+.points-box .bonus p{
+    color: gray;
+}
+.conquista-grupo{
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.conquista-grupo-c{
+    background: #22892a;
+    color: #FFF !important;
+}
+.conquista-grupo-c i{
+    background-color: #aeff00;
+    color: #16450c;
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 30%), inset 0px 0px 20px 10px rgb(0 0 0 / 30%);
+}
+.conquista-grupo-i i{
+    background-color: #4f4f4f;
+    color: #fff;
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 30%), inset 0px 0px 20px 10px rgb(0 0 0 / 30%);
+}
+.conquista-grupo-i{
+    background-color: #FFF;
+}
+.conquista-grupo-c .conquista-pontos{
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 30%), inset 0px 0px 20px 10px rgb(0 0 0 / 30%);
+    background-color: #aeff00;
+    color: #16450c;
+}
+.conquista-grupo-i .conquista-pontos{
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 30%), inset 0px 0px 20px 10px rgb(0 0 0 / 30%);
+    background-color: #4f4f4f;
+    color: #fff;
+}
+.d-conquista-grupo {
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+.fidelidade-box .ability-speciality-box{
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 30%), inset 0px 0px 20px 10px rgb(0 0 0 / 30%);
+}
+.fidelidade-box .ability-speciality-box .name{
+    color: #ff893a;
+}
+.paginador a{
+    color:#ff893a;
+}
+.flex-borda2 {
+    border: solid white;
+    border-width: 58px 60px 77px 65px;
+    border-image-source: url(../images/home/backgrounds/border-chamfer-azul-dark.png);
+    border-image-slice: 120 128 164 176 fill;
+    padding: 0;
+}
+.barra-equipes .barra-secoes .fill div {
+    color: #FFF;
+    text-shadow: 1px 2px 1px rgb(0 0 0 / 80%);
+}
+/* Cards */
+.bg-gradient {
+    background: #C9D6FF;
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF);
+}
+.pricing-divider {
+    background: #C64545;
+}
+.blue .pricing-divider{
+    background: #2D5772;
+}
+.green .pricing-divider {
+    background: #1AA85C;
+}
+.red b {
+    color:#C64545
+}
+.blue b {
+    color:#2D5772
+}
+.green b {
+    color:#1AA85C
+}
+.btn-custom  {
+    background:#C64545; color:#fff; border-radius:20px
+}
+/* Box */
+.box-branco{
+    background-color: #333335;
+}
+.box-on{
+    background-color: #e0f2fc;
+}
+.box-on .titulo{
+    color:#013dff !important;
+}
+.box-principal .box-filhos, .box-principal .box-bijuus{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -2px 6px 0px inset;
+    background-color: #333335;
+    color: #ccc;
+}
+.box-principal .box-filhos2{
+    box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -2px 6px 0px inset;
+    color: #ccc;
+    background-color: #333335;
+}
+.box-principal .box-filhos-size4{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -2px 6px 0px inset;
+    color: #ccc;
+    background-color: #333335;
+}
+.box-principal .box-filhos div .titulo, .box-principal .box-bijuus .titulo{
+    color: #ff893a;
+}
+.box-verde{
+    background-color: #43913c;
+}
+.box-titulo-1{
+    color: #ff973e;
+}
+.box-titulo-4{
+    color: #3f8705;
+}
+.box-titulo-5{
+  color: #dcab00;
+}
+.box-titulo-2{
+    color: #0072ff;
+}
+.box-titulo-3{
+    color: #b975f2;
+}
+.box-habilidade-1{
+    background-color: #ff973e;
+}
+.box-habilidade-4{
+    background-color: #3f8705;
+}
+.box-habilidade-5{
+  background-color: #dcab00;
+}
+.box-habilidade-2{
+    background-color: #0072ff;
+}
+.box-habilidade-3{
+    background-color: #b975f2;
+}
+.box-habilidade-0{
+    background-color: #979797;
+}
+.box-habilidade-00{
+    background-color: #1b1b1b;
+}
+.box-principal .box-hover-1:hover{
+    background-color: #534131 !important;
+}
+.box-principal .box-hover-2:hover{
+    background-color: #313a53 !important;
+}
+.box-principal .box-hover-3:hover{
+    background-color: #514151 !important;
+}
+.box-principal .box-hover-4:hover{
+    background-color: #465141 !important;
+}
+.box-principal .box-filhos .botao a{
+    color: #FFF !important;
+}
+.box-principal .box-filhos a{
+    color: #ff893a;
+}
+.box-principal .box-filhos .titulo{
+    color: #ff893a;
+}
+.box-principal .box-filhos .descricao{
+    color: #ccc;
+}
+.box-principal .box-filhos:hover, .box-principal .box-bijuus:hover{
+    background-color: #525253;
+}
+.box-titulo-24{
+    color: #43913c;
+}
+.box-habilidade-24{
+    background-color: #65bd5d;
+}
+.box-principal .box-hover-24:hover{
+    background-color: #303d27 !important;
+}
+/*Box Kinjutsu*/
+.box-titulo-37{
+    color: #c74747;
+}
+.box-habilidade-37{
+    background-color: #c74747;
+}
+.box-principal .box-hover-37:hover{
+    background-color: #382222 !important;
+}
+
+/*Box Elementos*/
+.box-elemento-titulo-1{
+    color: #ff7a7a;
+}
+.box-elemento-titulo-2{
+    color: #369801;
+}
+.box-elemento-titulo-3{
+    color: #dcab00;
+}
+.box-elemento-titulo-4{
+    color: #927832;
+}
+.box-elemento-titulo-5{
+    color: #7a96ff;
+}
+.box-elemento-titulo-6{
+    color: #1a9cf7;
+}
+.box-elemento-titulo-7{
+    color: #ff973e;
+}
+.box-elemento-titulo-8{
+    color: #be3e3e;
+}
+.box-elemento-titulo-9{
+    color: #c174fd;
+}
+.box-elemento-titulo-10{
+    color: #c305a1;
+}
+.box-elemento-titulo-11{
+    color: #e26c04;
+}
+.box-elemento-titulo-12{
+    color: #7d6195;
+}
+.box-elemento-titulo-13{
+    color: #536401;
+}
+.box-elemento-titulo-14{
+    color: #875e40;
+}
+.box-elemento-titulo-15{
+    color: #be3e3e;
+}
+.box-elemento-1{
+    background-color: #F00;
+}
+.box-elemento-2{
+    background-color: #369801;
+}
+.box-elemento-3{
+    background-color: #dcab00;
+}
+.box-elemento-4{
+    background-color: #634f00;
+}
+.box-elemento-5{
+    background-color: #013dff;
+}
+.box-elemento-6{
+    background-color: #1a9cf7;
+}
+.box-elemento-7{
+    background-color: #ff973e;
+}
+.box-elemento-8{
+    background-color: #7a1818;
+}
+.box-elemento-9{
+    background-color: #6d00a6;
+}
+.box-elemento-10{
+    background-color: #c305a1;
+}
+.box-elemento-11{
+    background-color: #e26c04;
+}
+.box-elemento-12{
+    background-color: #574e61;
+}
+.box-elemento-13{
+    background-color: #536401;
+}
+.box-elemento-14{
+    background-color: #684012;
+}
+.box-elemento-15{
+    background-color: #8c2424;
+}
+.box-principal .box-elemento-hover-1:hover, .box-principal .box-elemento-hover-6:hover, .box-principal .box-elemento-hover-10:hover, .box-principal .box-elemento-hover-15:hover{
+    background-color: #3b2a2a !important;
+}
+.box-principal .box-elemento-hover-2:hover, .box-principal .box-elemento-hover-13:hover{
+    background-color: #2a3b2a !important;
+}
+.box-principal .box-elemento-hover-3:hover, .box-principal .box-elemento-hover-7:hover, .box-principal .box-elemento-hover-11:hover{
+    background-color: #464226 !important;
+}
+.box-principal .box-elemento-hover-4:hover, .box-principal .box-elemento-hover-14:hover, .box-principal .box-elemento-hover-12:hover{
+    background-color: #493a2b !important;
+}
+.box-principal .box-elemento-hover-5:hover{
+    background-color: #2e3655 !important;
+}
+.box-vila-1{
+    background-color: #3f8705 !important;
+}
+.box-vila-2{
+    background-color: #ae7f00 !important;
+}
+.box-vila-3{
+    background-color: #9c94a1 !important;
+}
+.box-vila-4{
+    background-color: #7a7a7a !important;
+}
+.box-vila-5{
+    background-color: #e6be01 !important;
+}
+.box-vila-6{
+    background-color: #e60111 !important;
+}
+.box-vila-7{
+    background-color: #b975f2 !important;
+}
+.box-vila-8{
+    background-color: #324fe6 !important;
+}
+.box-vila-9{
+  background-color: #aed3d9 !important;
+}
+.box-vila-10{
+  background-color: #448172 !important;
+}
+.box-vila-11{
+  background-color: #e2c373 !important;
+}
+.box-vila-12{
+  background-color: #577106 !important;
+}
+.box-vila-13{
+  background-color: #444f51 !important;
+}
+.box-principal-lvl{
+    background-color: #333335;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -2px 6px 0px inset;
+}
+/* Box Batalha */
+.box-principal-batalha .box-filhos{
+    color: #ccc;
+}
+.box-principal-batalha .box-shadow{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -2px 6px 0px inset;
+}
+.pvp-atk-filter.taijutsu{
+    background-color: #ff973e;
+    color: #fff;
+}
+.pvp-atk-filter.ninjutsu{
+    background-color: #0072ff;
+    color: #fff;
+}
+.pvp-atk-filter.genjutsu{
+    background-color: #b975f2;
+    color: #fff;
+}
+.pvp-atk-filter.bukijutsu{
+    background-color: #3f8705;
+    color: #fff;
+}
+.pvp-atk-filter.armas{
+    background-color: #979797;
+    color: #fff;
+}
+.pvp-atk-filter.geral{
+    background-color: #761c00;
+    color: #fff;
+}
+.pvp-atk-filter.medicinal{
+    background-color: #609200;
+    color: #fff;
+}
+.pvp-atk-filter.buffs{
+    background-color: #bb06a4;
+    color: #fff;
+}
+.d-icon-counter{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -2px 6px 0px inset;
+}
+.topMessages .red-badge2 {
+    background-color: #DE1010;
+    color: #FFF;
+}
+.cnLog {
+    background-color: #333335;
+    box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -2px 6px 0px inset;
+    color: #ccc;
+}
+.cnLog hr{
+    color: #474747;
+    border: 1px solid #474747;
+}
+.topo-batalha{
+    box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -2px 6px 0px inset;
+}
+.pvp_p_damage{
+	color:#ff4a4a;
+}
+.pvp_p_atk{
+	color:#FF9966;
+}
+.pvp_p_atk:hover{
+	color: #FF703D;
+}
+.player-info-box div{
+    box-shadow: rgb(0 0 0 / 40%) 0px 2px 4px, rgb(0 0 0 / 30%) 0px 7px 13px -3px, rgb(0 0 0 / 20%) 0px -2px 6px 0px inset;
+}
+.pvp_amortizacao{
+	background:#009900;
+	color:#FFFFFF;
+	border:2px solid #003300;
+}
+.pvp_criticoA{
+	background:#FF0000;
+	color:#FFFFFF;
+	border:2px solid #990000;
+}
+.pvp_preciso{
+	background:#0005d3;
+	color:#FFFFFF;
+	border:2px solid #010591;
+}
+.pvp_criticoD{
+	background:#006600;
+	color:#FFF;
+	border:2px solid #003300;
+}
+.pvp_esquiva{
+	background:#ff8004;
+	color:#FFFFFF;
+	border:2px solid #fc922a;
+}
+/* Box Batalha 4x4 */
+.character-info-4x4 .name{
+    color: #ff893a;
+}
+.barra_exp5 #t {
+    color: white !important;
+    text-shadow: 0 0 0.2em #000, 0 0 0.2em #000, 0 0 0.2em #000;
+}

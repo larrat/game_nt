@@ -1,0 +1,87 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=dojo_batalha_lutador".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php?secao=dojo_batalha_lutador
+	2 container
+		3 container
+			4 image Naruto
+			5 image dayIcon
+			6 image nightIcon
+			7 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php?secao=dojo_batalha_lutador#
+			8 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php?secao=dojo_batalha_lutador#
+			9 link javascript:logoff()
+		10 image
+		11 image
+		12 container level-start
+			13 text LVL
+			14 heading 5, Value: 1
+				15 text 5
+		16 image Vida
+		17 text 362/362
+		18 image Chakra
+		19 text 574/574
+		20 image Stamina
+		21 text 271/271
+		22 text EXP: 42/3240
+		23 container level-end
+			24 text LVL
+			25 heading 6, Value: 1
+				26 text 6
+		27 container
+			28 image
+			29 text 8
+		30 container
+			31 image
+			32 text 8
+		33 container
+			34 image
+			35 text 4
+		36 link Description: 1, Value: narutogame.com.br/index.php?secao=fidelidade
+		37 link narutogame.com.br/index.php?secao=mensagens
+		38 link Description: 5, Value: narutogame.com.br/index.php?secao=noticias
+		39 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php?secao=jogador_vip
+		40 text 2980
+		41 heading DESAFIO DOJO, Value: 1
+			42 text DESAFIO DOJO
+		43 container cnBase
+			44 container
+				45 container
+					90 container imgDP
+						91 text Pontos de Crítico
+						92 text Pontos de Absorção
+						93 text Pontos de Perfuração
+					46 text PERSONAGEM_TESTE ANBU Estudante Lvl. 5 Poder Ninja:
+					47 text 6950
+					48 container cnPHP2
+						49 text Vida: 362
+					50 container cnPSP2
+						51 text Chakra: 574
+					52 container cnPSTA2
+						53 text Stamina: 271
+					94 text 02:19
+					95 text Turno 1 - Seu turno
+					96 container imgDE
+						97 text Pontos de Crítico
+						98 text Pontos de Absorção
+						99 text Pontos de Perfuração
+					55 text Yagura NPC Boladão -- Lvl. 5 Poder Ninja:
+					56 text 4400
+					57 container cnEHP2
+						100 text Vida: 328
+					59 container cnESP2
+						101 text Chakra: 564
+					61 container cnESTA2
+						102 text Stamina: 234
+				63 container d-actionbar
+					64 heading Meus Jutsus:, Value: 4
+						65 text Meus Jutsus:
+					66 text Ataques (Nin/Gen)
+			103 container Description: Advertisement, ID: aswift_0
+[Publicidade e parâmetros de rastreamento omitidos]
+					105 container Description: Blank, ID: ad_iframe
+[Publicidade e parâmetros de rastreamento omitidos]
+							107 container
+								108 AXWebArea Advertisement, URL: …
+									109 container main
+[Publicidade e parâmetros de rastreamento omitidos]
+										111 link …
+
+[Rodapé e chat omitidos na cópia pública]

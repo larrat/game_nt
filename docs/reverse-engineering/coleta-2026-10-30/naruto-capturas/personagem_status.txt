@@ -1,0 +1,120 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Status do personagem" [level=1]
+- heading "Atributos" [level=2]
+- text: Taijutsu
+- paragraph: + 1 ( + 0 )
+- text: Bukijutsu
+- paragraph: + 1 ( + 0 )
+- text: Ninjutsu
+- paragraph: + 1 ( + 0 )
+- text: Genjutsu
+- paragraph: + 5 ( + 0 )
+- text: Força
+- paragraph: + 1 ( + 0 )
+- text: Agilidade
+- paragraph: + 3 ( + 0 )
+- text: Inteligência
+- paragraph: + 5 ( + 0 )
+- text: Selo
+- paragraph: + 3 ( + 0 )
+- text: Resistência
+- paragraph: + 1 ( + 0 )
+- text: Energia
+- paragraph: + 10 ( + 0 )
+- heading "Fórmulas" [level=2]
+- text: Vida
+- paragraph: 136 (+ 0)
+- text: Chakra
+- paragraph: 231 (+ 0)
+- text: Stamina
+- paragraph: 96 (+ 0)
+- text: Atk. ( Tai / Buk )
+- paragraph: 0 (+ 0)
+- text: Atk. ( Nin / Gen )
+- paragraph: 2 (+ 0)
+- text: Def. ( Tai / Buk )
+- paragraph: 0 (+ 0)
+- text: Def. ( Nin / Gen )
+- paragraph: 0 (+ 0)
+- text: Perfuração
+- paragraph: 3 (+ 0)
+- text: Precisão
+- paragraph: 3 (+ 0)
+- text: Concentração
+- paragraph: 0 (+ 0)
+- text: Percepção
+- paragraph: 0 (+ 0)
+- text: Convicção
+- paragraph: 0 (+ 0)
+- text: Determinação
+- paragraph: 1 (+ 0)
+- text: Resumo de Combates
+- text: "Vitórias NPC: 0"
+- text: "Vitórias Dojo PVP: 0"
+- text: "Vitórias Mapa PVP: 0"
+- text: "Vitórias 4x4 Dojo: 0"
+- text: "Derrotas NPC: 0"
+- text: "Derrotas Dojo PVP: 0"
+- text: "Derrotas Mapa PVP: 0"
+- text: "Derrotas 4x4 Dojo: 0"
+- text: "Empates PVP: 0"
+- text: "Empates NPC: 0"
+- text: "Fugas: 0"
+- text: Resumo de Missões
+- text: "Rank S: 0 OK / 0 Falhas"
+- text: "Rank A: 0 OK / 0 Falhas"
+- text: "Rank B: 0 OK / 0 Falhas"
+- text: "Rank C: 0 OK / 0 Falhas"
+- text: "Rank D: 0 OK / 0 Falhas"
+- text: "Tarefas: 0"
+- text: Informações Extras
+- text: "Total de Treino: 11700"
+- text: "Pontos Distribuídos: 0"
+- text: "Bingo Book Mortos: 0"
+- text: "Total de Horas Jogadas: 0h"
+- text: "Torneios NPC Vencido(s): 0"
+- text: "Torneios PVP Vencido(s): 0"
+- text: "Arenas Vencida(s): 0"
+- insertion

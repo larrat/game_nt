@@ -1,0 +1,857 @@
+{
+  "assets": [
+    {
+      "contentType": "text/css",
+      "id": "c5958d6e7a05fb31",
+      "kind": "stylesheet",
+      "name": "bootstrap.min.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "b422e8f0d465a5db",
+      "kind": "stylesheet",
+      "name": "battle.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/battle.css?v=43"
+    },
+    {
+      "contentType": "text/css",
+      "id": "bf33bb9a380a832d",
+      "kind": "stylesheet",
+      "name": "main.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/main.css?v=43"
+    },
+    {
+      "contentType": "text/css",
+      "id": "b8a2a34be80e4c3a",
+      "kind": "stylesheet",
+      "name": "info-card.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/info-card.css?v=43"
+    },
+    {
+      "contentType": "text/css",
+      "id": "9e311ece3ccc85f3",
+      "kind": "stylesheet",
+      "name": "box.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/box.css?v=43"
+    },
+    {
+      "contentType": "text/css",
+      "id": "3a39c4d6b208abb0",
+      "kind": "stylesheet",
+      "name": "dark.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/dark.css?v=43"
+    },
+    {
+      "contentType": "text/css",
+      "id": "c862b3bf214c7604",
+      "kind": "stylesheet",
+      "name": "bootstrap-tourist.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/externos/bootstrap-tourist.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "1eeda52073db0d32",
+      "kind": "stylesheet",
+      "name": "bootstrap-select.min.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/bootstrap-select.min.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "edce496ab7437235",
+      "kind": "stylesheet",
+      "name": "slick.min.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "997462c5b7bc6785",
+      "kind": "stylesheet",
+      "name": "slick-theme.min.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css"
+    },
+    {
+      "contentType": "image/png",
+      "id": "3b0a39510f7455fb",
+      "kind": "image",
+      "name": "1.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile/2/1.png"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "044ca039a8d2b633",
+      "kind": "image",
+      "name": "bag.jpg",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/bag.jpg"
+    },
+    {
+      "contentType": "image/png",
+      "id": "28d4eabf9dea9788",
+      "kind": "image",
+      "name": "logo-mobile.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logo/logo-mobile.png"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "89c1ffc27d93eb27",
+      "kind": "image",
+      "name": "brazil.svg",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/social/brazil.svg"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "fd909f2bf5332eaa",
+      "kind": "image",
+      "name": "usa.svg",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/social/usa.svg"
+    },
+    {
+      "contentType": "image/png",
+      "id": "ee49f06c0dcaea13",
+      "kind": "image",
+      "name": "2.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/topo-personagem/2.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "30ddd22350a3dad8",
+      "kind": "image",
+      "name": "heart.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/heart.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "7179fbe250f75bbb",
+      "kind": "image",
+      "name": "chakra.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/chakra.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "3655ae5a8d84157d",
+      "kind": "image",
+      "name": "stamina.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/stamina.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "0ef5716ceadca1d6",
+      "kind": "image",
+      "name": "round46.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/round46.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "14f724382d0197b2",
+      "kind": "image",
+      "name": "templo.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/templo.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "f84b3c3b19781bd6",
+      "kind": "image",
+      "name": "passe.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/passe.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "743116c62617d16c",
+      "kind": "image",
+      "name": "rotina.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/rotina.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "354d2515eb162ec9",
+      "kind": "image",
+      "name": "notificacoes.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/notificacoes.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "82dbeb04e695a039",
+      "kind": "image",
+      "name": "fidelidade.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/fidelidade.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "234024eef9265898",
+      "kind": "image",
+      "name": "Mensageiro.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Mensageiro.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "a9d2d704aaf4c935",
+      "kind": "image",
+      "name": "Noticias.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Noticias.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "611a554a141788ab",
+      "kind": "image",
+      "name": "Creditos.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Creditos.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "e5bbc284465de436",
+      "kind": "image",
+      "name": "ryous.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/ryous.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "b8122728281cbeab",
+      "kind": "image",
+      "name": "Mochila.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Mochila.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "888cc4fb0f6883f5",
+      "kind": "image",
+      "name": "1.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/destaques/1.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "ffbc43aa8b55e2ad",
+      "kind": "image",
+      "name": "twitter.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/social/twitter.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "4dc7fb3467bce83a",
+      "kind": "image",
+      "name": "facebook.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/social/facebook.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "8142ab7ff79bff64",
+      "kind": "image",
+      "name": "youtube.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/social/youtube.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "3b35254cb2e75507",
+      "kind": "image",
+      "name": "instagram.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/social/instagram.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "b1e32dfc7179a9c7",
+      "kind": "image",
+      "name": "whatsapp.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/social/whatsapp.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "8f2de4e29da1a42e",
+      "kind": "image",
+      "name": "discord.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/social/discord.png"
+    },
+    {
+      "contentType": "text/css",
+      "id": "e45949f4e803a089",
+      "kind": "stylesheet",
+      "name": "tutorial.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/css/tutorial.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "936847677dd43beb",
+      "kind": "stylesheet",
+      "name": "tabs.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/css/tabs.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "bd168691a57d03cc",
+      "kind": "stylesheet",
+      "name": "jquery.booklet.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/css/jquery.booklet.css?c=1"
+    },
+    {
+      "contentType": "text/css",
+      "id": "89fe90eb3a07bf30",
+      "kind": "stylesheet",
+      "name": "jquery.smartspinner.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/css/jquery.smartspinner.css"
+    },
+    {
+      "contentType": "image/png",
+      "id": "ab4239e685d6f2a5",
+      "kind": "image",
+      "name": "index.php",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/index.php?acao=captcha&s"
+    },
+    {
+      "contentType": "image/png",
+      "id": "ad497f05a349f038",
+      "kind": "image",
+      "name": "index.php",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/index.php?acao=captcha&_cache=20261030143620&quick"
+    },
+    {
+      "contentType": "text/css",
+      "id": "d924313ad6a7e752",
+      "kind": "stylesheet",
+      "name": "header.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/header.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "8d43bb9d02c49909",
+      "kind": "stylesheet",
+      "name": "info-card.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/info-card.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "bb2f6639d07203dc",
+      "kind": "stylesheet",
+      "name": "main-card.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/main-card.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "5f7fa2e000bffe2d",
+      "kind": "stylesheet",
+      "name": "points.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/points.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "60ab5534e408f338",
+      "kind": "stylesheet",
+      "name": "footer.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/footer.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "67eff64788dcf70c",
+      "kind": "stylesheet",
+      "name": "menu-fixed.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/menu-fixed.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "4b61b0183f09b788",
+      "kind": "stylesheet",
+      "name": "alerts.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/alerts.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "fddf7c9576afe4a4",
+      "kind": "stylesheet",
+      "name": "menu-mobile.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/menu-mobile.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "1451a33b1b9031fe",
+      "kind": "stylesheet",
+      "name": "personagem.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/personagem.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "b8313117c2c7667e",
+      "kind": "stylesheet",
+      "name": "personagem_cri_sel.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/personagem_cri_sel.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "189340af59777e00",
+      "kind": "stylesheet",
+      "name": "bootstrap-theme.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/bootstrap-theme.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "928d7a4dc7874a78",
+      "kind": "stylesheet",
+      "name": "geral.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/geral.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "617d5e3d52400db0",
+      "kind": "stylesheet",
+      "name": "cards.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/cards.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "78ec76a943bd8404",
+      "kind": "stylesheet",
+      "name": "box.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/box.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "646fb59aa206a3bf",
+      "kind": "stylesheet",
+      "name": "box-batalha.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/box-batalha.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "34b49a56d058de0c",
+      "kind": "stylesheet",
+      "name": "box-batalha-4x4.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/box-batalha-4x4.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "03c5391ed173d5ea",
+      "kind": "stylesheet",
+      "name": "packs.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/packs.css"
+    },
+    {
+      "contentType": "text/css",
+      "id": "b29599d6b352982f",
+      "kind": "stylesheet",
+      "name": "universal-tooltip.css",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/css/universal-tooltip.css"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "3f0e8cb57c991f17",
+      "kind": "image",
+      "name": "vila-1.jpg",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/topos/vila-1.jpg"
+    },
+    {
+      "contentType": "image/png",
+      "id": "148f991c4b831cb7",
+      "kind": "image",
+      "name": "border-chamfer-orange-dark.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/home/backgrounds/border-chamfer-orange-dark.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "b24871c38087a43b",
+      "kind": "image",
+      "name": "chat_title.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/chat/chat_title.png"
+    },
+    {
+      "contentType": "image/gif",
+      "id": "1dac2c7948cec7cc",
+      "kind": "image",
+      "name": "p",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://ic.tynt.com/b/p?id=w!49an6wmdnc&lm=0&ts=1793381780873&dn=TC&iso=0&pu=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu&r=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu&t=Naruto%20Game%20-%20Esse%20%C3%A9%20o%20seu%20jeito%20Ninja%20de%20ser&chpv=26.7.1&chuav=Not%3AA-Brand%3Bv%3D8.0.0.0%2C%20Chromium%3Bv%3D156.0.8078.48%2C%20Google%20Chrome%3Bv%3D156.0.8078.48&chp=macOS&chmob=0&chua=Not%3AA-Brand%3Bv%3D8%2C%20Chromium%3Bv%3D156%2C%20Google%20Chrome%3Bv%3D156"
+    },
+    {
+      "contentType": "image/png",
+      "id": "904c14f4784792d3",
+      "kind": "image",
+      "name": "17.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/2/17.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "eb7d7a371ce00134",
+      "kind": "image",
+      "name": "6.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/275/6.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "6ecd0096119d988c",
+      "kind": "image",
+      "name": "1.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/3/1.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "6d243cdfd3e2f0d1",
+      "kind": "image",
+      "name": "1.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/456/1.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "347525e5102092a7",
+      "kind": "image",
+      "name": "5.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/403/5.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "d647be94ce2b1d4a",
+      "kind": "image",
+      "name": "4.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/79/4.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "4a1db6b9822af160",
+      "kind": "image",
+      "name": "8.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/3/8.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "5d80b39f2d61e44b",
+      "kind": "image",
+      "name": "1.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/43/1.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "0be4a04c04faccab",
+      "kind": "image",
+      "name": "2.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/102/2.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "92d23385ae5fa332",
+      "kind": "image",
+      "name": "15.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://www.narutogame.com.br/assets/images/logado/profile-4x4/475/15.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "45483275b1d4f043",
+      "kind": "image",
+      "name": "kage_5.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://www.narutogame.com.br/assets/images/logado/chat/kage_5.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "af06d396080d892b",
+      "kind": "image",
+      "name": "6.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/950/6.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "7fad29edd9eab69b",
+      "kind": "image",
+      "name": "14.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/42/14.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "ca29ac9459bfab7d",
+      "kind": "image",
+      "name": "megafone.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/chat/megafone.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "40e69eeefdacce0f",
+      "kind": "image",
+      "name": "6.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/430/6.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "dbc0b5dc7bb44582",
+      "kind": "image",
+      "name": "shield.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/chat/shield.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "da969d6d90f34201",
+      "kind": "image",
+      "name": "4.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/505/4.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "05e7f9cbd26311da",
+      "kind": "image",
+      "name": "8.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/116/8.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "d9b05f14ed9d7307",
+      "kind": "image",
+      "name": "kage_6.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/chat/kage_6.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "40a71a3aa139b4ad",
+      "kind": "image",
+      "name": "4.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/743/4.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "a906d7a424f18dc4",
+      "kind": "image",
+      "name": "espada.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/chat/espada.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "d1121352caa60410",
+      "kind": "image",
+      "name": "2.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/119/2.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "b4ec7b3b75d84c43",
+      "kind": "image",
+      "name": "6.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/emotes/6.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "d9f26e0c1c45c5ad",
+      "kind": "image",
+      "name": "6.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/203/6.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "ed08faabe49cba6f",
+      "kind": "image",
+      "name": "9.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/915/9.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "474a5f448f26044e",
+      "kind": "image",
+      "name": "47.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/52/47.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "ac330ca025c14a32",
+      "kind": "image",
+      "name": "bg_highlights2.png",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/images/logado/bg_highlights2.png"
+    },
+    {
+      "contentType": "font/ttf",
+      "id": "67d0bca2899b914a",
+      "kind": "font",
+      "name": "mistral-webfont.ttf",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "https://narutogame.com.br/assets/fonts/mistral-webfont.ttf"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "4ab452c4e44368c8",
+      "kind": "image",
+      "name": "dayIcon",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "inline-svg:4ab452c4e44368c8"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "8540701dba621fc6",
+      "kind": "image",
+      "name": "nightIcon",
+      "path": "[CAMINHO_TEMPORARIO]",
+      "url": "inline-svg:8540701dba621fc6"
+    }
+  ],
+  "failures": [
+    {
+      "contentType": null,
+      "id": "6cfda6e89e0f2ca3",
+      "name": "free.min.css",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/css/free.min.css?token=9e658afd93"
+    },
+    {
+      "contentType": null,
+      "id": "520d4d7eda1a70d2",
+      "name": "free-v4-shims.min.css",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/css/free-v4-shims.min.css?token=9e658afd93"
+    },
+    {
+      "contentType": null,
+      "id": "e4d646ba3db96a5d",
+      "name": "free-v4-font-face.min.css",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/css/free-v4-font-face.min.css?token=9e658afd93"
+    },
+    {
+      "contentType": null,
+      "id": "684425550089cb04",
+      "name": "free-fa-solid-900.woff2",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/webfonts/free-fa-solid-900.woff2"
+    },
+    {
+      "contentType": null,
+      "id": "6c8cfa8e78be7894",
+      "name": "free-fa-brands-400.woff2",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/webfonts/free-fa-brands-400.woff2"
+    },
+    {
+      "contentType": null,
+      "id": "0c6157a76cc6e01d",
+      "name": "free-fa-regular-400.woff2",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/webfonts/free-fa-regular-400.woff2"
+    },
+    {
+      "contentType": null,
+      "id": "22bb8c0e77eb0fc3",
+      "name": "__utm.gif",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "[URL_PUBLICIDADE_OMITIDA]"
+    },
+    {
+      "contentType": null,
+      "id": "a4454025abc09ded",
+      "name": "https://pixel.onaudience.com/?partner=137085098&mapped=10401793301964FF42894C8E1102E9D2",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://pixel.onaudience.com/?partner=137085098&mapped=10401793301964FF42894C8E1102E9D2"
+    },
+    {
+      "contentType": null,
+      "id": "f11a52f7a5243797",
+      "name": "segment",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://newshinyd.com/tracking/segment?key=q8xym3d"
+    },
+    {
+      "contentType": null,
+      "id": "76f8c54c560c9ba4",
+      "name": "segment",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://analytics.ozlinedsp.com/tracking/segment?key=duq6kfz"
+    },
+    {
+      "contentType": null,
+      "id": "095bd3bf674e2eb4",
+      "name": "pixel",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://ps.eyeota.net/pixel?pid=c9gd671&t=gif&uid=IWx692rjnc0e3%2FuoaR1Qgw%3D%3D&us_privacy=&33random=1793381781401.1&cat=33across"
+    },
+    {
+      "contentType": null,
+      "id": "8f094d07869cda1b",
+      "name": "pixel",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://ps.eyeota.net/pixel?pid=c9gd671&t=gif&uid=IWx692rjnc0e3%2FuoaR1Qgw%3D%3D&us_privacy=&33random=1793381781401.2&cat=33across"
+    },
+    {
+      "contentType": null,
+      "id": "3d6adf88b82a0925",
+      "name": "pixel",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: TypeError: Failed to fetch\n    at Soe (<anonymous>:1:42)\n    at <anonymous>:1:355",
+      "url": "https://ps.eyeota.net/pixel?pid=c9gd671&t=gif&uid=IWx692rjnc0e3%2FuoaR1Qgw%3D%3D&us_privacy=&33random=1793381781401.3&cat=33across"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-30",
+  "source": "https://narutogame.com.br",
+  "charactersInVipFilter": 230,
+  "distinctNamesInTemple": 239,
+  "versions": 767,
+  "galleriesInspected": 767,
+  "galleryReferences": 5369,
+  "uniqueMedia": 6128,
+  "localMedia": 711,
+  "emptyGalleries": [
+    {
+      "id": "465",
+      "name": "Zetsu",
+      "version": "Guruguru"
+    }
+  ],
+  "scope": "Todas as versões e galerias expostas pelo Templo Ninja com filtro Todos nesta sessão; inclui galeria VIP. Não garante arquivos não expostos pelo site, artes de combate, topos, fundos ou versões futuras."
+}

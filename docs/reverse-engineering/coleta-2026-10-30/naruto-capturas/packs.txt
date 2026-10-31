@@ -1,0 +1,342 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Pacotes" [level=1]
+- generic: Tokens
+- generic: Personagens
+- generic: Equipamentos
+- generic: Fragmentos
+- generic: Armas
+- generic: Especiais
+- generic: Esgotados
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Ada - Idol
+- button "10 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Junna Uchiha - Fandom
+- button "10 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- text: Mei - Halloween
+- generic: "Ativo por: 10 Dias 07 Horas 24 Min 46 Seg"
+- button "5 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- text: Temari - Halloween
+- generic: "Ativo por: 10 Dias 07 Horas 24 Min 46 Seg"
+- button "5 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- text: Tenten - Halloween
+- generic: "Ativo por: 10 Dias 07 Horas 24 Min 46 Seg"
+- button "5 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Shikamaru - Pai
+- button "10 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Temari - Mãe
+- button "10 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Sakura Haruno - Mangá
+- button "10 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Sasuke Uchiha - Mangá
+- button "10 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Momoshiki - Otsutsuki
+- button "5 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Goku - O Saiyajin Ninja
+- button "5 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Naruto - O Ninja Saiyajin
+- button "5 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Buntan - Boruto
+- button "5 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Delta - Boruto
+- button "5 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Jigen - Boruto
+- button "5 Créditos"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Urashiki Ootsutsuki - Boruto
+- button "5 Créditos"
+- text: "3"
+- text: Items
+- generic: 
+- generic: Pacote de Equipamentos II
+- button "Grátis"
+- text: "5"
+- text: Items
+- generic: Pacote de Equipamentos
+- button "7 Pts. Fidelidade"
+- text: "3"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: "Arma Lendária: Gunbai"
+- button "2000 Ryous"
+- button "2 Créditos"
+- text: "3"
+- text: Items
+- generic: 
+- text: Bruxinhas(os) no Halloween
+- generic: "Ativo por: 10 Dias 07 Horas 24 Min 46 Seg"
+- button "3 Créditos"
+- text: "3"
+- text: Items
+- generic: 
+- text: Meninos no Halloween
+- generic: "Ativo por: 10 Dias 07 Horas 24 Min 46 Seg"
+- button "Grátis"
+- text: "3"
+- text: Items
+- generic: 
+- text: Meninas no Halloween
+- generic: "Ativo por: 10 Dias 07 Horas 24 Min 46 Seg"
+- button "3000 Ryous"
+- text: "5"
+- text: Items
+- generic: 
+- generic: Pacote de Refinamento
+- button "10000 Ryous"
+- text: "10"
+- text: Items
+- generic: 
+- generic: Pacote de Reforço
+- button "7500 Ryous"
+- text: "3"
+- text: Items
+- generic: 
+- generic: Pacote de Pergaminhos
+- button "6000 Ryous"
+- text: "5"
+- text: Items
+- generic: 
+- generic: Pacote de Armas
+- button "4000 Ryous"
+- text: "2"
+- text: Items
+- generic: 
+- generic: Pacote de Aprim. de Jutsu
+- button "2000 Ryous"
+- text: "3"
+- text: Items
+- generic: 
+- generic: Pacote Sortido
+- button "3000 Ryous"
+- button "3 Créditos"
+- text: "3"
+- text: Items
+- generic: 
+- generic: Chakra de Bijuus
+- button "Grátis"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- text: Boruto - Halloween
+- generic: "Ativo por: 10 Dias 07 Horas 24 Min 46 Seg"
+- button "10 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- text: Orochimaru - Halloween
+- generic: "Ativo por: 10 Dias 07 Horas 24 Min 46 Seg"
+- button "10 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Rock Lee - Pai
+- button "10 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Tenten - Idol
+- button "10 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Orochimaru - Copa 2026
+- button "10 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Tsunade - Copa 2026
+- button "10 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Hinata Mangá
+- button "10 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Ino - Mangá
+- button "10 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Kushina - Mãe
+- button "7 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Breeze Dancer - Clássica
+- button "7 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Azure Fang - Clássica
+- button "7 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Shin Uchiha - Clássico
+- button "5 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Boro - Boruto
+- button "5 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Houki Taketori - Boruto
+- button "3 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Ryuuzetsu - Clássico
+- button "3 Tokens"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Sasuke - Rikudou
+- button "Esgotado"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Naruto - Rikudou
+- button "Esgotado"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Konan - Anjo
+- button "Esgotado"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Kashin Koji - O Clone do Jiraya
+- button "Esgotado"
+- text: "5"
+- text: Items
+- text: "1"
+- text: Limite
+- generic: Kawaki - Receptáculo do Otsutsuki
+- button "Esgotado"

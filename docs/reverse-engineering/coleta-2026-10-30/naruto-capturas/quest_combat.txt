@@ -1,0 +1,459 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Missões de Combate" [level=1]
+- main:
+  - heading "Vencedores do momento" [level=3]
+  - generic: O maior perdedor Diário de Dojo NPC
+  - generic: 1000 ryous
+  - text: 11 Derrotas Dojo NPC
+  - generic: O maior perdedor Semanal de Dojo NPC
+  - text: 2000 ryous
+  - text: 2 Créditos
+  - text: 14 Derrotas Dojo NPC
+  - generic: O maior empatador Mensal de Combates
+  - text: 3000 ryous
+  - text: 5 Créditos
+  - generic: 500 Empates
+- generic: Missões Diárias
+- generic: Missões Semanais
+- generic: Missões Mensais
+- table:
+  - rowgroup:
+    - row "Personagem Level Vila Nome da Missão Data da Missão":
+      - columnheader "Personagem"
+      - columnheader "Level"
+      - columnheader "Vila"
+      - columnheader "Nome da Missão"
+      - columnheader "Data da Missão"
+- table:
+  - rowgroup:
+    - row "Player Offline itachi_Nuk Sannin da Folha 26 O maior vencedor Diário de Dojo NPC 27/10/2026 às 23:55:01":
+      - cell "Player Offline itachi_Nuk Sannin da Folha":
+        - link "Player Offline itachi_Nuk":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: itachi_Nuk
+        - text: Sannin da Folha
+      - cell "26"
+      - cell:
+      - cell "O maior vencedor Diário de Dojo NPC"
+      - cell "27/10/2026 às 23:55:01"
+    - row "Player Offline Izk Jounin 28 O maior perdedor Diário de Mapa PVP 26/10/2026 às 23:55:01":
+      - cell "Player Offline Izk Jounin":
+        - link "Player Offline Izk":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Izk
+        - text: Jounin
+      - cell "28"
+      - cell:
+      - cell "O maior perdedor Diário de Mapa PVP"
+      - cell "26/10/2026 às 23:55:01"
+    - row "Player Offline leugiM O Juiz do Destino 29 O maior vencedor Diário de Dojo NPC 25/10/2026 às 23:55:01":
+      - cell "Player Offline leugiM O Juiz do Destino":
+        - link "Player Offline leugiM":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: leugiM
+        - text: O Juiz do Destino
+      - cell "29"
+      - cell:
+      - cell "O maior vencedor Diário de Dojo NPC"
+      - cell "25/10/2026 às 23:55:01"
+    - row "Player Offline PERSONAGEM_TESTE 9 O maior vencedor Diário de Dojo PVP 24/10/2026 às 23:55:02":
+      - cell "Player Offline PERSONAGEM_TESTE":
+        - link "Player Offline PERSONAGEM_TESTE":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: PERSONAGEM_TESTE
+      - cell "9"
+      - cell:
+      - cell "O maior vencedor Diário de Dojo PVP"
+      - cell "24/10/2026 às 23:55:02"
+    - row "Player Offline GabrieruRocha 9 O maior perdedor Diário de Dojo NPC 23/10/2026 às 23:55:01":
+      - cell "Player Offline GabrieruRocha":
+        - link "Player Offline GabrieruRocha":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: GabrieruRocha
+      - cell "9"
+      - cell:
+      - cell "O maior perdedor Diário de Dojo NPC"
+      - cell "23/10/2026 às 23:55:01"
+    - row "Player Online Tenebris O Renegado 38 O maior vencedor Diário de Mapa PVP 22/10/2026 às 23:55:01":
+      - cell "Player Online Tenebris O Renegado":
+        - link "Player Online Tenebris":
+          - /url: javascript:void(0)
+          - img "Player Online"
+          - text: Tenebris
+        - text: O Renegado
+      - cell "38"
+      - cell:
+      - cell "O maior vencedor Diário de Mapa PVP"
+      - cell "22/10/2026 às 23:55:01"
+    - row "Player Offline Angola1000 11 O maior perdedor Diário de Dojo NPC 21/10/2026 às 23:55:01":
+      - cell "Player Offline Angola1000":
+        - link "Player Offline Angola1000":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Angola1000
+      - cell "11"
+      - cell:
+      - cell "O maior perdedor Diário de Dojo NPC"
+      - cell "21/10/2026 às 23:55:01"
+    - row "Player Online QiiRolasso O Senhor do Espaço-Tempo 42 O maior empatador Diário de Combates 20/10/2026 às 23:55:01":
+      - cell "Player Online QiiRolasso O Senhor do Espaço-Tempo":
+        - link "Player Online QiiRolasso":
+          - /url: javascript:void(0)
+          - img "Player Online"
+          - text: QiiRolasso
+        - text: O Senhor do Espaço-Tempo
+      - cell "42"
+      - cell:
+      - cell "O maior empatador Diário de Combates"
+      - cell "20/10/2026 às 23:55:01"
+    - row "Player Offline taremi 10 O maior perdedor Diário de Dojo NPC 19/10/2026 às 23:55:01":
+      - cell "Player Offline taremi":
+        - link "Player Offline taremi":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: taremi
+      - cell "10"
+      - cell:
+      - cell "O maior perdedor Diário de Dojo NPC"
+      - cell "19/10/2026 às 23:55:01"
+    - row "Player Offline Setsu Soberano do Campo de Batalha 37 O maior vencedor Diário de Mapa PVP 18/10/2026 às 23:55:02":
+      - cell "Player Offline Setsu Soberano do Campo de Batalha":
+        - link "Player Offline Setsu":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Setsu
+        - text: Soberano do Campo de Batalha
+      - cell "37"
+      - cell:
+      - cell "O maior vencedor Diário de Mapa PVP"
+      - cell "18/10/2026 às 23:55:02"
+    - row "Player Offline PERSONAGEM_TESTE Genin 14 O maior perdedor Diário de Dojo PVP 17/10/2026 às 23:55:01":
+      - cell "Player Offline PERSONAGEM_TESTE Genin":
+        - link "Player Offline PERSONAGEM_TESTE":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: PERSONAGEM_TESTE
+        - text: Genin
+      - cell "14"
+      - cell:
+      - cell "O maior perdedor Diário de Dojo PVP"
+      - cell "17/10/2026 às 23:55:01"
+    - row "Player Offline Kronos 37º Amekage 30 O maior vencedor Diário de Dojo NPC 16/10/2026 às 23:55:01":
+      - cell "Player Offline Kronos 37º Amekage":
+        - link "Player Offline Kronos":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Kronos
+        - text: 37º Amekage
+      - cell "30"
+      - cell:
+      - cell "O maior vencedor Diário de Dojo NPC"
+      - cell "16/10/2026 às 23:55:01"
+    - row "Player Offline KAN 15 O maior vencedor Diário de Dojo PVP 15/10/2026 às 23:55:01":
+      - cell "Player Offline KAN":
+        - link "Player Offline KAN":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: KAN
+      - cell "15"
+      - cell:
+      - cell "O maior vencedor Diário de Dojo PVP"
+      - cell "15/10/2026 às 23:55:01"
+    - row "Player Offline Aegon O Bem nunca perderá! 26 O maior vencedor Diário de Mapa PVP 14/10/2026 às 23:55:01":
+      - cell "Player Offline Aegon O Bem nunca perderá!":
+        - link "Player Offline Aegon":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Aegon
+        - text: O Bem nunca perderá!
+      - cell "26"
+      - cell:
+      - cell "O maior vencedor Diário de Mapa PVP"
+      - cell "14/10/2026 às 23:55:01"
+    - row "Player Offline Yurikoyuvaki Capitão Kankurou 30 O maior empatador Diário de Combates 13/10/2026 às 23:55:02":
+      - cell "Player Offline Yurikoyuvaki Capitão Kankurou":
+        - link "Player Offline Yurikoyuvaki":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Yurikoyuvaki
+        - text: Capitão Kankurou
+      - cell "30"
+      - cell:
+      - cell "O maior empatador Diário de Combates"
+      - cell "13/10/2026 às 23:55:02"
+    - row "Player Offline Dingo Chuunin 17 O maior perdedor Diário de Dojo NPC 12/10/2026 às 23:55:01":
+      - cell "Player Offline Dingo Chuunin":
+        - link "Player Offline Dingo":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Dingo
+        - text: Chuunin
+      - cell "17"
+      - cell:
+      - cell "O maior perdedor Diário de Dojo NPC"
+      - cell "12/10/2026 às 23:55:01"
+    - row "Player Online QiiRolasso O Senhor do Espaço-Tempo 42 O maior empatador Diário de Combates 11/10/2026 às 23:55:01":
+      - cell "Player Online QiiRolasso O Senhor do Espaço-Tempo":
+        - link "Player Online QiiRolasso":
+          - /url: javascript:void(0)
+          - img "Player Online"
+          - text: QiiRolasso
+        - text: O Senhor do Espaço-Tempo
+      - cell "42"
+      - cell:
+      - cell "O maior empatador Diário de Combates"
+      - cell "11/10/2026 às 23:55:01"
+    - row "Player Offline Nohara Ninja Treinado 26 O maior vencedor Diário de Dojo NPC 10/10/2026 às 23:55:01":
+      - cell "Player Offline Nohara Ninja Treinado":
+        - link "Player Offline Nohara":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Nohara
+        - text: Ninja Treinado
+      - cell "26"
+      - cell:
+      - cell "O maior vencedor Diário de Dojo NPC"
+      - cell "10/10/2026 às 23:55:01"
+    - row "Player Offline Bukijutsu 16 O maior vencedor Diário de Dojo PVP 09/10/2026 às 23:55:01":
+      - cell "Player Offline Bukijutsu":
+        - link "Player Offline Bukijutsu":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Bukijutsu
+      - cell "16"
+      - cell:
+      - cell "O maior vencedor Diário de Dojo PVP"
+      - cell "09/10/2026 às 23:55:01"
+    - row "Player Offline DALVAHORSE O Sábio dos Seis Caminhos 36 O maior perdedor Diário de Mapa PVP 08/10/2026 às 23:55:01":
+      - cell "Player Offline DALVAHORSE O Sábio dos Seis Caminhos":
+        - link "Player Offline DALVAHORSE":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: DALVAHORSE
+        - text: O Sábio dos Seis Caminhos
+      - cell "36"
+      - cell:
+      - cell "O maior perdedor Diário de Mapa PVP"
+      - cell "08/10/2026 às 23:55:01"
+    - row "Player Offline DALVAHORSE O Sábio dos Seis Caminhos 36 O maior perdedor Diário de Mapa PVP 07/10/2026 às 23:55:02":
+      - cell "Player Offline DALVAHORSE O Sábio dos Seis Caminhos":
+        - link "Player Offline DALVAHORSE":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: DALVAHORSE
+        - text: O Sábio dos Seis Caminhos
+      - cell "36"
+      - cell:
+      - cell "O maior perdedor Diário de Mapa PVP"
+      - cell "07/10/2026 às 23:55:02"
+    - row "Player Offline ShadowVINDCTor Chuunin 16 O maior perdedor Diário de Dojo NPC 06/10/2026 às 23:55:01":
+      - cell "Player Offline ShadowVINDCTor Chuunin":
+        - link "Player Offline ShadowVINDCTor":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: ShadowVINDCTor
+        - text: Chuunin
+      - cell "16"
+      - cell:
+      - cell "O maior perdedor Diário de Dojo NPC"
+      - cell "06/10/2026 às 23:55:01"
+    - row "Player Offline UzumakiMito 9 O maior perdedor Diário de Dojo NPC 05/10/2026 às 23:55:01":
+      - cell "Player Offline UzumakiMito":
+        - link "Player Offline UzumakiMito":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: UzumakiMito
+      - cell "9"
+      - cell:
+      - cell "O maior perdedor Diário de Dojo NPC"
+      - cell "05/10/2026 às 23:55:01"
+    - row "Player Offline AegonConqueror O Despertar do Gato Demoníaco 33 O maior vencedor Diário de Mapa PVP 04/10/2026 às 23:55:01":
+      - cell "Player Offline AegonConqueror O Despertar do Gato Demoníaco":
+        - link "Player Offline AegonConqueror":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: AegonConqueror
+        - text: O Despertar do Gato Demoníaco
+      - cell "33"
+      - cell:
+      - cell "O maior vencedor Diário de Mapa PVP"
+      - cell "04/10/2026 às 23:55:01"
+    - row "Player Online QiiRolasso O Senhor do Espaço-Tempo 42 O maior empatador Diário de Combates 03/10/2026 às 23:55:01":
+      - cell "Player Online QiiRolasso O Senhor do Espaço-Tempo":
+        - link "Player Online QiiRolasso":
+          - /url: javascript:void(0)
+          - img "Player Online"
+          - text: QiiRolasso
+        - text: O Senhor do Espaço-Tempo
+      - cell "42"
+      - cell:
+      - cell "O maior empatador Diário de Combates"
+      - cell "03/10/2026 às 23:55:01"
+    - row "Player Offline ElCamino Ho ho ho 36 O maior empatador Diário de Combates 02/10/2026 às 23:55:01":
+      - cell "Player Offline ElCamino Ho ho ho":
+        - link "Player Offline ElCamino":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: ElCamino
+        - text: Ho ho ho
+      - cell "36"
+      - cell:
+      - cell "O maior empatador Diário de Combates"
+      - cell "02/10/2026 às 23:55:01"
+    - row "Player Online Sokka Portadora do Segredo Proibido 26 O maior perdedor Diário de Mapa PVP 01/10/2026 às 23:55:01":
+      - cell "Player Online Sokka Portadora do Segredo Proibido":
+        - link "Player Online Sokka":
+          - /url: javascript:void(0)
+          - img "Player Online"
+          - text: Sokka
+        - text: Portadora do Segredo Proibido
+      - cell "26"
+      - cell:
+      - cell "O maior perdedor Diário de Mapa PVP"
+      - cell "01/10/2026 às 23:55:01"
+    - row "Player Online Tenebris O Renegado 38 O maior vencedor Diário de Dojo NPC 30/09/2026 às 23:55:02":
+      - cell "Player Online Tenebris O Renegado":
+        - link "Player Online Tenebris":
+          - /url: javascript:void(0)
+          - img "Player Online"
+          - text: Tenebris
+        - text: O Renegado
+      - cell "38"
+      - cell:
+      - cell "O maior vencedor Diário de Dojo NPC"
+      - cell "30/09/2026 às 23:55:02"
+    - row "Player Offline Brugetsu Palma de Chakra 28 O maior perdedor Diário de Dojo PVP 29/09/2026 às 23:55:01":
+      - cell "Player Offline Brugetsu Palma de Chakra":
+        - link "Player Offline Brugetsu":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Brugetsu
+        - text: Palma de Chakra
+      - cell "28"
+      - cell:
+      - cell "O maior perdedor Diário de Dojo PVP"
+      - cell "29/09/2026 às 23:55:01"
+    - row "Player Offline Higuiin Poder Amaldiçoado 43 O maior empatador Diário de Combates 27/09/2026 às 23:55:01":
+      - cell "Player Offline Higuiin Poder Amaldiçoado":
+        - link "Player Offline Higuiin":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Higuiin
+        - text: Poder Amaldiçoado
+      - cell "43"
+      - cell:
+      - cell "O maior empatador Diário de Combates"
+      - cell "27/09/2026 às 23:55:01"
+    - row "Player Offline GREYRAT 52º Mizukage 18 O maior perdedor Diário de Dojo PVP 26/09/2026 às 23:55:01":
+      - cell "Player Offline GREYRAT 52º Mizukage":
+        - link "Player Offline GREYRAT":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: GREYRAT
+        - text: 52º Mizukage
+      - cell "18"
+      - cell:
+      - cell "O maior perdedor Diário de Dojo PVP"
+      - cell "26/09/2026 às 23:55:01"
+    - row "Player Offline Ladrao 27º Hokage 47 O maior vencedor Diário de Dojo PVP 25/09/2026 às 23:55:01":
+      - cell "Player Offline Ladrao 27º Hokage":
+        - link "Player Offline Ladrao":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Ladrao
+        - text: 27º Hokage
+      - cell "47"
+      - cell:
+      - cell "O maior vencedor Diário de Dojo PVP"
+      - cell "25/09/2026 às 23:55:01"
+- table:
+  - rowgroup:
+    - row "Player Offline Boris Caçador de Espadachim 10 O maior perdedor Semanal de Dojo PVP 21/10/2026 às 23:55:01":
+      - cell "Player Offline Boris Caçador de Espadachim":
+        - link "Player Offline Boris":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Boris
+        - text: Caçador de Espadachim
+      - cell "10"
+      - cell:
+      - cell "O maior perdedor Semanal de Dojo PVP"
+      - cell "21/10/2026 às 23:55:01"
+    - row "Player Offline Angola1000 11 O maior perdedor Semanal de Dojo NPC 14/10/2026 às 23:55:01":
+      - cell "Player Offline Angola1000":
+        - link "Player Offline Angola1000":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Angola1000
+      - cell "11"
+      - cell:
+      - cell "O maior perdedor Semanal de Dojo NPC"
+      - cell "14/10/2026 às 23:55:01"
+    - row "Player Offline Bukijutsu 16 O maior vencedor Semanal de Dojo PVP 07/10/2026 às 23:55:02":
+      - cell "Player Offline Bukijutsu":
+        - link "Player Offline Bukijutsu":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: Bukijutsu
+      - cell "16"
+      - cell:
+      - cell "O maior vencedor Semanal de Dojo PVP"
+      - cell "07/10/2026 às 23:55:02"
+    - row "Player Offline DALVAHORSE O Sábio dos Seis Caminhos 36 O maior perdedor Semanal de Mapa PVP 28/09/2026 às 23:55:01":
+      - cell "Player Offline DALVAHORSE O Sábio dos Seis Caminhos":
+        - link "Player Offline DALVAHORSE":
+          - /url: javascript:void(0)
+          - img "Player Offline"
+          - text: DALVAHORSE
+        - text: O Sábio dos Seis Caminhos
+      - cell "36"
+      - cell:
+      - cell "O maior perdedor Semanal de Mapa PVP"
+      - cell "28/09/2026 às 23:55:01"

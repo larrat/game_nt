@@ -1,0 +1,92 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=selo".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php?secao=selo
+	2 container
+		3 container
+			4 image Naruto
+			5 image dayIcon
+			6 image nightIcon
+			7 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php?secao=selo#
+			8 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php?secao=selo#
+			9 link javascript:logoff()
+		10 image
+		11 image
+		12 container level-start
+			13 text LVL
+			14 heading 5, Value: 1
+				15 text 5
+		16 image Vida
+		17 text 362/362
+		18 image Chakra
+		19 text 496/574
+		20 image Stamina
+		21 text 239/271
+		22 text EXP: 342/3240
+		23 container level-end
+			24 text LVL
+			25 heading 6, Value: 1
+				26 text 6
+		27 container
+			28 image
+			29 text 8
+		30 container
+			31 image
+			32 text 8
+		33 container
+			34 image
+			35 text 4
+		36 link Description: 1, Value: narutogame.com.br/index.php?secao=fidelidade
+		37 link narutogame.com.br/index.php?secao=mensagens
+		38 link Description: 5, Value: narutogame.com.br/index.php?secao=noticias
+		39 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php?secao=jogador_vip
+		40 text 3292
+		41 heading SELOS AMALDIÇOADOS, Value: 1
+			42 text SELOS AMALDIÇOADOS
+		43 container
+			44 heading Escolha seu Selo, Value: 3
+				45 text Escolha seu Selo
+			46 container
+				47 container Selo Amaldiçoado do Céu
+					48 image Selo Amaldiçoado do Céu
+				49 container Selo Amaldiçoado da Terra
+					50 image Selo Amaldiçoado da Terra
+				51 container Selo Amaldiçoado da Lua
+					52 image Selo Amaldiçoado da Lua
+			108 container selo-desc-1
+				109 heading Selo Amaldiçoado do Céu, Value: 3
+					110 text Selo Amaldiçoado do Céu
+				111 text Selo Amaldiçoado do Céu, concedido por Orochimaru, como um dos seus Jutsus Proibidos. No primeiro nível, é como uma adaptação para um poder extremo. O poder originado no segundo nível é assustador, e se o usuário não o controlar, pode morrer. Excelente para Ninjutsus Users ou Balanceados.
+		53 button Aceitar Selo, ID: selo-join
+		54 container
+			55 image
+			56 text Selo Amaldiçoado do Céu I
+			57 text + 4
+			58 image
+			59 text + 4
+			60 image
+			61 text + 4
+			62 image
+			63 text + 8
+			64 image
+			65 button Treinar
+			66 image
+			67 text Selo Amaldiçoado do Céu II
+			68 text + 8
+			69 image
+			70 text + 6
+			71 image
+			72 text + 6
+			73 image
+			74 text + 10
+			75 image
+			76 button Treinar
+		112 container aswift_0_host
+			113 heading Description: Estes são tópicos relacionados com o artigo que podem ser do seu interesse, Value: 2
+				114 text Descobrir mais
+			115 link Jogos
+				116 text Jogos
+			117 link Ver Jogos
+				118 text Ver Jogos
+			119 link GAME
+				120 text GAME
+
+[Rodapé e chat omitidos na cópia pública]

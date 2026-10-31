@@ -1,0 +1,922 @@
+[
+  {
+    "id": "1",
+    "name": "Naruto Uzumaki"
+  },
+  {
+    "id": "2",
+    "name": "Sasuke Uchiha"
+  },
+  {
+    "id": "42",
+    "name": "Sakura Haruno"
+  },
+  {
+    "id": "60",
+    "name": "Kakashi Hatake"
+  },
+  {
+    "id": "69",
+    "name": "Hinata Hyuuga"
+  },
+  {
+    "id": "58",
+    "name": "Shino Aburame"
+  },
+  {
+    "id": "95",
+    "name": "Kiba Inuzuka"
+  },
+  {
+    "id": "91",
+    "name": "Kurenai Yuuhi"
+  },
+  {
+    "id": "59",
+    "name": "Ino Yamanaka"
+  },
+  {
+    "id": "62",
+    "name": "Shikamaru Nara"
+  },
+  {
+    "id": "94",
+    "name": "Chouji Akimichi"
+  },
+  {
+    "id": "79",
+    "name": "Asuma Sarutobi"
+  },
+  {
+    "id": "3",
+    "name": "Rock Lee"
+  },
+  {
+    "id": "57",
+    "name": "Neji Hyuuga"
+  },
+  {
+    "id": "56",
+    "name": "Tenten"
+  },
+  {
+    "id": "61",
+    "name": "Maito Gai"
+  },
+  {
+    "id": "73",
+    "name": "Konohamaru Sarutobi"
+  },
+  {
+    "id": "184",
+    "name": "Moegi"
+  },
+  {
+    "id": "188",
+    "name": "Udon"
+  },
+  {
+    "id": "66",
+    "name": "Ebisu"
+  },
+  {
+    "id": "63",
+    "name": "Jiraiya"
+  },
+  {
+    "id": "102",
+    "name": "Tsunade Senju"
+  },
+  {
+    "id": "110",
+    "name": "Hiruzen Sarutobi"
+  },
+  {
+    "id": "87",
+    "name": "Anko Mitarashi"
+  },
+  {
+    "id": "98",
+    "name": "Iruka Umino"
+  },
+  {
+    "id": "67",
+    "name": "Hayate Gekkou"
+  },
+  {
+    "id": "80",
+    "name": "Genma Shiranui"
+  },
+  {
+    "id": "86",
+    "name": "Ibiki Morino"
+  },
+  {
+    "id": "157",
+    "name": "Uzuki Yuugao"
+  },
+  {
+    "id": "163",
+    "name": "Izumo Kamizuki"
+  },
+  {
+    "id": "124",
+    "name": "Kotetsu Hagane"
+  },
+  {
+    "id": "175",
+    "name": "Aoba Yamashiro"
+  },
+  {
+    "id": "235",
+    "name": "Boruto Uzumaki"
+  },
+  {
+    "id": "236",
+    "name": "Sarada Uchiha"
+  },
+  {
+    "id": "237",
+    "name": "Mitsuki"
+  },
+  {
+    "id": "245",
+    "name": "Inojin Yamanaka"
+  },
+  {
+    "id": "246",
+    "name": "Shikadai Nara"
+  },
+  {
+    "id": "247",
+    "name": "Chouchou Akimichi"
+  },
+  {
+    "id": "248",
+    "name": "Metal Lee"
+  },
+  {
+    "id": "249",
+    "name": "Himawari Uzumaki"
+  },
+  {
+    "id": "250",
+    "name": "Mirai Sarutobi"
+  },
+  {
+    "id": "261",
+    "name": "Iwabee Yuino"
+  },
+  {
+    "id": "265",
+    "name": "Sumire"
+  },
+  {
+    "id": "266",
+    "name": "Kawaki"
+  },
+  {
+    "id": "267",
+    "name": "Kashin Koji"
+  },
+  {
+    "id": "55",
+    "name": "Itachi Uchiha"
+  },
+  {
+    "id": "212",
+    "name": "Izuna Uchiha"
+  },
+  {
+    "id": "122",
+    "name": "Madara Uchiha"
+  },
+  {
+    "id": "178",
+    "name": "Fugaku Uchiha"
+  },
+  {
+    "id": "231",
+    "name": "Mikoto Uchiha"
+  },
+  {
+    "id": "220",
+    "name": "Shisui Uchiha"
+  },
+  {
+    "id": "224",
+    "name": "Kagami Uchiha"
+  },
+  {
+    "id": "90",
+    "name": "Obito Uchiha"
+  },
+  {
+    "id": "112",
+    "name": "Rin Nohara"
+  },
+  {
+    "id": "84",
+    "name": "Minato Namikaze"
+  },
+  {
+    "id": "126",
+    "name": "Kushina Uzumaki"
+  },
+  {
+    "id": "239",
+    "name": "Mito Uzumaki"
+  },
+  {
+    "id": "78",
+    "name": "Hashirama Senju"
+  },
+  {
+    "id": "75",
+    "name": "Tobirama Senju"
+  },
+  {
+    "id": "81",
+    "name": "Shizune"
+  },
+  {
+    "id": "176",
+    "name": "Dan Katou"
+  },
+  {
+    "id": "185",
+    "name": "Nawaki Senju"
+  },
+  {
+    "id": "100",
+    "name": "Yamato"
+  },
+  {
+    "id": "99",
+    "name": "Sai"
+  },
+  {
+    "id": "123",
+    "name": "Chouza Akimichi"
+  },
+  {
+    "id": "127",
+    "name": "Sakumo Hatake"
+  },
+  {
+    "id": "139",
+    "name": "Shikaku Nara"
+  },
+  {
+    "id": "136",
+    "name": "Inoichi Yamanaka"
+  },
+  {
+    "id": "147",
+    "name": "Shibi Aburame"
+  },
+  {
+    "id": "132",
+    "name": "Hiashi Hyuuga"
+  },
+  {
+    "id": "131",
+    "name": "Hanabi Hyuuga"
+  },
+  {
+    "id": "111",
+    "name": "Sora"
+  },
+  {
+    "id": "129",
+    "name": "Danzou Shimura"
+  },
+  {
+    "id": "162",
+    "name": "Homura Mitokado"
+  },
+  {
+    "id": "165",
+    "name": "Koharu Utatane"
+  },
+  {
+    "id": "169",
+    "name": "Raidou Namiashi"
+  },
+  {
+    "id": "167",
+    "name": "Mizuki Touji"
+  },
+  {
+    "id": "180",
+    "name": "Hana Inuzuka"
+  },
+  {
+    "id": "187",
+    "name": "Tsume Inuzuka"
+  },
+  {
+    "id": "210",
+    "name": "Muta Aburame"
+  },
+  {
+    "id": "211",
+    "name": "Ensui Nara"
+  },
+  {
+    "id": "232",
+    "name": "Kizashi Haruno"
+  },
+  {
+    "id": "192",
+    "name": "Torune Aburame"
+  },
+  {
+    "id": "179",
+    "name": "Fuu Yamanaka"
+  },
+  {
+    "id": "264",
+    "name": "Maito Dai"
+  },
+  {
+    "id": "227",
+    "name": "Shin"
+  },
+  {
+    "id": "681",
+    "name": "Chen"
+  },
+  {
+    "id": "682",
+    "name": "Hizashi"
+  },
+  {
+    "id": "701",
+    "name": "Ada"
+  },
+  {
+    "id": "702",
+    "name": "Code"
+  },
+  {
+    "id": "703",
+    "name": "Delta"
+  },
+  {
+    "id": "704",
+    "name": "Jigen"
+  },
+  {
+    "id": "708",
+    "name": "Hoki Takedori"
+  },
+  {
+    "id": "711",
+    "name": "Wasabi Izuno"
+  },
+  {
+    "id": "712",
+    "name": "Tsubaki Kurogane"
+  },
+  {
+    "id": "713",
+    "name": "Shizuma Hoshigaki"
+  },
+  {
+    "id": "714",
+    "name": "Namida Suzumeno"
+  },
+  {
+    "id": "715",
+    "name": "Kirara"
+  },
+  {
+    "id": "719",
+    "name": "Hako Kuroi"
+  },
+  {
+    "id": "720",
+    "name": "Denki Kaminarimon"
+  },
+  {
+    "id": "731",
+    "name": "Goku"
+  },
+  {
+    "id": "733",
+    "name": "Jura"
+  },
+  {
+    "id": "734",
+    "name": "Hiruko"
+  },
+  {
+    "id": "735",
+    "name": "Kawaki"
+  },
+  {
+    "id": "775",
+    "name": "Teuchi"
+  },
+  {
+    "id": "777",
+    "name": "Matsuri"
+  },
+  {
+    "id": "778",
+    "name": "Kae Yukiwari"
+  },
+  {
+    "id": "783",
+    "name": "Junna Uchiha"
+  },
+  {
+    "id": "784",
+    "name": "Shion"
+  },
+  {
+    "id": "785",
+    "name": "Hanare"
+  },
+  {
+    "id": "788",
+    "name": "Boro"
+  },
+  {
+    "id": "789",
+    "name": "Daemon"
+  },
+  {
+    "id": "800",
+    "name": "Breeze Dancer"
+  },
+  {
+    "id": "818",
+    "name": "Azure Fang"
+  },
+  {
+    "id": "809",
+    "name": "Houki Taketori"
+  },
+  {
+    "id": "813",
+    "name": "Ryuuzetsu"
+  },
+  {
+    "id": "4",
+    "name": "Sabaku no Gaara"
+  },
+  {
+    "id": "47",
+    "name": "Temari"
+  },
+  {
+    "id": "46",
+    "name": "Kankurou"
+  },
+  {
+    "id": "65",
+    "name": "Baki"
+  },
+  {
+    "id": "251",
+    "name": "Shinki"
+  },
+  {
+    "id": "252",
+    "name": "Yodo"
+  },
+  {
+    "id": "253",
+    "name": "Araya"
+  },
+  {
+    "id": "114",
+    "name": "Matsuri"
+  },
+  {
+    "id": "120",
+    "name": "Chiyo"
+  },
+  {
+    "id": "177",
+    "name": "Ebizou"
+  },
+  {
+    "id": "172",
+    "name": "Rasa"
+  },
+  {
+    "id": "195",
+    "name": "Pakura"
+  },
+  {
+    "id": "213",
+    "name": "Maki"
+  },
+  {
+    "id": "240",
+    "name": "Shira"
+  },
+  {
+    "id": "263",
+    "name": "Kagura Karatachi"
+  },
+  {
+    "id": "43",
+    "name": "Zabuza Momochi"
+  },
+  {
+    "id": "44",
+    "name": "Haku"
+  },
+  {
+    "id": "262",
+    "name": "Juzo Biwa"
+  },
+  {
+    "id": "118",
+    "name": "Suigetsu Hoozuki"
+  },
+  {
+    "id": "204",
+    "name": "Jinin Akebino"
+  },
+  {
+    "id": "205",
+    "name": "Jinpachi Munashi"
+  },
+  {
+    "id": "206",
+    "name": "Ameyuri Ringo"
+  },
+  {
+    "id": "207",
+    "name": "Fuguki Suikazan"
+  },
+  {
+    "id": "208",
+    "name": "Kushimaru Kuriarare"
+  },
+  {
+    "id": "209",
+    "name": "Mangetsu Hoozuki"
+  },
+  {
+    "id": "142",
+    "name": "Yagura"
+  },
+  {
+    "id": "143",
+    "name": "Utakata"
+  },
+  {
+    "id": "140",
+    "name": "Mei Terumii"
+  },
+  {
+    "id": "191",
+    "name": "Choujuurou"
+  },
+  {
+    "id": "189",
+    "name": "Ao"
+  },
+  {
+    "id": "181",
+    "name": "Hotaru Katsuragi"
+  },
+  {
+    "id": "144",
+    "name": "Raiga Kurosuki"
+  },
+  {
+    "id": "214",
+    "name": "Nidaime Mizukage"
+  },
+  {
+    "id": "672",
+    "name": "Gouzu"
+  },
+  {
+    "id": "673",
+    "name": "Meizu"
+  },
+  {
+    "id": "678",
+    "name": "Gozu"
+  },
+  {
+    "id": "717",
+    "name": "Ichirota Oniyuzu"
+  },
+  {
+    "id": "182",
+    "name": "Kakkou"
+  },
+  {
+    "id": "217",
+    "name": "Roushi"
+  },
+  {
+    "id": "218",
+    "name": "Han"
+  },
+  {
+    "id": "50",
+    "name": "Suzumebachi Kamizuru"
+  },
+  {
+    "id": "141",
+    "name": "Oonoki"
+  },
+  {
+    "id": "183",
+    "name": "Kurotsuchi"
+  },
+  {
+    "id": "233",
+    "name": "Kitsuchi"
+  },
+  {
+    "id": "190",
+    "name": "Akatsuchi"
+  },
+  {
+    "id": "216",
+    "name": "Muu"
+  },
+  {
+    "id": "219",
+    "name": "Gari"
+  },
+  {
+    "id": "679",
+    "name": "Taiseki"
+  },
+  {
+    "id": "709",
+    "name": "Buntan Kurosuki"
+  },
+  {
+    "id": "254",
+    "name": "Yurui"
+  },
+  {
+    "id": "255",
+    "name": "Tarui"
+  },
+  {
+    "id": "256",
+    "name": "Toroi"
+  },
+  {
+    "id": "51",
+    "name": "Yugito Nii"
+  },
+  {
+    "id": "119",
+    "name": "Killer Bee"
+  },
+  {
+    "id": "125",
+    "name": "Ei"
+  },
+  {
+    "id": "155",
+    "name": "Omoi"
+  },
+  {
+    "id": "156",
+    "name": "Samui"
+  },
+  {
+    "id": "173",
+    "name": "Darui"
+  },
+  {
+    "id": "174",
+    "name": "Karui"
+  },
+  {
+    "id": "186",
+    "name": "Shee"
+  },
+  {
+    "id": "193",
+    "name": "Kinkaku"
+  },
+  {
+    "id": "194",
+    "name": "Ginkaku"
+  },
+  {
+    "id": "223",
+    "name": "Mabui"
+  },
+  {
+    "id": "225",
+    "name": "Fukai"
+  },
+  {
+    "id": "228",
+    "name": "Toroi"
+  },
+  {
+    "id": "229",
+    "name": "Atsui"
+  },
+  {
+    "id": "215",
+    "name": "Sandaime Raikage"
+  },
+  {
+    "id": "685",
+    "name": "Urashiki Ootsutsuki"
+  },
+  {
+    "id": "684",
+    "name": "Hamura Ootsutsuki"
+  },
+  {
+    "id": "54",
+    "name": "Kisame Hoshigaki"
+  },
+  {
+    "id": "53",
+    "name": "Akasuna no Sasori"
+  },
+  {
+    "id": "52",
+    "name": "Deidara"
+  },
+  {
+    "id": "105",
+    "name": "Hidan"
+  },
+  {
+    "id": "109",
+    "name": "Kakuzu"
+  },
+  {
+    "id": "113",
+    "name": "Konan"
+  },
+  {
+    "id": "85",
+    "name": "Zetsu"
+  },
+  {
+    "id": "151",
+    "name": "Rikudou Sennin"
+  },
+  {
+    "id": "238",
+    "name": "Kaguya Ootsutsuki"
+  },
+  {
+    "id": "234",
+    "name": "Toneri Ootsutsuki"
+  },
+  {
+    "id": "257",
+    "name": "Momoshiki"
+  },
+  {
+    "id": "258",
+    "name": "Kinshiki Ootsutsuki"
+  },
+  {
+    "id": "259",
+    "name": "Ashura Ootsutsuki"
+  },
+  {
+    "id": "260",
+    "name": "Indra Ootsutsuki"
+  },
+  {
+    "id": "710",
+    "name": "Deepa"
+  },
+  {
+    "id": "815",
+    "name": "Shin Uchiha"
+  },
+  {
+    "id": "76",
+    "name": "Orochimaru"
+  },
+  {
+    "id": "64",
+    "name": "Zaku Abumi"
+  },
+  {
+    "id": "74",
+    "name": "Dosu Kinuta"
+  },
+  {
+    "id": "89",
+    "name": "Tsuchi Kin"
+  },
+  {
+    "id": "70",
+    "name": "Jiroubou"
+  },
+  {
+    "id": "72",
+    "name": "Kidoumaru"
+  },
+  {
+    "id": "88",
+    "name": "Tayuya"
+  },
+  {
+    "id": "77",
+    "name": "Sakon e Ukon"
+  },
+  {
+    "id": "71",
+    "name": "Kimimaro Kaguya"
+  },
+  {
+    "id": "101",
+    "name": "Kabuto Yakushi"
+  },
+  {
+    "id": "116",
+    "name": "Juugo"
+  },
+  {
+    "id": "115",
+    "name": "Guren"
+  },
+  {
+    "id": "230",
+    "name": "Yukimaru"
+  },
+  {
+    "id": "201",
+    "name": "Yoroi Akado"
+  },
+  {
+    "id": "202",
+    "name": "Misumi Tsurugi"
+  },
+  {
+    "id": "222",
+    "name": "Yota"
+  },
+  {
+    "id": "674",
+    "name": "Kihou"
+  },
+  {
+    "id": "675",
+    "name": "Rinji"
+  },
+  {
+    "id": "676",
+    "name": "Nurari"
+  },
+  {
+    "id": "677",
+    "name": "Kigiri"
+  },
+  {
+    "id": "138",
+    "name": "Yahiko"
+  },
+  {
+    "id": "137",
+    "name": "Nagato Uzumaki"
+  },
+  {
+    "id": "135",
+    "name": "Salamander Hanzou"
+  },
+  {
+    "id": "170",
+    "name": "Shigure"
+  },
+  {
+    "id": "196",
+    "name": "Oboro"
+  },
+  {
+    "id": "197",
+    "name": "Mubi"
+  },
+  {
+    "id": "198",
+    "name": "Kagari"
+  },
+  {
+    "id": "199",
+    "name": "Baiu"
+  },
+  {
+    "id": "200",
+    "name": "Midare"
+  }
+]

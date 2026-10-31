@@ -1,0 +1,441 @@
+{
+  "forms": [
+    {
+      "action": "?acao=login",
+      "fields": [
+        {
+          "name": "cookie",
+          "tag": "INPUT",
+          "type": "hidden"
+        },
+        {
+          "name": "email",
+          "tag": "INPUT",
+          "type": "text"
+        },
+        {
+          "name": "senha",
+          "tag": "INPUT",
+          "type": "password"
+        },
+        {
+          "name": "captcha",
+          "tag": "INPUT",
+          "type": "text"
+        },
+        {
+          "name": "",
+          "tag": "BUTTON",
+          "type": "submit"
+        }
+      ],
+      "method": "post"
+    },
+    {
+      "action": null,
+      "fields": [
+        {
+          "name": "email",
+          "tag": "INPUT",
+          "type": "text"
+        },
+        {
+          "name": "email_confirmacao",
+          "tag": "INPUT",
+          "type": "text"
+        },
+        {
+          "name": "senha",
+          "tag": "INPUT",
+          "type": "password"
+        },
+        {
+          "name": "confirma_senha",
+          "tag": "INPUT",
+          "type": "password"
+        },
+        {
+          "name": "captcha",
+          "tag": "INPUT",
+          "type": "text"
+        },
+        {
+          "name": "aceite",
+          "tag": "INPUT",
+          "type": "checkbox"
+        }
+      ],
+      "method": "get"
+    }
+  ],
+  "headings": [
+    {
+      "tag": "H2",
+      "text": "Missões Atuais"
+    },
+    {
+      "tag": "H1",
+      "text": "2"
+    },
+    {
+      "tag": "H1",
+      "text": "3"
+    },
+    {
+      "tag": "H2",
+      "text": "Acesso Negado"
+    }
+  ],
+  "regions": [
+    {
+      "class": " webkit root-section w-1500 lt-1680 lt-1920 js  gradient rgba opacity textshadow multiplebgs boxshadow borderimage borderradius cssreflections csstransforms csstransitions fontface domloaded",
+      "id": "index-page",
+      "tag": "HTML"
+    },
+    {
+      "class": "",
+      "id": "fa-v4-font-face",
+      "tag": "STYLE"
+    },
+    {
+      "class": "",
+      "id": "fa-v4-shims",
+      "tag": "STYLE"
+    },
+    {
+      "class": "",
+      "id": "fa-main",
+      "tag": "STYLE"
+    },
+    {
+      "class": "",
+      "id": "dtspv_2wzo",
+      "tag": "SCRIPT"
+    },
+    {
+      "class": "menu-fixed",
+      "id": "",
+      "tag": "NAV"
+    },
+    {
+      "class": "",
+      "id": "character-data",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "character-image",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "character-info",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "character-attributes",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "character-status",
+      "tag": "DIV"
+    },
+    {
+      "class": "select2 select2-hidden-accessible",
+      "id": "sPlayerTitulo",
+      "tag": "SELECT"
+    },
+    {
+      "class": "select2-selection__rendered",
+      "id": "select2-sPlayerTitulo-container",
+      "tag": "SPAN"
+    },
+    {
+      "class": "",
+      "id": "character-status2",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "_waur2p",
+      "tag": "SCRIPT"
+    },
+    {
+      "class": "header",
+      "id": "",
+      "tag": "HEADER"
+    },
+    {
+      "class": "nav",
+      "id": "",
+      "tag": "NAV"
+    },
+    {
+      "class": "menu-content collapse out",
+      "id": "menu-content",
+      "tag": "UL"
+    },
+    {
+      "class": "sub-menu collapse",
+      "id": "menu-Vip",
+      "tag": "UL"
+    },
+    {
+      "class": "sub-menu collapse",
+      "id": "menu-Usuário",
+      "tag": "UL"
+    },
+    {
+      "class": "sub-menu collapse",
+      "id": "menu-Personagem",
+      "tag": "UL"
+    },
+    {
+      "class": "sub-menu collapse",
+      "id": "menu-Sensei",
+      "tag": "UL"
+    },
+    {
+      "class": "sub-menu collapse",
+      "id": "menu-Templo",
+      "tag": "UL"
+    },
+    {
+      "class": "sub-menu collapse",
+      "id": "menu-Vila Atual",
+      "tag": "UL"
+    },
+    {
+      "class": "sub-menu collapse",
+      "id": "menu-Ranking",
+      "tag": "UL"
+    },
+    {
+      "class": "",
+      "id": "loggedin-menu",
+      "tag": "UL"
+    },
+    {
+      "class": "",
+      "id": "dayIcon",
+      "tag": "svg"
+    },
+    {
+      "class": "",
+      "id": "Sun",
+      "tag": "g"
+    },
+    {
+      "class": "toggle",
+      "id": "cb1",
+      "tag": "INPUT"
+    },
+    {
+      "class": "",
+      "id": "nightIcon",
+      "tag": "svg"
+    },
+    {
+      "class": "level",
+      "id": "level-start",
+      "tag": "DIV"
+    },
+    {
+      "class": "specs-info",
+      "id": "cnPHPt",
+      "tag": "DIV"
+    },
+    {
+      "class": "specs-info",
+      "id": "cnPSPt",
+      "tag": "DIV"
+    },
+    {
+      "class": "specs-info",
+      "id": "cnPSTAt",
+      "tag": "DIV"
+    },
+    {
+      "class": "progress ng-popover",
+      "id": "barra_exp",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "expDouble",
+      "tag": "DIV"
+    },
+    {
+      "class": "level next-level",
+      "id": "level-end",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "topRound",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "temploNinja",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "topPasse",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "topClock",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "topAdvantages",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "ninjaVip",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "doubleRyou",
+      "tag": "DIV"
+    },
+    {
+      "class": "ryou",
+      "id": "cnPRYt",
+      "tag": "DIV"
+    },
+    {
+      "class": "footer",
+      "id": "",
+      "tag": "FOOTER"
+    },
+    {
+      "class": "modal fade",
+      "id": "modal-login",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "fIndexLogin",
+      "tag": "FORM"
+    },
+    {
+      "class": "form-control",
+      "id": "email",
+      "tag": "INPUT"
+    },
+    {
+      "class": "form-control",
+      "id": "senha",
+      "tag": "INPUT"
+    },
+    {
+      "class": "form-group",
+      "id": "captcha-container",
+      "tag": "DIV"
+    },
+    {
+      "class": "form-control",
+      "id": "captcha",
+      "tag": "INPUT"
+    },
+    {
+      "class": "",
+      "id": "captcha-image",
+      "tag": "IMG"
+    },
+    {
+      "class": "modal fade",
+      "id": "modal-cadastro",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "fast-signup-form",
+      "tag": "FORM"
+    },
+    {
+      "class": "",
+      "id": "cnInventario",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "cnProfile",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "cnCla",
+      "tag": "DIV"
+    },
+    {
+      "class": "",
+      "id": "codex-browser-sidebar-comments-root",
+      "tag": "DIV"
+    }
+  ],
+  "scripts": [
+    "https://de.tynt.com/deb/v2?id=w!49an6wmdnc&dn=TC&cc=1&chpv=26.7.1&chuav=Not%3AA-Brand%3Bv%3D8.0.0.0%2C%20Chromium%3Bv%3D156.0.8078.48%2C%20Google%20Chrome%3Bv%3D156.0.8078.48&chp=macOS&chmob=0&chua=Not%3AA-Brand%3Bv%3D8%2C%20Chromium%3Bv%3D156%2C%20Google%20Chrome%3Bv%3D156&r=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu&pu=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu",
+    "https://cdn.tynt.com/tc.js",
+    "https://t.dtscout.com/i/?l=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu&j=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu&wk=49an6wmdnc",
+    "https://whos.amung.us/pingjs/?k=49an6wmdnc&t=Naruto%20Game%20-%20Esse%20%C3%A9%20o%20seu%20jeito%20Ninja%20de%20ser&c=d&x=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu&y=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu&a=0&v=27&r=7220",
+    "https://narutogame.com.br/js/head.js",
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js",
+    "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
+    "https://narutogame.com.br/assets/externos/bootstrap-tourist.js",
+    "https://narutogame.com.br/assets/js/bootstrap-select.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js",
+    "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js",
+    "https://kit.fontawesome.com/9e658afd93.js",
+    "https://cdn.jsdelivr.net/npm/sweetalert2@11",
+    "https://narutogame.com.br/js/jquery.countdown.min.js",
+    "https://narutogame.com.br/js/global.js?v=43",
+    "https://narutogame.com.br/assets/js/bootstrap.modal_patch.js?v=43",
+    "https://narutogame.com.br/js/tooltip.js?c=1775266948",
+    "https://narutogame.com.br/js/socket.io.js",
+    "https://t.dtscout.com/pv/?_a=v&_h=narutogame.com.br&_ss=7a8s5or74m&_pv=12&_ls=239&_cc=br&_pl=d&_b=chrome%40156&_cbid=2wzo&_cb=_dtspv.c",
+    "https://waust.at/d.js",
+    "https://narutogame.com.br/js/el_cookie.js",
+    "[URL_PUBLICIDADE_OMITIDA]",
+    "https://narutogame.com.br/js/jquery/jquery.ui.js?c=1",
+    "https://narutogame.com.br/js/jquery.tabs.js",
+    "https://narutogame.com.br/js/jquery.uitablefilter.js",
+    "https://narutogame.com.br/js/index.js",
+    "https://narutogame.com.br/js/jquery.countdown.min.js",
+    "https://narutogame.com.br/js/jquery.numeric.js",
+    "https://narutogame.com.br/js/jquery.easing.js",
+    "https://narutogame.com.br/js/jquery.booklet.js",
+    "https://narutogame.com.br/js/jquery.formcontrols.js",
+    "https://narutogame.com.br/js/jquery.smartspinner.js",
+    "https://narutogame.com.br/js/inventario.js?c=1643925292",
+    "https://t.dtscdn.com/widget/?d=10401793301964FF42894C8E1102E9D2&nid=0&p=2114454483&t=180&s=1470x956x30&u=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu&r=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu",
+    "https://p.mrktmtrcs.net/mm.js"
+  ],
+  "styles": [
+    "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    "https://narutogame.com.br/assets/css/battle.css?v=43",
+    "https://narutogame.com.br/assets/css/main.css?v=43",
+    "https://narutogame.com.br/assets/css/info-card.css?v=43",
+    "https://narutogame.com.br/assets/css/box.css?v=43",
+    "https://narutogame.com.br/assets/css/dark.css?v=43",
+    "https://narutogame.com.br/assets/externos/bootstrap-tourist.css",
+    "https://narutogame.com.br/assets/css/bootstrap-select.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css",
+    "https://narutogame.com.br/css/tutorial.css",
+    "https://narutogame.com.br/css/tabs.css",
+    "https://narutogame.com.br/css/jquery.booklet.css?c=1",
+    "https://narutogame.com.br/css/jquery.smartspinner.css"
+  ],
+  "title": "Naruto Game - Esse é o seu jeito Ninja de ser"
+}

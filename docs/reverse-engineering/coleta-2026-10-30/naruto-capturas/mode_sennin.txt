@@ -1,0 +1,328 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Modo Sennin" [level=1]
+- main:
+  - heading "Escolha seu Mode Sennin" [level=3]
+  - generic "Sennin dos Sapos":
+    - img "Sennin dos Sapos"
+  - generic "Sennin das Cobras":
+    - img "Sennin das Cobras"
+  - generic "Sennin das Lesmas":
+    - img "Sennin das Lesmas"
+- button "Aprender Modo Sennin"
+- paragraph: Senpou – Arte Eremita
+- generic: + 2
+- generic: + 2
+- generic: + 2
+- generic: + 2
+- generic: + 3
+- generic: + 3
+- generic: + 26
+- generic: 
+- button: Treinar
+- paragraph: Sennin – Modo Eremita
+- generic: + 3
+- generic: + 3
+- generic: + 3
+- generic: + 3
+- generic: + 4
+- generic: + 4
+- generic: + 32
+- generic: 
+- button: Treinar
+- paragraph: Primeira Forma do Senpou
+- generic: + 4
+- generic: + 2
+- generic: + 2
+- generic: + 4
+- generic: + 8
+- generic: 
+- button "Treinar"
+- paragraph: Senpou – Arte Eremita
+- generic: + 8
+- generic: + 3
+- generic: + 3
+- generic: + 6
+- generic: + 10
+- generic: 
+- button "Treinar"
+- paragraph: Sennin – Modo Eremita
+- generic: + 12
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Primeira Forma do Senpou
+- generic: + 4
+- generic: + 2
+- generic: + 2
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Sennin das Cobras
+- generic: + 8
+- generic: + 3
+- generic: + 3
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Sennin dos Dragões
+- generic: + 12
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Primeira Forma do Senpou
+- generic: + 4
+- generic: + 2
+- generic: + 2
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Senpou - Souzou Saisei
+- generic: + 8
+- generic: + 3
+- generic: + 3
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Sennin - Byakugou
+- generic: + 12
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Lâminas de Chakra
+- generic: + 4
+- generic: + 2
+- generic: + 2
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Issen
+- generic: + 8
+- generic: + 3
+- generic: + 3
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Iaidou
+- generic: + 12
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Primeira Forma do Senpou
+- generic: + 1
+- generic: + 1
+- generic: + 1
+- generic: + 1
+- generic: + 2
+- generic: + 2
+- generic: + 20
+- generic: 
+- button: Treinar
+- paragraph: Senpou – Arte Eremita
+- generic: + 2
+- generic: + 2
+- generic: + 2
+- generic: + 2
+- generic: + 3
+- generic: + 3
+- generic: + 26
+- generic: 
+- button: Treinar
+- paragraph: Sennin – Modo Eremita
+- generic: + 3
+- generic: + 3
+- generic: + 3
+- generic: + 3
+- generic: + 4
+- generic: + 4
+- generic: + 32
+- generic: 
+- button: Treinar
+- paragraph: Primeira Forma do Senpou
+- generic: + 4
+- generic: + 2
+- generic: + 2
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Senpou – Arte Eremita
+- generic: + 8
+- generic: + 3
+- generic: + 3
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Sennin – Modo Eremita
+- generic: + 12
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Primeira Forma do Senpou
+- generic: + 4
+- generic: + 2
+- generic: + 2
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Sennin das Cobras
+- generic: + 8
+- generic: + 3
+- generic: + 3
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Sennin dos Dragões
+- generic: + 12
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Primeira Forma do Senpou
+- generic: + 4
+- generic: + 2
+- generic: + 2
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Senpou - Souzou Saisei
+- generic: + 8
+- generic: + 3
+- generic: + 3
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Sennin - Byakugou
+- generic: + 12
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Lâminas de Chakra
+- generic: + 4
+- generic: + 2
+- generic: + 2
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Issen
+- generic: + 8
+- generic: + 3
+- generic: + 3
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Iaidou
+- generic: + 12
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Primeira Forma do Senpou
+- generic: + 1
+- generic: + 1
+- generic: + 1
+- generic: + 1
+- generic: + 2
+- generic: + 2
+- generic: + 20
+- generic: 
+- button: Treinar
+- paragraph: Senpou – Arte Eremita
+- generic: + 2
+- generic: + 2
+- generic: + 2
+- generic: + 2
+- generic: + 3
+- generic: + 3
+- generic: + 26
+- generic: 
+- button: Treinar
+- paragraph: Sennin – Modo Eremita
+- generic: + 3
+- generic: + 3
+- generic: + 3
+- generic: + 3
+- generic: + 4
+- generic: + 4
+- generic: + 32
+- generic: 
+- button: Treinar
+- text: Escolha o Modo Sennin
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

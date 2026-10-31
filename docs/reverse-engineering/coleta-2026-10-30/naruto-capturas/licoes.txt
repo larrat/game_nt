@@ -1,0 +1,184 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Tarefas Iniciais" [level=1]
+- table:
+  - rowgroup:
+    - row "Descrição Duração Recompensa Level Status":
+      - columnheader "Descrição"
+      - columnheader "Duração"
+      - columnheader "Recompensa"
+      - columnheader "Level"
+      - columnheader "Status"
+  - rowgroup:
+    - row "Primeira Lição Seja bem vindo estudante. Hoje vamos dar início a sua vida como ninja. Se você realmente deseja se tornar um dos melhores ninjas do seu vilarejo terá que estudar muito e praticar bastante. Comece a estudar desde já e siga os passos necessários para se tornar um Genin. 00:00:15 RY$ 200.00 Estudante Lvl. 1 Aceitar":
+      - cell "Primeira Lição Seja bem vindo estudante. Hoje vamos dar início a sua vida como ninja. Se você realmente deseja se tornar um dos melhores ninjas do seu vilarejo terá que estudar muito e praticar bastante. Comece a estudar desde já e siga os passos necessários para se tornar um Genin.":
+        - text: Primeira Lição
+        - paragraph: Seja bem vindo estudante. Hoje vamos dar início a sua vida como ninja. Se você realmente deseja se tornar um dos melhores ninjas do seu vilarejo terá que estudar muito e praticar bastante. Comece a estudar desde já e siga os passos necessários para se tornar um Genin.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 1":
+        - text: Estudante
+        - text: Lvl. 1
+      - cell "Aceitar":
+        - button "Aceitar"
+    - row "Segunda Lição Quem disse que sua caminhada para se tornar um Shinobi seria fácil? Você ainda tem muito que aprender, vá para a segunda lição. 00:00:15 RY$ 200.00 Estudante Lvl. 1 Aceitar":
+      - cell "Segunda Lição Quem disse que sua caminhada para se tornar um Shinobi seria fácil? Você ainda tem muito que aprender, vá para a segunda lição.":
+        - text: Segunda Lição
+        - paragraph: Quem disse que sua caminhada para se tornar um Shinobi seria fácil? Você ainda tem muito que aprender, vá para a segunda lição.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 1":
+        - text: Estudante
+        - text: Lvl. 1
+      - cell "Aceitar":
+        - button "Aceitar"
+    - row "Terceira Lição Você esta indo bem! Mais algumas lições e quem sabe você pode se tornar um Genin. Continue sua árdua jornada de sucesso. 00:00:15 RY$ 200.00 Estudante Lvl. 2 Aceitar":
+      - cell "Terceira Lição Você esta indo bem! Mais algumas lições e quem sabe você pode se tornar um Genin. Continue sua árdua jornada de sucesso.":
+        - text: Terceira Lição
+        - paragraph: Você esta indo bem! Mais algumas lições e quem sabe você pode se tornar um Genin. Continue sua árdua jornada de sucesso.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 2":
+        - text: Estudante
+        - text: Lvl. 2
+      - cell "Aceitar":
+        - button "Aceitar"
+    - row "Quarta Lição Parabéns, você esta indo muito bem, esta aprendendo rápido e logo se tornará um grande ninja! Continue estudando. 00:00:15 RY$ 200.00 Estudante Lvl. 2 Aceitar":
+      - cell "Quarta Lição Parabéns, você esta indo muito bem, esta aprendendo rápido e logo se tornará um grande ninja! Continue estudando.":
+        - text: Quarta Lição
+        - paragraph: Parabéns, você esta indo muito bem, esta aprendendo rápido e logo se tornará um grande ninja! Continue estudando.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 2":
+        - text: Estudante
+        - text: Lvl. 2
+      - cell "Aceitar":
+        - button "Aceitar"
+    - row "Quinta Lição Treinar é tudo. Um ninja que não treina possui a mente e o corpo fracos. Você precisa treinar suas habilidades sempre que puder. Continue aprendendo, ler também faz parte do seu aprendizado. 00:00:15 RY$ 200.00 Estudante Lvl. 3 Aceitar":
+      - cell "Quinta Lição Treinar é tudo. Um ninja que não treina possui a mente e o corpo fracos. Você precisa treinar suas habilidades sempre que puder. Continue aprendendo, ler também faz parte do seu aprendizado.":
+        - text: Quinta Lição
+        - paragraph: Treinar é tudo. Um ninja que não treina possui a mente e o corpo fracos. Você precisa treinar suas habilidades sempre que puder. Continue aprendendo, ler também faz parte do seu aprendizado.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 3":
+        - text: Estudante
+        - text: Lvl. 3
+      - cell "Aceitar":
+        - button "Aceitar"
+    - row "Sexta Lição Você esta perto de se tornar um Genin, mas para isso ainda falta completar algumas aulas. Seja paciente pois se tornar um \"Kage\" demora muitos anos pra se tornar o líder da vila. Quem sabe estudando bastante você não se torna o \"Kage\" da sua Vila. 00:00:15 RY$ 200.00 Estudante Lvl. 3 Aceitar":
+      - cell "Sexta Lição Você esta perto de se tornar um Genin, mas para isso ainda falta completar algumas aulas. Seja paciente pois se tornar um \"Kage\" demora muitos anos pra se tornar o líder da vila. Quem sabe estudando bastante você não se torna o \"Kage\" da sua Vila.":
+        - text: Sexta Lição
+        - paragraph: Você esta perto de se tornar um Genin, mas para isso ainda falta completar algumas aulas. Seja paciente pois se tornar um "Kage" demora muitos anos pra se tornar o líder da vila. Quem sabe estudando bastante você não se torna o "Kage" da sua Vila.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 3":
+        - text: Estudante
+        - text: Lvl. 3
+      - cell "Aceitar":
+        - button "Aceitar"
+    - row "Sétima Lição Para se tornar um dos melhores ninjas você deve também ser educado com os seus companheiros, respeitar o próximo e ajudar sempre. Esses também são passos importantes na sua caminhada para se tornar um Ninja. 00:00:15 RY$ 200.00 Estudante Lvl. 4 Aceitar":
+      - cell "Sétima Lição Para se tornar um dos melhores ninjas você deve também ser educado com os seus companheiros, respeitar o próximo e ajudar sempre. Esses também são passos importantes na sua caminhada para se tornar um Ninja.":
+        - text: Sétima Lição
+        - paragraph: Para se tornar um dos melhores ninjas você deve também ser educado com os seus companheiros, respeitar o próximo e ajudar sempre. Esses também são passos importantes na sua caminhada para se tornar um Ninja.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 4":
+        - text: Estudante
+        - text: Lvl. 4
+      - cell "Aceitar":
+        - button "Aceitar"
+    - row "Oitava Lição Quem diria! Há pouco tempo atrás você não passava de um simples estudante e agora esta perto de se tornar um Genin. Parabéns, você esta indo muito bem e falta pouco para se tornar um grande Ninja. 00:00:15 RY$ 200.00 Estudante Lvl. 4 Aceitar":
+      - cell "Oitava Lição Quem diria! Há pouco tempo atrás você não passava de um simples estudante e agora esta perto de se tornar um Genin. Parabéns, você esta indo muito bem e falta pouco para se tornar um grande Ninja.":
+        - text: Oitava Lição
+        - paragraph: Quem diria! Há pouco tempo atrás você não passava de um simples estudante e agora esta perto de se tornar um Genin. Parabéns, você esta indo muito bem e falta pouco para se tornar um grande Ninja.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 4":
+        - text: Estudante
+        - text: Lvl. 4
+      - cell "Aceitar":
+        - button "Aceitar"
+    - row "Nona Lição Posso ver que tem praticado bastante e, com isso, tem se tornado mais forte. Você esta seguindo corretamente o caminho ninja e dentro de pouco tempo já estará recebendo sua bandana. 00:00:15 RY$ 200.00 Estudante Lvl. 4 Aceitar":
+      - cell "Nona Lição Posso ver que tem praticado bastante e, com isso, tem se tornado mais forte. Você esta seguindo corretamente o caminho ninja e dentro de pouco tempo já estará recebendo sua bandana.":
+        - text: Nona Lição
+        - paragraph: Posso ver que tem praticado bastante e, com isso, tem se tornado mais forte. Você esta seguindo corretamente o caminho ninja e dentro de pouco tempo já estará recebendo sua bandana.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 4":
+        - text: Estudante
+        - text: Lvl. 4
+      - cell "Aceitar":
+        - button "Aceitar"
+    - row "Décima Lição Como um velho Sensei, me emociona sempre quando um aluno se forma! Você passou por muitas coisas e superou todos os obstáculos. Agora não tenho mais nada a ensinar. Vamos fazer sua última lição e, com isso, você estará bem perto de se tornar um ninja. Continue praticando para o exame Genin. Treine suas habilidades o máximo que puder e muito em breve estará se tornando um Genin, recebendo então sua Bandana. 00:00:15 RY$ 200.00 Estudante Lvl. 4 Aceitar":
+      - cell "Décima Lição Como um velho Sensei, me emociona sempre quando um aluno se forma! Você passou por muitas coisas e superou todos os obstáculos. Agora não tenho mais nada a ensinar. Vamos fazer sua última lição e, com isso, você estará bem perto de se tornar um ninja. Continue praticando para o exame Genin. Treine suas habilidades o máximo que puder e muito em breve estará se tornando um Genin, recebendo então sua Bandana.":
+        - text: Décima Lição
+        - paragraph: Como um velho Sensei, me emociona sempre quando um aluno se forma! Você passou por muitas coisas e superou todos os obstáculos. Agora não tenho mais nada a ensinar. Vamos fazer sua última lição e, com isso, você estará bem perto de se tornar um ninja. Continue praticando para o exame Genin. Treine suas habilidades o máximo que puder e muito em breve estará se tornando um Genin, recebendo então sua Bandana.
+      - cell "00:00:15":
+        - paragraph: 00:00:15
+      - cell "RY$ 200.00":
+        - paragraph: RY$ 200.00
+      - cell "Estudante Lvl. 4":
+        - text: Estudante
+        - text: Lvl. 4
+      - cell "Aceitar":
+        - button "Aceitar"
+- insertion

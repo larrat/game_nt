@@ -1,0 +1,128 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=invocacao".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php
+	2 container
+		3 container
+			4 image Naruto
+			5 image dayIcon
+			6 image nightIcon
+			7 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php
+			8 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php
+			9 link javascript:logoff()
+		10 image
+		11 image
+		12 container level-start
+			13 text LVL
+			14 heading 5, Value: 1
+				15 text 5
+		16 image Vida
+		17 text 362/362
+		18 image Chakra
+		19 text 496/574
+		20 image Stamina
+		21 text 239/271
+		22 text EXP: 342/3240
+		23 container level-end
+			24 text LVL
+			25 heading 6, Value: 1
+				26 text 6
+		27 container
+			28 image
+			29 text 8
+		30 container
+			31 image
+			32 text 8
+		33 container
+			34 image
+			35 text 4
+		36 link Description: 1, Value: narutogame.com.br/index.php
+		37 link narutogame.com.br/index.php
+		38 link Description: 5, Value: narutogame.com.br/index.php
+		39 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php
+		40 text 3292
+		41 heading INVOCAÇÕES, Value: 1
+			42 text INVOCAÇÕES
+		43 container
+			44 heading Escolha sua Invocação, Value: 3
+				45 text Escolha sua Invocação
+			46 container
+				49 container Invocação Cobras
+					50 image Invocação Cobras
+				51 container Invocação Lesmas
+					52 image Invocação Lesmas
+				53 container Invocação Armas Ninja
+					54 image Invocação Armas Ninja
+				126 container Invocação Macacos
+					127 image Invocação Macacos
+			118 container invocacao-desc-1
+				119 heading Invocação Sapos, Value: 3
+					120 text Invocação Sapos
+				121 text Sapos são extremamente úteis em combates, possuem habilidades variadas em Ninjutsus e por vezes até Genjutsus, possuem também um Óleo muito inflamável. O Rei dos sapos, Gamabunta, usa uma katana como arma. Existe também os dois filhos de Gamabunta, Gamakichi e Gamatatsu.
+		55 heading Personalize os atributos da sua Invocação, Value: 2
+			56 text Personalize os atributos da sua Invocação
+		57 container invocacao-selector
+			58 image
+			59 pop up button (collapsed, settable) Value: 4, ID: invocacao-selector-ene, Secondary Actions: Expand
+				128 menu
+					129 0
+					130 1
+					131 2
+					132 3
+					133 (selected) 4
+			68 image
+			69 pop up button (collapsed, settable) Value: 0, ID: invocacao-selector-agi, Secondary Actions: Expand
+				134 menu
+					135 (selected) 0
+			70 image
+			71 pop up button (collapsed, settable) Value: 3, ID: invocacao-selector-con, Secondary Actions: Expand
+				136 menu
+					137 0
+					138 1
+					139 2
+					140 (selected) 3
+			72 image
+			73 pop up button (collapsed, settable) Value: 0, ID: invocacao-selector-forc, Secondary Actions: Expand
+				141 menu
+					142 (selected) 0
+			74 image
+			75 pop up button (collapsed, settable) Value: 3, ID: invocacao-selector-inte, Secondary Actions: Expand
+				143 menu
+					144 0
+					145 1
+					146 2
+					147 (selected) 3
+			76 image
+			77 pop up button (collapsed, settable) Value: 0, ID: invocacao-selector-res, Secondary Actions: Expand
+				148 menu
+					149 (selected) 0
+			78 image
+			79 pop up button (collapsed, settable) Value: 0, ID: invocacao-selector-esq, Secondary Actions: Expand
+				150 menu
+					151 (selected) 0
+			80 image
+			81 pop up button (collapsed, settable) Value: 0, ID: invocacao-selector-det, Secondary Actions: Expand
+				152 menu
+					153 (selected) 0
+			82 image
+			83 pop up button (collapsed, settable) Value: 1, ID: invocacao-selector-conv, Secondary Actions: Expand
+				154 menu
+					155 0
+					156 (selected) 1
+			84 image
+			85 pop up button (collapsed, settable) Value: 1, ID: invocacao-selector-conc, Secondary Actions: Expand
+				157 menu
+					158 0
+					159 (selected) 1
+		160 text 0 Pontos Disponiveis para atributos
+		161 text 0 Pontos Disponiveis para fórmulas
+		86 button Aceitar Pacto, ID: invocacao-join
+		87 container Description: Advertisement, ID: aswift_0
+			122 AXWebArea googleads.g.doubleclick.net/pagead/ads
+				123 container Description: Blank, ID: ad_iframe
+					124 AXWebArea googleads.g.doubleclick.net/pagead/ads
+						125 container
+							162 AXWebArea Advertisement, URL: ads.us.criteo.com/delivery/r/afr.php
+								163 container main
+									164 link privacy.us.criteo.com/adchoices
+									165 link Description:  Ver mais, Value: cat.us5.us.criteo.com/delivery/ck.php
+
+[Rodapé e chat omitidos na cópia pública]

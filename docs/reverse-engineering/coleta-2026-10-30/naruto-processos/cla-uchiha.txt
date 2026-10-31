@@ -1,0 +1,193 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=clas".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 58-65, 87-88
+~				47 container Description: Clá Uchiha, Help: Clã Uchiha
++			118 container cla-desc-1
++				119 heading Clã Uchiha, Value: 3
++					120 text Clã Uchiha
++				121 text Alguns dos membros do clã ganham o poder do Sharingan, um olho vermelho que tem a habilidade de copiar ninjutsus, genjutsus e taijutsus com muita facilidade e armazená-los na mente para usá-los quando bem entender. Os descendentes do clã que ganham o sharingan, o herdam geneticamente, ou seja, somente tendo algum familiar que possua o sharingan o usuario do clã o herdará. O Sharingan dá a habilidade de prever o oponente, o inimigo que for lutar com ele sera muito difícil de sobreviver, o jeito de ganhar é não olhar nos olhos dele e ser bem mais rápido, para que os seus olhos não o acompanhem para não prever seus golpes.
+~			67 pop up button (collapsed, settable) Value: 0, ID: cla-selector-agi, Secondary Actions: Expand
++				122 menu
++					123 (selected) 0
+~			69 pop up button (collapsed, settable) Value: 3, ID: cla-selector-con, Secondary Actions: Expand
++				124 menu
++					125 0
++					126 1
++					127 2
++					128 (selected) 3
+~			71 pop up button (collapsed, settable) Value: 0, ID: cla-selector-forc, Secondary Actions: Expand
++				129 menu
++					130 (selected) 0
+~			73 pop up button (collapsed, settable) Value: 3, ID: cla-selector-inte, Secondary Actions: Expand
++				131 menu
++					132 0
++					133 1
++					134 2
++					135 (selected) 3
+~			75 pop up button (collapsed, settable) Value: 1, ID: cla-selector-res, Secondary Actions: Expand
++				136 menu
++					137 0
++					138 (selected) 1
+~			77 pop up button (collapsed, settable) Value: 0, ID: cla-selector-esq, Secondary Actions: Expand
++				139 menu
++					140 (selected) 0
+~			79 pop up button (collapsed, settable) Value: 2, ID: cla-selector-det, Secondary Actions: Expand
++				141 menu
++					142 0
++					143 1
++					144 (selected) 2
+~			81 pop up button (collapsed, settable) Value: 1, ID: cla-selector-conv, Secondary Actions: Expand
++				145 menu
++					146 0
++					147 (selected) 1
+~			83 pop up button (collapsed, settable) Value: 0, ID: cla-selector-conc, Secondary Actions: Expand
++				148 menu
++					149 (selected) 0
+~			85 pop up button (collapsed, settable) Value: 0, ID: cla-selector-prec_fisico, Secondary Actions: Expand
++				150 menu
++					151 (selected) 0
++		152 text 0 Pontos Disponiveis para atributos
++		153 text 0 Pontos Disponiveis para fórmulas
++		154 container
++			155 image
++			156 text Sharingan Nível 1
++			157 text + 3
++			158 image
++			159 text + 3
++			160 image
++			161 text + 1
++			162 image
++			163 text + 2%
++			164 image
++			165 text + 1%
++			166 image
++			167 button Treinar
++			168 image
++			169 text Sharingan Nível 2
++			170 text + 6
++			171 image
++			172 text + 6
++			173 image
++			174 text + 2
++			175 image
++			176 text + 4%
++			177 image
++			178 text + 2%
++			179 image
++			180 button Treinar
++		181 container aswift_0_host
++			182 heading Description: Estes são tópicos relacionados com o artigo que podem ser do seu interesse, Value: 2
++				183 text Descobrir mais
++			184 link Ver Jogos
++				185 text Ver Jogos
++			186 link Jogos
++				187 text Jogos
++			188 link GAME
++				189 text GAME
++			190 content list
++				191 container
++					192 image PERSONAGEM_TESTE
++					193 text PERSONAGEM_TESTE
++					194 text Ola
++					195 text há 3 dias
++				196 container
++					197 image PERSONAGEM_TESTE
++					198 text PERSONAGEM_TESTE
++					199 text Chunin level 17, preciso de equipe
++					200 text há 3 dias
++				201 container
++					202 image Aisek
++					203 text Aisek
++					204 text se for ativo, vem
++					205 text há 3 dias
++				206 container
++					207 image Aisek
++					208 text Aisek
++					209 text Flying Raijin3
++					210 text há 3 dias
++				211 container
++					212 image Aisek
++					213 text Aisek
++					214 text Flying Raijin (sem o 3)
++					215 text há 3 dias
++				216 container
++					217 image PERSONAGEM_TESTE
++					218 text PERSONAGEM_TESTE
++					219 text Opa
++					220 text há 3 dias
++				221 container
++					222 image PERSONAGEM_TESTE
++					223 text PERSONAGEM_TESTE
++					224 text Batlha 4 vs 4, 7 na fila, falta um, quem vai la
++					225 text há 3 dias
++				226 container
++					227 image MadeiraJutsu
++					228 text MadeiraJutsu
++					229 text jutsu de genin
++					230 text há 3 dias
++				231 container
++					232 image PERSONAGEM_TESTE
++					233 text PERSONAGEM_TESTE
++					234 text Equipe folha?
++					235 text anteontem
++				236 container
++					237 image Aisek
++					238 text Aisek
++					239 text ainda procurando?
++					240 text ontem
++				241 container
++					242 image Mohtra
++					243 text Mohtra
++					244 text Rapaziada ganhei uma espada da névoa do nada. É normal isso? KkkKkkjJ
++					245 text há 22 horas
++				246 container
++					247 image PERSONAGEM_TESTE
++					248 text PERSONAGEM_TESTE
++					249 text Sim mano
++					250 text há 21 horas
++				251 container
++					252 image PERSONAGEM_TESTE
++					253 text PERSONAGEM_TESTE
++					254 text É aleatório,
++					255 text há 21 horas
++				256 container
++					257 image FURIA_da_folha
++					258 text FURIA_da_folha
++					259 text J
++					260 text há 21 horas
++				261 container
++					262 image Mohtra
++					263 text Mohtra
++					264 text Mano, preciso tirar um pvp pra manter a espada da névoa
++					265 text há 17 horas
++				266 container
++					267 image Mohtra
++					268 text Mohtra
++					269 text mas n tem ngm
++					270 text há 17 horas
++				271 container
++					272 image Aisek
++					273 text Aisek
++					274 text conseguiu?
++					275 text há 1 hora
++				276 container
++					277 image Mohtra
++					278 text Mohtra
++					279 text Não rolou
++					280 text há 1 hora
++				281 container
++					282 image Mohtra
++					283 text Mohtra
++					284 text Fui atacado por um cara 10 níveis acima kKKKKJJJ
++					285 text há 1 hora
++				286 container
++					287 image Mohtra
++					288 text Mohtra
++					289 text E se n fosse a bijuu dele eu ganhava, falo memo
++					290 text há 1 hora
++				291 container
++					292 image Tsuneiide
++					293 text Tsuneiide
++					294 text quem quiser equipe mandai ai para minha, vamos fazer todas as missões e desafios hj
++					295 text há 33 minutos
+The focused UI element is 47 container Description: Clá Uchiha, Help: Clã Uchiha

@@ -1,0 +1,94 @@
+{
+  "uchiha": [
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Izanagi",
+      "rank": "Genin",
+      "requirements": "Requer 9 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 10 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Genin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 1\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:13 em Ninjutsu13 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Kamui",
+      "rank": "Chuunin",
+      "requirements": "Requer 10 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 12 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 2\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:16 em Ninjutsu16 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Kotoamatsukami",
+      "rank": "Chuunin",
+      "requirements": "Requer 15 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 17 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 2\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:23 em Ninjutsu23 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Izanami",
+      "rank": "Jounin",
+      "requirements": "Requer 16 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 20 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Jounin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 3\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:26 em Ninjutsu26 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Yasaka no Magatama",
+      "rank": "Jounin",
+      "requirements": "Requer 21 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 25 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Jounin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 3\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:33 em Ninjutsu33 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Tsukuyomi",
+      "rank": "ANBU",
+      "requirements": "Requer 22 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 27 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer o item: Mangekyou Sharingan\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:36 em Ninjutsu36 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Amaterasu",
+      "rank": "ANBU",
+      "requirements": "Requer 27 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 32 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer o item: Mangekyou Sharingan\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:43 em Ninjutsu43 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Susanoo",
+      "rank": "Sannin da Folha",
+      "requirements": "Requer 28 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 35 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer o item: Fuumetsu Mangekyou Sharingan\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:46 em Ninjutsu46 em Genjutsu"
+    }
+  ],
+  "hyuuga": [
+    {
+      "name": "Izanagi",
+      "rank": "Genin",
+      "requirements": "Requer 9 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 10 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Genin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 1\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:13 em Ninjutsu13 em Genjutsu"
+    },
+    {
+      "name": "Kamui",
+      "rank": "Chuunin",
+      "requirements": "Requer 10 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 12 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 2\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:16 em Ninjutsu16 em Genjutsu"
+    },
+    {
+      "name": "Kotoamatsukami",
+      "rank": "Chuunin",
+      "requirements": "Requer 15 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 17 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 2\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:23 em Ninjutsu23 em Genjutsu"
+    },
+    {
+      "name": "Izanami",
+      "rank": "Jounin",
+      "requirements": "Requer 16 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 20 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Jounin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 3\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:26 em Ninjutsu26 em Genjutsu"
+    },
+    {
+      "name": "Yasaka no Magatama",
+      "rank": "Jounin",
+      "requirements": "Requer 21 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 25 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Jounin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 3\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:33 em Ninjutsu33 em Genjutsu"
+    },
+    {
+      "name": "Tsukuyomi",
+      "rank": "ANBU",
+      "requirements": "Requer 22 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 27 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer o item: Mangekyou Sharingan\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:36 em Ninjutsu36 em Genjutsu"
+    },
+    {
+      "name": "Amaterasu",
+      "rank": "ANBU",
+      "requirements": "Requer 27 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 32 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer o item: Mangekyou Sharingan\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:43 em Ninjutsu43 em Genjutsu"
+    },
+    {
+      "name": "Susanoo",
+      "rank": "Sannin da Folha",
+      "requirements": "Requer 28 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 35 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer o item: Fuumetsu Mangekyou Sharingan\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:46 em Ninjutsu46 em Genjutsu"
+    }
+  ]
+}

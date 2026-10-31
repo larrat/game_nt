@@ -1,0 +1,86 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Templos Ninjas" [level=1]
+- heading "O Requerimento de 'Ser o ninja' só é válido para o personagem que você iniciou o Round." [level=2]:
+  - generic: 
+  - generic: O Requerimento de 'Ser o ninja' só é válido para o personagem que você iniciou o Round.
+- main:
+  - heading "Escolha um Templo Ninja" [level=3]
+  - generic "Templo dos Mestres do Taijutsu":
+    - img "Templo dos Mestres do Taijutsu"
+  - generic "Templo dos Mestres do Ninjutsu":
+    - img "Templo dos Mestres do Ninjutsu"
+  - generic "Templo dos Mestres do Genjutsu":
+    - img "Templo dos Mestres do Genjutsu"
+  - generic "Templo dos Mestres do Bukijutsu":
+    - img "Templo dos Mestres do Bukijutsu"
+- text: Especiais
+- text: Folha
+- text: Areia
+- text: Névoa
+- text: Pedra
+- text: Nuvem
+- text: Akatsuki
+- text: Som
+- text: Chuva
+- text: Ranking
+- text: Equipe
+- text: Organização
+- text: Torneio
+- text: Histórico
+- text: Bijuus
+- text: Espadachins
+- text: Sensei
+- text: 4x4
+- text: Arena
+- text: Temas
+- text: Pacotes
+- text: Filtro Avançado -
+- radio [checked]
+- text: Mostrar todos
+- radio
+- text: Não desbloqueados
+- radio
+- text: Não liberados
+- main

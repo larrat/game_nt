@@ -1,0 +1,76 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Dojo" [level=1]
+- heading "O Dojo PVP só funcionará até o level 9" [level=2]:
+  - generic: 
+  - generic: O Dojo PVP só funcionará até o level 9
+- generic: Batalhas do Dojo NPC
+- generic: Batalhas do Dojo PVP
+- generic: Treinamento Dojo PVP
+- heading "Treinamento Dojo PVP" [level=2]:
+  - generic: 
+  - generic: Treinamento Dojo PVP
+- paragraph: Nesse modo de Treinamento as batalhas não dão contadores de vitória, derrota, experiência, ryous e também não gastam sua vida, chakra e stamina ao final da luta. Aqui é apenas um modo de testar suas habilidades contra amigos ou inimigos que queiram participar desse treinamento juntamente com você.
+- table:
+  - rowgroup:
+    - row "Nome da Sala Só quero jogadores do mesmo nível que eu Criar":
+      - cell "Nome da Sala"
+      - cell "Só quero jogadores do mesmo nível que eu":
+        - textbox
+        - checkbox
+        - text: Só quero jogadores do mesmo nível que eu
+      - cell "Criar":
+        - button "Criar"
+- text: 
+- heading "Batalhas do Dojo PVP" [level=2]:
+  - generic: 
+  - generic: Batalhas do Dojo PVP
+- paragraph:
+  - text: "Você não pode duelar no Dojo PVP pelos possíveis motivos:"
+  - text: "- Você é da graduação estudante"
+  - text: "- Você é maior que level 9"
+  - text: Somente Ninjas com a graduação Genin podem duelar no Dojo PVP
+- button "Ir para a fila"
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

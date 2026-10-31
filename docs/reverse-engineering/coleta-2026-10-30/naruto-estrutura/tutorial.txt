@@ -1,0 +1,153 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Tutorial" [level=1]
+- main:
+  - heading "Complete o tutorial iniciante" [level=3]
+  - 'heading "Recompensa de 1000 de Experiência, 2000 Ryous, Título: Ninja Treinado e 5 Misso Gyoza-Ramen" [level=4]'
+  - generic: 
+  - link "Status":
+    - /url: "?secao=personagem_status"
+  - generic: 
+  - link "Clã":
+    - /url: "?secao=clas"
+  - generic: 
+  - link "Invocação":
+    - /url: "?secao=invocacao"
+  - generic: 
+  - link "Selo":
+    - /url: "?secao=selo"
+  - generic: 
+  - link "Sennin":
+    - /url: "?secao=mode_sennin"
+  - generic: 
+  - link "Portões":
+    - /url: "?secao=portoes"
+  - generic: 
+  - link "Talentos":
+    - /url: "?secao=arvore_talento"
+  - generic: 
+  - link "Elementos":
+    - /url: "?secao=personagem_elementos"
+  - generic: 
+  - link "Bijuus":
+    - /url: "?secao=chakras_bijuus"
+  - generic: 
+  - link "Estudo":
+    - /url: "?secao=estudo_ninja"
+  - generic: 
+  - link "Sorte":
+    - /url: "?secao=sorte_ninja"
+  - generic: 
+  - link "Profissão":
+    - /url: "?secao=profissao"
+  - generic: 
+  - link "Graduações":
+    - /url: "?secao=graduacoes"
+  - generic: 
+  - link "Treinamento":
+    - /url: "?secao=academia_treinamento"
+  - generic: 
+  - link "Aprimoramento":
+    - /url: "?secao=personagem_jutsu"
+  - generic: 
+  - link "Jutsus":
+    - /url: "?secao=academia_jutsu"
+  - generic: 
+  - link "Medicinal":
+    - /url: "?secao=academia_jutsu&tipo=3"
+  - generic: 
+  - link "Kinjutsu":
+    - /url: "?secao=academia_jutsu&tipo=6"
+  - generic: 
+  - link "Vila":
+    - /url: "?secao=vila"
+  - generic: 
+  - link "Missões":
+    - /url: "?secao=missoes"
+  - generic: 
+  - link "Eventos":
+    - /url: "?secao=vila_eventos"
+  - generic: 
+  - link "Objetivo":
+    - /url: "?secao=vila_objetivos"
+  - generic: 
+  - link "Ramen":
+    - /url: "?secao=ramen_shop"
+  - generic: 
+  - link "Ninja Shop":
+    - /url: "?secao=ninja_shop"
+  - generic: 
+  - link "Equipamentos":
+    - /url: "?secao=equipamentos_ninja"
+  - generic: 
+  - link "Dojo":
+    - /url: "?secao=dojo"
+  - generic: 
+  - link "Dojo 4x4":
+    - /url: "?secao=dojo4x4"
+  - generic: 
+  - link "Batalha":
+    - /url: "?secao=dojo"
+  - generic: 
+  - link "Vip":
+    - /url: "?secao=jogador_vip"
+  - generic: 
+  - link "Fidelidade":
+    - /url: "?secao=fidelidade"
+  - generic: 
+  - link "Passe de Batalha":
+    - /url: "?secao=passe_batalha"
+  - generic: 
+  - link "Karma":
+    - /url: "?secao=karma"
+  - generic: 
+  - link "Espadas":
+    - /url: "?secao=espadas"
+  - generic: 
+  - link "Caçada Ninja":
+    - /url: "?secao=cacada"
+  - generic: 
+  - link "Kekkei Genkai":
+    - /url: "?secao=kekkei"
+- insertion

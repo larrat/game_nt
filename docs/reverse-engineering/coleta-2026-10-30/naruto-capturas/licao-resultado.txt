@@ -1,0 +1,20 @@
+Browser tab: 2, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=missoes_espera".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225
++				230 text há 3 dias
++				231 text há 3 dias
++				232 text há 3 dias
++				233 text há 3 dias
++				234 text há 3 dias
++				235 text há 3 dias
++				236 text há 3 dias
++				237 text anteontem
++				238 text ontem
++				239 text há 23 horas
++				240 text há 15 horas
++				241 text há 15 horas
++				242 text há 15 horas
++				243 text há 15 horas
++				244 text há 11 horas
++				245 text há 11 horas
+The focused UI element is 228 text field (settable) message

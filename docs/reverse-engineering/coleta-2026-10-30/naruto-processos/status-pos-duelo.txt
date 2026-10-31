@@ -1,0 +1,175 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=personagem_status".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php?secao=personagem_status
+	2 container
+		3 container
+			4 image Naruto
+			5 image dayIcon
+			6 image nightIcon
+			7 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php?secao=personagem_status#
+			8 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php?secao=personagem_status#
+			9 link javascript:logoff()
+		10 image
+		11 image
+		12 container level-start
+			13 text LVL
+			14 heading 5, Value: 1
+				15 text 5
+		16 image Vida
+		17 text 277/362
+		18 image Chakra
+		19 text 266/574
+		20 image Stamina
+		21 text 131/271
+		22 text EXP: 342/3240
+		23 container level-end
+			24 text LVL
+			25 heading 6, Value: 1
+				26 text 6
+		27 container
+			28 image
+			29 text 8
+		30 container
+			31 image
+			32 text 8
+		33 container
+			34 image
+			35 text 4
+		36 link Description: 1, Value: narutogame.com.br/index.php?secao=fidelidade
+		37 link narutogame.com.br/index.php?secao=mensagens
+		38 link Description: 5, Value: narutogame.com.br/index.php?secao=noticias
+		39 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php?secao=jogador_vip
+		40 text 3292
+		41 heading STATUS DO PERSONAGEM, Value: 1
+			42 text STATUS DO PERSONAGEM
+		43 container
+			44 heading Atributos, Value: 2
+				45 text Atributos
+			46 container
+				47 image
+				48 text Taijutsu
+				49 text + 1 ( + 0 )
+			50 container
+				51 image
+				52 text Bukijutsu
+				53 text + 1 ( + 0 )
+			54 container
+				55 image
+				56 text Ninjutsu
+				57 text + 1 ( + 0 )
+			58 container
+				59 image
+				60 text Genjutsu
+				61 text + 5 ( + 0 )
+			62 container
+				63 image
+				64 text Força
+				65 text + 1 ( + 0 )
+			66 container
+				67 image
+				68 text Agilidade
+				69 text + 3 ( + 0 )
+			70 container
+				71 image
+				72 text Inteligência
+				73 text + 5 ( + 0 )
+			74 container
+				75 image
+				76 text Selo
+				77 text + 3 ( + 0 )
+			78 container
+				79 image
+				80 text Resistência
+				81 text + 1 ( + 0 )
+			82 container
+				83 image
+				84 text Energia
+				85 text + 11 ( + 0 )
+		86 container
+			87 heading Fórmulas, Value: 2
+				88 text Fórmulas
+			89 container
+				90 image
+				91 text Vida
+				92 text 277 (+ 0)
+			93 container
+				94 image
+				95 text Chakra
+				96 text 266 (+ 0)
+			97 container
+				98 image
+				99 text Stamina
+				100 text 131 (+ 0)
+			101 container
+				102 image
+				103 text Atk. ( Tai / Buk )
+				104 text 0 (+ 0)
+			105 container
+				106 image
+				107 text Atk. ( Nin / Gen )
+				108 text 2 (+ 0)
+			109 container
+				110 image
+				111 text Def. ( Tai / Buk )
+				112 text 0 (+ 0)
+			113 container
+				114 image
+				115 text Def. ( Nin / Gen )
+				116 text 0 (+ 0)
+			117 container
+				118 image
+				119 text Perfuração
+				120 text 3 (+ 0)
+			121 container
+				122 image
+				123 text Precisão
+				124 text 3 (+ 0)
+			125 container
+				126 image
+				127 text Concentração
+				128 text 0 (+ 0)
+			129 container
+				130 image
+				131 text Percepção
+				132 text 0 (+ 0)
+			133 container
+				134 image
+				135 text Convicção
+				136 text 0 (+ 0)
+			137 container
+				138 image
+				139 text Determinação
+				140 text 5 (+ 0)
+		141 container
+			142 text Resumo de Combates
+			143 text Vitórias NPC:  1
+			144 text Vitórias Dojo PVP:  0
+			145 text Vitórias Mapa PVP:  0
+			146 text Vitórias 4x4 Dojo:  0
+			147 text Derrotas NPC:  0
+			148 text Derrotas Dojo PVP:  0
+			149 text Derrotas Mapa PVP:  0
+			150 text Derrotas 4x4 Dojo:  0
+			151 text Empates PVP:  0
+			152 text Empates NPC:  0
+			153 text Fugas:  0
+		154 container
+			155 text Resumo de Missões
+			156 text Rank S:  0 OK / 0 Falhas
+			157 text Rank A:  0 OK / 0 Falhas
+			158 text Rank B:  0 OK / 0 Falhas
+			159 text Rank C:  0 OK / 0 Falhas
+			160 text Rank D:  0 OK / 0 Falhas
+			161 text Tarefas:  9
+		162 container
+			163 text Informações Extras
+			164 text Total de Treino:  11700
+			165 text Pontos Distribuídos:  1
+			166 text Bingo Book Mortos:  0
+			167 text Total de Horas Jogadas:  5h
+			168 text Torneios NPC Vencido(s):  0
+			169 text Torneios PVP Vencido(s):  0
+			170 text Arenas Vencida(s):  0
+		171 container Description: Advertisement, ID: aswift_0
+			172 AXWebArea about:blank
+
+[Rodapé e chat omitidos na cópia pública]

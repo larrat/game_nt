@@ -1,0 +1,109 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=negado&byrule=section&source=dojo".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
++		78 content list
++			79 container
++				80 image PERSONAGEM_TESTE
++				81 text PERSONAGEM_TESTE
++				82 text Ola
++				83 text há 3 dias
++			84 container
++				85 image PERSONAGEM_TESTE
++				86 text PERSONAGEM_TESTE
++				87 text Chunin level 17, preciso de equipe
++				88 text há 3 dias
++			89 container
++				90 image Aisek
++				91 text Aisek
++				92 text se for ativo, vem
++				93 text há 3 dias
++			94 container
++				95 image Aisek
++				96 text Aisek
++				97 text Flying Raijin3
++				98 text há 3 dias
++			99 container
++				100 image Aisek
++				101 text Aisek
++				102 text Flying Raijin (sem o 3)
++				103 text há 3 dias
++			104 container
++				105 image PERSONAGEM_TESTE
++				106 text PERSONAGEM_TESTE
++				107 text Opa
++				108 text há 3 dias
++			109 container
++				110 image PERSONAGEM_TESTE
++				111 text PERSONAGEM_TESTE
++				112 text Batlha 4 vs 4, 7 na fila, falta um, quem vai la
++				113 text há 3 dias
++			114 container
++				115 image MadeiraJutsu
++				116 text MadeiraJutsu
++				117 text jutsu de genin
++				118 text há 3 dias
++			119 container
++				120 image PERSONAGEM_TESTE
++				121 text PERSONAGEM_TESTE
++				122 text Equipe folha?
++				123 text anteontem
++			124 container
++				125 image Aisek
++				126 text Aisek
++				127 text ainda procurando?
++				128 text ontem
++			129 container
++				130 image Mohtra
++				131 text Mohtra
++				132 text Rapaziada ganhei uma espada da névoa do nada. É normal isso? KkkKkkjJ
++				133 text há 21 horas
++			134 container
++				135 image PERSONAGEM_TESTE
++				136 text PERSONAGEM_TESTE
++				137 text Sim mano
++				138 text há 21 horas
++			139 container
++				140 image PERSONAGEM_TESTE
++				141 text PERSONAGEM_TESTE
++				142 text É aleatório,
++				143 text há 21 horas
++			144 container
++				145 image FURIA_da_folha
++				146 text FURIA_da_folha
++				147 text J
++				148 text há 20 horas
++			149 container
++				150 image Mohtra
++				151 text Mohtra
++				152 text Mano, preciso tirar um pvp pra manter a espada da névoa
++				153 text há 17 horas
++			154 container
++				155 image Mohtra
++				156 text Mohtra
++				157 text mas n tem ngm
++				158 text há 17 horas
++			159 container
++				160 image Aisek
++				161 text Aisek
++				162 text conseguiu?
++				163 text há 1 hora
++			164 container
++				165 image Mohtra
++				166 text Mohtra
++				167 text Não rolou
++				168 text há 47 minutos
++			169 container
++				170 image Mohtra
++				171 text Mohtra
++				172 text Fui atacado por um cara 10 níveis acima kKKKKJJJ
++				173 text há 47 minutos
++			174 container
++				175 image Mohtra
++				176 text Mohtra
++				177 text E se n fosse a bijuu dele eu ganhava, falo memo
++				178 text há 47 minutos
++			179 container
++				180 image Tsuneiide
++				181 text Tsuneiide
++				182 text quem quiser equipe mandai ai para minha, vamos fazer todas as missões e desafios hj
++				183 text há 18 minutos
+The focused UI element is 76 text field (settable) message

@@ -1,0 +1,3364 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Temas VIP" [level=1]
+- generic: Personagem
+- combobox
+- combobox "Todos":
+  - textbox "Todos"
+- generic: Versão
+- combobox:
+  - option "Todas" [selected]
+  - option "Não liberada"
+  - option "Liberada"
+- generic: Status
+- combobox:
+  - option "Todos" [selected]
+  - option "Não Adquirido"
+  - option "Adquirido"
+- generic: Tema
+- combobox:
+  - option "Todos" [selected]
+  - option "Ultimate Simples"
+  - option "Ultimate Animado"
+- button "Filtrar"
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjc4', '91-12', 0, false)
+- generic: Kurenai Yuuhi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NDE5', '178-3', 0, false)
+- generic: Fugaku Uchiha
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NDIw', '178-4', 0, false)
+- generic: Fugaku Uchiha
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NDcx', '126-8', 0, false)
+- generic: Kushina Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NDc0', '127-3', 0, false)
+- generic: Sakumo Hatake
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NDc1', '127-4', 0, false)
+- generic: Sakumo Hatake
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjI4', '113-6', 0, false)
+- generic: Konan
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgxMg%3D%3D', '543-10', 0, false)
+- generic: Konan
+- generic: Versão - Anjo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjM4', '113-16', 0, false)
+- generic: Konan
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc2', '135-2', 0, false)
+- generic: Salamander Hanzou
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Nzkx', '189-7', 0, false)
+- generic: Ao
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('ODE4', '43-4', 0, false)
+- generic: Zabuza Momochi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('ODQx', '208-5', 0, false)
+- generic: Kushimaru Kuriarare
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('ODQy', '208-6', 0, false)
+- generic: Kushimaru Kuriarare
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('OTI4', '217-3', 0, false)
+- generic: Roushi
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('OTY2', '101-5', 0, false)
+- generic: Kabuto Yakushi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('OTcx', '101-10', 0, false)
+- generic: Kabuto Yakushi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('OTg4', '71-7', 0, false)
+- generic: Kimimaro Kaguya
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTAyMQ%3D%3D', '72-8', 0, false)
+- generic: Kidoumaru
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTAyNw%3D%3D', '77-5', 0, false)
+- generic: Sakon e Ukon
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTA3Nw%3D%3D', '151-3', 0, false)
+- generic: Rikudou Sennin
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTE4NQ%3D%3D', '173-7', 0, false)
+- generic: Darui
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM2Ng%3D%3D', '84-25', 0, false)
+- generic: Minato Namikaze
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTU3Ng%3D%3D', '691-2', 0, false)
+- generic: Tenten
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTY3OA%3D%3D', '139-6', 0, false)
+- generic: Shikaku Nara
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTI4OQ%3D%3D', '203-5', 0, false)
+- generic: Fuu
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTI5MQ%3D%3D', '204-5', 0, false)
+- generic: Jinin Akebino
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTI5Mg%3D%3D', '204-6', 0, false)
+- generic: Jinin Akebino
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTMyMA%3D%3D', '129-7', 0, false)
+- generic: Danzou Shimura
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTMyNA%3D%3D', '143-9', 0, false)
+- generic: Utakata
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTMzNA%3D%3D', '289-14', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTMzNQ%3D%3D', '274-18', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Modo Kyuubi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTMzNg%3D%3D', '316-4', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Shukaku
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTMzNw%3D%3D', '592-10', 0, false)
+- generic: Nagato Uzumaki
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM0Ng%3D%3D', '137-10', 0, false)
+- generic: Nagato Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM2Mw%3D%3D', '63-15', 0, false)
+- generic: Jiraiya
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM2NA%3D%3D', '340-4', 0, false)
+- generic: Yugito Nii
+- generic: Versão - Matatabi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM2NQ%3D%3D', '599-3', 0, false)
+- generic: Yagura
+- generic: Versão - Isobu
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM2Nw%3D%3D', '560-3', 0, false)
+- generic: Killer Bee
+- generic: Versão - Gyuuki
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM2OA%3D%3D', '217-7', 0, false)
+- generic: Roushi
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM2OQ%3D%3D', '520-6', 0, false)
+- generic: Yahiko
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM3NQ%3D%3D', '55-27', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM3Ng%3D%3D', '601-2', 0, false)
+- generic: Utakata
+- generic: Versão - Saiken
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM3OA%3D%3D', '116-10', 0, false)
+- generic: Juugo
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM3OQ%3D%3D', '553-2', 0, false)
+- generic: Karin Uzumaki
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM4Mg%3D%3D', '272-12', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Kurama
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM4Mw%3D%3D', '52-12', 0, false)
+- generic: Deidara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM4NA%3D%3D', '203-9', 0, false)
+- generic: Fuu
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM4NQ%3D%3D', '428-2', 0, false)
+- generic: Konohamaru Sarutobi
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM4OA%3D%3D', '296-7', 0, false)
+- generic: Rock Lee
+- generic: Versão - Portões de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM4OQ%3D%3D', '304-5', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM5MA%3D%3D', '366-9', 0, false)
+- generic: Neji Hyuuga
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2OA%3D%3D', '510-22', 0, false)
+- generic: Kabuto Yakushi
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM5NA%3D%3D', '333-2', 0, false)
+- generic: Temari
+- generic: Versão - Areia
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM5NQ%3D%3D', '95-9', 0, false)
+- generic: Kiba Inuzuka
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM5Ng%3D%3D', '469-16', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Obito - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM5Nw%3D%3D', '378-3', 0, false)
+- generic: Shino Aburame
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTM5OA%3D%3D', '370-2', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTQwMA%3D%3D', '382-5', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTM1NA%3D%3D', '214-7', 0, false)
+- generic: Nidaime Mizukage
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTQwOQ%3D%3D', '444-6', 0, false)
+- generic: Hashirama Senju
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTQxMA%3D%3D', '431-4', 0, false)
+- generic: Tobirama Senju
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTQyMw%3D%3D', '535-5', 0, false)
+- generic: Hiruzen Sarutobi
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTQyNA%3D%3D', '460-8', 0, false)
+- generic: Minato Namikaze
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTY3NA%3D%3D', '112-10', 0, false)
+- generic: Rin Nohara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgxNQ%3D%3D', '126-7', 0, false)
+- generic: Kushina Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTY2Mg%3D%3D', '173-10', 0, false)
+- generic: Darui
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTY2Ng%3D%3D', '189-8', 0, false)
+- generic: Ao
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTY2OA%3D%3D', '192-6', 0, false)
+- generic: Torune Aburame
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTY2OQ%3D%3D', '192-7', 0, false)
+- generic: Torune Aburame
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTM5Mg%3D%3D', '220-15', 0, false)
+- generic: Shisui Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc1Mw%3D%3D', '102-17', 0, false)
+- generic: Tsunade Senju
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc4OQ%3D%3D', '209-6', 0, false)
+- generic: Mangetsu Hoozuki
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc5MA%3D%3D', '353-8', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - ANBU
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc5MQ%3D%3D', '509-2', 0, false)
+- generic: Kabuto Yakushi
+- generic: Versão - Mode Sennin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc5Mg%3D%3D', '529-3', 0, false)
+- generic: Hidan
+- generic: Versão - Jashin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc5Mw%3D%3D', '387-6', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Gaiden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc5NQ%3D%3D', '463-2', 0, false)
+- generic: Zetsu
+- generic: Versão - Negro
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc5Ng%3D%3D', '273-8', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Naruko
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc5Nw%3D%3D', '286-19', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Selo Amaldiçoado
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc5OA%3D%3D', '42-6', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTc5OQ%3D%3D', '331-2', 0, false)
+- generic: Kankurou
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgwMA%3D%3D', '343-2', 0, false)
+- generic: Deidara
+- generic: Versão - C0
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgwMQ%3D%3D', '56-8', 0, false)
+- generic: Tenten
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgwMg%3D%3D', '568-3', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgwMw%3D%3D', '270-29', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgwNA%3D%3D', '117-12', 0, false)
+- generic: Karin Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgwNQ%3D%3D', '440-4', 0, false)
+- generic: Sakon e Udon
+- generic: Versão - Selo Amaldiçoado
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgwNg%3D%3D', '87-9', 0, false)
+- generic: Anko Mitarashi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgwNw%3D%3D', '513-2', 0, false)
+- generic: Tsunade Senju
+- generic: Versão - Byakugou
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgwOA%3D%3D', '436-7', 0, false)
+- generic: Orochimaru
+- generic: Versão - Sannin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgxMA%3D%3D', '356-4', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgxMQ%3D%3D', '482-3', 0, false)
+- generic: Chouji Akimichi
+- generic: Versão - Borboleta
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgxMw%3D%3D', '289-9', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTgxNA%3D%3D', '109-14', 0, false)
+- generic: Kakuzu
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTg4MA%3D%3D', '314-4', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTkxNQ%3D%3D', '346-7', 0, false)
+- generic: Akasuna no Sasori
+- generic: Versão - Hiruko
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTkxNw%3D%3D', '350-5', 0, false)
+- generic: Kisame Hoshigaki
+- generic: Versão - Tubarão
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTk0Ng%3D%3D', '393-6', 0, false)
+- generic: Maito Gai
+- generic: Versão - Portão de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTk1Mg%3D%3D', '416-14', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MTk4OQ%3D%3D', '102-23', 0, false)
+- generic: Tsunade Senju
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjAyNA%3D%3D', '123-4', 0, false)
+- generic: Chouza Akimichi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjAyNg%3D%3D', '125-8', 0, false)
+- generic: Ei
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA1Mw%3D%3D', '209-7', 0, false)
+- generic: Mangetsu Hoozuki
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA1Ng%3D%3D', '216-6', 0, false)
+- generic: Muu
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA1OA%3D%3D', '218-7', 0, false)
+- generic: Han
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA2MA%3D%3D', '132-3', 0, false)
+- generic: Hiashi Hyuuga
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA2Mw%3D%3D', '84-14', 0, false)
+- generic: Minato Namikaze
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA2NQ%3D%3D', '384-6', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - ANBU
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA2Nw%3D%3D', '297-5', 0, false)
+- generic: Rock Lee
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA2OA%3D%3D', '474-12', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA3MA%3D%3D', '356-9', 1, false)
+- generic: Itachi Uchiha
+- generic: Versão - Edo Tensei
+- generic: Tema adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA3MQ%3D%3D', '393-8', 0, false)
+- generic: Maito Gai
+- generic: Versão - Portão de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA3Mg%3D%3D', '507-3', 0, false)
+- generic: Kabuto Yakushi
+- generic: Versão - Espião Profissional
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA3Mw%3D%3D', '471-9', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Guruguru
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA3NQ%3D%3D', '384-15', 1, false)
+- generic: Kakashi Hatake
+- generic: Versão - ANBU
+- generic: Tema adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA3Ng%3D%3D', '289-8', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA3Nw%3D%3D', '274-14', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Modo Kyuubi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA3OA%3D%3D', '472-4', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Mascarado
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA3OQ%3D%3D', '312-3', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA4MA%3D%3D', '406-12', 0, false)
+- generic: Jiraiya
+- generic: Versão - Modo Sennin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA4MQ%3D%3D', '568-4', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjA4Mg%3D%3D', '140-7', 0, false)
+- generic: Mei Terumii
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjExMA%3D%3D', '61-14', 0, false)
+- generic: Maito Gai
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE3Ng%3D%3D', '212-5', 0, false)
+- generic: Izuna Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE3Nw%3D%3D', '218-8', 0, false)
+- generic: Han
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE4MA%3D%3D', '220-6', 0, false)
+- generic: Shisui Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE4Mg%3D%3D', '151-7', 0, false)
+- generic: Rikudou Sennin
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE4Mw%3D%3D', '141-20', 0, false)
+- generic: Oonoki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE4NA%3D%3D', '91-8', 0, false)
+- generic: Kurenai Yuuhi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE4NQ%3D%3D', '118-5', 0, false)
+- generic: Suigetsu Hoozuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE4Ng%3D%3D', '119-4', 0, false)
+- generic: Killer Bee
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE4Nw%3D%3D', '215-5', 0, false)
+- generic: Sandaime Raikage
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE4OQ%3D%3D', '534-3', 0, false)
+- generic: Kakuzu
+- generic: Versão - Vila da Cachoeira
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE5MA%3D%3D', '530-2', 0, false)
+- generic: Hidan
+- generic: Versão - Vilas das Fontes Termais
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE5MQ%3D%3D', '348-5', 0, false)
+- generic: Akasuna no Sasori
+- generic: Versão - Areia
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE5Mg%3D%3D', '732-2', 0, false)
+- generic: Kisame Hoshigaki
+- generic: Versão - Devorador de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE5NA%3D%3D', '608-3', 0, false)
+- generic: Rikudou Sennin
+- generic: Versão - Shinju
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE5Ng%3D%3D', '526-26', 0, false)
+- generic: Yahiko
+- generic: Versão - Tendo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE5Nw%3D%3D', '399-4', 0, false)
+- generic: Shikamaru Nara
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE5OA%3D%3D', '567-3', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjE5OQ%3D%3D', '275-11', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjIwMA%3D%3D', '290-2', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjIwMQ%3D%3D', '306-9', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjIwMg%3D%3D', '654-2', 0, false)
+- generic: Shisui Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjIwNg%3D%3D', '63-14', 0, false)
+- generic: Jiraiya
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjIwNw%3D%3D', '76-28', 0, false)
+- generic: Orochimaru
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjIxMw%3D%3D', '568-7', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjIxNQ%3D%3D', '444-5', 0, false)
+- generic: Hashirama Senju
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjIxOA%3D%3D', '344-2', 0, false)
+- generic: Deidara
+- generic: Versão - Pedra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjIyMw%3D%3D', '461-8', 1, false)
+- generic: Minato Namikaze
+- generic: Versão - Modo Kyuubi
+- generic: Tema adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjI0MQ%3D%3D', '280-13', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Sétimo Hokage
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjI3NA%3D%3D', '290-4', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjI5MQ%3D%3D', '388-2', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Hokage
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjM2NQ%3D%3D', '287-10', 1, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Líder
+- generic: Tema adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjM2Ng%3D%3D', '393-3', 0, false)
+- generic: Maito Gai
+- generic: Versão - Portão de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjM4OA%3D%3D', '271-14', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Mode Sennin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjM5MQ%3D%3D', '289-11', 1, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Susanoo
+- generic: Tema adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjQxOA%3D%3D', '321-4', 0, false)
+- generic: Zabuza Momochi
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjQzOQ%3D%3D', '277-3', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Mecha
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjUwNQ%3D%3D', '215-6', 0, false)
+- generic: Sandaime Raikage
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjU0Ng%3D%3D', '135-6', 0, false)
+- generic: Salamander Hanzou
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjU0Nw%3D%3D', '586-3', 0, false)
+- generic: Hanabi Hyuuga
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjU0OQ%3D%3D', '584-6', 0, false)
+- generic: Danzou Shimura
+- generic: Versão - Sharingan
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjU4MA%3D%3D', '98-2', 0, false)
+- generic: Iruka Umino
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYxNw%3D%3D', '235-25', 0, false)
+- generic: Boruto Uzumaki
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYxOA%3D%3D', '236-8', 0, false)
+- generic: Sarada Uchiha
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYxOQ%3D%3D', '393-20', 0, false)
+- generic: Maito Gai
+- generic: Versão - Portão de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyMA%3D%3D', '296-11', 0, false)
+- generic: Rock Lee
+- generic: Versão - Portões de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyMQ%3D%3D', '119-19', 0, false)
+- generic: Killer Bee
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyMg%3D%3D', '125-10', 0, false)
+- generic: Ei
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyMw%3D%3D', '482-5', 0, false)
+- generic: Chouji Akimichi
+- generic: Versão - Borboleta
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyNA%3D%3D', '416-22', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyNQ%3D%3D', '57-9', 0, false)
+- generic: Neji Hyuuga
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyNg%3D%3D', '470-19', 1, false)
+- generic: Obito Uchiha
+- generic: Versão - Tobi - Quarta Guerra
+- generic: Tema adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyNw%3D%3D', '55-30', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyOA%3D%3D', '379-11', 0, false)
+- generic: Shino Aburame
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYyOQ%3D%3D', '60-21', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzMA%3D%3D', '430-5', 0, false)
+- generic: Konohamaru Sarutobi
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzMQ%3D%3D', '467-5', 0, false)
+- generic: Tayuya
+- generic: Versão - Selo Amaldiçoado
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzMg%3D%3D', '586-2', 0, false)
+- generic: Hanabi Hyuuga
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzMw%3D%3D', '444-3', 0, false)
+- generic: Hashirama Senju
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzNA%3D%3D', '80-3', 0, false)
+- generic: Genma Shiranui
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzNQ%3D%3D', '312-24', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzNg%3D%3D', '406-13', 0, false)
+- generic: Jiraiya
+- generic: Versão - Modo Sennin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzNw%3D%3D', '592-6', 0, false)
+- generic: Nagato Uzumaki
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzOA%3D%3D', '141-19', 0, false)
+- generic: Oonoki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjYzOQ%3D%3D', '268-13', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Chakra da Kyuubi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY0MA%3D%3D', '286-12', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Selo Amaldiçoado
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY0MQ%3D%3D', '278-3', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Menma
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY0Mg%3D%3D', '90-15', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY0Mw%3D%3D', '122-10', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY1MA%3D%3D', '307-5', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY1MQ%3D%3D', '335-2', 0, false)
+- generic: Temari
+- generic: Versão - Guarda Costas
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY1Mg%3D%3D', '543-5', 0, false)
+- generic: Konan
+- generic: Versão - Anjo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY1Mw%3D%3D', '461-4', 1, false)
+- generic: Minato Namikaze
+- generic: Versão - Modo Kyuubi
+- generic: Tema adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY1NA%3D%3D', '110-11', 0, false)
+- generic: Hiruzen Sarutobi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY1NQ%3D%3D', '447-5', 0, false)
+- generic: Asuma Sarutobi
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY2MQ%3D%3D', '276-6', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY2Mg%3D%3D', '291-4', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY2Mw%3D%3D', '309-4', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY2NA%3D%3D', '383-3', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY2NQ%3D%3D', '354-2', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY2Nw%3D%3D', '404-2', 0, false)
+- generic: Jiraiya
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY2OA%3D%3D', '457-3', 0, false)
+- generic: Minato Namikaze
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY3MA%3D%3D', '473-2', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY3MQ%3D%3D', '542-2', 0, false)
+- generic: Konan
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY3Mg%3D%3D', '594-2', 0, false)
+- generic: Nagato Uzumaki
+- generic: Versão - Chibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY4MA%3D%3D', '393-16', 0, false)
+- generic: Maito Gai
+- generic: Versão - Portão de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY4MQ%3D%3D', '76-11', 0, false)
+- generic: Orochimaru
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY4Mg%3D%3D', '71-6', 0, false)
+- generic: Kimimaro Kaguya
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY4Mw%3D%3D', '461-2', 0, false)
+- generic: Minato Namikaze
+- generic: Versão - Modo Kyuubi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjY4NQ%3D%3D', '400-8', 0, false)
+- generic: Shikamaru Nara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjcyMQ%3D%3D', '320-2', 0, false)
+- generic: Zabuza Momochi
+- generic: Versão - Mercenário
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjcyMg%3D%3D', '510-11', 0, false)
+- generic: Kabuto Yakushi
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjcyMw%3D%3D', '54-20', 0, false)
+- generic: Kisame Hoshigaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjcyNA%3D%3D', '572-3', 1, false)
+- generic: Madara Uchiha
+- generic: Versão - Células do Hashirama
+- generic: Tema adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjcyNQ%3D%3D', '347-8', 0, false)
+- generic: Akasuna no Sasori
+- generic: Versão - Marionete
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjcyNg%3D%3D', '526-9', 0, false)
+- generic: Yahiko
+- generic: Versão - Tendo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjcyNw%3D%3D', '474-9', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjcyOA%3D%3D', '387-2', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Gaiden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjcyOQ%3D%3D', '416-12', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjczMA%3D%3D', '100-12', 0, false)
+- generic: Yamato
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjczMg%3D%3D', '220-20', 0, false)
+- generic: Shisui Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjczMw%3D%3D', '119-18', 0, false)
+- generic: Killer Bee
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjg3MA%3D%3D', '115-9', 0, false)
+- generic: Guren
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjg3Mg%3D%3D', '220-19', 1, false)
+- generic: Shisui Uchiha
+- generic: Versão - Shippuden
+- generic: Tema adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjg3NA%3D%3D', '51-10', 0, false)
+- generic: Yugito Nii
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjg3NQ%3D%3D', '311-2', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Areia
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjg5Mw%3D%3D', '361-6', 0, false)
+- generic: Tenten
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjg5NA%3D%3D', '400-20', 0, false)
+- generic: Shikamaru Nara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjg5NQ%3D%3D', '341-6', 0, false)
+- generic: Deidara
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjkxNA%3D%3D', '323-8', 0, false)
+- generic: Haku
+- generic: Versão - Caçador
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjkxNQ%3D%3D', '105-12', 0, false)
+- generic: Hidan
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjkxNg%3D%3D', '99-14', 0, false)
+- generic: Sai
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjkxNw%3D%3D', '59-9', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MjkxOA%3D%3D', '294-2', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk0Mw%3D%3D', '271-18', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Mode Sennin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk0NA%3D%3D', '273-7', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Naruko
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk0NQ%3D%3D', '420-2', 0, false)
+- generic: Jiroubou
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk0Ng%3D%3D', '498-4', 0, false)
+- generic: Sai
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk0Nw%3D%3D', '510-10', 0, false)
+- generic: Kabuto Yakushi
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk0OA%3D%3D', '131-2', 0, false)
+- generic: Hanabi Hyuuga
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk1MQ%3D%3D', '4-6', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk1Mg%3D%3D', '513-3', 0, false)
+- generic: Tsunade Senju
+- generic: Versão - Byakugou
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk2OA%3D%3D', '353-5', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - ANBU
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk2OQ%3D%3D', '55-34', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk3MA%3D%3D', '60-22', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mjk3MQ%3D%3D', '287-8', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Líder
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjEzNQ%3D%3D', '125-13', 0, false)
+- generic: Ei
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTM1Mw%3D%3D', '214-6', 0, false)
+- generic: Nidaime Mizukage
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzA1Nw%3D%3D', '393-22', 0, false)
+- generic: Maito Gai
+- generic: Versão - Portão de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzA1OA%3D%3D', '140-4', 0, false)
+- generic: Mei Terumii
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzA2OQ%3D%3D', '126-10', 0, false)
+- generic: Kushina Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzA3MA%3D%3D', '431-6', 0, false)
+- generic: Tobirama Senju
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzA2OA%3D%3D', '47-2', 0, false)
+- generic: Temari
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzA3Mg%3D%3D', '57-5', 0, false)
+- generic: Neji Hyuuga
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzA3Mw%3D%3D', '371-19', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE0Mw%3D%3D', '110-2', 0, false)
+- generic: Hiruzen Sarutobi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE0NA%3D%3D', '110-13', 0, false)
+- generic: Hiruzen Sarutobi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE0NQ%3D%3D', '55-29', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE0Ng%3D%3D', '268-14', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Chakra da Kyuubi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE0Nw%3D%3D', '271-19', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Mode Sennin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE0OQ%3D%3D', '270-30', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE1NA%3D%3D', '290-10', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE1Mw%3D%3D', '289-16', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE1NQ%3D%3D', '3-9', 0, false)
+- generic: Rock Lee
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE1Ng%3D%3D', '312-7', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE1Nw%3D%3D', '312-2', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE1OA%3D%3D', '4-2', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE1OQ%3D%3D', '314-15', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2MA%3D%3D', '330-7', 0, false)
+- generic: Kankurou
+- generic: Versão - Guarda Costas
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2MQ%3D%3D', '338-5', 0, false)
+- generic: Temari
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2Mg%3D%3D', '52-30', 0, false)
+- generic: Deidara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2Mw%3D%3D', '346-6', 0, false)
+- generic: Akasuna no Sasori
+- generic: Versão - Hiruko
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2NA%3D%3D', '53-13', 0, false)
+- generic: Akasuna no Sasori
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2NQ%3D%3D', '358-9', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2Ng%3D%3D', '353-9', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - ANBU
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2Nw%3D%3D', '361-9', 0, false)
+- generic: Tenten
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2OA%3D%3D', '364-6', 0, false)
+- generic: Neji Hyuuga
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE2OQ%3D%3D', '57-10', 0, false)
+- generic: Neji Hyuuga
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE3MA%3D%3D', '371-20', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE3MQ%3D%3D', '60-25', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE3Mg%3D%3D', '60-44', 1, false)
+- generic: Kakashi Hatake
+- generic: Versão - Clássico
+- generic: Tema adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE3NQ%3D%3D', '393-7', 0, false)
+- generic: Maito Gai
+- generic: Versão - Portão de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE3Ng%3D%3D', '399-2', 0, false)
+- generic: Shikamaru Nara
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE3Nw%3D%3D', '62-10', 0, false)
+- generic: Shikamaru Nara
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE3OA%3D%3D', '403-2', 1, false)
+- generic: Jiraiya
+- generic: Versão - Sannin
+- generic: Tema adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE3OQ%3D%3D', '406-14', 0, false)
+- generic: Jiraiya
+- generic: Versão - Modo Sennin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4MA%3D%3D', '69-6', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4MQ%3D%3D', '415-2', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Noiva
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4Mg%3D%3D', '430-2', 0, false)
+- generic: Konohamaru Sarutobi
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4Mw%3D%3D', '75-13', 0, false)
+- generic: Tobirama Senju
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4NA%3D%3D', '75-14', 0, false)
+- generic: Tobirama Senju
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4NQ%3D%3D', '436-5', 0, false)
+- generic: Orochimaru
+- generic: Versão - Sannin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4Ng%3D%3D', '76-34', 0, false)
+- generic: Orochimaru
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4Nw%3D%3D', '78-17', 0, false)
+- generic: Hashirama Senju
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4OA%3D%3D', '446-3', 0, false)
+- generic: Hashirama Senju
+- generic: Versão - Mode Sennin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE4OQ%3D%3D', '447-6', 0, false)
+- generic: Asuma Sarutobi
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE5MA%3D%3D', '447-7', 0, false)
+- generic: Asuma Sarutobi
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE5Mg%3D%3D', '461-15', 0, false)
+- generic: Minato Namikaze
+- generic: Versão - Modo Kyuubi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE5Mw%3D%3D', '90-10', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE5NA%3D%3D', '471-2', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Guruguru
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE5NQ%3D%3D', '482-6', 0, false)
+- generic: Chouji Akimichi
+- generic: Versão - Borboleta
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE5Ng%3D%3D', '94-6', 0, false)
+- generic: Chouji Akimichi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE5Nw%3D%3D', '99-12', 0, false)
+- generic: Sai
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE5OA%3D%3D', '498-2', 0, false)
+- generic: Sai
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwMA%3D%3D', '526-15', 0, false)
+- generic: Yahiko
+- generic: Versão - Tendo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwMQ%3D%3D', '105-15', 0, false)
+- generic: Hidan
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwMg%3D%3D', '529-2', 0, false)
+- generic: Hidan
+- generic: Versão - Jashin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwMw%3D%3D', '112-5', 0, false)
+- generic: Rin Nohara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwNA%3D%3D', '543-12', 0, false)
+- generic: Konan
+- generic: Versão - Anjo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwNQ%3D%3D', '545-2', 0, false)
+- generic: Konan
+- generic: Versão - Chuva
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwNg%3D%3D', '552-2', 0, false)
+- generic: Juugo
+- generic: Versão - Taka
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwNw%3D%3D', '116-8', 0, false)
+- generic: Juugo
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwOA%3D%3D', '117-13', 0, false)
+- generic: Karin Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIwOQ%3D%3D', '117-14', 0, false)
+- generic: Karin Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxMA%3D%3D', '118-3', 0, false)
+- generic: Suigetsu Hoozuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxMQ%3D%3D', '118-9', 0, false)
+- generic: Suigetsu Hoozuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxMg%3D%3D', '562-3', 0, false)
+- generic: Killer Bee
+- generic: Versão - Portador da Samehada
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxMw%3D%3D', '119-3', 0, false)
+- generic: Killer Bee
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxNA%3D%3D', '120-5', 0, false)
+- generic: Chiyo
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxNQ%3D%3D', '387-15', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Gaiden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxNg%3D%3D', '122-17', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxNw%3D%3D', '122-11', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxOA%3D%3D', '579-4', 0, false)
+- generic: Ei
+- generic: Versão - Raikage
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIxOQ%3D%3D', '579-3', 0, false)
+- generic: Ei
+- generic: Versão - Raikage
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIyMA%3D%3D', '126-11', 0, false)
+- generic: Kushina Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIyMQ%3D%3D', '585-3', 0, false)
+- generic: Hanabi Hyuuga
+- generic: Versão - Jovem
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIyMg%3D%3D', '137-9', 0, false)
+- generic: Nagato Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIyMw%3D%3D', '138-6', 0, false)
+- generic: Yahiko
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIyNA%3D%3D', '143-6', 0, false)
+- generic: Utakata
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIyNQ%3D%3D', '633-3', 0, false)
+- generic: Choujuurou
+- generic: Versão - Mizukage
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzI3Nw%3D%3D', '220-18', 0, false)
+- generic: Shisui Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzIyOA%3D%3D', '100-8', 0, false)
+- generic: Yamato
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzUwNA%3D%3D', '286-18', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Selo Amaldiçoado
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzYxMA%3D%3D', '297-6', 0, false)
+- generic: Rock Lee
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzYzNg%3D%3D', '301-4', 0, false)
+- generic: Rock Lee
+- generic: Versão - Verão
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzY2MQ%3D%3D', '304-16', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mzc0NQ%3D%3D', '313-3', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Chakra do Ichibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mzc0Ng%3D%3D', '313-4', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Chakra do Ichibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mzc2OQ%3D%3D', '316-2', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Shukaku
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Mzc4Nw%3D%3D', '320-6', 0, false)
+- generic: Zabuza Momochi
+- generic: Versão - Mercenário
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzgwMQ%3D%3D', '323-10', 0, false)
+- generic: Haku
+- generic: Versão - Caçador
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzgwNg%3D%3D', '325-4', 0, false)
+- generic: Haku
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzgwNw%3D%3D', '325-5', 0, false)
+- generic: Haku
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NDM4OA%3D%3D', '419-4', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Verão
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTU3MA%3D%3D', '688-2', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTU3Mg%3D%3D', '689-2', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTU3NA%3D%3D', '690-2', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NDY1NA%3D%3D', '474-8', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NDg0MQ%3D%3D', '513-10', 0, false)
+- generic: Tsunade Senju
+- generic: Versão - Byakugou
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NDg1OQ%3D%3D', '517-3', 0, false)
+- generic: Tsunade Senju
+- generic: Versão - Verão
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTM3MA%3D%3D', '206-5', 0, false)
+- generic: Ameyuri Ringo
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTM3MQ%3D%3D', '206-6', 0, false)
+- generic: Ameyuri Ringo
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTM3Mg%3D%3D', '205-7', 0, false)
+- generic: Jinpachi Munashi
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTM3Mw%3D%3D', '205-8', 0, false)
+- generic: Jinpachi Munashi
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTM5Mw%3D%3D', '220-16', 0, false)
+- generic: Shisui Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTM5NA%3D%3D', '220-17', 0, false)
+- generic: Shisui Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQwMg%3D%3D', '654-3', 0, false)
+- generic: Shisui Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQyMQ%3D%3D', '262-2', 0, false)
+- generic: Juzo Biwa
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQyMg%3D%3D', '262-3', 0, false)
+- generic: Juzo Biwa
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQyNQ%3D%3D', '260-8', 0, false)
+- generic: Indra Ootsutsuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQyNw%3D%3D', '260-10', 0, false)
+- generic: Indra Ootsutsuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQ0MA%3D%3D', '259-12', 0, false)
+- generic: Ashura Ootsutsuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQ0MQ%3D%3D', '259-13', 0, false)
+- generic: Ashura Ootsutsuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQ0Mg%3D%3D', '259-14', 0, false)
+- generic: Ashura Ootsutsuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQ2NA%3D%3D', '238-9', 0, false)
+- generic: Kaguya Ootsutsuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTQ2OQ%3D%3D', '238-14', 0, false)
+- generic: Kaguya Ootsutsuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTU3OA%3D%3D', '692-2', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTU4OQ%3D%3D', '693-5', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Natal
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTU5Mg%3D%3D', '694-3', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Natal
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTU5NQ%3D%3D', '546-3', 0, false)
+- generic: Konan
+- generic: Versão - Natal
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTU5OA%3D%3D', '571-5', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Juubi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTYwMA%3D%3D', '376-7', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Verão
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTYwMw%3D%3D', '308-6', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Verão
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTYwNg%3D%3D', '696-3', 0, false)
+- generic: Rin Nohara
+- generic: Versão - Verão
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTY0MQ%3D%3D', '697-6', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Ano Novo Chines
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTY0OA%3D%3D', '698-7', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Ano Novo Chines
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTY1Mw%3D%3D', '699-4', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Ano Novo Chines
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjAzNA%3D%3D', '292-30', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Taka
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTgwMQ%3D%3D', '650-4', 0, true)
+- generic: Han
+- generic: Versão - Kokuou
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTg3Nw%3D%3D', '707-10', 0, false)
+- generic: Boruto Uzumaki
+- generic: Versão - Borushiki
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTg4NQ%3D%3D', '235-35', 0, false)
+- generic: Boruto Uzumaki
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTg5Nw%3D%3D', '236-24', 0, false)
+- generic: Sarada Uchiha
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTk3MQ%3D%3D', '730-7', 0, false)
+- generic: Boruto Uzumaki
+- generic: Versão - Time Skip
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTk3Mw%3D%3D', '282-3', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - O Ninja Saiyajin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTk3OA%3D%3D', '731-2', 0, false)
+- generic: Goku
+- generic: Versão - O Saiyajin Ninja
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTk4Mw%3D%3D', '565-24', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NTk4NA%3D%3D', '55-53', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjAzMg%3D%3D', '736-5', 0, false)
+- generic: Rock Lee
+- generic: Versão - Bruce Lee
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjAzNQ%3D%3D', '274-25', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Modo Kyuubi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjAzNw%3D%3D', '42-30', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjAzOA%3D%3D', '42-31', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjA4OA%3D%3D', '2-24', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjA5MA%3D%3D', '2-26', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjA5OA%3D%3D', '1-25', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjA5OQ%3D%3D', '1-26', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjEwMA%3D%3D', '43-16', 0, false)
+- generic: Zabuza Momochi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjEwMQ%3D%3D', '53-27', 0, false)
+- generic: Akasuna no Sasori
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjEwOQ%3D%3D', '737-4', 0, false)
+- generic: Tobirama Senju
+- generic: Versão - Ronin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjEyMA%3D%3D', '739-9', 0, false)
+- generic: Sarada Uchiha
+- generic: Versão - Time Skip
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjEzMA%3D%3D', '740-10', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Lunar
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjEzNg%3D%3D', '472-11', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Mascarado
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjEzNw%3D%3D', '444-8', 0, false)
+- generic: Hashirama Senju
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjE0OA%3D%3D', '746-4', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Halloween
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjE1Mg%3D%3D', '747-4', 0, false)
+- generic: Konan
+- generic: Versão - Halloween
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjE1OA%3D%3D', '748-6', 0, false)
+- generic: Kushina Uzumaki
+- generic: Versão - Halloween
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjE2Mw%3D%3D', '749-4', 0, false)
+- generic: Kabuto Yakushi
+- generic: Versão - Halloween
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjE2Ng%3D%3D', '393-23', 0, false)
+- generic: Maito Gai
+- generic: Versão - Portão de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjE2OQ%3D%3D', '751-3', 0, false)
+- generic: Momoshiki
+- generic: Versão - Ootsutsuki
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjIwNA%3D%3D', '765-2', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Mangá
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjI0MQ%3D%3D', '306-14', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjI0Mw%3D%3D', '306-16', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjI0OA%3D%3D', '308-7', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Verão
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjI1Mg%3D%3D', '307-13', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjI1Mw%3D%3D', '307-14', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjM1Ng%3D%3D', '767-6', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Mangá
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjM1OQ%3D%3D', '768-2', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Mangá
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('MzE1MA%3D%3D', '285-26', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjM3MQ%3D%3D', '770-2', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Mangá
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjM3OA%3D%3D', '771-4', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Mangá
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjM4Mg%3D%3D', '772-3', 0, false)
+- generic: Hashirama Senju
+- generic: Versão - Mangá
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjM4Nw%3D%3D', '773-3', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Mangá
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjM5Mw%3D%3D', '774-4', 0, false)
+- generic: Jiraiya
+- generic: Versão - Mangá
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQzMQ%3D%3D', '283-12', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Akatsuki
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQzMw%3D%3D', '285-25', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQzNA%3D%3D', '286-20', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Selo Amaldiçoado
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQzNg%3D%3D', '289-17', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQzNw%3D%3D', '289-18', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Susanoo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQzOA%3D%3D', '290-11', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQzOQ%3D%3D', '290-12', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ0MA%3D%3D', '292-31', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Taka
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ0MQ%3D%3D', '313-9', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Chakra do Ichibi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ0Mg%3D%3D', '321-5', 0, false)
+- generic: Zabuza Momochi
+- generic: Versão - Edo Tensei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ1Mg%3D%3D', '295-15', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Modo Barion
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ1Mw%3D%3D', '288-10', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ1NA%3D%3D', '55-54', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ1NQ%3D%3D', '526-27', 0, false)
+- generic: Yahiko
+- generic: Versão - Tendo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ1Ng%3D%3D', '384-19', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - ANBU
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ1Nw%3D%3D', '288-11', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ1OA%3D%3D', '707-11', 0, false)
+- generic: Boruto Uzumaki
+- generic: Versão - Borushiki
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ1OQ%3D%3D', '270-39', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2MA%3D%3D', '122-18', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2MQ%3D%3D', '88-12', 0, false)
+- generic: Tayuya
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2Mg%3D%3D', '4-20', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2Mw%3D%3D', '52-53', 0, false)
+- generic: Deidara
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2NA%3D%3D', '71-14', 0, false)
+- generic: Kimimaro Kaguya
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2NQ%3D%3D', '296-15', 0, false)
+- generic: Rock Lee
+- generic: Versão - Portões de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2Ng%3D%3D', '61-27', 0, false)
+- generic: Maito Gai
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2Nw%3D%3D', '238-15', 0, false)
+- generic: Kaguya Ootsutsuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ2OQ%3D%3D', '475-15', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Tobi
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ3MA%3D%3D', '220-23', 0, false)
+- generic: Shisui Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ3MQ%3D%3D', '320-7', 0, false)
+- generic: Zabuza Momochi
+- generic: Versão - Mercenário
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ3Mg%3D%3D', '275-13', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Modo Rikudou
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ3Mw%3D%3D', '84-31', 0, false)
+- generic: Minato Namikaze
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjQ4Ng%3D%3D', '779-13', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Deliquente
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwMA%3D%3D', '780-14', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Jounin
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwMQ%3D%3D', '236-25', 0, false)
+- generic: Sarada Uchiha
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwMg%3D%3D', '707-12', 0, false)
+- generic: Boruto Uzumaki
+- generic: Versão - Borushiki
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwMw%3D%3D', '237-13', 0, false)
+- generic: Mitsuki
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwNA%3D%3D', '265-7', 0, false)
+- generic: Sumire
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwNQ%3D%3D', '701-6', 0, false)
+- generic: Ada
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwNg%3D%3D', '703-8', 0, false)
+- generic: Delta
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwNw%3D%3D', '702-9', 0, false)
+- generic: Code
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwOA%3D%3D', '735-9', 0, false)
+- generic: Kawaki
+- generic: Versão - Karma
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUwOQ%3D%3D', '758-8', 0, false)
+- generic: Himawari Uzumaki
+- generic: Versão - Time Skip
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUxMA%3D%3D', '399-5', 0, false)
+- generic: Shikamaru Nara
+- generic: Versão - The Last
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUzMQ%3D%3D', '251-4', 0, false)
+- generic: Shinki
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUzMg%3D%3D', '246-7', 0, false)
+- generic: Shikadai Nara
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUzMw%3D%3D', '739-10', 0, false)
+- generic: Sarada Uchiha
+- generic: Versão - Time Skip
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUzNA%3D%3D', '706-12', 0, false)
+- generic: Jigen
+- generic: Versão - Otsutsuki
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUzNQ%3D%3D', '238-16', 0, false)
+- generic: Kaguya Ootsutsuki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjUzNg%3D%3D', '730-8', 0, false)
+- generic: Boruto Uzumaki
+- generic: Versão - Time Skip
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjU0OA%3D%3D', '784-8', 0, false)
+- generic: Shion
+- generic: Versão - Sacerdotisa
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjU3NQ%3D%3D', '790-7', 0, false)
+- generic: Shikamaru Nara
+- generic: Versão - Hokage
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjU3Ng%3D%3D', '181-3', 0, false)
+- generic: Hotaru Katsuragi
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjYxMA%3D%3D', '701-7', 0, false)
+- generic: Ada
+- generic: Versão - Boruto
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjYxMg%3D%3D', '700-9', 0, false)
+- generic: Mei Terumii
+- generic: Versão - Mizukage
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjYxMw%3D%3D', '115-10', 0, false)
+- generic: Guren
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjYxNw%3D%3D', '819-4', 0, false)
+- generic: Koyuki Kazahana
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjYzOA%3D%3D', '195-4', 0, false)
+- generic: Pakura
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjY1MA%3D%3D', '688-14', 0, false)
+- generic: Naruto Uzumaki
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjY2Nw%3D%3D', '689-17', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjY4MA%3D%3D', '832-5', 0, false)
+- generic: Deidara
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjY4MQ%3D%3D', '832-6', 0, false)
+- generic: Deidara
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjY4Mw%3D%3D', '833-2', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjY4Ng%3D%3D', '833-5', 0, false)
+- generic: Itachi Uchiha
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjY5Mg%3D%3D', '834-3', 0, false)
+- generic: Konan
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjY5Ng%3D%3D', '834-7', 0, false)
+- generic: Konan
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjcxMg%3D%3D', '835-4', 0, false)
+- generic: Orochimaru
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjcxMA%3D%3D', '835-2', 0, false)
+- generic: Orochimaru
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjcxNg%3D%3D', '836-3', 0, false)
+- generic: Yahiko
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjcyNQ%3D%3D', '837-6', 0, false)
+- generic: Gai
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjczNg%3D%3D', '839-6', 0, false)
+- generic: Jiraiya
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjczOA%3D%3D', '840-2', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjczOQ%3D%3D', '840-3', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc0OQ%3D%3D', '842-3', 0, false)
+- generic: Tsunade Senju
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc1Mw%3D%3D', '842-7', 0, false)
+- generic: Tsunade Senju
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc1Ng%3D%3D', '843-3', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Valentine Day
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc1Nw%3D%3D', '113-21', 0, false)
+- generic: Konan
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc1OA%3D%3D', '783-7', 0, false)
+- generic: Junna Uchiha
+- generic: Versão - Fandom
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc2Mw%3D%3D', '691-7', 0, false)
+- generic: Tenten
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc2OA%3D%3D', '690-7', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc3Mw%3D%3D', '692-7', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Copa do Mundo
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc3OQ%3D%3D', '861-6', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Gamer
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc4MA%3D%3D', '861-7', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Gamer
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc4Mw%3D%3D', '775-6', 0, false)
+- generic: Teuchi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc5NA%3D%3D', '825-11', 0, false)
+- generic: Yahiko
+- generic: Versão - Mangá
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc5Ng%3D%3D', '129-9', 0, false)
+- generic: Danzou Shimura
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc5Nw%3D%3D', '469-17', 0, false)
+- generic: Obito Uchiha
+- generic: Versão - Obito - Quarta Guerra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc5OA%3D%3D', '51-15', 0, false)
+- generic: Yugito Nii
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njc5OQ%3D%3D', '44-13', 0, false)
+- generic: Haku
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgwMA%3D%3D', '53-28', 0, false)
+- generic: Akasuna no Sasori
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgwMQ%3D%3D', '54-35', 0, false)
+- generic: Kisame Hoshigaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgwMg%3D%3D', '126-20', 0, false)
+- generic: Kushina Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgwNw%3D%3D', '117-18', 0, false)
+- generic: Karin Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgwOA%3D%3D', '76-38', 0, false)
+- generic: Orochimaru
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgwOQ%3D%3D', '480-4', 0, false)
+- generic: Kurenai Yuuhi
+- generic: Versão - Ano Novo Chines
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgxMA%3D%3D', '91-25', 0, false)
+- generic: Kurenai Yuuhi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgxMQ%3D%3D', '264-4', 0, false)
+- generic: Maito Dai
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgxMg%3D%3D', '283-13', 0, false)
+- generic: Sasuke Uchiha
+- generic: Versão - Akatsuki
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgxMw%3D%3D', '122-19', 0, false)
+- generic: Madara Uchiha
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgxNA%3D%3D', '43-17', 0, false)
+- generic: Zabuza Momochi
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjgxNQ%3D%3D', '137-11', 0, false)
+- generic: Nagato Uzumaki
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njg3NQ%3D%3D', '857-11', 0, false)
+- generic: Hinata Hyuuga
+- generic: Versão - Idol
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njg3Ng%3D%3D', '858-9', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Idol
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njg3Nw%3D%3D', '859-9', 0, false)
+- generic: Sakura Haruno
+- generic: Versão - Idol
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njg4Ng%3D%3D', '860-9', 0, false)
+- generic: Tenten
+- generic: Versão - Idol
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njg4Nw%3D%3D', '173-18', 0, false)
+- generic: Darui
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkxMw%3D%3D', '71-15', 0, false)
+- generic: Kimimaro Kaguya
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkxNA%3D%3D', '60-67', 0, false)
+- generic: Kakashi Hatake
+- generic: Versão - Clássico
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyMA%3D%3D', '880-6', 0, false)
+- generic: Ada
+- generic: Versão - Idol
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyMQ%3D%3D', '296-16', 0, false)
+- generic: Rock Lee
+- generic: Versão - Portões de Chakra
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyMg%3D%3D', '109-15', 0, false)
+- generic: Kakuzu
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyMw%3D%3D', '105-22', 0, false)
+- generic: Hidan
+- generic: Versão - Shippuden
+- generic: Tema não adquirido
+- generic: Personagem liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyNA%3D%3D', '316-7', 0, true)
+- generic: Sabaku no Gaara
+- generic: Versão - Shukaku
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyNQ%3D%3D', '648-3', 0, true)
+- generic: Roushi
+- generic: Versão - Son Goku
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyNg%3D%3D', '599-4', 0, true)
+- generic: Yagura
+- generic: Versão - Isobu
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyNw%3D%3D', '560-4', 0, true)
+- generic: Killer Bee
+- generic: Versão - Gyuuki
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyOA%3D%3D', '622-4', 0, true)
+- generic: Fuu
+- generic: Versão - Choumei
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkyOQ%3D%3D', '340-5', 0, true)
+- generic: Yugito Nii
+- generic: Versão - Matatabi
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkzMA%3D%3D', '601-5', 0, true)
+- generic: Utakata
+- generic: Versão - Saiken
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkzNg%3D%3D', '881-6', 0, false)
+- generic: Ada
+- generic: Versão - Halloween
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NjkzNw%3D%3D', '272-13', 0, true)
+- generic: Naruto Uzumaki
+- generic: Versão - Kurama
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njk0Ng%3D%3D', '915-9', 0, false)
+- generic: Ino Yamanaka
+- generic: Versão - Halloween
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njk3Mg%3D%3D', '318-3', 0, false)
+- generic: Sabaku no Gaara
+- generic: Versão - Criança
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('Njk3Mw%3D%3D', '518-15', 0, false)
+- generic: Tsunade Senju
+- generic: Versão - Criança
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NzA1MA%3D%3D', '750-2', 0, false)
+- generic: Deidara
+- generic: Versão - Halloween
+- generic: Tema não adquirido
+- generic: Personagem não liberado
+- link:
+  - /url: javascript:doPersonagemImagemDo('NzA1Mw%3D%3D', '743-4', 0, false)
+- generic: Mei Terumii
+- generic: Versão - Halloween
+- generic: Tema não adquirido
+- generic: Personagem não liberado

@@ -1,0 +1,120 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Histórico Ninja" [level=1]
+- table:
+  - rowgroup:
+    - row "Round Personagem Nome Score Rank Vila Rank Geral":
+      - columnheader "Round"
+      - columnheader "Personagem"
+      - columnheader "Nome"
+      - columnheader "Score"
+      - columnheader "Rank Vila"
+      - columnheader "Rank Geral"
+      - columnheader
+  - rowgroup:
+    - row "Round 17 Larrat 12737 ponto(s) 2124° 4987º Detalhes":
+      - cell "Round 17"
+      - cell:
+      - cell "Larrat"
+      - cell "12737 ponto(s)"
+      - cell "2124°"
+      - cell "4987º"
+      - cell "Detalhes":
+        - button "Detalhes"
+    - row "Round 30 Larrat 12088 ponto(s) 207° 2244º Detalhes":
+      - cell "Round 30"
+      - cell:
+      - cell "Larrat"
+      - cell "12088 ponto(s)"
+      - cell "207°"
+      - cell "2244º"
+      - cell "Detalhes":
+        - button "Detalhes"
+    - row "Round 32 Larrat 10637 ponto(s) 105° 1436º Detalhes":
+      - cell "Round 32"
+      - cell:
+      - cell "Larrat"
+      - cell "10637 ponto(s)"
+      - cell "105°"
+      - cell "1436º"
+      - cell "Detalhes":
+        - button "Detalhes"
+    - row "Round 33 SubZero 92310 ponto(s) 15° 131º Detalhes":
+      - cell "Round 33"
+      - cell:
+      - cell "SubZero"
+      - cell "92310 ponto(s)"
+      - cell "15°"
+      - cell "131º"
+      - cell "Detalhes":
+        - button "Detalhes"
+    - row "Round 35 SubZero 10613 ponto(s) 666° 1683º Detalhes":
+      - cell "Round 35"
+      - cell:
+      - cell "SubZero"
+      - cell "10613 ponto(s)"
+      - cell "666°"
+      - cell "1683º"
+      - cell "Detalhes":
+        - button "Detalhes"
+    - row "Round 37 SubZero 20465 ponto(s) 201° 649º Detalhes":
+      - cell "Round 37"
+      - cell:
+      - cell "SubZero"
+      - cell "20465 ponto(s)"
+      - cell "201°"
+      - cell "649º"
+      - cell "Detalhes":
+        - button "Detalhes"
+    - row "Round 52 PERSONAGEM_TESTE 11997 ponto(s) 327° 922º Detalhes":
+      - cell "Round 52"
+      - cell:
+      - cell "PERSONAGEM_TESTE"
+      - cell "11997 ponto(s)"
+      - cell "327°"
+      - cell "922º"
+      - cell "Detalhes":
+        - button "Detalhes"
+  - rowgroup
+- insertion

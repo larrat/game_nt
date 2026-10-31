@@ -77,6 +77,6 @@ Uma tarefa é **concluída em produção** apenas se: (a) mudança e dependênci
 
 - Priorizar **a privacidade owner-only**, configurando ambiente de duas contas e verificando consumidores das RPCs públicas.
 - Configurar SMTP e URLs de Auth corretamente; confirmar o ciclo cadastro/login/reset antes de abrir beta.
-- Medir uso efetivo de Vercel e volume do Git depois do merge da PR #65; separar/restringir mídias coletadas sem licença, sem apagar evidências de forma inadvertida nem alterar deploys ativos.
+- Medir uso efetivo de Vercel e volume do Git depois do merge da PR #65; a [issue #70](https://github.com/larrat/game_nt/issues/70) trata da classificação de direitos de uso e isolamento do acervo, sem exclusão inadvertida de evidências nem alteração de deploys ativos.
 - Consolidar identidade visual conforme a escolha de Quartel ninja e revisar visualmente PR #68, ainda aberta em draft.
 - Fazer uma rodada vertical real de gameplay e registrar buglist priorizada.

@@ -117,7 +117,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-body min-h-screen w-full bg-ink">
+    <div className="login-body kuro-auth-v2 min-h-screen w-full bg-ink">
       <div className="panel-brand" aria-hidden="true">
         <div className="strokes">
           <svg viewBox="0 0 500 700" preserveAspectRatio="xMidYMid slice">
@@ -128,13 +128,21 @@ export default function Login() {
           </svg>
         </div>
         <div className="brand"><div className="mark"></div>KUROKAGE</div>
-        <div className="panel-quote">
-          <div className="eyebrow">Sua jornada ninja começa aqui</div>
-          <h2>O vínculo que você escolhe vale mais que o <em>poder</em> que você herda.</h2>
+        <div className="kuro-auth-v2__scene">
+          <span className="kuro-auth-v2__edition">Era dos Shinobi · Temporada I</span>
+          <div className="kuro-auth-v2__mark" aria-hidden="true">影</div>
+          <h2>Uma nova era de <em>lendas</em> começa aqui.</h2>
+          <p>Domine técnicas, desenvolva seu ninja e construa seu legado em um mundo de clãs, missões e batalhas.</p>
+        </div>
+        <div className="kuro-auth-v2__world">
+          <span>⚔ Combates estratégicos</span>
+          <span>✦ Progressão ninja</span>
+          <span>⛩ Vilas e clãs</span>
         </div>
       </div>
 
       <form className="panel-form w-full" onSubmit={handleSubmit}>
+        <div className="kuro-auth-v2__form-inner">
         <div className="brand mb-10 min-[861px]:hidden"><div className="mark"></div>KUROKAGE</div>
         <p className="text-gold text-xs uppercase tracking-[.22em] mb-3">Portal shinobi</p>
         <h1 className="font-shippori text-3xl font-semibold text-paper mb-2">
@@ -225,6 +233,7 @@ export default function Login() {
                 ? 'O reenvio não altera uma conta já confirmada. Nesse caso, use Entrar.'
                 : 'Confira também a pasta de spam do seu e-mail.'}
         </p>
+        </div>
       </form>
     </div>
   );

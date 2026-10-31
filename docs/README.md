@@ -26,9 +26,9 @@
 | Testes | [tests/](../tests/) · [workflow](../.github/workflows/engine-tests.yml) | CI unitário/contratos + build, sem E2E autenticado |
 | SQL e permissões | [migrations/](../migrations/) · [scripts/audit-rpc-privileges.sql](../scripts/audit-rpc-privileges.sql) | Comparar com migrations realmente aplicadas antes de agir |
 
-## Branches e entregas abertas
+## Branches, histórico de merge e entregas abertas
 
-- [PR #65 — acervo de referência e seeds](https://github.com/larrat/game_nt/pull/65): dados, protótipos e arquivos coletados; grande volume de mídias de terceiros. Requer revisão de proveniência, direitos, arquitetura de conteúdo e volume.
+- [PR #65 — acervo de referência e seeds](https://github.com/larrat/game_nt/pull/65): **incorporada à master em 31/10/2026**. Dados, protótipos e mídias de referência agora versionados; exigem auditoria de direitos de uso, armazenamento e separação do app público.
 - [PR #68 — redesign v2](https://github.com/larrat/game_nt/pull/68): Login, Seleção, Dashboard, Status, shell e preview demonstrativo; não foi homologada em conta real.
 - [Issues abertas](https://github.com/larrat/game_nt/issues): #52, #53, #54, #55, #56, #59 e #60. Mantê-las relacionadas às fases do roadmap.
 
@@ -38,5 +38,5 @@
 - Os dois documentos `typescript-motion-phase-1-...` e `typescript-motion-phase1-...` tratam de PRs complementares da mesma fase. Usar este índice em vez de reproduzir dois backlogs paralelos.
 - `security-risk-register.md` e `feature-matrix.md` são snapshots antigos. Riscos precisam ser confrontados com `security/rpc-surface-audit...`, migrações posteriores e SQL atual.
 - Não interpretar "76 rotas visitadas" como 76 fluxos validados. Bloqueios documentados refletem o estado da sessão.
-- Os catálogos e protótipos presentes **somente na PR #65** devem permanecer separados do app até revisão de direitos, modelagem e integração.
+- Os catálogos e protótipos **adicionados à master pela PR #65** são material de referência; não publicar mídias de terceiros no app nem importar mecânicas ativas sem revisar licenças, modelagem e regras.
 - Para cada nova entrega, atualizar o roadmap e adicionar link à PR, evidência de teste e status `proposto/implementado/homologado/publicado`.

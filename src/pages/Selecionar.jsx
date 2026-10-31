@@ -123,7 +123,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   }) : [];
 
   return (
-    <div className="page auth-screen-layout kuro-character-select">
+    <div className="page auth-screen-layout kuro-character-select kuro-select-v2">
       <div className="auth-bg-title">SELECIONE SEU PERSONAGEM</div>
       
       <header className="auth-header">
@@ -183,6 +183,11 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
           </div>
 
           <div className="selection-details-container">
+            <div className="kuro-select-v2__identity">
+              <p className="kuro-select-v2__subtitle">SEU PERSONAGEM · NÍVEL {getCharacterLevel(char.level)}</p>
+              <h2 className="kuro-select-v2__name">{char.name}</h2>
+              <p className="kuro-select-v2__subtitle">{char.rank || 'Estudante da Academia'} · {VILLAGES[char.village_id] || 'Vila não informada'}</p>
+            </div>
             <div className="selection-info-grid">
               
               <div className="selection-info-col">

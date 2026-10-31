@@ -1,0 +1,512 @@
+/* Kurokage — Experience v2: immersive authenticated RPG and entry flow.
+   Scoped. Uses only artwork already tracked in this repository.
+   All economy/gameplay decisions remain server-authoritative. */
+
+:root {
+  --kx-amber: #f1c879;
+  --kx-amber-soft: #b89b69;
+  --kx-ember: #ea4d54;
+  --kx-canvas: #080c13;
+  --kx-surface: #111923;
+  --kx-surface-raised: #1a2430;
+  --kx-line: rgba(229, 194, 136, .18);
+  --kx-copy: #efe6d8;
+  --kx-muted: #adafae;
+}
+.kuro-dashboard-v2, .kuro-status-v2, .kuro-select-v2, .kuro-auth-v2 {
+  --paper: var(--kx-copy);
+  --muted: #aaa9a5;
+  --muted-bright: #b7b8b6;
+  --gold: var(--kx-amber);
+  --line: rgba(224,193,143,.13);
+  --line-bright: rgba(224,193,143,.29);
+  --ink-card: #141a23;
+  color: var(--kx-copy);
+}
+.kuro-dashboard-v2 :is(button, a):focus-visible,
+.kuro-status-v2 :is(button, a, select):focus-visible,
+.kuro-select-v2 :is(button, a):focus-visible,
+.kuro-auth-v2 :is(button, a, input):focus-visible {
+  outline: 2px solid var(--kx-amber);
+  outline-offset: 3px;
+}
+
+/* PUBLIC AUTH — cinematic entry scene, card form, consistent interactive states */
+.login-body.kuro-auth-v2 {
+  min-height: 100dvh;
+  background: #070b12;
+  isolation: isolate;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(390px, .8fr);
+}
+.kuro-auth-v2 .panel-brand {
+  display: flex;
+  min-width: 0;
+  position: relative;
+  padding: clamp(32px,5vw,72px);
+  border-right: 1px solid rgba(238,190,118,.16);
+  background:
+    linear-gradient(95deg, rgba(7,10,16,.3), rgba(6,9,15,.63)),
+    url('/images/bg_forest.jpg') center / cover no-repeat,
+    #0f1820;
+}
+.kuro-auth-v2 .panel-brand::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 32%, rgba(238,182,83,.12), transparent 32%),
+    linear-gradient(180deg, rgba(4,7,12,.56), rgba(7,9,14,.05) 39%, rgba(6,9,15,.95) 92%);
+}
+.kuro-auth-v2 .panel-brand::after {
+  content: '影';
+  position: absolute;
+  right: -40px;
+  top: 7%;
+  font: 700 clamp(260px,32vw,530px)/1 'Shippori Mincho', serif;
+  color: rgba(251,215,148,.10);
+  pointer-events: none;
+}
+.kuro-auth-v2 .panel-brand .strokes { opacity: .2; }
+.kuro-auth-v2 .panel-brand > .brand { z-index: 2; align-self: flex-start; letter-spacing: .2em; font-size: 22px; }
+.kuro-auth-v2__edition {
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  width: fit-content;
+  padding: 7px 11px;
+  color: #f4d298;
+  background: rgba(11,14,19,.68);
+  border: 1px solid rgba(244,210,152,.35);
+  border-radius: 999px;
+  font: 600 10px/1.4 'JetBrains Mono', monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.kuro-auth-v2__scene {
+  z-index: 2;
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+  align-self: center;
+  max-width: 680px;
+  margin-block: 28px;
+}
+.kuro-auth-v2__mark {
+  display: grid;
+  place-items: center;
+  width: 90px;
+  height: 90px;
+  border: 1px solid rgba(246,207,145,.64);
+  box-shadow: 0 0 0 8px rgba(11,14,18,.3), inset 0 0 26px rgba(236,173,71,.16);
+  color: #f4d298;
+  background: radial-gradient(circle,#343027,#0b1218 74%);
+  border-radius: 24px 8px 24px 8px;
+  font: 700 49px 'Shippori Mincho', serif;
+}
+.kuro-auth-v2__scene h2 {
+  color: #fff4df;
+  font: 700 clamp(37px,5vw,77px)/1.1 'Shippori Mincho',serif;
+  text-shadow: 0 8px 22px rgba(0,0,0,.45);
+  max-width: 700px;
+}
+.kuro-auth-v2__scene h2 em { color: #f0bd65; font-style: normal; }
+.kuro-auth-v2__scene p {
+  max-width: 490px;
+  color: #d2cac0;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.kuro-auth-v2__world {
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.kuro-auth-v2__world span {
+  border: 1px solid rgba(235,204,153,.25);
+  border-radius: 999px;
+  color: #e7d4b6;
+  padding: 9px 13px;
+  font: 500 10px 'JetBrains Mono', monospace;
+  letter-spacing: .04em;
+  background: rgba(6,10,15,.5);
+}
+.kuro-auth-v2 .panel-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: none;
+  width: 100%;
+  padding: clamp(32px,5.2vw,94px);
+  background:
+    radial-gradient(ellipse at 100% 0,rgba(188,60,53,.09),transparent 48%),
+    radial-gradient(ellipse at 12% 95%,rgba(224,174,96,.07),transparent 46%),
+    #0b1018;
+}
+.kuro-auth-v2__form-inner {
+  width: min(100%,460px);
+  margin-inline: auto;
+}
+.kuro-auth-v2__form-kicker {
+  margin-bottom: 12px;
+  color: #f1c879;
+  font: 600 11px 'JetBrains Mono', monospace;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+}
+.kuro-auth-v2 .panel-form h1 { font-size: clamp(28px,3vw,41px); line-height: 1.23; }
+.kuro-auth-v2 .tabs {
+  margin-bottom: 27px;
+  gap: 7px;
+  padding: 5px;
+  border: 1px solid var(--kx-line);
+  border-radius: 12px;
+  background: #131a24;
+}
+.kuro-auth-v2 .tab {
+  flex: 1;
+  min-height: 42px;
+  margin: 0;
+  padding: 11px 9px;
+  border-radius: 8px;
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: #b4b0a8;
+}
+.kuro-auth-v2 .tab.active {
+  background: #28303a;
+  box-shadow: 0 3px 12px rgba(0,0,0,.18);
+  color: #f9e6c5;
+}
+.kuro-auth-v2 .tab.active::after { display:none; }
+.kuro-auth-v2 .field { margin-bottom: 19px; }
+.kuro-auth-v2 .field label { color: #cec1ac; font: 600 11px 'Inter',sans-serif; letter-spacing: .04em; text-transform: none; }
+.kuro-auth-v2 .field input {
+  min-height: 52px;
+  padding: 13px 17px;
+  border-color: rgba(224,193,143,.20);
+  border-radius: 10px;
+  background: #151e29;
+  color: #fff3e2;
+}
+.kuro-auth-v2 .field input::placeholder { color: #818b92; }
+.kuro-auth-v2 .field input:focus { border-color: #f0c475; background: #1a2531; box-shadow: 0 0 0 3px rgba(236,188,102,.1); }
+.kuro-auth-v2 .btn-primary {
+  min-height: 52px;
+  border-radius: 10px;
+  letter-spacing: .07em;
+  box-shadow: 0 9px 24px rgba(160,29,45,.19);
+}
+.kuro-auth-v2 .panel-form .brand { font-size: 19px; }
+.kuro-auth-v2__fineprint { color: #8d9497; font-size: 11px; line-height: 1.7; text-align: center; margin-top: 26px; }
+
+/* AUTHENTICATED WORLD SHELL */
+.app:has(.kuro-dashboard-v2), .app:has(.kuro-status-v2) {
+  background:
+    radial-gradient(ellipse at 88% 0,rgba(149,79,45,.06),transparent 36%),
+    #080d13;
+}
+.app .kuro-rpg-sidebar {
+  background:
+    radial-gradient(ellipse at 0 0,rgba(199,82,58,.15),transparent 48%),
+    linear-gradient(180deg,#151b24,#0a1017 46%);
+  border-right: 1px solid rgba(234,195,129,.18);
+  padding-top: 26px;
+}
+.app .kuro-rpg-sidebar .sidebar-brand-wrap { padding-bottom: 22px; margin-bottom: 18px; }
+.app .kuro-rpg-sidebar__player { border-radius: 12px; padding: 13px; background: linear-gradient(120deg,rgba(212,161,85,.14),rgba(28,35,45,.68)); }
+.app .kuro-rpg-sidebar__portrait { border-radius: 10px; width: 48px; height: 48px; flex-basis: 48px; }
+.app .kuro-rpg-sidebar .navitem { border-radius: 9px; min-height: 39px; margin-block: 2px; padding: 9px 12px; font-size: 12px; }
+.app .kuro-rpg-sidebar .navitem.active {
+  background: linear-gradient(96deg,rgba(217,58,63,.19),rgba(236,183,96,.06));
+  border-color: rgba(236,183,96,.17);
+  border-left: 3px solid #e5b15a;
+  color: #fff0dd;
+}
+.app .kuro-rpg-sidebar .kuro-rpg-sidebar__toggle { border-bottom-color: rgba(239,198,131,.12); }
+.app .kuro-rpg-topbar {
+  background: linear-gradient(100deg,rgba(17,25,36,.98),rgba(11,16,24,.98));
+  border-bottom: 1px solid rgba(234,195,129,.15);
+  box-shadow: 0 7px 25px rgba(0,0,0,.19);
+}
+.app .kuro-rpg-topbar__portrait { border-radius: 10px; }
+.app .kuro-rpg-topbar__currency { border-radius: 8px; background: rgba(224,177,89,.07); }
+.app .kuro-rpg-pagehead { border-bottom-color: rgba(224,193,143,.15); }
+.app .kuro-rpg-pagehead__title { font-size: clamp(25px,3vw,36px); }
+
+/* DASHBOARD — command center hero, tactically placed navigation */
+.app .kuro-dashboard-v2 {
+  max-width: 1680px;
+  margin-inline: auto;
+  gap: clamp(19px,2.2vw,30px);
+}
+.app .kuro-dashboard-v2 .kuro-dashboard__header { align-items: center; }
+.app .kuro-dashboard-v2 .kuro-dashboard__header h1 {
+  font-size: clamp(34px,3.7vw,54px);
+  letter-spacing: -.04em;
+  margin-bottom: 10px;
+}
+.app .kuro-dashboard-v2 .kuro-dashboard__header p { font-size: 14px; }
+.app .kuro-dashboard-v2 .kuro-dashboard__header .kui-action { min-width: 200px; }
+.app .kuro-dashboard-v2 .kuro-hero {
+  min-height: 365px;
+  gap: clamp(18px,3vw,45px);
+  grid-template-columns: minmax(0,1.15fr) minmax(260px,.85fr);
+  padding: clamp(24px,3.2vw,52px);
+  border: 1px solid rgba(233,186,104,.35);
+  border-radius: 18px;
+  background-position: center 48%;
+  box-shadow: 0 28px 60px rgba(0,0,0,.28);
+}
+.app .kuro-dashboard-v2 .kuro-hero::before {
+  background: linear-gradient(95deg,rgba(5,10,17,.96) 0%,rgba(8,15,23,.87) 43%,rgba(7,12,18,.68) 100%);
+}
+.app .kuro-dashboard-v2 .kuro-hero::after { width: 5px; opacity: 1; }
+.app .kuro-dashboard-v2 .kuro-hero__portrait {
+  width: clamp(130px,12vw,190px);
+  height: clamp(170px,16vw,230px);
+  border: 2px solid rgba(243,202,127,.72);
+  border-radius: 14px;
+  box-shadow: 0 0 0 8px rgba(228,174,88,.065),0 20px 34px rgba(0,0,0,.35);
+}
+.app .kuro-dashboard-v2 .kuro-hero__identity { gap: clamp(20px,2vw,34px); }
+.app .kuro-dashboard-v2 .kuro-hero__profile h2 {
+  font-size: clamp(30px,3.4vw,52px);
+  line-height: 1.18;
+  color: #fff0d9;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+.app .kuro-dashboard-v2 .kuro-hero__kicker { color: #f1c879; }
+.app .kuro-dashboard-v2 .kuro-hero__resources {
+  display: grid;
+  gap: 22px;
+  padding: clamp(19px,2.4vw,32px);
+  background: rgba(7,14,23,.81);
+  border: 1px solid rgba(239,195,118,.22);
+  border-radius: 14px;
+  box-shadow: inset 0 1px rgba(255,255,255,.035);
+  backdrop-filter: blur(15px);
+}
+.app .kuro-dashboard-v2 .kui-resource__meta { margin-bottom: 12px; }
+.app .kuro-dashboard-v2 .kui-resource__name { color: #c9c2b5; }
+.app .kuro-dashboard-v2 .kui-resource__track { height: 10px; }
+.app .kuro-dashboard-v2 .kuro-kpis { gap: 16px; }
+.app .kuro-dashboard-v2 .kuro-kpi {
+  min-height: 124px;
+  border-radius: 13px;
+  background: linear-gradient(135deg,#19212b,#111721);
+  border: 1px solid rgba(230,193,133,.14);
+  padding: 22px 19px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+.app .kuro-dashboard-v2 .kuro-kpi__icon { border-radius: 12px; width: 50px; height: 50px; font-size: 24px; background: rgba(238,191,107,.075); }
+.app .kuro-dashboard-v2 .kuro-kpi strong { color: #f4e9d5; font-size: clamp(21px,2vw,30px); }
+.app .kuro-dashboard-v2 .kuro-section__heading h2 { font-size: clamp(22px,2vw,29px); }
+.app .kuro-dashboard-v2 .kuro-shortcuts { gap: 14px; }
+.app .kuro-dashboard-v2 .kuro-shortcut {
+  min-height: 148px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 13px;
+  position: relative;
+  padding: 22px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 100% 0,rgba(224,168,82,.09),transparent 55%),
+    linear-gradient(145deg,#202734,#121a24);
+  border: 1px solid rgba(230,193,133,.16);
+}
+.app .kuro-dashboard-v2 .kuro-shortcut:hover {
+  transform: translateY(-4px);
+  border-color: rgba(236,184,95,.56);
+  background: linear-gradient(145deg,#283242,#17202a);
+}
+.app .kuro-dashboard-v2 .kuro-shortcut__icon { width: 48px; height: 48px; border-radius: 12px; font-size: 25px; }
+.app .kuro-dashboard-v2 .kuro-shortcut strong { font-size: 14px; }
+.app .kuro-dashboard-v2 .kuro-shortcut small { font-size: 12px; color: #b5b3ad; }
+.app .kuro-dashboard-v2 .kuro-shortcut b { position: absolute; top: 19px; right: 20px; font-size: 20px; color: #dbbc8b; }
+.app .kuro-dashboard-v2 .kuro-panel { padding: clamp(19px,2vw,28px); border-radius: 14px; border-color: rgba(225,187,123,.17); }
+.app .kuro-dashboard-v2 .kuro-event-card, .app .kuro-dashboard-v2 .kuro-upcoming-event { border-radius: 12px; }
+.app .kuro-dashboard-v2 .kuro-quest { border-radius: 10px; }
+.app .kuro-dashboard-v2 .kuro-daily-chest { border-radius: 12px; }
+
+/* SELECTION — centered premium character showcase */
+.kuro-character-select.kuro-select-v2 {
+  max-width: none;
+  padding: 0 clamp(18px,3vw,50px) 54px;
+  min-height: 100dvh;
+  background:
+    radial-gradient(circle at 70% 25%,rgba(214,144,65,.12),transparent 28%),
+    linear-gradient(180deg,rgba(7,11,17,.78),#080e16 82%),
+    url('/images/bg_forest.jpg') center 35% / cover no-repeat,
+    #0b1119;
+}
+.kuro-select-v2 .auth-header {
+  margin-inline: calc(-1 * clamp(18px,3vw,50px));
+  padding: 19px clamp(20px,4vw,70px);
+  border-bottom: 1px solid rgba(230,184,112,.21);
+  background: rgba(11,17,24,.8);
+}
+.kuro-select-v2 .auth-bg-title {
+  top: 32%;
+  color: rgba(245,210,151,.045);
+  font-size: clamp(38px,9vw,125px);
+  letter-spacing: .03em;
+  z-index: -1;
+}
+.kuro-select-v2 .auth-title-container {
+  margin: clamp(26px,4vw,62px) auto 22px;
+  max-width: 1280px;
+}
+.kuro-select-v2 .auth-title-container .kuro-rpg-pagehead {
+  justify-content: center; text-align: center; padding: 0 0 20px; border: 0;
+}
+.kuro-select-v2 .auth-title-container .kuro-rpg-pagehead::before { display: none; }
+.kuro-select-v2 .auth-title-container .kuro-rpg-pagehead__eyebrow { justify-content: center; }
+.kuro-select-v2 .auth-title-container .kuro-rpg-pagehead__title {
+  font-size: clamp(32px,4.8vw,62px); color: #fff2e0; letter-spacing: -.04em;
+}
+.kuro-select-v2 .auth-title-container .kuro-rpg-pagehead__subtitle { margin-inline: auto; color: #c5c0b8; font-size: 14px; }
+.kuro-select-v2 .kuro-character-select__stage {
+  max-width: 1200px;
+  padding: clamp(18px,2.4vw,36px);
+  border: 1px solid rgba(237,188,104,.33);
+  border-radius: 20px;
+  background: linear-gradient(135deg,rgba(26,34,42,.95),rgba(8,14,22,.97));
+  box-shadow: 0 25px 65px rgba(0,0,0,.45),inset 0 1px rgba(255,255,255,.08);
+}
+.kuro-select-v2 .kuro-character-select__stage::before { width: 36%; height: 3px; background: linear-gradient(90deg,#e9bb69,transparent); }
+.kuro-select-v2 .kuro-character-select__counter {
+  margin-bottom: clamp(20px,3vw,40px);
+  font-size: 11px;
+  color: #e3ba73;
+}
+.kuro-select-v2 .selection-showcase { max-width: none; gap: clamp(18px,2.7vw,44px); }
+.kuro-select-v2 .selection-avatar-container {
+  position: relative;
+  flex-basis: clamp(210px,26vw,325px);
+  width: clamp(210px,26vw,325px);
+  height: clamp(280px,34vw,398px);
+  border-radius: 14px;
+  border: 2px solid #deb56f;
+  box-shadow: 0 0 0 9px rgba(226,174,92,.06),0 25px 50px rgba(0,0,0,.45);
+}
+.kuro-select-v2 .selection-avatar-container img { object-fit: cover; }
+.kuro-select-v2 .selection-details-container { gap: 24px; }
+.kuro-select-v2__name { font: 700 clamp(30px,3vw,44px)/1.2 'Shippori Mincho',serif; color: #fff0d7; overflow-wrap: anywhere; }
+.kuro-select-v2__subtitle { margin-top: 7px; color: #dfb978; font: 600 11px 'JetBrains Mono',monospace; text-transform: uppercase; letter-spacing: .08em; }
+.kuro-select-v2 .selection-info-grid { gap: clamp(16px,2vw,29px); }
+.kuro-select-v2 .selection-info-col {
+  padding: 16px;
+  border: 1px solid rgba(230,193,133,.15);
+  border-radius: 12px;
+  background: rgba(9,15,23,.44);
+}
+.kuro-select-v2 .selection-info-col h3 { color: #f3dfbc; }
+.kuro-select-v2 .selection-stat-row { margin-bottom: 11px; }
+.kuro-select-v2 .selection-stat-label { color: #b5b0a9; }
+.kuro-select-v2 .selection-stat-value { color: #f2e7d5; }
+.kuro-select-v2 .selection-actions {
+  padding-top: 23px;
+  border-top: 1px solid rgba(225,187,123,.21);
+}
+.kuro-select-v2 .selection-btn-play { min-height: 52px; border-radius: 10px; font-size: 13px; }
+.kuro-select-v2 .selection-btn-delete { min-height: 52px; border-radius: 10px; }
+.kuro-select-v2 .selection-nav-arrow { width: 42px; flex-basis: 42px; height: 56px; border-radius: 11px; }
+.kuro-select-v2 .kuro-character-select__meter { border-radius: 999px; height: 9px; }
+
+/* STATUS — connected to existing real stat computations, clearer cards */
+.kuro-status-page.kuro-status-v2 {
+  min-height: 100%;
+  background:
+    radial-gradient(ellipse at 100% 0,rgba(214,151,65,.08),transparent 40%),
+    #0b111a;
+  color: #f4ebdd;
+}
+.kuro-status-v2 > .page { max-width: 1580px; margin-inline: auto; padding: clamp(18px,2.6vw,36px); }
+.kuro-status-v2 .kuro-status-v3__hero {
+  min-height: 310px;
+  padding: clamp(25px,3vw,43px);
+  border: 1px solid rgba(233,186,103,.33);
+  border-radius: 18px;
+  background:
+    linear-gradient(100deg,rgba(11,17,24,.97),rgba(13,21,29,.75)),
+    url('/images/bg_forest.jpg') center / cover no-repeat;
+  box-shadow: 0 24px 60px rgba(0,0,0,.26);
+}
+.kuro-status-v2 .kuro-status-v3__portrait-button {
+  border-radius: 14px;
+  border: 2px solid rgba(240,199,122,.65);
+  box-shadow: 0 0 0 7px rgba(230,183,103,.06);
+}
+.kuro-status-v2 .kuro-status-v3__name { font-size: clamp(33px,4vw,58px); color: #fff0d8; }
+.kuro-status-v2 .kuro-status-v3__attributes {
+  border-color: rgba(233,186,103,.18);
+  border-radius: 14px;
+  background: linear-gradient(140deg,#17202b,#101720);
+}
+.kuro-status-v2 .kuro-status-v3__stat-row { border-bottom-color: rgba(224,193,143,.13); }
+.kuro-status-v2 .kuro-status-v3__stat-row strong { color: #f5dfad; }
+.kuro-status-v2 .card-glass {
+  border-radius: 14px;
+  background: linear-gradient(140deg,rgba(24,32,43,.95),rgba(13,19,28,.96));
+  border: 1px solid rgba(233,186,103,.17);
+}
+.kuro-status-v2 .kuro-status-v3__section-heading h2 { color: #f4ebdc; }
+.kuro-status-v2 .kuro-status-v3__section-eyebrow { color: #e7b971; }
+
+@media (max-width: 1200px) {
+  .app .kuro-dashboard-v2 .kuro-hero { grid-template-columns: 1fr; }
+  .app .kuro-dashboard-v2 .kuro-hero__resources { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .app .kuro-dashboard-v2 .kuro-kpis { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .app .kuro-dashboard-v2 .kuro-shortcuts { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 860px) {
+  .login-body.kuro-auth-v2 { grid-template-columns: minmax(0,1fr); }
+  .kuro-auth-v2 .panel-brand { display: none; }
+  .kuro-auth-v2 .panel-form { min-height: 100dvh; padding: 30px clamp(22px,5vw,48px); }
+  .kuro-auth-v2__form-inner { max-width: 510px; }
+  .kuro-select-v2 .selection-showcase { flex-wrap: wrap; }
+  .kuro-select-v2 .selection-avatar-container { margin-inline: auto; }
+  .kuro-select-v2 .selection-details-container { flex: 1 1 100%; order: 3; }
+}
+@media (max-width: 640px) {
+  .app .kuro-dashboard-v2 .kuro-dashboard__header { flex-direction: column; align-items: stretch; }
+  .app .kuro-dashboard-v2 .kuro-dashboard__header .kui-action { width: 100%; }
+  .app .kuro-dashboard-v2 .kuro-hero { padding: 24px 17px; min-height: 0; border-radius: 13px; }
+  .app .kuro-dashboard-v2 .kuro-hero__identity { flex-direction: column; align-items: flex-start; }
+  .app .kuro-dashboard-v2 .kuro-hero__portrait { width: 118px; height: 145px; }
+  .app .kuro-dashboard-v2 .kuro-hero__resources { grid-template-columns: 1fr; padding: 18px; }
+  .app .kuro-dashboard-v2 .kuro-shortcuts { gap: 10px; }
+  .app .kuro-dashboard-v2 .kuro-shortcut { min-height: 125px; padding: 14px; }
+  .app .kuro-dashboard-v2 .kuro-shortcut__icon { width: 42px; height: 42px; }
+  .app .kuro-dashboard-v2 .kuro-kpi { min-height: 112px; padding: 13px; }
+  .app .kuro-dashboard-v2 .kuro-kpi__icon { width: 36px; height: 36px; }
+  .app .kuro-dashboard-v2 .kuro-kpi strong { font-size: 22px; }
+  .kuro-select-v2 .kuro-character-select__stage { border-radius: 12px; }
+  .kuro-select-v2 .selection-info-grid { grid-template-columns: 1fr; }
+  .kuro-select-v2 .selection-info-col { padding: 13px; }
+  .kuro-select-v2 .selection-avatar-container { width: 184px; height: 245px; flex-basis: 184px; }
+  .kuro-select-v2 .selection-actions > button { width: 100%; }
+  .kuro-select-v2 .auth-title-container .kuro-rpg-pagehead__title { font-size: 32px; }
+  .kuro-status-v2 > .page { padding: 18px 12px; }
+}
+@media (max-width: 390px) {
+  .app .kuro-dashboard-v2 .kuro-shortcuts { grid-template-columns: 1fr; }
+  .app .kuro-dashboard-v2 .kuro-shortcut { min-height: 90px; }
+  .app .kuro-dashboard-v2 .kuro-kpis { grid-template-columns: 1fr; }
+  .kuro-select-v2 .selection-nav-arrow { width: 36px; flex-basis: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kuro-auth-v2 *, .kuro-dashboard-v2 *, .kuro-status-v2 *, .kuro-select-v2 * {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  .app .kuro-dashboard-v2 .kuro-shortcut:hover { transform: none; }
+}

@@ -70,8 +70,6 @@ export default function Status({ player, updatePlayer }) {
     setSavingTitle(false);
   };
 
-  const bgImage = player.village_id ? `/images/bg_${player.village_id}.jpg` : '/images/bg_default.jpg';
-
   // Calculando Atributos e XP
   const ninjaPower = ((player.taijutsu || 0) + (player.ninjutsu || 0) + (player.genjutsu || 0) + (player.bukijutsu || 0)) * 10 + (player.level || 1) * 100;
 
@@ -110,7 +108,7 @@ export default function Status({ player, updatePlayer }) {
   const accountRows = getStatusAccountRows(player);
 
   return (
-    <div className="kuro-status-page bg-cover bg-center min-h-screen text-paper bg-fixed" style={{ backgroundImage: `url(${bgImage})` }}>
+    <div className="kuro-status-page kuro-status-v2 min-h-screen text-paper">
       <div className="page relative z-10 p-8">
         
         <PageHeader 

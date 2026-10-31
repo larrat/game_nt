@@ -5,6 +5,10 @@ import { supabase } from '../supabaseClient';
 import { fetchActiveGlobalEvents } from '../utils/eventUtils';
 import { useToast } from '../context/ToastContext';
 import AvatarModal from '../components/AvatarModal';
+import GameAction from '../components/ui/GameAction';
+import GamePanel from '../components/ui/GamePanel';
+import GameEmptyState from '../components/ui/GameEmptyState';
+import ResourceMeter from '../components/ui/ResourceMeter';
 import '../styles/main.css';
 
 const VILLAGES = {
@@ -196,7 +200,8 @@ export default function Dashboard({ player, updatePlayer }) {
   const todayStr = new Date().toISOString().split('T')[0];
   const fidelityClaimed = player.last_daily_claim === todayStr;
   const claimedList = Array.isArray(player.daily_rewards_claimed) ? player.daily_rewards_claimed : [];
-  const bgImage = player.village_id ? `/images/bg_${player.village_id}.jpg` : '/images/bg_default.jpg';
+  const heroVillage = Number.isInteger(Number(player.village_id)) && Number(player.village_id) >= 1 && Number(player.village_id) <= 7
+    ? Number(player.village_id) : 'default';
 
   const currentLevel = calculateLevelFromXP(player.xp || 0);
   const maxHp = Math.max(1, calculateHP(player));
@@ -209,10 +214,6 @@ export default function Dashboard({ player, updatePlayer }) {
   const nextLevelXp = calculateXPForLevel(currentLevel + 1);
   const xpToNextLevel = Math.max(1, nextLevelXp - levelStartXp);
   const currentLevelXp = Math.max(0, (player.xp || 0) - levelStartXp);
-  const xpPercent = Math.max(0, Math.min(100, (currentLevelXp / xpToNextLevel) * 100));
-  const hpPercent = currentHp / maxHp * 100;
-  const chakraPercent = currentChakra / maxChakra * 100;
-  const staminaPercent = currentStamina / maxStamina * 100;
   const villageName = VILLAGES[player.village_id] || "Vila desconhecida";
   const dailyTasks = [
     { key: "t1", complete: (player.daily_npcs_defeated || 0) >= 3 },
@@ -223,17 +224,17 @@ export default function Dashboard({ player, updatePlayer }) {
   const claimedTasks = dailyTasks.filter(task => claimedList.includes(task.key)).length;
 
   return (
-    <div className="kuro-dashboard">
+    <div className="kuro-dashboard kuro-dashboard-v2">
       <header className="kuro-dashboard__header">
         <div>
           <div className="kuro-eyebrow"><span className="kuro-eyebrow__line" /> CENTRAL SHINOBI <span className="kuro-eyebrow__season">TEMPORADA I</span></div>
           <h1>Painel do Ninja</h1>
           <p>Seu caminho, suas escolhas, sua lenda. Veja o que está acontecendo no mundo shinobi.</p>
         </div>
-        <button className="kuro-button kuro-button--primary" onClick={() => navigate("/historia")}>Continuar jornada <span aria-hidden="true">↗</span></button>
+        <GameAction onClick={() => navigate("/historia")}>Continuar jornada <span aria-hidden="true">↗</span></GameAction>
       </header>
 
-      <section className="kuro-hero" style={{ backgroundImage: "url(" + bgImage + ")" }}>
+      <section className={"kuro-hero kuro-hero--village-" + heroVillage}>
         <div className="kuro-hero__shade" />
         <div className="kuro-hero__identity">
           <button className="kuro-hero__portrait" onClick={() => setIsAvatarModalOpen(true)} title="Personalizar avatar" aria-label="Personalizar avatar">
@@ -249,23 +250,14 @@ export default function Dashboard({ player, updatePlayer }) {
               {player.clan && <span className="kuro-chip">{player.clan}</span>}
             </div>
             <div className="kuro-hero__level"><span>NÍVEL <strong>{currentLevel}</strong></span><span className="kuro-hero__xp-copy">{Math.floor(currentLevelXp).toLocaleString()} / {xpToNextLevel.toLocaleString()} XP</span></div>
-            <div className="kuro-meter kuro-meter--xp"><div style={{ width: xpPercent + "%" }} /></div>
+            <progress className="kui-resource__track kui-resource__track--xp kuro-hero__xp-meter" value={Math.min(currentLevelXp, xpToNextLevel)} max={xpToNextLevel} aria-label="Progresso de experiência no nível atual" />
           </div>
         </div>
 
-        <div className="kuro-hero__resources">
-          <div className="kuro-resource">
-            <div className="kuro-resource__label"><span className="kuro-resource__symbol is-hp">♥</span><span>VIDA</span><strong>{currentHp.toLocaleString()} <i>/ {maxHp.toLocaleString()}</i></strong></div>
-            <div className="kuro-meter"><div className="is-hp" style={{ width: hpPercent + "%" }} /></div>
-          </div>
-          <div className="kuro-resource">
-            <div className="kuro-resource__label"><span className="kuro-resource__symbol is-chakra">✦</span><span>CHAKRA</span><strong>{currentChakra.toLocaleString()} <i>/ {maxChakra.toLocaleString()}</i></strong></div>
-            <div className="kuro-meter"><div className="is-chakra" style={{ width: chakraPercent + "%" }} /></div>
-          </div>
-          <div className="kuro-resource">
-            <div className="kuro-resource__label"><span className="kuro-resource__symbol is-stamina">ϟ</span><span>STAMINA</span><strong>{currentStamina.toLocaleString()} <i>/ {maxStamina.toLocaleString()}</i></strong></div>
-            <div className="kuro-meter"><div className="is-stamina" style={{ width: staminaPercent + "%" }} /></div>
-          </div>
+        <div className="kuro-hero__resources" aria-label="Recursos do personagem">
+          <ResourceMeter label="Vida" current={currentHp} max={maxHp} tone="hp" symbol="♥" />
+          <ResourceMeter label="Chakra" current={currentChakra} max={maxChakra} tone="chakra" symbol="✦" />
+          <ResourceMeter label="Stamina" current={currentStamina} max={maxStamina} tone="stamina" symbol="ϟ" />
         </div>
         <div className="kuro-hero__ornament" aria-hidden="true">影</div>
       </section>
@@ -314,11 +306,11 @@ export default function Dashboard({ player, updatePlayer }) {
           <div className="kuro-event-grid">{upcomingEvents.slice(0, 3).map((event, index) => (
             <article key={event.id} className="kuro-upcoming-event"><span className="kuro-upcoming-event__number">0{index + 1}</span><span className="kuro-section__eyebrow">{event.ends_at ? new Date(event.ends_at).toLocaleDateString() : "EM BREVE"}</span><h3>{event.name}</h3><p>{event.description || "Prepare-se para o próximo desafio."}</p></article>
           ))}</div>
-        ) : <div className="kuro-empty-state"><span>◌</span><div><strong>Sem eventos ativos neste momento</strong><p>Continue treinando. Novos desafios aparecerão aqui quando forem publicados.</p></div></div>}
+        ) : <GameEmptyState title="Sem eventos ativos neste momento" description="Continue treinando. Novos desafios aparecerão aqui quando forem publicados." />}
       </section>
 
       <div className="kuro-dashboard__columns">
-        <section className="kuro-panel">
+        <GamePanel as="section" className="kuro-panel">
           <div className="kuro-section__heading"><div><span className="kuro-section__eyebrow">PROGRESSO DIÁRIO</span><h2>Rotina do shinobi</h2></div><span className="kuro-progress-pill">{dailyCompleted}/3 concluídas</span></div>
           <div className="kuro-daily-summary">
             <div className="kuro-daily-summary__ring"><strong>{Math.round(dailyCompleted / 3 * 100)}<small>%</small></strong></div>
@@ -333,7 +325,7 @@ export default function Dashboard({ player, updatePlayer }) {
             <div className="kuro-daily-chest__icon">▣</div><div className="kuro-daily-chest__copy"><strong>Baú de esforço diário</strong><p>Complete as três tarefas e receba Kuro Coins.</p></div>
             {claimedList.includes("chest") ? <span className="kuro-state-tag is-done">Aberto hoje</span> : claimedList.includes("t1") && claimedList.includes("t2") && claimedList.includes("t3") ? <button className="kuro-button kuro-button--gold" onClick={handleClaimDailyChest} disabled={claiming}>{claiming ? "Abrindo…" : "Abrir baú"}</button> : <span className="kuro-state-tag">Bloqueado</span>}
           </div>
-        </section>
+        </GamePanel>
 
         <aside className="kuro-side-column">
           <section className={"kuro-panel kuro-fidelity " + (fidelityClaimed ? "is-claimed" : "")}>

@@ -1,0 +1,83 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=dojo".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php?secao=dojo
+	2 container
+		3 image Naruto
+		4 image dayIcon
+		5 image nightIcon
+		6 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php?secao=dojo#
+		7 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php?secao=dojo#
+		8 link javascript:logoff()
+	9 container
+		10 container level-start
+			11 text LVL
+			12 heading 5, Value: 1
+				13 text 5
+		14 image Vida
+		15 text 362/362
+		16 image Chakra
+		17 text 574/574
+		18 image Stamina
+		19 text 271/271
+		20 text EXP: 42/3240
+		21 container level-end
+			22 text LVL
+			23 heading 6, Value: 1
+				24 text 6
+		25 image
+		26 image
+		27 text 8
+		28 image
+		29 text 8
+		30 image
+		31 image
+		32 text 4
+		33 link Description: 1, Value: narutogame.com.br/index.php?secao=fidelidade
+		34 link narutogame.com.br/index.php?secao=mensagens
+		35 link Description: 5, Value: narutogame.com.br/index.php?secao=noticias
+		36 image
+		37 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php?secao=jogador_vip
+		38 image
+		39 text 2980
+	40 container
+		41 heading DOJO, Value: 1
+			42 text DOJO
+		43 heading O Dojo PVP só funcionará até o level 9, Value: 2
+			44 text O Dojo PVP só funcionará até o level 9
+	45 container cnBase
+		46 container tabs-dojo
+			47 link Batalhas do Dojo NPC
+				48 text Batalhas do Dojo NPC
+			49 link Batalhas do Dojo PVP
+				50 text Batalhas do Dojo PVP
+			51 link Treinamento Dojo PVP
+				52 text Treinamento Dojo PVP
+		53 container cnBatalhaDojo
+			54 container
+				55 heading TREINAMENTO DOJO PVP, Value: 2
+					56 text TREINAMENTO DOJO PVP
+				57 text Nesse modo de Treinamento as batalhas não dão contadores de vitória, derrota, experiência, ryous e também não gastam sua vida, chakra e stamina ao final da luta. Aqui é apenas um modo de testar suas habilidades contra amigos ou inimigos que queiram participar desse treinamento juntamente com você.
+			58 table
+				59 row
+					60 cell
+						61 text Nome da Sala
+					62 cell
+						63 text field (settable) tBatalhaNome
+						64 checkbox (settable, integer) 0
+						65 text  Só quero jogadores do mesmo nível que eu
+					66 cell
+						67 button Criar
+		68 container cnQueue1x
+			69 container
+				70 heading BATALHAS DO DOJO PVP, Value: 2
+					71 text BATALHAS DO DOJO PVP
+				72 container
+					73 text Você não pode duelar no Dojo PVP pelos possíveis motivos:
+					74 text - Você é da graduação estudante
+					75 text - Você é maior que level 9
+					76 text Somente Ninjas com a graduação Genin podem duelar no Dojo PVP
+			77 button Ir para a fila
+	78 container Description: Advertisement, ID: aswift_0
+		79 AXWebArea about:blank
+	80 container
+
+[Rodapé e chat omitidos na cópia pública]

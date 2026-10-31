@@ -1,0 +1,1164 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Ranking de Batalhas" [level=1]
+- generic: Vila
+- combobox "Vila":
+  - option "Geral"
+  - option "Folha" [selected]
+  - option "Areia"
+  - option "Névoa"
+  - option "Pedra"
+  - option "Nuvem"
+  - option "Akatsuki"
+  - option "Som"
+  - option "Chuva"
+- generic: Graduação
+- combobox "Graduação":
+  - option "Geral"
+  - option "Estudante" [selected]
+  - option "Genin"
+  - option "Chuunin"
+  - option "Jounin"
+  - option "ANBU"
+  - option "Sannin da Folha"
+  - option "Herói"
+- generic: Posição
+- combobox "Posição":
+  - option "1 Até 50" [selected]
+  - option "51 Até 100"
+  - option "101 Até 150"
+  - option "151 Até 200"
+  - option "201 Até 250"
+  - option "251 Até 300"
+  - option "301 Até 350"
+  - option "351 Até 400"
+  - option "401 Até 450"
+  - option "451 Até 500"
+  - option "501 Até 550"
+  - option "551 Até 600"
+  - option "601 Até 650"
+  - option "651 Até 700"
+  - option "701 Até 750"
+  - option "751 Até 800"
+  - option "801 Até 850"
+  - option "851 Até 900"
+  - option "901 Até 950"
+  - option "951 Até 1000"
+  - option "1001 Até 1050"
+  - option "1051 Até 1100"
+  - option "1101 Até 1150"
+  - option "1151 Até 1200"
+  - option "1201 Até 1250"
+  - option "1251 Até 1300"
+  - option "1301 Até 1350"
+  - option "1351 Até 1400"
+  - option "1401 Até 1450"
+- generic: Status
+- combobox "Status":
+  - option "Vitória Dojo NPC" [selected]
+  - option "Vitória Dojo PVP"
+  - option "Vitória Mapa PVP"
+  - option "Derrotas Dojo NPC"
+  - option "Derrotas Dojo PVP"
+  - option "Derrotas Mapa PVP"
+  - option "Empates"
+  - option "Fugas"
+- generic: Período
+- combobox "Período":
+  - option "Diário" [selected]
+  - option "Semanal"
+  - option "Mensal"
+  - option "Geral"
+- button "Filtrar"
+- link "Vtoria":
+  - /url: javascript:void(0)
+- generic: 1º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5643600"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5643600"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "pedrox":
+  - /url: javascript:void(0)
+- generic: 2º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985728"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985728"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "rayuchiha":
+  - /url: javascript:void(0)
+- generic: 3º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983539"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983539"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "valterf":
+  - /url: javascript:void(0)
+- generic: 4º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985837"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985837"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Shiranui":
+  - /url: javascript:void(0)
+- generic: 5º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985459"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985459"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Acce":
+  - /url: javascript:void(0)
+- generic: 6º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5984886"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5984886"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Bowdenia":
+  - /url: javascript:void(0)
+- generic: 7º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5984505"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5984505"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "PERSONAGEM_TESTE":
+  - /url: javascript:void(0)
+- generic: 8º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5884555"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5884555"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "KamiSama":
+  - /url: javascript:void(0)
+- generic: 9º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5984881"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5984881"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Entendo":
+  - /url: javascript:void(0)
+- generic: 10º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5984865"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5984865"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "dadasdsadasdas":
+  - /url: javascript:void(0)
+- generic: 11º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985841"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985841"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "PastorNaruto":
+  - /url: javascript:void(0)
+- generic: 12º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5984864"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5984864"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Morning_Star":
+  - /url: javascript:void(0)
+- generic: 13º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5982213"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5982213"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Vash":
+  - /url: javascript:void(0)
+- generic: 14º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985844"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985844"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "zxcxzczxczczx":
+  - /url: javascript:void(0)
+- generic: 15º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985846"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985846"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Arkor":
+  - /url: javascript:void(0)
+- generic: 16º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=4579301"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=4579301"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "PERSONAGEM_TESTE":
+  - /url: javascript:void(0)
+- generic: 17º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5924459"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5924459"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo24":
+  - /url: javascript:void(0)
+- generic: 18º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983701"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983701"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Osmarzinho":
+  - /url: javascript:void(0)
+- generic: 19º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985853"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985853"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "zxcxzcxzczxczx":
+  - /url: javascript:void(0)
+- generic: 20º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985855"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985855"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "xzczxcaa":
+  - /url: javascript:void(0)
+- generic: 21º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985856"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985856"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "assdxzxxzxczx":
+  - /url: javascript:void(0)
+- generic: 22º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985857"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985857"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Xiui":
+  - /url: javascript:void(0)
+- generic: 23º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985637"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985637"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "HashiramaSenju":
+  - /url: javascript:void(0)
+- generic: 24º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=4877652"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=4877652"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "MattRyu":
+  - /url: javascript:void(0)
+- generic: 25º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985686"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985686"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Koichi":
+  - /url: javascript:void(0)
+- generic: 26º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985858"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985858"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo13":
+  - /url: javascript:void(0)
+- generic: 27º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983691"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983691"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo14":
+  - /url: javascript:void(0)
+- generic: 28º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983689"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983689"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "ArconteFurina":
+  - /url: javascript:void(0)
+- generic: 29º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5974091"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5974091"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo15":
+  - /url: javascript:void(0)
+- generic: 30º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983692"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983692"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Citlali":
+  - /url: javascript:void(0)
+- generic: 31º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5971861"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5971861"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo16":
+  - /url: javascript:void(0)
+- generic: 32º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983693"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983693"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo17":
+  - /url: javascript:void(0)
+- generic: 33º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983694"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983694"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo18":
+  - /url: javascript:void(0)
+- generic: 34º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983695"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983695"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo19":
+  - /url: javascript:void(0)
+- generic: 35º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983696"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983696"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "MavisVermilion":
+  - /url: javascript:void(0)
+- generic: 36º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5977406"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5977406"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "killerbeselo":
+  - /url: javascript:void(0)
+- generic: 37º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983625"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983625"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "tsunadeselo":
+  - /url: javascript:void(0)
+- generic: 38º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983626"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983626"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "kakashiselo":
+  - /url: javascript:void(0)
+- generic: 39º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983623"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983623"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "sakuraselo":
+  - /url: javascript:void(0)
+- generic: 40º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983624"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983624"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "HinataHyuuga":
+  - /url: javascript:void(0)
+- generic: 41º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=4993734"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=4993734"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo11":
+  - /url: javascript:void(0)
+- generic: 42º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983687"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983687"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo10":
+  - /url: javascript:void(0)
+- generic: 43º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983686"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983686"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo9":
+  - /url: javascript:void(0)
+- generic: 44º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983685"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983685"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Misturamos":
+  - /url: javascript:void(0)
+- generic: 45º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5385076"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5385076"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "LorenzoWommer":
+  - /url: javascript:void(0)
+- generic: 46º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985867"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985867"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo8":
+  - /url: javascript:void(0)
+- generic: 47º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983684"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983684"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo7":
+  - /url: javascript:void(0)
+- generic: 48º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983683"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983683"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "selo6":
+  - /url: javascript:void(0)
+- generic: 49º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983682"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983682"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Jsngdbsh":
+  - /url: javascript:void(0)
+- generic: 50º
+- text: Vitórias
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: Derrotas
+- text: "Dojo NPC: 0"
+- text: "Dojo PVP: 0"
+- text: "Mapa PVP: 0"
+- text: "Empates: 0"
+- text: "Fugas: 0"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985868"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985868"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- insertion

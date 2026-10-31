@@ -1,0 +1,158 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Sensei" [level=1]
+- main:
+  - heading "Escolha seu Sensei" [level=3]
+  - generic: Kakashi Hatake
+  - text: "Melhor Aluno: Kakashi30"
+  - text: "Quantidade de Alunos: 63027"
+  - button "Virar Aluno"
+  - generic: Maito Gai
+  - text: "Melhor Aluno: Klay"
+  - text: "Quantidade de Alunos: 15944"
+  - button "Virar Aluno"
+  - generic: Asuma Sarutobi
+  - text: "Melhor Aluno: Patriota"
+  - text: "Quantidade de Alunos: 6529"
+  - button "Virar Aluno"
+  - generic: Kurenai Yuuhi
+  - text: "Melhor Aluno: Honesto"
+  - text: "Quantidade de Alunos: 9140"
+  - button "Virar Aluno"
+  - generic: Baki
+  - text: "Melhor Aluno: ChuckNoia"
+  - text: "Quantidade de Alunos: 2639"
+  - button "Virar Aluno"
+  - generic: Ebisu
+  - text: "Melhor Aluno: Fireblaid"
+  - text: "Quantidade de Alunos: 2488"
+  - button "Virar Aluno"
+  - generic: Konohamaru Sarutobi
+  - text: "Melhor Aluno: Ladrao"
+  - text: "Quantidade de Alunos: 736"
+  - button "Virar Aluno"
+  - generic: Minato Namikaze
+  - text: "Melhor Aluno: Spam"
+  - text: "Quantidade de Alunos: 2224"
+  - button "2 Créditos"
+  - generic: Jiraiya
+  - text: "Melhor Aluno: PI2oTuG4"
+  - text: "Quantidade de Alunos: 3854"
+  - button "2000 Ryous"
+  - generic: Tsunade
+  - text: "Melhor Aluno: Tohsaka"
+  - text: "Quantidade de Alunos: 1461"
+  - button "2000 Ryous"
+  - generic: Orochimaru
+  - text: "Melhor Aluno: OirbmosOruk"
+  - text: "Quantidade de Alunos: 3517"
+  - button "Sensei Atual"
+  - generic: Hashirama e Tobirama
+  - text: "Melhor Aluno: ComunistaPR"
+  - text: "Quantidade de Alunos: 797"
+  - button "5 Créditos"
+  - generic: Hiruzen Sarutobi
+  - text: "Melhor Aluno: Niijima_Makoto"
+  - text: "Quantidade de Alunos: 426"
+  - button "2 Créditos"
+  - generic: Danzou Shimura
+  - text: "Melhor Aluno: Kronos"
+  - text: "Quantidade de Alunos: 351"
+  - button "2 Créditos"
+  - generic: Iruka Umino
+  - text: "Melhor Aluno: ElCamino"
+  - text: "Quantidade de Alunos: 2293"
+  - button "Virar Aluno"
+  - generic: Yamato
+  - text: "Melhor Aluno: _Marquim_"
+  - text: "Quantidade de Alunos: 3415"
+  - button "Virar Aluno"
+  - generic: Hiashi Hyuuga
+  - text: "Melhor Aluno: ZeroSoldier"
+  - text: "Quantidade de Alunos: 3338"
+  - button "Virar Aluno"
+  - generic: Salamander Hanzou
+  - text: "Melhor Aluno: Suki"
+  - text: "Quantidade de Alunos: 3468"
+  - button "Virar Aluno"
+  - generic: Pein
+  - text: "Melhor Aluno: Krouzer"
+  - text: "Quantidade de Alunos: 595"
+  - button "5 Créditos"
+  - generic: Rasa
+  - text: "Melhor Aluno: Pilli"
+  - text: "Quantidade de Alunos: 471"
+  - button "Virar Aluno"
+  - generic: Mei Terumii
+  - text: "Melhor Aluno: Tenebris"
+  - text: "Quantidade de Alunos: 667"
+  - button "Virar Aluno"
+  - generic: Ei
+  - text: "Melhor Aluno: JOW"
+  - text: "Quantidade de Alunos: 555"
+  - button "Virar Aluno"
+  - generic: Killer Bee
+  - text: "Melhor Aluno: Diogoo"
+  - text: "Quantidade de Alunos: 935"
+  - button "2000 Ryous"
+  - generic: Oonoki
+  - text: "Melhor Aluno: Setsu"
+  - text: "Quantidade de Alunos: 518"
+  - button "Virar Aluno"
+  - generic: Dotou Kazahana
+  - text: "Melhor Aluno: DALVAHORSE"
+  - text: "Quantidade de Alunos: 1417"
+  - button "Virar Aluno"
+  - generic: Kuro Zetsu
+  - text: "Melhor Aluno: Conquistador"
+  - text: "Quantidade de Alunos: 918"
+  - button "2000 Ryous"
+  - generic: Hagoromo Ootsutsuki
+  - text: "Melhor Aluno: MJR"
+  - text: "Quantidade de Alunos: 1186"
+  - button "5 Créditos"
+  - generic: Sasuke Uchiha
+  - text: "Melhor Aluno: Cucurella"
+  - text: "Quantidade de Alunos: 614"
+  - button "5 Créditos"

@@ -1,0 +1,163 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Ramen Ichiraku" [level=1]
+- heading "Recupere seu HP, Chakra e Stamina" [level=2]:
+  - generic: 
+  - generic: Recupere seu HP, Chakra e Stamina
+- paragraph: Ao comer ramen, seu ninja recupera Vida, Chakra e Stamina, e pode ser usado até mesmo no mapa !!
+- generic: x5
+- generic: Merenda Ninja
+- generic: 
+- generic: RY$ 17
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Shoyu Gyoza-Ramen
+- generic: 
+- generic: RY$ 59
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Shoyu Gyoza-Ramen
+- generic: 
+- generic: RY$ 42
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Shoyu Gyoza-Ramen Reforçado
+- generic: 
+- generic: 3 Créditos VIP
+- generic: Pacote com 20!
+- button "Comprar"
+- generic: x0
+- generic: Shio Tyashu-Ramen
+- generic: 
+- generic: RY$ 119
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Shio Tyashu-Ramen
+- generic: 
+- generic: RY$ 102
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Shio Tyashu-Ramen Reforçado
+- generic: 
+- generic: 6 Créditos VIP
+- generic: Pacote com 20!
+- button "Comprar"
+- generic: x0
+- generic: Misso Tyashu-Ramen
+- generic: 
+- generic: RY$ 178
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Misso Tyashu-Ramen
+- generic: 
+- generic: RY$ 153
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Misso Tyashu-Ramen Reforçado
+- generic: 
+- generic: 8 Créditos VIP
+- generic: Pacote com 20!
+- button "Comprar"
+- generic: x0
+- generic: Shoyu Yasai-Ramen
+- generic: 
+- generic: RY$ 238
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Shoyu Yasai-Ramen
+- generic: 
+- generic: RY$ 204
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Shoyu Yasai-Ramen Reforçado
+- generic: 
+- generic: 11 Créditos VIP
+- generic: Pacote com 20!
+- button "Comprar"
+- generic: x0
+- generic: Shio Ebi-Ramen
+- generic: 
+- generic: RY$ 297
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Shio Ebi-Ramen
+- generic: 
+- generic: RY$ 255
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Shio Ebi-Ramen Reforçado
+- generic: 
+- generic: 14 Créditos VIP
+- generic: Pacote com 20!
+- button "Comprar"
+- generic: x0
+- generic: Misso Ebi-Ramen
+- generic: 
+- generic: RY$ 357
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Misso Ebi-Ramen
+- generic: 
+- generic: RY$ 306
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Misso Ebi-Ramen Reforçado
+- generic: 
+- generic: 17 Créditos VIP
+- generic: Pacote com 20!
+- button "Comprar"
+- insertion

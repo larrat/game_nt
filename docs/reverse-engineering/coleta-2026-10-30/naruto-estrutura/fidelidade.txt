@@ -1,0 +1,408 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Fidelidade Ninja" [level=1]
+- heading "Recompensas de Fidelidade" [level=2]:
+  - generic: 
+  - generic: Recompensas de Fidelidade
+- paragraph: Ao logar diariamente você pode coletar recompensas para seu personagem. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas as recompensas e começar de novo. Caso você não logue um dos dias, o contador irá retornar para o primeiro dia.
+- generic: Dia 1
+- text: "1"
+- img "Pontos de Fidelidade"
+- generic: Logar 1 dia(s) seguidos
+- generic: 1000 de ryous
+- button "Receber"
+- generic: Dia 2
+- text: "1"
+- img "Pontos de Fidelidade"
+- generic: Logar 2 dia(s) seguidos
+- generic: 1000 de ryous
+- button "Não Recebido"
+- generic: Dia 3
+- text: "1"
+- img "Pontos de Fidelidade"
+- generic: Logar 3 dia(s) seguidos
+- generic: 50 fragmentos
+- button "Não Recebido"
+- generic: Dia 4
+- text: "2"
+- img "Pontos de Fidelidade"
+- generic: Logar 4 dia(s) seguidos
+- generic: 1000 de exp
+- button "Não Recebido"
+- generic: Dia 5
+- text: "2"
+- img "Pontos de Fidelidade"
+- generic: Logar 5 dia(s) seguidos
+- generic: 1000 de treino total
+- button "Não Recebido"
+- generic: Dia 6
+- text: "1"
+- img "Pontos de Fidelidade"
+- generic: Logar 6 dia(s) seguidos
+- generic: 1500 de ryous
+- button "Não Recebido"
+- generic: Dia 7
+- text: "1"
+- img "Pontos de Fidelidade"
+- generic: Logar 7 dia(s) seguidos
+- generic: 1500 de ryous
+- button "Não Recebido"
+- generic: Dia 8
+- text: "2"
+- img "Pontos de Fidelidade"
+- generic: Logar 8 dia(s) seguidos
+- generic: 100 fragmentos
+- button "Não Recebido"
+- generic: Dia 9
+- text: "2"
+- img "Pontos de Fidelidade"
+- generic: Logar 9 dia(s) seguidos
+- generic: 1 chakra(s) de bijuu
+- button "Não Recebido"
+- generic: Dia 10
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 10 dia(s) seguidos
+- generic: 1 aprimoramento(s) de jutsu
+- button "Não Recebido"
+- generic: Dia 11
+- text: "1"
+- img "Pontos de Fidelidade"
+- generic: Logar 11 dia(s) seguidos
+- generic: 2000 de ryous
+- button "Não Recebido"
+- generic: Dia 12
+- text: "2"
+- img "Pontos de Fidelidade"
+- generic: Logar 12 dia(s) seguidos
+- generic: 2000 de ryous
+- button "Não Recebido"
+- generic: Dia 13
+- text: "2"
+- img "Pontos de Fidelidade"
+- generic: Logar 13 dia(s) seguidos
+- generic: 150 fragmentos
+- button "Não Recebido"
+- generic: Dia 14
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 14 dia(s) seguidos
+- generic: 2000 de treino total
+- button "Não Recebido"
+- generic: Dia 15
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 15 dia(s) seguidos
+- generic: 100 fragmentos
+- button "Não Recebido"
+- generic: Dia 16
+- text: "2"
+- img "Pontos de Fidelidade"
+- generic: Logar 16 dia(s) seguidos
+- generic: 2500 de ryous
+- button "Não Recebido"
+- generic: Dia 17
+- text: "2"
+- img "Pontos de Fidelidade"
+- generic: Logar 17 dia(s) seguidos
+- generic: 2500 de ryous
+- button "Não Recebido"
+- generic: Dia 18
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 18 dia(s) seguidos
+- generic: 200 fragmentos
+- button "Não Recebido"
+- generic: Dia 19
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 19 dia(s) seguidos
+- generic: 2500 de exp
+- button "Não Recebido"
+- generic: Dia 20
+- text: "4"
+- img "Pontos de Fidelidade"
+- generic: Logar 20 dia(s) seguidos
+- generic: 1 chakra(s) de bijuu
+- button "Não Recebido"
+- generic: Dia 21
+- text: "2"
+- img "Pontos de Fidelidade"
+- generic: Logar 21 dia(s) seguidos
+- generic: 3000 de ryous
+- button "Não Recebido"
+- generic: Dia 22
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 22 dia(s) seguidos
+- generic: 3000 de ryous
+- button "Não Recebido"
+- generic: Dia 23
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 23 dia(s) seguidos
+- generic: 300 fragmentos
+- button "Não Recebido"
+- generic: Dia 24
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 24 dia(s) seguidos
+- generic: 1 aprimoramento(s) de jutsu
+- button "Não Recebido"
+- generic: Dia 25
+- text: "4"
+- img "Pontos de Fidelidade"
+- generic: Logar 25 dia(s) seguidos
+- generic: 3000 de treino total
+- button "Não Recebido"
+- generic: Dia 26
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 26 dia(s) seguidos
+- generic: 3500 de ryous
+- button "Não Recebido"
+- generic: Dia 27
+- text: "3"
+- img "Pontos de Fidelidade"
+- generic: Logar 27 dia(s) seguidos
+- generic: 3500 de ryous
+- button "Não Recebido"
+- generic: Dia 28
+- text: "4"
+- img "Pontos de Fidelidade"
+- generic: Logar 28 dia(s) seguidos
+- generic: 400 fragmentos
+- button "Não Recebido"
+- generic: Dia 29
+- text: "4"
+- img "Pontos de Fidelidade"
+- generic: Logar 29 dia(s) seguidos
+- generic: 3500 de treino total
+- button "Não Recebido"
+- generic: Dia 30
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 30 dia(s) seguidos
+- generic: Jiraya - Samurai
+- button "Não Recebido"
+- generic: Dia 31
+- text: "4"
+- img "Pontos de Fidelidade"
+- generic: Logar 31 dia(s) seguidos
+- generic: 4000 de ryous
+- button "Não Recebido"
+- generic: Dia 32
+- text: "4"
+- img "Pontos de Fidelidade"
+- generic: Logar 32 dia(s) seguidos
+- generic: 4000 de ryous
+- button "Não Recebido"
+- generic: Dia 33
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 33 dia(s) seguidos
+- generic: 500 fragmentos
+- button "Não Recebido"
+- generic: Dia 34
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 34 dia(s) seguidos
+- generic: 4000 de exp
+- button "Não Recebido"
+- generic: Dia 35
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 35 dia(s) seguidos
+- generic: 4000 de treino total
+- button "Não Recebido"
+- generic: Dia 36
+- text: "4"
+- img "Pontos de Fidelidade"
+- generic: Logar 36 dia(s) seguidos
+- generic: 4500 de ryous
+- button "Não Recebido"
+- generic: Dia 37
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 37 dia(s) seguidos
+- generic: 4500 de ryous
+- button "Não Recebido"
+- generic: Dia 38
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 38 dia(s) seguidos
+- generic: 600 fragmentos
+- button "Não Recebido"
+- generic: Dia 39
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 39 dia(s) seguidos
+- generic: 2 chakra(s) de bijuu
+- button "Não Recebido"
+- generic: Dia 40
+- text: "6"
+- img "Pontos de Fidelidade"
+- generic: Logar 40 dia(s) seguidos
+- generic: 2 aprimoramento(s) de jutsu
+- button "Não Recebido"
+- generic: Dia 41
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 41 dia(s) seguidos
+- generic: 5000 de ryous
+- button "Não Recebido"
+- generic: Dia 42
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 42 dia(s) seguidos
+- generic: 5000 de ryous
+- button "Não Recebido"
+- generic: Dia 43
+- text: "6"
+- img "Pontos de Fidelidade"
+- generic: Logar 43 dia(s) seguidos
+- generic: 700 fragmentos
+- button "Não Recebido"
+- generic: Dia 44
+- text: "6"
+- img "Pontos de Fidelidade"
+- generic: Logar 44 dia(s) seguidos
+- generic: 5000 de treino total
+- button "Não Recebido"
+- generic: Dia 45
+- text: "7"
+- img "Pontos de Fidelidade"
+- generic: Logar 45 dia(s) seguidos
+- generic: 700 fragmentos
+- button "Não Recebido"
+- generic: Dia 46
+- text: "5"
+- img "Pontos de Fidelidade"
+- generic: Logar 46 dia(s) seguidos
+- generic: 5500 de ryous
+- button "Não Recebido"
+- generic: Dia 47
+- text: "6"
+- img "Pontos de Fidelidade"
+- generic: Logar 47 dia(s) seguidos
+- generic: 5500 de ryous
+- button "Não Recebido"
+- generic: Dia 48
+- text: "6"
+- img "Pontos de Fidelidade"
+- generic: Logar 48 dia(s) seguidos
+- generic: 800 fragmentos
+- button "Não Recebido"
+- generic: Dia 49
+- text: "6"
+- img "Pontos de Fidelidade"
+- generic: Logar 49 dia(s) seguidos
+- generic: 5500 de exp
+- button "Não Recebido"
+- generic: Dia 50
+- text: "7"
+- img "Pontos de Fidelidade"
+- generic: Logar 50 dia(s) seguidos
+- generic: 2 chakra(s) de bijuu
+- button "Não Recebido"
+- generic: Dia 51
+- text: "6"
+- img "Pontos de Fidelidade"
+- generic: Logar 51 dia(s) seguidos
+- generic: 6000 de ryous
+- button "Não Recebido"
+- generic: Dia 52
+- text: "6"
+- img "Pontos de Fidelidade"
+- generic: Logar 52 dia(s) seguidos
+- generic: 6000 de ryous
+- button "Não Recebido"
+- generic: Dia 53
+- text: "7"
+- img "Pontos de Fidelidade"
+- generic: Logar 53 dia(s) seguidos
+- generic: 900 fragmentos
+- button "Não Recebido"
+- generic: Dia 54
+- text: "7"
+- img "Pontos de Fidelidade"
+- generic: Logar 54 dia(s) seguidos
+- generic: 3 aprimoramento(s) de jutsu
+- button "Não Recebido"
+- generic: Dia 55
+- text: "8"
+- img "Pontos de Fidelidade"
+- generic: Logar 55 dia(s) seguidos
+- generic: 6000 de treino total
+- button "Não Recebido"
+- generic: Dia 56
+- text: "6"
+- img "Pontos de Fidelidade"
+- generic: Logar 56 dia(s) seguidos
+- generic: 6500 de ryous
+- button "Não Recebido"
+- generic: Dia 57
+- text: "7"
+- img "Pontos de Fidelidade"
+- generic: Logar 57 dia(s) seguidos
+- generic: 6500 de ryous
+- button "Não Recebido"
+- generic: Dia 58
+- text: "7"
+- img "Pontos de Fidelidade"
+- generic: Logar 58 dia(s) seguidos
+- generic: 1000 fragmentos
+- button "Não Recebido"
+- generic: Dia 59
+- text: "7"
+- img "Pontos de Fidelidade"
+- generic: Logar 59 dia(s) seguidos
+- generic: 1 Alvo Extra do Bingo Book
+- button "Não Recebido"
+- generic: Dia 60
+- text: "8"
+- img "Pontos de Fidelidade"
+- generic: Logar 60 dia(s) seguidos
+- generic: Haku - Samurai
+- button "Não Recebido"

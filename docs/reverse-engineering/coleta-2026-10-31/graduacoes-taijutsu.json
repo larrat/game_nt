@@ -1,0 +1,186 @@
+{
+  "observedAt": "2026-10-31",
+  "source": "?secao=graduacoes",
+  "grades": [
+    {
+      "rank": "Jounin",
+      "requirements": [
+        "Você precisa estar no Level 25 ou superior",
+        "Você precisa ter completado 10 Missões Rank C ou mais",
+        "Ter 16 Jutsus Aprendidos",
+        "Ter 1 Jutsus de Level 2 Treinados",
+        "Ter 1 Jutsus de Level 3 Treinados",
+        "Ter 150 Batalhas Mapa PVP ou 175 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "ANBU",
+      "requirements": [
+        "Você precisa estar no Level 35 ou superior",
+        "Você precisa ter completado 15 Missões Rank B ou mais",
+        "Ter 22 Jutsus Aprendidos",
+        "Ter 5 Jutsus de Level 3 Treinados",
+        "Ter derrotado 1 alvos do seu Bingo Book",
+        "Ter 250 Batalhas Mapa PVP ou 275 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "Sannin da Folha",
+      "requirements": [
+        "Você precisa estar no Level 45 ou superior",
+        "Você precisa ter completado 15 Missões Rank A ou mais",
+        "Ter 28 Jutsus Aprendidos",
+        "Ter 10 Jutsus de Level 3 Treinados",
+        "Ter derrotado 2 alvos do seu Bingo Book",
+        "Ter 550 Batalhas Mapa PVP ou 650 Vitórias NPC",
+        "Ter Invocação Level 4",
+        "Requer Clã Level 4 ou Portão Level 6 ou Karma Level 6"
+      ]
+    },
+    {
+      "rank": "Herói",
+      "requirements": [
+        "Você precisa estar no Level 55 ou superior",
+        "Você precisa ter completado 15 Missões Rank S ou mais",
+        "Ter 34 Jutsus Aprendidos",
+        "Ter 15 Jutsus de Level 3 Treinados",
+        "Ter derrotado 3 alvos do seu Bingo Book",
+        "Ter 850 Batalhas Mapa PVP ou 1000 Vitórias NPC",
+        "Ter Invocação Level 5",
+        "Requer Clã Level 5 ou Portão Level 8 ou Karma Level 8"
+      ]
+    },
+    {
+      "rank": "Genin",
+      "requirements": [
+        "Você precisa estar no Level 5 ou superior",
+        "Você precisa ter completado 10 Tarefas ou mais",
+        "Ter 1 Jutsus Aprendidos",
+        "Ter 5 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "Chuunin",
+      "requirements": [
+        "Você precisa estar no Level 15 ou superior",
+        "Você precisa ter completado 10 Missões Rank D ou mais",
+        "Ter 9 Jutsus Aprendidos",
+        "Ter 50 Batalhas Mapa PVP ou 75 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "Jounin",
+      "requirements": [
+        "Você precisa estar no Level 25 ou superior",
+        "Você precisa ter completado 10 Missões Rank C ou mais",
+        "Ter 16 Jutsus Aprendidos",
+        "Ter 1 Jutsus de Level 2 Treinados",
+        "Ter 1 Jutsus de Level 3 Treinados",
+        "Ter 150 Batalhas Mapa PVP ou 175 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "ANBU",
+      "requirements": [
+        "Você precisa estar no Level 35 ou superior",
+        "Você precisa ter completado 15 Missões Rank B ou mais",
+        "Ter 22 Jutsus Aprendidos",
+        "Ter 5 Jutsus de Level 3 Treinados",
+        "Ter derrotado 1 alvos do seu Bingo Book",
+        "Ter 250 Batalhas Mapa PVP ou 275 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "Sannin da Folha",
+      "requirements": [
+        "Você precisa estar no Level 45 ou superior",
+        "Você precisa ter completado 15 Missões Rank A ou mais",
+        "Ter 28 Jutsus Aprendidos",
+        "Ter 10 Jutsus de Level 3 Treinados",
+        "Ter derrotado 2 alvos do seu Bingo Book",
+        "Ter 550 Batalhas Mapa PVP ou 650 Vitórias NPC",
+        "Ter Invocação Level 4",
+        "Requer Clã Level 4 ou Portão Level 6 ou Karma Level 6"
+      ]
+    },
+    {
+      "rank": "Herói",
+      "requirements": [
+        "Você precisa estar no Level 55 ou superior",
+        "Você precisa ter completado 15 Missões Rank S ou mais",
+        "Ter 34 Jutsus Aprendidos",
+        "Ter 15 Jutsus de Level 3 Treinados",
+        "Ter derrotado 3 alvos do seu Bingo Book",
+        "Ter 850 Batalhas Mapa PVP ou 1000 Vitórias NPC",
+        "Ter Invocação Level 5",
+        "Requer Clã Level 5 ou Portão Level 8 ou Karma Level 8"
+      ]
+    },
+    {
+      "rank": "Genin",
+      "requirements": [
+        "Você precisa estar no Level 5 ou superior",
+        "Você precisa ter completado 10 Tarefas ou mais",
+        "Ter 1 Jutsus Aprendidos",
+        "Ter 5 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "Chuunin",
+      "requirements": [
+        "Você precisa estar no Level 15 ou superior",
+        "Você precisa ter completado 10 Missões Rank D ou mais",
+        "Ter 9 Jutsus Aprendidos",
+        "Ter 50 Batalhas Mapa PVP ou 75 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "Jounin",
+      "requirements": [
+        "Você precisa estar no Level 25 ou superior",
+        "Você precisa ter completado 10 Missões Rank C ou mais",
+        "Ter 16 Jutsus Aprendidos",
+        "Ter 1 Jutsus de Level 2 Treinados",
+        "Ter 1 Jutsus de Level 3 Treinados",
+        "Ter 150 Batalhas Mapa PVP ou 175 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "ANBU",
+      "requirements": [
+        "Você precisa estar no Level 35 ou superior",
+        "Você precisa ter completado 15 Missões Rank B ou mais",
+        "Ter 22 Jutsus Aprendidos",
+        "Ter 5 Jutsus de Level 3 Treinados",
+        "Ter derrotado 1 alvos do seu Bingo Book",
+        "Ter 250 Batalhas Mapa PVP ou 275 Vitórias NPC"
+      ]
+    },
+    {
+      "rank": "Sannin da Folha",
+      "requirements": [
+        "Você precisa estar no Level 45 ou superior",
+        "Você precisa ter completado 15 Missões Rank A ou mais",
+        "Ter 28 Jutsus Aprendidos",
+        "Ter 10 Jutsus de Level 3 Treinados",
+        "Ter derrotado 2 alvos do seu Bingo Book",
+        "Ter 550 Batalhas Mapa PVP ou 650 Vitórias NPC",
+        "Ter Invocação Level 4",
+        "Requer Clã Level 4 ou Portão Level 6 ou Karma Level 6"
+      ]
+    },
+    {
+      "rank": "Herói",
+      "requirements": [
+        "Você precisa estar no Level 55 ou superior",
+        "Você precisa ter completado 15 Missões Rank S ou mais",
+        "Ter 34 Jutsus Aprendidos",
+        "Ter 15 Jutsus de Level 3 Treinados",
+        "Ter derrotado 3 alvos do seu Bingo Book",
+        "Ter 850 Batalhas Mapa PVP ou 1000 Vitórias NPC",
+        "Ter Invocação Level 5",
+        "Requer Clã Level 5 ou Portão Level 8 ou Karma Level 8"
+      ]
+    }
+  ]
+}

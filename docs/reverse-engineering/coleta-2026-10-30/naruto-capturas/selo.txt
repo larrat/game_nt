@@ -1,0 +1,237 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Selos Amaldiçoados" [level=1]
+- main:
+  - heading "Escolha seu Selo" [level=3]
+  - generic "Selo Amaldiçoado do Céu":
+    - img "Selo Amaldiçoado do Céu"
+  - generic "Selo Amaldiçoado da Terra":
+    - img "Selo Amaldiçoado da Terra"
+  - generic "Selo Amaldiçoado da Lua":
+    - img "Selo Amaldiçoado da Lua"
+- button "Aceitar Selo"
+- paragraph: Selo Amaldiçoado do Sol II
+- generic: + 8
+- generic: + 6
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Sol III
+- generic: + 12
+- generic: + 8
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Céu I
+- generic: + 4
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: 
+- button "Treinar"
+- paragraph: Selo Amaldiçoado do Céu II
+- generic: + 8
+- generic: + 6
+- generic: + 6
+- generic: + 10
+- generic: 
+- button "Treinar"
+- paragraph: Selo Amaldiçoado do Céu III
+- generic: + 12
+- generic: + 8
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado da Terra I
+- generic: + 4
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado da Terra II
+- generic: + 8
+- generic: + 6
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado da Terra III
+- generic: + 12
+- generic: + 8
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Lua I
+- generic: + 4
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Lua II
+- generic: + 8
+- generic: + 6
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Lua III
+- generic: + 12
+- generic: + 8
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Sol I
+- generic: + 4
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Sol II
+- generic: + 8
+- generic: + 6
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Sol III
+- generic: + 12
+- generic: + 8
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Céu I
+- generic: + 4
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Céu II
+- generic: + 8
+- generic: + 6
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Céu III
+- generic: + 12
+- generic: + 8
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado da Terra I
+- generic: + 4
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado da Terra II
+- generic: + 8
+- generic: + 6
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado da Terra III
+- generic: + 12
+- generic: + 8
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Lua I
+- generic: + 4
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Lua II
+- generic: + 8
+- generic: + 6
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Lua III
+- generic: + 12
+- generic: + 8
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Sol I
+- generic: + 4
+- generic: + 4
+- generic: + 4
+- generic: + 8
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Sol II
+- generic: + 8
+- generic: + 6
+- generic: + 6
+- generic: + 10
+- generic: 
+- button: Treinar
+- paragraph: Selo Amaldiçoado do Sol III
+- generic: + 12
+- generic: + 8
+- generic: + 8
+- generic: + 12
+- generic: 
+- button: Treinar
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

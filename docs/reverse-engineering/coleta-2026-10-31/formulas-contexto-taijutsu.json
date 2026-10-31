@@ -1,0 +1,978 @@
+{
+  "observedAt": "2026-10-31",
+  "class": "Taijutsu",
+  "tables": [
+    [
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_hp.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "markup": "Vida",
+          "text": "Vida"
+        },
+        {
+          "markup": "Fórmula da Vida",
+          "text": "Fórmula da Vida"
+        },
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ene.png\" width=\"24\" height=\"24\"> * 8",
+          "text": "* 8"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "markup": "Chakra",
+          "text": "Chakra"
+        },
+        {
+          "markup": "Fórmula do Chakra<br>",
+          "text": "Fórmula do Chakra"
+        },
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ene.png\" width=\"24\" height=\"24\"> * 4 +  ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/nin.png\" width=\"24\" height=\"24\"> ) * 7 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/gen.png\" width=\"24\" height=\"24\"> ) * 7",
+          "text": "* 4 +  (  ) * 7 + (  ) * 7"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "markup": "Stamina",
+          "text": "Stamina"
+        },
+        {
+          "markup": "Fórmula da Stamina<br>",
+          "text": "Fórmula da Stamina"
+        },
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ene.png\" width=\"24\" height=\"24\"> * 4  + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/tai.png\" width=\"24\" height=\"24\"> ) * 20 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ken.png\" width=\"24\"> ) * 7",
+          "text": "* 4  + (  ) * 20 + (  ) * 7"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_fisico.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "markup": "Ataque ( Tai / Buk )",
+          "text": "Ataque ( Tai / Buk )"
+        },
+        {
+          "markup": "+1 de Ataque ( Tai / Buk )",
+          "text": "+1 de Ataque ( Tai / Buk )"
+        },
+        {
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/forc.png\" width=\"24\" height=\"24\"> / 2 )",
+          "text": "(  / 2 )"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\" alt=\"\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "markup": "Ataque ( Nin / Gen )",
+          "text": "Ataque ( Nin / Gen )"
+        },
+        {
+          "markup": "+1 de Ataque ( Nin / Gen )",
+          "text": "+1 de Ataque ( Nin / Gen )"
+        },
+        {
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/inte.png\" width=\"24\" height=\"24\"> / 2 )",
+          "text": "(  / 2 )"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/shield.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "markup": "Defesa ( Nin / Gen)",
+          "text": "Defesa ( Nin / Gen)"
+        },
+        {
+          "markup": "+1 Defesa ( Nin / Gen)",
+          "text": "+1 Defesa ( Nin / Gen)"
+        },
+        {
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/defense.png\" width=\"24\" height=\"24\"> / 2 ) ",
+          "text": "(  / 2 )"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/shield.png\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "markup": "Defesa ( Tai / Buk)",
+          "text": "Defesa ( Tai / Buk)"
+        },
+        {
+          "markup": "+1 Defesa ( Tai / Buk)",
+          "text": "+1 Defesa ( Tai / Buk)"
+        },
+        {
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/defense.png\" width=\"24\" height=\"24\"> / 2 )",
+          "text": "(  / 2 )"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/precisao.png\">",
+          "text": ""
+        },
+        {
+          "markup": "Precisão",
+          "text": "Precisão"
+        },
+        {
+          "markup": "+1 de Precisão",
+          "text": "+1 de Precisão"
+        },
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/conhe.png\"> * 1",
+          "text": "* 1"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images//icones/prec_tai.png\">",
+          "text": ""
+        },
+        {
+          "markup": "Perfuração",
+          "text": "Perfuração"
+        },
+        {
+          "markup": "+1 de Perfuração",
+          "text": "+1 de Perfuração"
+        },
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/agi.png\"> * 1",
+          "text": "* 1"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/esquiva.png\" alt=\"\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "markup": "Incremento de Absorção",
+          "text": "Incremento de Absorção"
+        },
+        {
+          "markup": "% de Incremento de Absorção",
+          "text": "% de Incremento de Absorção"
+        },
+        {
+          "markup": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%",
+          "text": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\" alt=\"\" width=\"24\" height=\"24\">",
+          "text": ""
+        },
+        {
+          "markup": "Incremento de Crítico",
+          "text": "Incremento de Crítico"
+        },
+        {
+          "markup": "% de Incremento de Crítico",
+          "text": "% de Incremento de Crítico"
+        },
+        {
+          "markup": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%",
+          "text": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/det.png\">",
+          "text": ""
+        },
+        {
+          "markup": "Determinação",
+          "text": "Determinação"
+        },
+        {
+          "markup": "+1% de Determinação",
+          "text": "+1% de Determinação"
+        },
+        {
+          "markup": "Estudante e Genin: Level do player, Chunin: Level do player / 1.5, Jounin: Level do player / 2, ANBU: Level do player / 3, Sanin e Heroi: Level do Player / 4",
+          "text": "Estudante e Genin: Level do player, Chunin: Level do player / 1.5, Jounin: Level do player / 2, ANBU: Level do player / 3, Sanin e Heroi: Level do Player / 4"
+        }
+      ],
+      [
+        {
+          "markup": "<img src=\"https://narutogame.com.br:443/assets/images/logado/icones/poder-ninja.png\" alt=\"\">",
+          "text": ""
+        },
+        {
+          "markup": "Poder Ninja",
+          "text": "Poder Ninja"
+        },
+        {
+          "markup": "% de Poder Ninja",
+          "text": "% de Poder Ninja"
+        },
+        {
+          "markup": "( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ene.png\" width=\"24\" height=\"24\"> ) * 200 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/forc.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/inte.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/defense.png\" width=\"24\" height=\"24\"> ) * 150 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/nin.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/gen.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/tai.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/ken.png\" width=\"24\">) * 200 + ( <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/agi.png\" width=\"24\" height=\"24\"> + <img src=\"https://narutogame.com.br:443/assets/images/logado/icones/conhe.png\" width=\"24\" height=\"24\">) * 100",
+          "text": "(  ) * 200 + (  +  +  ) * 150 + (  +  +  + ) * 200 + (  + ) * 100"
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "markup": "Por level do Jogador",
+          "text": "Por level do Jogador"
+        },
+        {
+          "markup": "( Level * 1000)",
+          "text": "( Level * 1000)"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+2000</b>",
+          "text": "+2000"
+        },
+        {
+          "markup": "Por graduação do player",
+          "text": "Por graduação do player"
+        },
+        {
+          "markup": "( A cada graduação + 2000 pontos )",
+          "text": "( A cada graduação + 2000 pontos )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+80</b>",
+          "text": "+80"
+        },
+        {
+          "markup": "Por Vitória Mapa PVP",
+          "text": "Por Vitória Mapa PVP"
+        },
+        {
+          "markup": "( vitória mapa pvp * 80 )",
+          "text": "( vitória mapa pvp * 80 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+80</b>",
+          "text": "+80"
+        },
+        {
+          "markup": "Por Vitória Dojo PVP",
+          "text": "Por Vitória Dojo PVP"
+        },
+        {
+          "markup": "( vitória dojo pvp * 80 )",
+          "text": "( vitória dojo pvp * 80 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+20</b>",
+          "text": "+20"
+        },
+        {
+          "markup": "Por Vitória Dojo NPC",
+          "text": "Por Vitória Dojo NPC"
+        },
+        {
+          "markup": "( vitória dojo npc * 20 )",
+          "text": "( vitória dojo npc * 20 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-10</b>",
+          "text": "-10"
+        },
+        {
+          "markup": "Por Derrota Mapa PVP",
+          "text": "Por Derrota Mapa PVP"
+        },
+        {
+          "markup": "( derrota mapa pvp * -10 )",
+          "text": "( derrota mapa pvp * -10 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-10</b>",
+          "text": "-10"
+        },
+        {
+          "markup": "Por Derrota Dojo PVP",
+          "text": "Por Derrota Dojo PVP"
+        },
+        {
+          "markup": "( derrota dojo pvp * -10 )",
+          "text": "( derrota dojo pvp * -10 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-10</b>",
+          "text": "-10"
+        },
+        {
+          "markup": "Por Derrota Dojo NPC",
+          "text": "Por Derrota Dojo NPC"
+        },
+        {
+          "markup": "( derrota dojo npc * -10 )",
+          "text": "( derrota dojo npc * -10 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+5</b>",
+          "text": "+5"
+        },
+        {
+          "markup": "Por empate",
+          "text": "Por empate"
+        },
+        {
+          "markup": "( fuga * 5 )",
+          "text": "( fuga * 5 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+ Treino/100</b>",
+          "text": "+ Treino/100"
+        },
+        {
+          "markup": "Total de treino",
+          "text": "Total de treino"
+        },
+        {
+          "markup": "( Total do Treino / 100 )",
+          "text": "( Total do Treino / 100 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+25</b>",
+          "text": "+25"
+        },
+        {
+          "markup": "Por tarefa concluída",
+          "text": "Por tarefa concluída"
+        },
+        {
+          "markup": "( Total de Tarefa * 25 )",
+          "text": "( Total de Tarefa * 25 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+50</b>",
+          "text": "+50"
+        },
+        {
+          "markup": "Por missão D concluída",
+          "text": "Por missão D concluída"
+        },
+        {
+          "markup": "( Total de missão D * 50 )",
+          "text": "( Total de missão D * 50 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+75</b>",
+          "text": "+75"
+        },
+        {
+          "markup": "Por missão C concluída",
+          "text": "Por missão C concluída"
+        },
+        {
+          "markup": "( Total de missão C * 75 )",
+          "text": "( Total de missão C * 75 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "markup": "Por missão B concluída",
+          "text": "Por missão B concluída"
+        },
+        {
+          "markup": "( Total de missão B * 100 )",
+          "text": "( Total de missão B * 100 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+125</b>",
+          "text": "+125"
+        },
+        {
+          "markup": "Por missão A concluída",
+          "text": "Por missão A concluída"
+        },
+        {
+          "markup": "( Total de missão A * 125 )",
+          "text": "( Total de missão A * 125 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+150</b>",
+          "text": "+150"
+        },
+        {
+          "markup": "Por missão S concluída",
+          "text": "Por missão S concluída"
+        },
+        {
+          "markup": "( Total de missão S * 150 )",
+          "text": "( Total de missão S * 150 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "markup": "Por Missão de Invasão concluída",
+          "text": "Por Missão de Invasão concluída"
+        },
+        {
+          "markup": "( Total de missão invasão * 1000 )",
+          "text": "( Total de missão invasão * 1000 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "markup": "Por Missão de Invasão falha",
+          "text": "Por Missão de Invasão falha"
+        },
+        {
+          "markup": "( Total de missão invasão * 100 )",
+          "text": "( Total de missão invasão * 100 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+75</b>",
+          "text": "+75"
+        },
+        {
+          "markup": "Por Objetivo de Organização Solo",
+          "text": "Por Objetivo de Organização Solo"
+        },
+        {
+          "markup": "( Total de missão solo * 75 )",
+          "text": "( Total de missão solo * 75 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+500</b>",
+          "text": "+500"
+        },
+        {
+          "markup": "Por Torneio Npc Vencido",
+          "text": "Por Torneio Npc Vencido"
+        },
+        {
+          "markup": "( Total de torneio npc * 500 )",
+          "text": "( Total de torneio npc * 500 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "markup": "Por Torneio PVP Vencido",
+          "text": "Por Torneio PVP Vencido"
+        },
+        {
+          "markup": "( Total de torneio pvp * 1000 )",
+          "text": "( Total de torneio pvp * 1000 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+1500</b>",
+          "text": "+1500"
+        },
+        {
+          "markup": "Por Alvo do Bingo Book Derrotado",
+          "text": "Por Alvo do Bingo Book Derrotado"
+        },
+        {
+          "markup": "( Total derrotado * 1500 )",
+          "text": "( Total derrotado * 1500 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-250</b>",
+          "text": "-250"
+        },
+        {
+          "markup": "Por mortes à quem tiver você como BB",
+          "text": "Por mortes à quem tiver você como BB"
+        },
+        {
+          "markup": "( Total derrotado * -250 )",
+          "text": "( Total derrotado * -250 )"
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "markup": "Por level da Equipe",
+          "text": "Por level da Equipe"
+        },
+        {
+          "markup": "( Level * 1000)",
+          "text": "( Level * 1000)"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "markup": "Por Vitória nos Desafios de Equipe",
+          "text": "Por Vitória nos Desafios de Equipe"
+        },
+        {
+          "markup": "( Vitória * 100 )",
+          "text": "( Vitória * 100 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-10</b>",
+          "text": "-10"
+        },
+        {
+          "markup": "Por Derrota nos Desafios de Equipe",
+          "text": "Por Derrota nos Desafios de Equipe"
+        },
+        {
+          "markup": "( derrota mapa pvp * -10 )",
+          "text": "( derrota mapa pvp * -10 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "markup": "Por Vitória no Evento de Equipe",
+          "text": "Por Vitória no Evento de Equipe"
+        },
+        {
+          "markup": "( Vitória * 1000 )",
+          "text": "( Vitória * 1000 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-500</b>",
+          "text": "-500"
+        },
+        {
+          "markup": "Por Derrota no Evento de Equipe",
+          "text": "Por Derrota no Evento de Equipe"
+        },
+        {
+          "markup": "( derrota mapa pvp * -500 )",
+          "text": "( derrota mapa pvp * -500 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+50</b>",
+          "text": "+50"
+        },
+        {
+          "markup": "Por tarefa concluída",
+          "text": "Por tarefa concluída"
+        },
+        {
+          "markup": "( Total de Tarefa * 50 )",
+          "text": "( Total de Tarefa * 50 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "markup": "Por missão D concluída",
+          "text": "Por missão D concluída"
+        },
+        {
+          "markup": "( Total de missão D * 100 )",
+          "text": "( Total de missão D * 100 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+150</b>",
+          "text": "+150"
+        },
+        {
+          "markup": "Por missão C concluída",
+          "text": "Por missão C concluída"
+        },
+        {
+          "markup": "( Total de missão C * 150 )",
+          "text": "( Total de missão C * 150 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+200</b>",
+          "text": "+200"
+        },
+        {
+          "markup": "Por missão B concluída",
+          "text": "Por missão B concluída"
+        },
+        {
+          "markup": "( Total de missão B * 200 )",
+          "text": "( Total de missão B * 200 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+250</b>",
+          "text": "+250"
+        },
+        {
+          "markup": "Por missão A concluída",
+          "text": "Por missão A concluída"
+        },
+        {
+          "markup": "( Total de missão A * 250 )",
+          "text": "( Total de missão A * 250 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+300</b>",
+          "text": "+300"
+        },
+        {
+          "markup": "Por missão S concluída",
+          "text": "Por missão S concluída"
+        },
+        {
+          "markup": "( Total de missão S * 300 )",
+          "text": "( Total de missão S * 300 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-50</b>",
+          "text": "-50"
+        },
+        {
+          "markup": "Por tarefa falha",
+          "text": "Por tarefa falha"
+        },
+        {
+          "markup": "( Total de Tarefa * -50 )",
+          "text": "( Total de Tarefa * -50 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-100</b>",
+          "text": "-100"
+        },
+        {
+          "markup": "Por missão D falha",
+          "text": "Por missão D falha"
+        },
+        {
+          "markup": "( Total de missão D * -100 )",
+          "text": "( Total de missão D * -100 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-150</b>",
+          "text": "-150"
+        },
+        {
+          "markup": "Por missão C falha",
+          "text": "Por missão C falha"
+        },
+        {
+          "markup": "( Total de missão C * -150 )",
+          "text": "( Total de missão C * -150 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-200</b>",
+          "text": "-200"
+        },
+        {
+          "markup": "Por missão B falha",
+          "text": "Por missão B falha"
+        },
+        {
+          "markup": "( Total de missão B * -200 )",
+          "text": "( Total de missão B * -200 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-250</b>",
+          "text": "-250"
+        },
+        {
+          "markup": "Por missão A falha",
+          "text": "Por missão A falha"
+        },
+        {
+          "markup": "( Total de missão A * -250 )",
+          "text": "( Total de missão A * -250 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">-300</b>",
+          "text": "-300"
+        },
+        {
+          "markup": "Por missão S falha",
+          "text": "Por missão S falha"
+        },
+        {
+          "markup": "( Total de missão S * -300 )",
+          "text": "( Total de missão S * -300 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+200</b>",
+          "text": "+200"
+        },
+        {
+          "markup": "Por Bingo Book de Equipe Morto",
+          "text": "Por Bingo Book de Equipe Morto"
+        },
+        {
+          "markup": "( Total de Alvos Mortos * 200 )",
+          "text": "( Total de Alvos Mortos * 200 )"
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "markup": "<b class=\"amarelo\">+1000</b>",
+          "text": "+1000"
+        },
+        {
+          "markup": "Por vitória da Organização em missão de invasão",
+          "text": "Por vitória da Organização em missão de invasão"
+        },
+        {
+          "markup": "( Total de Vitórias * 1000 )",
+          "text": "( Total de Vitórias * 1000 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "markup": "Por derrota da Organização em missão de invasão",
+          "text": "Por derrota da Organização em missão de invasão"
+        },
+        {
+          "markup": "( Total de Derrotas * 100  )",
+          "text": "( Total de Derrotas * 100  )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+75</b>",
+          "text": "+75"
+        },
+        {
+          "markup": "Por Objetivo de Organização Solo Completo",
+          "text": "Por Objetivo de Organização Solo Completo"
+        },
+        {
+          "markup": "( Total de Missões * 75  )",
+          "text": "( Total de Missões * 75  )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+500</b>",
+          "text": "+500"
+        },
+        {
+          "markup": "Por Objetivo de Organização Grupo Completo",
+          "text": "Por Objetivo de Organização Grupo Completo"
+        },
+        {
+          "markup": "( Total de Missões * 500  )",
+          "text": "( Total de Missões * 500  )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+200</b>",
+          "text": "+200"
+        },
+        {
+          "markup": "Por Bingo Book de Organização Morto",
+          "text": "Por Bingo Book de Organização Morto"
+        },
+        {
+          "markup": "( Total de Alvos Mortos * 200 )",
+          "text": "( Total de Alvos Mortos * 200 )"
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "markup": "Bingo Book morto",
+          "text": "Bingo Book morto"
+        },
+        {
+          "markup": "( Bingo Book morto * 100 )",
+          "text": "( Bingo Book morto * 100 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+25</b>",
+          "text": "+25"
+        },
+        {
+          "markup": "Batalhas PVP",
+          "text": "Batalhas PVP"
+        },
+        {
+          "markup": "( Batalhas PVP * 25  )",
+          "text": "( Batalhas PVP * 25  )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+5</b>",
+          "text": "+5"
+        },
+        {
+          "markup": "Vitórias NPC",
+          "text": "Vitórias NPC"
+        },
+        {
+          "markup": "( Vitórias NPC * 5  )",
+          "text": "( Vitórias NPC * 5  )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+50</b>",
+          "text": "+50"
+        },
+        {
+          "markup": "Vitórias PVP",
+          "text": "Vitórias PVP"
+        },
+        {
+          "markup": "( Vitórias PVP * 50  )",
+          "text": "( Vitórias PVP * 50  )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+20</b>",
+          "text": "+20"
+        },
+        {
+          "markup": "Missões",
+          "text": "Missões"
+        },
+        {
+          "markup": "( Missões * 20 )",
+          "text": "( Missões * 20 )"
+        }
+      ],
+      [
+        {
+          "markup": "<b class=\"amarelo\">+100</b>",
+          "text": "+100"
+        },
+        {
+          "markup": "Vitórias 4x4 PVP",
+          "text": "Vitórias 4x4 PVP"
+        },
+        {
+          "markup": "( Vitórias 4x4 PVP * 100 )",
+          "text": "( Vitórias 4x4 PVP * 100 )"
+        }
+      ]
+    ]
+  ]
+}

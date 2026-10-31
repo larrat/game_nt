@@ -1,0 +1,72 @@
+[
+  {
+    "count": "",
+    "details": "Encerra em: 25 dias",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/round46.png",
+    "source": "#topRound"
+  },
+  {
+    "count": "8",
+    "details": "Você possui 8 ninjas para desbloquear no Templo Ninja:\n\n\t\t\t\t\t\t\t\t\t\tSakura Haruno - Chibi  no Templo dos ChibiTemari - The Last  no Templo de EliteTenten - Chibi  no Templo dos ChibiKakashi Hatake - Road to Boruto  no Templo da Velha GeraçãoShikamaru Nara - Quarta Guerra  no Templo da Aliança NinjaShizune - Jovem  no Templo da JuventudeHiruzen Sarutobi - Jovem  no Templo da JuventudeDan Katou - Edo Tensei  no Templo do Edo Tensei",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/templo.png",
+    "source": "#temploNinja"
+  },
+  {
+    "count": "8",
+    "details": "Você tem 8 prêmios disponíveis para serem resgatados no seu Passe de Batalha",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/passe.png",
+    "source": "#topPasse"
+  },
+  {
+    "count": "",
+    "details": "Rotinas do Jogo\n\t\t\t\t\t\t\t\t\t                    Reset Semanal (Toda Sexta):\n                    Libera a mudança grátis do Bingo Book, Clã, Invocação, Elemento, Karma, Portão, Selo e Modo Senin.\n\t\t\t\t\t\t\t\t\t\tHealing: 23:56:21\n\t\t\t\t\t\t\t\t\t\tRecupera 20% dos seus atributos.\n\t\t\t\t\t\t\t\t\t\tMissão NPC Vila: 14:58:38\nTempo da finalização das missão de invasão.\nRanking Equipe e Conquista: 12:58:38\nAtualiza o ranking de equipes e conquista\nRanking Organização: 00:58:38\nAtualiza o ranking de organização\nDiversas Rotinas: 08:58:38\nLimpa os Tickets de Hospital, Histórico de Combates e Livro de Registros.\nLimpa o exp diário ganho nas equipes\nRenova os combates npcs diários e os contadores de treino dos duelos \nMissões Especiais e Bingo Book: 12:58:38\nLibera as missões especiais ( Somente nos dias 1 e 15 de todos os meses )\nNovos Alvos para Ninjas no Bingo Book ( Somente na Segunda-feira )",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/rotina.png",
+    "source": "#topClock"
+  },
+  {
+    "count": "4",
+    "details": "Pacote Grátis Disponível\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tVocê tem pacote grátis para abrir na loja de pacotes!\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t                  \n                  \t\t\t\t\t\t\t\t\t\tSorte Ninja Disponível\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tTeste a sua sorte diária no sorte ninja!\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t                  \n                  \t\t\t\t\t\t\t\t\t\tEstudo Ninja Disponível\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tTeste o seu conhecimento no estudo ninja!\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTorneio PVP Disponível\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tParticipe do Torneio PVP agora e ganhe prêmios especiais, acesse agora!",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/notificacoes.png",
+    "source": "#topAdvantages"
+  },
+  {
+    "count": "1",
+    "details": null,
+    "href": "?secao=fidelidade",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/fidelidade.png",
+    "source": null
+  },
+  {
+    "count": "",
+    "details": null,
+    "href": "?secao=mensagens",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/Mensageiro.png",
+    "source": null
+  },
+  {
+    "count": "5",
+    "details": null,
+    "href": "?secao=noticias",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/Noticias.png",
+    "source": null
+  },
+  {
+    "count": "",
+    "details": "Promoção de Créditos em Dobro\n\t\t\t\t\t\t\t\t\t\t\tA promoção de créditos em dobro está ativa e na compra de qualquer plano vip você receberá o dobro dos créditos. Valida até 25/11/2026 às 22:46:08",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/Creditos.png",
+    "source": "#ninjaVip"
+  },
+  {
+    "count": "",
+    "details": "Ryous em Dobro em Combates NPC e PVP\n                      Os Combates NPC e PVP estão com a recompensa de Ryous em Dobro 31/12/2025 às 23:59:59",
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/ryous.png",
+    "source": "#doubleRyou"
+  },
+  {
+    "count": "",
+    "details": null,
+    "href": null,
+    "image": "https://narutogame.com.br:443/assets/images/logado/icones/menu/Mochila.png",
+    "source": null
+  }
+]

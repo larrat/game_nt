@@ -1,0 +1,661 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Ranking de Bijuus" [level=1]
+- generic: Vila
+- combobox "Vila":
+  - option "Geral"
+  - option "Folha" [selected]
+  - option "Areia"
+  - option "Névoa"
+  - option "Pedra"
+  - option "Nuvem"
+  - option "Akatsuki"
+  - option "Som"
+  - option "Chuva"
+- generic: Graduação
+- combobox "Graduação":
+  - option "Geral" [selected]
+  - option "Estudante"
+  - option "Genin"
+  - option "Chuunin"
+  - option "Jounin"
+  - option "ANBU"
+  - option "Sannin da Folha"
+  - option "Herói"
+- generic: Posição
+- combobox "Posição":
+  - option "1 Até 50" [selected]
+- generic: Nome
+- textbox
+- generic: Bijuus
+- combobox "Bijuus":
+  - option "Todas" [selected]
+  - option "Ichibi no Shukaku"
+  - option "Nibi no Matatabi"
+  - option "Sanbi no Isobu"
+  - option "Yonbi no Son Goku"
+  - option "Gobi no Kokuou"
+  - option "Rokubi no Saiken"
+  - option "Nanabi no Choumei"
+  - option "Hachibi no Gyuuki"
+  - option "Kyuubi no Kurama"
+  - option "Shinju no Juubi"
+- button "Filtrar"
+- link "Spam":
+  - /url: javascript:void(0)
+- generic: 1º
+- generic: Nibi no Matatabi
+- generic: Level 38
+- text: "Vitórias: 117"
+- text: "Derrotas: 0"
+- text: "Score: 11700"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5980026"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5980026"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Iee":
+  - /url: javascript:void(0)
+- generic: 2º
+- generic: Nibi no Matatabi
+- generic: Level 30
+- text: "Vitórias: 114"
+- text: "Derrotas: 0"
+- text: "Score: 11400"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983708"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983708"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Aegon":
+  - /url: javascript:void(0)
+- generic: 3º
+- generic: Rokubi no Saiken
+- generic: Level 29
+- text: "Vitórias: 99"
+- text: "Derrotas: 0"
+- text: "Score: 9900"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5978360"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5978360"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "lDragonSlayer":
+  - /url: javascript:void(0)
+- generic: 4º
+- generic: Rokubi no Saiken
+- generic: Level 37
+- text: "Vitórias: 89"
+- text: "Derrotas: 0"
+- text: "Score: 8900"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5945610"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5945610"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "lDragonSlayer":
+  - /url: javascript:void(0)
+- generic: 5º
+- generic: Ichibi no Shukaku
+- generic: Level 37
+- text: "Vitórias: 88"
+- text: "Derrotas: 0"
+- text: "Score: 8800"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5945610"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5945610"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Aegon":
+  - /url: javascript:void(0)
+- generic: 6º
+- generic: Nanabi no Choumei
+- generic: Level 29
+- text: "Vitórias: 86"
+- text: "Derrotas: 0"
+- text: "Score: 8600"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5978360"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5978360"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Spam":
+  - /url: javascript:void(0)
+- generic: 7º
+- generic: Hachibi no Gyuuki
+- generic: Level 38
+- text: "Vitórias: 80"
+- text: "Derrotas: 0"
+- text: "Score: 8000"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5980026"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5980026"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Kakashi30":
+  - /url: javascript:void(0)
+- generic: 8º
+- generic: Nibi no Matatabi
+- generic: Level 44
+- text: "Vitórias: 62"
+- text: "Derrotas: 0"
+- text: "Score: 6200"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5408151"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5408151"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Aisek":
+  - /url: javascript:void(0)
+- generic: 9º
+- generic: Ichibi no Shukaku
+- generic: Level 36
+- text: "Vitórias: 59"
+- text: "Derrotas: 0"
+- text: "Score: 5900"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5987072"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5987072"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "LisanalGaib":
+  - /url: javascript:void(0)
+- generic: 10º
+- generic: Ichibi no Shukaku
+- generic: Level 25
+- text: "Vitórias: 54"
+- text: "Derrotas: 0"
+- text: "Score: 5400"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985842"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985842"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Goku_Africano":
+  - /url: javascript:void(0)
+- generic: 11º
+- generic: Ichibi no Shukaku
+- generic: Level 27
+- text: "Vitórias: 47"
+- text: "Derrotas: 0"
+- text: "Score: 4700"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5827085"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5827085"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "DELToff":
+  - /url: javascript:void(0)
+- generic: 12º
+- generic: Sanbi no Isobu
+- generic: Level 31
+- text: "Vitórias: 42"
+- text: "Derrotas: 0"
+- text: "Score: 4200"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5926648"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5926648"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Naipe":
+  - /url: javascript:void(0)
+- generic: 13º
+- generic: Ichibi no Shukaku
+- generic: Level 44
+- text: "Vitórias: 38"
+- text: "Derrotas: 0"
+- text: "Score: 3800"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5975495"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5975495"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Carroceiro":
+  - /url: javascript:void(0)
+- generic: 14º
+- generic: Ichibi no Shukaku
+- generic: Level 33
+- text: "Vitórias: 38"
+- text: "Derrotas: 0"
+- text: "Score: 3800"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5960184"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5960184"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "PI2oTuG4":
+  - /url: javascript:void(0)
+- generic: 15º
+- generic: Hachibi no Gyuuki
+- generic: Level 40
+- text: "Vitórias: 37"
+- text: "Derrotas: 0"
+- text: "Score: 3700"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5977135"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5977135"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "NaoSouBowden":
+  - /url: javascript:void(0)
+- generic: 16º
+- generic: Kyuubi no Kurama
+- generic: Level 34
+- text: "Vitórias: 35"
+- text: "Derrotas: 0"
+- text: "Score: 3500"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5978646"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5978646"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Kakashi30":
+  - /url: javascript:void(0)
+- generic: 17º
+- generic: Kyuubi no Kurama
+- generic: Level 44
+- text: "Vitórias: 34"
+- text: "Derrotas: 0"
+- text: "Score: 3400"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5408151"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5408151"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "MadeiraJutsu":
+  - /url: javascript:void(0)
+- generic: 18º
+- generic: Nibi no Matatabi
+- generic: Level 40
+- text: "Vitórias: 33"
+- text: "Derrotas: 0"
+- text: "Score: 3300"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5957665"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5957665"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "PI2oTuG4":
+  - /url: javascript:void(0)
+- generic: 19º
+- generic: Ichibi no Shukaku
+- generic: Level 40
+- text: "Vitórias: 27"
+- text: "Derrotas: 0"
+- text: "Score: 2700"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5977135"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5977135"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "TallesX7":
+  - /url: javascript:void(0)
+- generic: 20º
+- generic: Ichibi no Shukaku
+- generic: Level 28
+- text: "Vitórias: 25"
+- text: "Derrotas: 0"
+- text: "Score: 2500"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5984870"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5984870"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Dray":
+  - /url: javascript:void(0)
+- generic: 21º
+- generic: Sanbi no Isobu
+- generic: Level 29
+- text: "Vitórias: 22"
+- text: "Derrotas: 0"
+- text: "Score: 2200"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5981317"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5981317"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Iee":
+  - /url: javascript:void(0)
+- generic: 22º
+- generic: Rokubi no Saiken
+- generic: Level 30
+- text: "Vitórias: 22"
+- text: "Derrotas: 0"
+- text: "Score: 2200"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983708"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983708"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "MadeiraJutsu":
+  - /url: javascript:void(0)
+- generic: 23º
+- generic: Sanbi no Isobu
+- generic: Level 40
+- text: "Vitórias: 17"
+- text: "Derrotas: 0"
+- text: "Score: 1700"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5957665"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5957665"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "DELToff":
+  - /url: javascript:void(0)
+- generic: 24º
+- generic: Ichibi no Shukaku
+- generic: Level 31
+- text: "Vitórias: 16"
+- text: "Derrotas: 0"
+- text: "Score: 1600"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5926648"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5926648"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Tsuneiide":
+  - /url: javascript:void(0)
+- generic: 25º
+- generic: Ichibi no Shukaku
+- generic: Level 33
+- text: "Vitórias: 14"
+- text: "Derrotas: 0"
+- text: "Score: 1400"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985929"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985929"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "NAMIKAZERDG":
+  - /url: javascript:void(0)
+- generic: 26º
+- generic: Sanbi no Isobu
+- generic: Level 32
+- text: "Vitórias: 14"
+- text: "Derrotas: 0"
+- text: "Score: 1400"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986710"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986710"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Shinoa":
+  - /url: javascript:void(0)
+- generic: 27º
+- generic: Nibi no Matatabi
+- generic: Level 26
+- text: "Vitórias: 10"
+- text: "Derrotas: 0"
+- text: "Score: 1000"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5978189"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5978189"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Uchiha_Obito1":
+  - /url: javascript:void(0)
+- generic: 28º
+- generic: Rokubi no Saiken
+- generic: Level 34
+- text: "Vitórias: 6"
+- text: "Derrotas: 0"
+- text: "Score: 600"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5979851"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5979851"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "ODeusShinobi":
+  - /url: javascript:void(0)
+- generic: 29º
+- generic: Ichibi no Shukaku
+- generic: Level 23
+- text: "Vitórias: 6"
+- text: "Derrotas: 0"
+- text: "Score: 600"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5955347"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5955347"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "PERSONAGEM_TESTE":
+  - /url: javascript:void(0)
+- generic: 30º
+- generic: Ichibi no Shukaku
+- generic: Level 25
+- text: "Vitórias: 6"
+- text: "Derrotas: 0"
+- text: "Score: 600"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5949965"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5949965"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Lieless":
+  - /url: javascript:void(0)
+- generic: 31º
+- generic: Hachibi no Gyuuki
+- generic: Level 18
+- text: "Vitórias: 3"
+- text: "Derrotas: 0"
+- text: "Score: 300"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5962069"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5962069"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Leilops":
+  - /url: javascript:void(0)
+- generic: 32º
+- generic: Yonbi no Son Goku
+- generic: Level 22
+- text: "Vitórias: 3"
+- text: "Derrotas: 0"
+- text: "Score: 300"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5262906"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5262906"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "2dtoddy":
+  - /url: javascript:void(0)
+- generic: 33º
+- generic: Sanbi no Isobu
+- generic: Level 22
+- text: "Vitórias: 2"
+- text: "Derrotas: 0"
+- text: "Score: 200"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986635"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986635"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Uchihamaru":
+  - /url: javascript:void(0)
+- generic: 34º
+- generic: Ichibi no Shukaku
+- generic: Level 22
+- text: "Vitórias: 2"
+- text: "Derrotas: 0"
+- text: "Score: 200"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986044"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986044"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Kratos177":
+  - /url: javascript:void(0)
+- generic: 35º
+- generic: Yonbi no Son Goku
+- generic: Level 18
+- text: "Vitórias: 2"
+- text: "Derrotas: 0"
+- text: "Score: 200"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985252"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985252"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "LeeDoRock":
+  - /url: javascript:void(0)
+- generic: 36º
+- generic: Nibi no Matatabi
+- generic: Level 21
+- text: "Vitórias: 1"
+- text: "Derrotas: 0"
+- text: "Score: 100"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986005"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986005"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- insertion

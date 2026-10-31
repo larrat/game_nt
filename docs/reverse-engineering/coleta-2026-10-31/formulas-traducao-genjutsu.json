@@ -1,0 +1,60 @@
+{
+  "observedAt": "2026-10-31",
+  "context": "Genjutsu",
+  "status": "displayed_not_globally_validated",
+  "rows": [
+    {
+      "name": "Vida",
+      "formula": "[ene] * 8"
+    },
+    {
+      "name": "Chakra",
+      "formula": "[ene] * 4 +  ( [nin] ) * 7 + ( [gen] ) * 20"
+    },
+    {
+      "name": "Stamina",
+      "formula": "[ene] * 4  + ( [tai] ) * 7 + ( [ken] ) * 7"
+    },
+    {
+      "name": "Ataque ( Tai / Buk )",
+      "formula": "( [forc] / 2 )"
+    },
+    {
+      "name": "Ataque ( Nin / Gen )",
+      "formula": "( [inte] / 2 )"
+    },
+    {
+      "name": "Defesa ( Nin / Gen)",
+      "formula": "( [defense] / 2 )"
+    },
+    {
+      "name": "Defesa ( Tai / Buk)",
+      "formula": "( [defense] / 2 )"
+    },
+    {
+      "name": "Precisão",
+      "formula": "[conhe] * 1"
+    },
+    {
+      "name": "Perfuração",
+      "formula": "[agi] * 1"
+    },
+    {
+      "name": "Incremento de Absorção",
+      "formula": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"
+    },
+    {
+      "name": "Incremento de Crítico",
+      "formula": "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"
+    },
+    {
+      "name": "Determinação",
+      "formula": "Estudante e Genin: Level do player, Chunin: Level do player / 1.5, Jounin: Level do player / 2, ANBU: Level do player / 3, Sanin e Heroi: Level do Player / 4"
+    },
+    {
+      "name": "Poder Ninja",
+      "formula": "( [ene] ) * 200 + ( [forc] + [inte] + [defense] ) * 150 + ( [nin] + [gen] + [tai] + [ken]) * 200 + ( [agi] + [conhe]) * 100"
+    }
+  ],
+  "warning": "A tabela exibida não explica sozinha a evolução observada dos recursos por nível. Confirmar atributos atuais após cada nível antes de atribuir crescimento apenas ao nível."
+}

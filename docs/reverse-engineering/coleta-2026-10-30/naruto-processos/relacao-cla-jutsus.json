@@ -1,0 +1,100 @@
+{
+  "uchiha": [
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Izanagi",
+      "rank": "Genin",
+      "requirements": "Requer 9 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 10 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Genin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 1\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:13 em Ninjutsu13 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Kamui",
+      "rank": "Chuunin",
+      "requirements": "Requer 10 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 12 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 2\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:16 em Ninjutsu16 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Kotoamatsukami",
+      "rank": "Chuunin",
+      "requirements": "Requer 15 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 17 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 2\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:23 em Ninjutsu23 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Izanami",
+      "rank": "Jounin",
+      "requirements": "Requer 16 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 20 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Jounin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 3\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:26 em Ninjutsu26 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Yasaka no Magatama",
+      "rank": "Jounin",
+      "requirements": "Requer 21 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 25 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Jounin\n\t\t\t\t\t\t\t\t\tRequer o item: Sharingan Nível 3\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:33 em Ninjutsu33 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Tsukuyomi",
+      "rank": "ANBU",
+      "requirements": "Requer 22 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 27 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer o item: Mangekyou Sharingan\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:36 em Ninjutsu36 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Amaterasu",
+      "rank": "ANBU",
+      "requirements": "Requer 27 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 32 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer o item: Mangekyou Sharingan\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:43 em Ninjutsu43 em Genjutsu"
+    },
+    {
+      "disabled": "button btn btn-secondary disabled",
+      "name": "Susanoo",
+      "rank": "Sannin da Folha",
+      "requirements": "Requer 28 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 35 ponto(s) em inteligência\n\t\t\t\t\t\t\t\t\tRequer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer o item: Fuumetsu Mangekyou Sharingan\n\t\t\t\t\t\t\t\t\tRequer o Clã Uchiha\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:46 em Ninjutsu46 em Genjutsu"
+    }
+  ],
+  "hyuuga": [
+    {
+      "name": "Juuken",
+      "rank": "Genin",
+      "requirements": "Requer 9 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 20 ponto(s) em força\n\t\t\t\t\t\t\t\t\tRequer graduação: Genin\n\t\t\t\t\t\t\t\t\tRequer o item: Byakugan Nível 1\n\t\t\t\t\t\t\t\t\tRequer o Clã Hyuuga\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:13 em Taijutsu13 em Bukijutsu"
+    },
+    {
+      "name": "Hakke Kuushou",
+      "rank": "Chuunin",
+      "requirements": "Requer 10 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 24 ponto(s) em força\n\t\t\t\t\t\t\t\t\tRequer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer o item: Byakugan Nível 2\n\t\t\t\t\t\t\t\t\tRequer o Clã Hyuuga\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:16 em Taijutsu16 em Bukijutsu"
+    },
+    {
+      "name": "Hakke Rokujuuyon Shou",
+      "rank": "Chuunin",
+      "requirements": "Requer 15 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 34 ponto(s) em força\n\t\t\t\t\t\t\t\t\tRequer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer o item: Byakugan Nível 2\n\t\t\t\t\t\t\t\t\tRequer o Clã Hyuuga\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:23 em Taijutsu23 em Bukijutsu"
+    },
+    {
+      "name": "Hakke Hasangeki",
+      "rank": "Jounin",
+      "requirements": "Requer 16 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 40 ponto(s) em força\n\t\t\t\t\t\t\t\t\tRequer graduação: Jounin\n\t\t\t\t\t\t\t\t\tRequer o item: Byakugan Nível 3\n\t\t\t\t\t\t\t\t\tRequer o Clã Hyuuga\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:26 em Taijutsu26 em Bukijutsu"
+    },
+    {
+      "name": "Hakke Hyaku Nijuuhachi Shou",
+      "rank": "Jounin",
+      "requirements": "Requer 21 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 50 ponto(s) em força\n\t\t\t\t\t\t\t\t\tRequer graduação: Jounin\n\t\t\t\t\t\t\t\t\tRequer o item: Byakugan Nível 3\n\t\t\t\t\t\t\t\t\tRequer o Clã Hyuuga\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:33 em Taijutsu33 em Bukijutsu"
+    },
+    {
+      "name": "Hakkeshou Dai Kaiten",
+      "rank": "ANBU",
+      "requirements": "Requer 22 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 54 ponto(s) em força\n\t\t\t\t\t\t\t\t\tRequer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer o item: Byakugan Nível 4\n\t\t\t\t\t\t\t\t\tRequer o Clã Hyuuga\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:36 em Taijutsu36 em Bukijutsu"
+    },
+    {
+      "name": "Juuho Soushiken",
+      "rank": "ANBU",
+      "requirements": "Requer 27 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 64 ponto(s) em força\n\t\t\t\t\t\t\t\t\tRequer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer o item: Byakugan Nível 4\n\t\t\t\t\t\t\t\t\tRequer o Clã Hyuuga\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:43 em Taijutsu43 em Bukijutsu"
+    },
+    {
+      "name": "Hakkeshou Gutten",
+      "rank": "Sannin da Folha",
+      "requirements": "Requer 28 ponto(s) em selo\n\t\t\t\t\t\t\t\t\tRequer 70 ponto(s) em força\n\t\t\t\t\t\t\t\t\tRequer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer o item: Byakugan Nível 5\n\t\t\t\t\t\t\t\t\tRequer o Clã Hyuuga\n\t\t\t\t\t\t\t\t\tRequer o total de pontos em QUALQUER um dos atributos abaixo:46 em Taijutsu46 em Bukijutsu"
+    }
+  ],
+  "_meta": {
+    "status": "corrigido",
+    "note": "A amostra Hyuuga inicial continha cartões Uchiha por atualização assíncrona. Substituída pelos oito cartões validados com seleção Hyuuga; original preservado no histórico.",
+    "validatedSource": "hyuuga-jutsus-validado.json",
+    "preferredFullCatalog": "../jutsus-catalogo/catalogo.json"
+  }
+}

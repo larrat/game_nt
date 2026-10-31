@@ -1,0 +1,101 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Ranking de Vilas" [level=1]
+- img "Vila de Chuva"
+- generic: Chuva
+- generic: 1º
+- generic: Level 13
+- text: "Vitórias: 4"
+- text: "Derrotas: 1"
+- text: "Saldo: 3"
+- img "Vila de Som"
+- generic: Som
+- generic: 2º
+- generic: Level 13
+- text: "Vitórias: 6"
+- text: "Derrotas: 4"
+- text: "Saldo: 2"
+- img "Vila de Folha"
+- generic: Folha
+- generic: 3º
+- generic: Level 14
+- text: "Vitórias: 8"
+- text: "Derrotas: 7"
+- text: "Saldo: 1"
+- img "Vila de Akatsuki"
+- generic: Akatsuki
+- generic: 4º
+- generic: Level 14
+- text: "Vitórias: 5"
+- text: "Derrotas: 4"
+- text: "Saldo: 1"
+- img "Vila de Névoa"
+- generic: Névoa
+- generic: 5º
+- generic: Level 12
+- text: "Vitórias: 2"
+- text: "Derrotas: 2"
+- text: "Saldo: 0"
+- img "Vila de Pedra"
+- generic: Pedra
+- generic: 6º
+- generic: Level 11
+- text: "Vitórias: 4"
+- text: "Derrotas: 5"
+- text: "Saldo: -1"
+- img "Vila de Areia"
+- generic: Areia
+- generic: 7º
+- generic: Level 10
+- text: "Vitórias: 4"
+- text: "Derrotas: 6"
+- text: "Saldo: -2"
+- img "Vila de Nuvem"
+- generic: Nuvem
+- generic: 8º
+- generic: Level 12
+- text: "Vitórias: 3"
+- text: "Derrotas: 5"
+- text: "Saldo: -2"
+- insertion

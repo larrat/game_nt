@@ -1,0 +1,160 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=academia_jutsu&tipo=2".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php?secao=academia_jutsu&tipo=2
+	2 container
+		3 image Naruto
+		4 image dayIcon
+		5 image nightIcon
+		6 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php?secao=academia_jutsu&tipo=2#
+		7 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php?secao=academia_jutsu&tipo=2#
+		8 link javascript:logoff()
+	9 container
+		10 container level-start
+			11 text LVL
+			12 heading 5, Value: 1
+				13 text 5
+		14 image Vida
+		15 text 362/362
+		16 image Chakra
+		17 text 574/574
+		18 image Stamina
+		19 text 271/271
+		20 text EXP: 342/3240
+		21 container level-end
+			22 text LVL
+			23 heading 6, Value: 1
+				24 text 6
+		25 image
+		26 image
+		27 text 8
+		28 image
+		29 text 8
+		30 image
+		31 image
+		32 text 4
+		33 link Description: 1, Value: narutogame.com.br/index.php?secao=fidelidade
+		34 link narutogame.com.br/index.php?secao=mensagens
+		35 link Description: 5, Value: narutogame.com.br/index.php?secao=noticias
+		36 image
+		37 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php?secao=jogador_vip
+		38 image
+		39 text 3292
+	40 heading JUTSUS NINJAS, Value: 1
+		41 text JUTSUS NINJAS
+	42 container
+		43 heading SOBRE OS JUTSUS NINJAS, Value: 2
+			44 text SOBRE OS JUTSUS NINJAS
+		45 container
+			46 text Aprenda novos Jutsus para combater em melhor nível nos duelos e para isso alcance os requerimentos de cada jutsu.  ( Jutsus que não são da mesma Classe do seu personagem possuem requerimentos dobrados. )
+			47 text Jutsus Medicinais e Kinjutsus só podem ser usados em Batalhas de Equipe ( 4x4 e 4x1 ).
+			48 text E não esqueça que todas os jutsus ninjas podem ser evoluidos em
+			49 link Description: Meus jutsus, Value: narutogame.com.br/index.php?secao=personagem_jutsu
+	50 table
+		51 row
+			52 cell
+				53 text Filtrar por
+			54 cell
+				55 pop up button (collapsed, settable) Value: Uchiha, ID: academy-filter, Secondary Actions: Expand
+					56 menu
+						57 Todos:
+						58 Aburame
+						59 Akimichi
+						60 Ashura
+						61 Chikamatsu
+						62 Chinoike
+						63 Fuuma
+						64 Haruno
+						65 Hatake
+						66 Hoozuki
+						67 Hoshigaki
+						68 Hyuuga
+						69 Indra
+						70 Inuzuka
+						71 Jashin
+						72 Kaguya
+						73 Kami
+						74 Kamizuru
+						75 Kibaku Nendo
+						76 Kurama
+						77 Namikaze
+						78 Nara
+						79 Nkiva
+						80 Ootsutsuki
+						81 Ryotenbin
+						82 Sabaku
+						83 Sarutobi
+						84 Senju
+						85 Shimura
+						86 Shiro Hebi
+						87 Shizen
+						88 Sougu
+						89 Sumi
+						90 Tenseigan
+						91 Tsuyoi
+						92 (selected) Uchiha
+						93 Uzumaki
+						94 Yakushi
+						95 Yamanaka
+						96 Yuki
+						97 Yuuhi
+	131 container academy-jutsu-list
+		2167 container
+			2168 image i-jutsu-852
+			2169 image
+			2170 text Izanagi
+			2171 text GENIN
+			2172 button Treinar
+		2173 container
+			2174 image i-jutsu-757
+			2175 image
+			2176 text Kamui
+			2177 text CHUUNIN
+			2178 button Treinar
+		2179 container
+			2180 image i-jutsu-579
+			2181 image
+			2182 text Kotoamatsukami
+			2183 text CHUUNIN
+			2184 button Treinar
+		2185 container
+			2186 image i-jutsu-853
+			2187 image
+			2188 text Izanami
+			2189 text JOUNIN
+			2190 button Treinar
+		2191 container
+			2192 image i-jutsu-849
+			2193 image
+			2194 text Yasaka no Magatama
+			2195 text JOUNIN
+			2196 button Treinar
+		2197 container
+			2198 image i-jutsu-854
+			2199 image
+			2200 text Tsukuyomi
+			2201 text ANBU
+			2202 button Treinar
+		2203 container
+			2204 image i-jutsu-851
+			2205 image
+			2206 text Amaterasu
+			2207 text ANBU
+			2208 button Treinar
+		2209 container
+			2210 image i-jutsu-1458
+			2211 image
+			2212 text Susanoo
+			2213 text SANNIN DA FOLHA
+			2214 button Treinar
+		2215 link Description: Treinar todos, Value: narutogame.com.br/index.php?secao=jogador_vip
+	2053 container aswift_0_host
+		2054 heading Description: Estes são tópicos relacionados com o artigo que podem ser do seu interesse, Value: 2
+			2055 text Descobrir mais
+		2056 link GAME
+			2057 text GAME
+		2058 link Ver Jogos
+			2059 text Ver Jogos
+		2060 link Jogos
+			2061 text Jogos
+	102 container
+
+[Rodapé e chat omitidos na cópia pública]

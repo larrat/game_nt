@@ -1,0 +1,53 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Acesso Negado" [level=2]:
+  - generic: 
+  - generic: Acesso Negado
+- paragraph:
+  - text: "A página que você tentou acessar não foi carregada e geralmente acontece pelos seguintes motivos:"
+  - text: • Você não tem permissão para abri-la ou tentou acessá-la de forma ilegal.
+  - text: • Houve uma tentativa de redirecioná-lo para o local correto, mas algo impediu
+  - text: • Sua conexão com o servidor não está estável
+  - text: Tente novamente, caso necessite de ajuda, use o sistema de Suporte.
+- paragraph

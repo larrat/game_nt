@@ -1,0 +1,230 @@
+{
+  "images": [
+    {
+      "name": "Clá Uchiha",
+      "file": "uchiha.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/1.png"
+    },
+    {
+      "name": "Clá Hyuuga",
+      "file": "hyuuga.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/2.png"
+    },
+    {
+      "name": "Clá Kaguya",
+      "file": "kaguya.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/3.png"
+    },
+    {
+      "name": "Clá Senju",
+      "file": "senju.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/4.png"
+    },
+    {
+      "name": "Clá Aburame",
+      "file": "aburame.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/5.png"
+    },
+    {
+      "name": "Clá Yamanaka",
+      "file": "yamanaka.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/6.png"
+    },
+    {
+      "name": "Clá Akimichi",
+      "file": "akimichi.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/7.png"
+    },
+    {
+      "name": "Clá Inuzuka",
+      "file": "inuzuka.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/8.png"
+    },
+    {
+      "name": "Clá Ootsutsuki",
+      "file": "ootsutsuki.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/10.png"
+    },
+    {
+      "name": "Clá Nara",
+      "file": "nara.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/11.png"
+    },
+    {
+      "name": "Clá Sabaku",
+      "file": "sabaku.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/12.png"
+    },
+    {
+      "name": "Clá Chikamatsu",
+      "file": "chikamatsu.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/13.png"
+    },
+    {
+      "name": "Clá Kibaku Nendo",
+      "file": "kibaku-nendo.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/17.png"
+    },
+    {
+      "name": "Clá Kami",
+      "file": "kami.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/18.png"
+    },
+    {
+      "name": "Clá Sumi",
+      "file": "sumi.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/19.png"
+    },
+    {
+      "name": "Clá Uzumaki",
+      "file": "uzumaki.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/20.png"
+    },
+    {
+      "name": "Clá Kurama",
+      "file": "kurama.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/21.png"
+    },
+    {
+      "name": "Clá Tsuyoi",
+      "file": "tsuyoi.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/22.png"
+    },
+    {
+      "name": "Clá Yuuhi",
+      "file": "yuuhi.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/23.png"
+    },
+    {
+      "name": "Clá Fuuma",
+      "file": "fuuma.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/24.png"
+    },
+    {
+      "name": "Clá Kamizuru",
+      "file": "kamizuru.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/25.png"
+    },
+    {
+      "name": "Clá Namikaze",
+      "file": "namikaze.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/26.png"
+    },
+    {
+      "name": "Clá Sarutobi",
+      "file": "sarutobi.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/27.png"
+    },
+    {
+      "name": "Clá Sougu",
+      "file": "sougu.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/28.png"
+    },
+    {
+      "name": "Clá Hoozuki",
+      "file": "hoozuki.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/29.png"
+    },
+    {
+      "name": "Clá Hatake",
+      "file": "hatake.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/30.png"
+    },
+    {
+      "name": "Clá Yakushi",
+      "file": "yakushi.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/31.png"
+    },
+    {
+      "name": "Clá Ryotenbin",
+      "file": "ryotenbin.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/32.png"
+    },
+    {
+      "name": "Clá Tenseigan",
+      "file": "tenseigan.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/33.png"
+    },
+    {
+      "name": "Clá Ashura",
+      "file": "ashura.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/34.png"
+    },
+    {
+      "name": "Clá Shiro Hebi",
+      "file": "shiro-hebi.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/36.png"
+    },
+    {
+      "name": "Clá Indra",
+      "file": "indra.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/35.png"
+    },
+    {
+      "name": "Clá Haruno",
+      "file": "haruno.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/37.png"
+    },
+    {
+      "name": "Clá Jashin",
+      "file": "jashin.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/38.png"
+    },
+    {
+      "name": "Clá Shizen",
+      "file": "shizen.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/39.png"
+    },
+    {
+      "name": "Clá Shimura",
+      "file": "shimura.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/40.png"
+    },
+    {
+      "name": "Clá Chinoike",
+      "file": "chinoike.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/41.png"
+    },
+    {
+      "name": "Clá Hoshigaki",
+      "file": "hoshigaki.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/42.png"
+    },
+    {
+      "name": "Clá Yuki",
+      "file": "yuki.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/43.png"
+    },
+    {
+      "name": "Clá Nkiva",
+      "file": "nkiva.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/slider/9.png"
+    },
+    {
+      "name": "1.png",
+      "file": "1.png.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/1/1.png"
+    },
+    {
+      "name": "2.png",
+      "file": "2.png.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/1/2.png"
+    },
+    {
+      "name": "3.png",
+      "file": "3.png.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/1/3.png"
+    },
+    {
+      "name": "4.png",
+      "file": "4.png.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/1/4.png"
+    },
+    {
+      "name": "5.png",
+      "file": "5.png.png",
+      "url": "https://narutogame.com.br/assets/images/logado/clas/1/5.png"
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,203 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Passe de Batalha" [level=1]
+- main:
+  - heading "Ada - Halloween" [level=3]
+  - paragraph: Com o Passe de Batalha Vip você desbloqueia 21 novas recompensas vips no Round, além de garantir recompensas exclusivas como Personagens, Temas e Backgrounds.
+  - link "Adquirir por R$ 20,00":
+    - /url: "?secao=comprando_vip"
+    - button "Adquirir por R$ 20,00"
+  - paragraph: "Passe de batalha disponível: 583 Hora 38 Min 36 Seg"
+  - paragraph: LEVEL
+  - text: "1"
+  - generic: 3240 Exp / 4000
+  - paragraph: MÁX. LEVEL
+  - text: "21"
+- generic: 2000 Ryous
+- generic: Lvl 1
+- button "Receber"
+- generic: 1000 Experiência
+- generic: Lvl 2
+- button "Receber"
+- generic: 1000 Treino Total
+- generic: Lvl 3
+- button "Receber"
+- generic: 1 Pontos de Aprimoramento de Jutsus
+- generic: Lvl 4
+- button "Receber"
+- generic: 50 Fragmentos de Equipamento
+- generic: Lvl 5
+- button "Receber"
+- generic: 5 Ramens Genin
+- generic: Lvl 6
+- button "Receber"
+- generic: 2 Chakra de Bijuus
+- generic: Lvl 7
+- button "Receber"
+- generic: 10 Ramens Chunin
+- generic: Lvl 8
+- button "Receber"
+- generic: 1 Equipamento Random Raro
+- generic: Lvl 9
+- button "Receber"
+- generic: 5000 Ryous
+- generic: Lvl 10
+- button "Receber"
+- generic: 3 Pontos de Fidelidade
+- generic: Lvl 11
+- button "Receber"
+- generic: 1 Equipamento Random Épico
+- generic: Lvl 12
+- button "Receber"
+- generic: 7000 Ryous
+- generic: Lvl 13
+- button "Receber"
+- generic: 5000 Treino Total
+- generic: Lvl 14
+- button "Receber"
+- generic: 2 Pontos de Energia
+- generic: Lvl 15
+- button "Receber"
+- generic: 2 Pontos de Aprimoramento de Jutsus
+- generic: Lvl 16
+- button "Receber"
+- generic: 10 Ramens Sennin
+- generic: Lvl 17
+- button "Receber"
+- generic: 1 Equipamento Random Lendário
+- generic: Lvl 18
+- button "Receber"
+- generic: 10 Pontos do Estudo Ninja
+- generic: Lvl 19
+- button "Receber"
+- generic: 1 Alvo do Bingo Book
+- generic: Lvl 20
+- button "Receber"
+- generic: 3 Créditos Vip
+- generic: Lvl 21
+- button "Receber"
+- generic: 4000 Ryous
+- generic: Lvl 1
+- generic: 
+- button "Receber"
+- generic: 1500 Treino Total
+- generic: Lvl 2
+- generic: 
+- button "Receber"
+- generic: 1500 Experiência
+- generic: Lvl 3
+- generic: 
+- button "Receber"
+- generic: 1 Chakra de Bijuus
+- generic: Lvl 4
+- generic: 
+- button "Receber"
+- generic: Ada - Halloween
+- generic: Lvl 5
+- generic: 
+- button "Receber"
+- generic: 100 Fragmentos de Equipamentos
+- generic: Lvl 6
+- generic: 
+- button "Receber"
+- generic: 2 Pontos de Aprimoramento de Jutsus
+- generic: Lvl 7
+- generic: 
+- button "Receber"
+- generic: 10 Ramens Chunin
+- generic: Lvl 8
+- generic: 
+- button "Receber"
+- generic: 1 Equipamento Random Épico
+- generic: Lvl 9
+- generic: 
+- button "Receber"
+- generic: 6000 Ryous
+- generic: Lvl 10
+- generic: 
+- button "Receber"
+- generic: 3 Pontos de Fidelidade
+- generic: Lvl 11
+- generic: 
+- button "Receber"
+- generic: 1 Equipamento Random Lendário
+- generic: Lvl 12
+- generic: 
+- button "Receber"
+- generic: 2 Pontos de Energia
+- generic: Lvl 13
+- generic: 
+- button "Receber"
+- generic: 5000 Treino Total
+- generic: Lvl 14
+- generic: 
+- button "Receber"
+- generic: Background - Ada - Halloween
+- generic: Lvl 15
+- generic: 
+- button "Receber"
+- generic: 2 Chakra de Bijuus
+- generic: Lvl 16
+- generic: 
+- button "Receber"
+- generic: 10 Ramens Sennin
+- generic: Lvl 17
+- generic: 
+- button "Receber"
+- generic: 3 Pontos de Energia
+- generic: Lvl 18
+- generic: 
+- button "Receber"
+- generic: 10 Pontos do Estudo Ninja
+- generic: Lvl 19
+- generic: 
+- button "Receber"
+- generic: 1 Alvo do Bingo Book
+- generic: Lvl 20
+- generic: 
+- button "Receber"
+- generic: 5 Créditos Vip
+- generic: Lvl 21
+- generic: 
+- button "Receber"

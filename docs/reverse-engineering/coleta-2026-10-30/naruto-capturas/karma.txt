@@ -1,0 +1,196 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Karma" [level=1]
+- paragraph: Karma - Estágio Final
+- generic: + 54
+- generic: + 11
+- generic: + 7
+- generic: + 10%
+- generic: + 8
+- generic: "- 40"
+- generic: 
+- button: Treinar
+- paragraph: Reencarnação Otsutsuki
+- generic: + 65
+- generic: + 15
+- generic: + 9
+- generic: + 10%
+- generic: + 10
+- generic: "- 50"
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 1
+- generic: + 5
+- generic: + 1
+- generic: + 1
+- generic: + 2%
+- generic: 
+- button "Treinar"
+- paragraph: Karma - Estágio 2
+- generic: + 11
+- generic: + 2
+- generic: + 2
+- generic: + 4%
+- generic: 
+- button "Treinar"
+- paragraph: Karma - Estágio 3
+- generic: + 27
+- generic: + 4
+- generic: + 3
+- generic: + 4%
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 4
+- generic: + 33
+- generic: + 5
+- generic: + 5
+- generic: + 6%
+- generic: + 2
+- generic: "- 10"
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 5
+- generic: + 40
+- generic: + 7
+- generic: + 6
+- generic: + 8%
+- generic: + 4
+- generic: "- 20"
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 6
+- generic: + 48
+- generic: + 10
+- generic: + 6
+- generic: + 8%
+- generic: + 6
+- generic: "- 30"
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio Final
+- generic: + 54
+- generic: + 11
+- generic: + 7
+- generic: + 10%
+- generic: + 8
+- generic: "- 40"
+- generic: 
+- button: Treinar
+- paragraph: Reencarnação Otsutsuki
+- generic: + 65
+- generic: + 15
+- generic: + 9
+- generic: + 10%
+- generic: + 10
+- generic: "- 50"
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 1
+- generic: + 5
+- generic: + 1
+- generic: + 1
+- generic: + 2%
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 2
+- generic: + 11
+- generic: + 2
+- generic: + 2
+- generic: + 4%
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 3
+- generic: + 27
+- generic: + 4
+- generic: + 3
+- generic: + 4%
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 4
+- generic: + 33
+- generic: + 5
+- generic: + 5
+- generic: + 6%
+- generic: + 2
+- generic: "- 10"
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 5
+- generic: + 40
+- generic: + 7
+- generic: + 6
+- generic: + 8%
+- generic: + 4
+- generic: "- 20"
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio 6
+- generic: + 48
+- generic: + 10
+- generic: + 6
+- generic: + 8%
+- generic: + 6
+- generic: "- 30"
+- generic: 
+- button: Treinar
+- paragraph: Karma - Estágio Final
+- generic: + 54
+- generic: + 11
+- generic: + 7
+- generic: + 10%
+- generic: + 8
+- generic: "- 40"
+- generic: 
+- button: Treinar
+- paragraph: Reencarnação Otsutsuki
+- generic: + 65
+- generic: + 15
+- generic: + 9
+- generic: + 10%
+- generic: + 10
+- generic: "- 50"
+- generic: 
+- button: Treinar
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

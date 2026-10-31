@@ -1,0 +1,85 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Fórum da Vila" [level=1]
+- heading "Sobre o Fórum da Vila" [level=2]:
+  - generic: 
+  - generic: Sobre o Fórum da Vila
+- paragraph: Por segurança e evitar bagunça no forum da vila, somente jogadores VIP ou jogadores acima do level 24 podem criar tópicos e somente jogadores VIP ou jogadores acima do level 14 podem postar em tópicos já criados.
+- table:
+  - rowgroup:
+    - row "Titulo / Criado por Útil Não Útil Respostas Último post":
+      - columnheader
+      - columnheader "Titulo / Criado por"
+      - columnheader "Útil"
+      - columnheader "Não Útil"
+      - columnheader "Respostas"
+      - columnheader "Último post"
+  - rowgroup:
+    - row "caguei nas calsa HyuugaPrime em 16/10/2026 02:09:21 3 0 1 23/10/2026 18:22:42 por YellowFlashBR":
+      - cell
+      - cell "caguei nas calsa HyuugaPrime em 16/10/2026 02:09:21":
+        - link "caguei nas calsa":
+          - /url: "?secao=vila_forum_topico&id=Mw%3D%3D"
+        - link "HyuugaPrime":
+          - /url: javascript:void
+        - text: em 16/10/2026 02:09:21
+      - cell "3"
+      - cell "0"
+      - cell "1"
+      - cell "23/10/2026 18:22:42 por YellowFlashBR":
+        - text: 23/10/2026 18:22:42 por
+        - text: YellowFlashBR
+- link "1":
+  - /url: javascript:void(0)
+- main:
+  - heading "Crie um Tópico" [level=3]
+  - generic: Titulo
+  - textbox "Titulo"
+  - generic: Mensagem
+  - textbox "Mensagem"
+  - textbox: "275"
+  - generic: Caracteres restantes
+  - button "Criar Tópico"
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

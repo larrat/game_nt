@@ -1,0 +1,254 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Vantagens VIP" [level=1]
+- link "Quero ser Vip":
+  - /url: index.php?secao=comprando_vip
+  - button "Quero ser Vip"
+- table:
+  - rowgroup:
+    - row "Vantagens Especiais Jogador VIP Jogador Normal":
+      - columnheader
+      - columnheader "Vantagens Especiais"
+      - columnheader
+      - columnheader "Jogador VIP"
+      - columnheader
+      - columnheader "Jogador Normal"
+  - rowgroup:
+    - row "Ganhará prêmios exclusivos* Sim Não":
+      - cell:
+        - generic: 
+      - cell "Ganhará prêmios exclusivos*"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Participação em Sorteios Sim Não":
+      - cell:
+        - generic: 
+      - cell "Participação em Sorteios"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Trocar pontos VIP por Ryous Sim Não":
+      - cell:
+        - generic: 
+      - cell "Trocar pontos VIP por Ryous"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Acesso ao Livro de Registros com informações de seus inimigos Sim Não":
+      - cell:
+        - generic: 
+      - cell "Acesso ao Livro de Registros com informações de seus inimigos"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Treinamento automático de seus atributos Sim Não":
+      - cell:
+        - generic: 
+      - cell "Treinamento automático de seus atributos"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Estenda o treinamento diário de seu personagem Sim Não":
+      - cell:
+        - generic: 
+      - cell "Estenda o treinamento diário de seu personagem"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Redistribua os pontos de atributos de seus personagens Sim Não":
+      - cell:
+        - generic: 
+      - cell "Redistribua os pontos de atributos de seus personagens"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Redistribua os pontos dos talentos ninjas Sim Não":
+      - cell:
+        - generic: 
+      - cell "Redistribua os pontos dos talentos ninjas"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Trocar a classe de seu personagem Sim Não":
+      - cell:
+        - generic: 
+      - cell "Trocar a classe de seu personagem"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Cria equipe sem restrição de graduação e sem usar ryous. Sim Não":
+      - cell:
+        - generic: 
+      - cell "Cria equipe sem restrição de graduação e sem usar ryous."
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Cria organização sem restrição de graduação e sem usar ryous. Sim Não":
+      - cell:
+        - generic: 
+      - cell "Cria organização sem restrição de graduação e sem usar ryous."
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Planos especiais no hospital que não usam ryous na sua recuperação. Sim Não":
+      - cell:
+        - generic: 
+      - cell "Planos especiais no hospital que não usam ryous na sua recuperação."
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Ajuda na localização dos Npcs das Missões Interativas Sim Não":
+      - cell:
+        - generic: 
+      - cell "Ajuda na localização dos Npcs das Missões Interativas"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Trocar o nome do seu personagem Sim Não":
+      - cell:
+        - generic: 
+      - cell "Trocar o nome do seu personagem"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Possibilidade de Troca de Vila, Elementos, Clãs, Mode Sennin, Selos Amaldiçoados e Portões Sim Não":
+      - cell:
+        - generic: 
+      - cell "Possibilidade de Troca de Vila, Elementos, Clãs, Mode Sennin, Selos Amaldiçoados e Portões"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Comprar itens únicos no ninja shop** Sim Não":
+      - cell:
+        - generic: 
+      - cell "Comprar itens únicos no ninja shop**"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Pode criar até 8 personagens na sua conta Sim Não":
+      - cell:
+        - generic: 
+      - cell "Pode criar até 8 personagens na sua conta"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "Opção para habilitar mais do que 8 personagens por conta Sim Não":
+      - cell:
+        - generic: 
+      - cell "Opção para habilitar mais do que 8 personagens por conta"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "A cada reset de Round, NUNCA perde créditos nem as Vantagens (Exceto quando o prazo da vantagem acabar) Sim Não":
+      - cell:
+        - generic: 
+      - cell "A cada reset de Round, NUNCA perde créditos nem as Vantagens (Exceto quando o prazo da vantagem acabar)"
+      - cell:
+        - generic: 
+      - cell "Sim"
+      - cell:
+        - generic: 
+      - cell "Não"
+    - row "* Conforme posição no Rank do jogo ** Conforme implementação no jogo":
+      - cell "* Conforme posição no Rank do jogo ** Conforme implementação no jogo":
+        - text: "* Conforme posição no Rank do jogo"
+        - text: "** Conforme implementação no jogo"
+- link "Quero ser Vip":
+  - /url: index.php?secao=comprando_vip
+  - button "Quero ser Vip"

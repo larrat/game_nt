@@ -1,0 +1,82 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Chakra das Bijuus" [level=1]
+- heading "Sobre os Chakra de Bijuus" [level=2]:
+  - generic: 
+  - generic: Sobre os Chakra de Bijuus
+- paragraph:
+  - text: Agora os duelos contra NPCs do Mapa, Vila e Missões podem ser contra Portadores de Bijuus e você pode conquistar parte de seus Chakras Especiais e habilitar poderes poderosos no momento mais oportuno em sua estratégia.
+  - strong: "Atenção:"
+  - text: Os itens ficarão ativos por 24 horas, iniciando o contador no momento da ativação.
+- generic: Chakra do Shukaku
+- generic: 0/4
+- button "Ativar Bijuu"
+- generic: Chakra do Matatabi
+- generic: 0/5
+- button "Ativar Bijuu"
+- generic: Chakra do Isobu
+- generic: 0/6
+- button "Ativar Bijuu"
+- generic: Chakra do Son Goku
+- generic: 0/7
+- button "Ativar Bijuu"
+- generic: Chakra do Kokuou
+- generic: 0/8
+- button "Ativar Bijuu"
+- generic: Chakra do Saiken
+- generic: 0/9
+- button "Ativar Bijuu"
+- generic: Chakra do Choumei
+- generic: 0/10
+- button "Ativar Bijuu"
+- generic: Chakra do Gyuuki
+- generic: 0/11
+- button "Ativar Bijuu"
+- generic: Chakra da Kurama
+- generic: 0/12
+- button "Ativar Bijuu"
+- generic: Bijuus Capturadas
+- generic: 0/9
+- button "Despertar a Juubi"
+- insertion

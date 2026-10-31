@@ -1,0 +1,473 @@
+[
+  {
+    "name": "Itens VIP",
+    "route": "?secao=jogador_vip",
+    "url": "https://narutogame.com.br/index.php?secao=jogador_vip",
+    "file": "jogador_vip.txt",
+    "excerpt": "\"Jogador VIP\" [level=1]\n\n\"Jogador VIP\" [level=2]:\n  - generic: \n  - generic: Jogador VIP\n- paragraph:\n  - text: \"Lembre-se: Seus Créditos NUNCA somem, mesmo quando o jogo resetar (só quando você gastar), e as vantagens compradas NUNCA somem, mesmo quando o jogo resetar (exceto quando o prazo dela terminar).\"\n  - text: \"Você possui 35 Crédito(s) qu"
+  },
+  {
+    "name": "Seja VIP",
+    "route": "?secao=vantagens",
+    "url": "https://narutogame.com.br/index.php?secao=vantagens",
+    "file": "vantagens.txt",
+    "excerpt": "\"2\" [level=1]\n- generic: \"8\"\n- generic: \"2\"\n- generic: \"4\"\n- link \"1\":\n  - /url: \"?secao=fidelidade\"\n  - generic: \"1\"\n- link:\n  - /url: \"?secao=mensagens\"\n- link \"5\":\n  - /url: \"?secao=noticias\"\n  - generic: \"5\"\n- link \"35\":\n  - /url: \"?secao=jogador_vip\"\n- generic: \"1000\"\n\n\"Vantagens VIP\" [level=1]\n- link \"Quero ser Vip\":\n  - /url: index.php?secao"
+  },
+  {
+    "name": "Temas VIP",
+    "route": "?secao=temas",
+    "url": "https://narutogame.com.br/index.php?secao=temas",
+    "file": "temas.txt",
+    "excerpt": "\"2\" [level=1]\n- generic: \"8\"\n- generic: \"2\"\n- generic: \"4\"\n- link \"1\":\n  - /url: \"?secao=fidelidade\"\n  - generic: \"1\"\n- link:\n  - /url: \"?secao=mensagens\"\n- link \"5\":\n  - /url: \"?secao=noticias\"\n  - generic: \"5\"\n- link \"35\":\n  - /url: \"?secao=jogador_vip\"\n- generic: \"1000\"\n\n\"Temas VIP\" [level=1]\n- generic: Personagem\n- combobox\n- combobox \"Todos\":\n"
+  },
+  {
+    "name": "Fórmulas do Jogo",
+    "route": "?secao=atributos",
+    "url": "https://narutogame.com.br/index.php?secao=atributos",
+    "file": "atributos.txt",
+    "excerpt": "\"Fórmula do Ranking de Organizações ( Pontos / Descrição)\" [level=2]\n- table:\n  - rowgroup:\n    - row \"+1000 Por vitória da Organização em missão de invasão ( Total de Vitórias * 1000 )\":\n      - cell \"+1000\"\n      - cell \"Por vitória da Organização em missão de invasão\"\n      - cell \"( Total de Vitórias * 1000 )\"\n    - row \"+100 Por derrota da Org"
+  },
+  {
+    "name": "Notícias",
+    "route": "?secao=noticias",
+    "url": "https://narutogame.com.br/index.php?secao=noticias",
+    "file": "noticias.txt",
+    "excerpt": "\"Mudanças para o Round 32\" [level=3]:\n    - link \"Mudanças para o Round 32\":\n      - /url: \"?secao=ler_noticia&id=408\"\n  - link \"Round 32 - Data e Explicações\":\n    - /url: \"?secao=ler_noticia&id=407\"\n    - img \"Round 32 - Data e Explicações\"\n  - paragraph: 30/11/2021\n  \n\"Round 32 - Data e Explicações\" [level=3]:\n    - link \"Round 32 - Data e Expli"
+  },
+  {
+    "name": "8 Portões de Chakra",
+    "route": "?secao=portoes",
+    "url": "https://narutogame.com.br/index.php?secao=portoes",
+    "file": "portoes.txt",
+    "excerpt": "\"2\" [level=1]\n- generic: \"8\"\n- generic: \"2\"\n- generic: \"4\"\n- link \"1\":\n  - /url: \"?secao=fidelidade\"\n  - generic: \"1\"\n- link:\n  - /url: \"?secao=mensagens\"\n- link \"5\":\n  - /url: \"?secao=noticias\"\n  - generic: \"5\"\n- link \"35\":\n  - /url: \"?secao=jogador_vip\"\n- generic: \"1000\"\n\n\"Os 8 Portões de Chakra\" [level=1]\n- paragraph: 7º portão - Portão da Insan"
+  },
+  {
+    "name": "Chakra das Bijuus",
+    "route": "?secao=chakras_bijuus",
+    "url": "https://narutogame.com.br/index.php?secao=chakras_bijuus",
+    "file": "chakras_bijuus.txt",
+    "excerpt": "\"Chakra das Bijuus\" [level=1]\n\n\"Sobre os Chakra de Bijuus\" [level=2]:\n  - generic: \n  - generic: Sobre os Chakra de Bijuus\n- paragraph:\n  - text: Agora os duelos contra NPCs do Mapa, Vila e Missões podem ser contra Portadores de Bijuus e você pode conquistar parte de seus Chakras Especiais e habilitar poderes poderosos no momento mais oportuno em "
+  },
+  {
+    "name": "Clãs",
+    "route": "?secao=clas",
+    "url": "https://narutogame.com.br/index.php?secao=clas",
+    "file": "clas.txt",
+    "excerpt": "\"Escolha seu clã\" [level=3]\n  - generic \"Clã Uchiha\":\n    - img \"Clá Uchiha\"\n  - generic \"Clã Hyuuga\":\n    - img \"Clá Hyuuga\"\n  - generic \"Clã Kaguya\":\n    - img \"Clá Kaguya\"\n  - generic \"Clã Senju\":\n    - img \"Clá Senju\"\n\n\"Personalize os atributos do seu Clã\" [level=2]\n- combobox\n- combobox\n- combobox\n- combobox\n- combobox\n- combobox\n- combobox\n- "
+  },
+  {
+    "name": "Conquistas",
+    "route": "?secao=conquistas",
+    "url": "https://narutogame.com.br/index.php?secao=conquistas",
+    "file": "conquistas.txt",
+    "excerpt": "\"2\" [level=1]\n- generic: \"8\"\n- generic: \"2\"\n- generic: \"4\"\n- link \"1\":\n  - /url: \"?secao=fidelidade\"\n  - generic: \"1\"\n- link:\n  - /url: \"?secao=mensagens\"\n- link \"5\":\n  - /url: \"?secao=noticias\"\n  - generic: \"5\"\n- link \"35\":\n  - /url: \"?secao=jogador_vip\"\n- generic: \"1000\"\n\n\"Conquistas Ninja\" [level=1]\n- tablist:\n  - tab \"Geral\" [selected]\n  - tab "
+  },
+  {
+    "name": "Elementos",
+    "route": "?secao=personagem_elementos",
+    "url": "https://narutogame.com.br/index.php?secao=personagem_elementos",
+    "file": "personagem_elementos.txt",
+    "excerpt": "\"Elementos\" [level=1]\n\n\"Sobre os Elementos\" [level=2]:\n  - generic: \n  - generic: Sobre os Elementos\n- paragraph: Ninjutsu é qualquer técnica que manipula o chakra para ser realizada, e é a mais tradicional das artes ninja. É possivel ainda realizar a fusão de 2 tipos de chakras elementais, para formar um terceiro elemento, como você pode ver logo"
+  },
+  {
+    "name": "Estudo Ninja",
+    "route": "?secao=estudo_ninja",
+    "url": "https://narutogame.com.br/index.php?secao=estudo_ninja",
+    "file": "estudo_ninja.txt",
+    "excerpt": "\"Estudo Ninja\" [level=1]\n\n\"Informações importantes\" [level=2]:\n  - generic: \n  - generic: Informações importantes\n- paragraph:\n  - text: No momento você possui 0 pontos.\n  - text: \"Datas do Estudo Ninja: Terça, Quinta e Domingo.\"\n  - text: Veja abaixo a lista com prêmios disponiveis para troca, usando seus pontos do Estudo Ninja.\n- button \"Começar"
+  },
+  {
+    "name": "Espadas da Névoa",
+    "route": "?secao=espadas",
+    "url": "https://narutogame.com.br/index.php?secao=espadas",
+    "file": "espadas.txt",
+    "excerpt": "\"Sobre as Espadas da Névoa\" [level=2]:\n  - generic: \n  - generic: Sobre as Espadas da Névoa\n- paragraph:\n  - text: As Espadas da Névoa são itens do tipo único, que são melhoradas junto com o seu personagem, logo, sempre serão as armas mais fortes do jogo.\n  - strong: \"Atenção:\"\n  - text: Sorteadas para todos os jogadores acima da graduação chunin."
+  },
+  {
+    "name": "Fidelidade Ninja",
+    "route": "?secao=fidelidade",
+    "url": "https://narutogame.com.br/index.php?secao=fidelidade",
+    "file": "fidelidade.txt",
+    "excerpt": "\"Fidelidade Ninja\" [level=1]\n\n\"Recompensas de Fidelidade\" [level=2]:\n  - generic: \n  - generic: Recompensas de Fidelidade\n- paragraph: Ao logar diariamente você pode coletar recompensas para seu personagem. Você deve entrar no jogo durante 8 dias seguidos para conseguir todas as recompensas e começar de novo. Caso você não logue um dos dias, o con"
+  },
+  {
+    "name": "Histórico Ninja",
+    "route": "?secao=historico",
+    "url": "https://narutogame.com.br/index.php?secao=historico",
+    "file": "historico.txt",
+    "excerpt": "\"2\" [level=1]\n- generic: \"8\"\n- generic: \"2\"\n- generic: \"4\"\n- link \"1\":\n  - /url: \"?secao=fidelidade\"\n  - generic: \"1\"\n- link:\n  - /url: \"?secao=mensagens\"\n- link \"5\":\n  - /url: \"?secao=noticias\"\n  - generic: \"5\"\n- link \"35\":\n  - /url: \"?secao=jogador_vip\"\n- generic: \"1000\"\n\n\"Histórico Ninja\" [level=1]\n- table:\n  - rowgroup:\n    - row \"Round Persona"
+  },
+  {
+    "name": "Karma",
+    "route": "?secao=karma",
+    "url": "https://narutogame.com.br/index.php?secao=karma",
+    "file": "karma.txt",
+    "excerpt": "\"2\" [level=1]\n- generic: \"8\"\n- generic: \"2\"\n- generic: \"4\"\n- link \"1\":\n  - /url: \"?secao=fidelidade\"\n  - generic: \"1\"\n- link:\n  - /url: \"?secao=mensagens\"\n- link \"5\":\n  - /url: \"?secao=noticias\"\n  - generic: \"5\"\n- link \"35\":\n  - /url: \"?secao=jogador_vip\"\n- generic: \"1000\"\n\n\"Karma\" [level=1]\n- paragraph: Karma - Estágio Final\n- generic: + 54\n- gene"
+  },
+  {
+    "name": "Kekkei Genkai",
+    "route": "?secao=kekkei",
+    "url": "https://narutogame.com.br/index.php?secao=kekkei",
+    "file": "kekkei.txt"
+  },
+  {
+    "name": "Invocações",
+    "route": "?secao=invocacao",
+    "url": "https://narutogame.com.br/index.php?secao=invocacao",
+    "file": "invocacao.txt"
+  },
+  {
+    "name": "Mode Sennin",
+    "route": "?secao=mode_sennin",
+    "url": "https://narutogame.com.br/index.php?secao=mode_sennin",
+    "file": "mode_sennin.txt"
+  },
+  {
+    "name": "Modo História",
+    "route": "?secao=historia",
+    "url": "https://narutogame.com.br/index.php?secao=historia",
+    "file": "historia.txt"
+  },
+  {
+    "name": "Objetivos",
+    "route": "?secao=objetivos",
+    "url": "https://narutogame.com.br/index.php?secao=objetivos",
+    "file": "objetivos.txt"
+  },
+  {
+    "name": "Passe de Batalha",
+    "route": "?secao=passe_batalha",
+    "url": "https://narutogame.com.br/index.php?secao=passe_batalha",
+    "file": "passe_batalha.txt"
+  },
+  {
+    "name": "Profissão",
+    "route": "?secao=profissao",
+    "url": "https://narutogame.com.br/index.php?secao=profissao",
+    "file": "profissao.txt"
+  },
+  {
+    "name": "Recompensas",
+    "route": "?secao=recompensa_log",
+    "url": "https://narutogame.com.br/index.php?secao=recompensa_log",
+    "file": "recompensa_log.txt"
+  },
+  {
+    "name": "Status",
+    "route": "?secao=personagem_status",
+    "url": "https://narutogame.com.br/index.php?secao=personagem_status",
+    "file": "personagem_status.txt"
+  },
+  {
+    "name": "Selo Amaldiçoado",
+    "route": "?secao=selo",
+    "url": "https://narutogame.com.br/index.php?secao=selo",
+    "file": "selo.txt"
+  },
+  {
+    "name": "Sorte Ninja",
+    "route": "?secao=sorte_ninja",
+    "url": "https://narutogame.com.br/index.php?secao=sorte_ninja",
+    "file": "sorte_ninja.txt"
+  },
+  {
+    "name": "Talentos Ninja",
+    "route": "?secao=arvore_talento",
+    "url": "https://narutogame.com.br/index.php?secao=arvore_talento",
+    "file": "arvore_talento.txt"
+  },
+  {
+    "name": "Aprender Jutsus",
+    "route": "?secao=academia_jutsu",
+    "url": "https://narutogame.com.br/index.php?secao=academia_jutsu",
+    "file": "academia_jutsu.txt"
+  },
+  {
+    "name": "Graduações",
+    "route": "?secao=graduacoes",
+    "url": "https://narutogame.com.br/index.php?secao=graduacoes",
+    "file": "graduacoes.txt"
+  },
+  {
+    "name": "Jutsus Elementais",
+    "route": "?secao=academia_jutsu&tipo=1",
+    "url": "https://narutogame.com.br/index.php?secao=academia_jutsu&tipo=1",
+    "file": "academia_jutsu_tipo-1.txt"
+  },
+  {
+    "name": "Jutsus de Portão",
+    "route": "?secao=academia_jutsu&tipo=5",
+    "url": "https://narutogame.com.br/index.php?secao=academia_jutsu&tipo=5",
+    "file": "academia_jutsu_tipo-5.txt"
+  },
+  {
+    "name": "Jutsus de Karma",
+    "route": "?secao=academia_jutsu&tipo=7",
+    "url": "https://narutogame.com.br/index.php?secao=academia_jutsu&tipo=7",
+    "file": "academia_jutsu_tipo-7.txt"
+  },
+  {
+    "name": "Jutsus de Clã",
+    "route": "?secao=academia_jutsu&tipo=2",
+    "url": "https://narutogame.com.br/index.php?secao=academia_jutsu&tipo=2",
+    "file": "academia_jutsu_tipo-2.txt"
+  },
+  {
+    "name": "Kinjutsus",
+    "route": "?secao=academia_jutsu&tipo=6",
+    "url": "https://narutogame.com.br/index.php?secao=academia_jutsu&tipo=6",
+    "file": "academia_jutsu_tipo-6.txt"
+  },
+  {
+    "name": "Jutsus Medicinais",
+    "route": "?secao=academia_jutsu&tipo=3",
+    "url": "https://narutogame.com.br/index.php?secao=academia_jutsu&tipo=3",
+    "file": "academia_jutsu_tipo-3.txt"
+  },
+  {
+    "name": "Treinamento de Atributos",
+    "route": "?secao=academia_treinamento",
+    "url": "https://narutogame.com.br/index.php?secao=academia_treinamento",
+    "file": "academia_treinamento.txt"
+  },
+  {
+    "name": "Treinamento de Jutsus",
+    "route": "?secao=personagem_jutsu",
+    "url": "https://narutogame.com.br/index.php?secao=personagem_jutsu",
+    "file": "personagem_jutsu.txt"
+  },
+  {
+    "name": "Desafios",
+    "route": "?secao=desafios",
+    "url": "https://narutogame.com.br/index.php?secao=desafios",
+    "file": "desafios.txt"
+  },
+  {
+    "name": "Loja",
+    "route": "?secao=loja_sensei",
+    "url": "https://narutogame.com.br/index.php?secao=loja_sensei",
+    "file": "loja_sensei.txt"
+  },
+  {
+    "name": "Sensei",
+    "route": "?secao=sensei",
+    "url": "https://narutogame.com.br/index.php?secao=sensei",
+    "file": "sensei.txt"
+  },
+  {
+    "name": "Tutorial",
+    "route": "?secao=tutorial",
+    "url": "https://narutogame.com.br/index.php?secao=tutorial",
+    "file": "tutorial.txt"
+  },
+  {
+    "name": "Baú",
+    "route": "?secao=bau",
+    "url": "https://narutogame.com.br/index.php?secao=bau",
+    "file": "bau.txt"
+  },
+  {
+    "name": "Ninjas",
+    "route": "?secao=templos",
+    "url": "https://narutogame.com.br/index.php?secao=templos",
+    "file": "templos.txt"
+  },
+  {
+    "name": "Objetivos",
+    "route": "?secao=templo_objetivos",
+    "url": "https://narutogame.com.br/index.php?secao=templo_objetivos",
+    "file": "templo_objetivos.txt"
+  },
+  {
+    "name": "Temas",
+    "route": "?secao=temas_ninja",
+    "url": "https://narutogame.com.br/index.php?secao=temas_ninja",
+    "file": "temas_ninja.txt"
+  },
+  {
+    "name": "Caçada Ninja",
+    "route": "?secao=cacada",
+    "url": "https://narutogame.com.br/index.php?secao=cacada",
+    "file": "cacada.txt"
+  },
+  {
+    "name": "Equipamentos Ninja",
+    "route": "?secao=equipamentos_ninja",
+    "url": "https://narutogame.com.br/index.php?secao=equipamentos_ninja",
+    "file": "equipamentos_ninja.txt"
+  },
+  {
+    "name": "Eventos",
+    "route": "?secao=vila_eventos",
+    "url": "https://narutogame.com.br/index.php?secao=vila_eventos",
+    "file": "vila_eventos.txt"
+  },
+  {
+    "name": "Fórum",
+    "route": "?secao=vila_forum",
+    "url": "https://narutogame.com.br/index.php?secao=vila_forum",
+    "file": "vila_forum.txt"
+  },
+  {
+    "name": "Guerra de Vilas",
+    "route": "?secao=guerra_vila",
+    "url": "https://narutogame.com.br/index.php?secao=guerra_vila",
+    "file": "guerra_vila.txt"
+  },
+  {
+    "name": "Objetivos",
+    "route": "?secao=vila_objetivos",
+    "url": "https://narutogame.com.br/index.php?secao=vila_objetivos",
+    "file": "vila_objetivos.txt"
+  },
+  {
+    "name": "Ninja Shop",
+    "route": "?secao=ninja_shop",
+    "url": "https://narutogame.com.br/index.php?secao=ninja_shop",
+    "file": "ninja_shop.txt"
+  },
+  {
+    "name": "Pacotes",
+    "route": "?secao=packs",
+    "url": "https://narutogame.com.br/index.php?secao=packs",
+    "file": "packs.txt"
+  },
+  {
+    "name": "Ramen Ichiraku",
+    "route": "?secao=ramen_shop",
+    "url": "https://narutogame.com.br/index.php?secao=ramen_shop",
+    "file": "ramen_shop.txt"
+  },
+  {
+    "name": "Reforja de Equipamentos",
+    "route": "?secao=reforja",
+    "url": "https://narutogame.com.br/index.php?secao=reforja",
+    "file": "reforja.txt"
+  },
+  {
+    "name": "Status da Vila",
+    "route": "?secao=vila",
+    "url": "https://narutogame.com.br/index.php?secao=vila",
+    "file": "vila.txt"
+  },
+  {
+    "name": "Tarefas",
+    "route": "?secao=licoes",
+    "url": "https://narutogame.com.br/index.php?secao=licoes",
+    "file": "licoes.txt"
+  },
+  {
+    "name": "Votação dos Conselheiros",
+    "route": "?secao=votacao_vila",
+    "url": "https://narutogame.com.br/index.php?secao=votacao_vila",
+    "file": "votacao_vila.txt"
+  },
+  {
+    "name": "Dojo",
+    "route": "?secao=dojo",
+    "url": "https://narutogame.com.br/index.php?secao=dojo",
+    "file": "dojo.txt"
+  },
+  {
+    "name": "Dojo 4x4",
+    "route": "?secao=dojo4x4",
+    "url": "https://narutogame.com.br/index.php?secao=dojo4x4",
+    "file": "dojo4x4.txt"
+  },
+  {
+    "name": "Histórico de Batalhas",
+    "route": "?secao=log_batalha",
+    "url": "https://narutogame.com.br/index.php?secao=log_batalha",
+    "file": "log_batalha.txt"
+  },
+  {
+    "name": "Missões de Combate",
+    "route": "?secao=quest_combat",
+    "url": "https://narutogame.com.br/index.php?secao=quest_combat",
+    "file": "quest_combat.txt"
+  },
+  {
+    "name": "Torneios",
+    "route": "?secao=torneio",
+    "url": "https://narutogame.com.br/index.php?secao=torneio",
+    "file": "torneio.txt"
+  },
+  {
+    "name": "4x4",
+    "route": "?secao=rank_4x4",
+    "url": "https://narutogame.com.br/index.php?secao=rank_4x4",
+    "file": "rank_4x4.txt"
+  },
+  {
+    "name": "Bijuus",
+    "route": "?secao=rank_bijuus",
+    "url": "https://narutogame.com.br/index.php?secao=rank_bijuus",
+    "file": "rank_bijuus.txt"
+  },
+  {
+    "name": "Combates",
+    "route": "?secao=rank_batalhas_status",
+    "url": "https://narutogame.com.br/index.php?secao=rank_batalhas_status",
+    "file": "rank_batalhas_status.txt"
+  },
+  {
+    "name": "Conquistas",
+    "route": "?secao=rank_conquistas",
+    "url": "https://narutogame.com.br/index.php?secao=rank_conquistas",
+    "file": "rank_conquistas.txt"
+  },
+  {
+    "name": "Equipes",
+    "route": "?secao=rank_equipes",
+    "url": "https://narutogame.com.br/index.php?secao=rank_equipes",
+    "file": "rank_equipes.txt"
+  },
+  {
+    "name": "Espadas da Névoa",
+    "route": "?secao=rank_espadas",
+    "url": "https://narutogame.com.br/index.php?secao=rank_espadas",
+    "file": "rank_espadas.txt"
+  },
+  {
+    "name": "Estudo Ninja",
+    "route": "?secao=rank_estudo_ninja",
+    "url": "https://narutogame.com.br/index.php?secao=rank_estudo_ninja",
+    "file": "rank_estudo_ninja.txt"
+  },
+  {
+    "name": "Guerra Ninja",
+    "route": "?secao=rank_guerra",
+    "url": "https://narutogame.com.br/index.php?secao=rank_guerra",
+    "file": "rank_guerra.txt"
+  },
+  {
+    "name": "Ninjas",
+    "route": "?secao=rank_ninjas",
+    "url": "https://narutogame.com.br/index.php?secao=rank_ninjas",
+    "file": "rank_ninjas.txt"
+  },
+  {
+    "name": "Organizações",
+    "route": "?secao=rank_guilds",
+    "url": "https://narutogame.com.br/index.php?secao=rank_guilds",
+    "file": "rank_guilds.txt"
+  },
+  {
+    "name": "Sensei",
+    "route": "?secao=rank_sensei",
+    "url": "https://narutogame.com.br/index.php?secao=rank_sensei",
+    "file": "rank_sensei.txt"
+  },
+  {
+    "name": "Templo Ninja",
+    "route": "?secao=rank_templo_ninja",
+    "url": "https://narutogame.com.br/index.php?secao=rank_templo_ninja",
+    "file": "rank_templo_ninja.txt"
+  },
+  {
+    "name": "Vilas",
+    "route": "?secao=rank_vilas",
+    "url": "https://narutogame.com.br/index.php?secao=rank_vilas",
+    "file": "rank_vilas.txt"
+  }
+]

@@ -1,0 +1,394 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Objetivos dos Templos" [level=1]
+- generic: 
+- generic: Maestria com o Templo da Kekkei Genkai
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo de Elite
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo de Elite
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Mestres do Doujutsu
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Mestres do Doujutsu
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo da Realidade Alternativa
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo da Realidade Alternativa
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo da Kekkei Genkai
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Espadachins
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo das Divindades
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo das Divindades
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Espadachins
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo da Nova Geração
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo da Nova Geração
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo da Velha Geração
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Mestres do Ninjutsu
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Mestres do Ninjutsu
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo da Velha Geração
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Mestres do Kinjutsu
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Mestres do Kinjutsu
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo das Bijuus
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo da Juventude
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo da Juventude
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo das Bijuus
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Mestres do Bukijutsu
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Mestres do Bukijutsu
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Mestres da Medicina
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Mestres da Medicina
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Senseis
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Senseis
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Mestres do Taijutsu
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo da Akatsuki
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo da Akatsuki
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Mestres do Taijutsu
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Especiais
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Chibi
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Chibi
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Mestres do Hijutsu
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Mestres do Hijutsu
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Especiais
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Sennins
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Sennins
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Kages
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo do Edo Tensei
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Kages
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo dos Mestres do Genjutsu
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo da Aliança Ninja
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo da Aliança Ninja
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Proficiência com o Templo dos Mestres do Genjutsu
+- generic: Ganhe 25 Duelos NPC com esse objetivo ativo
+- generic: 0 De 25
+- generic: 2000 pontos de treino total
+- generic: 
+- button "Ativar"
+- generic: 
+- generic: Maestria com o Templo do Edo Tensei
+- generic: Faça 25 Duelos PVP com esse objetivo ativo
+- generic: 0 De 25
+- generic: 3000 pontos de treino total
+- generic: 
+- button "Ativar"

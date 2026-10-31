@@ -1,0 +1,776 @@
+body{
+    font-size: 1.5rem;
+}
+section.container{
+    position: relative;
+    z-index: 1;
+}
+
+.disabled{
+  opacity: 0.1;
+}
+.disabled:hover{
+  color:#999;
+}
+.select2-results{
+  color: #444 !important;
+  font-size: 1.2rem;
+}
+.versus video{
+  max-width: 100%;
+}
+.morto2 {
+    filter: alpha(opacity=40);
+    opacity: .4;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    filter: grayscale(1);
+}
+#character-image{
+  position: relative;
+}
+/* Raridade comum */
+.chat-c {
+    color: #b4b4b4 !important;
+}
+/* Raridade raro */
+.chat-r {
+    color: #265ec1 !important;
+}
+/* Raridade épico */
+.chat-e {
+    color: #df42b6 !important;
+}
+/* Raridade lendário */
+.chat-l {
+    color: #d77810 !important;
+}
+.vip-double {
+  color: #FF7844 !important;
+  cursor: pointer;
+}
+
+@font-face {
+font-family: GT-America;
+src: url(../fonts/GTAmericaBold.ttf);
+}
+
+@font-face {
+font-family: Tahoama;
+src: url(../fonts/TAHOAMA.ttf);
+}
+
+@font-face {
+font-family: Phagspa;
+src: url(../fonts/phagspa.ttf);
+}
+@font-face {
+font-family: mistralregular;
+src: url(../fonts/mistral-webfont.ttf);
+}
+ .floatable-menu{
+    margin-bottom: 2rem;
+    position: fixed;
+    top: 6rem;
+    z-index: 5;
+    left: 50%;
+    transform: translateX(-50%);
+ }
+.equip_lendario{
+	font-family: 'mistralregular' !important;
+	font-size: 3rem;
+    position: relative;
+    top: -6px;
+}
+/******************FIM DO CSS RESET BY FABIO DERCY ****************************/
+.highlight-window {
+	position: fixed;
+	top: 100px;
+	width: 625px;
+	left: 50%;
+	margin-left: -300px;
+	height: 70px;
+	z-index: 5000;
+	background-repeat: no-repeat;
+	background-image:url(../images/logado/bg_highlights2.png);
+}
+
+.highlight-text {
+	position: absolute;
+	width: 400px;
+	font-size: 1.8rem;
+	text-align: center;
+	left: 111px;
+}
+.bootbox.modal{
+    overflow: auto !important;
+}
+.popover-header {
+    font-size: 1.5rem;
+}
+.confirmWidth{
+    max-width: 50% !important;
+}
+.confirmWidth2{
+    max-width: 722px !important;
+}
+.confirmWidth .bootbox-body{
+    display: flex;
+    flex-wrap: wrap;
+}
+.locked {
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+.tooltip{
+    font-size: 1.4rem;
+ }
+ .tMissaoBloco ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+ .tMissaoBloco li {
+     display: inline-block;
+     font-size: 1.3rem;
+     flex: 1 1 200px;
+ }
+ .character-background-4x4{
+    width: 130px;
+    height: 129px;
+    margin: auto;
+ }
+.ul-missoes li{
+    display: inline-block;
+    font-size: 1.4rem;
+}
+.ul-missoes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 2rem
+}
+/*Cores*/
+.character-info .name{
+    font-size: 2rem;
+}
+.character-info .headline{
+    font-size: 1.5rem;
+
+}
+/*Tiers*/
+.tier{
+  text-align: center;
+  font-size: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* forms */
+form{
+    display: block !important;
+}
+form label{
+    font-size: 1.6rem !important;
+    font-weight: bold;
+}
+form span{
+    font-size: 1.6rem !important;
+}
+form input, form select, form textarea{
+    font-size: 1.6rem !important;
+    height: auto !important;
+    margin-bottom: 2rem;
+}
+label, .form-control-lg{
+    font-size: 2rem !important;
+}
+/* forms */
+
+/* News */
+.news {
+    padding-top: 2rem;
+    padding-bottom: 8rem;
+  }
+
+  .newsTitle {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mainTitle {
+    font-weight: bold;
+    font-size: 2.0rem;
+    letter-spacing: 0.1;
+  }
+
+  .subTitle {
+    letter-spacing: normal;
+    font-size: 1.0rem;
+  }
+
+  .wrapperNews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(28rem, auto));
+    gap: 1rem;
+  }
+
+  .boxNews {
+    display: grid;
+    overflow: hidden;
+    align-items: end;
+    height: 235px;
+  }
+  .boxNews .newsInfo p{
+    font-size: 1.5rem;
+  }
+  .boxNews .newsInfo a{
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0rem;
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+
+  .newsInfo {
+    margin-bottom: 1rem;
+    grid-area: 1 / 1;
+    margin: 0 15px 10px 15px;
+
+  }
+  .newsInfo h3 {
+    margin-top: 0.2rem;
+    font-size: 1.5rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .newsInfo h3 a:hover{
+    text-decoration: none;
+  }
+
+  .newsInfo p {
+    font-weight: bold;
+    font-size: 1.3rem;
+    z-index: 999;
+    margin: 0;
+  }
+
+  .newsImg {
+    grid-area: 1 / 1;
+    height: 100%;
+  }
+  .newsImg a{
+    display: block;
+  }
+  .newsImg img{
+    max-width: 100%;
+    transition: all 0.3s;
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: scale(1);
+  }
+  .newsImg img:hover{
+    transform: scale(1.1);
+  }
+
+/*Mensagens - Boxs*/
+
+.mensagens-globais{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.mensagens-globais .box{
+    border-radius: 10px;
+    padding: 3rem 2rem;
+    flex: 1 1 200px;
+}
+.mensagens-globais .box div{
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+
+}
+.mensagens-globais b{
+    font-size: 1.5rem;
+}
+
+/*Mensagens - Boxs*/
+/* Arvore de Talento */
+.arvore-talentos{
+    gap: 1rem;
+}
+.arvore-talentos .points-box{
+    width: 20rem;
+}
+.arvore-talentos .points-box p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 2rem 0;
+    text-align: center;
+}
+.arvore-talentos .d-itembox {
+    width: 55px;
+    height: 55px;
+    position: relative;
+    margin-left: -1px;
+}
+.arvore-talentos .d-itembox-total {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    padding: 1px;
+    font-weight: bold;
+    font-size: 10px;
+    z-index: 2;
+}
+.arvore-talentos .points-box .ex_tooltip {
+    bottom: initial;
+    width: 270px;
+}
+
+.arvore-talentos li{
+    display: inline-block;
+}
+
+/* Arvore de Talento */
+/*Links*/
+
+/*Tooltip*/
+.ex_tooltip{
+    font-size: 1.3rem;
+}
+.ex_tooltip strong{
+    font-size: 1.5rem;
+}
+/* Tooltip */
+/* Novo Topo de Seção do Site */
+.noticia{
+    padding-top: 20px;
+}
+.conteudo-destaque{
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+.conteudo-destaque h2{
+    font-size: 3rem;
+}
+.topo-laranja{
+    margin: 0;
+}
+.topo-laranja{
+    text-transform: uppercase;
+}
+.paginas-destaques{
+    align-items: center;
+    border-radius: 40px 0 0 0;
+    display: flex;
+    margin-bottom: 0;
+    position: relative;
+    width: 100%;
+    padding: calc(8px * 2) calc(8px * 3);
+}
+.character{
+    bottom: -77px;;
+    max-width: 212px;
+    right: 0;
+    position: absolute;
+}
+.secao-titulo{
+    font-style: italic;
+    margin-left: 15px;
+}
+.secao-texto{
+    font-size: 16px;
+}
+.conteudo-destaque .texto-imagem li{
+    padding: 0;
+    font-size: 1.6rem;
+}
+/* Novo Topo de Seção do Site */
+/* Barra seções */
+.barra-secoes {
+    height: 2rem !important;
+    width: 100%;
+    border-radius: 10px;
+}
+.barra-secoes .fill {
+    animation: progress-bar-stripes 1s linear infinite;
+    background-size: 1rem 1rem;
+    transition: width .6s ease;
+    height: 2rem;
+    border-radius: 10px;
+}
+.barra-secoes .fill div {
+    font-size: 1.6rem;
+    font-weight: bold;
+    z-index: 2;
+    position: absolute;
+    height: 2rem;
+    margin-top: -2px;
+    margin-left: 11px;
+}
+/* Modo Historia */
+.historia-capa{
+    width: 100%;
+}
+.historia-saga{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+}
+
+.historia-saga-x{
+    padding: 3rem 2rem;
+    border-radius: 6px;
+    flex-grow: 1;
+    width: 290px;
+    text-align: center;
+    cursor: pointer;
+}
+.historia-saga-x img{
+    margin: auto;
+}
+.historia-saga-npc{
+    font-size: 1.3rem;
+}
+.historia-saga-npc li{
+    display: block;
+}
+.shown {
+    display: block !important;
+}
+.container .btn-lg{
+    font-size: 2rem !important;
+}
+.container .btn{
+    font-size: 1.5rem;
+}
+table{
+    font-size: 1.5rem;
+}
+table img{
+    display: inline-block;
+    top: 0px !important;
+}
+#frmAmigos{
+    display: block;
+}
+/* Barras seções */
+/* Profissão */
+.points-box .bonus p{
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: normal;
+}
+/* Profissão */
+/* Bijuus e Espadas*/
+.swal2-html-container img{
+    display: initial;
+    top: 0px !important;
+}
+/* Bijuus e Espadas*/
+/* Conquistas */
+.conquista-grupo{
+	padding: 3rem 2rem;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+    align-items: center;
+}
+.conquista-grupo-c i{
+    color: #16450c;
+    padding: 10px;
+    border-radius: 10px;
+}
+.conquista-grupo-i i{
+    padding: 10px;
+    border-radius: 10px;
+}
+.conquista-grupo-c .conquista-pontos{
+    font-size: 2rem;
+    border-radius: 10px;
+    padding: 10px;
+}
+.conquista-grupo b{
+	font-size: 3rem;
+}
+.conquista-grupo-i .conquista-pontos{
+    font-size: 2rem;
+    border-radius: 10px;
+    padding: 10px;
+}
+.d-conquista-grupo {
+	display: none;
+	width: 95%;
+	padding: 10px;
+	position: relative;
+	z-index: 1;
+	margin: 0 auto;
+}
+.d-conquista-grupo li, .conquista-grupo li, .popover-body li{
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+.grupoConquista .show{
+	display: block;
+}
+
+.conquista-grupo-titulo {
+	position: relative;
+}
+/* Conquistas */
+/* Fidelidade */
+.fidelidade-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.fidelidade-box .ability-speciality-box{
+    padding: 3rem 2rem;
+    border-radius: 6px;
+    flex-basis: 260px;
+    font-size: 1.4rem;
+}
+.fidelidade-box .ability-speciality-box img{
+    display: inline-block;
+}
+.fidelidade-box .ability-speciality-box .name{
+    font-size: 1.8rem;
+    padding-bottom: 1rem;
+}
+.fidelidade-box .ability-speciality-box .description{
+    padding-bottom: 1rem;
+}
+/* Modals */
+.swal2-html-container li, #bingobook li, .fotos-paginacao li{
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+#bingobook .nome img{
+    display: inline;
+    top: 0 !important;
+}
+#cnBase form{
+    display: block;
+}
+.suporte-info b{
+    font-size: 1.6rem;
+}
+.flex-suporte{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.flex-suporte a{
+    font-size: 1.4rem;
+    flex: 1 1 100px;
+}
+.card-wrapper .imagem{
+    font-size: 1.4rem;
+}
+.card-wrapper .imagem img{
+    margin: auto;
+    display: inline-block;
+    top: 0px !important;
+}
+.tutorial-treinamento span{
+    font-size: 1.4rem;
+}
+.vertical-center{
+    min-height: 100%;  /* Fallback for vh unit */
+
+    /* Make it a flex container */
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    /* Align the bootstrap's container vertically */
+      -webkit-box-align : center;
+    -webkit-align-items : center;
+         -moz-box-align : center;
+         -ms-flex-align : center;
+            align-items : center;
+
+    /* In legacy web browsers such as Firefox 9
+       we need to specify the width of the flex container */
+    width: 100%;
+
+    /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+       hence the bootstrap's container won't be aligned to the center anymore.
+
+       Therefore, we should use the following declarations to get it centered again */
+           -webkit-box-pack : center;
+              -moz-box-pack : center;
+              -ms-flex-pack : center;
+    -webkit-justify-content : center;
+            justify-content : center;
+}
+.paginador span{
+    font-size: 1.5rem;
+}
+.paginador a{
+    font-size: 1.5rem;
+}
+.paginador li{
+    display: inline;
+}
+.flex-borda2 .conteudo-box-equipe{
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+}
+.flex-borda2 .conteudo-box-equipe .conteudo-flex{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.4rem;
+}
+.flex-borda2 .conteudo-box-equipe .conteudo-flex div{
+    flex: 1 1 100%;
+}
+.barra-equipes{
+    margin: 1rem;
+    font-size: 1.5rem;
+}
+.barra-equipes .barra-secoes .fill div {
+    font-size: 1.4rem;
+    font-weight: bold;
+    z-index: 2;
+    position: absolute;
+    height: 2rem;
+    margin-top: -1px;
+    margin-left: 11px;
+}
+.button-con {
+    cursor: default;
+    display: flex;
+}
+#dayIcon {
+    position: relative;
+    width: 26px;
+    height: 26px;
+    top: 8px;
+    margin: 0 7px;
+    fill: #9caec0;
+}
+#nightIcon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    top: 8px;
+    margin: 0 7px;
+    fill: #9caec0;
+}
+#dayIcon, #nightIcon {
+    cursor: pointer;
+}
+.toggle {
+    display: none;
+}
+.toggle, .toggle:after, .toggle:before, .toggle *, .toggle *:after, .toggle *:before, .toggle + .toggle-button {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.toggle::-moz-selection, .toggle:after::-moz-selection, .toggle:before::-moz-selection, .toggle *::-moz-selection, .toggle *:after::-moz-selection, .toggle *:before::-moz-selection, .toggle + .toggle-button::-moz-selection {
+    background: none;
+}
+.toggle::selection, .toggle:after::selection, .toggle:before::selection, .toggle *::selection, .toggle *:after::selection, .toggle *:before::selection, .toggle + .toggle-button::selection {
+    background: none;
+}
+.toggle + .toggle-button {
+    outline: 0;
+    display: inline-block;
+    width: 3em;
+    height: 1.5em;
+    position: relative;
+    cursor: pointer;
+    border: 2px solid #333;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    top: 6px;
+}
+.toggle + .toggle-button:after, .toggle + .toggle-button:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+}
+.toggle + .toggle-button:after {
+    left: 0;
+}
+.toggle + .toggle-button:before {
+    display: none;
+}
+.toggle:checked + .toggle-button:after {
+    left: 50%;
+}
+.toggle + .toggle-button {
+    padding: 2px;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    border: 2px solid rgba(156, 174, 192, 0.27);
+    border-radius: 2em;
+}
+.toggle + .toggle-button:after {
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    background: rgba(156, 174, 192, 0.27);
+    content: "";
+    border-radius: 1em;
+}
+.toggle:checked + .toggle-button:after {
+    left: 50%;
+}
+@media only screen and (max-width: 1900px) {
+    #topo-webm{
+      width: auto !important;
+    }
+}
+@media only screen and (max-width: 975px) {
+    .conquista-grupo b{
+        font-size: 2.5rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .conquista-grupo b{
+        font-size: 2rem;
+    }
+    .conquista-grupo-i .conquista-pontos, .conquista-grupo-c .conquista-pontos{
+        font-size: 1.5rem;
+    }
+    .fa-6x {
+        font-size: 3em !important;
+    }
+    .conquista-grupo-titulo {
+        width: 50%;
+    }
+    .conteudo-texto{
+        margin: -60px -64px -82px -88px;
+        padding: calc(8px * 4) 0 calc(8px * 3);
+        padding-bottom: calc(13px * 5);
+    }
+    .conteudo-imagem{
+        display: none;
+    }
+    .fidelidade-box .ability-speciality-box{
+        flex-basis: 220px;
+    }
+}

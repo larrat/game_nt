@@ -1,0 +1,151 @@
+.personagem-selecionado{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.personagem-selecionado .flex-box{
+    flex: 1;
+}
+.containerMain button{
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+.personagem-selecionado .at{
+    display: flex;
+    padding-bottom: 1rem;
+}
+.personagem-selecionado .at .barra{
+    width: 100%;
+}
+.personagem-selecionado .at .name{
+    flex-basis: 100px;
+    font-size: 1.4rem;
+    text-align: center;
+}
+.personagem-selecionado .at .imagem{
+    flex-basis: 50px;
+}
+.personagem-selecionado .at .imagem img{
+    margin: auto;
+}
+.personagem-selecionado .titulo-home p{
+    font-size: 3rem;
+}
+.personagem-selecionado .selecione_grande{
+    font-size: 1.8rem;
+
+}
+.fotos-paginacao{
+    display: flex;
+    flex-wrap: wrap;
+}
+.fotos-paginacao .fotos{
+    flex-basis: 100%;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.fotos-paginacao .paginator{
+    flex-basis: 100%;
+    text-align: center;
+    padding-bottom: 3rem;
+}
+.paginator a {
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2rem;
+    width: 35px;
+    display: inline-block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+@media only screen and (max-width: 768px) {
+    .personagem-selecionado .profile{
+        flex-basis: 100%;
+        padding-bottom: 1rem;
+    }
+    .personagem-selecionado .titulo-home p{
+        font-size: 2.5rem;
+    }
+    .fotos-paginacao .fotos{
+        justify-content: space-between;
+    }
+    .info .right{
+        padding-bottom: 2rem;
+    }
+    .left .data {
+        align-content: center;
+        padding-bottom: 3rem;
+    }
+}
+.banned{
+    width: 128px;
+    height: 128px;
+    background: url('../images/logado/banned.png');
+    position: absolute;
+    top: 0px;
+}
+#creation-base2{
+    display: none;
+}
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.8rem;
+}
+.left .data{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 2rem;
+}
+.left .data .villages{
+    display: flex;
+    flex-wrap: wrap;
+}
+.info .right .character-info .name{
+    text-align: center;
+    padding: 1rem 1rem 0 1.4rem;
+}
+.info .right .character-info button{
+    margin: 0.5rem;
+}
+.info .ats{
+    font-size: 1.4rem;
+}
+.info .ats .class-type a{
+    gap: 1rem;
+    padding: 1rem;
+    border-radius:10px;
+}
+.info .ats .class-type{
+    padding-bottom: 3rem;
+    text-align: center;
+    cursor: pointer;
+}
+.left, .right, .ats {
+    flex: 1;
+}
+.ats .at{
+    display: flex;
+    padding-bottom: 1rem;
+}
+.ats .at .barra{
+    width: 100%;
+}
+.ats .at .name{
+    flex-basis: 140px;
+    font-size: 1.4rem;
+    text-align: center;
+}
+.ats .at .imagem{
+    flex-basis: 50px;
+}
+#creation-base .classes{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding-bottom: 2rem;
+}

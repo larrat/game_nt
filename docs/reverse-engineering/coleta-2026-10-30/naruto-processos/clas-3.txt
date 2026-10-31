@@ -1,0 +1,141 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=clas".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php
+	2 container
+		3 container
+			4 image Naruto
+			5 image dayIcon
+			6 image nightIcon
+			7 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php
+			8 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php
+			9 link javascript:logoff()
+		10 image
+		11 image
+		12 container level-start
+			13 text LVL
+			14 heading 5, Value: 1
+				15 text 5
+		16 image Vida
+		17 text 362/362
+		18 image Chakra
+		19 text 496/574
+		20 image Stamina
+		21 text 239/271
+		22 text EXP: 342/3240
+		23 container level-end
+			24 text LVL
+			25 heading 6, Value: 1
+				26 text 6
+		27 container
+			28 image
+			29 text 8
+		30 container
+			31 image
+			32 text 8
+		33 container
+			34 image
+			35 text 4
+		36 link Description: 1, Value: narutogame.com.br/index.php
+		37 link narutogame.com.br/index.php
+		38 link Description: 5, Value: narutogame.com.br/index.php
+		39 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php
+		40 text 3292
+		41 heading CLÃS, Value: 1
+			42 text CLÃS
+		43 container
+			44 heading Escolha seu clã, Value: 3
+				45 text Escolha seu clã
+			46 container
+				51 container Description: Clá Kaguya, Help: Clã Kaguya
+					52 image Clá Kaguya
+				53 container Clã Senju
+					54 image Clá Senju
+				294 container Clã Aburame
+					295 image Clá Aburame
+				341 container Clã Yamanaka
+					342 image Clá Yamanaka
+			343 container cla-desc-3
+				344 heading Clã Kaguya, Value: 3
+					345 text Clã Kaguya
+				346 text Os membros do Clã Kaguya, adoram grandes batalhas, sentem um enorme extasê ao lutarem. O Clã se tornou um uma divisão militar, e graças ao poder da Kekkei Genkai: Shikotsumyaku (Passagem dos Ossos do Corpo), são capazes de controlar os óssos de seus corpos livremente, tendo uma ótima defesa e ataque.
+		55 heading Personalize os atributos do seu Clã, Value: 2
+			56 text Personalize os atributos do seu Clã
+		57 container cla-selector
+			66 image
+			67 pop up button (collapsed, settable) Value: 0, ID: cla-selector-agi, Secondary Actions: Expand
+				122 menu
+					296 (selected) 0
+			68 image
+			69 pop up button (collapsed, settable) Value: 3, ID: cla-selector-con, Secondary Actions: Expand
+				124 menu
+					297 0
+					298 1
+					299 2
+					300 (selected) 3
+			70 image
+			71 pop up button (collapsed, settable) Value: 0, ID: cla-selector-forc, Secondary Actions: Expand
+				129 menu
+					301 (selected) 0
+			72 image
+			73 pop up button (collapsed, settable) Value: 3, ID: cla-selector-inte, Secondary Actions: Expand
+				131 menu
+					302 0
+					303 1
+					304 2
+					305 (selected) 3
+			74 image
+			75 pop up button (collapsed, settable) Value: 1, ID: cla-selector-res, Secondary Actions: Expand
+				136 menu
+					306 0
+					307 (selected) 1
+			76 image
+			77 pop up button (collapsed, settable) Value: 0, ID: cla-selector-esq, Secondary Actions: Expand
+				139 menu
+					308 (selected) 0
+			78 image
+			79 pop up button (collapsed, settable) Value: 2, ID: cla-selector-det, Secondary Actions: Expand
+				141 menu
+					309 0
+					310 1
+					311 (selected) 2
+			80 image
+			81 pop up button (collapsed, settable) Value: 1, ID: cla-selector-conv, Secondary Actions: Expand
+				145 menu
+					312 0
+					313 (selected) 1
+			82 image
+			83 pop up button (collapsed, settable) Value: 0, ID: cla-selector-conc, Secondary Actions: Expand
+				148 menu
+					314 (selected) 0
+			84 image
+			85 pop up button (collapsed, settable) Value: 0, ID: cla-selector-prec_fisico, Secondary Actions: Expand
+				150 menu
+					315 (selected) 0
+		316 text 0 Pontos Disponiveis para atributos
+		317 text 0 Pontos Disponiveis para fórmulas
+		86 button Entrar no Clã, ID: cla-join
+		347 container
+			348 image
+			349 image
+			350 image
+			351 image
+			352 image
+			353 image
+			354 button
+			355 image
+			356 image
+			357 image
+			358 image
+			359 image
+			360 image
+			361 button
+		87 container Description: Advertisement, ID: aswift_0
+			181 AXWebArea googleads.g.doubleclick.net/pagead/ads
+				182 container Description: Blank, ID: ad_iframe
+					183 AXWebArea googleads.g.doubleclick.net/pagead/ads
+						184 container
+							185 AXWebArea Advertisement, URL: ads.us.criteo.com/delivery/r/afr.php
+								186 container main
+									187 link privacy.us.criteo.com/adchoices
+									188 link Description:   , Value: cat.us5.us.criteo.com/delivery/ck.php
+
+[Rodapé e chat omitidos na cópia pública]

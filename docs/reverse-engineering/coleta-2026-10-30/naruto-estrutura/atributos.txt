@@ -1,0 +1,365 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Fórmulas" [level=1]
+- heading "Sobre as Fórmulas" [level=2]:
+  - generic: 
+  - generic: Sobre as Fórmulas
+- paragraph: As fórmulas são exibidas de acordo com a sua classe, por exemplo a Stamina, se sua classe é TAI, óbviamente os pontos de TAI vão beneficiar mais você do que os pontos em BUK, se você fosse BUK, claro que os pontos em BUK valeriam mais.
+- heading "Atributos e Fórmulas ( Nome / Descrição / Bônus)" [level=2]
+- table:
+  - rowgroup:
+    - row "Vida Fórmula da Vida * 8":
+      - cell:
+      - cell "Vida"
+      - cell "Fórmula da Vida"
+      - cell "* 8":
+        - text: "* 8"
+    - row "Chakra Fórmula do Chakra * 4 + ( ) * 7 + ( ) * 20":
+      - cell:
+      - cell "Chakra"
+      - cell "Fórmula do Chakra": Fórmula do Chakra
+      - cell "* 4 + ( ) * 7 + ( ) * 20":
+        - text: "* 4 + ("
+        - text: ) * 7 + (
+        - text: ) * 20
+    - row "Stamina Fórmula da Stamina * 4 + ( ) * 7 + ( ) * 7":
+      - cell:
+      - cell "Stamina"
+      - cell "Fórmula da Stamina": Fórmula da Stamina
+      - cell "* 4 + ( ) * 7 + ( ) * 7":
+        - text: "* 4 + ("
+        - text: ) * 7 + (
+        - text: ) * 7
+    - row "Ataque ( Tai / Buk ) +1 de Ataque ( Tai / Buk ) ( / 2 )":
+      - cell:
+      - cell "Ataque ( Tai / Buk )"
+      - cell "+1 de Ataque ( Tai / Buk )"
+      - cell "( / 2 )":
+        - text: (
+        - text: / 2 )
+    - row "Ataque ( Nin / Gen ) +1 de Ataque ( Nin / Gen ) ( / 2 )":
+      - cell
+      - cell "Ataque ( Nin / Gen )"
+      - cell "+1 de Ataque ( Nin / Gen )"
+      - cell "( / 2 )":
+        - text: (
+        - text: / 2 )
+    - row "Defesa ( Nin / Gen) +1 Defesa ( Nin / Gen) ( / 2 )":
+      - cell:
+      - cell "Defesa ( Nin / Gen)"
+      - cell "+1 Defesa ( Nin / Gen)"
+      - cell "( / 2 )":
+        - text: (
+        - text: / 2 )
+    - row "Defesa ( Tai / Buk) +1 Defesa ( Tai / Buk) ( / 2 )":
+      - cell:
+      - cell "Defesa ( Tai / Buk)"
+      - cell "+1 Defesa ( Tai / Buk)"
+      - cell "( / 2 )":
+        - text: (
+        - text: / 2 )
+    - row "Precisão +1 de Precisão * 1":
+      - cell:
+      - cell "Precisão"
+      - cell "+1 de Precisão"
+      - cell "* 1":
+        - text: "* 1"
+    - row "Perfuração +1 de Perfuração * 1":
+      - cell:
+      - cell "Perfuração"
+      - cell "+1 de Perfuração"
+      - cell "* 1":
+        - text: "* 1"
+    - 'row "Incremento de Absorção % de Incremento de Absorção Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"':
+      - cell
+      - cell "Incremento de Absorção"
+      - cell "% de Incremento de Absorção"
+      - 'cell "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"'
+    - 'row "Incremento de Crítico % de Incremento de Crítico Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"':
+      - cell
+      - cell "Incremento de Crítico"
+      - cell "% de Incremento de Crítico"
+      - 'cell "Estudante e Genin: 40%, Chunin: 30%, Jounin, ANBU, Sannin e Herói: 15%"'
+    - 'row "Determinação +1% de Determinação Estudante e Genin: Level do player, Chunin: Level do player / 1.5, Jounin: Level do player / 2, ANBU: Level do player / 3, Sanin e Heroi: Level do Player / 4"':
+      - cell:
+      - cell "Determinação"
+      - cell "+1% de Determinação"
+      - 'cell "Estudante e Genin: Level do player, Chunin: Level do player / 1.5, Jounin: Level do player / 2, ANBU: Level do player / 3, Sanin e Heroi: Level do Player / 4"'
+    - row "Poder Ninja % de Poder Ninja ( ) * 200 + ( + + ) * 150 + ( + + + ) * 200 + ( + ) * 100":
+      - cell
+      - cell "Poder Ninja"
+      - cell "% de Poder Ninja"
+      - cell "( ) * 200 + ( + + ) * 150 + ( + + + ) * 200 + ( + ) * 100":
+        - text: (
+        - text: ) * 200 + (
+        - text: +
+        - text: +
+        - text: ) * 150 + (
+        - text: +
+        - text: +
+        - text: +
+        - text: ) * 200 + (
+        - text: +
+        - text: ) * 100
+- heading "Fórmula do Ranking de Ninjas ( Pontos / Descrição)" [level=2]
+- table:
+  - rowgroup:
+    - row "+1000 Por level do Jogador ( Level * 1000)":
+      - cell "+1000"
+      - cell "Por level do Jogador"
+      - cell "( Level * 1000)"
+    - row "+2000 Por graduação do player ( A cada graduação + 2000 pontos )":
+      - cell "+2000"
+      - cell "Por graduação do player"
+      - cell "( A cada graduação + 2000 pontos )"
+    - row "+80 Por Vitória Mapa PVP ( vitória mapa pvp * 80 )":
+      - cell "+80"
+      - cell "Por Vitória Mapa PVP"
+      - cell "( vitória mapa pvp * 80 )"
+    - row "+80 Por Vitória Dojo PVP ( vitória dojo pvp * 80 )":
+      - cell "+80"
+      - cell "Por Vitória Dojo PVP"
+      - cell "( vitória dojo pvp * 80 )"
+    - row "+20 Por Vitória Dojo NPC ( vitória dojo npc * 20 )":
+      - cell "+20"
+      - cell "Por Vitória Dojo NPC"
+      - cell "( vitória dojo npc * 20 )"
+    - row "-10 Por Derrota Mapa PVP ( derrota mapa pvp * -10 )":
+      - cell "-10"
+      - cell "Por Derrota Mapa PVP"
+      - cell "( derrota mapa pvp * -10 )"
+    - row "-10 Por Derrota Dojo PVP ( derrota dojo pvp * -10 )":
+      - cell "-10"
+      - cell "Por Derrota Dojo PVP"
+      - cell "( derrota dojo pvp * -10 )"
+    - row "-10 Por Derrota Dojo NPC ( derrota dojo npc * -10 )":
+      - cell "-10"
+      - cell "Por Derrota Dojo NPC"
+      - cell "( derrota dojo npc * -10 )"
+    - row "+5 Por empate ( fuga * 5 )":
+      - cell "+5"
+      - cell "Por empate"
+      - cell "( fuga * 5 )"
+    - row "+ Treino/100 Total de treino ( Total do Treino / 100 )":
+      - cell "+ Treino/100"
+      - cell "Total de treino"
+      - cell "( Total do Treino / 100 )"
+    - row "+25 Por tarefa concluída ( Total de Tarefa * 25 )":
+      - cell "+25"
+      - cell "Por tarefa concluída"
+      - cell "( Total de Tarefa * 25 )"
+    - row "+50 Por missão D concluída ( Total de missão D * 50 )":
+      - cell "+50"
+      - cell "Por missão D concluída"
+      - cell "( Total de missão D * 50 )"
+    - row "+75 Por missão C concluída ( Total de missão C * 75 )":
+      - cell "+75"
+      - cell "Por missão C concluída"
+      - cell "( Total de missão C * 75 )"
+    - row "+100 Por missão B concluída ( Total de missão B * 100 )":
+      - cell "+100"
+      - cell "Por missão B concluída"
+      - cell "( Total de missão B * 100 )"
+    - row "+125 Por missão A concluída ( Total de missão A * 125 )":
+      - cell "+125"
+      - cell "Por missão A concluída"
+      - cell "( Total de missão A * 125 )"
+    - row "+150 Por missão S concluída ( Total de missão S * 150 )":
+      - cell "+150"
+      - cell "Por missão S concluída"
+      - cell "( Total de missão S * 150 )"
+    - row "+1000 Por Missão de Invasão concluída ( Total de missão invasão * 1000 )":
+      - cell "+1000"
+      - cell "Por Missão de Invasão concluída"
+      - cell "( Total de missão invasão * 1000 )"
+    - row "+100 Por Missão de Invasão falha ( Total de missão invasão * 100 )":
+      - cell "+100"
+      - cell "Por Missão de Invasão falha"
+      - cell "( Total de missão invasão * 100 )"
+    - row "+75 Por Objetivo de Organização Solo ( Total de missão solo * 75 )":
+      - cell "+75"
+      - cell "Por Objetivo de Organização Solo"
+      - cell "( Total de missão solo * 75 )"
+    - row "+500 Por Torneio Npc Vencido ( Total de torneio npc * 500 )":
+      - cell "+500"
+      - cell "Por Torneio Npc Vencido"
+      - cell "( Total de torneio npc * 500 )"
+    - row "+1000 Por Torneio PVP Vencido ( Total de torneio pvp * 1000 )":
+      - cell "+1000"
+      - cell "Por Torneio PVP Vencido"
+      - cell "( Total de torneio pvp * 1000 )"
+    - row "+1500 Por Alvo do Bingo Book Derrotado ( Total derrotado * 1500 )":
+      - cell "+1500"
+      - cell "Por Alvo do Bingo Book Derrotado"
+      - cell "( Total derrotado * 1500 )"
+    - row "-250 Por mortes à quem tiver você como BB ( Total derrotado * -250 )":
+      - cell "-250"
+      - cell "Por mortes à quem tiver você como BB"
+      - cell "( Total derrotado * -250 )"
+- heading "Fórmula do Ranking de Equipes ( Pontos / Descrição)" [level=2]
+- table:
+  - rowgroup:
+    - row "+1000 Por level da Equipe ( Level * 1000)":
+      - cell "+1000"
+      - cell "Por level da Equipe"
+      - cell "( Level * 1000)"
+    - row "+100 Por Vitória nos Desafios de Equipe ( Vitória * 100 )":
+      - cell "+100"
+      - cell "Por Vitória nos Desafios de Equipe"
+      - cell "( Vitória * 100 )"
+    - row "-10 Por Derrota nos Desafios de Equipe ( derrota mapa pvp * -10 )":
+      - cell "-10"
+      - cell "Por Derrota nos Desafios de Equipe"
+      - cell "( derrota mapa pvp * -10 )"
+    - row "+1000 Por Vitória no Evento de Equipe ( Vitória * 1000 )":
+      - cell "+1000"
+      - cell "Por Vitória no Evento de Equipe"
+      - cell "( Vitória * 1000 )"
+    - row "-500 Por Derrota no Evento de Equipe ( derrota mapa pvp * -500 )":
+      - cell "-500"
+      - cell "Por Derrota no Evento de Equipe"
+      - cell "( derrota mapa pvp * -500 )"
+    - row "+50 Por tarefa concluída ( Total de Tarefa * 50 )":
+      - cell "+50"
+      - cell "Por tarefa concluída"
+      - cell "( Total de Tarefa * 50 )"
+    - row "+100 Por missão D concluída ( Total de missão D * 100 )":
+      - cell "+100"
+      - cell "Por missão D concluída"
+      - cell "( Total de missão D * 100 )"
+    - row "+150 Por missão C concluída ( Total de missão C * 150 )":
+      - cell "+150"
+      - cell "Por missão C concluída"
+      - cell "( Total de missão C * 150 )"
+    - row "+200 Por missão B concluída ( Total de missão B * 200 )":
+      - cell "+200"
+      - cell "Por missão B concluída"
+      - cell "( Total de missão B * 200 )"
+    - row "+250 Por missão A concluída ( Total de missão A * 250 )":
+      - cell "+250"
+      - cell "Por missão A concluída"
+      - cell "( Total de missão A * 250 )"
+    - row "+300 Por missão S concluída ( Total de missão S * 300 )":
+      - cell "+300"
+      - cell "Por missão S concluída"
+      - cell "( Total de missão S * 300 )"
+    - row "-50 Por tarefa falha ( Total de Tarefa * -50 )":
+      - cell "-50"
+      - cell "Por tarefa falha"
+      - cell "( Total de Tarefa * -50 )"
+    - row "-100 Por missão D falha ( Total de missão D * -100 )":
+      - cell "-100"
+      - cell "Por missão D falha"
+      - cell "( Total de missão D * -100 )"
+    - row "-150 Por missão C falha ( Total de missão C * -150 )":
+      - cell "-150"
+      - cell "Por missão C falha"
+      - cell "( Total de missão C * -150 )"
+    - row "-200 Por missão B falha ( Total de missão B * -200 )":
+      - cell "-200"
+      - cell "Por missão B falha"
+      - cell "( Total de missão B * -200 )"
+    - row "-250 Por missão A falha ( Total de missão A * -250 )":
+      - cell "-250"
+      - cell "Por missão A falha"
+      - cell "( Total de missão A * -250 )"
+    - row "-300 Por missão S falha ( Total de missão S * -300 )":
+      - cell "-300"
+      - cell "Por missão S falha"
+      - cell "( Total de missão S * -300 )"
+    - row "+200 Por Bingo Book de Equipe Morto ( Total de Alvos Mortos * 200 )":
+      - cell "+200"
+      - cell "Por Bingo Book de Equipe Morto"
+      - cell "( Total de Alvos Mortos * 200 )"
+- heading "Fórmula do Ranking de Organizações ( Pontos / Descrição)" [level=2]
+- table:
+  - rowgroup:
+    - row "+1000 Por vitória da Organização em missão de invasão ( Total de Vitórias * 1000 )":
+      - cell "+1000"
+      - cell "Por vitória da Organização em missão de invasão"
+      - cell "( Total de Vitórias * 1000 )"
+    - row "+100 Por derrota da Organização em missão de invasão ( Total de Derrotas * 100 )":
+      - cell "+100"
+      - cell "Por derrota da Organização em missão de invasão"
+      - cell "( Total de Derrotas * 100 )"
+    - row "+75 Por Objetivo de Organização Solo Completo ( Total de Missões * 75 )":
+      - cell "+75"
+      - cell "Por Objetivo de Organização Solo Completo"
+      - cell "( Total de Missões * 75 )"
+    - row "+500 Por Objetivo de Organização Grupo Completo ( Total de Missões * 500 )":
+      - cell "+500"
+      - cell "Por Objetivo de Organização Grupo Completo"
+      - cell "( Total de Missões * 500 )"
+    - row "+200 Por Bingo Book de Organização Morto ( Total de Alvos Mortos * 200 )":
+      - cell "+200"
+      - cell "Por Bingo Book de Organização Morto"
+      - cell "( Total de Alvos Mortos * 200 )"
+- heading "Fórmula da Experiência Ninja ( Pontos / Descrição )" [level=2]
+- table:
+  - rowgroup:
+    - row "+100 Bingo Book morto ( Bingo Book morto * 100 )":
+      - cell "+100"
+      - cell "Bingo Book morto"
+      - cell "( Bingo Book morto * 100 )"
+    - row "+25 Batalhas PVP ( Batalhas PVP * 25 )":
+      - cell "+25"
+      - cell "Batalhas PVP"
+      - cell "( Batalhas PVP * 25 )"
+    - row "+5 Vitórias NPC ( Vitórias NPC * 5 )":
+      - cell "+5"
+      - cell "Vitórias NPC"
+      - cell "( Vitórias NPC * 5 )"
+    - row "+50 Vitórias PVP ( Vitórias PVP * 50 )":
+      - cell "+50"
+      - cell "Vitórias PVP"
+      - cell "( Vitórias PVP * 50 )"
+    - row "+20 Missões ( Missões * 20 )":
+      - cell "+20"
+      - cell "Missões"
+      - cell "( Missões * 20 )"
+    - row "+100 Vitórias 4x4 PVP ( Vitórias 4x4 PVP * 100 )":
+      - cell "+100"
+      - cell "Vitórias 4x4 PVP"
+      - cell "( Vitórias 4x4 PVP * 100 )"
+- insertion

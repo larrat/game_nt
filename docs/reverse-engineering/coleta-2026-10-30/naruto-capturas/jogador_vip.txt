@@ -1,0 +1,489 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Jogador VIP" [level=1]
+- heading "Jogador VIP" [level=2]:
+  - generic: 
+  - generic: Jogador VIP
+- paragraph:
+  - text: "Lembre-se: Seus Créditos NUNCA somem, mesmo quando o jogo resetar (só quando você gastar), e as vantagens compradas NUNCA somem, mesmo quando o jogo resetar (exceto quando o prazo dela terminar)."
+  - text: "Você possui 35 Crédito(s) que podem ser gastos com as seguintes funcionalidades abaixo:"
+- generic: Mudar Nome do Personagem
+- generic: Mude o nome do Personagem (Máximo de 14 caracteres, sem espaços, somente letras e números)
+- textbox
+- generic: Primeiro uso grátis por round
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTAyNA%3D%3D')
+- generic: Criar Nome Verificado
+- generic: Crie um nome verificado para seu Personagem (Máximo de 14 caracteres, sem espaços, somente letras e números)
+- textbox
+- text: Sem nome verificado
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTEyOA%3D%3D')
+- link "Ativar":
+  - /url: "#"
+- generic: Trocar o Personagem Inicial
+- generic: Mude o seu personagem de inicio de jogo ( especial para templo ninja )
+- combobox
+- combobox "Naruto Uzumaki - Clássico":
+  - textbox "Naruto Uzumaki - Clássico"
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NDg0MA%3D%3D')
+- generic: "Uso: 1 vez(es) por round"
+- generic: Memorizar Personagens
+- generic: Após a compra dessa vantagem, os personagens comprados serão memorizados, podendo usar sem pagar por eles novamente.
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjI5NTM%3D')
+- generic: Trocar o Personagem
+- generic: Mude o personagem do seu ninja.
+- combobox
+- combobox "Naruto Uzumaki - Clássico":
+  - textbox "Naruto Uzumaki - Clássico"
+- generic: Primeiro uso grátis por round
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTc5Nw%3D%3D')
+- generic: Trocar classe do personagem
+- text: Mude a classe original de seu Personagem.
+- text: "ATENÇÃO: Mudar de Classe NÃO vai mudar seus atributos e muito menos vai lhe dar os jutsus da classe nova."
+- combobox:
+  - option "Taijutsu" [selected]
+  - option "Ninjutsu"
+  - option "Bukijutsu"
+- generic: Primeiro uso grátis por round
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAyMDU%3D')
+- generic: Mudar Vila
+- generic: Mude a Vila do seu Personagem. (Disponível até o level 14).
+- combobox:
+  - option "Folha" [selected]
+  - option "Areia"
+  - option "Névoa"
+  - option "Pedra"
+  - option "Nuvem"
+  - option "Akatsuki"
+  - option "Som"
+  - option "Chuva"
+- generic: Primeiro uso grátis por round
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTAyNQ%3D%3D')
+- generic: Personagem Extras
+- generic: Adiciona a possibilidade de criar e deletar mais um personagem na sua conta. Esse item pode ser comprado mais de uma vez, cada compra adiciona um slot.
+- generic: 
+- text: 1 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjEzODc%3D')
+- generic: Trocar Crédito por Ryous
+- generic: Troque 2 créditos por 1000 ryous
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTAxNA%3D%3D')
+- generic: Hospital Plano Básico
+- generic: Garanta atendimento VIP de 15 vezes por dia
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTAwNw%3D%3D')
+- generic: Hospital Plano Intermediário
+- text: Garanta atendimento VIP de 30 vezes por dia
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar com o valor indicado acima.
+- generic: 
+- text: 4 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTAwOA%3D%3D')
+- generic: Hospital Plano Avançado
+- text: Garanta atendimento VIP de 50 vezes por dia
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar com o valor indicado acima.
+- generic: 
+- text: 6 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTAwOQ%3D%3D')
+- generic: Cura VIP
+- generic: Com essa vantagem sua cura por tempo é aumentada em 10%
+- generic: 
+- text: 4 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE3NzA%3D')
+- generic: Redistribuir Pontos Básico
+- generic: Você pode remover até 5 pontos de atributos. Ao remover um ponto, você recebe um ponto livre de atributo.
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAzMTY%3D')
+- generic: Redistribuir Pontos Intermediário
+- text: Você pode remover até 10 pontos de atributos. Ao remover um ponto, você recebe um ponto livre de atributo.
+- text: Esse item VAI se acumular com o anterior, somando o total que você já tem, com o indicado acima.
+- generic: 
+- text: 4 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAzMTc%3D')
+- generic: Redistribuir Pontos Avançado
+- text: Você pode remover até 15 pontos de atributos. Ao remover um ponto, você recebe um ponto livre de atributo.
+- text: Esse item VAI se acumular com o anterior, somando o total que você já tem, com o indicado acima.
+- generic: 
+- text: 6 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAzMTg%3D')
+- generic: Redistribuir Pontos Completo
+- generic: Redistribua os Atributos do seu Personagem. ( Os itens com requerimentos podem ser perdidos com essa ação )
+- generic: Primeiro uso grátis por round
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTc0Nw%3D%3D')
+- generic: Redistribuição Total de Talentos
+- generic: Remova todos os talentos da árvore de uma única vez e recupere os pontos investidos e o custo total de ryous investidos
+- generic: Primeiro uso grátis por round
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAxOA%3D%3D')
+- generic: Redistribuição Parcial de Talento
+- text: Remova um único talento da árvore e recupere o ponto investido e o custo em ryous.
+- text: Você poderá remover até 3 talentos.
+- generic: 
+- text: 5 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTE1Ng%3D%3D')
+- generic: Redistribuir Pontos da Especialização de Equipe
+- generic: Redistribua os atributos do seu personagem nas especializações de equipe.
+- generic: 
+- text: 5 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjA1MjM%3D')
+- generic: Aumentar Limite de Compra Quinzenal de Armas
+- generic: Com essa vantagem seu limite quinzenal para compra de armas de longo alcançe é aumentado em 10
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjI3ODA%3D')
+- generic: Camuflagem Ninja
+- generic: "Disfarça-se como um jogador de uma vila inimiga, facilitando Ataques aos Guardiões da Vila. Obs.: Depois de ativada a mesma dura 24 horas e é habilitada para uso depois de 15 dias."
+- generic: 
+- text: 5 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAyOTE%3D')
+- generic: Camuflagem Ninja Avançada
+- generic: Muda o ícone do seu personagem no mapa da vila e mundi, cada vez que você ir ao mapa.
+- generic: 
+- text: 5 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NDQ2NQ%3D%3D')
+- generic: Bingo Book Caçador
+- generic: Descubra se o seu alvo está no Mapa e a vila de origem dos alvos do seu bingo book
+- generic: 
+- text: 3 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE3NjA%3D')
+- generic: Bingo Book Caçador Profissional
+- generic: Descubra se o seu alvo está no mapa e a vila de origem, vila atual e as posições X e Y no mapa
+- generic: 
+- text: 6 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE3NjE%3D')
+- generic: Livro de Registros - Capítulo 1
+- generic: Veja os atributos de seus inimigos 10 vezes por dia
+- generic: 
+- text: 1 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTAyNw%3D%3D')
+- generic: "Uso: 10 vez(es) por round"
+- generic: Livro de Registros - Capítulo 2
+- text: Veja os atributos de seus inimigos 20 vezes por dia
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar com o valor indicado acima.
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTA3OQ%3D%3D')
+- generic: "Uso: 20 vez(es) por round"
+- generic: Livro de Registros - Capítulo 3
+- text: Veja os atributos de seus inimigos 30 vezes por dia
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar com o valor indicado acima.
+- generic: 
+- text: 3 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTA4MA%3D%3D')
+- generic: "Uso: 30 vez(es) por round"
+- generic: Espionagem Ninja I
+- generic: Veja os Talentos Ninja de seus Inimigos 10 vezes por dia.
+- generic: 
+- text: 1 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAxOQ%3D%3D')
+- generic: "Uso: 10 vez(es) por round"
+- generic: Espionagem Ninja II
+- text: Veja os Talentos Ninja de seus Inimigos 20 vezes por dia.
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar com o valor indicado acima.
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAyMA%3D%3D')
+- generic: "Uso: 20 vez(es) por round"
+- generic: Espionagem Ninja III
+- text: Veja os Talentos Ninja de seus Inimigos 30 vezes por dia.
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar com o valor indicado acima.
+- generic: 
+- text: 3 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAyMQ%3D%3D')
+- generic: "Uso: 30 vez(es) por round"
+- generic: Presença das Bijuus e Espadas I
+- generic: Descubra o Nome e Level dos jogadores com as Bijuus e Espadas
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE3NTc%3D')
+- generic: Presença das Bijuus e Espadas II
+- text: Descubra o Nome, Level, se o Jogador está no Mapa e vila de origem dos jogadores com as Bijuus e Espadas
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar como indicado acima.
+- generic: 
+- text: 4 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE3NTg%3D')
+- generic: Presença das Bijuus e Espadas III
+- text: Descubra o Nome, Level, Vila, se o Jogador está no Mapa e Atual e as Posições X e Y dos jogadores com as Bijuus e Espadas
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar como indicado acima.
+- generic: 
+- text: 6 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE3NTk%3D')
+- generic: Informantes da Vila
+- generic: Com essa vantagem, você conseguirá saber onde os jogadores que possuem itens dos eventos da vila estão (Coordenadas e em qual mapa)
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE4NzM%3D')
+- generic: Log de Batalha Básico
+- generic: Acesse o Histórico de Batalha de seus oponentes 5 vezes por dia.
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAzMTM%3D')
+- generic: Log de Batalha Intermediário
+- generic: Acesse o Histórico de Batalha de seus oponentes 10 vezes por dia.
+- generic: 
+- text: 4 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAzMTQ%3D')
+- generic: Log de Batalha Avançado
+- generic: Acesse o Histórico de Batalha de seus oponentes 15 vezes por dia.
+- generic: 
+- text: 6 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjAzMTU%3D')
+- generic: Espionagem de Equipamento I
+- generic: Veja os Equipamentos Ninja de seus Inimigos 10 vezes por dia.
+- generic: 
+- text: 1 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE4ODA%3D')
+- generic: "Uso: 10 vez(es) por round"
+- generic: Espionagem de Equipamento II
+- text: Veja os Equipamentos Ninja de seus Inimigos 20 vezes por dia.
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar com o valor indicado acima.
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE4ODE%3D')
+- generic: "Uso: 20 vez(es) por round"
+- generic: Espionagem de Equipamento III
+- text: Veja os Equipamentos Ninja de seus Inimigos 30 vezes por dia.
+- text: Esse item NÃO se acumula com o anterior, ele vai sobrescrever e ficar com o valor indicado acima.
+- generic: 
+- text: 3 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE4ODI%3D')
+- generic: "Uso: 30 vez(es) por round"
+- generic: Anti-Espionagem
+- generic: Com essa vantagem você bloqueia 10 espionagens no seu perfil, talentos e equipamentos ninja. Essa vantagem é acumulativa
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjE4Nzk%3D')
+- generic: "Uso: 10 vez(es) por round"
+- generic: Múltiplas Missões de Tempo
+- text: Aceite até 3 missões de tempo para serem feitas de uma vez, somando o tempo delas.
+- text: "Atenção: Ao cancelar, você cancela todas as missões da lista e não recebe nenhuma recompensa."
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MjI4ODg%3D')
+- generic: Atendimento Especial do Ninja Shop
+- generic: Mesmo com o guardião tendo sido derrotado, você será atendido de forma diferenciada e não receberá as punições
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTg3NQ%3D%3D')
+- generic: Atendimento Especial das Missões
+- generic: Mesmo com o guardião tendo sido derrotado, você será atendido de forma diferenciada e não receberá as punições
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTg3Ng%3D%3D')
+- generic: Atendimento Especial do Ramen Shop
+- generic: Mesmo com o guardião tendo sido derrotado, você será atendido de forma diferenciada e não receberá as punições
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTg3Nw%3D%3D')
+- generic: Atendimento Especial da Academia
+- generic: Mesmo com o guardião tendo sido derrotado, você será atendido de forma diferenciada e não receberá as punições
+- generic: 
+- text: 2 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTg3OA%3D%3D')
+- generic: Range de movimentação
+- generic: Aumente a sua distância de movimentação no mapa da vila de 2 passos para 3 passos.
+- generic: 
+- text: 4 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5MjkxOA%3D%3D')
+- generic: Destravamento de Equipe
+- generic: Remova todas as travas de equipe do seu personagem, podendo voltar para todas as equipes que já participou nesse round.
+- generic: 
+- text: 5 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5MjkxOQ%3D%3D')
+- generic: Destravamento de Organização
+- generic: Remova todas as travas de organização do seu personagem, podendo voltar para todas as organizações que já participou nesse round.
+- generic: 
+- text: 5 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5MjkyMA%3D%3D')
+- generic: Estudo Ninja Extra
+- generic: Aumente o total de suas perguntas de 10 para 15 perguntas.
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NDMzNA%3D%3D')
+- generic: Troca de objetivo aprimorada
+- generic: Aumente para 2 o total de troca de objetivos semanais
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NDczMw%3D%3D')
+- generic: Melhoria de Drop de Equipamentos
+- generic: Aumente em 5% a sua chance de dropar equipamentos em lutas pvp e npc.
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NDc5Mg%3D%3D')
+- generic: Especialista de Drop de Equipamentos
+- generic: Dobra a chance de dropar equipamentos por 24 horas
+- generic: 
+- text: 15 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTExNA%3D%3D')
+- generic: Melhoria de Lutas com Jinchurikis
+- generic: Aumente em 5% a sua chance de lutar contra npcs com chakra de bijuus.
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NDc5Mw%3D%3D')
+- generic: Caçador Profissional de Bijuus
+- generic: Fixe uma bijuu como seu alvo e capture seu chakra por 2 dias seguidos.
+- generic: 
+- text: 7 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NDc5Nw%3D%3D')
+- generic: Recuperar Pontos de Aprimoramentos Perdidos
+- generic: Recupere todos os pontos de aprimoramentos de jutsus perdidos.
+- generic: Primeiro uso grátis por round
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NDgzOA%3D%3D')
+- generic: Redistribuir Pontos de Aprimoramentos Completo
+- generic: Recupere todos os pontos gastos em aprimoramento para redistribui-los novamente.
+- generic: Primeiro uso grátis por round
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NDgzOQ%3D%3D')
+- generic: Melhoria de Drop de Fragmentos
+- generic: Aumente em 50% o total de fragmentos dropados em lutas.
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTAzMw%3D%3D')
+- generic: Reforja avançada
+- generic: Diminua o custo da reforja de seus equipamentos em 10%.
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTAzNA%3D%3D')
+- generic: Fragmento da Caçada Ninja
+- generic: Troque 5 créditos por 10 fragmentos da caçada ninja ativa
+- generic: 
+- text: 5 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTA2NA%3D%3D')
+- generic: "Uso: 2 vez(es) por round"
+- generic: Visualizar range de batalha
+- generic: Cria no mapa mundi um contorno que demonstra o range de batalha do seu personagem
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTAzNg%3D%3D')
+- generic: Aumentar range de batalha
+- generic: Aumenta em 2 quadrados o range de batalha no mapa mundi
+- generic: 
+- text: 5 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTAzNQ%3D%3D')
+- generic: Prodígio da Academia
+- generic: Aprenda todos os jutsus disponiveis para treinamento de uma única vez. ( Enquanto durar seu Chakra e Stamina )
+- generic: 
+- text: 20 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTEyNg%3D%3D')
+- generic: Espionagem de Reforja
+- generic: Desvenda os segredos das reforjas dos equipamentos de seus inimigos
+- generic: 
+- text: 10 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTE1NQ%3D%3D')
+- generic: Prodígio da Escola
+- generic: Acerte todas as questões do Estudo Ninja com apenas um clique
+- generic: 
+- text: 20 Crédito(s)
+- link "Comprar":
+  - /url: javascript:f6ae39fafdcc34('MTQ5NTE1NA%3D%3D')

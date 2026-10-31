@@ -1,0 +1,1767 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Notícias do Round" [level=1]
+- main:
+  - 'link "Evento: Pré-Halloween 2026"':
+    - /url: "?secao=ler_noticia&id=652"
+    - 'img "Evento: Pré-Halloween 2026"'
+  - paragraph: 17/10/2026
+  - 'heading "Evento: Pré-Halloween 2026" [level=3]':
+    - 'link "Evento: Pré-Halloween 2026"':
+      - /url: "?secao=ler_noticia&id=652"
+  - link "Novos Temas XIV":
+    - /url: "?secao=ler_noticia&id=651"
+    - img "Novos Temas XIV"
+  - paragraph: 11/10/2026
+  - heading "Novos Temas XIV" [level=3]:
+    - link "Novos Temas XIV":
+      - /url: "?secao=ler_noticia&id=651"
+  - 'link "Evento: Especial de Crianças"':
+    - /url: "?secao=ler_noticia&id=650"
+    - 'img "Evento: Especial de Crianças"'
+  - paragraph: 04/10/2026
+  - 'heading "Evento: Especial de Crianças" [level=3]':
+    - 'link "Evento: Especial de Crianças"':
+      - /url: "?secao=ler_noticia&id=650"
+  - link "Round 53 - O Inicio":
+    - /url: "?secao=ler_noticia&id=649"
+    - img "Round 53 - O Inicio"
+  - paragraph: 24/09/2026
+  - heading "Round 53 - O Inicio" [level=3]:
+    - link "Round 53 - O Inicio":
+      - /url: "?secao=ler_noticia&id=649"
+  - link "Caçada Ninja - R53":
+    - /url: "?secao=ler_noticia&id=648"
+    - img "Caçada Ninja - R53"
+  - paragraph: 24/09/2026
+  - heading "Caçada Ninja - R53" [level=3]:
+    - link "Caçada Ninja - R53":
+      - /url: "?secao=ler_noticia&id=648"
+  - link "Passe de Batalha - R53":
+    - /url: "?secao=ler_noticia&id=647"
+    - img "Passe de Batalha - R53"
+  - paragraph: 24/09/2026
+  - heading "Passe de Batalha - R53" [level=3]:
+    - link "Passe de Batalha - R53":
+      - /url: "?secao=ler_noticia&id=647"
+  - link "Sugestões e Mudanças - R53":
+    - /url: "?secao=ler_noticia&id=646"
+    - img "Sugestões e Mudanças - R53"
+  - paragraph: 12/09/2026
+  - heading "Sugestões e Mudanças - R53" [level=3]:
+    - link "Sugestões e Mudanças - R53":
+      - /url: "?secao=ler_noticia&id=646"
+  - link "Hall da Fama - Round 52":
+    - /url: "?secao=ler_noticia&id=645"
+    - img "Hall da Fama - Round 52"
+  - paragraph: 12/09/2026
+  - heading "Hall da Fama - Round 52" [level=3]:
+    - link "Hall da Fama - Round 52":
+      - /url: "?secao=ler_noticia&id=645"
+  - link "Banidos R52 - Parte 2":
+    - /url: "?secao=ler_noticia&id=644"
+    - img "Banidos R52 - Parte 2"
+  - paragraph: 11/09/2026
+  - heading "Banidos R52 - Parte 2" [level=3]:
+    - link "Banidos R52 - Parte 2":
+      - /url: "?secao=ler_noticia&id=644"
+  - link "Banidos R52 - Parte 1":
+    - /url: "?secao=ler_noticia&id=643"
+    - img "Banidos R52 - Parte 1"
+  - paragraph: 06/09/2026
+  - heading "Banidos R52 - Parte 1" [level=3]:
+    - link "Banidos R52 - Parte 1":
+      - /url: "?secao=ler_noticia&id=643"
+  - link "Novos Temas XIII":
+    - /url: "?secao=ler_noticia&id=642"
+    - img "Novos Temas XIII"
+  - paragraph: 16/07/2026
+  - heading "Novos Temas XIII" [level=3]:
+    - link "Novos Temas XIII":
+      - /url: "?secao=ler_noticia&id=642"
+  - link "Round 52 - O Inicio":
+    - /url: "?secao=ler_noticia&id=641"
+    - img "Round 52 - O Inicio"
+  - paragraph: 09/07/2026
+  - heading "Round 52 - O Inicio" [level=3]:
+    - link "Round 52 - O Inicio":
+      - /url: "?secao=ler_noticia&id=641"
+  - link "Caçada Ninja - R52":
+    - /url: "?secao=ler_noticia&id=640"
+    - img "Caçada Ninja - R52"
+  - paragraph: 09/07/2026
+  - heading "Caçada Ninja - R52" [level=3]:
+    - link "Caçada Ninja - R52":
+      - /url: "?secao=ler_noticia&id=640"
+  - link "Passe de Batalha - R52":
+    - /url: "?secao=ler_noticia&id=639"
+    - img "Passe de Batalha - R52"
+  - paragraph: 09/07/2026
+  - heading "Passe de Batalha - R52" [level=3]:
+    - link "Passe de Batalha - R52":
+      - /url: "?secao=ler_noticia&id=639"
+  - link "Tudo sobre Equipamentos":
+    - /url: "?secao=ler_noticia&id=638"
+    - img "Tudo sobre Equipamentos"
+  - paragraph: 08/07/2026
+  - heading "Tudo sobre Equipamentos" [level=3]:
+    - link "Tudo sobre Equipamentos":
+      - /url: "?secao=ler_noticia&id=638"
+  - link "Sugestões e Mudanças - R52":
+    - /url: "?secao=ler_noticia&id=637"
+    - img "Sugestões e Mudanças - R52"
+  - paragraph: 27/06/2026
+  - heading "Sugestões e Mudanças - R52" [level=3]:
+    - link "Sugestões e Mudanças - R52":
+      - /url: "?secao=ler_noticia&id=637"
+  - link "Hall da Fama - Round 51":
+    - /url: "?secao=ler_noticia&id=636"
+    - img "Hall da Fama - Round 51"
+  - paragraph: 27/06/2026
+  - heading "Hall da Fama - Round 51" [level=3]:
+    - link "Hall da Fama - Round 51":
+      - /url: "?secao=ler_noticia&id=636"
+  - link "Banidos do Round 51":
+    - /url: "?secao=ler_noticia&id=635"
+    - img "Banidos do Round 51"
+  - paragraph: 27/06/2026
+  - heading "Banidos do Round 51" [level=3]:
+    - link "Banidos do Round 51":
+      - /url: "?secao=ler_noticia&id=635"
+  - link "Copa do Mundo 2026":
+    - /url: "?secao=ler_noticia&id=634"
+    - img "Copa do Mundo 2026"
+  - paragraph: 06/06/2026
+  - heading "Copa do Mundo 2026" [level=3]:
+    - link "Copa do Mundo 2026":
+      - /url: "?secao=ler_noticia&id=634"
+  - link "Novos Temas XII":
+    - /url: "?secao=ler_noticia&id=633"
+    - img "Novos Temas XII"
+  - paragraph: 03/05/2026
+  - heading "Novos Temas XII" [level=3]:
+    - link "Novos Temas XII":
+      - /url: "?secao=ler_noticia&id=633"
+  - link "Tokens de Personagens":
+    - /url: "?secao=ler_noticia&id=632"
+    - img "Tokens de Personagens"
+  - paragraph: 22/04/2026
+  - heading "Tokens de Personagens" [level=3]:
+    - link "Tokens de Personagens":
+      - /url: "?secao=ler_noticia&id=632"
+  - link "Tudo sobre Equipamentos":
+    - /url: "?secao=ler_noticia&id=631"
+    - img "Tudo sobre Equipamentos"
+  - paragraph: 21/04/2026
+  - heading "Tudo sobre Equipamentos" [level=3]:
+    - link "Tudo sobre Equipamentos":
+      - /url: "?secao=ler_noticia&id=631"
+  - link "Round 51 - O Inicio":
+    - /url: "?secao=ler_noticia&id=630"
+    - img "Round 51 - O Inicio"
+  - paragraph: 20/04/2026
+  - heading "Round 51 - O Inicio" [level=3]:
+    - link "Round 51 - O Inicio":
+      - /url: "?secao=ler_noticia&id=630"
+  - link "Caçada Ninja - R51":
+    - /url: "?secao=ler_noticia&id=629"
+    - img "Caçada Ninja - R51"
+  - paragraph: 20/04/2026
+  - heading "Caçada Ninja - R51" [level=3]:
+    - link "Caçada Ninja - R51":
+      - /url: "?secao=ler_noticia&id=629"
+  - link "Passe de Batalha - R51":
+    - /url: "?secao=ler_noticia&id=628"
+    - img "Passe de Batalha - R51"
+  - paragraph: 18/04/2026
+  - heading "Passe de Batalha - R51" [level=3]:
+    - link "Passe de Batalha - R51":
+      - /url: "?secao=ler_noticia&id=628"
+  - link "Sugestões e Mudanças - R51":
+    - /url: "?secao=ler_noticia&id=627"
+    - img "Sugestões e Mudanças - R51"
+  - paragraph: 13/04/2026
+  - heading "Sugestões e Mudanças - R51" [level=3]:
+    - link "Sugestões e Mudanças - R51":
+      - /url: "?secao=ler_noticia&id=627"
+  - link "Hall da Fama - Round 50":
+    - /url: "?secao=ler_noticia&id=626"
+    - img "Hall da Fama - Round 50"
+  - paragraph: 13/04/2026
+  - heading "Hall da Fama - Round 50" [level=3]:
+    - link "Hall da Fama - Round 50":
+      - /url: "?secao=ler_noticia&id=626"
+  - link "Banidos do Round 50":
+    - /url: "?secao=ler_noticia&id=625"
+    - img "Banidos do Round 50"
+  - paragraph: 13/04/2026
+  - heading "Banidos do Round 50" [level=3]:
+    - link "Banidos do Round 50":
+      - /url: "?secao=ler_noticia&id=625"
+  - link "Aniversário de 17 anos":
+    - /url: "?secao=ler_noticia&id=624"
+    - img "Aniversário de 17 anos"
+  - paragraph: 07/02/2026
+  - heading "Aniversário de 17 anos" [level=3]:
+    - link "Aniversário de 17 anos":
+      - /url: "?secao=ler_noticia&id=624"
+  - link "Round 50 - O Inicio":
+    - /url: "?secao=ler_noticia&id=623"
+    - img "Round 50 - O Inicio"
+  - paragraph: 06/02/2026
+  - heading "Round 50 - O Inicio" [level=3]:
+    - link "Round 50 - O Inicio":
+      - /url: "?secao=ler_noticia&id=623"
+  - link "Templo Ninja - Rodada 17":
+    - /url: "?secao=ler_noticia&id=622"
+    - img "Templo Ninja - Rodada 17"
+  - paragraph: 04/02/2026
+  - heading "Templo Ninja - Rodada 17" [level=3]:
+    - link "Templo Ninja - Rodada 17":
+      - /url: "?secao=ler_noticia&id=622"
+  - link "Passe de Batalha - R50":
+    - /url: "?secao=ler_noticia&id=621"
+    - img "Passe de Batalha - R50"
+  - paragraph: 03/02/2026
+  - heading "Passe de Batalha - R50" [level=3]:
+    - link "Passe de Batalha - R50":
+      - /url: "?secao=ler_noticia&id=621"
+  - link "Caçada Ninja - R50":
+    - /url: "?secao=ler_noticia&id=620"
+    - img "Caçada Ninja - R50"
+  - paragraph: 03/02/2026
+  - heading "Caçada Ninja - R50" [level=3]:
+    - link "Caçada Ninja - R50":
+      - /url: "?secao=ler_noticia&id=620"
+  - link "Sugestões e Mudanças - R50":
+    - /url: "?secao=ler_noticia&id=619"
+    - img "Sugestões e Mudanças - R50"
+  - paragraph: 31/01/2026
+  - heading "Sugestões e Mudanças - R50" [level=3]:
+    - link "Sugestões e Mudanças - R50":
+      - /url: "?secao=ler_noticia&id=619"
+  - link "Hall da Fama - Round 49":
+    - /url: "?secao=ler_noticia&id=618"
+    - img "Hall da Fama - Round 49"
+  - paragraph: 31/01/2026
+  - heading "Hall da Fama - Round 49" [level=3]:
+    - link "Hall da Fama - Round 49":
+      - /url: "?secao=ler_noticia&id=618"
+  - link "Banidos do Round 49":
+    - /url: "?secao=ler_noticia&id=617"
+    - img "Banidos do Round 49"
+  - paragraph: 31/01/2026
+  - heading "Banidos do Round 49" [level=3]:
+    - link "Banidos do Round 49":
+      - /url: "?secao=ler_noticia&id=617"
+  - link "Curtindo o Verão!":
+    - /url: "?secao=ler_noticia&id=616"
+    - img "Curtindo o Verão!"
+  - paragraph: 20/12/2025
+  - heading "Curtindo o Verão!" [level=3]:
+    - link "Curtindo o Verão!":
+      - /url: "?secao=ler_noticia&id=616"
+  - link "Especial de Natal 2025":
+    - /url: "?secao=ler_noticia&id=615"
+    - img "Especial de Natal 2025"
+  - paragraph: 20/12/2025
+  - heading "Especial de Natal 2025" [level=3]:
+    - link "Especial de Natal 2025":
+      - /url: "?secao=ler_noticia&id=615"
+  - link "Novos Temas XI":
+    - /url: "?secao=ler_noticia&id=614"
+    - img "Novos Temas XI"
+  - paragraph: 02/12/2025
+  - heading "Novos Temas XI" [level=3]:
+    - link "Novos Temas XI":
+      - /url: "?secao=ler_noticia&id=614"
+  - link "Black Friday 2025 - Pt2":
+    - /url: "?secao=ler_noticia&id=613"
+    - img "Black Friday 2025 - Pt2"
+  - paragraph: 29/11/2025
+  - heading "Black Friday 2025 - Pt2" [level=3]:
+    - link "Black Friday 2025 - Pt2":
+      - /url: "?secao=ler_noticia&id=613"
+  - link "Black Friday 2025":
+    - /url: "?secao=ler_noticia&id=612"
+    - img "Black Friday 2025"
+  - paragraph: 28/11/2025
+  - heading "Black Friday 2025" [level=3]:
+    - link "Black Friday 2025":
+      - /url: "?secao=ler_noticia&id=612"
+  - link "Round 49 - O Inicio":
+    - /url: "?secao=ler_noticia&id=611"
+    - img "Round 49 - O Inicio"
+  - paragraph: 28/11/2025
+  - heading "Round 49 - O Inicio" [level=3]:
+    - link "Round 49 - O Inicio":
+      - /url: "?secao=ler_noticia&id=611"
+  - link "Templo Ninja - Rodada 16":
+    - /url: "?secao=ler_noticia&id=610"
+    - img "Templo Ninja - Rodada 16"
+  - paragraph: 25/11/2025
+  - heading "Templo Ninja - Rodada 16" [level=3]:
+    - link "Templo Ninja - Rodada 16":
+      - /url: "?secao=ler_noticia&id=610"
+  - link "Passe de Batalha - R49":
+    - /url: "?secao=ler_noticia&id=609"
+    - img "Passe de Batalha - R49"
+  - paragraph: 25/11/2025
+  - heading "Passe de Batalha - R49" [level=3]:
+    - link "Passe de Batalha - R49":
+      - /url: "?secao=ler_noticia&id=609"
+  - link "Caçada Ninja - R49":
+    - /url: "?secao=ler_noticia&id=608"
+    - img "Caçada Ninja - R49"
+  - paragraph: 25/11/2025
+  - heading "Caçada Ninja - R49" [level=3]:
+    - link "Caçada Ninja - R49":
+      - /url: "?secao=ler_noticia&id=608"
+  - link "Sugestões e Mudanças - R49":
+    - /url: "?secao=ler_noticia&id=607"
+    - img "Sugestões e Mudanças - R49"
+  - paragraph: 16/11/2025
+  - heading "Sugestões e Mudanças - R49" [level=3]:
+    - link "Sugestões e Mudanças - R49":
+      - /url: "?secao=ler_noticia&id=607"
+  - link "Hall da Fama - Round 48":
+    - /url: "?secao=ler_noticia&id=606"
+    - img "Hall da Fama - Round 48"
+  - paragraph: 16/11/2025
+  - heading "Hall da Fama - Round 48" [level=3]:
+    - link "Hall da Fama - Round 48":
+      - /url: "?secao=ler_noticia&id=606"
+  - link "Banidos do Round 48":
+    - /url: "?secao=ler_noticia&id=605"
+    - img "Banidos do Round 48"
+  - paragraph: 16/11/2025
+  - heading "Banidos do Round 48" [level=3]:
+    - link "Banidos do Round 48":
+      - /url: "?secao=ler_noticia&id=605"
+  - link "Halloween 2025":
+    - /url: "?secao=ler_noticia&id=604"
+    - img "Halloween 2025"
+  - paragraph: 22/10/2025
+  - heading "Halloween 2025" [level=3]:
+    - link "Halloween 2025":
+      - /url: "?secao=ler_noticia&id=604"
+  - 'link "Evento: Especial de Crianças"':
+    - /url: "?secao=ler_noticia&id=603"
+    - 'img "Evento: Especial de Crianças"'
+  - paragraph: 04/10/2025
+  - 'heading "Evento: Especial de Crianças" [level=3]':
+    - 'link "Evento: Especial de Crianças"':
+      - /url: "?secao=ler_noticia&id=603"
+  - link "Novos Temas X":
+    - /url: "?secao=ler_noticia&id=602"
+    - img "Novos Temas X"
+  - paragraph: 27/09/2025
+  - heading "Novos Temas X" [level=3]:
+    - link "Novos Temas X":
+      - /url: "?secao=ler_noticia&id=602"
+  - link "Novos Temas IV":
+    - /url: "?secao=ler_noticia&id=601"
+    - img "Novos Temas IV"
+  - paragraph: 16/09/2025
+  - heading "Novos Temas IV" [level=3]:
+    - link "Novos Temas IV":
+      - /url: "?secao=ler_noticia&id=601"
+  - link "Round 48 - O Inicio":
+    - /url: "?secao=ler_noticia&id=600"
+    - img "Round 48 - O Inicio"
+  - paragraph: 10/09/2025
+  - heading "Round 48 - O Inicio" [level=3]:
+    - link "Round 48 - O Inicio":
+      - /url: "?secao=ler_noticia&id=600"
+  - link "Templo Ninja - Rodada 15":
+    - /url: "?secao=ler_noticia&id=599"
+    - img "Templo Ninja - Rodada 15"
+  - paragraph: 10/09/2025
+  - heading "Templo Ninja - Rodada 15" [level=3]:
+    - link "Templo Ninja - Rodada 15":
+      - /url: "?secao=ler_noticia&id=599"
+  - link "Passe de Batalha - R48":
+    - /url: "?secao=ler_noticia&id=598"
+    - img "Passe de Batalha - R48"
+  - paragraph: 10/09/2025
+  - heading "Passe de Batalha - R48" [level=3]:
+    - link "Passe de Batalha - R48":
+      - /url: "?secao=ler_noticia&id=598"
+  - link "Caçada Ninja - R48":
+    - /url: "?secao=ler_noticia&id=597"
+    - img "Caçada Ninja - R48"
+  - paragraph: 10/09/2025
+  - heading "Caçada Ninja - R48" [level=3]:
+    - link "Caçada Ninja - R48":
+      - /url: "?secao=ler_noticia&id=597"
+  - link "Sugestões e Mudanças - R48":
+    - /url: "?secao=ler_noticia&id=596"
+    - img "Sugestões e Mudanças - R48"
+  - paragraph: 31/08/2025
+  - heading "Sugestões e Mudanças - R48" [level=3]:
+    - link "Sugestões e Mudanças - R48":
+      - /url: "?secao=ler_noticia&id=596"
+  - link "Hall da Fama - Round 47":
+    - /url: "?secao=ler_noticia&id=595"
+    - img "Hall da Fama - Round 47"
+  - paragraph: 31/08/2025
+  - heading "Hall da Fama - Round 47" [level=3]:
+    - link "Hall da Fama - Round 47":
+      - /url: "?secao=ler_noticia&id=595"
+  - link "Banidos do Round 47":
+    - /url: "?secao=ler_noticia&id=594"
+    - img "Banidos do Round 47"
+  - paragraph: 31/08/2025
+  - heading "Banidos do Round 47" [level=3]:
+    - link "Banidos do Round 47":
+      - /url: "?secao=ler_noticia&id=594"
+  - link "Novos Temas VIII":
+    - /url: "?secao=ler_noticia&id=593"
+    - img "Novos Temas VIII"
+  - paragraph: 21/08/2025
+  - heading "Novos Temas VIII" [level=3]:
+    - link "Novos Temas VIII":
+      - /url: "?secao=ler_noticia&id=593"
+  - link "Novos Temas VII":
+    - /url: "?secao=ler_noticia&id=592"
+    - img "Novos Temas VII"
+  - paragraph: 14/08/2025
+  - heading "Novos Temas VII" [level=3]:
+    - link "Novos Temas VII":
+      - /url: "?secao=ler_noticia&id=592"
+  - link "Novos Temas VI":
+    - /url: "?secao=ler_noticia&id=591"
+    - img "Novos Temas VI"
+  - paragraph: 10/08/2025
+  - heading "Novos Temas VI" [level=3]:
+    - link "Novos Temas VI":
+      - /url: "?secao=ler_noticia&id=591"
+  - link "Novos Temas V":
+    - /url: "?secao=ler_noticia&id=590"
+    - img "Novos Temas V"
+  - paragraph: 07/08/2025
+  - heading "Novos Temas V" [level=3]:
+    - link "Novos Temas V":
+      - /url: "?secao=ler_noticia&id=590"
+  - link "Novos Temas IV":
+    - /url: "?secao=ler_noticia&id=589"
+    - img "Novos Temas IV"
+  - paragraph: 04/08/2025
+  - heading "Novos Temas IV" [level=3]:
+    - link "Novos Temas IV":
+      - /url: "?secao=ler_noticia&id=589"
+  - link "Novos Temas III":
+    - /url: "?secao=ler_noticia&id=588"
+    - img "Novos Temas III"
+  - paragraph: 21/07/2025
+  - heading "Novos Temas III" [level=3]:
+    - link "Novos Temas III":
+      - /url: "?secao=ler_noticia&id=588"
+  - link "Novos Temas II":
+    - /url: "?secao=ler_noticia&id=587"
+    - img "Novos Temas II"
+  - paragraph: 30/06/2025
+  - heading "Novos Temas II" [level=3]:
+    - link "Novos Temas II":
+      - /url: "?secao=ler_noticia&id=587"
+  - link "Novos Temas I":
+    - /url: "?secao=ler_noticia&id=586"
+    - img "Novos Temas I"
+  - paragraph: 27/06/2025
+  - heading "Novos Temas I" [level=3]:
+    - link "Novos Temas I":
+      - /url: "?secao=ler_noticia&id=586"
+  - link "Caçada Ninja - R47":
+    - /url: "?secao=ler_noticia&id=585"
+    - img "Caçada Ninja - R47"
+  - paragraph: 27/06/2025
+  - heading "Caçada Ninja - R47" [level=3]:
+    - link "Caçada Ninja - R47":
+      - /url: "?secao=ler_noticia&id=585"
+  - link "Passe de Batalha - R47":
+    - /url: "?secao=ler_noticia&id=584"
+    - img "Passe de Batalha - R47"
+  - paragraph: 27/06/2025
+  - heading "Passe de Batalha - R47" [level=3]:
+    - link "Passe de Batalha - R47":
+      - /url: "?secao=ler_noticia&id=584"
+  - link "Round 47 - O Inicio":
+    - /url: "?secao=ler_noticia&id=583"
+    - img "Round 47 - O Inicio"
+  - paragraph: 25/06/2025
+  - heading "Round 47 - O Inicio" [level=3]:
+    - link "Round 47 - O Inicio":
+      - /url: "?secao=ler_noticia&id=583"
+  - link "Templo Ninja - Rodada 14":
+    - /url: "?secao=ler_noticia&id=582"
+    - img "Templo Ninja - Rodada 14"
+  - paragraph: 21/06/2025
+  - heading "Templo Ninja - Rodada 14" [level=3]:
+    - link "Templo Ninja - Rodada 14":
+      - /url: "?secao=ler_noticia&id=582"
+  - link "Round Caos R47":
+    - /url: "?secao=ler_noticia&id=581"
+    - img "Round Caos R47"
+  - paragraph: 17/06/2025
+  - heading "Round Caos R47" [level=3]:
+    - link "Round Caos R47":
+      - /url: "?secao=ler_noticia&id=581"
+  - link "Sugestões e Mudanças - R47":
+    - /url: "?secao=ler_noticia&id=580"
+    - img "Sugestões e Mudanças - R47"
+  - paragraph: 14/06/2025
+  - heading "Sugestões e Mudanças - R47" [level=3]:
+    - link "Sugestões e Mudanças - R47":
+      - /url: "?secao=ler_noticia&id=580"
+  - link "Hall da Fama - Round 46":
+    - /url: "?secao=ler_noticia&id=579"
+    - img "Hall da Fama - Round 46"
+  - paragraph: 14/06/2025
+  - heading "Hall da Fama - Round 46" [level=3]:
+    - link "Hall da Fama - Round 46":
+      - /url: "?secao=ler_noticia&id=579"
+  - link "Banidos do Round 46":
+    - /url: "?secao=ler_noticia&id=578"
+    - img "Banidos do Round 46"
+  - paragraph: 14/06/2025
+  - heading "Banidos do Round 46" [level=3]:
+    - link "Banidos do Round 46":
+      - /url: "?secao=ler_noticia&id=578"
+  - link "Páscoa 2025":
+    - /url: "?secao=ler_noticia&id=577"
+    - img "Páscoa 2025"
+  - paragraph: 18/04/2025
+  - heading "Páscoa 2025" [level=3]:
+    - link "Páscoa 2025":
+      - /url: "?secao=ler_noticia&id=577"
+  - link "Round 46 - O Inicio":
+    - /url: "?secao=ler_noticia&id=576"
+    - img "Round 46 - O Inicio"
+  - paragraph: 04/04/2025
+  - heading "Round 46 - O Inicio" [level=3]:
+    - link "Round 46 - O Inicio":
+      - /url: "?secao=ler_noticia&id=576"
+  - link "Templo Ninja - Rodada 13":
+    - /url: "?secao=ler_noticia&id=575"
+    - img "Templo Ninja - Rodada 13"
+  - paragraph: 02/04/2025
+  - heading "Templo Ninja - Rodada 13" [level=3]:
+    - link "Templo Ninja - Rodada 13":
+      - /url: "?secao=ler_noticia&id=575"
+  - link "Data Round 46 - Oficial":
+    - /url: "?secao=ler_noticia&id=574"
+    - img "Data Round 46 - Oficial"
+  - paragraph: 27/03/2025
+  - heading "Data Round 46 - Oficial" [level=3]:
+    - link "Data Round 46 - Oficial":
+      - /url: "?secao=ler_noticia&id=574"
+  - link "Round Caos R46":
+    - /url: "?secao=ler_noticia&id=573"
+    - img "Round Caos R46"
+  - paragraph: 19/03/2025
+  - heading "Round Caos R46" [level=3]:
+    - link "Round Caos R46":
+      - /url: "?secao=ler_noticia&id=573"
+  - link "Sugestões e Mudanças - R46":
+    - /url: "?secao=ler_noticia&id=572"
+    - img "Sugestões e Mudanças - R46"
+  - paragraph: 11/03/2025
+  - heading "Sugestões e Mudanças - R46" [level=3]:
+    - link "Sugestões e Mudanças - R46":
+      - /url: "?secao=ler_noticia&id=572"
+  - link "Hall da Fama - Round 45":
+    - /url: "?secao=ler_noticia&id=571"
+    - img "Hall da Fama - Round 45"
+  - paragraph: 11/03/2025
+  - heading "Hall da Fama - Round 45" [level=3]:
+    - link "Hall da Fama - Round 45":
+      - /url: "?secao=ler_noticia&id=571"
+  - link "Banidos do Round 45":
+    - /url: "?secao=ler_noticia&id=570"
+    - img "Banidos do Round 45"
+  - paragraph: 11/03/2025
+  - heading "Banidos do Round 45" [level=3]:
+    - link "Banidos do Round 45":
+      - /url: "?secao=ler_noticia&id=570"
+  - link "Ano Novo Chinês - 2025":
+    - /url: "?secao=ler_noticia&id=569"
+    - img "Ano Novo Chinês - 2025"
+  - paragraph: 30/01/2025
+  - heading "Ano Novo Chinês - 2025" [level=3]:
+    - link "Ano Novo Chinês - 2025":
+      - /url: "?secao=ler_noticia&id=569"
+  - link "Aniversário de 16 anos":
+    - /url: "?secao=ler_noticia&id=568"
+    - img "Aniversário de 16 anos"
+  - paragraph: 28/01/2025
+  - heading "Aniversário de 16 anos" [level=3]:
+    - link "Aniversário de 16 anos":
+      - /url: "?secao=ler_noticia&id=568"
+  - link "Regra de Batalhas":
+    - /url: "?secao=ler_noticia&id=567"
+    - img "Regra de Batalhas"
+  - paragraph: 21/01/2025
+  - heading "Regra de Batalhas" [level=3]:
+    - link "Regra de Batalhas":
+      - /url: "?secao=ler_noticia&id=567"
+  - link "Time 7 - Mangá":
+    - /url: "?secao=ler_noticia&id=566"
+    - img "Time 7 - Mangá"
+  - paragraph: 10/01/2025
+  - heading "Time 7 - Mangá" [level=3]:
+    - link "Time 7 - Mangá":
+      - /url: "?secao=ler_noticia&id=566"
+  - link "Round 45 - O Início":
+    - /url: "?secao=ler_noticia&id=565"
+    - img "Round 45 - O Início"
+  - paragraph: 01/01/2025
+  - heading "Round 45 - O Início" [level=3]:
+    - link "Round 45 - O Início":
+      - /url: "?secao=ler_noticia&id=565"
+  - link "Passe de Batalha - R45":
+    - /url: "?secao=ler_noticia&id=564"
+    - img "Passe de Batalha - R45"
+  - paragraph: 01/01/2025
+  - heading "Passe de Batalha - R45" [level=3]:
+    - link "Passe de Batalha - R45":
+      - /url: "?secao=ler_noticia&id=564"
+  - link "Caçada Ninja - R45":
+    - /url: "?secao=ler_noticia&id=563"
+    - img "Caçada Ninja - R45"
+  - paragraph: 01/01/2025
+  - heading "Caçada Ninja - R45" [level=3]:
+    - link "Caçada Ninja - R45":
+      - /url: "?secao=ler_noticia&id=563"
+  - link "Templo Ninjas - Rodada 12":
+    - /url: "?secao=ler_noticia&id=562"
+    - img "Templo Ninjas - Rodada 12"
+  - paragraph: 28/12/2024
+  - heading "Templo Ninjas - Rodada 12" [level=3]:
+    - link "Templo Ninjas - Rodada 12":
+      - /url: "?secao=ler_noticia&id=562"
+  - link "Round Caos R45":
+    - /url: "?secao=ler_noticia&id=561"
+    - img "Round Caos R45"
+  - paragraph: 13/12/2024
+  - heading "Round Caos R45" [level=3]:
+    - link "Round Caos R45":
+      - /url: "?secao=ler_noticia&id=561"
+  - link "Sugestões e Mudanças - R45":
+    - /url: "?secao=ler_noticia&id=560"
+    - img "Sugestões e Mudanças - R45"
+  - paragraph: 11/12/2024
+  - heading "Sugestões e Mudanças - R45" [level=3]:
+    - link "Sugestões e Mudanças - R45":
+      - /url: "?secao=ler_noticia&id=560"
+  - link "Hall da Fama - Round 44":
+    - /url: "?secao=ler_noticia&id=559"
+    - img "Hall da Fama - Round 44"
+  - paragraph: 11/12/2024
+  - heading "Hall da Fama - Round 44" [level=3]:
+    - link "Hall da Fama - Round 44":
+      - /url: "?secao=ler_noticia&id=559"
+  - link "Banidos do Round 44":
+    - /url: "?secao=ler_noticia&id=558"
+    - img "Banidos do Round 44"
+  - paragraph: 11/12/2024
+  - heading "Banidos do Round 44" [level=3]:
+    - link "Banidos do Round 44":
+      - /url: "?secao=ler_noticia&id=558"
+  - 'link "Gincana: A Combinação Perfeita"':
+    - /url: "?secao=ler_noticia&id=557"
+    - 'img "Gincana: A Combinação Perfeita"'
+  - paragraph: 04/12/2024
+  - 'heading "Gincana: A Combinação Perfeita" [level=3]':
+    - 'link "Gincana: A Combinação Perfeita"':
+      - /url: "?secao=ler_noticia&id=557"
+  - link "Esquenta - Black Friday":
+    - /url: "?secao=ler_noticia&id=556"
+    - img "Esquenta - Black Friday"
+  - paragraph: 26/11/2024
+  - heading "Esquenta - Black Friday" [level=3]:
+    - link "Esquenta - Black Friday":
+      - /url: "?secao=ler_noticia&id=556"
+  - link "Novo Personagem e temas":
+    - /url: "?secao=ler_noticia&id=555"
+    - img "Novo Personagem e temas"
+  - paragraph: 22/11/2024
+  - heading "Novo Personagem e temas" [level=3]:
+    - link "Novo Personagem e temas":
+      - /url: "?secao=ler_noticia&id=555"
+  - link "Halloween 2024":
+    - /url: "?secao=ler_noticia&id=554"
+    - img "Halloween 2024"
+  - paragraph: 30/10/2024
+  - heading "Halloween 2024" [level=3]:
+    - link "Halloween 2024":
+      - /url: "?secao=ler_noticia&id=554"
+  - link "Novos Temas Ultimates Animados":
+    - /url: "?secao=ler_noticia&id=553"
+    - img "Novos Temas Ultimates Animados"
+  - paragraph: 17/10/2024
+  - heading "Novos Temas Ultimates Animados" [level=3]:
+    - link "Novos Temas Ultimates Animados":
+      - /url: "?secao=ler_noticia&id=553"
+  - link "Templo Ninjas - Rodada 11":
+    - /url: "?secao=ler_noticia&id=552"
+    - img "Templo Ninjas - Rodada 11"
+  - paragraph: 04/10/2024
+  - heading "Templo Ninjas - Rodada 11" [level=3]:
+    - link "Templo Ninjas - Rodada 11":
+      - /url: "?secao=ler_noticia&id=552"
+  - link "Round 44 - O Início":
+    - /url: "?secao=ler_noticia&id=551"
+    - img "Round 44 - O Início"
+  - paragraph: 03/10/2024
+  - heading "Round 44 - O Início" [level=3]:
+    - link "Round 44 - O Início":
+      - /url: "?secao=ler_noticia&id=551"
+  - link "Caçada Ninja - R44":
+    - /url: "?secao=ler_noticia&id=550"
+    - img "Caçada Ninja - R44"
+  - paragraph: 03/10/2024
+  - heading "Caçada Ninja - R44" [level=3]:
+    - link "Caçada Ninja - R44":
+      - /url: "?secao=ler_noticia&id=550"
+  - link "Passe de Batalha - R44":
+    - /url: "?secao=ler_noticia&id=549"
+    - img "Passe de Batalha - R44"
+  - paragraph: 03/10/2024
+  - heading "Passe de Batalha - R44" [level=3]:
+    - link "Passe de Batalha - R44":
+      - /url: "?secao=ler_noticia&id=549"
+  - link "Round Caos R44":
+    - /url: "?secao=ler_noticia&id=548"
+    - img "Round Caos R44"
+  - paragraph: 29/09/2024
+  - heading "Round Caos R44" [level=3]:
+    - link "Round Caos R44":
+      - /url: "?secao=ler_noticia&id=548"
+  - link "Sugestões e Mudanças - R44":
+    - /url: "?secao=ler_noticia&id=547"
+    - img "Sugestões e Mudanças - R44"
+  - paragraph: 26/09/2024
+  - heading "Sugestões e Mudanças - R44" [level=3]:
+    - link "Sugestões e Mudanças - R44":
+      - /url: "?secao=ler_noticia&id=547"
+  - link "Hall da Fama - Round 43":
+    - /url: "?secao=ler_noticia&id=546"
+    - img "Hall da Fama - Round 43"
+  - paragraph: 26/09/2024
+  - heading "Hall da Fama - Round 43" [level=3]:
+    - link "Hall da Fama - Round 43":
+      - /url: "?secao=ler_noticia&id=546"
+  - link "Banidos do Round 43":
+    - /url: "?secao=ler_noticia&id=545"
+    - img "Banidos do Round 43"
+  - paragraph: 26/09/2024
+  - heading "Banidos do Round 43" [level=3]:
+    - link "Banidos do Round 43":
+      - /url: "?secao=ler_noticia&id=545"
+  - link "Novos Temas":
+    - /url: "?secao=ler_noticia&id=544"
+    - img "Novos Temas"
+  - paragraph: 17/08/2024
+  - heading "Novos Temas" [level=3]:
+    - link "Novos Temas":
+      - /url: "?secao=ler_noticia&id=544"
+  - link "Novos Packs e Temas":
+    - /url: "?secao=ler_noticia&id=543"
+    - img "Novos Packs e Temas"
+  - paragraph: 03/08/2024
+  - heading "Novos Packs e Temas" [level=3]:
+    - link "Novos Packs e Temas":
+      - /url: "?secao=ler_noticia&id=543"
+  - link "Round 43 - O Início":
+    - /url: "?secao=ler_noticia&id=542"
+    - img "Round 43 - O Início"
+  - paragraph: 20/07/2024
+  - heading "Round 43 - O Início" [level=3]:
+    - link "Round 43 - O Início":
+      - /url: "?secao=ler_noticia&id=542"
+  - link "Passe de Batalha - R43":
+    - /url: "?secao=ler_noticia&id=541"
+    - img "Passe de Batalha - R43"
+  - paragraph: 20/07/2024
+  - heading "Passe de Batalha - R43" [level=3]:
+    - link "Passe de Batalha - R43":
+      - /url: "?secao=ler_noticia&id=541"
+  - link "Templo Ninjas - Rodada 10":
+    - /url: "?secao=ler_noticia&id=540"
+    - img "Templo Ninjas - Rodada 10"
+  - paragraph: 20/07/2024
+  - heading "Templo Ninjas - Rodada 10" [level=3]:
+    - link "Templo Ninjas - Rodada 10":
+      - /url: "?secao=ler_noticia&id=540"
+  - link "Caçada Ninja - R43":
+    - /url: "?secao=ler_noticia&id=539"
+    - img "Caçada Ninja - R43"
+  - paragraph: 20/07/2024
+  - heading "Caçada Ninja - R43" [level=3]:
+    - link "Caçada Ninja - R43":
+      - /url: "?secao=ler_noticia&id=539"
+  - link "Round Caos R43":
+    - /url: "?secao=ler_noticia&id=538"
+    - img "Round Caos R43"
+  - paragraph: 14/07/2024
+  - heading "Round Caos R43" [level=3]:
+    - link "Round Caos R43":
+      - /url: "?secao=ler_noticia&id=538"
+  - link "Sugestões e Mudanças - R43":
+    - /url: "?secao=ler_noticia&id=537"
+    - img "Sugestões e Mudanças - R43"
+  - paragraph: 08/07/2024
+  - heading "Sugestões e Mudanças - R43" [level=3]:
+    - link "Sugestões e Mudanças - R43":
+      - /url: "?secao=ler_noticia&id=537"
+  - link "Hall da Fama - Round 42":
+    - /url: "?secao=ler_noticia&id=536"
+    - img "Hall da Fama - Round 42"
+  - paragraph: 08/07/2024
+  - heading "Hall da Fama - Round 42" [level=3]:
+    - link "Hall da Fama - Round 42":
+      - /url: "?secao=ler_noticia&id=536"
+  - link "Banidos do Round 42":
+    - /url: "?secao=ler_noticia&id=535"
+    - img "Banidos do Round 42"
+  - paragraph: 08/07/2024
+  - heading "Banidos do Round 42" [level=3]:
+    - link "Banidos do Round 42":
+      - /url: "?secao=ler_noticia&id=535"
+  - link "Novos Temas":
+    - /url: "?secao=ler_noticia&id=534"
+    - img "Novos Temas"
+  - paragraph: 10/06/2024
+  - heading "Novos Temas" [level=3]:
+    - link "Novos Temas":
+      - /url: "?secao=ler_noticia&id=534"
+  - link "Novos Temas e Fotos":
+    - /url: "?secao=ler_noticia&id=533"
+    - img "Novos Temas e Fotos"
+  - paragraph: 24/05/2024
+  - heading "Novos Temas e Fotos" [level=3]:
+    - link "Novos Temas e Fotos":
+      - /url: "?secao=ler_noticia&id=533"
+  - link "Round 42 - O Início":
+    - /url: "?secao=ler_noticia&id=532"
+    - img "Round 42 - O Início"
+  - paragraph: 03/05/2024
+  - heading "Round 42 - O Início" [level=3]:
+    - link "Round 42 - O Início":
+      - /url: "?secao=ler_noticia&id=532"
+  - link "Caçada Ninja - R42":
+    - /url: "?secao=ler_noticia&id=531"
+    - img "Caçada Ninja - R42"
+  - paragraph: 03/05/2024
+  - heading "Caçada Ninja - R42" [level=3]:
+    - link "Caçada Ninja - R42":
+      - /url: "?secao=ler_noticia&id=531"
+  - link "Passe de Batalha - R42":
+    - /url: "?secao=ler_noticia&id=530"
+    - img "Passe de Batalha - R42"
+  - paragraph: 03/05/2024
+  - heading "Passe de Batalha - R42" [level=3]:
+    - link "Passe de Batalha - R42":
+      - /url: "?secao=ler_noticia&id=530"
+  - link "Espadas da Névoa e Templo Ninja":
+    - /url: "?secao=ler_noticia&id=529"
+    - img "Espadas da Névoa e Templo Ninja"
+  - paragraph: 30/04/2024
+  - heading "Espadas da Névoa e Templo Ninja" [level=3]:
+    - link "Espadas da Névoa e Templo Ninja":
+      - /url: "?secao=ler_noticia&id=529"
+  - link "Round Caos R42":
+    - /url: "?secao=ler_noticia&id=528"
+    - img "Round Caos R42"
+  - paragraph: 26/04/2024
+  - heading "Round Caos R42" [level=3]:
+    - link "Round Caos R42":
+      - /url: "?secao=ler_noticia&id=528"
+  - link "Sugestões e Mudanças - R42":
+    - /url: "?secao=ler_noticia&id=527"
+    - img "Sugestões e Mudanças - R42"
+  - paragraph: 20/04/2024
+  - heading "Sugestões e Mudanças - R42" [level=3]:
+    - link "Sugestões e Mudanças - R42":
+      - /url: "?secao=ler_noticia&id=527"
+  - link "Hall da Fama - Round 41":
+    - /url: "?secao=ler_noticia&id=526"
+    - img "Hall da Fama - Round 41"
+  - paragraph: 20/04/2024
+  - heading "Hall da Fama - Round 41" [level=3]:
+    - link "Hall da Fama - Round 41":
+      - /url: "?secao=ler_noticia&id=526"
+  - link "Banidos do Round 41":
+    - /url: "?secao=ler_noticia&id=525"
+    - img "Banidos do Round 41"
+  - paragraph: 20/04/2024
+  - heading "Banidos do Round 41" [level=3]:
+    - link "Banidos do Round 41":
+      - /url: "?secao=ler_noticia&id=525"
+  - link "Naruto e Dragon Ball":
+    - /url: "?secao=ler_noticia&id=524"
+    - img "Naruto e Dragon Ball"
+  - paragraph: 19/03/2024
+  - heading "Naruto e Dragon Ball" [level=3]:
+    - link "Naruto e Dragon Ball":
+      - /url: "?secao=ler_noticia&id=524"
+  - link "Efeitos de Imagens":
+    - /url: "?secao=ler_noticia&id=523"
+    - img "Efeitos de Imagens"
+  - paragraph: 07/03/2024
+  - heading "Efeitos de Imagens" [level=3]:
+    - link "Efeitos de Imagens":
+      - /url: "?secao=ler_noticia&id=523"
+  - link "Equipamentos e Reforja":
+    - /url: "?secao=ler_noticia&id=522"
+    - img "Equipamentos e Reforja"
+  - paragraph: 22/02/2024
+  - heading "Equipamentos e Reforja" [level=3]:
+    - link "Equipamentos e Reforja":
+      - /url: "?secao=ler_noticia&id=522"
+  - link "Ano Novo Chinês - Atrasado":
+    - /url: "?secao=ler_noticia&id=521"
+    - img "Ano Novo Chinês - Atrasado"
+  - paragraph: 18/02/2024
+  - heading "Ano Novo Chinês - Atrasado" [level=3]:
+    - link "Ano Novo Chinês - Atrasado":
+      - /url: "?secao=ler_noticia&id=521"
+  - link "Round 41 - O Início":
+    - /url: "?secao=ler_noticia&id=520"
+    - img "Round 41 - O Início"
+  - paragraph: 17/02/2024
+  - heading "Round 41 - O Início" [level=3]:
+    - link "Round 41 - O Início":
+      - /url: "?secao=ler_noticia&id=520"
+  - link "Passe de Batalha - R41":
+    - /url: "?secao=ler_noticia&id=519"
+    - img "Passe de Batalha - R41"
+  - paragraph: 16/02/2024
+  - heading "Passe de Batalha - R41" [level=3]:
+    - link "Passe de Batalha - R41":
+      - /url: "?secao=ler_noticia&id=519"
+  - link "Templo Ninjas - Rodada 9":
+    - /url: "?secao=ler_noticia&id=518"
+    - img "Templo Ninjas - Rodada 9"
+  - paragraph: 15/02/2024
+  - heading "Templo Ninjas - Rodada 9" [level=3]:
+    - link "Templo Ninjas - Rodada 9":
+      - /url: "?secao=ler_noticia&id=518"
+  - link "Round Caos R41":
+    - /url: "?secao=ler_noticia&id=517"
+    - img "Round Caos R41"
+  - paragraph: 14/02/2024
+  - heading "Round Caos R41" [level=3]:
+    - link "Round Caos R41":
+      - /url: "?secao=ler_noticia&id=517"
+  - link "Sugestões e Mudanças - R41":
+    - /url: "?secao=ler_noticia&id=516"
+    - img "Sugestões e Mudanças - R41"
+  - paragraph: 09/02/2024
+  - heading "Sugestões e Mudanças - R41" [level=3]:
+    - link "Sugestões e Mudanças - R41":
+      - /url: "?secao=ler_noticia&id=516"
+  - link "Hall da Fama - Round 40":
+    - /url: "?secao=ler_noticia&id=515"
+    - img "Hall da Fama - Round 40"
+  - paragraph: 09/02/2024
+  - heading "Hall da Fama - Round 40" [level=3]:
+    - link "Hall da Fama - Round 40":
+      - /url: "?secao=ler_noticia&id=515"
+  - link "Banidos do Round 40":
+    - /url: "?secao=ler_noticia&id=514"
+    - img "Banidos do Round 40"
+  - paragraph: 09/02/2024
+  - heading "Banidos do Round 40" [level=3]:
+    - link "Banidos do Round 40":
+      - /url: "?secao=ler_noticia&id=514"
+  - link "Herói Solidário":
+    - /url: "?secao=ler_noticia&id=513"
+    - img "Herói Solidário"
+  - paragraph: 05/02/2024
+  - heading "Herói Solidário" [level=3]:
+    - link "Herói Solidário":
+      - /url: "?secao=ler_noticia&id=513"
+  - link "Curtindo o Verão!":
+    - /url: "?secao=ler_noticia&id=512"
+    - img "Curtindo o Verão!"
+  - paragraph: 20/01/2024
+  - heading "Curtindo o Verão!" [level=3]:
+    - link "Curtindo o Verão!":
+      - /url: "?secao=ler_noticia&id=512"
+  - link "Templo Ninjas - Rodada 8":
+    - /url: "?secao=ler_noticia&id=511"
+    - img "Templo Ninjas - Rodada 8"
+  - paragraph: 08/12/2023
+  - heading "Templo Ninjas - Rodada 8" [level=3]:
+    - link "Templo Ninjas - Rodada 8":
+      - /url: "?secao=ler_noticia&id=511"
+  - link "Round 40 - O Início":
+    - /url: "?secao=ler_noticia&id=510"
+    - img "Round 40 - O Início"
+  - paragraph: 07/12/2023
+  - heading "Round 40 - O Início" [level=3]:
+    - link "Round 40 - O Início":
+      - /url: "?secao=ler_noticia&id=510"
+  - link "Passe de Batalha - R40":
+    - /url: "?secao=ler_noticia&id=509"
+    - img "Passe de Batalha - R40"
+  - paragraph: 07/12/2023
+  - heading "Passe de Batalha - R40" [level=3]:
+    - link "Passe de Batalha - R40":
+      - /url: "?secao=ler_noticia&id=509"
+  - link "Round Pré Caos - R40":
+    - /url: "?secao=ler_noticia&id=508"
+    - img "Round Pré Caos - R40"
+  - paragraph: 02/12/2023
+  - heading "Round Pré Caos - R40" [level=3]:
+    - link "Round Pré Caos - R40":
+      - /url: "?secao=ler_noticia&id=508"
+  - link "Sugestões e Mudanças - R40":
+    - /url: "?secao=ler_noticia&id=507"
+    - img "Sugestões e Mudanças - R40"
+  - paragraph: 28/11/2023
+  - heading "Sugestões e Mudanças - R40" [level=3]:
+    - link "Sugestões e Mudanças - R40":
+      - /url: "?secao=ler_noticia&id=507"
+  - link "Hall da Fama - Round 39":
+    - /url: "?secao=ler_noticia&id=506"
+    - img "Hall da Fama - Round 39"
+  - paragraph: 28/11/2023
+  - heading "Hall da Fama - Round 39" [level=3]:
+    - link "Hall da Fama - Round 39":
+      - /url: "?secao=ler_noticia&id=506"
+  - link "Banidos do Round 39":
+    - /url: "?secao=ler_noticia&id=505"
+    - img "Banidos do Round 39"
+  - paragraph: 28/11/2023
+  - heading "Banidos do Round 39" [level=3]:
+    - link "Banidos do Round 39":
+      - /url: "?secao=ler_noticia&id=505"
+  - 'link "Evento: Especial de Crianças"':
+    - /url: "?secao=ler_noticia&id=504"
+    - 'img "Evento: Especial de Crianças"'
+  - paragraph: 07/10/2023
+  - 'heading "Evento: Especial de Crianças" [level=3]':
+    - 'link "Evento: Especial de Crianças"':
+      - /url: "?secao=ler_noticia&id=504"
+  - link "Templo Ninjas - Rodada 7":
+    - /url: "?secao=ler_noticia&id=503"
+    - img "Templo Ninjas - Rodada 7"
+  - paragraph: 23/09/2023
+  - heading "Templo Ninjas - Rodada 7" [level=3]:
+    - link "Templo Ninjas - Rodada 7":
+      - /url: "?secao=ler_noticia&id=503"
+  - link "Round 39 - O Início":
+    - /url: "?secao=ler_noticia&id=502"
+    - img "Round 39 - O Início"
+  - paragraph: 23/09/2023
+  - heading "Round 39 - O Início" [level=3]:
+    - link "Round 39 - O Início":
+      - /url: "?secao=ler_noticia&id=502"
+  - link "Passe de Batalha - R39":
+    - /url: "?secao=ler_noticia&id=501"
+    - img "Passe de Batalha - R39"
+  - paragraph: 21/09/2023
+  - heading "Passe de Batalha - R39" [level=3]:
+    - link "Passe de Batalha - R39":
+      - /url: "?secao=ler_noticia&id=501"
+  - link "Round Pré Caos - R39":
+    - /url: "?secao=ler_noticia&id=500"
+    - img "Round Pré Caos - R39"
+  - paragraph: 19/09/2023
+  - heading "Round Pré Caos - R39" [level=3]:
+    - link "Round Pré Caos - R39":
+      - /url: "?secao=ler_noticia&id=500"
+  - link "Sugestões e Mudanças - R39":
+    - /url: "?secao=ler_noticia&id=499"
+    - img "Sugestões e Mudanças - R39"
+  - paragraph: 08/09/2023
+  - heading "Sugestões e Mudanças - R39" [level=3]:
+    - link "Sugestões e Mudanças - R39":
+      - /url: "?secao=ler_noticia&id=499"
+  - link "Hall da Fama - Round 38":
+    - /url: "?secao=ler_noticia&id=498"
+    - img "Hall da Fama - Round 38"
+  - paragraph: 08/09/2023
+  - heading "Hall da Fama - Round 38" [level=3]:
+    - link "Hall da Fama - Round 38":
+      - /url: "?secao=ler_noticia&id=498"
+  - link "Banidos do Round 38":
+    - /url: "?secao=ler_noticia&id=497"
+    - img "Banidos do Round 38"
+  - paragraph: 08/09/2023
+  - heading "Banidos do Round 38" [level=3]:
+    - link "Banidos do Round 38":
+      - /url: "?secao=ler_noticia&id=497"
+  - link "Templo Ninjas - Rodada 6":
+    - /url: "?secao=ler_noticia&id=496"
+    - img "Templo Ninjas - Rodada 6"
+  - paragraph: 07/07/2023
+  - heading "Templo Ninjas - Rodada 6" [level=3]:
+    - link "Templo Ninjas - Rodada 6":
+      - /url: "?secao=ler_noticia&id=496"
+  - link "Passe de Batalha - R38":
+    - /url: "?secao=ler_noticia&id=495"
+    - img "Passe de Batalha - R38"
+  - paragraph: 07/07/2023
+  - heading "Passe de Batalha - R38" [level=3]:
+    - link "Passe de Batalha - R38":
+      - /url: "?secao=ler_noticia&id=495"
+  - link "Round 38 - O Início":
+    - /url: "?secao=ler_noticia&id=494"
+    - img "Round 38 - O Início"
+  - paragraph: 07/07/2023
+  - heading "Round 38 - O Início" [level=3]:
+    - link "Round 38 - O Início":
+      - /url: "?secao=ler_noticia&id=494"
+  - link "Premiação Especial - R37":
+    - /url: "?secao=ler_noticia&id=493"
+    - img "Premiação Especial - R37"
+  - paragraph: 05/07/2023
+  - heading "Premiação Especial - R37" [level=3]:
+    - link "Premiação Especial - R37":
+      - /url: "?secao=ler_noticia&id=493"
+  - link "Round Pré Caos - R38":
+    - /url: "?secao=ler_noticia&id=492"
+    - img "Round Pré Caos - R38"
+  - paragraph: 30/06/2023
+  - heading "Round Pré Caos - R38" [level=3]:
+    - link "Round Pré Caos - R38":
+      - /url: "?secao=ler_noticia&id=492"
+  - link "Sugestões e Mudanças - R38":
+    - /url: "?secao=ler_noticia&id=491"
+    - img "Sugestões e Mudanças - R38"
+  - paragraph: 22/06/2023
+  - heading "Sugestões e Mudanças - R38" [level=3]:
+    - link "Sugestões e Mudanças - R38":
+      - /url: "?secao=ler_noticia&id=491"
+  - link "Hall da Fama - Round 37":
+    - /url: "?secao=ler_noticia&id=490"
+    - img "Hall da Fama - Round 37"
+  - paragraph: 21/06/2023
+  - heading "Hall da Fama - Round 37" [level=3]:
+    - link "Hall da Fama - Round 37":
+      - /url: "?secao=ler_noticia&id=490"
+  - link "Banidos do Round 37":
+    - /url: "?secao=ler_noticia&id=489"
+    - img "Banidos do Round 37"
+  - paragraph: 21/06/2023
+  - heading "Banidos do Round 37" [level=3]:
+    - link "Banidos do Round 37":
+      - /url: "?secao=ler_noticia&id=489"
+  - link "Guerra Ninja - Aliança":
+    - /url: "?secao=ler_noticia&id=488"
+    - img "Guerra Ninja - Aliança"
+  - paragraph: 01/06/2023
+  - heading "Guerra Ninja - Aliança" [level=3]:
+    - link "Guerra Ninja - Aliança":
+      - /url: "?secao=ler_noticia&id=488"
+  - link "Personagens e Imagens":
+    - /url: "?secao=ler_noticia&id=487"
+    - img "Personagens e Imagens"
+  - paragraph: 27/05/2023
+  - heading "Personagens e Imagens" [level=3]:
+    - link "Personagens e Imagens":
+      - /url: "?secao=ler_noticia&id=487"
+  - link "Atualização R37":
+    - /url: "?secao=ler_noticia&id=486"
+    - img "Atualização R37"
+  - paragraph: 18/05/2023
+  - heading "Atualização R37" [level=3]:
+    - link "Atualização R37":
+      - /url: "?secao=ler_noticia&id=486"
+  - link "Novidades R37":
+    - /url: "?secao=ler_noticia&id=485"
+    - img "Novidades R37"
+  - paragraph: 10/05/2023
+  - heading "Novidades R37" [level=3]:
+    - link "Novidades R37":
+      - /url: "?secao=ler_noticia&id=485"
+  - link "Templo Ninjas - Rodada 5":
+    - /url: "?secao=ler_noticia&id=484"
+    - img "Templo Ninjas - Rodada 5"
+  - paragraph: 05/05/2023
+  - heading "Templo Ninjas - Rodada 5" [level=3]:
+    - link "Templo Ninjas - Rodada 5":
+      - /url: "?secao=ler_noticia&id=484"
+  - link "Round 37 - O Início":
+    - /url: "?secao=ler_noticia&id=483"
+    - img "Round 37 - O Início"
+  - paragraph: 20/04/2023
+  - heading "Round 37 - O Início" [level=3]:
+    - link "Round 37 - O Início":
+      - /url: "?secao=ler_noticia&id=483"
+  - link "Premiação Especial - Kages":
+    - /url: "?secao=ler_noticia&id=482"
+    - img "Premiação Especial - Kages"
+  - paragraph: 20/04/2023
+  - heading "Premiação Especial - Kages" [level=3]:
+    - link "Premiação Especial - Kages":
+      - /url: "?secao=ler_noticia&id=482"
+  - link "Passe de Batalha R37":
+    - /url: "?secao=ler_noticia&id=481"
+    - img "Passe de Batalha R37"
+  - paragraph: 20/04/2023
+  - heading "Passe de Batalha R37" [level=3]:
+    - link "Passe de Batalha R37":
+      - /url: "?secao=ler_noticia&id=481"
+  - link "R37 Pré - Atualização 3":
+    - /url: "?secao=ler_noticia&id=480"
+    - img "R37 Pré - Atualização 3"
+  - paragraph: 20/04/2023
+  - heading "R37 Pré - Atualização 3" [level=3]:
+    - link "R37 Pré - Atualização 3":
+      - /url: "?secao=ler_noticia&id=480"
+  - link "R37 Pré - Atualização 2":
+    - /url: "?secao=ler_noticia&id=479"
+    - img "R37 Pré - Atualização 2"
+  - paragraph: 12/04/2023
+  - heading "R37 Pré - Atualização 2" [level=3]:
+    - link "R37 Pré - Atualização 2":
+      - /url: "?secao=ler_noticia&id=479"
+  - link "R37 Pré - Atualização 1":
+    - /url: "?secao=ler_noticia&id=478"
+    - img "R37 Pré - Atualização 1"
+  - paragraph: 06/04/2023
+  - heading "R37 Pré - Atualização 1" [level=3]:
+    - link "R37 Pré - Atualização 1":
+      - /url: "?secao=ler_noticia&id=478"
+  - link "Round Pré Oficial - R37":
+    - /url: "?secao=ler_noticia&id=477"
+    - img "Round Pré Oficial - R37"
+  - paragraph: 05/04/2023
+  - heading "Round Pré Oficial - R37" [level=3]:
+    - link "Round Pré Oficial - R37":
+      - /url: "?secao=ler_noticia&id=477"
+  - link "Sugestões e Mudanças - R37":
+    - /url: "?secao=ler_noticia&id=476"
+    - img "Sugestões e Mudanças - R37"
+  - paragraph: 01/04/2023
+  - heading "Sugestões e Mudanças - R37" [level=3]:
+    - link "Sugestões e Mudanças - R37":
+      - /url: "?secao=ler_noticia&id=476"
+  - link "Hall da Fama - Round 36":
+    - /url: "?secao=ler_noticia&id=475"
+    - img "Hall da Fama - Round 36"
+  - paragraph: 01/04/2023
+  - heading "Hall da Fama - Round 36" [level=3]:
+    - link "Hall da Fama - Round 36":
+      - /url: "?secao=ler_noticia&id=475"
+  - link "Banidos do Round 36":
+    - /url: "?secao=ler_noticia&id=474"
+    - img "Banidos do Round 36"
+  - paragraph: 01/04/2023
+  - heading "Banidos do Round 36" [level=3]:
+    - link "Banidos do Round 36":
+      - /url: "?secao=ler_noticia&id=474"
+  - link "Ano Novo Chinês - Atrasado":
+    - /url: "?secao=ler_noticia&id=473"
+    - img "Ano Novo Chinês - Atrasado"
+  - paragraph: 18/03/2023
+  - heading "Ano Novo Chinês - Atrasado" [level=3]:
+    - link "Ano Novo Chinês - Atrasado":
+      - /url: "?secao=ler_noticia&id=473"
+  - link "Guerra Ninja - Akatsuki":
+    - /url: "?secao=ler_noticia&id=472"
+    - img "Guerra Ninja - Akatsuki"
+  - paragraph: 25/02/2023
+  - heading "Guerra Ninja - Akatsuki" [level=3]:
+    - link "Guerra Ninja - Akatsuki":
+      - /url: "?secao=ler_noticia&id=472"
+  - link "Guerra Ninja - Aliança":
+    - /url: "?secao=ler_noticia&id=471"
+    - img "Guerra Ninja - Aliança"
+  - paragraph: 16/02/2023
+  - heading "Guerra Ninja - Aliança" [level=3]:
+    - link "Guerra Ninja - Aliança":
+      - /url: "?secao=ler_noticia&id=471"
+  - link "Verão - Parte 2":
+    - /url: "?secao=ler_noticia&id=470"
+    - img "Verão - Parte 2"
+  - paragraph: 04/02/2023
+  - heading "Verão - Parte 2" [level=3]:
+    - link "Verão - Parte 2":
+      - /url: "?secao=ler_noticia&id=470"
+  - link "Templo Ninjas - Rodada 4":
+    - /url: "?secao=ler_noticia&id=469"
+    - img "Templo Ninjas - Rodada 4"
+  - paragraph: 27/01/2023
+  - heading "Templo Ninjas - Rodada 4" [level=3]:
+    - link "Templo Ninjas - Rodada 4":
+      - /url: "?secao=ler_noticia&id=469"
+  - link "Round 36 - O Início":
+    - /url: "?secao=ler_noticia&id=468"
+    - img "Round 36 - O Início"
+  - paragraph: 27/01/2023
+  - heading "Round 36 - O Início" [level=3]:
+    - link "Round 36 - O Início":
+      - /url: "?secao=ler_noticia&id=468"
+  - link "Round 36 - Definição":
+    - /url: "?secao=ler_noticia&id=467"
+    - img "Round 36 - Definição"
+  - paragraph: 25/01/2023
+  - heading "Round 36 - Definição" [level=3]:
+    - link "Round 36 - Definição":
+      - /url: "?secao=ler_noticia&id=467"
+  - link "Round Caos - R36":
+    - /url: "?secao=ler_noticia&id=466"
+    - img "Round Caos - R36"
+  - paragraph: 20/01/2023
+  - heading "Round Caos - R36" [level=3]:
+    - link "Round Caos - R36":
+      - /url: "?secao=ler_noticia&id=466"
+  - link "Sugestões e Mudanças - R36":
+    - /url: "?secao=ler_noticia&id=465"
+    - img "Sugestões e Mudanças - R36"
+  - paragraph: 20/01/2023
+  - heading "Sugestões e Mudanças - R36" [level=3]:
+    - link "Sugestões e Mudanças - R36":
+      - /url: "?secao=ler_noticia&id=465"
+  - link "Hall da Fama - Round 35":
+    - /url: "?secao=ler_noticia&id=464"
+    - img "Hall da Fama - Round 35"
+  - paragraph: 19/01/2023
+  - heading "Hall da Fama - Round 35" [level=3]:
+    - link "Hall da Fama - Round 35":
+      - /url: "?secao=ler_noticia&id=464"
+  - link "Banidos do Round 35":
+    - /url: "?secao=ler_noticia&id=463"
+    - img "Banidos do Round 35"
+  - paragraph: 19/01/2023
+  - heading "Banidos do Round 35" [level=3]:
+    - link "Banidos do Round 35":
+      - /url: "?secao=ler_noticia&id=463"
+  - link "O Verão chegou!":
+    - /url: "?secao=ler_noticia&id=462"
+    - img "O Verão chegou!"
+  - paragraph: 09/01/2023
+  - heading "O Verão chegou!" [level=3]:
+    - link "O Verão chegou!":
+      - /url: "?secao=ler_noticia&id=462"
+  - link "Despertando a Juubi":
+    - /url: "?secao=ler_noticia&id=461"
+    - img "Despertando a Juubi"
+  - paragraph: 27/12/2022
+  - heading "Despertando a Juubi" [level=3]:
+    - link "Despertando a Juubi":
+      - /url: "?secao=ler_noticia&id=461"
+  - link "O Natal chegou!":
+    - /url: "?secao=ler_noticia&id=460"
+    - img "O Natal chegou!"
+  - paragraph: 05/12/2022
+  - heading "O Natal chegou!" [level=3]:
+    - link "O Natal chegou!":
+      - /url: "?secao=ler_noticia&id=460"
+  - link "Novo tipo de pacotes":
+    - /url: "?secao=ler_noticia&id=459"
+    - img "Novo tipo de pacotes"
+  - paragraph: 01/12/2022
+  - heading "Novo tipo de pacotes" [level=3]:
+    - link "Novo tipo de pacotes":
+      - /url: "?secao=ler_noticia&id=459"
+  - link "Naruto - Copa do Mundo":
+    - /url: "?secao=ler_noticia&id=458"
+    - img "Naruto - Copa do Mundo"
+  - paragraph: 23/11/2022
+  - heading "Naruto - Copa do Mundo" [level=3]:
+    - link "Naruto - Copa do Mundo":
+      - /url: "?secao=ler_noticia&id=458"
+  - link "Tudo sobre os Equipamentos":
+    - /url: "?secao=ler_noticia&id=457"
+    - img "Tudo sobre os Equipamentos"
+  - paragraph: 14/11/2022
+  - heading "Tudo sobre os Equipamentos" [level=3]:
+    - link "Tudo sobre os Equipamentos":
+      - /url: "?secao=ler_noticia&id=457"
+  - link "Templo Ninjas - Rodada 3":
+    - /url: "?secao=ler_noticia&id=456"
+    - img "Templo Ninjas - Rodada 3"
+  - paragraph: 02/11/2022
+  - heading "Templo Ninjas - Rodada 3" [level=3]:
+    - link "Templo Ninjas - Rodada 3":
+      - /url: "?secao=ler_noticia&id=456"
+  - link "Round 35 - O Início":
+    - /url: "?secao=ler_noticia&id=455"
+    - img "Round 35 - O Início"
+  - paragraph: 02/11/2022
+  - heading "Round 35 - O Início" [level=3]:
+    - link "Round 35 - O Início":
+      - /url: "?secao=ler_noticia&id=455"
+  - link "Preparação Round 35 - Parte 2":
+    - /url: "?secao=ler_noticia&id=454"
+    - img "Preparação Round 35 - Parte 2"
+  - paragraph: 01/11/2022
+  - heading "Preparação Round 35 - Parte 2" [level=3]:
+    - link "Preparação Round 35 - Parte 2":
+      - /url: "?secao=ler_noticia&id=454"
+  - link "Pré-Oficial - Round 35":
+    - /url: "?secao=ler_noticia&id=453"
+    - img "Pré-Oficial - Round 35"
+  - paragraph: 28/10/2022
+  - heading "Pré-Oficial - Round 35" [level=3]:
+    - link "Pré-Oficial - Round 35":
+      - /url: "?secao=ler_noticia&id=453"
+  - link "Preparação Round 35 - Parte 1":
+    - /url: "?secao=ler_noticia&id=452"
+    - img "Preparação Round 35 - Parte 1"
+  - paragraph: 26/10/2022
+  - heading "Preparação Round 35 - Parte 1" [level=3]:
+    - link "Preparação Round 35 - Parte 1":
+      - /url: "?secao=ler_noticia&id=452"
+  - link "Sugestões e Mudanças - Round 35":
+    - /url: "?secao=ler_noticia&id=451"
+    - img "Sugestões e Mudanças - Round 35"
+  - paragraph: 22/10/2022
+  - heading "Sugestões e Mudanças - Round 35" [level=3]:
+    - link "Sugestões e Mudanças - Round 35":
+      - /url: "?secao=ler_noticia&id=451"
+  - link "Hall da Fama - Round 34":
+    - /url: "?secao=ler_noticia&id=450"
+    - img "Hall da Fama - Round 34"
+  - paragraph: 22/10/2022
+  - heading "Hall da Fama - Round 34" [level=3]:
+    - link "Hall da Fama - Round 34":
+      - /url: "?secao=ler_noticia&id=450"
+  - link "Banidos do Round 34":
+    - /url: "?secao=ler_noticia&id=449"
+    - img "Banidos do Round 34"
+  - paragraph: 22/10/2022
+  - heading "Banidos do Round 34" [level=3]:
+    - link "Banidos do Round 34":
+      - /url: "?secao=ler_noticia&id=449"
+  - 'link "Evento: Especial de Crianças"':
+    - /url: "?secao=ler_noticia&id=448"
+    - 'img "Evento: Especial de Crianças"'
+  - paragraph: 03/10/2022
+  - 'heading "Evento: Especial de Crianças" [level=3]':
+    - 'link "Evento: Especial de Crianças"':
+      - /url: "?secao=ler_noticia&id=448"
+  - link "Outubro - Mês dos Chibis!":
+    - /url: "?secao=ler_noticia&id=447"
+    - img "Outubro - Mês dos Chibis!"
+  - paragraph: 29/09/2022
+  - heading "Outubro - Mês dos Chibis!" [level=3]:
+    - link "Outubro - Mês dos Chibis!":
+      - /url: "?secao=ler_noticia&id=447"
+  - link "Explicação sobre Bans":
+    - /url: "?secao=ler_noticia&id=446"
+    - img "Explicação sobre Bans"
+  - paragraph: 25/08/2022
+  - heading "Explicação sobre Bans" [level=3]:
+    - link "Explicação sobre Bans":
+      - /url: "?secao=ler_noticia&id=446"
+  - link "Round 34 - Não perca!":
+    - /url: "?secao=ler_noticia&id=445"
+    - img "Round 34 - Não perca!"
+  - paragraph: 11/08/2022
+  - heading "Round 34 - Não perca!" [level=3]:
+    - link "Round 34 - Não perca!":
+      - /url: "?secao=ler_noticia&id=445"
+  - link "Round Caos R34 - Modificações":
+    - /url: "?secao=ler_noticia&id=444"
+    - img "Round Caos R34 - Modificações"
+  - paragraph: 10/08/2022
+  - heading "Round Caos R34 - Modificações" [level=3]:
+    - link "Round Caos R34 - Modificações":
+      - /url: "?secao=ler_noticia&id=444"
+  - link "Round Caos - R34":
+    - /url: "?secao=ler_noticia&id=443"
+    - img "Round Caos - R34"
+  - paragraph: 05/08/2022
+  - heading "Round Caos - R34" [level=3]:
+    - link "Round Caos - R34":
+      - /url: "?secao=ler_noticia&id=443"
+  - link "Esquenta - Round 34":
+    - /url: "?secao=ler_noticia&id=442"
+    - img "Esquenta - Round 34"
+  - paragraph: 02/08/2022
+  - heading "Esquenta - Round 34" [level=3]:
+    - link "Esquenta - Round 34":
+      - /url: "?secao=ler_noticia&id=442"
+  - link "Hall da Fama - Round 33":
+    - /url: "?secao=ler_noticia&id=441"
+    - img "Hall da Fama - Round 33"
+  - paragraph: 24/07/2022
+  - heading "Hall da Fama - Round 33" [level=3]:
+    - link "Hall da Fama - Round 33":
+      - /url: "?secao=ler_noticia&id=441"
+  - link "Banidos do Round 33":
+    - /url: "?secao=ler_noticia&id=440"
+    - img "Banidos do Round 33"
+  - paragraph: 24/07/2022
+  - heading "Banidos do Round 33" [level=3]:
+    - link "Banidos do Round 33":
+      - /url: "?secao=ler_noticia&id=440"
+  - link "Multirão - Temas":
+    - /url: "?secao=ler_noticia&id=439"
+    - img "Multirão - Temas"
+  - paragraph: 01/06/2022
+  - heading "Multirão - Temas" [level=3]:
+    - link "Multirão - Temas":
+      - /url: "?secao=ler_noticia&id=439"
+  - link "Hashirama e Tobirama - Temas":
+    - /url: "?secao=ler_noticia&id=438"
+    - img "Hashirama e Tobirama - Temas"
+  - paragraph: 14/05/2022
+  - heading "Hashirama e Tobirama - Temas" [level=3]:
+    - link "Hashirama e Tobirama - Temas":
+      - /url: "?secao=ler_noticia&id=438"
+  - link "Tsunade e Orochimaru - Temas":
+    - /url: "?secao=ler_noticia&id=437"
+    - img "Tsunade e Orochimaru - Temas"
+  - paragraph: 11/05/2022
+  - heading "Tsunade e Orochimaru - Temas" [level=3]:
+    - link "Tsunade e Orochimaru - Temas":
+      - /url: "?secao=ler_noticia&id=437"
+  - link "Minato - Temas":
+    - /url: "?secao=ler_noticia&id=436"
+    - img "Minato - Temas"
+  - paragraph: 05/05/2022
+  - heading "Minato - Temas" [level=3]:
+    - link "Minato - Temas":
+      - /url: "?secao=ler_noticia&id=436"
+  - link "Hinata, Mei e Sarada - Temas":
+    - /url: "?secao=ler_noticia&id=435"
+    - img "Hinata, Mei e Sarada - Temas"
+  - paragraph: 04/05/2022
+  - heading "Hinata, Mei e Sarada - Temas" [level=3]:
+    - link "Hinata, Mei e Sarada - Temas":
+      - /url: "?secao=ler_noticia&id=435"
+  - link "Melhorias/Ajustes - Parte 3":
+    - /url: "?secao=ler_noticia&id=434"
+    - img "Melhorias/Ajustes - Parte 3"
+  - paragraph: 28/04/2022
+  - heading "Melhorias/Ajustes - Parte 3" [level=3]:
+    - link "Melhorias/Ajustes - Parte 3":
+      - /url: "?secao=ler_noticia&id=434"
+  - link "Shisui e Kushina - Temas":
+    - /url: "?secao=ler_noticia&id=433"
+    - img "Shisui e Kushina - Temas"
+  - paragraph: 26/04/2022
+  - heading "Shisui e Kushina - Temas" [level=3]:
+    - link "Shisui e Kushina - Temas":
+      - /url: "?secao=ler_noticia&id=433"
+  - link "Poder de Jinchuriki - Parte 1":
+    - /url: "?secao=ler_noticia&id=432"
+    - img "Poder de Jinchuriki - Parte 1"
+  - paragraph: 25/04/2022
+  - heading "Poder de Jinchuriki - Parte 1" [level=3]:
+    - link "Poder de Jinchuriki - Parte 1":
+      - /url: "?secao=ler_noticia&id=432"
+  - link "Round Beta - A Premiação 3":
+    - /url: "?secao=ler_noticia&id=431"
+    - img "Round Beta - A Premiação 3"
+  - paragraph: 22/04/2022
+  - heading "Round Beta - A Premiação 3" [level=3]:
+    - link "Round Beta - A Premiação 3":
+      - /url: "?secao=ler_noticia&id=431"
+  - link "Banidos - Round 1":
+    - /url: "?secao=ler_noticia&id=430"
+    - img "Banidos - Round 1"
+  - paragraph: 20/04/2022
+  - heading "Banidos - Round 1" [level=3]:
+    - link "Banidos - Round 1":
+      - /url: "?secao=ler_noticia&id=430"
+  - link "Round Beta - A Premiação 2":
+    - /url: "?secao=ler_noticia&id=429"
+    - img "Round Beta - A Premiação 2"
+  - paragraph: 18/04/2022
+  - heading "Round Beta - A Premiação 2" [level=3]:
+    - link "Round Beta - A Premiação 2":
+      - /url: "?secao=ler_noticia&id=429"
+  - link "Round Beta - A Premiação":
+    - /url: "?secao=ler_noticia&id=428"
+    - img "Round Beta - A Premiação"
+  - paragraph: 15/04/2022
+  - heading "Round Beta - A Premiação" [level=3]:
+    - link "Round Beta - A Premiação":
+      - /url: "?secao=ler_noticia&id=428"
+  - link "Round 33 - Bem Vindos!":
+    - /url: "?secao=ler_noticia&id=427"
+    - img "Round 33 - Bem Vindos!"
+  - paragraph: 15/04/2022
+  - heading "Round 33 - Bem Vindos!" [level=3]:
+    - link "Round 33 - Bem Vindos!":
+      - /url: "?secao=ler_noticia&id=427"
+  - link "Melhorias/Ajustes - Parte 2":
+    - /url: "?secao=ler_noticia&id=426"
+    - img "Melhorias/Ajustes - Parte 2"
+  - paragraph: 13/04/2022
+  - heading "Melhorias/Ajustes - Parte 2" [level=3]:
+    - link "Melhorias/Ajustes - Parte 2":
+      - /url: "?secao=ler_noticia&id=426"
+  - link "Templos Ninja - Rodada 2":
+    - /url: "?secao=ler_noticia&id=425"
+    - img "Templos Ninja - Rodada 2"
+  - paragraph: 12/04/2022
+  - heading "Templos Ninja - Rodada 2" [level=3]:
+    - link "Templos Ninja - Rodada 2":
+      - /url: "?secao=ler_noticia&id=425"
+  - link "Melhorias/Ajustes - Parte 1":
+    - /url: "?secao=ler_noticia&id=424"
+    - img "Melhorias/Ajustes - Parte 1"
+  - paragraph: 10/04/2022
+  - heading "Melhorias/Ajustes - Parte 1" [level=3]:
+    - link "Melhorias/Ajustes - Parte 1":
+      - /url: "?secao=ler_noticia&id=424"
+  - 'link "Opine: Round Beta"':
+    - /url: "?secao=ler_noticia&id=423"
+    - 'img "Opine: Round Beta"'
+  - paragraph: 02/04/2022
+  - 'heading "Opine: Round Beta" [level=3]':
+    - 'link "Opine: Round Beta"':
+      - /url: "?secao=ler_noticia&id=423"
+  - link "Templos Ninjas":
+    - /url: "?secao=ler_noticia&id=422"
+    - img "Templos Ninjas"
+  - paragraph: 01/04/2022
+  - heading "Templos Ninjas" [level=3]:
+    - link "Templos Ninjas":
+      - /url: "?secao=ler_noticia&id=422"
+  - link "Naruto Game - Dark Version":
+    - /url: "?secao=ler_noticia&id=421"
+    - img "Naruto Game - Dark Version"
+  - paragraph: 21/03/2022
+  - heading "Naruto Game - Dark Version" [level=3]:
+    - link "Naruto Game - Dark Version":
+      - /url: "?secao=ler_noticia&id=421"
+  - link "Obito - Temas":
+    - /url: "?secao=ler_noticia&id=420"
+    - img "Obito - Temas"
+  - paragraph: 19/03/2022
+  - heading "Obito - Temas" [level=3]:
+    - link "Obito - Temas":
+      - /url: "?secao=ler_noticia&id=420"
+  - link "Madara - Temas":
+    - /url: "?secao=ler_noticia&id=419"
+    - img "Madara - Temas"
+  - paragraph: 18/03/2022
+  - heading "Madara - Temas" [level=3]:
+    - link "Madara - Temas":
+      - /url: "?secao=ler_noticia&id=419"
+  - link "Dojo 4x4 PVP e Ajustes":
+    - /url: "?secao=ler_noticia&id=418"
+    - img "Dojo 4x4 PVP e Ajustes"
+  - paragraph: 10/03/2022
+  - heading "Dojo 4x4 PVP e Ajustes" [level=3]:
+    - link "Dojo 4x4 PVP e Ajustes":
+      - /url: "?secao=ler_noticia&id=418"
+  - link "Konan - Temas e Versão Anjo":
+    - /url: "?secao=ler_noticia&id=417"
+    - img "Konan - Temas e Versão Anjo"
+  - paragraph: 09/03/2022
+  - heading "Konan - Temas e Versão Anjo" [level=3]:
+    - link "Konan - Temas e Versão Anjo":
+      - /url: "?secao=ler_noticia&id=417"
+  - link "Balanceamento dos Clãs":
+    - /url: "?secao=ler_noticia&id=416"
+    - img "Balanceamento dos Clãs"
+  - paragraph: 05/03/2022
+  - heading "Balanceamento dos Clãs" [level=3]:
+    - link "Balanceamento dos Clãs":
+      - /url: "?secao=ler_noticia&id=416"
+  - link "Mudanças nas Fórmulas e Melhorias":
+    - /url: "?secao=ler_noticia&id=415"
+    - img "Mudanças nas Fórmulas e Melhorias"
+  - paragraph: 03/03/2022
+  - heading "Mudanças nas Fórmulas e Melhorias" [level=3]:
+    - link "Mudanças nas Fórmulas e Melhorias":
+      - /url: "?secao=ler_noticia&id=415"
+  - link "Novos Temas e Melhorias":
+    - /url: "?secao=ler_noticia&id=414"
+    - img "Novos Temas e Melhorias"
+  - paragraph: 01/03/2022
+  - heading "Novos Temas e Melhorias" [level=3]:
+    - link "Novos Temas e Melhorias":
+      - /url: "?secao=ler_noticia&id=414"
+  - link "Hidan - Temas Liberados":
+    - /url: "?secao=ler_noticia&id=413"
+    - img "Hidan - Temas Liberados"
+  - paragraph: 27/02/2022
+  - heading "Hidan - Temas Liberados" [level=3]:
+    - link "Hidan - Temas Liberados":
+      - /url: "?secao=ler_noticia&id=413"
+  - link "Round Beta - O Início":
+    - /url: "?secao=ler_noticia&id=412"
+    - img "Round Beta - O Início"
+  - paragraph: 26/02/2022
+  - heading "Round Beta - O Início" [level=3]:
+    - link "Round Beta - O Início":
+      - /url: "?secao=ler_noticia&id=412"
+  - link "Sugestões - Round Beta":
+    - /url: "?secao=ler_noticia&id=411"
+    - img "Sugestões - Round Beta"
+  - paragraph: 18/02/2022
+  - heading "Sugestões - Round Beta" [level=3]:
+    - link "Sugestões - Round Beta":
+      - /url: "?secao=ler_noticia&id=411"
+  - link "Hall da Fama - Round 32":
+    - /url: "?secao=ler_noticia&id=410"
+    - img "Hall da Fama - Round 32"
+  - paragraph: 12/02/2022
+  - heading "Hall da Fama - Round 32" [level=3]:
+    - link "Hall da Fama - Round 32":
+      - /url: "?secao=ler_noticia&id=410"
+  - link "Banidos do Round 32":
+    - /url: "?secao=ler_noticia&id=409"
+    - img "Banidos do Round 32"
+  - paragraph: 12/02/2022
+  - heading "Banidos do Round 32" [level=3]:
+    - link "Banidos do Round 32":
+      - /url: "?secao=ler_noticia&id=409"
+  - link "Mudanças para o Round 32":
+    - /url: "?secao=ler_noticia&id=408"
+    - img "Mudanças para o Round 32"
+  - paragraph: 04/12/2021
+  - heading "Mudanças para o Round 32" [level=3]:
+    - link "Mudanças para o Round 32":
+      - /url: "?secao=ler_noticia&id=408"
+  - link "Round 32 - Data e Explicações":
+    - /url: "?secao=ler_noticia&id=407"
+    - img "Round 32 - Data e Explicações"
+  - paragraph: 30/11/2021
+  - heading "Round 32 - Data e Explicações" [level=3]:
+    - link "Round 32 - Data e Explicações":
+      - /url: "?secao=ler_noticia&id=407"

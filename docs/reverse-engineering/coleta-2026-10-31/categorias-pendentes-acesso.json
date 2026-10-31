@@ -1,0 +1,26 @@
+{
+  "observedAt": "2026-10-31",
+  "note": "A seleção de personagem foi alterada durante a coleta em outra aba. Os dados já salvos mantêm o contexto observado; Karma, Kinjutsus e Medicinais não foram validados nesta continuação.",
+  "categories": [
+    {
+      "category": "Karma",
+      "requested": "?secao=academia_jutsu&tipo=7",
+      "status": "acesso_negado",
+      "cause": "Não determinada; houve navegação concorrente na sessão principal."
+    },
+    {
+      "category": "Kinjutsus",
+      "requested": "?secao=academia_jutsu&tipo=6",
+      "landed": "https://narutogame.com.br/index.php?secao=negado&byrule=section&source=academia_jutsu#",
+      "status": "acesso_negado",
+      "cause": "Não determinada; não inferir requisito de graduação a partir desta resposta genérica."
+    },
+    {
+      "category": "Medicinais",
+      "requested": "?secao=academia_jutsu&tipo=3",
+      "landed": "https://narutogame.com.br/index.php?secao=personagem_selecionar",
+      "status": "redirecionado_para_selecao",
+      "cause": "A sessão passou a mostrar seleção de outro personagem de nível 1. Não atribuir esta resposta a um requisito permanente da categoria."
+    }
+  ]
+}

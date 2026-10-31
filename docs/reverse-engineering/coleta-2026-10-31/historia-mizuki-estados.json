@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "source": "historia-mizuki-combate.json",
+  "states": [
+    {
+      "at": "2026-10-31T22:33:22.204Z",
+      "turn": 1,
+      "hp": 360,
+      "chakra": 264,
+      "stamina": 627,
+      "opponentHp": 312
+    },
+    {
+      "at": "2026-10-31T22:33:40.470Z",
+      "turn": 2,
+      "hp": 360,
+      "chakra": 261,
+      "stamina": 609,
+      "opponentHp": 297
+    },
+    {
+      "at": "2026-10-31T22:33:51.333Z",
+      "turn": 3,
+      "hp": 351,
+      "chakra": 256,
+      "stamina": 597,
+      "opponentHp": 286
+    },
+    {
+      "at": "2026-10-31T22:33:53.273Z",
+      "turn": 4,
+      "hp": 351,
+      "chakra": 253,
+      "stamina": 579,
+      "opponentHp": 271
+    },
+    {
+      "at": "2026-10-31T22:34:19.034Z",
+      "turn": 5,
+      "hp": 351,
+      "chakra": 248,
+      "stamina": 567,
+      "opponentHp": 262
+    },
+    {
+      "at": "2026-10-31T22:34:33.401Z",
+      "turn": 6,
+      "hp": 351,
+      "chakra": 245,
+      "stamina": 549,
+      "opponentHp": 247
+    },
+    {
+      "at": "2026-10-31T22:34:59.320Z",
+      "turn": 7,
+      "hp": 351,
+      "chakra": 240,
+      "stamina": 537,
+      "opponentHp": 240
+    },
+    {
+      "at": "2026-10-31T22:35:22.300Z",
+      "turn": 8,
+      "hp": 345,
+      "chakra": 237,
+      "stamina": 519,
+      "opponentHp": 221
+    },
+    {
+      "at": "2026-10-31T22:35:40.054Z",
+      "turn": 9,
+      "hp": 345,
+      "chakra": 232,
+      "stamina": 507,
+      "opponentHp": 214
+    },
+    {
+      "at": "2026-10-31T22:35:57.717Z",
+      "turn": 10,
+      "hp": 345,
+      "chakra": 229,
+      "stamina": 489,
+      "opponentHp": 197
+    },
+    {
+      "at": "2026-10-31T22:36:15.295Z",
+      "turn": 11,
+      "hp": 345,
+      "chakra": 224,
+      "stamina": 477,
+      "opponentHp": 188
+    },
+    {
+      "at": "2026-10-31T22:36:31.756Z",
+      "turn": 12,
+      "hp": 345,
+      "chakra": 221,
+      "stamina": 459,
+      "opponentHp": 173
+    },
+    {
+      "at": "2026-10-31T22:36:49.854Z",
+      "turn": 13,
+      "hp": 339,
+      "chakra": 216,
+      "stamina": 447,
+      "opponentHp": 162
+    },
+    {
+      "at": "2026-10-31T22:37:14.538Z",
+      "turn": 14,
+      "hp": 330,
+      "chakra": 213,
+      "stamina": 429,
+      "opponentHp": 143
+    },
+    {
+      "at": "2026-10-31T22:37:31.316Z",
+      "turn": 15,
+      "hp": 330,
+      "chakra": 208,
+      "stamina": 417,
+      "opponentHp": 134
+    },
+    {
+      "at": "2026-10-31T22:37:43.536Z",
+      "turn": 16,
+      "hp": 330,
+      "chakra": 205,
+      "stamina": 399,
+      "opponentHp": 119
+    },
+    {
+      "at": "2026-10-31T22:37:57.462Z",
+      "turn": 17,
+      "hp": 324,
+      "chakra": 200,
+      "stamina": 387,
+      "opponentHp": 108
+    },
+    {
+      "at": "2026-10-31T22:38:14.525Z",
+      "turn": 18,
+      "hp": 318,
+      "chakra": 197,
+      "stamina": 369,
+      "opponentHp": 89
+    },
+    {
+      "at": "2026-10-31T22:38:31.319Z",
+      "turn": 19,
+      "hp": 318,
+      "chakra": 192,
+      "stamina": 357,
+      "opponentHp": 82
+    },
+    {
+      "at": "2026-10-31T22:38:48.802Z",
+      "turn": 20,
+      "hp": 318,
+      "chakra": 189,
+      "stamina": 339,
+      "opponentHp": 67
+    },
+    {
+      "at": "2026-10-31T22:39:02.920Z",
+      "turn": 21,
+      "hp": 318,
+      "chakra": 184,
+      "stamina": 327,
+      "opponentHp": 60
+    },
+    {
+      "at": "2026-10-31T22:39:20.693Z",
+      "turn": 22,
+      "hp": 318,
+      "chakra": 181,
+      "stamina": 309,
+      "opponentHp": 43
+    },
+    {
+      "at": "2026-10-31T22:39:37.964Z",
+      "turn": 23,
+      "hp": 318,
+      "chakra": 176,
+      "stamina": 297,
+      "opponentHp": 36
+    },
+    {
+      "at": "2026-10-31T22:39:58.001Z",
+      "turn": 24,
+      "hp": 318,
+      "chakra": 173,
+      "stamina": 279,
+      "opponentHp": 19
+    },
+    {
+      "at": "2026-10-31T22:40:23.261Z",
+      "turn": 25,
+      "hp": 312,
+      "chakra": 168,
+      "stamina": 267,
+      "opponentHp": 8
+    },
+    {
+      "at": "2026-10-31T22:40:41.810Z",
+      "turn": 25,
+      "hp": 306,
+      "chakra": 165,
+      "stamina": 249,
+      "opponentHp": 0
+    }
+  ],
+  "validation": {
+    "resourceCostTransitions": 25,
+    "allMatched": true
+  }
+}

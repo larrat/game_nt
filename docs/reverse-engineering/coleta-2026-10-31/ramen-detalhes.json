@@ -1,0 +1,420 @@
+[
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/nissin.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Merenda Ninja Ramen Recupera 200 ponto(s) Recupera 200 ponto(s) Recupera 200 ponto(s) updateTooltips(); x5 Merenda Ninja Requer graduação: Estudante Requer Level 1 ou maior RY$ 17 _items[1859] = { r: 17, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/ramen_duplo.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Shoyu Gyoza-Ramen Ramen Recupera 450 ponto(s) Recupera 450 ponto(s) Recupera 450 ponto(s) updateTooltips(); x0 Shoyu Gyoza-Ramen Requer graduação: Genin RY$ 59 _items[93] = { r: 59, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/ramen_duplo.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Sensei Shoyu Gyoza-Ramen Ramen Recupera 450 ponto(s) Recupera 450 ponto(s) Recupera 450 ponto(s) updateTooltips(); x0 Sensei Shoyu Gyoza-Ramen Requer graduação: Genin Ter 10 Batalhas vencidas com o Sensei atual RY$ 42 _items[1494162] = { r: 42, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/ramen_duplo.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Shoyu Gyoza-Ramen Reforçado Ramen Recupera 525 ponto(s) Recupera 525 ponto(s) Recupera 525 ponto(s) updateTooltips(); x0 Shoyu Gyoza-Ramen Reforçado Requer graduação: Genin 3 Créditos VIP _items[1786] = { r: 0, c: 3 } Pacote com 20! Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Shio_Tyashu-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Shio Tyashu-Ramen Ramen Recupera 725 ponto(s) Recupera 725 ponto(s) Recupera 725 ponto(s) updateTooltips(); x0 Shio Tyashu-Ramen Requer graduação: Chuunin RY$ 119 _items[759] = { r: 119, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Shio_Tyashu-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Sensei Shio Tyashu-Ramen Ramen Recupera 725 ponto(s) Recupera 725 ponto(s) Recupera 725 ponto(s) updateTooltips(); x0 Sensei Shio Tyashu-Ramen Requer graduação: Chuunin Ter 20 Batalhas vencidas com o Sensei atual RY$ 102 _items[1494163] = { r: 102, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Shio_Tyashu-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Shio Tyashu-Ramen Reforçado Ramen Recupera 825 ponto(s) Recupera 825 ponto(s) Recupera 825 ponto(s) updateTooltips(); x0 Shio Tyashu-Ramen Reforçado Requer graduação: Chuunin 6 Créditos VIP _items[1788] = { r: 0, c: 6 } Pacote com 20! Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Misso_Tyashu-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Misso Tyashu-Ramen Ramen Recupera 1000 ponto(s) Recupera 1000 ponto(s) Recupera 1000 ponto(s) updateTooltips(); x0 Misso Tyashu-Ramen Requer graduação: Jounin RY$ 178 _items[761] = { r: 178, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Misso_Tyashu-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Sensei Misso Tyashu-Ramen Ramen Recupera 1000 ponto(s) Recupera 1000 ponto(s) Recupera 1000 ponto(s) updateTooltips(); x0 Sensei Misso Tyashu-Ramen Requer graduação: Jounin Ter 30 Batalhas vencidas com o Sensei atual RY$ 153 _items[1494164] = { r: 153, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Misso_Tyashu-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Misso Tyashu-Ramen Reforçado Ramen Recupera 1150 ponto(s) Recupera 1150 ponto(s) Recupera 1150 ponto(s) updateTooltips(); x0 Misso Tyashu-Ramen Reforçado Requer graduação: Jounin 8 Créditos VIP _items[1790] = { r: 0, c: 8 } Pacote com 20! Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Shoyu_Yasai-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Shoyu Yasai-Ramen Ramen Recupera 1270 ponto(s) Recupera 1270 ponto(s) Recupera 1270 ponto(s) updateTooltips(); x0 Shoyu Yasai-Ramen Requer graduação: ANBU RY$ 238 _items[770] = { r: 238, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Shoyu_Yasai-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Sensei Shoyu Yasai-Ramen Ramen Recupera 1270 ponto(s) Recupera 1270 ponto(s) Recupera 1270 ponto(s) updateTooltips(); x0 Sensei Shoyu Yasai-Ramen Requer graduação: ANBU Ter 40 Batalhas vencidas com o Sensei atual RY$ 204 _items[1494165] = { r: 204, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Shoyu_Yasai-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Shoyu Yasai-Ramen Reforçado Ramen Recupera 1500 ponto(s) Recupera 1500 ponto(s) Recupera 1500 ponto(s) updateTooltips(); x0 Shoyu Yasai-Ramen Reforçado Requer graduação: ANBU 11 Créditos VIP _items[1792] = { r: 0, c: 11 } Pacote com 20! Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Shio_Ebi-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Shio Ebi-Ramen Ramen Recupera 1550 ponto(s) Recupera 1550 ponto(s) Recupera 1550 ponto(s) updateTooltips(); x0 Shio Ebi-Ramen Requer graduação: Sannin da Folha RY$ 297 _items[772] = { r: 297, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Shio_Ebi-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Sensei Shio Ebi-Ramen Ramen Recupera 1550 ponto(s) Recupera 1550 ponto(s) Recupera 1550 ponto(s) updateTooltips(); x0 Sensei Shio Ebi-Ramen Requer graduação: Sannin da Folha Ter 50 Batalhas vencidas com o Sensei atual RY$ 255 _items[1494166] = { r: 255, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Shio_Ebi-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Shio Ebi-Ramen Reforçado Ramen Recupera 1800 ponto(s) Recupera 1800 ponto(s) Recupera 1800 ponto(s) updateTooltips(); x0 Shio Ebi-Ramen Reforçado Requer graduação: Sannin da Folha 14 Créditos VIP _items[1794] = { r: 0, c: 14 } Pacote com 20! Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Misso_Ebi-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Misso Ebi-Ramen Ramen Recupera 1815 ponto(s) Recupera 1815 ponto(s) Recupera 1815 ponto(s) updateTooltips(); x0 Misso Ebi-Ramen Requer graduação: Herói RY$ 357 _items[774] = { r: 357, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Misso_Ebi-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Sensei Misso Ebi-Ramen Ramen Recupera 1815 ponto(s) Recupera 1815 ponto(s) Recupera 1815 ponto(s) updateTooltips(); x0 Sensei Misso Ebi-Ramen Requer graduação: Herói Ter 60 Batalhas vencidas com o Sensei atual RY$ 306 _items[1494167] = { r: 306, c: 0 } Comprar",
+    "tooltip": []
+  },
+  {
+    "images": [
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/comidas/Misso_Ebi-Ramen.jpg"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png"
+      },
+      {
+        "id": "",
+        "src": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+      }
+    ],
+    "text": "Misso Ebi-Ramen Reforçado Ramen Recupera 2200 ponto(s) Recupera 2200 ponto(s) Recupera 2200 ponto(s) updateTooltips(); x0 Misso Ebi-Ramen Reforçado Requer graduação: Herói 17 Créditos VIP _items[1796] = { r: 0, c: 17 } Pacote com 20! Comprar",
+    "tooltip": []
+  }
+]

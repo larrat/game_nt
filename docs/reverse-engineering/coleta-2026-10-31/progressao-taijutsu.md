@@ -33,3 +33,10 @@ Dynamic Kick aprendido: CP264→258 (-6), SP567→531 (-36), XP812→826 (+14); 
 Dojo declara limite de 8 combates NPC diários, reset à meia-noite (fuso não confirmado). Começou em 0/8. Se esse limite for a única fonte de contagem NPC, 75 vitórias exigem pelo menos 10 cotas diárias com aproveitamento perfeito; isso não prova limite global de outros modos. Primeiro oponente oferecido: Kakashi Hatake. Combate aceito.
 
 Combate 1: início restaurou HP360/CP264/SP567; NPC Kakashi nível5 HP360/CP250/SP820, Poder Ninja11050 contra6950. Painel superior fica estático durante turnos; painel do combatente é a evidência de consumo. Dynamic Kick confirmou -3CP/-18SP e reutilização após um turno intermediário; Chute -5CP/-12SP. Dano observado varia com ação defensiva: Dynamic Kick12 contra Acrobacia e16 contra Chute/Soco; Chute4 contra Acrobacia,6 contra Defender com as mãos e8 contra Chute. Não interpretar esses pares isolados como fórmula completa.
+
+Passagem do turno20→21: CP189→197 e SP279→295 apesar do Chute (-5CP/-12SP). Variação adicional compatível com recuperação de +13CP/+28SP (piso de 5% dos máximos264/567). HP194 permaneceu. É hipótese de recuperação periódica a confirmar, não afirmar gatilho somente pelo turno sem novas amostras.
+
+
+## Estado mais recente — substitui pontos de retomada anteriores
+
+O usuário concluiu a primeira luta: 1 vitória NPC. Após distribuir12 pontos, Tai8/Força8/Selo6/Resistência4, ataque4, defesas2/2, precisão6 e SPmáx627. Mizuki foi derrotado no modo história: +300XP/+312Ryous/+8fragmentos e contador NPC1→2. Último Status: nível5, XP1426/3240,3824Ryous, HP360/CP264/SP500 de627, dez tarefas. Faltam três vitórias para Genin. Consumo de Merenda, talentos e aprimoramentos não foram confirmados. Ver historia-e-agente.md para medições e limites.

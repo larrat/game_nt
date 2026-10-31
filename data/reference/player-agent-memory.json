@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "goal": {
+    "rank": "Chuunin",
+    "status": "in_progress"
+  },
+  "runtime": {
+    "status": "not_implemented",
+    "mode": "evidence_and_decision_contract_only",
+    "browserExecution": "unavailable_in_current_turn"
+  },
+  "latestConfirmedState": {
+    "observedAt": "2026-10-31T22:41:00Z",
+    "timePrecision": "approximate_after_battle",
+    "requiresFreshReadBeforeAction": true,
+    "class": "Taijutsu",
+    "rank": "Estudante",
+    "level": 5,
+    "xp": 1426,
+    "xpNextLevel": 3240,
+    "ryous": 3824,
+    "resources": {
+      "hp": {
+        "current": 360,
+        "max": 360
+      },
+      "chakra": {
+        "current": 264,
+        "max": 264
+      },
+      "stamina": {
+        "current": 500,
+        "max": 627
+      }
+    },
+    "npcWins": 2,
+    "tasks": 10,
+    "rankDMissions": 0,
+    "learnedJutsus": [
+      "Dynamic Kick"
+    ],
+    "learnedJutsuCountExact": null,
+    "inventory": {
+      "merendaNinja": 5
+    },
+    "attributes": {
+      "tai": 8,
+      "buk": 1,
+      "nin": 1,
+      "gen": 1,
+      "strength": 8,
+      "agility": 3,
+      "intelligence": 1,
+      "seals": 6,
+      "resistance": 4,
+      "energy": 10
+    }
+  },
+  "observations": [
+    {
+      "id": "history-mizuki-win",
+      "status": "verified",
+      "source": "historia-mizuki-combate.json + status-pos-mizuki.txt",
+      "facts": {
+        "actions": 25,
+        "combatResourceCost": {
+          "chakra": 99,
+          "stamina": 378
+        },
+        "combatEnd": {
+          "hp": 306,
+          "chakra": 165,
+          "stamina": 249
+        },
+        "reward": {
+          "xp": 300,
+          "ryous": 312,
+          "fragments": 8
+        },
+        "npcWinsBefore": 1,
+        "npcWinsAfter": 2
+      },
+      "unknown": [
+        "Regra de conversão entre recursos finais da luta e recursos após navegação",
+        "Se desafios da história consomem cota diária do dojo"
+      ]
+    },
+    {
+      "id": "merenda-ninja",
+      "status": "interface_observed_consumption_not_tested",
+      "facts": {
+        "restoreEachResource": 200,
+        "priceRyous": 17,
+        "owned": 5,
+        "minimumRank": "Estudante",
+        "minimumLevel": 1
+      },
+      "pendingAction": "Consumir uma unidade pela mochila e confirmar saldo e estoque"
+    }
+  ],
+  "decisions": [
+    {
+      "action": "challenge_story_mizuki",
+      "reason": "Requisitos atendidos, recursos completos, oportunidade de medir contador NPC",
+      "status": "executed_and_verified"
+    },
+    {
+      "action": "consume_merenda",
+      "reason": "Déficit de127 stamina no último estado lido",
+      "status": "not_executed_or_verified",
+      "requiresFreshReadBeforeAction": true
+    }
+  ],
+  "nextChecks": [
+    "Conectar e atualizar estado",
+    "Localizar ação visível de usar Merenda na mochila",
+    "Consultar aprimoramento e evolução de Dynamic Kick",
+    "Consultar saldo e efeitos de talentos",
+    "Conferir próximo desafio País das Ondas e requisitos",
+    "Conquistar três vitórias restantes e graduar Genin"
+  ],
+  "invariants": [
+    "Não executar com estado antigo",
+    "Não repetir ação pendente sem verificar resultado",
+    "Não misturar recursos do combate com os recursos persistidos",
+    "Não extrapolar requisitos de outra classe",
+    "Não contar aprimoramento como nova técnica sem conferir contador"
+  ]
+}

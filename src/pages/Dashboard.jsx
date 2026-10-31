@@ -224,7 +224,7 @@ export default function Dashboard({ player, updatePlayer }) {
   const claimedTasks = dailyTasks.filter(task => claimedList.includes(task.key)).length;
 
   return (
-    <div className="kuro-dashboard">
+    <div className="kuro-dashboard kuro-dashboard-v2">
       <header className="kuro-dashboard__header">
         <div>
           <div className="kuro-eyebrow"><span className="kuro-eyebrow__line" /> CENTRAL SHINOBI <span className="kuro-eyebrow__season">TEMPORADA I</span></div>

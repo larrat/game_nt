@@ -4,10 +4,10 @@
 
 ## 1. Inventário e confiança
 
-Na `master`: 29 documentos sob `docs/`, 30 arquivos `src/pages/*.jsx`, 21 arquivos de testes, 71 arquivos de migração SQL, aproximadamente 91,8 MB de assets em `public/` e `src/styles/main.css` de aproximadamente 160 kB. A UI documenta 25 rotas autenticadas. Código versionado, testes de contrato e deploy READY **não** são E2E funcional.
+Na `master` **após o merge da PR #65**: 45 documentos Markdown sob `docs/`, 30 arquivos `src/pages/*.jsx`, 21 arquivos de testes, 71 arquivos de migração SQL, aproximadamente 91,8 MB de assets em `public/` e `src/styles/main.css` de aproximadamente 160 kB. A PR #65 acrescentou mídias coletadas em `docs/`, fora do diretório público da aplicação. A UI documenta 25 rotas autenticadas. Código versionado, testes de contrato e deploy READY **não** são E2E funcional.
 
-Duas PRs abertas:
-- [#65](https://github.com/larrat/game_nt/pull/65): 17 novos documentos Markdown, 41 JSON de análise e aproximadamente 1.135 mídias de referência na pasta de coleta (cerca de 222 MiB). A documentação registra 239 nomes do Templo, 767 versões, 550 temas VIP e 700 jutsus catalogados (320 de clã, 140 gerais, 230 elementais, 10 portões), com custos/requisitos observados **não** necessariamente compatíveis com o schema atual. Possui três protótipos HTML, dos quais o arquivo índice registra **Quartel ninja** como opção escolhida. Seed de 184 personagens/191 avatares foi aplicado anteriormente, conforme a PR; conferido abaixo. A presença de mídias de terceiros **não confere licença de reutilização nem publicação**.
+Situação das PRs:
+- [#65](https://github.com/larrat/game_nt/pull/65): **integrada à master em 31/10/2026**. Incorporou 17 documentos Markdown novos (16 em `docs/`, um em `data/reference/`), 41 JSON de análise e aproximadamente 1.135 mídias de referência (cerca de 222 MiB). A documentação registra 239 nomes do Templo, 767 versões, 550 temas VIP e 700 jutsus catalogados (320 de clã, 140 gerais, 230 elementais, 10 portões), com custos/requisitos observados **não** necessariamente compatíveis com o schema atual. Possui três protótipos HTML, dos quais o arquivo índice registra **Quartel ninja** como opção escolhida. Seed de 184 personagens/191 avatares foi aplicado anteriormente, conforme a PR; conferido abaixo. A presença de mídias de terceiros **não confere licença de reutilização nem publicação**.
 - [#68](https://github.com/larrat/game_nt/pull/68): base visual + CSS `experience-v2.css`, alterações em Login, Seleção, Dashboard, Status e shell, preview demonstrativo. Branch em draft, testes e build aprovados; teste com sessão real ainda pendente. **Não confundir com produção.**
 
 **Verificação SQL de leitura em 31/10/2026:** catálogo `characters`: **188**; `avatars`: **222**; `jutsus`: **57**. A PR #65 documenta 700 jutsus adicionais **somente como dados de referência**, não como 700 jutsus aptos a serem aprendidos no banco.
@@ -49,7 +49,7 @@ Duas PRs abertas:
 4. `design/kurokage-visual-decision` — reconciliar protótipo Quartel ninja com a PR #68, design tokens e aceitação.
 5. `feat/ui-onboarding-dashboard-status` — integrar a PR #68 após QA e revisão, ou dividir componentes se necessário.
 6. `feat/ui-academy-combat` — telas restantes do percurso crítico.
-7. `content/catalog-normalization` — apenas catálogo estruturado e assets próprios/licenciados; revisão da PR #65 antes de qualquer merge.
+7. `content/catalog-normalization` — sanear e separar o acervo da PR #65 **já integrado na master**, manter arquivos de referência fora da distribuição e só usar assets próprios/licenciados.
 8. `feat/progression-and-secondary-systems` — depois do núcleo estabilizado.
 
 ## 4. Contradições / documentação a limpar
@@ -58,7 +58,7 @@ Duas PRs abertas:
 |---|---|---|
 | Segurança do banco | `security-risk-register.md` descreve riscos em RPCs SQL antigas | Distinguir achados históricos de contratos ativos já corrigidos; investigar as 52 funções atuais, não reproduzir advertências antigas como fatos |
 | `players` privado | `private-players-and-public-profiles` descreve as fases 063/064 | 063 aplicada; **064 pendente**, comprovado por policy atual |
-| Jutsus | Catálogo de 700 técnicas da PR #65 | Apenas 57 linhas na tabela `jutsus`; catálogo extra é referência |
+| Jutsus | Catálogo de 700 técnicas **agora versionado na master após PR #65** | Apenas 57 linhas na tabela `jutsus`; catálogo extra é referência, não gameplay ativo |
 | Redesign | PR #68 traz fundo cinemático; PR #65 documenta seleção de Quartel ninja | Reconciliar antes de declarar a identidade final aprovada |
 | TypeScript | Dois documentos de "phase 1" com nomes quase iguais | Históricos complementares de PRs #43/#44, não dois projetos a executar |
 | Bloqueio de telas concorrentes | 36 telas com "acesso negado" na coleta inicial | Estado contextual de sessão, não requisito permanente comprovado |
@@ -77,6 +77,6 @@ Uma tarefa é **concluída em produção** apenas se: (a) mudança e dependênci
 
 - Priorizar **a privacidade owner-only**, configurando ambiente de duas contas e verificando consumidores das RPCs públicas.
 - Configurar SMTP e URLs de Auth corretamente; confirmar o ciclo cadastro/login/reset antes de abrir beta.
-- Medir uso efetivo de Vercel antes de tocar na retenção; PR #65 adiciona mídia de referência demais para um merge indiscriminado.
-- Consolidar identidade visual conforme a escolha de Quartel ninja e revisar visualmente PR #68.
+- Medir uso efetivo de Vercel e volume do Git depois do merge da PR #65; separar/restringir mídias coletadas sem licença, sem apagar evidências de forma inadvertida nem alterar deploys ativos.
+- Consolidar identidade visual conforme a escolha de Quartel ninja e revisar visualmente PR #68, ainda aberta em draft.
 - Fazer uma rodada vertical real de gameplay e registrar buglist priorizada.

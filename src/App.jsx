@@ -222,7 +222,18 @@ function App() {
     return <div className="app"><div className="main flex items-center justify-center h-full">Carregando Kurokage...</div></div>;
   }
 
-  // A recuperação precisa permanecer acessível mesmo depois de o link estabelecer uma sessão.
+  // Supabase can return a recovery link with tokens on the Site URL when
+  // the redirect URL isn't allowlisted. Detect the recovery marker *before*
+  // any authenticated navigation, and never treat the link as normal login.
+  const recoveryHash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+  const recoveryQuery = new URLSearchParams(window.location.search);
+  const isRecoveryCallback = recoveryHash.get('type') === 'recovery' ||
+    recoveryQuery.get('type') === 'recovery';
+  if (isRecoveryCallback && window.location.pathname !== '/redefinir-senha') {
+    // Preserve fragment / query tokens for supabase-js to finish parsing.
+    window.history.replaceState(null, '', '/redefinir-senha' + window.location.search + window.location.hash);
+  }
+  // Recovery UI always wins over the authenticated application shell.
   if (window.location.pathname === '/redefinir-senha') {
     return (
       <ToastProvider>

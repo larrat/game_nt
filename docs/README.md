@@ -17,6 +17,10 @@
 | Instalação, deploy, configuração | [README raiz](../README.md) | Procedimentos operacionais e domínio canônico |
 | Contribuição e padrões | [AGENTS.md](../.agents/AGENTS.md) | Regras de frontend; contém caminho local de referência que precisa ser removido |
 | Direção de produto e arquitetura | [Roadmap integrado](ROADMAP-INTEGRADO-2026-10-31.md) | Fonte de verdade para prioridades |
+| Quadro de trabalho | [Execution Board](EXECUTION-BOARD-2026-10-31.md) | Etapas, bloqueios, dependências e critérios de pronto |
+| Módulos e rotas | [Matriz de módulos](MODULOS-SITUACAO-ATUAL-2026-10-31.md) | Rotas existentes × implementação × QA pendente |
+| Jornada E2E | [Matriz de QA](qa/JORNADA-CRITICA-2026-10-31.md) | Casos de teste com duas contas descartáveis |
+| Decisão visual | [ADR-001](design/ADR-001-identidade-visual-2026-10-31.md) | Reconciliação Quartel Ninja × experiência cinematográfica |
 | Experiência e UI | [Plano UX v2](design/ux-redesign-v2-plan-2026-10-31.md) · [catálogo de telas](design/screen-catalog-and-visual-direction-2026-10-30.md) | Propostas; validar com QA da PR #68 |
 | Evidência comparativa | [Auditoria UX Naruto × Kurokage](design/naruto-game-comparative-ux-audit-2026-10-30.md) | Parcial; não copiar materiais protegidos |
 | Regras e fórmulas próprias | [Combate e progressão](reverse-engineering/kurokage-combat-and-progression.md) | Caracterização histórica de código; validar contra SQL ativo |

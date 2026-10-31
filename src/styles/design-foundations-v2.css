@@ -1,0 +1,149 @@
+/*
+ * Kurokage Design Foundations v2
+ * Apenas os componentes kui-* e a experiência autenticada (.app).
+ * O CSS legado continua disponível durante a migração por módulos.
+ * Identidade gráfica original. Nenhum material do Naruto Game é importado.
+ */
+.app {
+  --kui-bg: #080b11;
+  --kui-surface: #121721;
+  --kui-surface-raised: #1b222c;
+  --kui-border: #33353d;
+  --kui-border-focus: #ecc66d;
+  --kui-text: #f2ece0;
+  --kui-muted: #bbb4a9;
+  --kui-seal: #d8404b;
+  --kui-gold: #e1b750;
+  --kui-life: #f15e69;
+  --kui-chakra: #64b3ff;
+  --kui-stamina: #eac260;
+  --kui-xp: #6bd59c;
+  --kui-space-1: 4px;
+  --kui-space-2: 8px;
+  --kui-space-3: 12px;
+  --kui-space-4: 16px;
+  --kui-space-6: 24px;
+  --kui-space-8: 32px;
+  --kui-radius-sm: 6px;
+  --kui-radius-md: 10px;
+  --kui-radius-lg: 16px;
+}
+.app :is(button, a, input, select, textarea):focus-visible {
+  outline: 2px solid var(--kui-border-focus);
+  outline-offset: 3px;
+}
+.kui-panel {
+  min-width: 0;
+  border: 1px solid var(--kui-border);
+  border-radius: var(--kui-radius-md);
+  background: linear-gradient(155deg, var(--kui-surface), #10131b);
+}
+.kui-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--kui-space-2);
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--kui-radius-sm);
+  font: 700 12px/1.35 'Inter', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .18s ease, border-color .18s ease, transform .18s ease;
+}
+.kui-action:hover:not(:disabled) { transform: translateY(-1px); }
+.kui-action:active:not(:disabled) { transform: none; }
+.kui-action:disabled { opacity: .55; cursor: not-allowed; }
+.kui-action--seal {
+  color: #fff;
+  border-color: #ec5961;
+  background: linear-gradient(115deg, #c42d3a, #8f1d2b);
+}
+.kui-action--seal:hover:not(:disabled) { background: #cf3644; }
+.kui-action--gold { color: #211806; background: var(--kui-gold); border-color: #f0d27a; }
+.kui-action--gold:hover:not(:disabled) { background: #efc96c; }
+.kui-action--quiet { color: var(--kui-text); border-color: var(--kui-border); background: var(--kui-surface-raised); }
+.kui-action--quiet:hover:not(:disabled) { border-color: var(--kui-gold); }
+.kui-action--small { min-height: 36px; padding: 6px 12px; }
+
+.kui-resource { min-width: 0; }
+.kui-resource__meta {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--kui-space-2);
+  margin-bottom: var(--kui-space-2);
+}
+.kui-resource__symbol { font-size: 15px; color: var(--kui-life); text-align: center; }
+.kui-resource--chakra .kui-resource__symbol { color: var(--kui-chakra); }
+.kui-resource--stamina .kui-resource__symbol { color: var(--kui-stamina); }
+.kui-resource--xp .kui-resource__symbol { color: var(--kui-xp); }
+.kui-resource__name {
+  min-width: 0;
+  color: var(--kui-muted);
+  font: 600 10px/1.4 'JetBrains Mono', monospace;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+.kui-resource__amount { white-space: nowrap; color: var(--kui-text); font: 600 11px/1.3 'JetBrains Mono', monospace; }
+.kui-resource__amount span { color: var(--kui-muted); font-weight: 400; }
+.kui-resource__track {
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  overflow: hidden;
+  background: #080c12;
+}
+.kui-resource__track::-webkit-progress-bar { background: #080c12; border-radius: 999px; }
+.kui-resource__track::-webkit-progress-value { background: var(--kui-life); border-radius: 999px; }
+.kui-resource__track::-moz-progress-bar { background: var(--kui-life); border-radius: 999px; }
+.kui-resource__track--chakra::-webkit-progress-value { background: var(--kui-chakra); }
+.kui-resource__track--chakra::-moz-progress-bar { background: var(--kui-chakra); }
+.kui-resource__track--stamina::-webkit-progress-value { background: var(--kui-stamina); }
+.kui-resource__track--stamina::-moz-progress-bar { background: var(--kui-stamina); }
+.kui-resource__track--xp::-webkit-progress-value { background: var(--kui-xp); }
+.kui-resource__track--xp::-moz-progress-bar { background: var(--kui-xp); }
+.kuro-hero__xp-meter { height: 6px; margin-top: 8px; }
+.kuro-hero__resources .kui-resource + .kui-resource { margin-top: var(--kui-space-1); }
+
+.kui-empty {
+  display: flex;
+  align-items: center;
+  gap: var(--kui-space-4);
+  padding: var(--kui-space-6);
+  background: rgba(18,23,33,.75);
+  border: 1px dashed var(--kui-border);
+  border-radius: var(--kui-radius-md);
+}
+.kui-empty__icon { color: var(--kui-gold); font-size: 30px; flex: 0 0 auto; }
+.kui-empty__body { min-width: 0; flex: 1; }
+.kui-empty__body strong { display: block; color: var(--kui-text); font-size: 13px; line-height: 1.4; }
+.kui-empty__body p { color: var(--kui-muted); margin-top: 5px; font-size: 12px; line-height: 1.55; }
+.kui-empty__action { flex: 0 0 auto; }
+
+/* Os cenários já pertencem ao projeto; substituir o style inline evita
+ * acoplar o layout a propriedades gráficas dinâmicas. */
+.kuro-hero--village-default { background-image: url('/images/bg_default.jpg'); }
+.kuro-hero--village-1 { background-image: url('/images/bg_1.jpg'); }
+.kuro-hero--village-2 { background-image: url('/images/bg_2.jpg'); }
+.kuro-hero--village-3 { background-image: url('/images/bg_3.jpg'); }
+.kuro-hero--village-4 { background-image: url('/images/bg_4.jpg'); }
+.kuro-hero--village-5 { background-image: url('/images/bg_5.jpg'); }
+.kuro-hero--village-6 { background-image: url('/images/bg_6.jpg'); }
+.kuro-hero--village-7 { background-image: url('/images/bg_7.jpg'); }
+
+@media (max-width: 600px) {
+  .kui-empty { flex-wrap: wrap; padding: var(--kui-space-4); }
+  .kui-empty__action { width: 100%; }
+  .kui-empty__action > * { width: 100%; }
+  .kui-resource__amount { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kui-action { transition: none; }
+  .kui-action:hover:not(:disabled) { transform: none; }
+}

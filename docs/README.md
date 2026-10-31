@@ -25,7 +25,7 @@
 | Evidência comparativa | [Auditoria UX Naruto × Kurokage](design/naruto-game-comparative-ux-audit-2026-10-30.md) | Parcial; não copiar materiais protegidos |
 | Regras e fórmulas próprias | [Combate e progressão](reverse-engineering/kurokage-combat-and-progression.md) | Caracterização histórica de código; validar contra SQL ativo |
 | Treino / Academia / Combate / Status | [implementation/](implementation/) | Registro de entregas já implementadas, não um novo backlog |
-| Autenticação e privacidade | [security/](security/) | Auditorias datadas; conferir status atual no Supabase |
+| Autenticação e privacidade | [security/](security/) · [readiness da migração 064](security/rls-phase2-readiness-2026-10-31.md) | Auditorias datadas e gates operacionais; conferir SQL ativo |
 | Pesquisa funcional do concorrente | [reverse-engineering/](reverse-engineering/) | Evidências, amostras e limites de confiança |
 | Testes | [tests/](../tests/) · [workflow](../.github/workflows/engine-tests.yml) | CI unitário/contratos + build, sem E2E autenticado |
 | SQL e permissões | [migrations/](../migrations/) · [scripts/audit-rpc-privileges.sql](../scripts/audit-rpc-privileges.sql) | Comparar com migrations realmente aplicadas antes de agir |

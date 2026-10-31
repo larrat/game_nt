@@ -24,7 +24,7 @@
 | B03 | Unificar CSS e UI Kit; evitar crescimento incremental de `main.css` | **Parcial** | Tokens canônicos e componentes compartilhados, sem novas regras de negócio | B01/B02 |
 | C01 | Primeiro percurso completo: e-mail → personagem → treino → jutsu → missão → PvE → recompensa → graduação | **Não homologado** | Relatório de fluxo completo, banco consistente, falhas resolvidas | A01–A04, B02 |
 | C02 | Uniformizar Academia/Técnicas/Missões/Combate com o UI Kit | **Várias telas v3 já no código; padronização pendente** | Quatro fluxos com estados bloqueado, loading, custo e recibo | C01, B03 |
-| D01 | Auditoria de licença/proveniência das mídias adicionadas pela PR #65 | **Pendente; material versionado na master** | Manifesto de origem/licença, política de armazenamento e exclusão de publicação pública inadequada | #54 e issue dedicada |
+| D01 | Auditoria de licença/proveniência das mídias adicionadas pela PR #65 | **Pendente; material versionado na master** | Manifesto de origem/licença, política de armazenamento e exclusão de publicação pública inadequada | #54 e [#70](https://github.com/larrat/game_nt/issues/70) |
 | D02 | Transformar 700 técnicas coletadas em esquema próprio de requisitos e catálogo licenciado | **Referência apenas** | Modelagem AND/OR, ligações a clã/versão e testes de autorização, sem ativação automática | D01, A04 |
 | D03 | Revisar avatares/temas e evolução de personagem | **188 characters e 222 avatars no banco; fluxos parciais** | Desbloqueio × aquisição × equipamento; assets próprios | D01/D02 |
 | E01 | Regras de XP, gradução, elementos, clãs, itens e cooldowns | **Divergências documentadas** | Baseline por cenário + decisão de balanceamento + migrations compatíveis | C01 |

@@ -1,0 +1,87 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Espadas da Névoa" [level=1]
+- heading "Sobre as Espadas da Névoa" [level=2]:
+  - generic: 
+  - generic: Sobre as Espadas da Névoa
+- paragraph:
+  - text: As Espadas da Névoa são itens do tipo único, que são melhoradas junto com o seu personagem, logo, sempre serão as armas mais fortes do jogo.
+  - strong: "Atenção:"
+  - text: Sorteadas para todos os jogadores acima da graduação chunin.
+  - text: Perderão as armas os jogadores que não vencerem pvp em 24 horas ou que perderem um Duelo pvp.
+- text: Spam
+- text: ANBU - Lvl. 37
+- text: Portador da Hiramekarei
+- text: "Vitórias: 6"
+- text: "Derrotas: -"
+- text: AK47_PapaKill
+- text: Nukenin C - Lvl. 22
+- text: Portador da Kiba
+- text: "Vitórias: -"
+- text: "Derrotas: -"
+- text: ZeNinGen
+- text: Chuunin - Lvl. 25
+- text: Portador da Kubikiribouchou
+- text: "Vitórias: 32"
+- text: "Derrotas: -"
+- text: Kitty
+- text: Chuunin - Lvl. 20
+- text: Portador da Samehada
+- text: "Vitórias: -"
+- text: "Derrotas: -"
+- text: Psylocke
+- text: Jounin - Lvl. 29
+- text: Portador da Kabutowari
+- text: "Vitórias: -"
+- text: "Derrotas: -"
+- text: Mohtra
+- text: Chuunin - Lvl. 23
+- text: Portador da Nuibari
+- text: "Vitórias: -"
+- text: "Derrotas: -"
+- text: Pat1ence
+- text: Jounin - Lvl. 29
+- text: Portador da Shibuki
+- text: "Vitórias: 1"
+- text: "Derrotas: -"

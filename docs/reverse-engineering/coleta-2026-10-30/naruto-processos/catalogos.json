@@ -1,0 +1,3660 @@
+{
+  "status": "provisorio_nao_importar_como_regras",
+  "note": "Inspeção histórica assíncrona. Seletores não representam bônus fixos por clã. Preservado apenas como evidência; não usar como catálogo de atributos.",
+  "observations": [
+    {
+      "system": "clas",
+      "option": "Clá Uchiha",
+      "selectors": [
+        {
+          "id": "cla-selector-tai",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-ken",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-nin",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-gen",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-agi",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-con",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "cla-selector-forc",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-inte",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "cla-selector-res",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        },
+        {
+          "id": "cla-selector-esq",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-det",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ],
+          "value": "2"
+        },
+        {
+          "id": "cla-selector-conv",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        },
+        {
+          "id": "cla-selector-conc",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-prec_fisico",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        }
+      ],
+      "tooltips": [
+        {
+          "content": null,
+          "text": "ANBU",
+          "title": "ANBU"
+        },
+        {
+          "content": null,
+          "text": "37",
+          "title": "Click to see what's popular on this site!"
+        },
+        {
+          "content": null,
+          "text": "35",
+          "title": "Use seus créditos!"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uchiha"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hyuuga"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kaguya"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Senju"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Aburame"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yamanaka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Akimichi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Inuzuka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ootsutsuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nara"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sabaku"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chikamatsu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kibaku Nendo"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kami"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sumi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uzumaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kurama"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tsuyoi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuuhi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Fuuma"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kamizuru"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Namikaze"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sarutobi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sougu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoozuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hatake"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yakushi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ryotenbin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tenseigan"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ashura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shiro Hebi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Indra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Haruno"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Jashin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shizen"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shimura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uchiha"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hyuuga"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kaguya"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Senju"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Aburame"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yamanaka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Akimichi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Inuzuka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ootsutsuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nara"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sabaku"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chikamatsu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kibaku Nendo"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kami"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sumi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uzumaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kurama"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tsuyoi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuuhi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Fuuma"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kamizuru"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Namikaze"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sarutobi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sougu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoozuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hatake"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yakushi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ryotenbin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tenseigan"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ashura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shiro Hebi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Indra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Haruno"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Jashin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shizen"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shimura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-333"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-334"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-330"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-331"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-332"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-333"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-334"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-330"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-331"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-332"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-333"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-334"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Código"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        }
+      ]
+    },
+    {
+      "system": "clas",
+      "option": "Clá Hyuuga",
+      "selectors": [
+        {
+          "id": "cla-selector-tai",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-ken",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-nin",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-gen",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-agi",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-con",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "cla-selector-forc",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-inte",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "cla-selector-res",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        },
+        {
+          "id": "cla-selector-esq",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-det",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ],
+          "value": "2"
+        },
+        {
+          "id": "cla-selector-conv",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        },
+        {
+          "id": "cla-selector-conc",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-prec_fisico",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        }
+      ],
+      "tooltips": [
+        {
+          "content": null,
+          "text": "ANBU",
+          "title": "ANBU"
+        },
+        {
+          "content": null,
+          "text": "37",
+          "title": "Click to see what's popular on this site!"
+        },
+        {
+          "content": null,
+          "text": "35",
+          "title": "Use seus créditos!"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uchiha"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hyuuga"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kaguya"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Senju"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Aburame"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yamanaka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Akimichi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Inuzuka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ootsutsuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nara"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sabaku"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chikamatsu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kibaku Nendo"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kami"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sumi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uzumaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kurama"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tsuyoi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuuhi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Fuuma"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kamizuru"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Namikaze"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sarutobi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sougu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoozuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hatake"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yakushi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ryotenbin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tenseigan"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ashura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shiro Hebi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Indra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Haruno"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Jashin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shizen"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shimura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uchiha"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hyuuga"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kaguya"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Senju"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Aburame"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yamanaka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Akimichi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Inuzuka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ootsutsuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nara"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sabaku"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chikamatsu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kibaku Nendo"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kami"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sumi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uzumaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kurama"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tsuyoi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuuhi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Fuuma"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kamizuru"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Namikaze"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sarutobi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sougu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoozuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hatake"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yakushi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ryotenbin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tenseigan"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ashura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shiro Hebi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Indra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Haruno"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Jashin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shizen"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shimura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-333"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-334"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-330"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-331"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-332"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-333"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-334"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-330"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-331"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-332"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-333"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-334"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Código"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        }
+      ]
+    },
+    {
+      "system": "clas",
+      "option": "Clá Kaguya",
+      "selectors": [
+        {
+          "id": "cla-selector-tai",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-ken",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-nin",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-gen",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-agi",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-con",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "cla-selector-forc",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-inte",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "cla-selector-res",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        },
+        {
+          "id": "cla-selector-esq",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-det",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ],
+          "value": "2"
+        },
+        {
+          "id": "cla-selector-conv",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        },
+        {
+          "id": "cla-selector-conc",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-prec_fisico",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        }
+      ],
+      "tooltips": [
+        {
+          "content": null,
+          "text": "ANBU",
+          "title": "ANBU"
+        },
+        {
+          "content": null,
+          "text": "37",
+          "title": "Click to see what's popular on this site!"
+        },
+        {
+          "content": null,
+          "text": "35",
+          "title": "Use seus créditos!"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uchiha"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hyuuga"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kaguya"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Senju"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Aburame"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yamanaka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Akimichi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Inuzuka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ootsutsuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nara"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sabaku"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chikamatsu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kibaku Nendo"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kami"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sumi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uzumaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kurama"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tsuyoi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuuhi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Fuuma"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kamizuru"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Namikaze"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sarutobi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sougu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoozuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hatake"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yakushi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ryotenbin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tenseigan"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ashura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shiro Hebi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Indra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Haruno"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Jashin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shizen"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shimura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uchiha"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hyuuga"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kaguya"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Senju"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Aburame"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yamanaka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Akimichi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Inuzuka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ootsutsuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nara"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sabaku"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chikamatsu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kibaku Nendo"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kami"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sumi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uzumaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kurama"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tsuyoi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuuhi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Fuuma"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kamizuru"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Namikaze"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sarutobi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sougu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoozuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hatake"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yakushi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ryotenbin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tenseigan"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ashura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shiro Hebi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Indra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Haruno"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Jashin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shizen"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shimura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-333"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-334"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-330"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-331"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-332"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-333"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-334"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-330"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-331"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-332"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-333"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-334"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Código"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        }
+      ]
+    },
+    {
+      "system": "clas",
+      "option": "Clá Senju",
+      "selectors": [
+        {
+          "id": "cla-selector-tai",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-ken",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-nin",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-gen",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-agi",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-con",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "cla-selector-forc",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "cla-selector-inte",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-res",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        },
+        {
+          "id": "cla-selector-esq",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-det",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ],
+          "value": "2"
+        },
+        {
+          "id": "cla-selector-conv",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        },
+        {
+          "id": "cla-selector-conc",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "cla-selector-prec_fisico",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        }
+      ],
+      "tooltips": [
+        {
+          "content": null,
+          "text": "ANBU",
+          "title": "ANBU"
+        },
+        {
+          "content": null,
+          "text": "37",
+          "title": "Click to see what's popular on this site!"
+        },
+        {
+          "content": null,
+          "text": "35",
+          "title": "Use seus créditos!"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uchiha"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hyuuga"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kaguya"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Senju"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Aburame"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yamanaka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Akimichi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Inuzuka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ootsutsuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nara"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sabaku"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chikamatsu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kibaku Nendo"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kami"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sumi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uzumaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kurama"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tsuyoi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuuhi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Fuuma"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kamizuru"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Namikaze"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sarutobi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sougu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoozuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hatake"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yakushi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ryotenbin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tenseigan"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ashura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shiro Hebi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Indra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Haruno"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Jashin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shizen"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shimura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uchiha"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hyuuga"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kaguya"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Senju"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Aburame"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yamanaka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Akimichi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Inuzuka"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ootsutsuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nara"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sabaku"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chikamatsu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kibaku Nendo"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kami"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sumi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Uzumaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kurama"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tsuyoi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuuhi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Fuuma"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Kamizuru"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Namikaze"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sarutobi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Sougu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoozuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hatake"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yakushi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ryotenbin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Tenseigan"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Ashura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shiro Hebi"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Indra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Haruno"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Jashin"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shizen"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Shimura"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Chinoike"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Hoshigaki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Yuki"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Clã Nkiva"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-343"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-344"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-340"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-341"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-342"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-343"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-344"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-340"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-341"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-342"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-343"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-344"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Código"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        }
+      ]
+    },
+    {
+      "system": "invocacao",
+      "option": "Invocação Sapos",
+      "selectors": [
+        {
+          "id": "invocacao-selector-ene",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-tai",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-ken",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-nin",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-gen",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-agi",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-con",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-forc",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-inte",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-res",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-esq",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-det",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-conv",
+          "options": [],
+          "value": ""
+        },
+        {
+          "id": "invocacao-selector-conc",
+          "options": [],
+          "value": ""
+        }
+      ],
+      "tooltips": [
+        {
+          "content": null,
+          "text": "ANBU",
+          "title": "ANBU"
+        },
+        {
+          "content": null,
+          "text": "35",
+          "title": "Use seus créditos!"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Salamandras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Animais Gigantes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Quimeras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Marionetes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Sapos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Cobras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Lesmas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Armas Ninja"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Macacos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Fuinhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Cães"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Dokis"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Pássaros"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Aquáticos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Gatos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Abelhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Aranhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Salamandras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Animais Gigantes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Quimeras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Marionetes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Sapos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Cobras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Lesmas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Armas Ninja"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Macacos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Fuinhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Cães"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Dokis"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Pássaros"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Aquáticos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Gatos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Abelhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Aranhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Salamandras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Animais Gigantes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Quimeras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Marionetes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Código"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        }
+      ]
+    },
+    {
+      "system": "invocacao",
+      "option": "Invocação Cobras",
+      "selectors": [
+        {
+          "id": "invocacao-selector-ene",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "value": "4"
+        },
+        {
+          "id": "invocacao-selector-tai",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "invocacao-selector-ken",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "invocacao-selector-nin",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "invocacao-selector-gen",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "invocacao-selector-agi",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "invocacao-selector-con",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "invocacao-selector-forc",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "invocacao-selector-inte",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "value": "3"
+        },
+        {
+          "id": "invocacao-selector-res",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "invocacao-selector-esq",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "invocacao-selector-det",
+          "options": [
+            "0"
+          ],
+          "value": "0"
+        },
+        {
+          "id": "invocacao-selector-conv",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        },
+        {
+          "id": "invocacao-selector-conc",
+          "options": [
+            "0",
+            "1"
+          ],
+          "value": "1"
+        }
+      ],
+      "tooltips": [
+        {
+          "content": null,
+          "text": "ANBU",
+          "title": "ANBU"
+        },
+        {
+          "content": null,
+          "text": "35",
+          "title": "Use seus créditos!"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Salamandras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Animais Gigantes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Quimeras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Marionetes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Sapos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Cobras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Lesmas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Armas Ninja"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Macacos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Fuinhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Cães"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Dokis"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Pássaros"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Aquáticos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Gatos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Abelhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Aranhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Salamandras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Animais Gigantes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Quimeras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Marionetes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Sapos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Cobras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Lesmas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Armas Ninja"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Macacos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Fuinhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Cães"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Dokis"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Pássaros"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Aquáticos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Gatos"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Abelhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Aranhas"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Salamandras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Animais Gigantes"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Quimeras"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Invocação Marionetes"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-1064"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-1065"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer a",
+          "title": "i-item-1042"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-1043"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-1063"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-1064"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-1065"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Genin\n\t\t\t\t    \t\t\t\tRequer Level 5 ou maior\n\t\t\t\t    \t\t\t\tRequer a",
+          "title": "i-item-1042"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t    \t\t\t\tRequer Level 15 ou maior\n\t\t\t\t    \t\t\t\tReque",
+          "title": "i-item-1043"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Jounin\n\t\t\t\t    \t\t\t\tRequer Level 25 ou maior\n\t\t\t\t    \t\t\t\tRequer",
+          "title": "i-item-1063"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t    \t\t\t\tRequer Level 35 ou maior\n\t\t\t\t    \t\t\t\tRequer o",
+          "title": "i-item-1064"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t    \t\t\t\tRequer Level 45 ou maior\n\t\t\t\t    \t",
+          "title": "i-item-1065"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Código"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        }
+      ]
+    },
+    {
+      "system": "selo",
+      "option": "Selo Amaldiçoado do Céu",
+      "selectors": [],
+      "tooltips": [
+        {
+          "content": null,
+          "text": "ANBU",
+          "title": "ANBU"
+        },
+        {
+          "content": null,
+          "text": "38",
+          "title": "Click to see what's popular on this site!"
+        },
+        {
+          "content": null,
+          "text": "35",
+          "title": "Use seus créditos!"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Terra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Lua"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Sol"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Céu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Terra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Lua"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Sol"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Céu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Terra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Lua"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Sol"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-22862"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-22863"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1038"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1039"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20341"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1040"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1041"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20342"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1402"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1403"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20343"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-22861"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-22862"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-22863"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1038"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1039"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20341"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1040"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1041"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20342"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1402"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1403"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20343"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-22861"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-22862"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-22863"
+        },
+        {
+          "content": null,
+          "text": "Jogos",
+          "title": "Jogos"
+        },
+        {
+          "content": null,
+          "text": "Ver Jogos",
+          "title": "Ver Jogos"
+        },
+        {
+          "content": null,
+          "text": "GAME",
+          "title": "GAME"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Código"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        }
+      ]
+    },
+    {
+      "system": "selo",
+      "option": "Selo Amaldiçoado da Terra",
+      "selectors": [],
+      "tooltips": [
+        {
+          "content": null,
+          "text": "ANBU",
+          "title": "ANBU"
+        },
+        {
+          "content": null,
+          "text": "38",
+          "title": "Click to see what's popular on this site!"
+        },
+        {
+          "content": null,
+          "text": "35",
+          "title": "Use seus créditos!"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Terra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Lua"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Sol"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Céu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Terra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Lua"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Sol"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Céu"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Terra"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado da Lua"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Selo Amaldiçoado do Sol"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-22862"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-22863"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1038"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1039"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20341"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1040"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1041"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20342"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1402"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1403"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20343"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-22861"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-22862"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-22863"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1038"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1039"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20341"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1040"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1041"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20342"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-1402"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-1403"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-20343"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Chuunin\n\t\t\t\t\t\t\t\t\tRequer Level 15 ou maior\n\t\t\t\t\t\t\t\t\tRequer o Se",
+          "title": "i-item-22861"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: ANBU\n\t\t\t\t\t\t\t\t\tRequer Level 35 ou maior\n\t\t\t\t\t\t\t\t\tRequer o item:",
+          "title": "i-item-22862"
+        },
+        {
+          "content": null,
+          "text": "Requer graduação: Sannin da Folha\n\t\t\t\t\t\t\t\t\tRequer Level 45 ou maior\n\t\t\t\t\t\t\t\t\tReq",
+          "title": "i-item-22863"
+        },
+        {
+          "content": null,
+          "text": "Jogos",
+          "title": "Jogos"
+        },
+        {
+          "content": null,
+          "text": "Ver Jogos",
+          "title": "Ver Jogos"
+        },
+        {
+          "content": null,
+          "text": "GAME",
+          "title": "GAME"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Código"
+        },
+        {
+          "content": null,
+          "text": "",
+          "title": "Advertisement"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Ranking de Equipes" [level=1]
+- generic: Vila
+- combobox "Vila":
+  - option "Geral"
+  - option "Folha" [selected]
+  - option "Areia"
+  - option "Névoa"
+  - option "Pedra"
+  - option "Nuvem"
+  - option "Akatsuki"
+  - option "Som"
+  - option "Chuva"
+- generic: Posição
+- combobox "Posição":
+  - option "1 Até 50" [selected]
+- generic: Nome
+- textbox
+- button "Filtrar"
+- link:
+  - /url: javascript:void(0)
+- link "ANBU":
+  - /url: "?secao=equipe_detalhe&id=NA%253D%253D"
+- generic: 1º
+- generic: Level 20
+- generic: "49350"
+- link:
+  - /url: javascript:void(0)
+- link "Jounins":
+  - /url: "?secao=equipe_detalhe&id=NDE%253D"
+- generic: 2º
+- generic: Level 20
+- generic: "44700"
+- link:
+  - /url: javascript:void(0)
+- link "TravestisDeKonoha":
+  - /url: "?secao=equipe_detalhe&id=NDU%253D"
+- generic: 3º
+- generic: Level 17
+- generic: "34400"
+- link:
+  - /url: javascript:void(0)
+- link "Time 7":
+  - /url: "?secao=equipe_detalhe&id=NDY%253D"
+- generic: 4º
+- generic: Level 14
+- generic: "32000"
+- link:
+  - /url: javascript:void(0)
+- link "Africanos":
+  - /url: "?secao=equipe_detalhe&id=NQ%253D%253D"
+- generic: 6º
+- generic: Level 15
+- generic: "31800"
+- link:
+  - /url: javascript:void(0)
+- link "Storm":
+  - /url: "?secao=equipe_detalhe&id=Mjg%253D"
+- generic: 5º
+- generic: Level 23
+- generic: "31800"
+- link:
+  - /url: javascript:void(0)
+- link "blood stone":
+  - /url: "?secao=equipe_detalhe&id=ODA%253D"
+- generic: 7º
+- generic: Level 18
+- generic: "31200"
+- link:
+  - /url: javascript:void(0)
+- link "Time":
+  - /url: "?secao=equipe_detalhe&id=OTI%253D"
+- generic: 8º
+- generic: Level 10
+- generic: "28100"
+- link:
+  - /url: javascript:void(0)
+- link "Alpha":
+  - /url: "?secao=equipe_detalhe&id=Njc%253D"
+- generic: 9º
+- generic: Level 8
+- generic: "28000"
+- link:
+  - /url: javascript:void(0)
+- link "CavaleirosDeOuro":
+  - /url: "?secao=equipe_detalhe&id=NTU%253D"
+- generic: 10º
+- generic: Level 18
+- generic: "26300"
+- link:
+  - /url: javascript:void(0)
+- link "Dracarys":
+  - /url: "?secao=equipe_detalhe&id=NzI%253D"
+- generic: 11º
+- generic: Level 14
+- generic: "23750"
+- link:
+  - /url: javascript:void(0)
+- link "Bankai":
+  - /url: "?secao=equipe_detalhe&id=OTY%253D"
+- generic: 12º
+- generic: Level 3
+- generic: "19000"
+- link:
+  - /url: javascript:void(0)
+- link "Team3":
+  - /url: "?secao=equipe_detalhe&id=MTAx"
+- generic: 13º
+- generic: Level 2
+- generic: "17000"
+- link:
+  - /url: javascript:void(0)
+- link "equip":
+  - /url: "?secao=equipe_detalhe&id=MTA2"
+- generic: 14º
+- generic: Level 8
+- generic: "14100"
+- link:
+  - /url: javascript:void(0)
+- link "Senin":
+  - /url: "?secao=equipe_detalhe&id=MTE4"
+- generic: 15º
+- generic: Level 5
+- generic: "11600"
+- link:
+  - /url: javascript:void(0)
+- link "Flying Raijin":
+  - /url: "?secao=equipe_detalhe&id=MTIx"
+- generic: 16º
+- generic: Level 4
+- generic: "10000"
+- link:
+  - /url: javascript:void(0)
+- link "ANBU Folha":
+  - /url: "?secao=equipe_detalhe&id=Nzg%253D"
+- generic: 17º
+- generic: Level 1
+- generic: "3000"
+- link:
+  - /url: javascript:void(0)
+- link "dragon2":
+  - /url: "?secao=equipe_detalhe&id=MTAy"
+- generic: 20º
+- generic: Level 2
+- generic: "3000"
+- link:
+  - /url: javascript:void(0)
+- link "PunchTeam":
+  - /url: "?secao=equipe_detalhe&id=MTE1"
+- generic: 19º
+- generic: Level 2
+- generic: "3000"
+- link:
+  - /url: javascript:void(0)
+- link "sovai":
+  - /url: "?secao=equipe_detalhe&id=MTI1"
+- generic: 18º
+- generic: Level 1
+- generic: "3000"
+- link:
+  - /url: javascript:void(0)
+- link "Unknowt":
+  - /url: "?secao=equipe_detalhe&id=Nzc%253D"
+- generic: 21º
+- generic: Level 1
+- generic: "2000"
+- link:
+  - /url: javascript:void(0)
+- link "TsukiNoMe":
+  - /url: "?secao=equipe_detalhe&id=ODM%253D"
+- generic: 24º
+- generic: Level 1
+- generic: "2000"
+- link:
+  - /url: javascript:void(0)
+- link "STAFF":
+  - /url: "?secao=equipe_detalhe&id=ODY%253D"
+- generic: 23º
+- generic: Level 1
+- generic: "2000"
+- link:
+  - /url: javascript:void(0)
+- link "Los Anbus":
+  - /url: "?secao=equipe_detalhe&id=NjI%253D"
+- generic: 22º
+- generic: Level 1
+- generic: "2000"
+- insertion

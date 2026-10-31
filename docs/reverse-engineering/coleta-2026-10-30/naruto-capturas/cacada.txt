@@ -1,0 +1,55 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Caçada Ninja" [level=1]
+- main:
+  - heading "Ino - Halloween" [level=3]
+  - paragraph: A cada Round você terá um personagem para caçar , duele contra os npcs para obter os Fragmentos necessários!
+  - paragraph: "Caçada Ninja disponível: 653 Hora 59 Min 13 Seg"
+  - link "10 Fragmentos por 5 Créditos":
+    - /url: "?secao=jogador_vip"
+    - button "10 Fragmentos por 5 Créditos"
+  - generic: "0"
+  - generic: 0 de 100 fragmentos
+  - generic: "100"
+  - button "Desbloquear Personagem"

@@ -1,0 +1,153 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Torneios Ninja" [level=1]
+- heading "O total de participações é a soma de Torneios Vencidos ( PVP e NPC ) + a soma de derrotas em Torneios PVP." [level=2]:
+  - generic: 
+  - generic: O total de participações é a soma de Torneios Vencidos ( PVP e NPC ) + a soma de derrotas em Torneios PVP.
+- heading "Torneios Ninjas ( NPC e PVP )" [level=2]:
+  - generic: 
+  - generic: Torneios Ninjas ( NPC e PVP )
+- paragraph:
+  - text: Os Torneios Ninjas são o jeito de testar a sua força em combates entre ninjas de sua vila ou contra ninjas de outras vilas. Eles estão divididos entre Torneios PVP e NPC. Cada torneio possui requerimentos especificos e quantidade de duelos para a grande final.
+  - text: Você tem o total de participações em torneios PVP e NPC.
+- link "Torneio NPC":
+  - /url: "?secao=torneio"
+- link "Torneio PvP":
+  - /url: "?secao=torneio_pvp"
+- generic: Torneio de Jounin
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de ANBU
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Sanin
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Kage
+- text: Status
+- text: Campeão com 6 Vitórias
+- text: Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button "Participar do Torneio"
+- generic: Torneio de Genin
+- text: Status
+- text: Campeão com 6 Vitórias
+- text: Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button "Participar do Torneio"
+- generic: Exame Chuunin
+- text: Status
+- text: Campeão com 3 Vitórias
+- text: Atualmente com 0 Vitórias
+- generic: 
+- button "Participar do Torneio"
+- generic: Torneio de Chuunin
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Jounin
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de ANBU
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Sanin
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Kage
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Genin
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Exame Chuunin
+- generic: Status Campeão com 3 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Chuunin
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Jounin
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de ANBU
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Sanin
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- generic: Torneio de Kage
+- generic: Status Campeão com 6 Vitórias Atualmente com 0 Vitórias
+- generic: 
+- generic: 
+- button: Participar do Torneio
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

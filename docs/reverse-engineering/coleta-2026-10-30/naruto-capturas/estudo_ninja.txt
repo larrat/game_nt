@@ -1,0 +1,286 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Estudo Ninja" [level=1]
+- heading "Informações importantes" [level=2]:
+  - generic: 
+  - generic: Informações importantes
+- paragraph:
+  - text: No momento você possui 0 pontos.
+  - text: "Datas do Estudo Ninja: Terça, Quinta e Domingo."
+  - text: Veja abaixo a lista com prêmios disponiveis para troca, usando seus pontos do Estudo Ninja.
+- button "Começar o Estudo Ninja"
+- img "1000 Ryous"
+- generic: 1000 Ryous
+- generic: 0 de 10 ponto(s)
+- button "Trocar"
+- img "1000 Pontos de Experiência"
+- generic: 1000 Pontos de Experiência
+- generic: 0 de 15 ponto(s)
+- button "Trocar"
+- img "5 Ticket de Hospital"
+- generic: 5 Ticket de Hospital
+- generic: 0 de 30 ponto(s)
+- button "Trocar"
+- img "5000 Ryous"
+- generic: 5000 Ryous
+- generic: 0 de 40 ponto(s)
+- button "Trocar"
+- img "3000 Pontos de Experiência"
+- generic: 3000 Pontos de Experiência
+- generic: 0 de 40 ponto(s)
+- button "Trocar"
+- img "1 Ponto de Aprimoramento de Jutsu"
+- generic: 1 Ponto de Aprimoramento de Jutsu
+- generic: 0 de 40 ponto(s)
+- button "Trocar"
+- img "2000 Pontos de Treino"
+- generic: 2000 Pontos de Treino
+- generic: 0 de 40 ponto(s)
+- button "Trocar"
+- img "1 Ponto em Ninjutsu"
+- generic: 1 Ponto em Ninjutsu
+- generic: 0 de 50 ponto(s)
+- button "Trocar"
+- img "1 Ponto em Taijutsu"
+- generic: 1 Ponto em Taijutsu
+- generic: 0 de 50 ponto(s)
+- button "Trocar"
+- img "1 Ponto em Agilidade"
+- generic: 1 Ponto em Agilidade
+- generic: 0 de 50 ponto(s)
+- button "Trocar"
+- img "1 Ponto em Selo"
+- generic: 1 Ponto em Selo
+- generic: 0 de 50 ponto(s)
+- button "Trocar"
+- img "1 Ponto em Genjutsu"
+- generic: 1 Ponto em Genjutsu
+- generic: 0 de 50 ponto(s)
+- button "Trocar"
+- img "1 Ponto em Força"
+- generic: 1 Ponto em Força
+- generic: 0 de 50 ponto(s)
+- button "Trocar"
+- img "1 Ponto em Inteligência"
+- generic: 1 Ponto em Inteligência
+- generic: 0 de 50 ponto(s)
+- button "Trocar"
+- img "1 Ponto em Resistência"
+- generic: 1 Ponto em Resistência
+- generic: 0 de 50 ponto(s)
+- button "Trocar"
+- img "1 Ponto em Bukijutsu"
+- generic: 1 Ponto em Bukijutsu
+- generic: 0 de 50 ponto(s)
+- button "Trocar"
+- img "10 Ticket de Hospital"
+- generic: 10 Ticket de Hospital
+- generic: 0 de 60 ponto(s)
+- button "Trocar"
+- img "2 Pontos de Aprimoramento de Jutsu"
+- generic: 2 Pontos de Aprimoramento de Jutsu
+- generic: 0 de 70 ponto(s)
+- button "Trocar"
+- img "10000 Ryous"
+- generic: 10000 Ryous
+- generic: 0 de 70 ponto(s)
+- button "Trocar"
+- img "10 x Misso Ebi-Ramen"
+- generic: 10 x Misso Ebi-Ramen
+- generic: 0 de 80 ponto(s)
+- button "Trocar"
+- img "5000 Pontos de Treino"
+- generic: 5000 Pontos de Treino
+- generic: 0 de 90 ponto(s)
+- button "Trocar"
+- img "1 Crédito"
+- generic: 1 Crédito
+- generic: 0 de 100 ponto(s)
+- generic: "AVISO: Você só pode trocar esse prêmio uma vez na sua conta(ou seja, após trocar, nem mesmo outros personagens seus poderão trocar os pontos por esse prêmio)"
+- button "Trocar"
+- img "3 Pontos de Aprimoramento de Jutsu"
+- generic: 3 Pontos de Aprimoramento de Jutsu
+- generic: 0 de 120 ponto(s)
+- button "Trocar"
+- img "10000 Pontos de Experiência"
+- generic: 10000 Pontos de Experiência
+- generic: 0 de 130 ponto(s)
+- button "Trocar"
+- img "3 Pontos em Taijutsu"
+- generic: 3 Pontos em Taijutsu
+- generic: 0 de 140 ponto(s)
+- button "Trocar"
+- img "3 Pontos em Bukijutsu"
+- generic: 3 Pontos em Bukijutsu
+- generic: 0 de 140 ponto(s)
+- button "Trocar"
+- img "3 Pontos em Resistência"
+- generic: 3 Pontos em Resistência
+- generic: 0 de 140 ponto(s)
+- button "Trocar"
+- img "3 Pontos em Inteligência"
+- generic: 3 Pontos em Inteligência
+- generic: 0 de 140 ponto(s)
+- button "Trocar"
+- img "3 Pontos em Força"
+- generic: 3 Pontos em Força
+- generic: 0 de 140 ponto(s)
+- button "Trocar"
+- img "3 Pontos em Selo"
+- generic: 3 Pontos em Selo
+- generic: 0 de 140 ponto(s)
+- button "Trocar"
+- img "3 Pontos em Ninjutsu"
+- generic: 3 Pontos em Ninjutsu
+- generic: 0 de 140 ponto(s)
+- button "Trocar"
+- img "3 Pontos em Agilidade"
+- generic: 3 Pontos em Agilidade
+- generic: 0 de 140 ponto(s)
+- button "Trocar"
+- img "3 Pontos em Genjutsu"
+- generic: 3 Pontos em Genjutsu
+- generic: 0 de 140 ponto(s)
+- button "Trocar"
+- img "10 Chaveiro Explosivo"
+- generic: 10 Chaveiro Explosivo
+- generic: 0 de 160 ponto(s)
+- button "Trocar"
+- img "10 Pergaminho de Teletransporte para a Grama"
+- generic: 10 Pergaminho de Teletransporte para a Grama
+- generic: 0 de 180 ponto(s)
+- button "Trocar"
+- img "10 Pergaminho de Teletransporte para a Fontes Termais"
+- generic: 10 Pergaminho de Teletransporte para a Fontes Termais
+- generic: 0 de 180 ponto(s)
+- button "Trocar"
+- img "10 Pergaminho de Teletransporte para a Neve"
+- generic: 10 Pergaminho de Teletransporte para a Neve
+- generic: 0 de 180 ponto(s)
+- button "Trocar"
+- img "10 Pergaminho de Teletransporte para a Cachoeira"
+- generic: 10 Pergaminho de Teletransporte para a Cachoeira
+- generic: 0 de 180 ponto(s)
+- button "Trocar"
+- img "3 Créditos"
+- generic: 3 Créditos
+- generic: 0 de 200 ponto(s)
+- generic: "AVISO: Você só pode trocar esse prêmio uma vez na sua conta(ou seja, após trocar, nem mesmo outros personagens seus poderão trocar os pontos por esse prêmio)"
+- button "Trocar"
+- img "50000 Ryous"
+- generic: 50000 Ryous
+- generic: 0 de 200 ponto(s)
+- button "Trocar"
+- img "15000 Pontos de Treino"
+- generic: 15000 Pontos de Treino
+- generic: 0 de 200 ponto(s)
+- button "Trocar"
+- img "20 Chaveiro Explosivo"
+- generic: 20 Chaveiro Explosivo
+- generic: 0 de 200 ponto(s)
+- button "Trocar"
+- img "30 x Misso Ebi-Ramen"
+- generic: 30 x Misso Ebi-Ramen
+- generic: 0 de 220 ponto(s)
+- button "Trocar"
+- img "5 Pontos em Resistência"
+- generic: 5 Pontos em Resistência
+- generic: 0 de 230 ponto(s)
+- button "Trocar"
+- img "5 Pontos em Ninjutsu"
+- generic: 5 Pontos em Ninjutsu
+- generic: 0 de 230 ponto(s)
+- button "Trocar"
+- img "5 Pontos em Inteligência"
+- generic: 5 Pontos em Inteligência
+- generic: 0 de 230 ponto(s)
+- button "Trocar"
+- img "5 Pontos em Genjutsu"
+- generic: 5 Pontos em Genjutsu
+- generic: 0 de 230 ponto(s)
+- button "Trocar"
+- img "5 Pontos em Força"
+- generic: 5 Pontos em Força
+- generic: 0 de 230 ponto(s)
+- button "Trocar"
+- img "5 Pontos em Bukijutsu"
+- generic: 5 Pontos em Bukijutsu
+- generic: 0 de 230 ponto(s)
+- button "Trocar"
+- img "5 Pontos em Selo"
+- generic: 5 Pontos em Selo
+- generic: 0 de 230 ponto(s)
+- button "Trocar"
+- img "5 Pontos em Taijutsu"
+- generic: 5 Pontos em Taijutsu
+- generic: 0 de 230 ponto(s)
+- button "Trocar"
+- img "5 Pontos em Agilidade"
+- generic: 5 Pontos em Agilidade
+- generic: 0 de 230 ponto(s)
+- button "Trocar"
+- img "50000 Pontos de Treino"
+- generic: 50000 Pontos de Treino
+- generic: 0 de 260 ponto(s)
+- button "Trocar"
+- img "50 x Misso Ebi-Ramen"
+- generic: 50 x Misso Ebi-Ramen
+- generic: 0 de 260 ponto(s)
+- button "Trocar"
+- img "50000 Pontos de Experiência"
+- generic: 50000 Pontos de Experiência
+- generic: 0 de 260 ponto(s)
+- button "Trocar"
+- img "5 Créditos"
+- generic: 5 Créditos
+- generic: 0 de 360 ponto(s)
+- generic: "AVISO: Você só pode trocar esse prêmio uma vez na sua conta(ou seja, após trocar, nem mesmo outros personagens seus poderão trocar os pontos por esse prêmio)"
+- button "Trocar"
+- generic: Naruto Uzumaki - Modo Barion
+- generic: 0 de 360 ponto(s)
+- button "Trocar"
+- generic: Sasuke Uchiha - Susanoo
+- generic: 0 de 360 ponto(s)
+- button "Trocar"
+- insertion

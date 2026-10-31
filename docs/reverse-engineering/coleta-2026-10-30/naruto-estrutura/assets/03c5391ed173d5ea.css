@@ -1,0 +1,208 @@
+.buy-packs-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000000;
+  background-color: rgba(0, 0, 0, .8);
+  transform: translate3d(0, 0, 0);
+  gap: 3rem;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+  --card-width: 233px;
+  --glow-radius: 110px;
+}
+
+.buy-packs-container-removed {
+  opacity: 0;
+}
+
+.buy-packs-items {
+  width: 80%;
+  max-width: 80%;
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
+  grid-column-gap: 4rem;
+  grid-row-gap: 1rem;
+  justify-items: center;
+}
+
+@media (max-width: 1023px) {
+  .buy-packs-container {
+    overflow: scroll;
+  }
+
+  .buy-packs-items {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    overflow: auto;
+    padding: 3rem 0;
+    justify-items: center;
+  }
+}
+
+/* Item padrão, sem modificação */
+.buy-packs-item {
+  width: var(--card-width);
+  position: relative;
+  --rarity-color: white;
+  --rarity-color-dark: gray;
+}
+
+/* Glow itens raros */
+.buy-packs-item-raryty-r {
+  --rarity-color: #184485;
+  --rarity-color-dark: #0E2A48;
+}
+
+/* Glow itens epicos */
+.buy-packs-item-raryty-e {
+  --rarity-color: #A5107D;
+  --rarity-color-dark: #700C57;
+  --glow-radius: 140px;
+}
+
+/* Glow itens lendários */
+.buy-packs-item-raryty-l {
+  --rarity-color: #DA7A10;
+  --rarity-color-dark: #441C0C;
+  --glow-radius: 170px;
+}
+
+.buy-packs-item .buy-packs-item-glow {
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  z-index: -1;
+}
+
+.buy-packs-item .buy-packs-item-title {
+  background-image: url(../images/logado/packs/pack_top.png);
+  height: 74px;
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1.2rem;
+  text-align: center;
+}
+
+.buy-packs-item .buy-packs-item-footer {
+  background-image: url(../images/logado/packs/pack_bottom.png);
+  height: 75px;
+  color: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.buy-packs-item .buy-packs-item-icon {
+  background-color: #231710;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.buy-packs-item .buy-packs-item-description {
+  background-color: #231710;
+  padding: 0 2rem;
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.buy-packs-item .buy-packs-item-description .sign-positive {
+  color: green;
+}
+
+.buy-packs-item .buy-packs-item-description .sign-negative {
+  color: red;
+}
+
+.buy-packs-item .buy-packs-item-description .sign-positive, .buy-packs-item .buy-packs-item-description .sign-negative {
+  text-align: center;
+}
+
+.buy-packs-item .buy-packs-item-amount {
+  text-align: center;
+  font-size: 22px;
+}
+
+.buy-packs-item .buy-packs-item-content {
+  visibility: hidden;
+}
+
+.buy-packs-item-visible .buy-packs-item-content {
+  visibility: visible;
+  animation: 1.5s cubic-bezier(.85, .56, .49, 1.21) 0s pack-reveal;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.buy-packs-item-visible .buy-packs-item-glow {
+  animation: 1s linear 1.5s glowing-border-start, 1s linear 2.5s infinite alternate glowing-border;
+}
+
+.buy-packs-item .attribute {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.buy-packs-item .attribute:last-child {
+  margin-bottom: 0;
+}
+
+.buy-packs-item .attribute img {
+  margin-right: 0.5rem;
+  width: 22px;
+  height: 22px;
+}
+
+@keyframes pack-reveal {
+  0% {
+    transform: translateY(100vh) rotate3d(0, 1, 0, 7turn);
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0.3;
+  }
+
+  100% {
+    transform: translateY(0) rotate3d(0, 1, 0, 0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes glowing-border-start {
+  0% {
+    box-shadow: 0px 0px var(--glow-radius) transparent;
+  }
+
+  100% {
+    box-shadow: 0px 0px var(--glow-radius) var(--rarity-color);
+  }
+}
+
+@keyframes glowing-border {
+  0% {
+    box-shadow: 0px 0px var(--glow-radius) var(--rarity-color);
+  }
+
+  100% {
+    box-shadow: 0px 0px var(--glow-radius) var(--rarity-color-dark);
+  }
+}

@@ -1,0 +1,163 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=dojo_batalha_lutador".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php?secao=dojo_batalha_lutador
+	2 container
+		3 container
+			4 image Naruto
+			5 image dayIcon
+			6 image nightIcon
+			7 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php?secao=dojo_batalha_lutador#
+			8 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php?secao=dojo_batalha_lutador#
+			9 link javascript:logoff()
+		10 image
+		11 image
+		12 container level-start
+			13 text LVL
+			14 heading 5, Value: 1
+				15 text 5
+		16 image Vida
+		17 text 362/362
+		18 image Chakra
+		19 text 574/574
+		20 image Stamina
+		21 text 271/271
+		22 text EXP: 42/3240
+		23 container level-end
+			24 text LVL
+			25 heading 6, Value: 1
+				26 text 6
+		27 container
+			28 image
+			29 text 8
+		30 container
+			31 image
+			32 text 8
+		33 container
+			34 image
+			35 text 4
+		36 link Description: 1, Value: narutogame.com.br/index.php?secao=fidelidade
+		37 link narutogame.com.br/index.php?secao=mensagens
+		38 link Description: 5, Value: narutogame.com.br/index.php?secao=noticias
+		39 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php?secao=jogador_vip
+		40 text 2980
+		41 heading DESAFIO DOJO, Value: 1
+			42 text DESAFIO DOJO
+		43 container cnBase
+			44 container
+				45 container
+					46 container imgDP
+						367 text Pontos de Crítico
+						368 text Pontos de Absorção
+						369 text Pontos de Perfuração
+					50 text PERSONAGEM_TESTE ANBU Estudante Lvl. 5 Poder Ninja:
+					51 text 6950
+					52 container cnPHP2
+						370 text Vida: 294
+					54 container cnPSP2
+						371 text Chakra: 354
+					56 container cnPSTA2
+						372 text Stamina: 171
+					373 text 02:29
+					374 text Turno 21 - Seu turno
+					60 container imgDE
+						375 text Pontos de Crítico
+						376 text Pontos de Absorção
+						377 text Pontos de Perfuração
+					64 text Yagura NPC Boladão -- Lvl. 5 Poder Ninja:
+					65 text 4400
+					66 container cnEHP2
+						378 text Vida: 212
+					68 container cnESP2
+						379 text Chakra: 211
+					70 container cnESTA2
+						380 text Stamina: 74
+				72 container d-actionbar
+					73 heading Meus Jutsus:, Value: 4
+						74 text Meus Jutsus:
+					75 text Ataques (Nin/Gen)
+					76 container attack-list
+						77 container
+							381 text 1
+							79 image atki-4
+						80 container
+							382 text 1
+							82 image atki-5
+					83 container cnLog2
+						383 text PERSONAGEM_TESTE usa Soco
+						384 text Yagura recebe 4 de dano
+						385 text Yagura usa Defender com as mãos
+						386 text PERSONAGEM_TESTE usa Chute
+						387 text Yagura recebe 9 de dano
+						388 text Yagura usa Chute
+						389 text PERSONAGEM_TESTE recebe 10 de dano
+						390 text PERSONAGEM_TESTE usa Soco
+						391 text Yagura recebe 4 de dano
+						392 text Yagura usa Defender com as mãos
+						393 text PERSONAGEM_TESTE usa Chute
+						394 text Yagura recebe 7 de dano
+						395 text Yagura usa Defender com as mãos
+						396 text PERSONAGEM_TESTE usa Soco
+						397 text Yagura recebe 6 de dano
+						398 text Yagura usa Chute
+						399 text PERSONAGEM_TESTE recebe 10 de dano
+						400 text PERSONAGEM_TESTE usa Chute
+						401 text Yagura recebe 9 de dano
+						402 text Yagura usa Soco
+						403 text PERSONAGEM_TESTE recebe 7 de dano
+						404 text PERSONAGEM_TESTE usa Soco
+						405 text Yagura recebe 4 de dano
+						406 text Yagura usa Defender com as mãos
+						407 text PERSONAGEM_TESTE usa Chute
+						408 text Yagura recebe 7 de dano
+						409 text Yagura usa Defender com as mãos
+						410 text PERSONAGEM_TESTE usa Soco
+						411 text Yagura recebe 6 de dano
+						412 text Yagura usa Soco
+						413 text PERSONAGEM_TESTE recebe 7 de dano
+						414 text PERSONAGEM_TESTE usa Chute
+						415 text Yagura recebe 7 de dano
+						416 text Yagura usa Defender com as mãos
+						417 text PERSONAGEM_TESTE usa Soco
+						418 text Yagura recebe 2 de dano
+						419 text Yagura usa Acrobacia
+						420 text PERSONAGEM_TESTE usa Chute
+						421 text Yagura recebe 5 de dano
+						422 text Yagura usa Acrobacia
+						423 text PERSONAGEM_TESTE usa Soco
+						424 text Yagura recebe 6 de dano
+						425 text Yagura usa Soco
+						426 text PERSONAGEM_TESTE recebe 7 de dano
+						427 text PERSONAGEM_TESTE usa Chute
+						428 text Yagura recebe 5 de dano
+						429 text Yagura usa Acrobacia
+						430 text PERSONAGEM_TESTE usa Soco
+						431 text Yagura recebe 6 de dano
+						432 text Yagura usa Chute
+						433 text PERSONAGEM_TESTE recebe 10 de dano
+						434 text PERSONAGEM_TESTE usa Chute
+						435 text Yagura recebe 7 de dano
+						436 text Yagura usa Defender com as mãos
+						437 text PERSONAGEM_TESTE usa Soco
+						438 text Yagura recebe 2 de dano
+						439 text Yagura usa Acrobacia
+						440 text PERSONAGEM_TESTE usa Chute
+						441 text Yagura recebe 9 de dano
+						442 text Yagura usa Chute
+						443 text PERSONAGEM_TESTE recebe 10 de dano
+						444 text PERSONAGEM_TESTE usa Soco
+						445 text Yagura recebe 2 de dano
+						446 text Yagura usa Acrobacia
+						447 text PERSONAGEM_TESTE usa Chute
+						448 text Yagura recebe 9 de dano
+						449 text Yagura usa Soco
+						450 text PERSONAGEM_TESTE recebe 7 de dano
+			111 container Description: Advertisement, ID: aswift_0
+[Publicidade e parâmetros de rastreamento omitidos]
+					113 container Description: Blank, ID: ad_iframe
+[Publicidade e parâmetros de rastreamento omitidos]
+							115 container
+								116 AXWebArea Advertisement, URL: …
+									117 container main
+[Publicidade e parâmetros de rastreamento omitidos]
+										119 link …
+
+[Rodapé e chat omitidos na cópia pública]

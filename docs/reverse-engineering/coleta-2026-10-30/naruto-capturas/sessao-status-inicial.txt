@@ -1,0 +1,13 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=personagem_status".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
++		193 container aswift_0_host
++			194 heading Description: Estes são tópicos relacionados com o artigo que podem ser do seu interesse, Value: 2
++				195 text Descobrir mais
++			196 link GAME
++				197 text GAME
++			198 link Jogos
++				199 text Jogos
++			200 link Ver Jogos
++				201 text Ver Jogos
+
+[Rodapé e chat omitidos na cópia pública]

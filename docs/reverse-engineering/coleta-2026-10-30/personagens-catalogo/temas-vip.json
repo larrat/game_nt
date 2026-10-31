@@ -1,0 +1,4402 @@
+[
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjc4', '91-12', 0, false)",
+    "name": "Kurenai Yuuhi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/91/12.png",
+    "version": "Clássico",
+    "file": "imagens/91-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NDE5', '178-3', 0, false)",
+    "name": "Fugaku Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/178/3.png",
+    "version": "Clássico",
+    "file": "imagens/178-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NDIw', '178-4', 0, false)",
+    "name": "Fugaku Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/178/4.png",
+    "version": "Clássico",
+    "file": "imagens/178-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NDcx', '126-8', 0, false)",
+    "name": "Kushina Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/126/8.png",
+    "version": "Shippuden",
+    "file": "imagens/126-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NDc0', '127-3', 0, false)",
+    "name": "Sakumo Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/127/3.png",
+    "version": "Shippuden",
+    "file": "imagens/127-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NDc1', '127-4', 0, false)",
+    "name": "Sakumo Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/127/4.png",
+    "version": "Shippuden",
+    "file": "imagens/127-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjI4', '113-6', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/113/6.png",
+    "version": "Shippuden",
+    "file": "imagens/113-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgxMg%3D%3D', '543-10', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/543/10.png",
+    "version": "Anjo",
+    "file": "imagens/543-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjM4', '113-16', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/113/16.png",
+    "version": "Shippuden",
+    "file": "imagens/113-16.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc2', '135-2', 0, false)",
+    "name": "Salamander Hanzou",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/135/2.png",
+    "version": "Shippuden",
+    "file": "imagens/135-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Nzkx', '189-7', 0, false)",
+    "name": "Ao",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/189/7.png",
+    "version": "Shippuden",
+    "file": "imagens/189-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('ODE4', '43-4', 0, false)",
+    "name": "Zabuza Momochi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/43/4.png",
+    "version": "Clássico",
+    "file": "imagens/43-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('ODQx', '208-5', 0, false)",
+    "name": "Kushimaru Kuriarare",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/208/5.png",
+    "version": "Edo Tensei",
+    "file": "imagens/208-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('ODQy', '208-6', 0, false)",
+    "name": "Kushimaru Kuriarare",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/208/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/208-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('OTI4', '217-3', 0, false)",
+    "name": "Roushi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/217/3.png",
+    "version": "Shippuden",
+    "file": "imagens/217-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('OTY2', '101-5', 0, false)",
+    "name": "Kabuto Yakushi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/101/5.png",
+    "version": "Clássico",
+    "file": "imagens/101-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('OTcx', '101-10', 0, false)",
+    "name": "Kabuto Yakushi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/101/10.png",
+    "version": "Clássico",
+    "file": "imagens/101-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('OTg4', '71-7', 0, false)",
+    "name": "Kimimaro Kaguya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/71/7.png",
+    "version": "Clássico",
+    "file": "imagens/71-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTAyMQ%3D%3D', '72-8', 0, false)",
+    "name": "Kidoumaru",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/72/8.png",
+    "version": "Clássico",
+    "file": "imagens/72-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTAyNw%3D%3D', '77-5', 0, false)",
+    "name": "Sakon e Ukon",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/77/5.png",
+    "version": "Clássico",
+    "file": "imagens/77-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTA3Nw%3D%3D', '151-3', 0, false)",
+    "name": "Rikudou Sennin",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/151/3.png",
+    "version": "Shippuden",
+    "file": "imagens/151-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTE4NQ%3D%3D', '173-7', 0, false)",
+    "name": "Darui",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/173/7.png",
+    "version": "Shippuden",
+    "file": "imagens/173-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM2Ng%3D%3D', '84-25', 0, false)",
+    "name": "Minato Namikaze",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/84/25.png",
+    "version": "Clássico",
+    "file": "imagens/84-25.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTU3Ng%3D%3D', '691-2', 0, false)",
+    "name": "Tenten",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/691/2.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/691-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTY3OA%3D%3D', '139-6', 0, false)",
+    "name": "Shikaku Nara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/139/6.png",
+    "version": "Clássico",
+    "file": "imagens/139-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTI4OQ%3D%3D', '203-5', 0, false)",
+    "name": "Fuu",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/203/5.png",
+    "version": "Shippuden",
+    "file": "imagens/203-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTI5MQ%3D%3D', '204-5', 0, false)",
+    "name": "Jinin Akebino",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/204/5.png",
+    "version": "Edo Tensei",
+    "file": "imagens/204-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTI5Mg%3D%3D', '204-6', 0, false)",
+    "name": "Jinin Akebino",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/204/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/204-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTMyMA%3D%3D', '129-7', 0, false)",
+    "name": "Danzou Shimura",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/129/7.png",
+    "version": "Shippuden",
+    "file": "imagens/129-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTMyNA%3D%3D', '143-9', 0, false)",
+    "name": "Utakata",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/143/9.png",
+    "version": "Shippuden",
+    "file": "imagens/143-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTMzNA%3D%3D', '289-14', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/289/14.png",
+    "version": "Susanoo",
+    "file": "imagens/289-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTMzNQ%3D%3D', '274-18', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/274/18.png",
+    "version": "Modo Kyuubi",
+    "file": "imagens/274-18.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTMzNg%3D%3D', '316-4', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/316/4.png",
+    "version": "Shukaku",
+    "file": "imagens/316-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTMzNw%3D%3D', '592-10', 0, false)",
+    "name": "Nagato Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/592/10.png",
+    "version": "Edo Tensei",
+    "file": "imagens/592-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM0Ng%3D%3D', '137-10', 0, false)",
+    "name": "Nagato Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/137/10.png",
+    "version": "Shippuden",
+    "file": "imagens/137-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM2Mw%3D%3D', '63-15', 0, false)",
+    "name": "Jiraiya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/63/15.png",
+    "version": "Clássico",
+    "file": "imagens/63-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM2NA%3D%3D', '340-4', 0, false)",
+    "name": "Yugito Nii",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/340/4.png",
+    "version": "Matatabi",
+    "file": "imagens/340-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM2NQ%3D%3D', '599-3', 0, false)",
+    "name": "Yagura",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/599/3.png",
+    "version": "Isobu",
+    "file": "imagens/599-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM2Nw%3D%3D', '560-3', 0, false)",
+    "name": "Killer Bee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/560/3.png",
+    "version": "Gyuuki",
+    "file": "imagens/560-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM2OA%3D%3D', '217-7', 0, false)",
+    "name": "Roushi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/217/7.png",
+    "version": "Shippuden",
+    "file": "imagens/217-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM2OQ%3D%3D', '520-6', 0, false)",
+    "name": "Yahiko",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/520/6.png",
+    "version": "Chibi",
+    "file": "imagens/520-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM3NQ%3D%3D', '55-27', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/55/27.png",
+    "version": "Shippuden",
+    "file": "imagens/55-27.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM3Ng%3D%3D', '601-2', 0, false)",
+    "name": "Utakata",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/601/2.png",
+    "version": "Saiken",
+    "file": "imagens/601-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM3OA%3D%3D', '116-10', 0, false)",
+    "name": "Juugo",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/116/10.webm",
+    "version": "Shippuden",
+    "file": "imagens/116-10.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM3OQ%3D%3D', '553-2', 0, false)",
+    "name": "Karin Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/553/2.png",
+    "version": "Chibi",
+    "file": "imagens/553-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM4Mg%3D%3D', '272-12', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/272/12.png",
+    "version": "Kurama",
+    "file": "imagens/272-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM4Mw%3D%3D', '52-12', 0, false)",
+    "name": "Deidara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/52/12.png",
+    "version": "Shippuden",
+    "file": "imagens/52-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM4NA%3D%3D', '203-9', 0, false)",
+    "name": "Fuu",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/203/9.png",
+    "version": "Shippuden",
+    "file": "imagens/203-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM4NQ%3D%3D', '428-2', 0, false)",
+    "name": "Konohamaru Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/428/2.png",
+    "version": "Chibi",
+    "file": "imagens/428-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM4OA%3D%3D', '296-7', 0, false)",
+    "name": "Rock Lee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/296/7.png",
+    "version": "Portões de Chakra",
+    "file": "imagens/296-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM4OQ%3D%3D', '304-5', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/304/5.png",
+    "version": "Shippuden",
+    "file": "imagens/304-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM5MA%3D%3D', '366-9', 0, false)",
+    "name": "Neji Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/366/9.png",
+    "version": "Shippuden",
+    "file": "imagens/366-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2OA%3D%3D', '510-22', 0, false)",
+    "name": "Kabuto Yakushi",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/510/22.webm",
+    "version": "Quarta Guerra",
+    "file": "imagens/510-22.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM5NA%3D%3D', '333-2', 0, false)",
+    "name": "Temari",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/333/2.png",
+    "version": "Areia",
+    "file": "imagens/333-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM5NQ%3D%3D', '95-9', 0, false)",
+    "name": "Kiba Inuzuka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/95/9.png",
+    "version": "Clássico",
+    "file": "imagens/95-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM5Ng%3D%3D', '469-16', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/469/16.png",
+    "version": "Obito - Quarta Guerra",
+    "file": "imagens/469-16.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM5Nw%3D%3D', '378-3', 0, false)",
+    "name": "Shino Aburame",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/378/3.png",
+    "version": "Chibi",
+    "file": "imagens/378-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTM5OA%3D%3D', '370-2', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/370/2.png",
+    "version": "Chibi",
+    "file": "imagens/370-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTQwMA%3D%3D', '382-5', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/382/5.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/382-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTM1NA%3D%3D', '214-7', 0, false)",
+    "name": "Nidaime Mizukage",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/214/7.png",
+    "version": "Edo Tensei",
+    "file": "imagens/214-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTQwOQ%3D%3D', '444-6', 0, false)",
+    "name": "Hashirama Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/444/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/444-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTQxMA%3D%3D', '431-4', 0, false)",
+    "name": "Tobirama Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/431/4.png",
+    "version": "Edo Tensei",
+    "file": "imagens/431-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTQyMw%3D%3D', '535-5', 0, false)",
+    "name": "Hiruzen Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/535/5.png",
+    "version": "Edo Tensei",
+    "file": "imagens/535-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTQyNA%3D%3D', '460-8', 0, false)",
+    "name": "Minato Namikaze",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/460/8.png",
+    "version": "Edo Tensei",
+    "file": "imagens/460-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTY3NA%3D%3D', '112-10', 0, false)",
+    "name": "Rin Nohara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/112/10.png",
+    "version": "Shippuden",
+    "file": "imagens/112-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgxNQ%3D%3D', '126-7', 0, false)",
+    "name": "Kushina Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/126/7.png",
+    "version": "Shippuden",
+    "file": "imagens/126-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTY2Mg%3D%3D', '173-10', 0, false)",
+    "name": "Darui",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/173/10.png",
+    "version": "Shippuden",
+    "file": "imagens/173-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTY2Ng%3D%3D', '189-8', 0, false)",
+    "name": "Ao",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/189/8.png",
+    "version": "Shippuden",
+    "file": "imagens/189-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTY2OA%3D%3D', '192-6', 0, false)",
+    "name": "Torune Aburame",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/192/6.png",
+    "version": "Shippuden",
+    "file": "imagens/192-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTY2OQ%3D%3D', '192-7', 0, false)",
+    "name": "Torune Aburame",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/192/7.png",
+    "version": "Shippuden",
+    "file": "imagens/192-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTM5Mg%3D%3D', '220-15', 0, false)",
+    "name": "Shisui Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/220/15.png",
+    "version": "Shippuden",
+    "file": "imagens/220-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc1Mw%3D%3D', '102-17', 0, false)",
+    "name": "Tsunade Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/102/17.png",
+    "version": "Clássico",
+    "file": "imagens/102-17.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc4OQ%3D%3D', '209-6', 0, false)",
+    "name": "Mangetsu Hoozuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/209/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/209-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc5MA%3D%3D', '353-8', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/353/8.png",
+    "version": "ANBU",
+    "file": "imagens/353-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc5MQ%3D%3D', '509-2', 0, false)",
+    "name": "Kabuto Yakushi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/509/2.png",
+    "version": "Mode Sennin",
+    "file": "imagens/509-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc5Mg%3D%3D', '529-3', 0, false)",
+    "name": "Hidan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/529/3.png",
+    "version": "Jashin",
+    "file": "imagens/529-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc5Mw%3D%3D', '387-6', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/387/6.png",
+    "version": "Gaiden",
+    "file": "imagens/387-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc5NQ%3D%3D', '463-2', 0, false)",
+    "name": "Zetsu",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/463/2.png",
+    "version": "Negro",
+    "file": "imagens/463-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc5Ng%3D%3D', '273-8', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/273/8.png",
+    "version": "Naruko",
+    "file": "imagens/273-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc5Nw%3D%3D', '286-19', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/286/19.png",
+    "version": "Selo Amaldiçoado",
+    "file": "imagens/286-19.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc5OA%3D%3D', '42-6', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/42/6.png",
+    "version": "Clássico",
+    "file": "imagens/42-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTc5OQ%3D%3D', '331-2', 0, false)",
+    "name": "Kankurou",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/331/2.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/331-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgwMA%3D%3D', '343-2', 0, false)",
+    "name": "Deidara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/343/2.png",
+    "version": "C0",
+    "file": "imagens/343-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgwMQ%3D%3D', '56-8', 0, false)",
+    "name": "Tenten",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/56/8.png",
+    "version": "Clássico",
+    "file": "imagens/56-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgwMg%3D%3D', '568-3', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/568/3.png",
+    "version": "Susanoo",
+    "file": "imagens/568-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgwMw%3D%3D', '270-29', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/270/29.png",
+    "version": "Shippuden",
+    "file": "imagens/270-29.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgwNA%3D%3D', '117-12', 0, false)",
+    "name": "Karin Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/117/12.png",
+    "version": "Shippuden",
+    "file": "imagens/117-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgwNQ%3D%3D', '440-4', 0, false)",
+    "name": "Sakon e Udon",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/440/4.png",
+    "version": "Selo Amaldiçoado",
+    "file": "imagens/440-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgwNg%3D%3D', '87-9', 0, false)",
+    "name": "Anko Mitarashi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/87/9.png",
+    "version": "Clássico",
+    "file": "imagens/87-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgwNw%3D%3D', '513-2', 0, false)",
+    "name": "Tsunade Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/513/2.png",
+    "version": "Byakugou",
+    "file": "imagens/513-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgwOA%3D%3D', '436-7', 0, false)",
+    "name": "Orochimaru",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/436/7.png",
+    "version": "Sannin",
+    "file": "imagens/436-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgxMA%3D%3D', '356-4', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/356/4.png",
+    "version": "Edo Tensei",
+    "file": "imagens/356-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgxMQ%3D%3D', '482-3', 0, false)",
+    "name": "Chouji Akimichi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/482/3.png",
+    "version": "Borboleta",
+    "file": "imagens/482-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgxMw%3D%3D', '289-9', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/289/9.png",
+    "version": "Susanoo",
+    "file": "imagens/289-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTgxNA%3D%3D', '109-14', 0, false)",
+    "name": "Kakuzu",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/109/14.png",
+    "version": "Shippuden",
+    "file": "imagens/109-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTg4MA%3D%3D', '314-4', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/314/4.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/314-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTkxNQ%3D%3D', '346-7', 0, false)",
+    "name": "Akasuna no Sasori",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/346/7.png",
+    "version": "Hiruko",
+    "file": "imagens/346-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTkxNw%3D%3D', '350-5', 0, false)",
+    "name": "Kisame Hoshigaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/350/5.png",
+    "version": "Tubarão",
+    "file": "imagens/350-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTk0Ng%3D%3D', '393-6', 0, false)",
+    "name": "Maito Gai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/393/6.png",
+    "version": "Portão de Chakra",
+    "file": "imagens/393-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTk1Mg%3D%3D', '416-14', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/416/14.png",
+    "version": "Shippuden",
+    "file": "imagens/416-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MTk4OQ%3D%3D', '102-23', 0, false)",
+    "name": "Tsunade Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/102/23.png",
+    "version": "Clássico",
+    "file": "imagens/102-23.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjAyNA%3D%3D', '123-4', 0, false)",
+    "name": "Chouza Akimichi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/123/4.png",
+    "version": "Clássico",
+    "file": "imagens/123-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjAyNg%3D%3D', '125-8', 0, false)",
+    "name": "Ei",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/125/8.png",
+    "version": "Shippuden",
+    "file": "imagens/125-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA1Mw%3D%3D', '209-7', 0, false)",
+    "name": "Mangetsu Hoozuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/209/7.png",
+    "version": "Edo Tensei",
+    "file": "imagens/209-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA1Ng%3D%3D', '216-6', 0, false)",
+    "name": "Muu",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/216/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/216-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA1OA%3D%3D', '218-7', 0, false)",
+    "name": "Han",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/218/7.png",
+    "version": "Shippuden",
+    "file": "imagens/218-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA2MA%3D%3D', '132-3', 0, false)",
+    "name": "Hiashi Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/132/3.png",
+    "version": "Clássico",
+    "file": "imagens/132-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA2Mw%3D%3D', '84-14', 0, false)",
+    "name": "Minato Namikaze",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/84/14.png",
+    "version": "Clássico",
+    "file": "imagens/84-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA2NQ%3D%3D', '384-6', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/384/6.png",
+    "version": "ANBU",
+    "file": "imagens/384-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA2Nw%3D%3D', '297-5', 0, false)",
+    "name": "Rock Lee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/297/5.png",
+    "version": "Shippuden",
+    "file": "imagens/297-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA2OA%3D%3D', '474-12', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/474/12.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/474-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA3MA%3D%3D', '356-9', 1, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/356/9.png",
+    "version": "Edo Tensei",
+    "file": "imagens/356-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA3MQ%3D%3D', '393-8', 0, false)",
+    "name": "Maito Gai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/393/8.png",
+    "version": "Portão de Chakra",
+    "file": "imagens/393-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA3Mg%3D%3D', '507-3', 0, false)",
+    "name": "Kabuto Yakushi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/507/3.png",
+    "version": "Espião Profissional",
+    "file": "imagens/507-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA3Mw%3D%3D', '471-9', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/471/9.png",
+    "version": "Guruguru",
+    "file": "imagens/471-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA3NQ%3D%3D', '384-15', 1, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/384/15.png",
+    "version": "ANBU",
+    "file": "imagens/384-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA3Ng%3D%3D', '289-8', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/289/8.png",
+    "version": "Susanoo",
+    "file": "imagens/289-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA3Nw%3D%3D', '274-14', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/274/14.png",
+    "version": "Modo Kyuubi",
+    "file": "imagens/274-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA3OA%3D%3D', '472-4', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/472/4.png",
+    "version": "Mascarado",
+    "file": "imagens/472-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA3OQ%3D%3D', '312-3', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/312/3.png",
+    "version": "Shippuden",
+    "file": "imagens/312-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA4MA%3D%3D', '406-12', 0, false)",
+    "name": "Jiraiya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/406/12.png",
+    "version": "Modo Sennin",
+    "file": "imagens/406-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA4MQ%3D%3D', '568-4', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/568/4.png",
+    "version": "Susanoo",
+    "file": "imagens/568-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjA4Mg%3D%3D', '140-7', 0, false)",
+    "name": "Mei Terumii",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/140/7.png",
+    "version": "Shippuden",
+    "file": "imagens/140-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjExMA%3D%3D', '61-14', 0, false)",
+    "name": "Maito Gai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/61/14.png",
+    "version": "Clássico",
+    "file": "imagens/61-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE3Ng%3D%3D', '212-5', 0, false)",
+    "name": "Izuna Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/212/5.png",
+    "version": "Shippuden",
+    "file": "imagens/212-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE3Nw%3D%3D', '218-8', 0, false)",
+    "name": "Han",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/218/8.png",
+    "version": "Shippuden",
+    "file": "imagens/218-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE4MA%3D%3D', '220-6', 0, false)",
+    "name": "Shisui Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/220/6.png",
+    "version": "Shippuden",
+    "file": "imagens/220-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE4Mg%3D%3D', '151-7', 0, false)",
+    "name": "Rikudou Sennin",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/151/7.png",
+    "version": "Shippuden",
+    "file": "imagens/151-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE4Mw%3D%3D', '141-20', 0, false)",
+    "name": "Oonoki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/141/20.png",
+    "version": "Shippuden",
+    "file": "imagens/141-20.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE4NA%3D%3D', '91-8', 0, false)",
+    "name": "Kurenai Yuuhi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/91/8.png",
+    "version": "Clássico",
+    "file": "imagens/91-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE4NQ%3D%3D', '118-5', 0, false)",
+    "name": "Suigetsu Hoozuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/118/5.png",
+    "version": "Shippuden",
+    "file": "imagens/118-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE4Ng%3D%3D', '119-4', 0, false)",
+    "name": "Killer Bee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/119/4.png",
+    "version": "Shippuden",
+    "file": "imagens/119-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE4Nw%3D%3D', '215-5', 0, false)",
+    "name": "Sandaime Raikage",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/215/5.png",
+    "version": "Edo Tensei",
+    "file": "imagens/215-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE4OQ%3D%3D', '534-3', 0, false)",
+    "name": "Kakuzu",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/534/3.png",
+    "version": "Vila da Cachoeira",
+    "file": "imagens/534-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE5MA%3D%3D', '530-2', 0, false)",
+    "name": "Hidan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/530/2.png",
+    "version": "Vilas das Fontes Termais",
+    "file": "imagens/530-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE5MQ%3D%3D', '348-5', 0, false)",
+    "name": "Akasuna no Sasori",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/348/5.png",
+    "version": "Areia",
+    "file": "imagens/348-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE5Mg%3D%3D', '732-2', 0, false)",
+    "name": "Kisame Hoshigaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/732/2.png",
+    "version": "Devorador de Chakra",
+    "file": "imagens/732-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE5NA%3D%3D', '608-3', 0, false)",
+    "name": "Rikudou Sennin",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/608/3.png",
+    "version": "Shinju",
+    "file": "imagens/608-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE5Ng%3D%3D', '526-26', 0, false)",
+    "name": "Yahiko",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/526/26.png",
+    "version": "Tendo",
+    "file": "imagens/526-26.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE5Nw%3D%3D', '399-4', 0, false)",
+    "name": "Shikamaru Nara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/399/4.png",
+    "version": "The Last",
+    "file": "imagens/399-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE5OA%3D%3D', '567-3', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/567/3.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/567-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjE5OQ%3D%3D', '275-11', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/275/11.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/275-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjIwMA%3D%3D', '290-2', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/290/2.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/290-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjIwMQ%3D%3D', '306-9', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/306/9.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/306-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjIwMg%3D%3D', '654-2', 0, false)",
+    "name": "Shisui Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/654/2.png",
+    "version": "Susanoo",
+    "file": "imagens/654-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjIwNg%3D%3D', '63-14', 0, false)",
+    "name": "Jiraiya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/63/14.png",
+    "version": "Clássico",
+    "file": "imagens/63-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjIwNw%3D%3D', '76-28', 0, false)",
+    "name": "Orochimaru",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/76/28.png",
+    "version": "Clássico",
+    "file": "imagens/76-28.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjIxMw%3D%3D', '568-7', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/568/7.png",
+    "version": "Susanoo",
+    "file": "imagens/568-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjIxNQ%3D%3D', '444-5', 0, false)",
+    "name": "Hashirama Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/444/5.png",
+    "version": "Edo Tensei",
+    "file": "imagens/444-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjIxOA%3D%3D', '344-2', 0, false)",
+    "name": "Deidara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/344/2.png",
+    "version": "Pedra",
+    "file": "imagens/344-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjIyMw%3D%3D', '461-8', 1, false)",
+    "name": "Minato Namikaze",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/461/8.png",
+    "version": "Modo Kyuubi",
+    "file": "imagens/461-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjI0MQ%3D%3D', '280-13', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/280/13.png",
+    "version": "Sétimo Hokage",
+    "file": "imagens/280-13.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjI3NA%3D%3D', '290-4', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/290/4.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/290-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjI5MQ%3D%3D', '388-2', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/388/2.png",
+    "version": "Hokage",
+    "file": "imagens/388-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjM2NQ%3D%3D', '287-10', 1, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/287/10.png",
+    "version": "Líder",
+    "file": "imagens/287-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjM2Ng%3D%3D', '393-3', 0, false)",
+    "name": "Maito Gai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/393/3.png",
+    "version": "Portão de Chakra",
+    "file": "imagens/393-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjM4OA%3D%3D', '271-14', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/271/14.png",
+    "version": "Mode Sennin",
+    "file": "imagens/271-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjM5MQ%3D%3D', '289-11', 1, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/289/11.png",
+    "version": "Susanoo",
+    "file": "imagens/289-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjQxOA%3D%3D', '321-4', 0, false)",
+    "name": "Zabuza Momochi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/321/4.png",
+    "version": "Edo Tensei",
+    "file": "imagens/321-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjQzOQ%3D%3D', '277-3', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/277/3.png",
+    "version": "Mecha",
+    "file": "imagens/277-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjUwNQ%3D%3D', '215-6', 0, false)",
+    "name": "Sandaime Raikage",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/215/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/215-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjU0Ng%3D%3D', '135-6', 0, false)",
+    "name": "Salamander Hanzou",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/135/6.png",
+    "version": "Shippuden",
+    "file": "imagens/135-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjU0Nw%3D%3D', '586-3', 0, false)",
+    "name": "Hanabi Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/586/3.png",
+    "version": "The Last",
+    "file": "imagens/586-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjU0OQ%3D%3D', '584-6', 0, false)",
+    "name": "Danzou Shimura",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/584/6.png",
+    "version": "Sharingan",
+    "file": "imagens/584-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjU4MA%3D%3D', '98-2', 0, false)",
+    "name": "Iruka Umino",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/98/2.png",
+    "version": "Clássico",
+    "file": "imagens/98-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYxNw%3D%3D', '235-25', 0, false)",
+    "name": "Boruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/235/25.png",
+    "version": "Boruto",
+    "file": "imagens/235-25.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYxOA%3D%3D', '236-8', 0, false)",
+    "name": "Sarada Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/236/8.png",
+    "version": "Boruto",
+    "file": "imagens/236-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYxOQ%3D%3D', '393-20', 0, false)",
+    "name": "Maito Gai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/393/20.png",
+    "version": "Portão de Chakra",
+    "file": "imagens/393-20.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyMA%3D%3D', '296-11', 0, false)",
+    "name": "Rock Lee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/296/11.png",
+    "version": "Portões de Chakra",
+    "file": "imagens/296-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyMQ%3D%3D', '119-19', 0, false)",
+    "name": "Killer Bee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/119/19.png",
+    "version": "Shippuden",
+    "file": "imagens/119-19.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyMg%3D%3D', '125-10', 0, false)",
+    "name": "Ei",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/125/10.png",
+    "version": "Shippuden",
+    "file": "imagens/125-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyMw%3D%3D', '482-5', 0, false)",
+    "name": "Chouji Akimichi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/482/5.png",
+    "version": "Borboleta",
+    "file": "imagens/482-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyNA%3D%3D', '416-22', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/416/22.png",
+    "version": "Shippuden",
+    "file": "imagens/416-22.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyNQ%3D%3D', '57-9', 0, false)",
+    "name": "Neji Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/57/9.png",
+    "version": "Clássico",
+    "file": "imagens/57-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyNg%3D%3D', '470-19', 1, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/470/19.png",
+    "version": "Tobi - Quarta Guerra",
+    "file": "imagens/470-19.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyNw%3D%3D', '55-30', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/55/30.png",
+    "version": "Shippuden",
+    "file": "imagens/55-30.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyOA%3D%3D', '379-11', 0, false)",
+    "name": "Shino Aburame",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/379/11.png",
+    "version": "Shippuden",
+    "file": "imagens/379-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYyOQ%3D%3D', '60-21', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/60/21.png",
+    "version": "Clássico",
+    "file": "imagens/60-21.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzMA%3D%3D', '430-5', 0, false)",
+    "name": "Konohamaru Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/430/5.png",
+    "version": "Shippuden",
+    "file": "imagens/430-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzMQ%3D%3D', '467-5', 0, false)",
+    "name": "Tayuya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/467/5.png",
+    "version": "Selo Amaldiçoado",
+    "file": "imagens/467-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzMg%3D%3D', '586-2', 0, false)",
+    "name": "Hanabi Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/586/2.png",
+    "version": "The Last",
+    "file": "imagens/586-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzMw%3D%3D', '444-3', 0, false)",
+    "name": "Hashirama Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/444/3.png",
+    "version": "Edo Tensei",
+    "file": "imagens/444-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzNA%3D%3D', '80-3', 0, false)",
+    "name": "Genma Shiranui",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/80/3.png",
+    "version": "Clássico",
+    "file": "imagens/80-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzNQ%3D%3D', '312-24', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/312/24.png",
+    "version": "Shippuden",
+    "file": "imagens/312-24.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzNg%3D%3D', '406-13', 0, false)",
+    "name": "Jiraiya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/406/13.png",
+    "version": "Modo Sennin",
+    "file": "imagens/406-13.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzNw%3D%3D', '592-6', 0, false)",
+    "name": "Nagato Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/592/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/592-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzOA%3D%3D', '141-19', 0, false)",
+    "name": "Oonoki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/141/19.png",
+    "version": "Shippuden",
+    "file": "imagens/141-19.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjYzOQ%3D%3D', '268-13', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/268/13.png",
+    "version": "Chakra da Kyuubi",
+    "file": "imagens/268-13.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY0MA%3D%3D', '286-12', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/286/12.png",
+    "version": "Selo Amaldiçoado",
+    "file": "imagens/286-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY0MQ%3D%3D', '278-3', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/278/3.png",
+    "version": "Menma",
+    "file": "imagens/278-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY0Mg%3D%3D', '90-15', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/90/15.png",
+    "version": "Shippuden",
+    "file": "imagens/90-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY0Mw%3D%3D', '122-10', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/122/10.png",
+    "version": "Shippuden",
+    "file": "imagens/122-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY1MA%3D%3D', '307-5', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/307/5.png",
+    "version": "The Last",
+    "file": "imagens/307-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY1MQ%3D%3D', '335-2', 0, false)",
+    "name": "Temari",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/335/2.png",
+    "version": "Guarda Costas",
+    "file": "imagens/335-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY1Mg%3D%3D', '543-5', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/543/5.png",
+    "version": "Anjo",
+    "file": "imagens/543-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY1Mw%3D%3D', '461-4', 1, false)",
+    "name": "Minato Namikaze",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/461/4.png",
+    "version": "Modo Kyuubi",
+    "file": "imagens/461-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY1NA%3D%3D', '110-11', 0, false)",
+    "name": "Hiruzen Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/110/11.png",
+    "version": "Clássico",
+    "file": "imagens/110-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY1NQ%3D%3D', '447-5', 0, false)",
+    "name": "Asuma Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/447/5.png",
+    "version": "Edo Tensei",
+    "file": "imagens/447-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY2MQ%3D%3D', '276-6', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/276/6.png",
+    "version": "Chibi",
+    "file": "imagens/276-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY2Mg%3D%3D', '291-4', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/291/4.png",
+    "version": "Chibi",
+    "file": "imagens/291-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY2Mw%3D%3D', '309-4', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/309/4.png",
+    "version": "Chibi",
+    "file": "imagens/309-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY2NA%3D%3D', '383-3', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/383/3.png",
+    "version": "Chibi",
+    "file": "imagens/383-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY2NQ%3D%3D', '354-2', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/354/2.png",
+    "version": "Chibi",
+    "file": "imagens/354-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY2Nw%3D%3D', '404-2', 0, false)",
+    "name": "Jiraiya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/404/2.png",
+    "version": "Chibi",
+    "file": "imagens/404-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY2OA%3D%3D', '457-3', 0, false)",
+    "name": "Minato Namikaze",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/457/3.png",
+    "version": "Chibi",
+    "file": "imagens/457-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY3MA%3D%3D', '473-2', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/473/2.png",
+    "version": "Chibi",
+    "file": "imagens/473-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY3MQ%3D%3D', '542-2', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/542/2.png",
+    "version": "Chibi",
+    "file": "imagens/542-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY3Mg%3D%3D', '594-2', 0, false)",
+    "name": "Nagato Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/594/2.png",
+    "version": "Chibi",
+    "file": "imagens/594-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY4MA%3D%3D', '393-16', 0, false)",
+    "name": "Maito Gai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/393/16.png",
+    "version": "Portão de Chakra",
+    "file": "imagens/393-16.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY4MQ%3D%3D', '76-11', 0, false)",
+    "name": "Orochimaru",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/76/11.png",
+    "version": "Clássico",
+    "file": "imagens/76-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY4Mg%3D%3D', '71-6', 0, false)",
+    "name": "Kimimaro Kaguya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/71/6.png",
+    "version": "Clássico",
+    "file": "imagens/71-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY4Mw%3D%3D', '461-2', 0, false)",
+    "name": "Minato Namikaze",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/461/2.png",
+    "version": "Modo Kyuubi",
+    "file": "imagens/461-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjY4NQ%3D%3D', '400-8', 0, false)",
+    "name": "Shikamaru Nara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/400/8.png",
+    "version": "Shippuden",
+    "file": "imagens/400-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjcyMQ%3D%3D', '320-2', 0, false)",
+    "name": "Zabuza Momochi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/320/2.png",
+    "version": "Mercenário",
+    "file": "imagens/320-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjcyMg%3D%3D', '510-11', 0, false)",
+    "name": "Kabuto Yakushi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/510/11.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/510-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjcyMw%3D%3D', '54-20', 0, false)",
+    "name": "Kisame Hoshigaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/54/20.png",
+    "version": "Shippuden",
+    "file": "imagens/54-20.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjcyNA%3D%3D', '572-3', 1, false)",
+    "name": "Madara Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/572/3.png",
+    "version": "Células do Hashirama",
+    "file": "imagens/572-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjcyNQ%3D%3D', '347-8', 0, false)",
+    "name": "Akasuna no Sasori",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/347/8.png",
+    "version": "Marionete",
+    "file": "imagens/347-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjcyNg%3D%3D', '526-9', 0, false)",
+    "name": "Yahiko",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/526/9.png",
+    "version": "Tendo",
+    "file": "imagens/526-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjcyNw%3D%3D', '474-9', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/474/9.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/474-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjcyOA%3D%3D', '387-2', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/387/2.png",
+    "version": "Gaiden",
+    "file": "imagens/387-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjcyOQ%3D%3D', '416-12', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/416/12.png",
+    "version": "Shippuden",
+    "file": "imagens/416-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjczMA%3D%3D', '100-12', 0, false)",
+    "name": "Yamato",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/100/12.png",
+    "version": "Shippuden",
+    "file": "imagens/100-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjczMg%3D%3D', '220-20', 0, false)",
+    "name": "Shisui Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/220/20.png",
+    "version": "Shippuden",
+    "file": "imagens/220-20.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjczMw%3D%3D', '119-18', 0, false)",
+    "name": "Killer Bee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/119/18.png",
+    "version": "Shippuden",
+    "file": "imagens/119-18.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjg3MA%3D%3D', '115-9', 0, false)",
+    "name": "Guren",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/115/9.png",
+    "version": "Shippuden",
+    "file": "imagens/115-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjg3Mg%3D%3D', '220-19', 1, false)",
+    "name": "Shisui Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/220/19.png",
+    "version": "Shippuden",
+    "file": "imagens/220-19.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjg3NA%3D%3D', '51-10', 0, false)",
+    "name": "Yugito Nii",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/51/10.png",
+    "version": "Shippuden",
+    "file": "imagens/51-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjg3NQ%3D%3D', '311-2', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/311/2.png",
+    "version": "Areia",
+    "file": "imagens/311-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjg5Mw%3D%3D', '361-6', 0, false)",
+    "name": "Tenten",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/361/6.png",
+    "version": "Shippuden",
+    "file": "imagens/361-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjg5NA%3D%3D', '400-20', 0, false)",
+    "name": "Shikamaru Nara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/400/20.png",
+    "version": "Shippuden",
+    "file": "imagens/400-20.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjg5NQ%3D%3D', '341-6', 0, false)",
+    "name": "Deidara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/341/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/341-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjkxNA%3D%3D', '323-8', 0, false)",
+    "name": "Haku",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/323/8.png",
+    "version": "Caçador",
+    "file": "imagens/323-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjkxNQ%3D%3D', '105-12', 0, false)",
+    "name": "Hidan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/105/12.png",
+    "version": "Shippuden",
+    "file": "imagens/105-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjkxNg%3D%3D', '99-14', 0, false)",
+    "name": "Sai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/99/14.png",
+    "version": "Shippuden",
+    "file": "imagens/99-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjkxNw%3D%3D', '59-9', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/59/9.png",
+    "version": "Clássico",
+    "file": "imagens/59-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MjkxOA%3D%3D', '294-2', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/294/2.png",
+    "version": "The Last",
+    "file": "imagens/294-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk0Mw%3D%3D', '271-18', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/271/18.png",
+    "version": "Mode Sennin",
+    "file": "imagens/271-18.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk0NA%3D%3D', '273-7', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/273/7.png",
+    "version": "Naruko",
+    "file": "imagens/273-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk0NQ%3D%3D', '420-2', 0, false)",
+    "name": "Jiroubou",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/420/2.png",
+    "version": "Edo Tensei",
+    "file": "imagens/420-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk0Ng%3D%3D', '498-4', 0, false)",
+    "name": "Sai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/498/4.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/498-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk0Nw%3D%3D', '510-10', 0, false)",
+    "name": "Kabuto Yakushi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/510/10.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/510-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk0OA%3D%3D', '131-2', 0, false)",
+    "name": "Hanabi Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/131/2.png",
+    "version": "Clássico",
+    "file": "imagens/131-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk1MQ%3D%3D', '4-6', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/4/6.png",
+    "version": "Clássico",
+    "file": "imagens/4-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk1Mg%3D%3D', '513-3', 0, false)",
+    "name": "Tsunade Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/513/3.png",
+    "version": "Byakugou",
+    "file": "imagens/513-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk2OA%3D%3D', '353-5', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/353/5.png",
+    "version": "ANBU",
+    "file": "imagens/353-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk2OQ%3D%3D', '55-34', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/55/34.png",
+    "version": "Shippuden",
+    "file": "imagens/55-34.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk3MA%3D%3D', '60-22', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/60/22.png",
+    "version": "Clássico",
+    "file": "imagens/60-22.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mjk3MQ%3D%3D', '287-8', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/287/8.png",
+    "version": "Líder",
+    "file": "imagens/287-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjEzNQ%3D%3D', '125-13', 0, false)",
+    "name": "Ei",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/125/13.webm",
+    "version": "Shippuden",
+    "file": "imagens/125-13.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTM1Mw%3D%3D', '214-6', 0, false)",
+    "name": "Nidaime Mizukage",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/214/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/214-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzA1Nw%3D%3D', '393-22', 0, false)",
+    "name": "Maito Gai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/393/22.png",
+    "version": "Portão de Chakra",
+    "file": "imagens/393-22.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzA1OA%3D%3D', '140-4', 0, false)",
+    "name": "Mei Terumii",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/140/4.png",
+    "version": "Shippuden",
+    "file": "imagens/140-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzA2OQ%3D%3D', '126-10', 0, false)",
+    "name": "Kushina Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/126/10.png",
+    "version": "Shippuden",
+    "file": "imagens/126-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzA3MA%3D%3D', '431-6', 0, false)",
+    "name": "Tobirama Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/431/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/431-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzA2OA%3D%3D', '47-2', 0, false)",
+    "name": "Temari",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/47/2.png",
+    "version": "Clássico",
+    "file": "imagens/47-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzA3Mg%3D%3D', '57-5', 0, false)",
+    "name": "Neji Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/57/5.png",
+    "version": "Clássico",
+    "file": "imagens/57-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzA3Mw%3D%3D', '371-19', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/371/19.png",
+    "version": "Shippuden",
+    "file": "imagens/371-19.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE0Mw%3D%3D', '110-2', 0, false)",
+    "name": "Hiruzen Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/110/2.png",
+    "version": "Clássico",
+    "file": "imagens/110-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE0NA%3D%3D', '110-13', 0, false)",
+    "name": "Hiruzen Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/110/13.png",
+    "version": "Clássico",
+    "file": "imagens/110-13.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE0NQ%3D%3D', '55-29', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/55/29.png",
+    "version": "Shippuden",
+    "file": "imagens/55-29.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE0Ng%3D%3D', '268-14', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/268/14.png",
+    "version": "Chakra da Kyuubi",
+    "file": "imagens/268-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE0Nw%3D%3D', '271-19', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/271/19.png",
+    "version": "Mode Sennin",
+    "file": "imagens/271-19.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE0OQ%3D%3D', '270-30', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/270/30.png",
+    "version": "Shippuden",
+    "file": "imagens/270-30.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE1NA%3D%3D', '290-10', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/290/10.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/290-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE1Mw%3D%3D', '289-16', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/289/16.png",
+    "version": "Susanoo",
+    "file": "imagens/289-16.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE1NQ%3D%3D', '3-9', 0, false)",
+    "name": "Rock Lee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/3/9.png",
+    "version": "Clássico",
+    "file": "imagens/3-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE1Ng%3D%3D', '312-7', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/312/7.png",
+    "version": "Shippuden",
+    "file": "imagens/312-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE1Nw%3D%3D', '312-2', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/312/2.png",
+    "version": "Shippuden",
+    "file": "imagens/312-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE1OA%3D%3D', '4-2', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/4/2.png",
+    "version": "Clássico",
+    "file": "imagens/4-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE1OQ%3D%3D', '314-15', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/314/15.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/314-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2MA%3D%3D', '330-7', 0, false)",
+    "name": "Kankurou",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/330/7.png",
+    "version": "Guarda Costas",
+    "file": "imagens/330-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2MQ%3D%3D', '338-5', 0, false)",
+    "name": "Temari",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/338/5.png",
+    "version": "The Last",
+    "file": "imagens/338-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2Mg%3D%3D', '52-30', 0, false)",
+    "name": "Deidara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/52/30.png",
+    "version": "Shippuden",
+    "file": "imagens/52-30.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2Mw%3D%3D', '346-6', 0, false)",
+    "name": "Akasuna no Sasori",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/346/6.png",
+    "version": "Hiruko",
+    "file": "imagens/346-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2NA%3D%3D', '53-13', 0, false)",
+    "name": "Akasuna no Sasori",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/53/13.png",
+    "version": "Shippuden",
+    "file": "imagens/53-13.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2NQ%3D%3D', '358-9', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/358/9.png",
+    "version": "Susanoo",
+    "file": "imagens/358-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2Ng%3D%3D', '353-9', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/353/9.png",
+    "version": "ANBU",
+    "file": "imagens/353-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2Nw%3D%3D', '361-9', 0, false)",
+    "name": "Tenten",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/361/9.png",
+    "version": "Shippuden",
+    "file": "imagens/361-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2OA%3D%3D', '364-6', 0, false)",
+    "name": "Neji Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/364/6.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/364-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE2OQ%3D%3D', '57-10', 0, false)",
+    "name": "Neji Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/57/10.png",
+    "version": "Clássico",
+    "file": "imagens/57-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE3MA%3D%3D', '371-20', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/371/20.png",
+    "version": "Shippuden",
+    "file": "imagens/371-20.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE3MQ%3D%3D', '60-25', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/60/25.png",
+    "version": "Clássico",
+    "file": "imagens/60-25.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE3Mg%3D%3D', '60-44', 1, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/60/44.png",
+    "version": "Clássico",
+    "file": "imagens/60-44.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE3NQ%3D%3D', '393-7', 0, false)",
+    "name": "Maito Gai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/393/7.png",
+    "version": "Portão de Chakra",
+    "file": "imagens/393-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE3Ng%3D%3D', '399-2', 0, false)",
+    "name": "Shikamaru Nara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/399/2.png",
+    "version": "The Last",
+    "file": "imagens/399-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE3Nw%3D%3D', '62-10', 0, false)",
+    "name": "Shikamaru Nara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/62/10.png",
+    "version": "Clássico",
+    "file": "imagens/62-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE3OA%3D%3D', '403-2', 1, false)",
+    "name": "Jiraiya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/403/2.png",
+    "version": "Sannin",
+    "file": "imagens/403-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE3OQ%3D%3D', '406-14', 0, false)",
+    "name": "Jiraiya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/406/14.png",
+    "version": "Modo Sennin",
+    "file": "imagens/406-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4MA%3D%3D', '69-6', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/69/6.png",
+    "version": "Clássico",
+    "file": "imagens/69-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4MQ%3D%3D', '415-2', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/415/2.png",
+    "version": "Noiva",
+    "file": "imagens/415-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4Mg%3D%3D', '430-2', 0, false)",
+    "name": "Konohamaru Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/430/2.png",
+    "version": "Shippuden",
+    "file": "imagens/430-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4Mw%3D%3D', '75-13', 0, false)",
+    "name": "Tobirama Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/75/13.png",
+    "version": "Shippuden",
+    "file": "imagens/75-13.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4NA%3D%3D', '75-14', 0, false)",
+    "name": "Tobirama Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/75/14.png",
+    "version": "Shippuden",
+    "file": "imagens/75-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4NQ%3D%3D', '436-5', 0, false)",
+    "name": "Orochimaru",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/436/5.png",
+    "version": "Sannin",
+    "file": "imagens/436-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4Ng%3D%3D', '76-34', 0, false)",
+    "name": "Orochimaru",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/76/34.png",
+    "version": "Clássico",
+    "file": "imagens/76-34.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4Nw%3D%3D', '78-17', 0, false)",
+    "name": "Hashirama Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/78/17.png",
+    "version": "Clássico",
+    "file": "imagens/78-17.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4OA%3D%3D', '446-3', 0, false)",
+    "name": "Hashirama Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/446/3.png",
+    "version": "Mode Sennin",
+    "file": "imagens/446-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE4OQ%3D%3D', '447-6', 0, false)",
+    "name": "Asuma Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/447/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/447-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE5MA%3D%3D', '447-7', 0, false)",
+    "name": "Asuma Sarutobi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/447/7.png",
+    "version": "Edo Tensei",
+    "file": "imagens/447-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE5Mg%3D%3D', '461-15', 0, false)",
+    "name": "Minato Namikaze",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/461/15.png",
+    "version": "Modo Kyuubi",
+    "file": "imagens/461-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE5Mw%3D%3D', '90-10', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/90/10.png",
+    "version": "Shippuden",
+    "file": "imagens/90-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE5NA%3D%3D', '471-2', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/471/2.png",
+    "version": "Guruguru",
+    "file": "imagens/471-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE5NQ%3D%3D', '482-6', 0, false)",
+    "name": "Chouji Akimichi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/482/6.png",
+    "version": "Borboleta",
+    "file": "imagens/482-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE5Ng%3D%3D', '94-6', 0, false)",
+    "name": "Chouji Akimichi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/94/6.png",
+    "version": "Clássico",
+    "file": "imagens/94-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE5Nw%3D%3D', '99-12', 0, false)",
+    "name": "Sai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/99/12.png",
+    "version": "Shippuden",
+    "file": "imagens/99-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE5OA%3D%3D', '498-2', 0, false)",
+    "name": "Sai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/498/2.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/498-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwMA%3D%3D', '526-15', 0, false)",
+    "name": "Yahiko",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/526/15.png",
+    "version": "Tendo",
+    "file": "imagens/526-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwMQ%3D%3D', '105-15', 0, false)",
+    "name": "Hidan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/105/15.png",
+    "version": "Shippuden",
+    "file": "imagens/105-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwMg%3D%3D', '529-2', 0, false)",
+    "name": "Hidan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/529/2.png",
+    "version": "Jashin",
+    "file": "imagens/529-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwMw%3D%3D', '112-5', 0, false)",
+    "name": "Rin Nohara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/112/5.png",
+    "version": "Shippuden",
+    "file": "imagens/112-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwNA%3D%3D', '543-12', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/543/12.png",
+    "version": "Anjo",
+    "file": "imagens/543-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwNQ%3D%3D', '545-2', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/545/2.png",
+    "version": "Chuva",
+    "file": "imagens/545-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwNg%3D%3D', '552-2', 0, false)",
+    "name": "Juugo",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/552/2.png",
+    "version": "Taka",
+    "file": "imagens/552-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwNw%3D%3D', '116-8', 0, false)",
+    "name": "Juugo",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/116/8.png",
+    "version": "Shippuden",
+    "file": "imagens/116-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwOA%3D%3D', '117-13', 0, false)",
+    "name": "Karin Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/117/13.png",
+    "version": "Shippuden",
+    "file": "imagens/117-13.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIwOQ%3D%3D', '117-14', 0, false)",
+    "name": "Karin Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/117/14.png",
+    "version": "Shippuden",
+    "file": "imagens/117-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxMA%3D%3D', '118-3', 0, false)",
+    "name": "Suigetsu Hoozuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/118/3.png",
+    "version": "Shippuden",
+    "file": "imagens/118-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxMQ%3D%3D', '118-9', 0, false)",
+    "name": "Suigetsu Hoozuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/118/9.png",
+    "version": "Shippuden",
+    "file": "imagens/118-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxMg%3D%3D', '562-3', 0, false)",
+    "name": "Killer Bee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/562/3.png",
+    "version": "Portador da Samehada",
+    "file": "imagens/562-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxMw%3D%3D', '119-3', 0, false)",
+    "name": "Killer Bee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/119/3.png",
+    "version": "Shippuden",
+    "file": "imagens/119-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxNA%3D%3D', '120-5', 0, false)",
+    "name": "Chiyo",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/120/5.png",
+    "version": "Shippuden",
+    "file": "imagens/120-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxNQ%3D%3D', '387-15', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/387/15.png",
+    "version": "Gaiden",
+    "file": "imagens/387-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxNg%3D%3D', '122-17', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/122/17.png",
+    "version": "Shippuden",
+    "file": "imagens/122-17.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxNw%3D%3D', '122-11', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/122/11.png",
+    "version": "Shippuden",
+    "file": "imagens/122-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxOA%3D%3D', '579-4', 0, false)",
+    "name": "Ei",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/579/4.png",
+    "version": "Raikage",
+    "file": "imagens/579-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIxOQ%3D%3D', '579-3', 0, false)",
+    "name": "Ei",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/579/3.png",
+    "version": "Raikage",
+    "file": "imagens/579-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIyMA%3D%3D', '126-11', 0, false)",
+    "name": "Kushina Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/126/11.png",
+    "version": "Shippuden",
+    "file": "imagens/126-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIyMQ%3D%3D', '585-3', 0, false)",
+    "name": "Hanabi Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/585/3.png",
+    "version": "Jovem",
+    "file": "imagens/585-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIyMg%3D%3D', '137-9', 0, false)",
+    "name": "Nagato Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/137/9.png",
+    "version": "Shippuden",
+    "file": "imagens/137-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIyMw%3D%3D', '138-6', 0, false)",
+    "name": "Yahiko",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/138/6.png",
+    "version": "Shippuden",
+    "file": "imagens/138-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIyNA%3D%3D', '143-6', 0, false)",
+    "name": "Utakata",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/143/6.png",
+    "version": "Shippuden",
+    "file": "imagens/143-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIyNQ%3D%3D', '633-3', 0, false)",
+    "name": "Choujuurou",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/633/3.png",
+    "version": "Mizukage",
+    "file": "imagens/633-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzI3Nw%3D%3D', '220-18', 0, false)",
+    "name": "Shisui Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/220/18.png",
+    "version": "Shippuden",
+    "file": "imagens/220-18.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzIyOA%3D%3D', '100-8', 0, false)",
+    "name": "Yamato",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/100/8.png",
+    "version": "Shippuden",
+    "file": "imagens/100-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzUwNA%3D%3D', '286-18', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/286/18.png",
+    "version": "Selo Amaldiçoado",
+    "file": "imagens/286-18.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzYxMA%3D%3D', '297-6', 0, false)",
+    "name": "Rock Lee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/297/6.png",
+    "version": "Shippuden",
+    "file": "imagens/297-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzYzNg%3D%3D', '301-4', 0, false)",
+    "name": "Rock Lee",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/301/4.png",
+    "version": "Verão",
+    "file": "imagens/301-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzY2MQ%3D%3D', '304-16', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/304/16.png",
+    "version": "Shippuden",
+    "file": "imagens/304-16.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mzc0NQ%3D%3D', '313-3', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/313/3.png",
+    "version": "Chakra do Ichibi",
+    "file": "imagens/313-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mzc0Ng%3D%3D', '313-4', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/313/4.png",
+    "version": "Chakra do Ichibi",
+    "file": "imagens/313-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mzc2OQ%3D%3D', '316-2', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/316/2.png",
+    "version": "Shukaku",
+    "file": "imagens/316-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Mzc4Nw%3D%3D', '320-6', 0, false)",
+    "name": "Zabuza Momochi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/320/6.png",
+    "version": "Mercenário",
+    "file": "imagens/320-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzgwMQ%3D%3D', '323-10', 0, false)",
+    "name": "Haku",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/323/10.png",
+    "version": "Caçador",
+    "file": "imagens/323-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzgwNg%3D%3D', '325-4', 0, false)",
+    "name": "Haku",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/325/4.png",
+    "version": "Edo Tensei",
+    "file": "imagens/325-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzgwNw%3D%3D', '325-5', 0, false)",
+    "name": "Haku",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/325/5.png",
+    "version": "Edo Tensei",
+    "file": "imagens/325-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NDM4OA%3D%3D', '419-4', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/419/4.png",
+    "version": "Verão",
+    "file": "imagens/419-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTU3MA%3D%3D', '688-2', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/688/2.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/688-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTU3Mg%3D%3D', '689-2', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/689/2.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/689-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTU3NA%3D%3D', '690-2', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/690/2.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/690-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NDY1NA%3D%3D', '474-8', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/474/8.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/474-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NDg0MQ%3D%3D', '513-10', 0, false)",
+    "name": "Tsunade Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/513/10.png",
+    "version": "Byakugou",
+    "file": "imagens/513-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NDg1OQ%3D%3D', '517-3', 0, false)",
+    "name": "Tsunade Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/517/3.png",
+    "version": "Verão",
+    "file": "imagens/517-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTM3MA%3D%3D', '206-5', 0, false)",
+    "name": "Ameyuri Ringo",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/206/5.png",
+    "version": "Edo Tensei",
+    "file": "imagens/206-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTM3MQ%3D%3D', '206-6', 0, false)",
+    "name": "Ameyuri Ringo",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/206/6.png",
+    "version": "Edo Tensei",
+    "file": "imagens/206-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTM3Mg%3D%3D', '205-7', 0, false)",
+    "name": "Jinpachi Munashi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/205/7.png",
+    "version": "Edo Tensei",
+    "file": "imagens/205-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTM3Mw%3D%3D', '205-8', 0, false)",
+    "name": "Jinpachi Munashi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/205/8.png",
+    "version": "Edo Tensei",
+    "file": "imagens/205-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTM5Mw%3D%3D', '220-16', 0, false)",
+    "name": "Shisui Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/220/16.png",
+    "version": "Shippuden",
+    "file": "imagens/220-16.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTM5NA%3D%3D', '220-17', 0, false)",
+    "name": "Shisui Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/220/17.png",
+    "version": "Shippuden",
+    "file": "imagens/220-17.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQwMg%3D%3D', '654-3', 0, false)",
+    "name": "Shisui Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/654/3.webm",
+    "version": "Susanoo",
+    "file": "imagens/654-3.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQyMQ%3D%3D', '262-2', 0, false)",
+    "name": "Juzo Biwa",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/262/2.png",
+    "version": "Shippuden",
+    "file": "imagens/262-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQyMg%3D%3D', '262-3', 0, false)",
+    "name": "Juzo Biwa",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/262/3.png",
+    "version": "Shippuden",
+    "file": "imagens/262-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQyNQ%3D%3D', '260-8', 0, false)",
+    "name": "Indra Ootsutsuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/260/8.png",
+    "version": "Shippuden",
+    "file": "imagens/260-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQyNw%3D%3D', '260-10', 0, false)",
+    "name": "Indra Ootsutsuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/260/10.png",
+    "version": "Shippuden",
+    "file": "imagens/260-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQ0MA%3D%3D', '259-12', 0, false)",
+    "name": "Ashura Ootsutsuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/259/12.png",
+    "version": "Shippuden",
+    "file": "imagens/259-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQ0MQ%3D%3D', '259-13', 0, false)",
+    "name": "Ashura Ootsutsuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/259/13.png",
+    "version": "Shippuden",
+    "file": "imagens/259-13.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQ0Mg%3D%3D', '259-14', 0, false)",
+    "name": "Ashura Ootsutsuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/259/14.png",
+    "version": "Shippuden",
+    "file": "imagens/259-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQ2NA%3D%3D', '238-9', 0, false)",
+    "name": "Kaguya Ootsutsuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/238/9.png",
+    "version": "Shippuden",
+    "file": "imagens/238-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTQ2OQ%3D%3D', '238-14', 0, false)",
+    "name": "Kaguya Ootsutsuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/238/14.png",
+    "version": "Shippuden",
+    "file": "imagens/238-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTU3OA%3D%3D', '692-2', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/692/2.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/692-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTU4OQ%3D%3D', '693-5', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/693/5.png",
+    "version": "Natal",
+    "file": "imagens/693-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTU5Mg%3D%3D', '694-3', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/694/3.png",
+    "version": "Natal",
+    "file": "imagens/694-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTU5NQ%3D%3D', '546-3', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/546/3.png",
+    "version": "Natal",
+    "file": "imagens/546-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTU5OA%3D%3D', '571-5', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/571/5.png",
+    "version": "Juubi",
+    "file": "imagens/571-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTYwMA%3D%3D', '376-7', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/376/7.png",
+    "version": "Verão",
+    "file": "imagens/376-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTYwMw%3D%3D', '308-6', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/308/6.png",
+    "version": "Verão",
+    "file": "imagens/308-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTYwNg%3D%3D', '696-3', 0, false)",
+    "name": "Rin Nohara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/696/3.png",
+    "version": "Verão",
+    "file": "imagens/696-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTY0MQ%3D%3D', '697-6', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/697/6.png",
+    "version": "Ano Novo Chines",
+    "file": "imagens/697-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTY0OA%3D%3D', '698-7', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/698/7.png",
+    "version": "Ano Novo Chines",
+    "file": "imagens/698-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTY1Mw%3D%3D', '699-4', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/699/4.png",
+    "version": "Ano Novo Chines",
+    "file": "imagens/699-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjAzNA%3D%3D', '292-30', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/292/30.webm",
+    "version": "Taka",
+    "file": "imagens/292-30.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTgwMQ%3D%3D', '650-4', 0, true)",
+    "name": "Han",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/650/4.webm",
+    "version": "Kokuou",
+    "file": "imagens/650-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTg3Nw%3D%3D', '707-10', 0, false)",
+    "name": "Boruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/707/10.png",
+    "version": "Borushiki",
+    "file": "imagens/707-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTg4NQ%3D%3D', '235-35', 0, false)",
+    "name": "Boruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/235/35.png",
+    "version": "Boruto",
+    "file": "imagens/235-35.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTg5Nw%3D%3D', '236-24', 0, false)",
+    "name": "Sarada Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/236/24.png",
+    "version": "Boruto",
+    "file": "imagens/236-24.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTk3MQ%3D%3D', '730-7', 0, false)",
+    "name": "Boruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/730/7.png",
+    "version": "Time Skip",
+    "file": "imagens/730-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTk3Mw%3D%3D', '282-3', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/282/3.png",
+    "version": "O Ninja Saiyajin",
+    "file": "imagens/282-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTk3OA%3D%3D', '731-2', 0, false)",
+    "name": "Goku",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/731/2.png",
+    "version": "O Saiyajin Ninja",
+    "file": "imagens/731-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTk4Mw%3D%3D', '565-24', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/565/24.webm",
+    "version": "Edo Tensei",
+    "file": "imagens/565-24.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NTk4NA%3D%3D', '55-53', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/55/53.webm",
+    "version": "Shippuden",
+    "file": "imagens/55-53.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjAzMg%3D%3D', '736-5', 0, false)",
+    "name": "Rock Lee",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/736/5.webm",
+    "version": "Bruce Lee",
+    "file": "imagens/736-5.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjAzNQ%3D%3D', '274-25', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/274/25.webm",
+    "version": "Modo Kyuubi",
+    "file": "imagens/274-25.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjAzNw%3D%3D', '42-30', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/42/30.png",
+    "version": "Clássico",
+    "file": "imagens/42-30.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjAzOA%3D%3D', '42-31', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/42/31.png",
+    "version": "Clássico",
+    "file": "imagens/42-31.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjA4OA%3D%3D', '2-24', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/2/24.png",
+    "version": "Clássico",
+    "file": "imagens/2-24.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjA5MA%3D%3D', '2-26', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/2/26.png",
+    "version": "Clássico",
+    "file": "imagens/2-26.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjA5OA%3D%3D', '1-25', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/1/25.png",
+    "version": "Clássico",
+    "file": "imagens/1-25.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjA5OQ%3D%3D', '1-26', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/1/26.png",
+    "version": "Clássico",
+    "file": "imagens/1-26.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjEwMA%3D%3D', '43-16', 0, false)",
+    "name": "Zabuza Momochi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/43/16.png",
+    "version": "Clássico",
+    "file": "imagens/43-16.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjEwMQ%3D%3D', '53-27', 0, false)",
+    "name": "Akasuna no Sasori",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/53/27.png",
+    "version": "Shippuden",
+    "file": "imagens/53-27.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjEwOQ%3D%3D', '737-4', 0, false)",
+    "name": "Tobirama Senju",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/737/4.webm",
+    "version": "Ronin",
+    "file": "imagens/737-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjEyMA%3D%3D', '739-9', 0, false)",
+    "name": "Sarada Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/739/9.png",
+    "version": "Time Skip",
+    "file": "imagens/739-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjEzMA%3D%3D', '740-10', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/740/10.png",
+    "version": "Lunar",
+    "file": "imagens/740-10.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjEzNg%3D%3D', '472-11', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/472/11.webm",
+    "version": "Mascarado",
+    "file": "imagens/472-11.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjEzNw%3D%3D', '444-8', 0, false)",
+    "name": "Hashirama Senju",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/444/8.webm",
+    "version": "Edo Tensei",
+    "file": "imagens/444-8.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjE0OA%3D%3D', '746-4', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/746/4.webm",
+    "version": "Halloween",
+    "file": "imagens/746-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjE1Mg%3D%3D', '747-4', 0, false)",
+    "name": "Konan",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/747/4.webm",
+    "version": "Halloween",
+    "file": "imagens/747-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjE1OA%3D%3D', '748-6', 0, false)",
+    "name": "Kushina Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/748/6.webm",
+    "version": "Halloween",
+    "file": "imagens/748-6.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjE2Mw%3D%3D', '749-4', 0, false)",
+    "name": "Kabuto Yakushi",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/749/4.webm",
+    "version": "Halloween",
+    "file": "imagens/749-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjE2Ng%3D%3D', '393-23', 0, false)",
+    "name": "Maito Gai",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/393/23.webm",
+    "version": "Portão de Chakra",
+    "file": "imagens/393-23.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjE2OQ%3D%3D', '751-3', 0, false)",
+    "name": "Momoshiki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/751/3.webm",
+    "version": "Ootsutsuki",
+    "file": "imagens/751-3.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjIwNA%3D%3D', '765-2', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/765/2.webm",
+    "version": "Mangá",
+    "file": "imagens/765-2.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjI0MQ%3D%3D', '306-14', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/306/14.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/306-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjI0Mw%3D%3D', '306-16', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/306/16.png",
+    "version": "Quarta Guerra",
+    "file": "imagens/306-16.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjI0OA%3D%3D', '308-7', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/308/7.png",
+    "version": "Verão",
+    "file": "imagens/308-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjI1Mg%3D%3D', '307-13', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/307/13.png",
+    "version": "The Last",
+    "file": "imagens/307-13.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjI1Mw%3D%3D', '307-14', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/307/14.png",
+    "version": "The Last",
+    "file": "imagens/307-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjM1Ng%3D%3D', '767-6', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/767/6.webm",
+    "version": "Mangá",
+    "file": "imagens/767-6.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjM1OQ%3D%3D', '768-2', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/768/2.webm",
+    "version": "Mangá",
+    "file": "imagens/768-2.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('MzE1MA%3D%3D', '285-26', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/285/26.png",
+    "version": "Shippuden",
+    "file": "imagens/285-26.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjM3MQ%3D%3D', '770-2', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/770/2.webm",
+    "version": "Mangá",
+    "file": "imagens/770-2.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjM3OA%3D%3D', '771-4', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/771/4.webm",
+    "version": "Mangá",
+    "file": "imagens/771-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjM4Mg%3D%3D', '772-3', 0, false)",
+    "name": "Hashirama Senju",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/772/3.webm",
+    "version": "Mangá",
+    "file": "imagens/772-3.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjM4Nw%3D%3D', '773-3', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/773/3.webm",
+    "version": "Mangá",
+    "file": "imagens/773-3.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjM5Mw%3D%3D', '774-4', 0, false)",
+    "name": "Jiraiya",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/774/4.webm",
+    "version": "Mangá",
+    "file": "imagens/774-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQzMQ%3D%3D', '283-12', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/283/12.png",
+    "version": "Akatsuki",
+    "file": "imagens/283-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQzMw%3D%3D', '285-25', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/285/25.png",
+    "version": "Shippuden",
+    "file": "imagens/285-25.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQzNA%3D%3D', '286-20', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/286/20.png",
+    "version": "Selo Amaldiçoado",
+    "file": "imagens/286-20.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQzNg%3D%3D', '289-17', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/289/17.png",
+    "version": "Susanoo",
+    "file": "imagens/289-17.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQzNw%3D%3D', '289-18', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/289/18.png",
+    "version": "Susanoo",
+    "file": "imagens/289-18.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQzOA%3D%3D', '290-11', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/290/11.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/290-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQzOQ%3D%3D', '290-12', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/290/12.png",
+    "version": "Modo Rikudou",
+    "file": "imagens/290-12.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ0MA%3D%3D', '292-31', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/292/31.png",
+    "version": "Taka",
+    "file": "imagens/292-31.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ0MQ%3D%3D', '313-9', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/313/9.png",
+    "version": "Chakra do Ichibi",
+    "file": "imagens/313-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ0Mg%3D%3D', '321-5', 0, false)",
+    "name": "Zabuza Momochi",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/321/5.png",
+    "version": "Edo Tensei",
+    "file": "imagens/321-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ1Mg%3D%3D', '295-15', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/295/15.webm",
+    "version": "Modo Barion",
+    "file": "imagens/295-15.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ1Mw%3D%3D', '288-10', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/288/10.webm",
+    "version": "Quarta Guerra",
+    "file": "imagens/288-10.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ1NA%3D%3D', '55-54', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/55/54.webm",
+    "version": "Shippuden",
+    "file": "imagens/55-54.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ1NQ%3D%3D', '526-27', 0, false)",
+    "name": "Yahiko",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/526/27.webm",
+    "version": "Tendo",
+    "file": "imagens/526-27.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ1Ng%3D%3D', '384-19', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/384/19.webm",
+    "version": "ANBU",
+    "file": "imagens/384-19.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ1Nw%3D%3D', '288-11', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/288/11.webm",
+    "version": "Quarta Guerra",
+    "file": "imagens/288-11.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ1OA%3D%3D', '707-11', 0, false)",
+    "name": "Boruto Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/707/11.webm",
+    "version": "Borushiki",
+    "file": "imagens/707-11.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ1OQ%3D%3D', '270-39', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/270/39.webm",
+    "version": "Shippuden",
+    "file": "imagens/270-39.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2MA%3D%3D', '122-18', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/122/18.webm",
+    "version": "Shippuden",
+    "file": "imagens/122-18.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2MQ%3D%3D', '88-12', 0, false)",
+    "name": "Tayuya",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/88/12.webm",
+    "version": "Clássico",
+    "file": "imagens/88-12.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2Mg%3D%3D', '4-20', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/4/20.webm",
+    "version": "Clássico",
+    "file": "imagens/4-20.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2Mw%3D%3D', '52-53', 0, false)",
+    "name": "Deidara",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/52/53.webm",
+    "version": "Shippuden",
+    "file": "imagens/52-53.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2NA%3D%3D', '71-14', 0, false)",
+    "name": "Kimimaro Kaguya",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/71/14.webm",
+    "version": "Clássico",
+    "file": "imagens/71-14.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2NQ%3D%3D', '296-15', 0, false)",
+    "name": "Rock Lee",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/296/15.webm",
+    "version": "Portões de Chakra",
+    "file": "imagens/296-15.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2Ng%3D%3D', '61-27', 0, false)",
+    "name": "Maito Gai",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/61/27.webm",
+    "version": "Clássico",
+    "file": "imagens/61-27.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2Nw%3D%3D', '238-15', 0, false)",
+    "name": "Kaguya Ootsutsuki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/238/15.png",
+    "version": "Shippuden",
+    "file": "imagens/238-15.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ2OQ%3D%3D', '475-15', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/475/15.webm",
+    "version": "Tobi",
+    "file": "imagens/475-15.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ3MA%3D%3D', '220-23', 0, false)",
+    "name": "Shisui Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/220/23.webm",
+    "version": "Shippuden",
+    "file": "imagens/220-23.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ3MQ%3D%3D', '320-7', 0, false)",
+    "name": "Zabuza Momochi",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/320/7.webm",
+    "version": "Mercenário",
+    "file": "imagens/320-7.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ3Mg%3D%3D', '275-13', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/275/13.webm",
+    "version": "Modo Rikudou",
+    "file": "imagens/275-13.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ3Mw%3D%3D', '84-31', 0, false)",
+    "name": "Minato Namikaze",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/84/31.webm",
+    "version": "Clássico",
+    "file": "imagens/84-31.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjQ4Ng%3D%3D', '779-13', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/779/13.webm",
+    "version": "Deliquente",
+    "file": "imagens/779-13.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwMA%3D%3D', '780-14', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/780/14.webm",
+    "version": "Jounin",
+    "file": "imagens/780-14.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwMQ%3D%3D', '236-25', 0, false)",
+    "name": "Sarada Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/236/25.webm",
+    "version": "Boruto",
+    "file": "imagens/236-25.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwMg%3D%3D', '707-12', 0, false)",
+    "name": "Boruto Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/707/12.webm",
+    "version": "Borushiki",
+    "file": "imagens/707-12.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwMw%3D%3D', '237-13', 0, false)",
+    "name": "Mitsuki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/237/13.webm",
+    "version": "Boruto",
+    "file": "imagens/237-13.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwNA%3D%3D', '265-7', 0, false)",
+    "name": "Sumire",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/265/7.webm",
+    "version": "Boruto",
+    "file": "imagens/265-7.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwNQ%3D%3D', '701-6', 0, false)",
+    "name": "Ada",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/701/6.webm",
+    "version": "Boruto",
+    "file": "imagens/701-6.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwNg%3D%3D', '703-8', 0, false)",
+    "name": "Delta",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/703/8.webm",
+    "version": "Boruto",
+    "file": "imagens/703-8.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwNw%3D%3D', '702-9', 0, false)",
+    "name": "Code",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/702/9.webm",
+    "version": "Boruto",
+    "file": "imagens/702-9.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwOA%3D%3D', '735-9', 0, false)",
+    "name": "Kawaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/735/9.webm",
+    "version": "Karma",
+    "file": "imagens/735-9.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUwOQ%3D%3D', '758-8', 0, false)",
+    "name": "Himawari Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/758/8.webm",
+    "version": "Time Skip",
+    "file": "imagens/758-8.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUxMA%3D%3D', '399-5', 0, false)",
+    "name": "Shikamaru Nara",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/399/5.webm",
+    "version": "The Last",
+    "file": "imagens/399-5.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUzMQ%3D%3D', '251-4', 0, false)",
+    "name": "Shinki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/251/4.webm",
+    "version": "Boruto",
+    "file": "imagens/251-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUzMg%3D%3D', '246-7', 0, false)",
+    "name": "Shikadai Nara",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/246/7.webm",
+    "version": "Boruto",
+    "file": "imagens/246-7.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUzMw%3D%3D', '739-10', 0, false)",
+    "name": "Sarada Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/739/10.webm",
+    "version": "Time Skip",
+    "file": "imagens/739-10.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUzNA%3D%3D', '706-12', 0, false)",
+    "name": "Jigen",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/706/12.webm",
+    "version": "Otsutsuki",
+    "file": "imagens/706-12.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUzNQ%3D%3D', '238-16', 0, false)",
+    "name": "Kaguya Ootsutsuki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/238/16.webm",
+    "version": "Shippuden",
+    "file": "imagens/238-16.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjUzNg%3D%3D', '730-8', 0, false)",
+    "name": "Boruto Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/730/8.webm",
+    "version": "Time Skip",
+    "file": "imagens/730-8.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjU0OA%3D%3D', '784-8', 0, false)",
+    "name": "Shion",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/784/8.png",
+    "version": "Sacerdotisa",
+    "file": "imagens/784-8.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjU3NQ%3D%3D', '790-7', 0, false)",
+    "name": "Shikamaru Nara",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/790/7.webm",
+    "version": "Hokage",
+    "file": "imagens/790-7.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjU3Ng%3D%3D', '181-3', 0, false)",
+    "name": "Hotaru Katsuragi",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/181/3.webm",
+    "version": "Shippuden",
+    "file": "imagens/181-3.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjYxMA%3D%3D', '701-7', 0, false)",
+    "name": "Ada",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/701/7.webm",
+    "version": "Boruto",
+    "file": "imagens/701-7.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjYxMg%3D%3D', '700-9', 0, false)",
+    "name": "Mei Terumii",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/700/9.webm",
+    "version": "Mizukage",
+    "file": "imagens/700-9.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjYxMw%3D%3D', '115-10', 0, false)",
+    "name": "Guren",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/115/10.webm",
+    "version": "Shippuden",
+    "file": "imagens/115-10.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjYxNw%3D%3D', '819-4', 0, false)",
+    "name": "Koyuki Kazahana",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/819/4.webm",
+    "version": "Clássico",
+    "file": "imagens/819-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjYzOA%3D%3D', '195-4', 0, false)",
+    "name": "Pakura",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/195/4.webm",
+    "version": "Shippuden",
+    "file": "imagens/195-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjY1MA%3D%3D', '688-14', 0, false)",
+    "name": "Naruto Uzumaki",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/688/14.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/688-14.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjY2Nw%3D%3D', '689-17', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/689/17.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/689-17.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjY4MA%3D%3D', '832-5', 0, false)",
+    "name": "Deidara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/832/5.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/832-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjY4MQ%3D%3D', '832-6', 0, false)",
+    "name": "Deidara",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/832/6.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/832-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjY4Mw%3D%3D', '833-2', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/833/2.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/833-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjY4Ng%3D%3D', '833-5', 0, false)",
+    "name": "Itachi Uchiha",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/833/5.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/833-5.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjY5Mg%3D%3D', '834-3', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/834/3.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/834-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjY5Ng%3D%3D', '834-7', 0, false)",
+    "name": "Konan",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/834/7.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/834-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjcxMg%3D%3D', '835-4', 0, false)",
+    "name": "Orochimaru",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/835/4.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/835-4.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjcxMA%3D%3D', '835-2', 0, false)",
+    "name": "Orochimaru",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/835/2.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/835-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjcxNg%3D%3D', '836-3', 0, false)",
+    "name": "Yahiko",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/836/3.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/836-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjcyNQ%3D%3D', '837-6', 0, false)",
+    "name": "Gai",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/837/6.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/837-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjczNg%3D%3D', '839-6', 0, false)",
+    "name": "Jiraiya",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/839/6.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/839-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjczOA%3D%3D', '840-2', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/840/2.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/840-2.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjczOQ%3D%3D', '840-3', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/840/3.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/840-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc0OQ%3D%3D', '842-3', 0, false)",
+    "name": "Tsunade Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/842/3.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/842-3.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc1Mw%3D%3D', '842-7', 0, false)",
+    "name": "Tsunade Senju",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/842/7.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/842-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc1Ng%3D%3D', '843-3', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/843/3.webm",
+    "version": "Valentine Day",
+    "file": "imagens/843-3.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc1Nw%3D%3D', '113-21', 0, false)",
+    "name": "Konan",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/113/21.webm",
+    "version": "Shippuden",
+    "file": "imagens/113-21.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc1OA%3D%3D', '783-7', 0, false)",
+    "name": "Junna Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/783/7.webm",
+    "version": "Fandom",
+    "file": "imagens/783-7.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc2Mw%3D%3D', '691-7', 0, false)",
+    "name": "Tenten",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/691/7.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/691-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc2OA%3D%3D', '690-7', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/690/7.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/690-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc3Mw%3D%3D', '692-7', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/692/7.png",
+    "version": "Copa do Mundo",
+    "file": "imagens/692-7.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc3OQ%3D%3D', '861-6', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/861/6.png",
+    "version": "Gamer",
+    "file": "imagens/861-6.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc4MA%3D%3D', '861-7', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/861/7.webm",
+    "version": "Gamer",
+    "file": "imagens/861-7.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc4Mw%3D%3D', '775-6', 0, false)",
+    "name": "Teuchi",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/775/6.webm",
+    "version": "Clássico",
+    "file": "imagens/775-6.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc5NA%3D%3D', '825-11', 0, false)",
+    "name": "Yahiko",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/825/11.png",
+    "version": "Mangá",
+    "file": "imagens/825-11.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc5Ng%3D%3D', '129-9', 0, false)",
+    "name": "Danzou Shimura",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/129/9.webm",
+    "version": "Shippuden",
+    "file": "imagens/129-9.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc5Nw%3D%3D', '469-17', 0, false)",
+    "name": "Obito Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/469/17.webm",
+    "version": "Obito - Quarta Guerra",
+    "file": "imagens/469-17.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc5OA%3D%3D', '51-15', 0, false)",
+    "name": "Yugito Nii",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/51/15.webm",
+    "version": "Shippuden",
+    "file": "imagens/51-15.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njc5OQ%3D%3D', '44-13', 0, false)",
+    "name": "Haku",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/44/13.webm",
+    "version": "Clássico",
+    "file": "imagens/44-13.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgwMA%3D%3D', '53-28', 0, false)",
+    "name": "Akasuna no Sasori",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/53/28.webm",
+    "version": "Shippuden",
+    "file": "imagens/53-28.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgwMQ%3D%3D', '54-35', 0, false)",
+    "name": "Kisame Hoshigaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/54/35.webm",
+    "version": "Shippuden",
+    "file": "imagens/54-35.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgwMg%3D%3D', '126-20', 0, false)",
+    "name": "Kushina Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/126/20.webm",
+    "version": "Shippuden",
+    "file": "imagens/126-20.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgwNw%3D%3D', '117-18', 0, false)",
+    "name": "Karin Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/117/18.webm",
+    "version": "Shippuden",
+    "file": "imagens/117-18.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgwOA%3D%3D', '76-38', 0, false)",
+    "name": "Orochimaru",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/76/38.webm",
+    "version": "Clássico",
+    "file": "imagens/76-38.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgwOQ%3D%3D', '480-4', 0, false)",
+    "name": "Kurenai Yuuhi",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/480/4.webm",
+    "version": "Ano Novo Chines",
+    "file": "imagens/480-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgxMA%3D%3D', '91-25', 0, false)",
+    "name": "Kurenai Yuuhi",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/91/25.webm",
+    "version": "Clássico",
+    "file": "imagens/91-25.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgxMQ%3D%3D', '264-4', 0, false)",
+    "name": "Maito Dai",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/264/4.webm",
+    "version": "Shippuden",
+    "file": "imagens/264-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgxMg%3D%3D', '283-13', 0, false)",
+    "name": "Sasuke Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/283/13.webm",
+    "version": "Akatsuki",
+    "file": "imagens/283-13.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgxMw%3D%3D', '122-19', 0, false)",
+    "name": "Madara Uchiha",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/122/19.webm",
+    "version": "Shippuden",
+    "file": "imagens/122-19.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgxNA%3D%3D', '43-17', 0, false)",
+    "name": "Zabuza Momochi",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/43/17.webm",
+    "version": "Clássico",
+    "file": "imagens/43-17.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjgxNQ%3D%3D', '137-11', 0, false)",
+    "name": "Nagato Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/137/11.webm",
+    "version": "Shippuden",
+    "file": "imagens/137-11.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njg3NQ%3D%3D', '857-11', 0, false)",
+    "name": "Hinata Hyuuga",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/857/11.webm",
+    "version": "Idol",
+    "file": "imagens/857-11.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njg3Ng%3D%3D', '858-9', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/858/9.webm",
+    "version": "Idol",
+    "file": "imagens/858-9.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njg3Nw%3D%3D', '859-9', 0, false)",
+    "name": "Sakura Haruno",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/859/9.webm",
+    "version": "Idol",
+    "file": "imagens/859-9.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njg4Ng%3D%3D', '860-9', 0, false)",
+    "name": "Tenten",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/860/9.webm",
+    "version": "Idol",
+    "file": "imagens/860-9.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njg4Nw%3D%3D', '173-18', 0, false)",
+    "name": "Darui",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/173/18.webm",
+    "version": "Shippuden",
+    "file": "imagens/173-18.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkxMw%3D%3D', '71-15', 0, false)",
+    "name": "Kimimaro Kaguya",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/71/15.webm",
+    "version": "Clássico",
+    "file": "imagens/71-15.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkxNA%3D%3D', '60-67', 0, false)",
+    "name": "Kakashi Hatake",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/60/67.webm",
+    "version": "Clássico",
+    "file": "imagens/60-67.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyMA%3D%3D', '880-6', 0, false)",
+    "name": "Ada",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/880/6.webm",
+    "version": "Idol",
+    "file": "imagens/880-6.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyMQ%3D%3D', '296-16', 0, false)",
+    "name": "Rock Lee",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/296/16.webm",
+    "version": "Portões de Chakra",
+    "file": "imagens/296-16.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyMg%3D%3D', '109-15', 0, false)",
+    "name": "Kakuzu",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/109/15.webm",
+    "version": "Shippuden",
+    "file": "imagens/109-15.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyMw%3D%3D', '105-22', 0, false)",
+    "name": "Hidan",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/105/22.webm",
+    "version": "Shippuden",
+    "file": "imagens/105-22.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyNA%3D%3D', '316-7', 0, true)",
+    "name": "Sabaku no Gaara",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/316/7.webm",
+    "version": "Shukaku",
+    "file": "imagens/316-7.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyNQ%3D%3D', '648-3', 0, true)",
+    "name": "Roushi",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/648/3.webm",
+    "version": "Son Goku",
+    "file": "imagens/648-3.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyNg%3D%3D', '599-4', 0, true)",
+    "name": "Yagura",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/599/4.webm",
+    "version": "Isobu",
+    "file": "imagens/599-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyNw%3D%3D', '560-4', 0, true)",
+    "name": "Killer Bee",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/560/4.webm",
+    "version": "Gyuuki",
+    "file": "imagens/560-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyOA%3D%3D', '622-4', 0, true)",
+    "name": "Fuu",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/622/4.webm",
+    "version": "Choumei",
+    "file": "imagens/622-4.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkyOQ%3D%3D', '340-5', 0, true)",
+    "name": "Yugito Nii",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/340/5.webm",
+    "version": "Matatabi",
+    "file": "imagens/340-5.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkzMA%3D%3D', '601-5', 0, true)",
+    "name": "Utakata",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/601/5.webm",
+    "version": "Saiken",
+    "file": "imagens/601-5.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkzNg%3D%3D', '881-6', 0, false)",
+    "name": "Ada",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/881/6.webm",
+    "version": "Halloween",
+    "file": "imagens/881-6.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NjkzNw%3D%3D', '272-13', 0, true)",
+    "name": "Naruto Uzumaki",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/272/13.webm",
+    "version": "Kurama",
+    "file": "imagens/272-13.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njk0Ng%3D%3D', '915-9', 0, false)",
+    "name": "Ino Yamanaka",
+    "type": "image",
+    "url": "https://narutogame.com.br/assets/images/logado/profile/915/9.png",
+    "version": "Halloween",
+    "file": "imagens/915-9.png"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njk3Mg%3D%3D', '318-3', 0, false)",
+    "name": "Sabaku no Gaara",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/318/3.webm",
+    "version": "Criança",
+    "file": "imagens/318-3.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('Njk3Mw%3D%3D', '518-15', 0, false)",
+    "name": "Tsunade Senju",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/518/15.webm",
+    "version": "Criança",
+    "file": "imagens/518-15.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NzA1MA%3D%3D', '750-2', 0, false)",
+    "name": "Deidara",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/750/2.webm",
+    "version": "Halloween",
+    "file": "imagens/750-2.webm"
+  },
+  {
+    "action": "javascript:doPersonagemImagemDo('NzA1Mw%3D%3D', '743-4', 0, false)",
+    "name": "Mei Terumii",
+    "type": "video",
+    "url": "https://narutogame.com.br/assets/images//logado/profile/743/4.webm",
+    "version": "Halloween",
+    "file": "imagens/743-4.webm"
+  }
+]

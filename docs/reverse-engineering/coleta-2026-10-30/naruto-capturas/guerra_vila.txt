@@ -1,0 +1,70 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Guerra de Vilas" [level=1]
+- heading "Derrote os ninjas da vila inimiga da sua e vença deixando-os com 0 pontos." [level=2]:
+  - generic: 
+  - generic: Derrote os ninjas da vila inimiga da sua e vença deixando-os com 0 pontos.
+- heading "Entendendo a Guerra de Vilas" [level=2]:
+  - generic: 
+  - generic: Entendendo a Guerra de Vilas
+- paragraph:
+  - text: "As Vitórias PVP contra os ninjas de vilas inimigas dão pontos positivos para o vencedor e removem pontos da vila do ninja derrotado, veja a abaixo a classificação dos pontos por tipo de batalha:"
+  - generic: "Bingo Book: 60 pontos"
+  - generic: "Kage: 45 pontos"
+  - generic: "Conselheiros: 30 pontos"
+  - generic: "Outros: 15 pontos"
+- main:
+  - generic: "1510"
+  - generic: "490"
+  - generic: "2000"
+  - generic: "0"
+  - generic: "1150"
+  - generic: "850"
+  - generic: "0"
+  - generic: "2000"
+  - heading "Recompensas aos vencedores" [level=1]
+  - generic: de Experiência para a Vila
+  - generic: Fragmentos de Equipamento para a Vila
+  - 'heading "Guerra ativa por: 0 Hora 00 Min 00 Seg" [level=1]':
+    - generic: "Guerra ativa por: 0 Hora 00 Min 00 Seg"

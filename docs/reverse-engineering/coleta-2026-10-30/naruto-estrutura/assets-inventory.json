@@ -1,0 +1,3185 @@
+{
+  "assets": [
+    {
+      "id": "c5958d6e7a05fb31",
+      "kind": "stylesheet",
+      "name": "bootstrap.min.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44588,
+          "property": "href"
+        }
+      ],
+      "url": "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    },
+    {
+      "id": "b422e8f0d465a5db",
+      "kind": "stylesheet",
+      "name": "battle.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44592,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/battle.css?v=43"
+    },
+    {
+      "id": "bf33bb9a380a832d",
+      "kind": "stylesheet",
+      "name": "main.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44593,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/main.css?v=43"
+    },
+    {
+      "id": "b8a2a34be80e4c3a",
+      "kind": "stylesheet",
+      "name": "info-card.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44594,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/info-card.css?v=43"
+    },
+    {
+      "id": "9e311ece3ccc85f3",
+      "kind": "stylesheet",
+      "name": "box.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44595,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/box.css?v=43"
+    },
+    {
+      "id": "3a39c4d6b208abb0",
+      "kind": "stylesheet",
+      "name": "dark.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44596,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/dark.css?v=43"
+    },
+    {
+      "id": "c862b3bf214c7604",
+      "kind": "stylesheet",
+      "name": "bootstrap-tourist.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44597,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/externos/bootstrap-tourist.css"
+    },
+    {
+      "id": "1eeda52073db0d32",
+      "kind": "stylesheet",
+      "name": "bootstrap-select.min.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44598,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/bootstrap-select.min.css"
+    },
+    {
+      "id": "edce496ab7437235",
+      "kind": "stylesheet",
+      "name": "slick.min.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44599,
+          "property": "href"
+        }
+      ],
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css"
+    },
+    {
+      "id": "997462c5b7bc6785",
+      "kind": "stylesheet",
+      "name": "slick-theme.min.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44600,
+          "property": "href"
+        }
+      ],
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css"
+    },
+    {
+      "id": "6c04efabaf8fe518",
+      "kind": "script",
+      "name": "head.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44602,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/head.js"
+    },
+    {
+      "id": "e2178987bee3faef",
+      "kind": "script",
+      "name": "jquery.min.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44603,
+          "property": "src"
+        }
+      ],
+      "url": "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    },
+    {
+      "id": "954d18e02fed301f",
+      "kind": "script",
+      "name": "popper.min.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44604,
+          "property": "src"
+        }
+      ],
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
+    },
+    {
+      "id": "ce00da7c2ff05fca",
+      "kind": "script",
+      "name": "bootstrap.min.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44605,
+          "property": "src"
+        }
+      ],
+      "url": "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    },
+    {
+      "id": "03983f2131a66416",
+      "kind": "script",
+      "name": "bootstrap-tourist.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44606,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/externos/bootstrap-tourist.js"
+    },
+    {
+      "id": "419efea3ce81570b",
+      "kind": "script",
+      "name": "bootstrap-select.min.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44607,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/js/bootstrap-select.min.js"
+    },
+    {
+      "id": "ceb1e70f9b2dff69",
+      "kind": "script",
+      "name": "bootbox.min.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44608,
+          "property": "src"
+        }
+      ],
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"
+    },
+    {
+      "id": "0a209c44936a41e7",
+      "kind": "script",
+      "name": "slick.min.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44609,
+          "property": "src"
+        }
+      ],
+      "url": "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    },
+    {
+      "id": "dfe7c339586d97f6",
+      "kind": "script",
+      "name": "9e658afd93.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "resource",
+          "property": "other"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44610,
+          "property": "src"
+        }
+      ],
+      "url": "https://kit.fontawesome.com/9e658afd93.js"
+    },
+    {
+      "id": "d22ecaf30e58379b",
+      "kind": "script",
+      "name": "sweetalert2@11",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44611,
+          "property": "src"
+        }
+      ],
+      "url": "https://cdn.jsdelivr.net/npm/sweetalert2@11"
+    },
+    {
+      "id": "f9c3397c6e550c97",
+      "kind": "script",
+      "name": "jquery.countdown.min.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44613,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45668,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/jquery.countdown.min.js"
+    },
+    {
+      "id": "74812b7b5323fe34",
+      "kind": "script",
+      "name": "global.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44614,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/global.js?v=43"
+    },
+    {
+      "id": "13782ef000326bf4",
+      "kind": "script",
+      "name": "bootstrap.modal_patch.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44615,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/js/bootstrap.modal_patch.js?v=43"
+    },
+    {
+      "id": "d54a3d8eca0eef0b",
+      "kind": "script",
+      "name": "tooltip.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44616,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/tooltip.js?c=1775266948"
+    },
+    {
+      "id": "e3c3bbcea36c8056",
+      "kind": "script",
+      "name": "socket.io.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44617,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/socket.io.js"
+    },
+    {
+      "id": "3b0a39510f7455fb",
+      "kind": "image",
+      "name": "1.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44632,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile/2/1.png"
+    },
+    {
+      "id": "044ca039a8d2b633",
+      "kind": "image",
+      "name": "bag.jpg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44639,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/bag.jpg"
+    },
+    {
+      "id": "e3270a257d9ff8a3",
+      "kind": "script",
+      "name": "d.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44803,
+          "property": "src"
+        }
+      ],
+      "url": "https://waust.at/d.js"
+    },
+    {
+      "id": "28d4eabf9dea9788",
+      "kind": "image",
+      "name": "logo-mobile.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44812,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 44969,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logo/logo-mobile.png"
+    },
+    {
+      "id": "89c1ffc27d93eb27",
+      "kind": "image",
+      "name": "brazil.svg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45088,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45321,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/social/brazil.svg"
+    },
+    {
+      "id": "fd909f2bf5332eaa",
+      "kind": "image",
+      "name": "usa.svg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45090,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45323,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/social/usa.svg"
+    },
+    {
+      "id": "ee49f06c0dcaea13",
+      "kind": "image",
+      "name": "2.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45098,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/topo-personagem/2.png"
+    },
+    {
+      "id": "30ddd22350a3dad8",
+      "kind": "image",
+      "name": "heart.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45107,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/heart.png"
+    },
+    {
+      "id": "7179fbe250f75bbb",
+      "kind": "image",
+      "name": "chakra.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45113,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/chakra.png"
+    },
+    {
+      "id": "3655ae5a8d84157d",
+      "kind": "image",
+      "name": "stamina.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45119,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/stamina.png"
+    },
+    {
+      "id": "0ef5716ceadca1d6",
+      "kind": "image",
+      "name": "round46.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45139,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/round46.png"
+    },
+    {
+      "id": "14f724382d0197b2",
+      "kind": "image",
+      "name": "templo.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45143,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/templo.png"
+    },
+    {
+      "id": "f84b3c3b19781bd6",
+      "kind": "image",
+      "name": "passe.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45169,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/passe.png"
+    },
+    {
+      "id": "743116c62617d16c",
+      "kind": "image",
+      "name": "rotina.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45176,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/rotina.png"
+    },
+    {
+      "id": "354d2515eb162ec9",
+      "kind": "image",
+      "name": "notificacoes.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45213,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/notificacoes.png"
+    },
+    {
+      "id": "82dbeb04e695a039",
+      "kind": "image",
+      "name": "fidelidade.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45238,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/fidelidade.png"
+    },
+    {
+      "id": "234024eef9265898",
+      "kind": "image",
+      "name": "Mensageiro.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45243,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Mensageiro.png"
+    },
+    {
+      "id": "a9d2d704aaf4c935",
+      "kind": "image",
+      "name": "Noticias.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45247,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Noticias.png"
+    },
+    {
+      "id": "611a554a141788ab",
+      "kind": "image",
+      "name": "Creditos.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45252,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Creditos.png"
+    },
+    {
+      "id": "e5bbc284465de436",
+      "kind": "image",
+      "name": "ryous.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45262,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/ryous.png"
+    },
+    {
+      "id": "b8122728281cbeab",
+      "kind": "image",
+      "name": "Mochila.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45272,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Mochila.png"
+    },
+    {
+      "id": "888cc4fb0f6883f5",
+      "kind": "image",
+      "name": "1.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45286,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/destaques/1.png"
+    },
+    {
+      "id": "ffbc43aa8b55e2ad",
+      "kind": "image",
+      "name": "twitter.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45295,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/social/twitter.png"
+    },
+    {
+      "id": "4dc7fb3467bce83a",
+      "kind": "image",
+      "name": "facebook.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45297,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/social/facebook.png"
+    },
+    {
+      "id": "8142ab7ff79bff64",
+      "kind": "image",
+      "name": "youtube.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45299,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/social/youtube.png"
+    },
+    {
+      "id": "3b35254cb2e75507",
+      "kind": "image",
+      "name": "instagram.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45301,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/social/instagram.png"
+    },
+    {
+      "id": "b1e32dfc7179a9c7",
+      "kind": "image",
+      "name": "whatsapp.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45303,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/social/whatsapp.png"
+    },
+    {
+      "id": "8f2de4e29da1a42e",
+      "kind": "image",
+      "name": "discord.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45305,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/social/discord.png"
+    },
+    {
+      "id": "c9a74626c6772cb0",
+      "kind": "script",
+      "name": "el_cookie.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45402,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/el_cookie.js"
+    },
+    {
+      "id": "e45949f4e803a089",
+      "kind": "stylesheet",
+      "name": "tutorial.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45634,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/css/tutorial.css"
+    },
+    {
+      "id": "936847677dd43beb",
+      "kind": "stylesheet",
+      "name": "tabs.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45635,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/css/tabs.css"
+    },
+    {
+      "id": "bd168691a57d03cc",
+      "kind": "stylesheet",
+      "name": "jquery.booklet.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45636,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/css/jquery.booklet.css?c=1"
+    },
+    {
+      "id": "89fe90eb3a07bf30",
+      "kind": "stylesheet",
+      "name": "jquery.smartspinner.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45637,
+          "property": "href"
+        }
+      ],
+      "url": "https://narutogame.com.br/css/jquery.smartspinner.css"
+    },
+    {
+      "id": "ab4239e685d6f2a5",
+      "kind": "image",
+      "name": "index.php",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45358,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/index.php?acao=captcha&s"
+    },
+    {
+      "id": "ad497f05a349f038",
+      "kind": "image",
+      "name": "index.php",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45395,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/index.php?acao=captcha&_cache=20261030143620&quick"
+    },
+    {
+      "id": "d924313ad6a7e752",
+      "kind": "stylesheet",
+      "name": "header.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/header.css"
+    },
+    {
+      "id": "8d43bb9d02c49909",
+      "kind": "stylesheet",
+      "name": "info-card.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/info-card.css"
+    },
+    {
+      "id": "bb2f6639d07203dc",
+      "kind": "stylesheet",
+      "name": "main-card.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/main-card.css"
+    },
+    {
+      "id": "5f7fa2e000bffe2d",
+      "kind": "stylesheet",
+      "name": "points.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/points.css"
+    },
+    {
+      "id": "60ab5534e408f338",
+      "kind": "stylesheet",
+      "name": "footer.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/footer.css"
+    },
+    {
+      "id": "67eff64788dcf70c",
+      "kind": "stylesheet",
+      "name": "menu-fixed.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/menu-fixed.css"
+    },
+    {
+      "id": "4b61b0183f09b788",
+      "kind": "stylesheet",
+      "name": "alerts.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/alerts.css"
+    },
+    {
+      "id": "fddf7c9576afe4a4",
+      "kind": "stylesheet",
+      "name": "menu-mobile.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/menu-mobile.css"
+    },
+    {
+      "id": "1451a33b1b9031fe",
+      "kind": "stylesheet",
+      "name": "personagem.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/personagem.css"
+    },
+    {
+      "id": "b8313117c2c7667e",
+      "kind": "stylesheet",
+      "name": "personagem_cri_sel.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/personagem_cri_sel.css"
+    },
+    {
+      "id": "189340af59777e00",
+      "kind": "stylesheet",
+      "name": "bootstrap-theme.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/bootstrap-theme.css"
+    },
+    {
+      "id": "928d7a4dc7874a78",
+      "kind": "stylesheet",
+      "name": "geral.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/geral.css"
+    },
+    {
+      "id": "617d5e3d52400db0",
+      "kind": "stylesheet",
+      "name": "cards.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/cards.css"
+    },
+    {
+      "id": "78ec76a943bd8404",
+      "kind": "stylesheet",
+      "name": "box.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/box.css"
+    },
+    {
+      "id": "646fb59aa206a3bf",
+      "kind": "stylesheet",
+      "name": "box-batalha.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/box-batalha.css"
+    },
+    {
+      "id": "34b49a56d058de0c",
+      "kind": "stylesheet",
+      "name": "box-batalha-4x4.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/box-batalha-4x4.css"
+    },
+    {
+      "id": "03c5391ed173d5ea",
+      "kind": "stylesheet",
+      "name": "packs.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/packs.css"
+    },
+    {
+      "id": "b29599d6b352982f",
+      "kind": "stylesheet",
+      "name": "universal-tooltip.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/css/universal-tooltip.css"
+    },
+    {
+      "id": "6cfda6e89e0f2ca3",
+      "kind": "stylesheet",
+      "name": "free.min.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "fetch"
+        }
+      ],
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/css/free.min.css?token=9e658afd93"
+    },
+    {
+      "id": "520d4d7eda1a70d2",
+      "kind": "stylesheet",
+      "name": "free-v4-shims.min.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "fetch"
+        }
+      ],
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/css/free-v4-shims.min.css?token=9e658afd93"
+    },
+    {
+      "id": "e4d646ba3db96a5d",
+      "kind": "stylesheet",
+      "name": "free-v4-font-face.min.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "fetch"
+        }
+      ],
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/css/free-v4-font-face.min.css?token=9e658afd93"
+    },
+    {
+      "id": "483487a04b6d52c8",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2533/socket.io/?EIO=4&transport=polling&t=Q6Duah_"
+    },
+    {
+      "id": "3f0e8cb57c991f17",
+      "kind": "image",
+      "name": "vila-1.jpg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        },
+        {
+          "kind": "computedStyle",
+          "nodeId": 45093,
+          "property": "background-image"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/topos/vila-1.jpg"
+    },
+    {
+      "id": "148f991c4b831cb7",
+      "kind": "image",
+      "name": "border-chamfer-orange-dark.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        },
+        {
+          "kind": "computedStyle",
+          "nodeId": 45281,
+          "property": "border-image-source"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/home/backgrounds/border-chamfer-orange-dark.png"
+    },
+    {
+      "id": "5de37fc2155a5647",
+      "kind": "script",
+      "name": "ga.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45639,
+          "property": "src"
+        }
+      ],
+      "url": "[URL_PUBLICIDADE_OMITIDA]"
+    },
+    {
+      "id": "119825f4bbbf57c1",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2934/socket.io/?EIO=4&transport=polling&t=Q6DuaiZ"
+    },
+    {
+      "id": "b24871c38087a43b",
+      "kind": "image",
+      "name": "chat_title.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        },
+        {
+          "kind": "computedStyle",
+          "nodeId": 45642,
+          "property": "background-image"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/chat/chat_title.png"
+    },
+    {
+      "id": "e1a116b8804e12d8",
+      "kind": "script",
+      "name": "jquery.ui.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45664,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/jquery/jquery.ui.js?c=1"
+    },
+    {
+      "id": "398a63dbf568165d",
+      "kind": "script",
+      "name": "jquery.tabs.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45665,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/jquery.tabs.js"
+    },
+    {
+      "id": "1337c1804b5abeb9",
+      "kind": "script",
+      "name": "jquery.uitablefilter.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45666,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/jquery.uitablefilter.js"
+    },
+    {
+      "id": "02c6a7f832a4bbd1",
+      "kind": "script",
+      "name": "index.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45667,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/index.js"
+    },
+    {
+      "id": "04bdf21fc1aa328c",
+      "kind": "script",
+      "name": "jquery.numeric.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45669,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/jquery.numeric.js"
+    },
+    {
+      "id": "527cb5e58d28cc89",
+      "kind": "script",
+      "name": "jquery.easing.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45670,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/jquery.easing.js"
+    },
+    {
+      "id": "3f5a4e39f8c8f677",
+      "kind": "script",
+      "name": "jquery.booklet.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45671,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/jquery.booklet.js"
+    },
+    {
+      "id": "35ab985c45690466",
+      "kind": "script",
+      "name": "jquery.formcontrols.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45672,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/jquery.formcontrols.js"
+    },
+    {
+      "id": "0f88f935617b0624",
+      "kind": "script",
+      "name": "jquery.smartspinner.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45673,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/jquery.smartspinner.js"
+    },
+    {
+      "id": "7d976995e54421d5",
+      "kind": "script",
+      "name": "inventario.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45674,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/js/inventario.js?c=1643925292"
+    },
+    {
+      "id": "684425550089cb04",
+      "kind": "font",
+      "name": "free-fa-solid-900.woff2",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/webfonts/free-fa-solid-900.woff2"
+    },
+    {
+      "id": "6c8cfa8e78be7894",
+      "kind": "font",
+      "name": "free-fa-brands-400.woff2",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/webfonts/free-fa-brands-400.woff2"
+    },
+    {
+      "id": "0c6157a76cc6e01d",
+      "kind": "font",
+      "name": "free-fa-regular-400.woff2",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://ka-f.fontawesome.com/releases/v5.15.4/webfonts/free-fa-regular-400.woff2"
+    },
+    {
+      "id": "22bb8c0e77eb0fc3",
+      "kind": "image",
+      "name": "__utm.gif",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "[URL_PUBLICIDADE_OMITIDA]"
+    },
+    {
+      "id": "8fa3e60844bded85",
+      "kind": "script",
+      "name": "pingjs",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45712,
+          "property": "src"
+        }
+      ],
+      "url": "https://whos.amung.us/pingjs/?k=49an6wmdnc&t=Naruto%20Game%20-%20Esse%20%C3%A9%20o%20seu%20jeito%20Ninja%20de%20ser&c=d&x=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu&y=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu&a=0&v=27&r=7220"
+    },
+    {
+      "id": "0fa63b08a9e19306",
+      "kind": "script",
+      "name": "i",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45713,
+          "property": "src"
+        }
+      ],
+      "url": "https://t.dtscout.com/i/?l=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu&j=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu&wk=49an6wmdnc"
+    },
+    {
+      "id": "1136a62ba03ea1f5",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2533/socket.io/?EIO=4&transport=polling&t=Q6DualI&sid=Z_XwdTpdO195r87sIlvT"
+    },
+    {
+      "id": "0d85f35f74d3259d",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2533/socket.io/?EIO=4&transport=polling&t=Q6DualJ&sid=Z_XwdTpdO195r87sIlvT"
+    },
+    {
+      "id": "07a17fb43515b807",
+      "kind": "script",
+      "name": "widget",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45736,
+          "property": "src"
+        }
+      ],
+      "url": "https://t.dtscdn.com/widget/?d=10401793301964FF42894C8E1102E9D2&nid=0&p=2114454483&t=180&s=1470x956x30&u=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu&r=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu"
+    },
+    {
+      "id": "898a74fa75f046ef",
+      "kind": "script",
+      "name": "tc.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45737,
+          "property": "src"
+        }
+      ],
+      "url": "https://cdn.tynt.com/tc.js"
+    },
+    {
+      "id": "2ea59eb9da4e6ff3",
+      "kind": "script",
+      "name": "mm.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45739,
+          "property": "src"
+        }
+      ],
+      "url": "https://p.mrktmtrcs.net/mm.js"
+    },
+    {
+      "id": "f335004b33a7c16c",
+      "kind": "script",
+      "name": "pv",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45738,
+          "property": "src"
+        }
+      ],
+      "url": "https://t.dtscout.com/pv/?_a=v&_h=narutogame.com.br&_ss=7a8s5or74m&_pv=12&_ls=239&_cc=br&_pl=d&_b=chrome%40156&_cbid=2wzo&_cb=_dtspv.c"
+    },
+    {
+      "id": "a4454025abc09ded",
+      "kind": "image",
+      "name": "https://pixel.onaudience.com/?partner=137085098&mapped=10401793301964FF42894C8E1102E9D2",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://pixel.onaudience.com/?partner=137085098&mapped=10401793301964FF42894C8E1102E9D2"
+    },
+    {
+      "id": "f11a52f7a5243797",
+      "kind": "image",
+      "name": "segment",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://newshinyd.com/tracking/segment?key=q8xym3d"
+    },
+    {
+      "id": "76f8c54c560c9ba4",
+      "kind": "image",
+      "name": "segment",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://analytics.ozlinedsp.com/tracking/segment?key=duq6kfz"
+    },
+    {
+      "id": "1dac2c7948cec7cc",
+      "kind": "image",
+      "name": "p",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://ic.tynt.com/b/p?id=w!49an6wmdnc&lm=0&ts=1793381780873&dn=TC&iso=0&pu=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu&r=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu&t=Naruto%20Game%20-%20Esse%20%C3%A9%20o%20seu%20jeito%20Ninja%20de%20ser&chpv=26.7.1&chuav=Not%3AA-Brand%3Bv%3D8.0.0.0%2C%20Chromium%3Bv%3D156.0.8078.48%2C%20Google%20Chrome%3Bv%3D156.0.8078.48&chp=macOS&chmob=0&chua=Not%3AA-Brand%3Bv%3D8%2C%20Chromium%3Bv%3D156%2C%20Google%20Chrome%3Bv%3D156"
+    },
+    {
+      "id": "d3e565f8532a3b43",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2533/socket.io/?EIO=4&transport=polling&t=Q6DuasA&sid=Z_XwdTpdO195r87sIlvT"
+    },
+    {
+      "id": "301db02dea551ab7",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2533/socket.io/?EIO=4&transport=polling&t=Q6DuasA.0&sid=Z_XwdTpdO195r87sIlvT"
+    },
+    {
+      "id": "aa1392cc96226813",
+      "kind": "script",
+      "name": "v2",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45746,
+          "property": "src"
+        }
+      ],
+      "url": "https://de.tynt.com/deb/v2?id=w!49an6wmdnc&dn=TC&cc=1&chpv=26.7.1&chuav=Not%3AA-Brand%3Bv%3D8.0.0.0%2C%20Chromium%3Bv%3D156.0.8078.48%2C%20Google%20Chrome%3Bv%3D156.0.8078.48&chp=macOS&chmob=0&chua=Not%3AA-Brand%3Bv%3D8%2C%20Chromium%3Bv%3D156%2C%20Google%20Chrome%3Bv%3D156&r=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dacademia_jutsu&pu=https%3A%2F%2Fnarutogame.com.br%2Findex.php%3Fsecao%3Dnegado%26byrule%3Dsection%26source%3Dacademia_jutsu"
+    },
+    {
+      "id": "cc6b5ad09419bdc6",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2934/socket.io/?EIO=4&transport=polling&t=Q6DuayQ&sid=yYOldn5aGiN4QucBB8R5"
+    },
+    {
+      "id": "7a7275e50166b016",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2934/socket.io/?EIO=4&transport=polling&t=Q6DuayQ.0&sid=yYOldn5aGiN4QucBB8R5"
+    },
+    {
+      "id": "095bd3bf674e2eb4",
+      "kind": "image",
+      "name": "pixel",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://ps.eyeota.net/pixel?pid=c9gd671&t=gif&uid=IWx692rjnc0e3%2FuoaR1Qgw%3D%3D&us_privacy=&33random=1793381781401.1&cat=33across"
+    },
+    {
+      "id": "8f094d07869cda1b",
+      "kind": "image",
+      "name": "pixel",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://ps.eyeota.net/pixel?pid=c9gd671&t=gif&uid=IWx692rjnc0e3%2FuoaR1Qgw%3D%3D&us_privacy=&33random=1793381781401.2&cat=33across"
+    },
+    {
+      "id": "3d6adf88b82a0925",
+      "kind": "image",
+      "name": "pixel",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://ps.eyeota.net/pixel?pid=c9gd671&t=gif&uid=IWx692rjnc0e3%2FuoaR1Qgw%3D%3D&us_privacy=&33random=1793381781401.3&cat=33across"
+    },
+    {
+      "id": "aaa3726c80ed352b",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2934/socket.io/?EIO=4&transport=polling&t=Q6Dub4F&sid=yYOldn5aGiN4QucBB8R5"
+    },
+    {
+      "id": "c3b32771a8642ec6",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2934/socket.io/?EIO=4&transport=polling&t=Q6Dub4G&sid=yYOldn5aGiN4QucBB8R5"
+    },
+    {
+      "id": "904c14f4784792d3",
+      "kind": "image",
+      "name": "17.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45757,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45770,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45861,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45900,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45913,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/2/17.png"
+    },
+    {
+      "id": "08da90d6115cf92e",
+      "kind": "other",
+      "name": "socket.io",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://narutogame.com.br:2934/socket.io/?EIO=4&transport=polling&t=Q6Dub7z&sid=yYOldn5aGiN4QucBB8R5"
+    },
+    {
+      "id": "eb7d7a371ce00134",
+      "kind": "image",
+      "name": "6.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45783,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45796,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45809,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/275/6.png"
+    },
+    {
+      "id": "6ecd0096119d988c",
+      "kind": "image",
+      "name": "1.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45822,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45835,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/3/1.png"
+    },
+    {
+      "id": "6d243cdfd3e2f0d1",
+      "kind": "image",
+      "name": "1.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45848,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/456/1.png"
+    },
+    {
+      "id": "347525e5102092a7",
+      "kind": "image",
+      "name": "5.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45874,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/403/5.png"
+    },
+    {
+      "id": "d647be94ce2b1d4a",
+      "kind": "image",
+      "name": "4.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45887,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45939,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45952,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45978,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45991,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46004,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46127,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46155,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46203,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46231,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46259,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46277,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46295,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46333,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46401,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46529,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/79/4.png"
+    },
+    {
+      "id": "4a1db6b9822af160",
+      "kind": "image",
+      "name": "8.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45926,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/3/8.png"
+    },
+    {
+      "id": "5d80b39f2d61e44b",
+      "kind": "image",
+      "name": "1.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 45965,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46040,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46059,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/43/1.png"
+    },
+    {
+      "id": "0be4a04c04faccab",
+      "kind": "image",
+      "name": "2.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46017,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/102/2.png"
+    },
+    {
+      "id": "92d23385ae5fa332",
+      "kind": "image",
+      "name": "15.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46030,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46049,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46068,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46087,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46107,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46164,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46221,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46249,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46304,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46323,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46352,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46548,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46911,
+          "property": "src"
+        }
+      ],
+      "url": "https://www.narutogame.com.br/assets/images/logado/profile-4x4/475/15.png"
+    },
+    {
+      "id": "45483275b1d4f043",
+      "kind": "image",
+      "name": "kage_5.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46035,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46054,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46073,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46092,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46112,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46169,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46226,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46254,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46309,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46328,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46357,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46553,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46916,
+          "property": "src"
+        }
+      ],
+      "url": "https://www.narutogame.com.br/assets/images/logado/chat/kage_5.png"
+    },
+    {
+      "id": "af06d396080d892b",
+      "kind": "image",
+      "name": "6.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46078,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46136,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46212,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46286,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46558,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46689,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46775,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46834,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46883,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46902,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46959,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46968,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/950/6.png"
+    },
+    {
+      "id": "7fad29edd9eab69b",
+      "kind": "image",
+      "name": "14.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46097,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46117,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46145,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46184,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46342,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46371,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46391,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46430,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46440,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46450,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46480,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46490,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46538,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46567,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46596,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46606,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46643,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46707,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46717,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46736,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46755,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46765,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46804,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46853,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46921,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46931,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/42/14.png"
+    },
+    {
+      "id": "ca29ac9459bfab7d",
+      "kind": "image",
+      "name": "megafone.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46102,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46122,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46150,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46189,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46347,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46376,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46396,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46435,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46445,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46455,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46485,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46495,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46543,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46572,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46601,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46611,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46648,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46712,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46722,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46741,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46760,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46770,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46809,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46858,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46926,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46936,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/chat/megafone.png"
+    },
+    {
+      "id": "40e69eeefdacce0f",
+      "kind": "image",
+      "name": "6.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46174,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/430/6.png"
+    },
+    {
+      "id": "dbc0b5dc7bb44582",
+      "kind": "image",
+      "name": "shield.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46179,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/chat/shield.png"
+    },
+    {
+      "id": "da969d6d90f34201",
+      "kind": "image",
+      "name": "4.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46194,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46240,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46268,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46314,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46362,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46520,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46616,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46634,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46671,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46698,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46746,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46941,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/505/4.png"
+    },
+    {
+      "id": "05e7f9cbd26311da",
+      "kind": "image",
+      "name": "8.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46381,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46420,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/116/8.png"
+    },
+    {
+      "id": "d9b05f14ed9d7307",
+      "kind": "image",
+      "name": "kage_6.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46386,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46425,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/chat/kage_6.png"
+    },
+    {
+      "id": "40a71a3aa139b4ad",
+      "kind": "image",
+      "name": "4.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46410,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46460,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46470,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46500,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46586,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46784,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46814,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46843,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46873,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46892,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/743/4.png"
+    },
+    {
+      "id": "a906d7a424f18dc4",
+      "kind": "image",
+      "name": "espada.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46415,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46465,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46475,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46505,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46591,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46789,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46799,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46819,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46829,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46848,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46868,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46878,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46897,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/chat/espada.png"
+    },
+    {
+      "id": "d1121352caa60410",
+      "kind": "image",
+      "name": "2.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46510,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46577,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46950,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 55268,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 57748,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/119/2.png"
+    },
+    {
+      "id": "b4ec7b3b75d84c43",
+      "kind": "image",
+      "name": "6.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46516,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/emotes/6.png"
+    },
+    {
+      "id": "d9f26e0c1c45c5ad",
+      "kind": "image",
+      "name": "6.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46625,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46653,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46680,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46727,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/203/6.png"
+    },
+    {
+      "id": "ed08faabe49cba6f",
+      "kind": "image",
+      "name": "9.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46662,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/915/9.png"
+    },
+    {
+      "id": "474a5f448f26044e",
+      "kind": "image",
+      "name": "47.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46794,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46824,
+          "property": "src"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 46863,
+          "property": "src"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/52/47.png"
+    },
+    {
+      "id": "aca44f2405bd3320",
+      "kind": "other",
+      "name": "a",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "beacon"
+        }
+      ],
+      "url": "https://a.mrktmtrcs.net/a"
+    },
+    {
+      "id": "ac330ca025c14a32",
+      "kind": "image",
+      "name": "bg_highlights2.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/images/logado/bg_highlights2.png"
+    },
+    {
+      "id": "67d0bca2899b914a",
+      "kind": "font",
+      "name": "mistral-webfont.ttf",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://narutogame.com.br/assets/fonts/mistral-webfont.ttf"
+    }
+  ],
+  "id": "6782d271-14e9-4a38-baac-692047040715",
+  "inlineSvgs": [
+    {
+      "id": "4ab452c4e44368c8",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" id=\"dayIcon\" x=\"0px\" y=\"0px\" viewBox=\"0 0 35 35\" style=\"enable-background:new 0 0 35 35;\" xml:space=\"preserve\">\n\t\t\t\t\t\t\t\t<g id=\"Sun\">\n\t\t\t\t\t\t\t\t\t<g>\n\t\t\t\t\t\t\t\t\t<path style=\"fill-rule:evenodd;clip-rule:evenodd;\" d=\"M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z\"></path>\n\t\t\t\t\t\t\t\t\t</g>\n\t\t\t\t\t\t\t\t</g>\n\t\t\t\t\t\t\t\t</svg>",
+      "name": "dayIcon"
+    },
+    {
+      "id": "8540701dba621fc6",
+      "markup": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" id=\"nightIcon\" x=\"0px\" y=\"0px\" viewBox=\"0 0 100 100\" enable-background=\"new 0 0 100 100\" xml:space=\"preserve\">\n\t\t\t\t\t\t\t\t<path d=\"M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z\"></path>\n\t\t\t\t\t\t\t\t</svg>",
+      "name": "nightIcon"
+    }
+  ],
+  "pageUrl": "https://narutogame.com.br/index.php?secao=negado&byrule=section&source=academia_jutsu#",
+  "summary": {
+    "byKind": {
+      "font": 4,
+      "image": 67,
+      "other": 12,
+      "script": 35,
+      "stylesheet": 35,
+      "video": 0
+    },
+    "inlineSvgCount": 2,
+    "totalCount": 153
+  }
+}

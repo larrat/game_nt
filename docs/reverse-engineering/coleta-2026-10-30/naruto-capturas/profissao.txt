@@ -1,0 +1,491 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Profissão Ninja" [level=1]
+- main:
+  - heading "Escolha sua profissão" [level=3]
+  - generic "Médico":
+    - img "Médico"
+  - generic "Cozinheiro":
+    - img "Cozinheiro"
+  - generic "Ferreiro":
+    - img "Ferreiro"
+  - generic "Caçador":
+    - img "Caçador"
+- button "Aprender"
+- paragraph: Aventureiro - Lvl. 4
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 8 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 5
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 10 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Médico - Lvl. 1
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 30%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button "Treinar"
+- paragraph: Médico - Lvl. 2
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 35%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button "Treinar"
+- paragraph: Médico - Lvl. 3
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 40%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button: Treinar
+- paragraph: Médico - Lvl. 4
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 45%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button: Treinar
+- paragraph: Médico - Lvl. 5
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 50%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 1
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 30%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 2
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 35%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 3
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 40%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 4
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 45%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 5
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 50%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 1
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 30%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 2
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 35%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 3
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 40%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 4
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 45%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 5
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 50%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 1
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 13%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 2
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 16%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 3
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 19%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 4
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 22%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 5
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 25%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 1
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 10%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 2
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 15%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 3
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 20%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 4
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 25%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 5
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 30%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 1
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 2 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 2
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 4 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 3
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 6 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 4
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 8 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 5
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 10 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Médico - Lvl. 1
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 30%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button: Treinar
+- paragraph: Médico - Lvl. 2
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 35%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button: Treinar
+- paragraph: Médico - Lvl. 3
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 40%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button: Treinar
+- paragraph: Médico - Lvl. 4
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 45%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button: Treinar
+- paragraph: Médico - Lvl. 5
+- paragraph:
+  - text: Sai das batalhas com
+  - generic: 50%
+  - text: a mais dos atributos do final da batalha.
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 1
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 30%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 2
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 35%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 3
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 40%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 4
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 45%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Cozinheiro - Lvl. 5
+- paragraph:
+  - text: Aumenta a cura dos Ramens em
+  - generic: 50%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 1
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 30%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 2
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 35%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 3
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 40%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 4
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 45%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Ferreiro - Lvl. 5
+- paragraph:
+  - text: Reduz o preço das Armas de Curto em
+  - generic: 50%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 1
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 13%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 2
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 16%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 3
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 19%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 4
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 22%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Caçador - Lvl. 5
+- paragraph:
+  - text: Aumenta a recompensa em
+  - generic: 25%
+  - text: ao matar Bingo Book.
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 1
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 10%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 2
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 15%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 3
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 20%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 4
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 25%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Instrutor - Lvl. 5
+- paragraph:
+  - text: Aumenta o ganho de fragmentos ao destruir equipamentos em
+  - generic: 30%
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 1
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 2 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 2
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 4 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 3
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 6 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 4
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 8 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- paragraph: Aventureiro - Lvl. 5
+- paragraph:
+  - text: Reduz o tempo das Missões de Tempo em
+  - generic: 10 Minutos
+  - text: .
+- generic: 
+- button: Treinar
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

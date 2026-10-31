@@ -1,3 +1,5 @@
+> **Acervo atualizado:** [coleta completa de 30/10/2026](coleta-2026-10-30/README.md), incluindo personagens, clãs, jutsus, mídias, progresso até nível 5 e duelo NPC. Abaixo permanece o dossiê inicial para contexto histórico.
+
 # Dossiê de engenharia reversa — Naruto Game x Kurokage
 
 > **Atualização de 30/10/2026:** este README descreve o escopo **inicial, anterior à sessão autenticada**. A PR #34 ampliou a observação para 76 rotas, com alguns testes controlados. Para a situação atual das telas, veja [observações autenticadas](authenticated-observations-2026-10-29.md) e o [mapa visual do Kurokage](../design/screen-catalog-and-visual-direction-2026-10-30.md). Alegações de risco deste dossiê inicial não substituem a auditoria das RPCs e permissões em produção.

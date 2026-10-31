@@ -1,0 +1,322 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Kekkei Genkai" [level=1]
+- main:
+  - heading "Escolha seu Kekkei Genkai" [level=3]
+  - generic "Golpe Crítico"
+  - generic "Perda de Foco"
+  - generic "Percepção Aguçada"
+- button "Aprender Kekkei Genkai"
+- generic: Golpe Crítico - Level 1
+- generic: 
+- button "Treinar"
+- generic: Golpe Crítico - Level 2
+- generic: 
+- button "Treinar"
+- generic: Perda de Foco - Level 1
+- generic: 
+- button "Treinar"
+- generic: Perda de Foco - Level 2
+- generic: 
+- button "Treinar"
+- generic: Perda de Foco - Level 3
+- generic: 
+- button "Treinar"
+- generic: Percepção Aguçada - Level 1
+- generic: 
+- button "Treinar"
+- generic: Percepção Aguçada - Level 2
+- generic: 
+- button "Treinar"
+- generic: Ruptura Perfurante - Level 1
+- generic: 
+- button "Treinar"
+- generic: Ruptura Perfurante - Level 2
+- generic: 
+- button "Treinar"
+- generic: Surto Vital - Level 1
+- generic: 
+- button "Treinar"
+- generic: Surto Vital - Level 2
+- generic: 
+- button "Treinar"
+- generic: Surto Vital - Level 3
+- generic: 
+- button "Treinar"
+- generic: Surto Vital - Level 4
+- generic: 
+- button "Treinar"
+- generic: Surto Vital - Level 5
+- generic: 
+- button "Treinar"
+- generic: Surto Vital - Level 6
+- generic: 
+- button "Treinar"
+- generic: Drenagem - Level 1
+- generic: 
+- button "Treinar"
+- generic: Drenagem - Level 2
+- generic: 
+- button "Treinar"
+- generic: Determinação - Level 1
+- generic: 
+- button "Treinar"
+- generic: Determinação - Level 2
+- generic: 
+- button "Treinar"
+- generic: Determinação - Level 3
+- generic: 
+- button "Treinar"
+- generic: Potência - Level 1
+- generic: 
+- button "Treinar"
+- generic: Potência - Level 2
+- generic: 
+- button "Treinar"
+- generic: Potência - Level 3
+- generic: 
+- button "Treinar"
+- generic: Potência - Level 4
+- generic: 
+- button "Treinar"
+- generic: Potência - Level 5
+- generic: 
+- button "Treinar"
+- generic: Potência - Level 6
+- generic: 
+- button "Treinar"
+- generic: Fortificação - Level 1
+- generic: 
+- button "Treinar"
+- generic: Fortificação - Level 2
+- generic: 
+- button "Treinar"
+- generic: Fortificação - Level 3
+- generic: 
+- button "Treinar"
+- generic: Fortificação - Level 4
+- generic: 
+- button "Treinar"
+- generic: Fortificação - Level 5
+- generic: 
+- button "Treinar"
+- generic: Fortificação - Level 6
+- generic: 
+- button "Treinar"
+- generic: Investida Perfurante - Level 1
+- generic: 
+- button "Treinar"
+- generic: Investida Perfurante - Level 2
+- generic: 
+- button "Treinar"
+- generic: Investida Perfurante - Level 3
+- generic: 
+- button "Treinar"
+- generic: Fúria - Level 1
+- generic: 
+- button "Treinar"
+- generic: Fúria - Level 2
+- generic: 
+- button "Treinar"
+- generic: Fúria - Level 3
+- generic: 
+- button "Treinar"
+- generic: Fúria - Level 4
+- generic: 
+- button "Treinar"
+- generic: Fúria - Level 5
+- generic: 
+- button "Treinar"
+- generic: Fúria - Level 6
+- generic: 
+- button "Treinar"
+- generic: Sacrifício Vital - Level 1
+- generic: 
+- button "Treinar"
+- generic: Sacrifício Vital - Level 2
+- generic: 
+- button "Treinar"
+- generic: Sacrifício Vital - Level 3
+- generic: 
+- button "Treinar"
+- generic: Sacrifício Vital - Level 4
+- generic: 
+- button "Treinar"
+- generic: Sacrifício Vital - Level 5
+- generic: 
+- button "Treinar"
+- generic: Sacrifício Vital - Level 6
+- generic: 
+- button "Treinar"
+- generic: Resistência Absoluta - Level 1
+- generic: 
+- button "Treinar"
+- generic: Resistência Absoluta - Level 2
+- generic: 
+- button "Treinar"
+- generic: Resistência Absoluta - Level 3
+- generic: 
+- button "Treinar"
+- generic: Resistência Absoluta - Level 4
+- generic: 
+- button "Treinar"
+- generic: Resistência Absoluta - Level 5
+- generic: 
+- button "Treinar"
+- generic: Resistência Absoluta - Level 6
+- generic: 
+- button "Treinar"
+- generic: Absorção - Level 1
+- generic: 
+- button "Treinar"
+- generic: Absorção - Level 2
+- generic: 
+- button "Treinar"
+- generic: Vitalidade - Level 1
+- generic: 
+- button "Treinar"
+- generic: Vitalidade - Level 2
+- generic: 
+- button "Treinar"
+- generic: Vitalidade - Level 3
+- generic: 
+- button "Treinar"
+- generic: Vitalidade - Level 4
+- generic: 
+- button "Treinar"
+- generic: Vitalidade - Level 5
+- generic: 
+- button "Treinar"
+- generic: Mira Precisa - Level 1
+- generic: 
+- button "Treinar"
+- generic: Mira Precisa - Level 2
+- generic: 
+- button "Treinar"
+- generic: Mira Precisa - Level 3
+- generic: 
+- button "Treinar"
+- generic: Mira Precisa - Level 4
+- generic: 
+- button "Treinar"
+- generic: Mira Precisa - Level 5
+- generic: 
+- button "Treinar"
+- generic: Mira Precisa - Level 6
+- generic: 
+- button "Treinar"
+- generic: Defesa Precisa - Level 1
+- generic: 
+- button "Treinar"
+- generic: Defesa Precisa - Level 2
+- generic: 
+- button "Treinar"
+- generic: Defesa Precisa - Level 3
+- generic: 
+- button "Treinar"
+- generic: Defesa Precisa - Level 4
+- generic: 
+- button "Treinar"
+- generic: Defesa Precisa - Level 5
+- generic: 
+- button "Treinar"
+- generic: Defesa Precisa - Level 6
+- generic: 
+- button "Treinar"
+- generic: Intimidação - Level 1
+- generic: 
+- button "Treinar"
+- generic: Intimidação - Level 2
+- generic: 
+- button "Treinar"
+- generic: Intimidação - Level 3
+- generic: 
+- button "Treinar"
+- generic: Intimidação - Level 4
+- generic: 
+- button "Treinar"
+- generic: Intimidação - Level 5
+- generic: 
+- button "Treinar"
+- generic: Intimidação - Level 6
+- generic: 
+- button "Treinar"
+- generic: Desorientação - Level 1
+- generic: 
+- button "Treinar"
+- generic: Desorientação - Level 2
+- generic: 
+- button "Treinar"
+- generic: Desorientação - Level 3
+- generic: 
+- button "Treinar"
+- generic: Desorientação - Level 4
+- generic: 
+- button "Treinar"
+- generic: Desorientação - Level 5
+- generic: 
+- button "Treinar"
+- generic: Desorientação - Level 6
+- generic: 
+- button "Treinar"
+- generic: Quebra de Guarda - Level 1
+- generic: 
+- button "Treinar"
+- generic: Quebra de Guarda - Level 2
+- generic: 
+- button "Treinar"
+- generic: Quebra de Guarda - Level 3
+- generic: 
+- button "Treinar"
+- generic: Quebra de Guarda - Level 4
+- generic: 
+- button "Treinar"
+- generic: Quebra de Guarda - Level 5
+- generic: 
+- button "Treinar"
+- generic: Quebra de Guarda - Level 6
+- generic: 
+- button "Treinar"
+- text: "--- TRANSLATION MISSING: kekkei.ms5 ---"
+- insertion

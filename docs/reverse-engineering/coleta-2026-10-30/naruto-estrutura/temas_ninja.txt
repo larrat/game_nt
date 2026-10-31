@@ -1,0 +1,62 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Templos Ninjas - Temas" [level=1]
+- main:
+  - heading "Escolha um Templo Ninja" [level=3]
+  - generic "Templo dos Mestres do Taijutsu":
+    - img "Templo dos Mestres do Taijutsu"
+  - generic "Templo dos Mestres do Ninjutsu":
+    - img "Templo dos Mestres do Ninjutsu"
+  - generic "Templo dos Mestres do Genjutsu":
+    - img "Templo dos Mestres do Genjutsu"
+  - generic "Templo dos Mestres do Bukijutsu":
+    - img "Templo dos Mestres do Bukijutsu"
+- text: Filtro -
+- radio [checked]
+- text: Todos
+- radio
+- text: Compráveis por créditos
+- radio
+- text: Especiais (requerimento)
+- main

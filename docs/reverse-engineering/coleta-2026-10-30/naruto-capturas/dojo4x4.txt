@@ -1,0 +1,52 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Dojo 4x4" [level=2]:
+  - generic: 
+  - generic: Dojo 4x4
+- paragraph: Agora você pode listar seu personagem para Batalhas 4x4 sem ter Equipes. As batalhas serão niveladas pela média de level dos jogadores de ambas Equipes e por dia todos jogadores poderão vencer 5 combates.
+- generic: 0 de 5 Combates 4x4 PVP
+- paragraph: As batalhas 4x4 só ficam disponíveis agora na Terça-Feira e Domingo.
+- paragraph
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

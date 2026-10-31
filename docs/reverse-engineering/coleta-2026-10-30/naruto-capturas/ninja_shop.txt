@@ -1,0 +1,569 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Ninja Shop" [level=1]
+- heading "Limite Quinzenal de Armas de Longo Alcance" [level=2]:
+  - generic: 
+  - generic: Limite Quinzenal de Armas de Longo Alcance
+- paragraph: Todos os Ninjas possuem um Limite de Compra Quinzenal de 40 Armas de Longo Alcance, isso foi implementado no jogo para que o uso dessas armas seja feito de uma forma estratégica nos combates. O Reset acontece sempre no dia 1 e 15 de todo mês.
+- generic: 0 de 40 Armas de Longo Alcance Quinzenais
+- generic: Armas de longo alcance
+- generic: Armas de curto alcance
+- generic: Pergaminho
+- generic: x0
+- generic: Shuriken
+- generic: 
+- generic: RY$ 7
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Kunai
+- generic: 
+- generic: RY$ 12
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Makibishi
+- generic: 
+- generic: RY$ 17
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Senbons
+- generic: 
+- generic: RY$ 22
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Tarja Explosiva
+- generic: 
+- generic: RY$ 21
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Shuriken com Linha
+- generic: 
+- generic: RY$ 32
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Shuriken Gigante
+- generic: 
+- generic: RY$ 27
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Bomba de Luz
+- generic: 
+- generic: RY$ 21
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Shuriken
+- generic: 
+- generic: RY$ 7
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Shuriken com Linha
+- generic: 
+- generic: RY$ 32
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Senbons
+- generic: 
+- generic: RY$ 22
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Shuriken Gigante
+- generic: 
+- generic: RY$ 27
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Tarja Explosiva
+- generic: 
+- generic: RY$ 64
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Tarja Explosiva
+- generic: 
+- generic: RY$ 85
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Makibishi
+- generic: 
+- generic: RY$ 17
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Tarja Explosiva
+- generic: 
+- generic: RY$ 106
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Sensei Kunai
+- generic: 
+- generic: RY$ 12
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Tarja Explosiva
+- generic: 
+- generic: RY$ 42
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Bomba de Luz
+- generic: 
+- generic: RY$ 42
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Bomba de Luz
+- generic: 
+- generic: RY$ 64
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Bomba de Luz
+- generic: 
+- generic: RY$ 85
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Bomba de Luz
+- generic: 
+- generic: RY$ 106
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Etiqueta de Selamento
+- generic: 
+- generic: RY$ 21
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Etiqueta de Selamento
+- generic: 
+- generic: RY$ 42
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Etiqueta de Selamento
+- generic: 
+- generic: RY$ 64
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Etiqueta de Selamento
+- generic: 
+- generic: RY$ 85
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Etiqueta de Selamento
+- generic: 
+- generic: RY$ 106
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Bomba de Fumaça
+- generic: 
+- generic: RY$ 85
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Etiqueta Perfurante
+- generic: 
+- generic: RY$ 42
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Etiqueta Perfurante
+- generic: 
+- generic: RY$ 85
+- textbox: "1"
+- button "Comprar"
+- generic: x0
+- generic: Nunchaku
+- generic: 
+- generic: RY$ 850
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Tantou
+- generic: 
+- generic: RY$ 5100
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Ninjaken
+- generic: 
+- generic: RY$ 6800
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Tonfa de Madeira
+- generic: 
+- generic: RY$ 4250
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Aian Nakkuru
+- generic: 
+- generic: RY$ 6800
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Bastão
+- generic: 
+- generic: RY$ 5950
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Leque
+- generic: 
+- generic: RY$ 7650
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Fuuma Shuriken
+- generic: 
+- generic: RY$ 2550
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Espada de Kusanagi
+- generic: 
+- generic: RY$ 10200
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Kunai de 3 Pontas
+- generic: 
+- generic: RY$ 8500
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Kunai Curvada
+- generic: 
+- generic: RY$ 1700
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Foice Jashin
+- generic: 
+- generic: RY$ 9350
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Ken no Hachi
+- generic: 
+- generic: RY$ 10200
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Raijin no Ken
+- generic: 
+- generic: RY$ 8500
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pincel
+- generic: 
+- generic: RY$ 850
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Senbon Guizo
+- generic: 
+- generic: RY$ 2550
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Mateki
+- generic: 
+- generic: RY$ 1700
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Espada de Garian
+- generic: 
+- generic: RY$ 5950
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Totsuka Yata
+- generic: 
+- generic: "6 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Nunchaku Energizado
+- generic: 
+- generic: "1 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Kunai Curvada Gigante
+- generic: 
+- generic: "1 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Fuuma Shuriken Dupla
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Kunai de Teletransporte
+- generic: 
+- generic: "5 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Tonfa de Ferro
+- generic: 
+- generic: "3 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Bastão do Rei Macaco
+- generic: 
+- generic: "4 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Aian Nakkuru de Chakra
+- generic: 
+- generic: "4 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Foice Jashin Tripla
+- generic: 
+- generic: "6 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Ken no Hachi do Trovão
+- generic: 
+- generic: "6 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pincel Gigante
+- generic: 
+- generic: "1 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Mateki San
+- generic: 
+- generic: "1 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Senbons Guizo Múltiplos
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Tantou de Chakra Branco
+- generic: 
+- generic: "3 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Dragão de Garian
+- generic: 
+- generic: "4 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Ninjaken Dupla do Sapo
+- generic: 
+- generic: "4 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Leque Gigante
+- generic: 
+- generic: "5 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Totsuka no Tsurugi
+- generic: 
+- generic: RY$ 9350
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Espada do Deus Kusanagi
+- generic: 
+- generic: "6 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Raijin no Ken Amplificada
+- generic: 
+- generic: "5 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Jidanda
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Jouhyou
+- generic: 
+- generic: RY$ 3400
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Braço Melódico
+- generic: 
+- generic: RY$ 3400
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Punhos Melódicos
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Guarda-chuva Triplo
+- generic: 
+- generic: "3 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Guarda-chuva
+- generic: 
+- generic: RY$ 4250
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Lançador de Injeção
+- generic: 
+- generic: "3 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Lançador de Senbons
+- generic: 
+- generic: RY$ 5100
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Espada Cutelo Duplo
+- generic: 
+- generic: "5 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Espada Cutelo
+- generic: 
+- generic: RY$ 7650
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pergaminho de Teletransporte para Konoha
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pergaminho de Teletransporte para Areia
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pergaminho de Teletransporte para Névoa
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pergaminho de Teletransporte para Pedra
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pergaminho de Teletransporte para Nuvem
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pergaminho de Teletransporte para Akatsuki
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pergaminho de Teletransporte para Som
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- generic: x0
+- generic: Pergaminho de Teletransporte para Chuva
+- generic: 
+- generic: "2 Créditos Vip:"
+- generic: x1
+- button "Comprar"
+- insertion

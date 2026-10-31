@@ -1,0 +1,145 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Conquistas Ninja" [level=1]
+- tablist:
+  - tab "Geral" [selected]
+  - tab "Batalha" [selected]
+  - tab "Personagem" [selected]
+  - tab "Shop" [selected]
+  - tab "Equipe" [selected]
+  - tab "Habilidades" [selected]
+  - tab "Especiais" [selected]
+  - tab "Arena" [selected]
+  - tab "Eventos de Vila" [selected]
+  - tab "Bingo Book" [selected]
+  - tab "Modo História" [selected]
+  - tab "Evento de Equipe" [selected]
+  - tab "Exame Ninja" [selected]
+  - tab "Guerra Ninja" [selected]
+  - tab "Profissão" [selected]
+  - tab "Sensei" [selected]
+  - tab "Pacotes" [selected]
+  - tab "Bijuus" [selected]
+  - tab "Passe de Batalha" [selected]
+- tabpanel "Validação de Conta 50pts De volta ao Round 8 100pts Tutorial Iniciante 50pts Genin 15pts Chuunin 30pts Jounin 45pts ANBU 60pts Sannin da Folha 75pts Herói 90pts Ninja Milionário 200pts Ninja Mercenário 100pts Ninja Sortudo 200pts Ninja Azarado 200pts Vip Genin 15pts Vip Chunin 30pts Vip Jounin 45pts Vip ANBU 60pts Vip Sanin 75pts Vip Kage 90pts Ninja Vip 150pts Ninja Vip Supremo 300pts Colecionador de Temas Vip 100pts Colecionador de Temas Vip Ultimate 100pts Vencedor de Missão de Combate Diária 50pts Vencedor de Missão de Combate Semanal 100pts Vencedor de Missão de Combate Mensal 200pts":
+  - generic: 
+  - generic: Validação de Conta
+  - generic: 50pts
+  - generic: 
+  - generic: De volta ao Round 8
+  - generic: 100pts
+  - generic: 
+  - generic: Tutorial Iniciante
+  - generic: 50pts
+  - generic: 
+  - generic: Genin
+  - generic: 15pts
+  - generic: 
+  - generic: Chuunin
+  - generic: 30pts
+  - generic: 
+  - generic: Jounin
+  - generic: 45pts
+  - generic: 
+  - generic: ANBU
+  - generic: 60pts
+  - generic: 
+  - generic: Sannin da Folha
+  - generic: 75pts
+  - generic: 
+  - generic: Herói
+  - generic: 90pts
+  - generic: 
+  - generic: Ninja Milionário
+  - generic: 200pts
+  - generic: 
+  - generic: Ninja Mercenário
+  - generic: 100pts
+  - generic: 
+  - generic: Ninja Sortudo
+  - generic: 200pts
+  - generic: 
+  - generic: Ninja Azarado
+  - generic: 200pts
+  - generic: 
+  - generic: Vip Genin
+  - generic: 15pts
+  - generic: 
+  - generic: Vip Chunin
+  - generic: 30pts
+  - generic: 
+  - generic: Vip Jounin
+  - generic: 45pts
+  - generic: 
+  - generic: Vip ANBU
+  - generic: 60pts
+  - generic: 
+  - generic: Vip Sanin
+  - generic: 75pts
+  - generic: 
+  - generic: Vip Kage
+  - generic: 90pts
+  - generic: 
+  - generic: Ninja Vip
+  - generic: 150pts
+  - generic: 
+  - generic: Ninja Vip Supremo
+  - generic: 300pts
+  - generic: 
+  - generic: Colecionador de Temas Vip
+  - generic: 100pts
+  - generic: 
+  - generic: Colecionador de Temas Vip Ultimate
+  - generic: 100pts
+  - generic: 
+  - generic: Vencedor de Missão de Combate Diária
+  - generic: 50pts
+  - generic: 
+  - generic: Vencedor de Missão de Combate Semanal
+  - generic: 100pts
+  - generic: 
+  - generic: Vencedor de Missão de Combate Mensal
+  - generic: 200pts
+- text:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+- insertion

@@ -1,0 +1,782 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Ranking de Ninjas" [level=1]
+- generic: Vila
+- combobox "Vila":
+  - option "Geral"
+  - option "Folha" [selected]
+  - option "Areia"
+  - option "Névoa"
+  - option "Pedra"
+  - option "Nuvem"
+  - option "Akatsuki"
+  - option "Som"
+  - option "Chuva"
+- generic: Graduação
+- combobox "Graduação":
+  - option "Geral" [selected]
+  - option "Estudante"
+  - option "Genin"
+  - option "Chuunin"
+  - option "Jounin"
+  - option "ANBU"
+  - option "Sannin da Folha"
+  - option "Herói"
+- generic: Posição
+- combobox "Posição":
+  - option "1 Até 50" [selected]
+  - option "51 Até 100"
+  - option "101 Até 150"
+  - option "151 Até 200"
+  - option "201 Até 250"
+  - option "251 Até 300"
+  - option "301 Até 350"
+  - option "351 Até 400"
+  - option "401 Até 450"
+  - option "451 Até 500"
+  - option "501 Até 550"
+- generic: Nome
+- textbox
+- button "Filtrar"
+- link "Kakashi30":
+  - /url: javascript:void(0)
+- generic: 1º
+- generic: Raikiri Implacável
+- generic: Level 44
+- generic: "151487"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5408151"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5408151"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Spam":
+  - /url: javascript:void(0)
+- generic: 2º
+- generic: O Último Limite
+- generic: Level 38
+- generic: "146651"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5980026"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5980026"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "lDragonSlayer":
+  - /url: javascript:void(0)
+- generic: 3º
+- generic: Jounin
+- generic: Level 37
+- generic: "138497"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5945610"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5945610"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Naipe":
+  - /url: javascript:void(0)
+- generic: 4º
+- generic: Mais Forte que um Kage
+- generic: Level 44
+- generic: "133466"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5975495"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5975495"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "PI2oTuG4":
+  - /url: javascript:void(0)
+- generic: 5º
+- generic: Mestre do Vento
+- generic: Level 40
+- generic: "125675"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5977135"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5977135"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "MadeiraJutsu":
+  - /url: javascript:void(0)
+- generic: 6º
+- generic: Mestre da Madeira
+- generic: Level 40
+- generic: "116639"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5957665"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5957665"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Aegon":
+  - /url: javascript:void(0)
+- generic: 7º
+- generic: O Bem nunca perderá!
+- generic: Level 29
+- generic: "108948"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5978360"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5978360"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "NaoSouBowden":
+  - /url: javascript:void(0)
+- generic: 8º
+- generic: Portador do Raiton Negro
+- generic: Level 34
+- generic: "108045"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5978646"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5978646"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Iee":
+  - /url: javascript:void(0)
+- generic: 9º
+- generic: O Guardião Bestial
+- generic: Level 30
+- generic: "104397"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5983708"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5983708"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Carroceiro":
+  - /url: javascript:void(0)
+- generic: 10º
+- generic: Mestre da Luta Corporal
+- generic: Level 33
+- generic: "91459"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5960184"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5960184"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Cj007":
+  - /url: javascript:void(0)
+- generic: 11º
+- generic: Sem Dor Sem Ganho
+- generic: Level 36
+- generic: "91152"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5877385"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5877385"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Aisek":
+  - /url: javascript:void(0)
+- generic: 12º
+- generic: O Gênio Incomparável
+- generic: Level 36
+- generic: "90100"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5987072"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5987072"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "DELToff":
+  - /url: javascript:void(0)
+- generic: 13º
+- generic: Sem Título
+- generic: Level 31
+- generic: "86442"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5926648"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5926648"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "LisanalGaib":
+  - /url: javascript:void(0)
+- generic: 14º
+- generic: Chama Eterna
+- generic: Level 25
+- generic: "85837"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985842"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985842"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Shinoa":
+  - /url: javascript:void(0)
+- generic: 15º
+- generic: O Portão da Vida
+- generic: Level 26
+- generic: "84324"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5978189"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5978189"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Uchiha_Obito1":
+  - /url: javascript:void(0)
+- generic: 16º
+- generic: Relâmpago Dourado
+- generic: Level 34
+- generic: "84283"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5979851"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5979851"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Goku_Africano":
+  - /url: javascript:void(0)
+- generic: 17º
+- generic: Prodígio na Arte do Assassinato
+- generic: Level 27
+- generic: "83190"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5827085"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5827085"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Tsuneiide":
+  - /url: javascript:void(0)
+- generic: 18º
+- generic: Imortalidade Senju
+- generic: Level 33
+- generic: "79063"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985929"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985929"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "HarumiSaito":
+  - /url: javascript:void(0)
+- generic: 19º
+- generic: Herdeira da Regeneração Centerária
+- generic: Level 30
+- generic: "73766"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5825765"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5825765"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "NAMIKAZERDG":
+  - /url: javascript:void(0)
+- generic: 20º
+- generic: Matador de Jinchuuriki
+- generic: Level 32
+- generic: "73505"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986710"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986710"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Dray":
+  - /url: javascript:void(0)
+- generic: 21º
+- generic: Campeão Chunnin
+- generic: Level 29
+- generic: "72380"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5981317"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5981317"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "MaitoGuy30":
+  - /url: javascript:void(0)
+- generic: 22º
+- generic: Genin
+- generic: Level 27
+- generic: "65669"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985323"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985323"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "RenSan910":
+  - /url: javascript:void(0)
+- generic: 23º
+- generic: Caçador de Kages
+- generic: Level 28
+- generic: "64452"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5718297"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5718297"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "TallesX7":
+  - /url: javascript:void(0)
+- generic: 24º
+- generic: Jounin
+- generic: Level 28
+- generic: "62090"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5984870"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5984870"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Veezysouza":
+  - /url: javascript:void(0)
+- generic: 25º
+- generic: Um Novo Recomeço
+- generic: Level 27
+- generic: "60592"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5884470"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5884470"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "SegundoHokage":
+  - /url: javascript:void(0)
+- generic: 26º
+- generic: Jounin
+- generic: Level 28
+- generic: "59750"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5987167"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5987167"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Kurenai30":
+  - /url: javascript:void(0)
+- generic: 27º
+- generic: Sem Título
+- generic: Level 26
+- generic: "58986"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985321"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985321"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Itacaramby":
+  - /url: javascript:void(0)
+- generic: 28º
+- generic: Aniversariante 2014
+- generic: Level 27
+- generic: "58986"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5962480"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5962480"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "SakuraHarno":
+  - /url: javascript:void(0)
+- generic: 29º
+- generic: Byakugou
+- generic: Level 27
+- generic: "58474"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985872"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985872"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Asuma30":
+  - /url: javascript:void(0)
+- generic: 30º
+- generic: Chuunin
+- generic: Level 26
+- generic: "58461"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5985322"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5985322"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Lieless":
+  - /url: javascript:void(0)
+- generic: 31º
+- generic: A Hyuuga que Superou o Medo
+- generic: Level 18
+- generic: "54354"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5962069"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5962069"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "ComunistaPR":
+  - /url: javascript:void(0)
+- generic: 32º
+- generic: Jounin
+- generic: Level 25
+- generic: "52157"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986125"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986125"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "PERSONAGEM_TESTE":
+  - /url: javascript:void(0)
+- generic: 33º
+- generic: Chuunin
+- generic: Level 25
+- generic: "51392"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5949965"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5949965"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "FURIA_da_folha":
+  - /url: javascript:void(0)
+- generic: 34º
+- generic: Jounin
+- generic: Level 25
+- generic: "51099"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5972508"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5972508"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Mohtra":
+  - /url: javascript:void(0)
+- generic: 35º
+- generic: Natureza do Chakra
+- generic: Level 25
+- generic: "50867"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5987495"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5987495"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Wicked":
+  - /url: javascript:void(0)
+- generic: 36º
+- generic: Jounin
+- generic: Level 25
+- generic: "50813"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986530"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986530"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "KILL":
+  - /url: javascript:void(0)
+- generic: 37º
+- generic: Sem Título
+- generic: Level 25
+- generic: "50256"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5976881"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5976881"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Thanux":
+  - /url: javascript:void(0)
+- generic: 38º
+- generic: Devorador de Chakra
+- generic: Level 19
+- generic: "46962"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5828669"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5828669"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Leilops":
+  - /url: javascript:void(0)
+- generic: 39º
+- generic: Genin
+- generic: Level 22
+- generic: "45845"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5262906"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5262906"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "2dtoddy":
+  - /url: javascript:void(0)
+- generic: 40º
+- generic: Caçador de Kages
+- generic: Level 22
+- generic: "43502"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986635"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986635"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "ODeusShinobi":
+  - /url: javascript:void(0)
+- generic: 41º
+- generic: Despertar do Demônio Ootsutsuki
+- generic: Level 23
+- generic: "43276"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5955347"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5955347"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "YellowFlashBR":
+  - /url: javascript:void(0)
+- generic: 42º
+- generic: Chuunin
+- generic: Level 23
+- generic: "43011"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5962689"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5962689"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Uchihamaru":
+  - /url: javascript:void(0)
+- generic: 43º
+- generic: Tsukuyomi
+- generic: Level 22
+- generic: "42767"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986044"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986044"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Spartanbones":
+  - /url: javascript:void(0)
+- generic: 44º
+- generic: Sem Título
+- generic: Level 21
+- generic: "41718"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5984737"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5984737"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "LeeDoRock":
+  - /url: javascript:void(0)
+- generic: 45º
+- generic: Mestre das Artes Ninja
+- generic: Level 21
+- generic: "41552"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986005"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986005"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "12345":
+  - /url: javascript:void(0)
+- generic: 46º
+- generic: Sem Título
+- generic: Level 21
+- generic: "40731"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986647"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986647"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Kitty":
+  - /url: javascript:void(0)
+- generic: 47º
+- generic: Chuunin
+- generic: Level 21
+- generic: "40572"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5987182"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5987182"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Drayzin":
+  - /url: javascript:void(0)
+- generic: 48º
+- generic: Genin
+- generic: Level 21
+- generic: "40564"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5986784"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5986784"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "OnePunchSakura":
+  - /url: javascript:void(0)
+- generic: 49º
+- generic: Demônio do Céu
+- generic: Level 20
+- generic: "39672"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5987042"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5987042"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- link "Kandu":
+  - /url: javascript:void(0)
+- generic: 50º
+- generic: Transbordando Poder
+- generic: Level 21
+- generic: "39661"
+- link "Ver Torneio Ninja":
+  - /url: "?secao=torneio&player=5970055"
+  - generic: 
+  - generic: Ver Torneio Ninja
+- link "Ver Conquistas Ninja":
+  - /url: "?secao=conquistas&id_player=5970055"
+  - generic: 
+  - generic: Ver Conquistas Ninja
+- insertion

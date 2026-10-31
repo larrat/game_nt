@@ -1,0 +1,50 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Elementos" [level=1]
+- heading "Sobre os Elementos" [level=2]:
+  - generic: 
+  - generic: Sobre os Elementos
+- paragraph: Ninjutsu é qualquer técnica que manipula o chakra para ser realizada, e é a mais tradicional das artes ninja. É possivel ainda realizar a fusão de 2 tipos de chakras elementais, para formar um terceiro elemento, como você pode ver logo abaixo
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

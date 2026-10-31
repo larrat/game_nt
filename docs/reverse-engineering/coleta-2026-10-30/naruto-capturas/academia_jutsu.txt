@@ -1,0 +1,60 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Jutsus Ninjas" [level=1]
+- heading "Sobre os Jutsus Ninjas" [level=2]:
+  - generic: 
+  - generic: Sobre os Jutsus Ninjas
+- paragraph:
+  - text: Aprenda novos Jutsus para combater em melhor nível nos duelos e para isso alcance os requerimentos de cada jutsu. ( Jutsus que não são da mesma Classe do seu personagem possuem requerimentos dobrados. )
+  - text: Jutsus Medicinais e Kinjutsus só podem ser usados em Batalhas de Equipe ( 4x4 e 4x1 ).
+  - text: E não esqueça que todas os jutsus ninjas podem ser evoluidos em
+  - link "Meus jutsus":
+    - /url: http://narutogame.com.br/index.php?secao=personagem_jutsu
+- generic: Taijutsu
+- generic: Ninjutsu
+- generic: Genjutsu
+- generic: Bukijutsu
+- generic: Carregando...
+- insertion:
+  - iframe [id="aswift_0"] [name="aswift_0"]

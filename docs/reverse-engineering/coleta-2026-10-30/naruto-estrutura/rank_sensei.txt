@@ -1,0 +1,401 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Ranking de Sensei" [level=1]
+- generic: Vila
+- combobox "Vila":
+  - option "Geral"
+  - option "Folha" [selected]
+  - option "Areia"
+  - option "Névoa"
+  - option "Pedra"
+  - option "Nuvem"
+  - option "Akatsuki"
+  - option "Som"
+  - option "Chuva"
+- generic: Sensei
+- combobox "Sensei":
+  - option "Todos" [selected]
+  - option "Kakashi Hatake"
+  - option "Maito Gai"
+  - option "Asuma Sarutobi"
+  - option "Kurenai Yuuhi"
+  - option "Baki"
+  - option "Konohamaru Sarutobi"
+  - option "Minato Namikaze"
+  - option "Jiraiya"
+  - option "Tsunade"
+  - option "Hashirama e Tobirama"
+  - option "Ebisu"
+  - option "Orochimaru"
+  - option "Hiruzen Sarutobi"
+  - option "Danzou Shimura"
+  - option "Iruka Umino"
+  - option "Yamato"
+  - option "Hiashi Hyuuga"
+  - option "Salamander Hanzou"
+  - option "Pein"
+  - option "Rasa"
+  - option "Mei Terumii"
+  - option "Ei"
+  - option "Killer Bee"
+  - option "Oonoki"
+  - option "Dotou Kazahana"
+  - option "Kuro Zetsu"
+  - option "Hagoromo Ootsutsuki"
+  - option "Sasuke Uchiha"
+- generic: Posição
+- combobox "Posição":
+  - option "1 Até 50" [selected]
+  - option "51 Até 100"
+  - option "101 Até 150"
+  - option "151 Até 200"
+  - option "201 Até 250"
+  - option "251 Até 300"
+  - option "301 Até 350"
+  - option "351 Até 400"
+  - option "401 Até 450"
+- generic: Nome
+- textbox
+- button "Filtrar"
+- link "Kakashi30":
+  - /url: javascript:void(0)
+- generic: 5º
+- generic: Raikiri Implacável
+- generic: Desafio 75
+- generic: "753910"
+- link "Spam":
+  - /url: javascript:void(0)
+- generic: 7º
+- generic: O Último Limite
+- generic: Desafio 75
+- generic: "753810"
+- link "PI2oTuG4":
+  - /url: javascript:void(0)
+- generic: 9º
+- generic: Mestre do Vento
+- generic: Desafio 70
+- generic: "703650"
+- link "MadeiraJutsu":
+  - /url: javascript:void(0)
+- generic: 17º
+- generic: Mestre da Madeira
+- generic: Desafio 70
+- generic: "703550"
+- link "lDragonSlayer":
+  - /url: javascript:void(0)
+- generic: 19º
+- generic: Jounin
+- generic: Desafio 70
+- generic: "703530"
+- link "Naipe":
+  - /url: javascript:void(0)
+- generic: 28º
+- generic: Mais Forte que um Kage
+- generic: Desafio 63
+- generic: "633180"
+- link "DELToff":
+  - /url: javascript:void(0)
+- generic: 40º
+- generic: Sem Título
+- generic: Desafio 60
+- generic: "603080"
+- link "Iee":
+  - /url: javascript:void(0)
+- generic: 51º
+- generic: O Guardião Bestial
+- generic: Desafio 60
+- generic: "603040"
+- link "Carroceiro":
+  - /url: javascript:void(0)
+- generic: 52º
+- generic: Mestre da Luta Corporal
+- generic: Desafio 60
+- generic: "603030"
+- link "Aegon":
+  - /url: javascript:void(0)
+- generic: 54º
+- generic: O Bem nunca perderá!
+- generic: Desafio 60
+- generic: "603020"
+- link "NaoSouBowden":
+  - /url: javascript:void(0)
+- generic: 55º
+- generic: Portador do Raiton Negro
+- generic: Desafio 60
+- generic: "603020"
+- link "Aisek":
+  - /url: javascript:void(0)
+- generic: 71º
+- generic: O Gênio Incomparável
+- generic: Desafio 55
+- generic: "552780"
+- link "Goku_Africano":
+  - /url: javascript:void(0)
+- generic: 72º
+- generic: Prodígio na Arte do Assassinato
+- generic: Desafio 55
+- generic: "552770"
+- link "Uchiha_Obito1":
+  - /url: javascript:void(0)
+- generic: 84º
+- generic: Relâmpago Dourado
+- generic: Desafio 50
+- generic: "502540"
+- link "NAMIKAZERDG":
+  - /url: javascript:void(0)
+- generic: 85º
+- generic: Matador de Jinchuuriki
+- generic: Desafio 50
+- generic: "502540"
+- link "Iee":
+  - /url: javascript:void(0)
+- generic: 88º
+- generic: O Guardião Bestial
+- generic: Desafio 50
+- generic: "502530"
+- link "SegundoHokage":
+  - /url: javascript:void(0)
+- generic: 93º
+- generic: Jounin
+- generic: Desafio 50
+- generic: "502500"
+- link "Aegon":
+  - /url: javascript:void(0)
+- generic: 96º
+- generic: O Bem nunca perderá!
+- generic: Desafio 50
+- generic: "502500"
+- link "RenSan910":
+  - /url: javascript:void(0)
+- generic: 100º
+- generic: Caçador de Kages
+- generic: Desafio 46
+- generic: "462310"
+- link "Tsuneiide":
+  - /url: javascript:void(0)
+- generic: 106º
+- generic: Imortalidade Senju
+- generic: Desafio 45
+- generic: "452340"
+- link "Itacaramby":
+  - /url: javascript:void(0)
+- generic: 111º
+- generic: Aniversariante 2014
+- generic: Desafio 45
+- generic: "452300"
+- link "Lieless":
+  - /url: javascript:void(0)
+- generic: 113º
+- generic: A Hyuuga que Superou o Medo
+- generic: Desafio 45
+- generic: "452290"
+- link "Thanux":
+  - /url: javascript:void(0)
+- generic: 114º
+- generic: Devorador de Chakra
+- generic: Desafio 45
+- generic: "452290"
+- link "Spam":
+  - /url: javascript:void(0)
+- generic: 117º
+- generic: O Último Limite
+- generic: Desafio 45
+- generic: "452280"
+- link "HarumiSaito":
+  - /url: javascript:void(0)
+- generic: 121º
+- generic: Herdeira da Regeneração Centerária
+- generic: Desafio 45
+- generic: "452280"
+- link "TallesX7":
+  - /url: javascript:void(0)
+- generic: 126º
+- generic: Jounin
+- generic: Desafio 45
+- generic: "452260"
+- link "Lieless":
+  - /url: javascript:void(0)
+- generic: 127º
+- generic: A Hyuuga que Superou o Medo
+- generic: Desafio 45
+- generic: "452260"
+- link "Aegon":
+  - /url: javascript:void(0)
+- generic: 128º
+- generic: O Bem nunca perderá!
+- generic: Desafio 45
+- generic: "452250"
+- link "Lieless":
+  - /url: javascript:void(0)
+- generic: 129º
+- generic: A Hyuuga que Superou o Medo
+- generic: Desafio 45
+- generic: "452250"
+- link "Lieless":
+  - /url: javascript:void(0)
+- generic: 131º
+- generic: A Hyuuga que Superou o Medo
+- generic: Desafio 45
+- generic: "452250"
+- link "Lieless":
+  - /url: javascript:void(0)
+- generic: 132º
+- generic: A Hyuuga que Superou o Medo
+- generic: Desafio 45
+- generic: "452250"
+- link "Lieless":
+  - /url: javascript:void(0)
+- generic: 135º
+- generic: A Hyuuga que Superou o Medo
+- generic: Desafio 45
+- generic: "452250"
+- link "Dray":
+  - /url: javascript:void(0)
+- generic: 137º
+- generic: Campeão Chunnin
+- generic: Desafio 44
+- generic: "442220"
+- link "Wicked":
+  - /url: javascript:void(0)
+- generic: 138º
+- generic: Jounin
+- generic: Desafio 43
+- generic: "432200"
+- link "Kratos177":
+  - /url: javascript:void(0)
+- generic: 142º
+- generic: Caminho das Armas
+- generic: Desafio 40
+- generic: "402060"
+- link "Uchihamaru":
+  - /url: javascript:void(0)
+- generic: 143º
+- generic: Tsukuyomi
+- generic: Desafio 40
+- generic: "402050"
+- link "PERSONAGEM_TESTE":
+  - /url: javascript:void(0)
+- generic: 144º
+- generic: Guardião Arqueiro
+- generic: Desafio 40
+- generic: "402050"
+- link "ComunistaPR":
+  - /url: javascript:void(0)
+- generic: 146º
+- generic: Jounin
+- generic: Desafio 40
+- generic: "402050"
+- link "OnePunchSakura":
+  - /url: javascript:void(0)
+- generic: 150º
+- generic: Demônio do Céu
+- generic: Desafio 40
+- generic: "402040"
+- link "2dtoddy":
+  - /url: javascript:void(0)
+- generic: 152º
+- generic: Caçador de Kages
+- generic: Desafio 40
+- generic: "402030"
+- link "PROPHETIC":
+  - /url: javascript:void(0)
+- generic: 153º
+- generic: Sakon e Ukon
+- generic: Desafio 40
+- generic: "402020"
+- link "Serpa":
+  - /url: javascript:void(0)
+- generic: 154º
+- generic: De volta ao Round 8
+- generic: Desafio 40
+- generic: "402020"
+- link "HOLY":
+  - /url: javascript:void(0)
+- generic: 155º
+- generic: Herói
+- generic: Desafio 40
+- generic: "402020"
+- link "RedDeath":
+  - /url: javascript:void(0)
+- generic: 157º
+- generic: Amaldiçoado
+- generic: Desafio 40
+- generic: "402020"
+- link "PERSONAGEM_TESTE":
+  - /url: javascript:void(0)
+- generic: 159º
+- generic: Guardião Arqueiro
+- generic: Desafio 40
+- generic: "402020"
+- link "ODeusShinobi":
+  - /url: javascript:void(0)
+- generic: 164º
+- generic: Despertar do Demônio Ootsutsuki
+- generic: Desafio 40
+- generic: "402010"
+- link "Lieless":
+  - /url: javascript:void(0)
+- generic: 165º
+- generic: A Hyuuga que Superou o Medo
+- generic: Desafio 40
+- generic: "402010"
+- link "Veezysouza":
+  - /url: javascript:void(0)
+- generic: 168º
+- generic: Um Novo Recomeço
+- generic: Desafio 40
+- generic: "402010"
+- link "PERSONAGEM_TESTE":
+  - /url: javascript:void(0)
+- generic: 170º
+- generic: Guardião Arqueiro
+- generic: Desafio 40
+- generic: "402000"
+- link "Aegon":
+  - /url: javascript:void(0)
+- generic: 171º
+- generic: O Bem nunca perderá!
+- generic: Desafio 40
+- generic: "402000"
+- insertion

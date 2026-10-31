@@ -1,0 +1,63 @@
+Browser tab: 3, Title: "Naruto Game - Esse é o seu jeito Ninja de ser", URL: "https://narutogame.com.br/index.php?secao=graduacoes".
+1 AXWebArea Naruto Game - Esse é o seu jeito Ninja de ser, URL: narutogame.com.br/index.php?secao=graduacoes
+	2 container
+		3 image Naruto
+		4 image dayIcon
+		5 image nightIcon
+		6 link Description: Naruto Game - Versão em Português, Value: narutogame.com.br/index.php?secao=graduacoes#
+		7 link Description: Naruto Game - English Version, Value: narutogame.com.br/index.php?secao=graduacoes#
+		8 link javascript:logoff()
+	9 container
+		10 container level-start
+			11 text LVL
+			12 heading 5, Value: 1
+				13 text 5
+		14 image Vida
+		15 text 362/362
+		16 image Chakra
+		17 text 574/574
+		18 image Stamina
+		19 text 271/271
+		20 text EXP: 42/3240
+		21 container level-end
+			22 text LVL
+			23 heading 6, Value: 1
+				24 text 6
+		25 image
+		26 image
+		27 text 8
+		28 image
+		29 text 8
+		30 image
+		31 image
+		32 text 4
+		33 link Description: 1, Value: narutogame.com.br/index.php?secao=fidelidade
+		34 link narutogame.com.br/index.php?secao=mensagens
+		35 link Description: 5, Value: narutogame.com.br/index.php?secao=noticias
+		36 image
+		37 link Description: 35, Help: Use seus créditos!, Value: narutogame.com.br/index.php?secao=jogador_vip
+		38 image
+		39 text 2980
+	40 container
+		41 heading GRADUAÇÕES, Value: 1
+			42 text GRADUAÇÕES
+		43 heading Value: 2, O requerimento de batalhas das graduações passam a ser Batalhas Mapa PVP, ou seja, a soma das vitórias, derrotas e empates do jogador.
+			44 text O requerimento de batalhas das graduações passam a ser Batalhas Mapa PVP, ou seja, a soma das vitórias, derrotas e empates do jogador.
+	45 container
+		46 container
+			47 text Herói
+		48 text Todo ninja sonha em se tornar um Herói. Uma pessoa conhecida e adorada por todas as pessoas da vila, e muitas vezes mundialmente conhecidas. Heróis podem fazer todos os tipos de missões, tem o maior número de habilidades Ninjutsu, Taijutsu, Genjutsu treinadas. Realiza missões S ou SS que são as mais arriscadas e defendem a Vila com todas as forças e caso necessário com a própria Vida.
+		49 button Graduar
+		50 container tutorial-2
+			51 container
+				52 text Genin
+			53 text Seu primeiro dia depois da academia ninja, hoje você vai receber sua bandana e graduar-se com um ninja da aldeia. Com esta graduação é possível explorar o que esta além do portão da Vila, combater inimigos, fazer aliados, executar diferentes tipos de missões, aprender golpes básicos e ajudar a proteger sua vila. Não se esqueça de continuar o seu treinamento para assim alcançar a próxima graduação.
+			54 button Graduar
+		55 container tutorial-3
+			56 container
+				57 text Chuunin
+			58 text Ninja graduado e com elevado nível de confiança na Vila, possui grande conhecimento na arte ninja e possui habilidades como controlar o primeiro elemento, fazer missões mais arriscadas Rank C, pode participar de equipes e organizações e participar dos torneios ninjas.
+			59 button Graduar
+	60 container
+
+[Rodapé e chat omitidos na cópia pública]

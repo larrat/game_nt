@@ -1,0 +1,139 @@
+.points-container {
+  margin: 2rem auto;
+  padding: 0 6%;
+}
+.points-container button{
+  font-size: 2rem;
+}
+.specs-points {
+  margin-top: 2rem;
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.specs-points>div {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.specs-points select{
+  font-size: 1.5rem;
+}
+.specs-points>div label {
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+#cla-preview .slick-slide, #invocacao-preview .slick-slide{
+  margin-right: 2rem;
+}
+.points {
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+
+.points span {
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.points-box {
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+  flex: 1 1 200px;
+}
+
+.points-box p {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 2rem 0;
+}
+
+.points-box .icons-wrapper{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  justify-items: center;
+}
+
+.points-box span {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.points-box img {
+  margin: auto;
+}
+
+.text-box {
+  text-align: center;
+  display: contents;
+}
+
+.text-box h3 {
+  line-height: 3rem;
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.text-box::before {
+  content: "";
+  display: block;
+  width: 90%;
+  font-weight: bold;
+  margin: 2rem auto;
+  height: 0.1rem;
+}
+
+.text-box button {
+  margin: 2rem auto 0 auto;
+}
+
+.swiper-container-cardPoints {
+  max-width: 140rem;
+  margin: 0 auto;
+  padding: 0 6%;
+}
+
+.swiper-container-cardPoints .swiper-wrapper {
+  display: flex;
+  margin: 0 auto !important;
+  max-width: 140rem;
+  padding: 0 6%;
+}
+
+.text-box {
+  text-transform: capitalize;
+}
+
+.icons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 200px;
+}
+.slick-prev:before {
+  font-size: 2.5rem !important;
+}
+.slick-next:before {
+  font-size: 2.5rem !important;
+}
+#cla-preview .slick-prev:before {
+  font-size: 2.5rem !important;
+}
+#cla-preview .slick-next:before {
+  font-size: 2.5rem !important;
+}

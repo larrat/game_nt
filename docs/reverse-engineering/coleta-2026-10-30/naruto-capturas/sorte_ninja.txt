@@ -1,0 +1,294 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                              
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "1" [level=1]
+- img "Vida"
+- generic: 136/136
+- img "Chakra"
+- generic: 231/231
+- img "Stamina"
+- generic: 96/96
+- generic: "EXP: 0/3240"
+- text: LVL
+- heading "2" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1000"
+- heading "Sorte Ninja" [level=1]
+- main:
+  - generic: Segunda
+  - generic: Terça
+  - generic: Quarta
+  - generic: Quinta
+  - generic: Sexta
+  - generic: Sábado
+  - generic: Domingo
+  - generic: Diário
+  - generic: Semanal
+  - text: "1000"
+  - text: Ryou
+  - text: "1"
+  - text: Créditos
+  - text: "5"
+  - text: Créditos
+  - text: ( Retroativo )
+  - button "Jogar!"
+  - text: "6000"
+  - text: Ryou
+  - text: "3"
+  - text: Créditos
+- generic: Geral
+- generic: Atributos
+- generic: Ramens
+- generic: Especiais
+- generic: Personagens
+- img "1 Ryou"
+- generic: 1 Ryou
+- generic: Chances de Ganhar o Item 1%
+- img "2000 Ryous"
+- generic: 2000 Ryous
+- generic: Chances de Ganhar o Item 50%
+- img "5000 Ryous"
+- generic: 5000 Ryous
+- generic: Chances de Ganhar o Item 20%
+- img "10000 Ryous"
+- generic: 10000 Ryous
+- generic: Chances de Ganhar o Item 10%
+- img "25000 Ryous"
+- generic: 25000 Ryous
+- generic: Chances de Ganhar o Item 5%
+- img "50000 Ryous"
+- generic: 50000 Ryous
+- generic: Chances de Ganhar o Item 1%
+- img "1500 Pontos de Experiência"
+- generic: 1500 Pontos de Experiência
+- generic: Chances de Ganhar o Item 50%
+- img "2000 Pontos de Experiência"
+- generic: 2000 Pontos de Experiência
+- generic: Chances de Ganhar o Item 40%
+- img "2500 Pontos de Experiência"
+- generic: 2500 Pontos de Experiência
+- generic: Chances de Ganhar o Item 30%
+- img "3000 Pontos de Experiência"
+- generic: 3000 Pontos de Experiência
+- generic: Chances de Ganhar o Item 20%
+- img "15000 Pontos de Experiência"
+- generic: 15000 Pontos de Experiência
+- generic: Chances de Ganhar o Item 1%
+- img "1000 Pontos de Treino"
+- generic: 1000 Pontos de Treino
+- generic: Chances de Ganhar o Item 70%
+- img "2000 Pontos de Treino"
+- generic: 2000 Pontos de Treino
+- generic: Chances de Ganhar o Item 60%
+- img "3000 Pontos de Treino"
+- generic: 3000 Pontos de Treino
+- generic: Chances de Ganhar o Item 50%
+- img "5000 Pontos de Treino"
+- generic: 5000 Pontos de Treino
+- generic: Chances de Ganhar o Item 40%
+- img "7000 Pontos de Treino"
+- generic: 7000 Pontos de Treino
+- generic: Chances de Ganhar o Item 20%
+- img "15000 Pontos de Treino"
+- generic: 15000 Pontos de Treino
+- generic: Chances de Ganhar o Item 1%
+- img "1 Ponto de Aprimoramento de Jutsu"
+- generic: 1 Ponto de Aprimoramento de Jutsu
+- generic: Chances de Ganhar o Item 50%
+- img "2 Pontos de Aprimoramento de Jutsu"
+- generic: 2 Pontos de Aprimoramento de Jutsu
+- generic: Chances de Ganhar o Item 10%
+- img "3 Pontos de Aprimoramento de Jutsu"
+- generic: 3 Pontos de Aprimoramento de Jutsu
+- generic: Chances de Ganhar o Item 5%
+- img "1 Chakra Bijuu Aleatório"
+- generic: 1 Chakra Bijuu Aleatório
+- generic: Chances de Ganhar o Item 5%
+- img "50 Fragmentos de Equipamento"
+- generic: 50 Fragmentos de Equipamento
+- generic: Chances de Ganhar o Item 25%
+- img "75 Fragmentos de Equipamento"
+- generic: 75 Fragmentos de Equipamento
+- generic: Chances de Ganhar o Item 10%
+- img "150 Fragmentos de Equipamento"
+- generic: 150 Fragmentos de Equipamento
+- generic: Chances de Ganhar o Item 5%
+- img "200 Fragmentos de Equipamento"
+- generic: 200 Fragmentos de Equipamento
+- generic: Chances de Ganhar o Item 1%
+- img "1 Ponto de Experiência"
+- generic: 1 Pontos de Experiência
+- generic: Chances de Ganhar o Item 1%
+- img "1 Ponto de Taijutsu"
+- generic: 1 Ponto de Taijutsu
+- generic: Chances de Ganhar o Item 30%
+- img "1 Ponto de Ninjutsu"
+- generic: 1 Ponto de Ninjutsu
+- generic: Chances de Ganhar o Item 30%
+- img "1 Ponto de Genjutsu"
+- generic: 1 Ponto de Genjutsu
+- generic: Chances de Ganhar o Item 30%
+- img "1 Ponto de Agilidade"
+- generic: 1 Ponto de Agilidade
+- generic: Chances de Ganhar o Item 30%
+- img "1 Ponto de Selo"
+- generic: 1 Ponto de Selo
+- generic: Chances de Ganhar o Item 30%
+- img "1 Ponto de Força"
+- generic: 1 Ponto de Força
+- generic: Chances de Ganhar o Item 30%
+- img "1 Ponto de Inteligência"
+- generic: 1 Ponto de Inteligência
+- generic: Chances de Ganhar o Item 30%
+- img "1 Ponto de Resistência"
+- generic: 1 Ponto de Resistência
+- generic: Chances de Ganhar o Item 30%
+- img "1 Ponto de Treino"
+- generic: 1 Ponto de Treino
+- generic: Chances de Ganhar o Item 1%
+- img "1.50% de Crítico"
+- generic: 1.50% de Crítico
+- generic: Chances de Ganhar o Item 5%
+- img "1.00% de Crítico"
+- generic: 1.00% de Crítico
+- generic: Chances de Ganhar o Item 10%
+- img "1.50% de Percepção"
+- generic: 1.50% de Percepção
+- generic: Chances de Ganhar o Item 5%
+- img "1.00% de Percepção"
+- generic: 1.00% de Percepção
+- generic: Chances de Ganhar o Item 10%
+- img "1.00% de Convicção"
+- generic: 1.00% de Convicção
+- generic: Chances de Ganhar o Item 10%
+- img "1.50% de Convicção"
+- generic: 1.50% de Convicção
+- generic: Chances de Ganhar o Item 5%
+- img "1.00% de Determinação"
+- generic: 1.00% de Determinação
+- generic: Chances de Ganhar o Item 10%
+- img "1.50% de Determinação"
+- generic: 1.50% de Determinação
+- generic: Chances de Ganhar o Item 5%
+- img "1.00% de Incremento Crítico"
+- generic: 1.00% de Incremento Crítico
+- generic: Chances de Ganhar o Item 10%
+- img "1.50% de Incremento Crítico"
+- generic: 1.50% de Incremento Crítico
+- generic: Chances de Ganhar o Item 5%
+- img "1.00% de Absorção"
+- generic: 1.00% de Absorção
+- generic: Chances de Ganhar o Item 10%
+- img "1.50% de Absorção"
+- generic: 1.50% de Absorção
+- generic: Chances de Ganhar o Item 5%
+- img "1.00% de Incremento de Absorção"
+- generic: 1.00% de Incremento de Absorção
+- generic: Chances de Ganhar o Item 10%
+- img "1.50% de Incremento de Absorção"
+- generic: 1.50% de Incremento de Absorção
+- generic: Chances de Ganhar o Item 5%
+- img "1 Ponto de Bukijutsu"
+- generic: 1 Ponto de Bukijutsu
+- generic: Chances de Ganhar o Item 30%
+- img "1 Ponto de Energia"
+- generic: 1 Ponto de Energia
+- generic: Chances de Ganhar o Item 1%
+- img "1 x Merenda Ninja"
+- generic: 1 x Merenda Ninja
+- generic: Chances de Ganhar o Item 1%
+- img "10 x Misso Ebi-Ramen"
+- generic: 10 x Misso Ebi-Ramen
+- generic: Chances de Ganhar o Item 50%
+- img "20 x Misso Ebi-Ramen"
+- generic: 20 x Misso Ebi-Ramen
+- generic: Chances de Ganhar o Item 30%
+- img "50 x Misso Ebi-Ramen"
+- generic: 50 x Misso Ebi-Ramen
+- generic: Chances de Ganhar o Item 1%
+- img "1 Créditos"
+- generic: 1 Créditos
+- generic: Chances de Ganhar o Item 10%
+- img "3 Créditos"
+- generic: 3 Créditos
+- generic: Chances de Ganhar o Item 5%
+- img "5 Créditos"
+- generic: 5 Créditos
+- generic: Chances de Ganhar o Item 1%
+- img "5x Pergaminho de Teletransporte para Folha"
+- generic: 5x Pergaminho de Teletransporte para Folha
+- generic: Chances de Ganhar o Item 5%
+- img "5x Pergaminho de Teletransporte para Areia"
+- generic: 5x Pergaminho de Teletransporte para Areia
+- generic: Chances de Ganhar o Item 5%
+- img "5x Pergaminho de Teletransporte para Névoa"
+- generic: 5x Pergaminho de Teletransporte para Névoa
+- generic: Chances de Ganhar o Item 5%
+- img "5x Pergaminho de Teletransporte para Pedra"
+- generic: 5x Pergaminho de Teletransporte para Pedra
+- generic: Chances de Ganhar o Item 5%
+- img "5x Pergaminho de Teletransporte para Nuvem"
+- generic: 5x Pergaminho de Teletransporte para Nuvem
+- generic: Chances de Ganhar o Item 5%
+- img "5x Pergaminho de Teletransporte para Akatsuki"
+- generic: 5x Pergaminho de Teletransporte para Akatsuki
+- generic: Chances de Ganhar o Item 5%
+- img "5x Pergaminho de Teletransporte para Som"
+- generic: 5x Pergaminho de Teletransporte para Som
+- generic: Chances de Ganhar o Item 5%
+- img "5x Pergaminho de Teletransporte para Chuva"
+- generic: 5x Pergaminho de Teletransporte para Chuva
+- generic: Chances de Ganhar o Item 5%
+- img "5x Ticket do Hospital"
+- generic: 5x Ticket do Hospital
+- generic: Chances de Ganhar o Item 40%
+- img "10x Ticket do Hospital"
+- generic: 10x Ticket do Hospital
+- generic: Chances de Ganhar o Item 20%
+- img "1 Alvo Extra do Bingo Book"
+- generic: 1 Alvo Extra do Bingo Book
+- generic: Chances de Ganhar o Item 1%
+- img "1 Token de Personagem"
+- generic: 1 Token de Personagem
+- generic: Chances de Ganhar o Item 1%
+- generic: Naruto Uzumaki - Chakra da Kyuubi
+- generic: Chances de Ganhar o Item 1%
+- generic: Sasuke Uchiha - Selo Amaldiçoado
+- generic: Chances de Ganhar o Item 1%
+- generic: Sasuke Uchiha - Chibi
+- generic: Chances de Ganhar o Item 5%
+- generic: Sakura Haruno - Halloween
+- generic: Chances de Ganhar o Item 5%
+- generic: Sarada Uchiha - Criança
+- generic: Chances de Ganhar o Item 5%
+- generic: Naruto Uzumaki - Halloween
+- generic: Chances de Ganhar o Item 5%
+- insertion

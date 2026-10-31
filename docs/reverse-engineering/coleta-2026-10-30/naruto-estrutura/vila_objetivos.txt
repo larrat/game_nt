@@ -1,0 +1,100 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                         
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "2" [level=1]
+- img "Vida"
+- generic: 194/194
+- img "Chakra"
+- generic: 322/322
+- img "Stamina"
+- generic: 145/145
+- generic: "EXP: 324/3240"
+- text: LVL
+- heading "3" [level=1]
+- generic: "8"
+- generic: "2"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link:
+  - /url: "?secao=mensagens"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "35":
+  - /url: "?secao=jogador_vip"
+- generic: "1440"
+- heading "Objetivos da vila" [level=1]
+- generic: 
+- generic: Matar 5 dos portadores das Bijuus
+- generic: 
+- generic: 21 De 5
+- generic: 
+- generic: Completar o total de 1000 Batalhas PVP
+- generic: 
+- generic: 463 De 1000
+- generic: 
+- generic: Derrotar 12 bingo book
+- generic: 
+- generic: 2 De 12
+- generic: 
+- generic: Completar o total de 5000 Batalhas Npc
+- generic: 
+- generic: 2626 De 5000
+- generic: 
+- generic: Ter o total de 750 vitórias em mapa mundi
+- generic: 
+- generic: 152 De 750
+- generic: 
+- generic: Matar 25 jogadores com camuflagem ninja
+- generic: 
+- generic: 0 De 25
+- generic: 
+- generic: Ganhar 15 batalhas 4x4 PVP Random
+- generic: 
+- generic: 0 De 15
+- generic: 
+- generic: Obter 20 Chakras de Bijuus
+- generic: 
+- generic: 87 De 20
+- generic: 
+- generic: Completar o total de 200 batalhas de Torneio PVP
+- generic: 
+- generic: 22 De 200
+- generic: 
+- generic: Completar o total de 300 batalhas de Sensei
+- generic: 
+- generic: 197 De 300
+- generic: 
+- generic: Desbloquear 10 personagens no Templo Ninja
+- generic: 
+- generic: 16 De 10
+- generic: 
+- generic: Abrir 200 Pacotes na loja
+- generic: 
+- generic: 494 De 200
+- generic: 
+- generic: Despertar 50 vezes o poder de um Bijuu
+- generic: 
+- generic: 1 De 50
+- generic: 
+- generic: Derrotar 20 Kages inimigos no mapa mundi
+- generic: 
+- generic: 0 De 20

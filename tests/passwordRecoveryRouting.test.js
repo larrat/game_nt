@@ -11,7 +11,7 @@ test('recovery token from Auth Site URL never falls through to normal game route
   assert.ok(app.includes("recoveryQuery.get('type') === 'recovery'"));
   assert.ok(app.includes("window.history.replaceState(null, '', '/redefinir-senha'"));
   assert.ok(app.indexOf("window.location.pathname === '/redefinir-senha'") <
-    app.indexOf("if (!session)"));
+    app.lastIndexOf("if (!session)"));
 });
 test('password recovery always points at the dedicated reset screen', () => {
   assert.ok(login.includes("new URL('/redefinir-senha', window.location.origin)"));

@@ -30,7 +30,7 @@
 
 - [PR #65 — acervo de referência e seeds](https://github.com/larrat/game_nt/pull/65): **incorporada à master em 31/10/2026**. Dados, protótipos e mídias de referência agora versionados; exigem auditoria de direitos de uso, armazenamento e separação do app público.
 - [PR #68 — redesign v2](https://github.com/larrat/game_nt/pull/68): Login, Seleção, Dashboard, Status, shell e preview demonstrativo; não foi homologada em conta real.
-- [Issues abertas](https://github.com/larrat/game_nt/issues): #52, #53, #54, #55, #56, #59 e #60. Mantê-las relacionadas às fases do roadmap.
+- [Issues abertas](https://github.com/larrat/game_nt/issues): #52, #53, #54, #55, #56, #59, #60 e #70. Mantê-las relacionadas às fases do roadmap.
 
 ## Tratamento da documentação antiga
 

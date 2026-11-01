@@ -4,6 +4,7 @@ import { useToast } from '../context/ToastContext';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import SidebarIcon from '../components/SidebarIcon';
+import ItemArtwork from '../components/ItemArtwork';
 import GameAction from '../components/ui/GameAction';
 import '../styles/core-flows-v4.css';
 
@@ -161,6 +162,7 @@ export default function Equipamentos({ player, updatePlayer }) {
         
         {equipped && (
           <div className="flex-col gap-sm mt-3 items-center w-full">
+            <ItemArtwork name={equipped.items.name} size={42} />
             <span className="text-muted-bright text-xs">{equipped.items.name}</span>
             <GameAction tone="quiet" size="small" className="w-full" onClick={() => handleUnequip(equipped)}>Remover</GameAction>
           </div>
@@ -309,11 +311,14 @@ export default function Equipamentos({ player, updatePlayer }) {
                         <SidebarIcon name="star" size={18} />
                     </button>
 
-                    <div>
+                    <div className="kuro-equipment-v4__item-heading">
+                      <ItemArtwork name={invItem.items.name} size={44} />
+                      <div>
                       <h4 className="text-sm mb-1 pr-6" style={{ color: getRarityColor(invItem.rarity || invItem.items.rarity) }}>
                           {invItem.items.name}
                       </h4>
                       <div className="muted text-xs">{invItem.rarity || invItem.items.rarity}</div>
+                      </div>
                     </div>
                     
                     <div className="flex-row gap-sm">

@@ -14,7 +14,7 @@ export default function GameAction({
   type = 'button',
   ...rest
 }) {
-  const supportedTone = ['seal', 'gold', 'quiet'].includes(tone) ? tone : 'seal';
+  const supportedTone = ['seal', 'gold', 'quiet', 'danger'].includes(tone) ? tone : 'seal';
   return (
     <button
       type={type}

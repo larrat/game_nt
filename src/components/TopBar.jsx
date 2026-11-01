@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Backpack, Menu, X } from 'lucide-react';
 import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP, getGlobalDebuffs } from '../utils/engine';
 import InventoryModal from './InventoryModal';
 import { getResourceProgress } from '../utils/resourceProgress';
@@ -114,7 +115,7 @@ export default function TopBar({ player, updatePlayer, onMenuClick, mobileNavOpe
           onClick={onMenuClick}
           title={mobileNavOpen ? 'Fechar navegação' : 'Abrir navegação'}
         >
-          <span aria-hidden="true">{mobileNavOpen ? '×' : '☰'}</span>
+          {mobileNavOpen ? <X size={20} strokeWidth={1.9} aria-hidden="true" /> : <Menu size={20} strokeWidth={1.9} aria-hidden="true" />}
         </button>
         <div className="topbar-avatar kuro-rpg-topbar__portrait">
           {player.avatar?.startsWith('/') ?
@@ -164,7 +165,7 @@ export default function TopBar({ player, updatePlayer, onMenuClick, mobileNavOpe
           onClick={() => setIsInventoryOpen(true)}
           aria-label="Abrir inventário"
           title="Abrir inventário"
-        >🎒</button>
+        ><Backpack size={19} strokeWidth={1.9} aria-hidden="true" /></button>
       </div>
 
       <InventoryModal isOpen={isInventoryOpen}

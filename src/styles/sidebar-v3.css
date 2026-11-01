@@ -1,0 +1,261 @@
+/* Kurokage sidebar v3 — canonical Lucide navigation.
+   No images, paid assets or external icon endpoints. All routes retained. */
+.app .kuro-rpg-sidebar-v3 {
+  --kuro-nav-gold: #e9bd78;
+  --kuro-nav-ink: #0b1119;
+  --kuro-nav-line: rgba(231,191,129,.16);
+  width: 272px;
+  overflow: hidden;
+  padding: 21px 12px 15px;
+  background:
+    radial-gradient(circle at 0 0,rgba(192,76,61,.12),transparent 42%),
+    linear-gradient(180deg,#151d28,#0b1119 58%);
+  border-right-color: var(--kuro-nav-line);
+}
+.app .kuro-rpg-sidebar-v3 .sidebar-brand-wrap {
+  flex: 0 0 auto;
+  margin: 0 1px 13px;
+  padding: 3px 10px 17px;
+  border-bottom: 1px solid var(--kuro-nav-line);
+}
+.app .kuro-rpg-sidebar-v3 .brand { letter-spacing: .16em; font-size: 17px; }
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__player {
+  flex: 0 0 auto;
+  margin-bottom: 13px;
+  border-radius: 12px;
+  border-color: rgba(231,191,129,.24);
+  background: rgba(34,42,51,.84);
+}
+.app .kuro-rpg-sidebar-v3__tools {
+  display: grid;
+  gap: 11px;
+  flex: 0 0 auto;
+  margin-bottom: 15px;
+  padding: 0 2px 14px;
+  border-bottom: 1px solid var(--kuro-nav-line);
+}
+.app .kuro-rpg-sidebar-v3__search {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 41px;
+  padding: 0 12px;
+  color: #b5b1ab;
+  border: 1px solid rgba(226,189,129,.19);
+  background: #0e1620;
+  border-radius: 9px;
+  cursor: text;
+  transition: border-color .16s ease,background-color .16s ease;
+}
+.app .kuro-rpg-sidebar-v3__search:focus-within {
+  color: #f1c879;
+  border-color: #e1b76f;
+  background: #16212d;
+}
+.app .kuro-rpg-sidebar-v3__search input {
+  min-width: 0;
+  flex: 1;
+  width: 100%;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  color: #f4eadc;
+  font: 500 12px/1.45 'Inter',sans-serif;
+}
+.app .kuro-rpg-sidebar-v3__search input::placeholder { color: #a7a7a7; opacity: 1; }
+.app .kuro-rpg-sidebar-v3__search input:focus-visible { outline: none; }
+.app .kuro-rpg-sidebar-v3__quick-links {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 7px;
+}
+.app .kuro-rpg-sidebar-v3__quick-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  min-height: 57px;
+  min-width: 0;
+  padding: 7px 4px;
+  border: 1px solid rgba(224,190,140,.13);
+  border-radius: 10px;
+  background: rgba(28,38,50,.75);
+  color: #adafac;
+  font: 600 10px/1.2 'Inter',sans-serif;
+  text-decoration: none;
+  transition: background-color .16s,border-color .16s,color .16s;
+}
+.app .kuro-rpg-sidebar-v3__quick-link:hover {
+  color: #f1dfc1;
+  border-color: rgba(230,192,127,.38);
+  background: rgba(53,61,69,.66);
+}
+.app .kuro-rpg-sidebar-v3__quick-link.is-active {
+  color: #f4d49e;
+  border-color: rgba(236,189,105,.56);
+  background: rgba(209,161,82,.13);
+}
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__navigation {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0 3px 8px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: rgba(220,178,109,.33) transparent;
+  scrollbar-width: thin;
+}
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__group {
+  margin: 0 0 5px;
+}
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__heading { margin: 0; }
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 41px;
+  margin: 0;
+  padding: 8px 9px;
+  border: 1px solid transparent;
+  border-bottom-color: rgba(231,190,128,.07);
+  border-radius: 9px;
+  background: transparent;
+}
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__toggle:hover,
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__toggle.is-current {
+  background: rgba(231,189,119,.06);
+}
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__toggle:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.app .kuro-rpg-sidebar-v3__group-label {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 9px;
+}
+.app .kuro-rpg-sidebar-v3__group-icon {
+  flex: 0 0 18px;
+  display: grid;
+  place-items: center;
+  color: #d6b37a;
+}
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__toggle .label {
+  display: block;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  font: 700 10px/1.3 'Inter',sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .075em;
+  color: #c0bbb1;
+  text-align: left;
+}
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__toggle.is-current .label,
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__toggle .label.text-gold {
+  color: #f1c879;
+}
+.app .kuro-rpg-sidebar-v3__group-meta {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #928f89;
+}
+.app .kuro-rpg-sidebar-v3__count {
+  display: grid;
+  place-items: center;
+  min-width: 19px;
+  min-height: 19px;
+  padding: 0 3px;
+  border-radius: 5px;
+  background: rgba(230,186,113,.065);
+  font: 600 10px 'JetBrains Mono',monospace;
+}
+.app .kuro-rpg-sidebar-v3 .navgroup-content { padding: 4px 0 6px 8px; }
+.app .kuro-rpg-sidebar-v3 .navitem {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 42px;
+  margin: 2px 0;
+  padding: 10px 11px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: #b5b8b7;
+  font: 500 12px/1.4 'Inter',sans-serif;
+}
+.app .kuro-rpg-sidebar-v3 .navitem .kuro-rpg-sidebar__link-icon {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  color: #969d9f;
+}
+.app .kuro-rpg-sidebar-v3 .navitem:hover:not(.active) {
+  background: rgba(222,175,94,.07);
+  color: #f1e6d5;
+}
+.app .kuro-rpg-sidebar-v3 .navitem:hover .kuro-rpg-sidebar__link-icon {
+  color: #e3bb7b;
+}
+.app .kuro-rpg-sidebar-v3 .navitem.active {
+  padding-left: 9px;
+  color: #f6e9d5;
+  border: 1px solid rgba(228,179,101,.23);
+  border-left: 3px solid #e5b15a;
+  background: linear-gradient(90deg,rgba(216,72,76,.18),rgba(227,175,87,.065));
+}
+.app .kuro-rpg-sidebar-v3 .navitem.active .kuro-rpg-sidebar__link-icon {
+  color: #f2c477;
+}
+.app .kuro-rpg-sidebar-v3__empty {
+  margin: 12px 8px;
+  color: #c9bbb1;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__footer {
+  flex: 0 0 auto;
+  min-height: 51px;
+  margin-top: 5px;
+  padding-top: 10px;
+  color: #a3a5a6;
+}
+.app .kuro-rpg-sidebar-v3 .kuro-rpg-sidebar__sound {
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 37px;
+  padding: 0;
+  border: 1px solid rgba(224,190,132,.22);
+  border-radius: 9px;
+  color: #e9c385;
+  background: rgba(221,178,104,.08);
+}
+.app .kuro-rpg-sidebar-v3 :is(a,button,input):focus-visible {
+  outline: 2px solid #edc47d;
+  outline-offset: 2px;
+}
+@media (max-width: 980px) {
+  .app .kuro-rpg-sidebar-v3 { width: min(290px,calc(100vw - 54px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app .kuro-rpg-sidebar-v3 * { transition-duration: 0s !important; }
+}
+
+/* Topbar navigation actions use the same icon stroke and focus language. */
+.app .kuro-rpg-topbar :is(.mobile-nav-toggle,.kuro-rpg-topbar__inventory) {
+  display: inline-grid;
+  place-items: center;
+  min-width: 40px;
+  min-height: 40px;
+}
+.app .kuro-rpg-topbar :is(.mobile-nav-toggle,.kuro-rpg-topbar__inventory):focus-visible {
+  outline: 2px solid #edc47d;
+  outline-offset: 2px;
+}

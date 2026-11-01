@@ -8,6 +8,7 @@ const sidebarIcon = read('src/components/SidebarIcon.jsx');
 const sidebar = read('src/components/Sidebar.jsx');
 const css = read('src/styles/sidebar-v3.css');
 const app = read('src/App.jsx');
+const topBar = read('src/components/TopBar.jsx');
 const allRoutes = SCREEN_NAV.flatMap(group => group.items.map(item => item.to));
 const registry = new Set(
   [...sidebarIcon.matchAll(/^\s{2}([A-Za-z]+): [A-Z][A-Za-z]+,?$/gm)].map(match => match[1])
@@ -61,4 +62,13 @@ test('sidebar style is installed, mobile compatible and keyboard visible', () =>
   assert.ok(css.includes('focus-visible'));
   assert.ok(css.includes('max-width: 980px'));
   assert.ok(css.includes('prefers-reduced-motion'));
+});
+
+test('topbar mobile menu and inventory actions share the outline icon family', () => {
+  assert.ok(topBar.includes("from 'lucide-react'"));
+  assert.ok(topBar.includes('<Backpack size={19} strokeWidth={1.9}'));
+  assert.ok(topBar.includes('<Menu size={20} strokeWidth={1.9}'));
+  assert.ok(topBar.includes('<X size={20} strokeWidth={1.9}'));
+  assert.ok(!topBar.includes('🎒'));
+  assert.ok(css.includes('kuro-rpg-topbar__inventory'));
 });

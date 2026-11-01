@@ -20,6 +20,7 @@
 | Quadro de trabalho | [Execution Board](EXECUTION-BOARD-2026-10-31.md) | Etapas, bloqueios, dependências e critérios de pronto |
 | Módulos e rotas | [Matriz de módulos](MODULOS-SITUACAO-ATUAL-2026-10-31.md) | Rotas existentes × implementação × QA pendente |
 | Jornada E2E | [Matriz de QA](qa/JORNADA-CRITICA-2026-10-31.md) | Casos de teste com duas contas descartáveis |
+| Plano mestre visual e artes | [Kurokage Visual Master](design/KUROKAGE-VISUAL-MASTER-2026-10-31.md) | Roadmap de redesign, vínculo NPC-retrato, World Boss e QA |
 | Decisão visual | [ADR-001](design/ADR-001-identidade-visual-2026-10-31.md) | Reconciliação Quartel Ninja × experiência cinematográfica |
 | Experiência e UI | [Plano UX v2](design/ux-redesign-v2-plan-2026-10-31.md) · [catálogo de telas](design/screen-catalog-and-visual-direction-2026-10-30.md) | Propostas; validar com QA da PR #68 |
 | Evidência comparativa | [Auditoria UX Naruto × Kurokage](design/naruto-game-comparative-ux-audit-2026-10-30.md) | Parcial; não copiar materiais protegidos |

@@ -470,80 +470,55 @@ export const getDynamicNpcJutsus = (npc) => {
   return jutsus;
 };
 
-export const generateDynamicRogueNinja = (player, extraLevelBonus = 0) => {
-  const levelDiff = Math.floor(Math.random() * 3) - 1; // -1 a +1
-  const npcLevel = Math.max(1, player.level + levelDiff + extraLevelBonus);
+/**
+ * Encontros escaláveis usam EXCLUSIVAMENTE identidade obtida do catálogo de NPCs.
+ * Não fabrica nomes, clãs, retratos nem invocações de personagens.
+ * Estatísticas podem escalar para o encontro, mas identidade não muda.
+ */
+export const generateDynamicRogueNinja = (player, extraLevelBonus = 0, catalogNpc = null) => {
+  if (!player || !catalogNpc || !Number.isSafeInteger(Number(catalogNpc.id)) ||
+      !catalogNpc.character_id || !String(catalogNpc.name || '').trim() ||
+      catalogNpc.is_active === false || catalogNpc.is_chunin_exam === true) return null;
 
-  // Definição de Rank baseada no Level
-  let rank = 'Genin';
-  if (npcLevel >= 25) rank = 'Jounin';
-  else if (npcLevel >= 15) rank = 'Chunin';
-
-  const elements = ["Katon", "Futon", "Suiton", "Doton", "Raiton"];
-  const element = elements[Math.floor(Math.random() * elements.length)];
-
-  const clans = ["Uchiha", "Senju", "Hyuga", "Uzumaki", "Inuzuka", "Aburame", "Akimichi", "Nara", "Yamanaka", "Hozuki", "Kaguya", "Yuki"];
-  const clan = clans[Math.floor(Math.random() * clans.length)];
-  const titles = rank === 'Jounin' ? ["Líder Sanguinário", "Mestre das Sombras", "Kage Renegado"]
-    : rank === 'Chunin' ? ["Assassino", "Mercenário Oculto", "Batedor"]
-      : ["Renegado", "Desgarrado", "Ladrão"];
-  const title = titles[Math.floor(Math.random() * titles.length)];
-
-  const avatars = rank === 'Jounin' ? ["👹", "👺", "💀"] : rank === 'Chunin' ? ["🥷", "👻", "🗡️"] : ["👤", "👺", "🥷"];
-
-  const attributesList = ["forca", "agilidade", "resistencia", "inteligencia", "energia", "ninjutsu", "taijutsu", "genjutsu", "bukijutsu", "selo"];
-
-  // Calcula o total de pontos que o jogador tem
-  let totalStats = attributesList.reduce((acc, stat) => acc + (player[stat] || 5), 0);
-
-  // Bônus adicional pelas zonas de risco (extraLevelBonus)
-  // Cada nível a mais concede +5 atributos. Inimigos Jounin também ganham bônus maciço extra.
-  totalStats += (extraLevelBonus * 5);
+  const levelDiff = Math.floor(Math.random() * 3) - 1;
+  const npcLevel = Math.max(1, (Number(player.level) || 1) + levelDiff + extraLevelBonus);
+  const rank = npcLevel >= 25 ? 'Jounin' : npcLevel >= 15 ? 'Chunin' : 'Genin';
+  const attributesList = ['forca', 'agilidade', 'resistencia', 'inteligencia',
+    'energia', 'ninjutsu', 'taijutsu', 'genjutsu', 'bukijutsu', 'selo'];
+  let totalStats = attributesList.reduce((sum, stat) => sum + (Number(player[stat]) || 5), 0);
+  totalStats += extraLevelBonus * 5;
   if (rank === 'Chunin') totalStats += 20;
   if (rank === 'Jounin') totalStats += 50;
 
-  const npcStats = {
-    forca: 5, agilidade: 5, resistencia: 5, inteligencia: 5, energia: 5,
-    ninjutsu: 5, taijutsu: 5, genjutsu: 5, bukijutsu: 5, selo: 5
-  };
-
-  let statsToDistribute = Math.max(0, totalStats - 50); // subtract the base 5 per stat
-  while (statsToDistribute > 0) {
-    const randomAttr = attributesList[Math.floor(Math.random() * attributesList.length)];
-    npcStats[randomAttr]++;
-    statsToDistribute--;
-  }
-
-  // Opcional: Invocação se for Chunin+
-  let npcSummon = null;
-  if (rank === 'Chunin' || rank === 'Jounin') {
-    const summonTypes = ["Sapo", "Cobra", "Lesma", "Cão", "Pássaro", "Tartaruga", "Macaco"];
-    npcSummon = {
-      name: `Invocação: ${summonTypes[Math.floor(Math.random() * summonTypes.length)]}`,
-      animal_type: 'Summon',
-      base_atk: rank === 'Jounin' ? 100 : 50,
-      base_def: rank === 'Jounin' ? 100 : 50
-    };
+  const npcStats = Object.fromEntries(attributesList.map(attr => [attr, 5]));
+  let points = Math.max(0, totalStats - 50);
+  while (points > 0) {
+    npcStats[attributesList[Math.floor(Math.random() * attributesList.length)]]++;
+    points--;
   }
 
   const npc = {
-    id: `rogue_${Date.now()}`,
-    name: `${clan} ${title} (${rank})`,
-    avatar: avatars[Math.floor(Math.random() * avatars.length)],
+    id: `encounter_${catalogNpc.id}_${Date.now()}`,
+    npc_source_id: Number(catalogNpc.id),
+    character_id: String(catalogNpc.character_id),
+    name: catalogNpc.name.trim(),
+    avatar: typeof catalogNpc.avatar === 'string' &&
+      catalogNpc.avatar.startsWith('/images/') && !catalogNpc.avatar.includes('..')
+      ? catalogNpc.avatar : null,
     level: npcLevel,
-    rank: rank,
-    element: element,
-    clan: clan,
-    clan_bonus: { name: clan, critChance: clan === 'Uchiha' ? 0.15 : 0, armorPen: clan === 'Hyuga' ? 0.2 : 0, paralyzeChance: clan === 'Nara' ? 0.1 : 0 },
-    desc: rank === 'Jounin' ? `Um inimigo formidável apareceu! Prepare-se para a morte.` : extraLevelBonus > 0 ? `Você andou longe demais... Um ninja perigoso sentiu sua presença!` : `Você encontrou um ninja renegado pelo caminho!`,
-    summon: npcSummon,
+    rank,
+    element: catalogNpc.element || null,
+    clan: null,
+    clan_bonus: null,
+    summon: null,
+    desc: extraLevelBonus > 0
+      ? `Você encontrou ${catalogNpc.name} em uma área de alto risco.`
+      : `Você encontrou ${catalogNpc.name} pelo caminho.`,
     ...npcStats
   };
-
   npc.hp = calculateHP(npc);
   npc.chakra = calculateChakra(npc);
-  npc.activeJutsus = getDynamicNpcJutsus(npc);
-
+  npc.activeJutsus = npc.element ? getDynamicNpcJutsus(npc) : [];
   return npc;
 };
 

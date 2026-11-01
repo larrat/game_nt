@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/challenges-v4.css';
 import '../styles/main.css';
 
 export default function Historico({ player }) {
@@ -27,14 +29,14 @@ export default function Historico({ player }) {
   if (!player) return null;
 
   return (
-    <div className="page">
+    <div className="page kuro-history-v4">
       <PageHeader
         eyebrow="Relatórios de Combate"
         title="Histórico de Batalhas"
         subtitle="Analise seus últimos 20 confrontos."
       />
       
-      <div className="grid-2 items-start">
+      <div className="kuro-history-v4__layout">
         <div className="card">
           <h3 className="card-title mb-4">Últimos Confrontos</h3>
           {loading ? (
@@ -46,11 +48,11 @@ export default function Historico({ player }) {
               {logs.map(log => (
                 <button 
                   key={log.id}
-                  className={`btn-ghost flex-between cursor-pointer rounded-sm p-3 border border-solid border-line ${selectedLog?.id === log.id ? 'active bg-ink-soft' : 'bg-transparent'}`}
+                  className="kuro-history-v4__log" aria-pressed={selectedLog?.id === log.id}
                   onClick={() => setSelectedLog(log)}
                 >
                   <div className="flex-row gap-3 items-center">
-                    <span className="text-lg">{log.result === 'Vitória' ? '🏆' : '💀'}</span>
+                    <SidebarIcon name={log.result === 'Vitória' ? 'trophy' : 'shield'} size={20} />
                     <div className="flex-col items-start">
                       <span className="paper text-sm font-bold">vs {log.enemy_name}</span>
                       <span className="muted mono text-[10px]">

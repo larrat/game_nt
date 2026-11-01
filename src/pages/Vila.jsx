@@ -159,8 +159,10 @@ export default function Vila({ player, updatePlayer }) {
 
         {/* Renderizar Prédios */}
         {Object.entries(BUILDING_INFO).map(([key, info]) => (
-          <div
+          <button
+            type="button"
             key={key}
+            aria-label={`Visitar ${info.name}: ${info.desc}`}
             onClick={() => handleBuildingClick(key)}
             className="kuro-village-building kuro-village-v4__building absolute flex-col items-center cursor-pointer z-5"
             style={{
@@ -184,7 +186,7 @@ export default function Vila({ player, updatePlayer }) {
             <div className="kuro-village-building__label paper bg-black-alpha-80 px-3 py-1 rounded-sm mt-2 text-xs whitespace-nowrap border-line-solid">
               {info.name}
             </div>
-          </div>
+          </button>
         ))}
 
         {/* Modal Simples do Prédio */}

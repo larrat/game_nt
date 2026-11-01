@@ -3,6 +3,9 @@ import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import { useToast } from '../context/ToastContext';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/academy-progression-v4.css';
 import JutsuCard from '../components/JutsuCard';
 import '../styles/academy-v3.css';
 import {
@@ -150,7 +153,7 @@ export default function Tecnicas({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page kuro-jutsu-academy-page">
+    <div className="page kuro-jutsu-academy-page kuro-techniques-v4">
       <PageHeader
         eyebrow={`${player.name} · Graduação: ${player.rank}`}
         title="Academia de Jutsus"
@@ -164,21 +167,21 @@ export default function Tecnicas({ player, updatePlayer }) {
         }
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-        <div className="card p-4">
-          <p className="muted text-xs uppercase mb-1">Técnicas no catálogo</p>
-          <p className="gold text-3xl mono">{allJutsus.length}</p>
+      <section className="kuro-progression-v4__metrics" aria-label="Resumo de técnicas">
+        <div className="kuro-progression-v4__metric">
+          <span className="kuro-ui-label"><SidebarIcon name="scroll" size={15} /> TÉCNICAS NO CATÁLOGO</span>
+          <strong>{allJutsus.length}</strong><small>Todos os estilos e naturezas</small>
         </div>
         <div className="card p-4">
-          <p className="muted text-xs uppercase mb-1">Jutsus aprendidos</p>
-          <p className="paper text-3xl mono">{learnedIds.size}</p>
+          <span className="kuro-ui-label"><SidebarIcon name="book" size={15} /> JUTSUS APRENDIDOS</span>
+          <strong>{learnedIds.size}</strong><small>Aprendidos no personagem</small>
         </div>
         <div className="card p-4">
-          <p className="muted text-xs uppercase mb-1">Disponíveis para aprender</p>
-          <p className="text-success text-3xl mono">{allJutsus.filter(j =>
-            getJutsuEligibility(j, player, learnedIds.has(toJutsuId(j.id))).eligible).length}</p>
+          <span className="kuro-ui-label"><SidebarIcon name="sparkles" size={15} /> DISPONÍVEIS PARA APRENDER</span>
+          <strong>{allJutsus.filter(j =>
+            getJutsuEligibility(j, player, learnedIds.has(toJutsuId(j.id))).eligible).length}</strong><small>Requisitos atendidos neste momento</small>
         </div>
-      </div>
+      </section>
 
       <div className="tabs mb-6" role="tablist" aria-label="Abas da academia">
         <button type="button" role="tab" aria-selected={tab === 'tecnicas'}
@@ -194,8 +197,7 @@ export default function Tecnicas({ player, updatePlayer }) {
       ) : catalogError ? (
         <div className="card p-8" role="alert">
           <p className="text-danger mb-4">{catalogError}</p>
-          <button type="button" className="btn-ghost"
-            onClick={() => setCatalogVersion(v => v + 1)}>Tentar novamente</button>
+          <GameAction tone="quiet" onClick={() => setCatalogVersion(v => v + 1)}><SidebarIcon name="refresh" size={16} /> Tentar novamente</GameAction>
         </div>
       ) : tab === 'tecnicas' ? (
         <>
@@ -204,15 +206,14 @@ export default function Tecnicas({ player, updatePlayer }) {
               {categories.map(cat => (
                 <button key={cat} type="button" aria-pressed={cat === filterCat}
                   onClick={() => setFilterCat(cat)}
-                  className={`mono uppercase px-3 py-2 rounded-sm text-xs border border-solid transition-colors ${cat === filterCat ? 'border-seal-bright bg-seal-glow text-seal-bright' : 'border-line bg-transparent text-muted'}`}>
+                  className="kuro-techniques-v4__category">
                   {cat}
                 </button>
               ))}
             </div>
-            <button type="button" className="btn-ghost border-gold text-gold px-4 py-2 text-xs"
-              onClick={handleBulkPreview} disabled={loading} title="Aprender técnicas elegíveis em lote (VIP)">
-              Aprender em massa (VIP)
-            </button>
+            <GameAction tone="gold" onClick={handleBulkPreview} disabled={loading} title="Aprender técnicas elegíveis em lote (VIP)">
+              <SidebarIcon name="book" size={16} /> Aprender em massa (VIP)
+            </GameAction>
           </div>
           <div className="mb-5">
             <label htmlFor="jutsu-search" className="text-sm muted block mb-2">Buscar técnicas</label>
@@ -250,16 +251,14 @@ export default function Tecnicas({ player, updatePlayer }) {
         <div className="fixed inset-0 z-[9999] bg-black/80 flex items-center justify-center p-4"
           onClick={() => !loading && setConfirmBulk(false)}>
           <div role="dialog" aria-modal="true" aria-labelledby="bulk-title"
-            className="card w-full max-w-md p-6" onClick={event => event.stopPropagation()}>
+            className="kuro-techniques-v4__modal card w-full max-w-md p-6" onClick={event => event.stopPropagation()}>
             <h3 id="bulk-title" className="gold text-xl mb-3">Confirmar aprendizado VIP</h3>
             <p className="paper mb-3">Aprender {bulk.selected.length} jutsu(s) elegíveis por até RY$ {bulk.totalCost.toLocaleString('pt-BR')}.</p>
             <p className="muted text-sm mb-5">O servidor verifica cada requisito novamente e determina o custo real. A operação é atômica.</p>
             {bulk.remaining > 0 && <p className="text-gold text-xs mb-4">Mais {bulk.remaining} técnica(s) ficarão para o próximo lote (limite de 50).</p>}
             <div className="flex gap-3 justify-end">
-              <button type="button" className="btn-ghost" disabled={loading}
-                onClick={() => setConfirmBulk(false)}>Cancelar</button>
-              <button type="button" className="btn-primary" disabled={loading}
-                onClick={handleBulkLearn}><span>{loading ? 'Aprendendo...' : 'Confirmar compra'}</span></button>
+              <GameAction tone="quiet" disabled={loading} onClick={() => setConfirmBulk(false)}>Cancelar</GameAction>
+              <GameAction tone="seal" loading={loading} onClick={handleBulkLearn}><span>{loading ? 'Aprendendo...' : 'Confirmar aprendizado'}</span></GameAction>
             </div>
           </div>
         </div>

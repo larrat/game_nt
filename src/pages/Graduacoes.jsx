@@ -12,14 +12,21 @@ import { findRankIndex } from '../utils/progression';
 export default function Graduacoes({ player, updatePlayer }) {
   const { addToast } = useToast();
   const [ranksData, setRanksData] = useState([]);
+  const [catalogLoading, setCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState('');
+  const [reloadKey, setReloadKey] = useState(0);
   const [isCeremonyActive, setIsCeremonyActive] = useState(false);
   const [newRank, setNewRank] = useState('');
   const navigate = useNavigate();
 
   React.useEffect(() => {
     async function fetchRanks() {
-      const { data } = await supabase.from('ranks').select('*').order('id', { ascending: true });
-      if (data) {
+      setCatalogLoading(true);
+      setCatalogError('');
+      try {
+        const { data, error } = await supabase.from('ranks').select('*').order('id', { ascending: true });
+        if (error) throw error;
+        if (data) {
         const mappedRanks = data.map(r => {
           const reqs = [];
           if (r.req_level > 0) reqs.push({ label: `Nível ${r.req_level} ou superior`, check: (p) => p.level >= r.req_level, progress: (p) => `${p.level}/${r.req_level}` });
@@ -77,13 +84,32 @@ export default function Graduacoes({ player, updatePlayer }) {
             reqs: reqs
           };
         });
-        setRanksData(mappedRanks);
+          setRanksData(mappedRanks);
+        }
+      } catch (error) {
+        setCatalogError(error?.message || 'Não foi possível consultar as graduações.');
+      } finally {
+        setCatalogLoading(false);
       }
     }
     fetchRanks();
-  }, []);
+  }, [reloadKey]);
 
-  if (!player || ranksData.length === 0) return <div>Carregando...</div>;
+  if (!player) return null;
+  if (catalogLoading) return <div className="page" role="status">Carregando graduações...</div>;
+  if (catalogError) return (
+    <div className="page" role="alert">
+      <PageHeader title="Graduações" subtitle="Falha ao consultar os requisitos." />
+      <p className="muted">{catalogError}</p>
+      <GameAction tone="quiet" onClick={() => setReloadKey(value => value + 1)}>Tentar novamente</GameAction>
+    </div>
+  );
+  if (ranksData.length === 0) return (
+    <div className="page">
+      <PageHeader title="Graduações" subtitle="Nenhuma graduação disponível no momento." />
+      <GameAction tone="quiet" onClick={() => setReloadKey(value => value + 1)}>Atualizar catálogo</GameAction>
+    </div>
+  );
 
   const currentIndex = findRankIndex(ranksData, player.rank);
   const nextRank = currentIndex >= 0 ? ranksData[currentIndex + 1] : null;

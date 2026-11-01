@@ -9,26 +9,34 @@ import { useToast } from '../context/ToastContext';
 export default function Ichiraku({ player, updatePlayer }) {
   const [consumables, setConsumables] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState('');
+  const [reloadKey, setReloadKey] = useState(0);
   const [buyingId, setBuyingId] = useState(null);
   const [tab, setTab] = useState('loja'); // loja | mochila
   const { addToast } = useToast();
 
   useEffect(() => {
     fetchConsumables();
-  }, []);
+  }, [reloadKey]);
 
   const fetchConsumables = async () => {
-    const { data, error } = await supabase
-      .from('consumables')
-      .select('*')
-      .eq('is_active', true)
-      .order('cost_coins', { ascending: true })
-      .order('cost_ryous', { ascending: true });
-
-    if (!error && data) {
-      setConsumables(data);
+    setLoading(true);
+    setCatalogError('');
+    try {
+      const { data, error } = await supabase
+        .from('consumables')
+        .select('*')
+        .eq('is_active', true)
+        .order('cost_coins', { ascending: true })
+        .order('cost_ryous', { ascending: true });
+      if (error) throw error;
+      setConsumables(data || []);
+    } catch (error) {
+      setConsumables([]);
+      setCatalogError(error?.message || 'Não foi possível carregar o cardápio.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleBuy = async (item) => {
@@ -134,6 +142,13 @@ export default function Ichiraku({ player, updatePlayer }) {
         {tab === 'loja' && (
           loading ? (
             <div className="muted mono text-center p-10">Preparando a cozinha...</div>
+          ) : catalogError ? (
+            <div className="info-banner" role="alert">
+              <p>Não foi possível carregar o cardápio: {catalogError}</p>
+              <GameAction tone="quiet" onClick={() => setReloadKey(value => value + 1)}>Tentar novamente</GameAction>
+            </div>
+          ) : consumables.length === 0 ? (
+            <div className="info-banner" role="status">Nenhum consumível disponível no momento.</div>
           ) : (
             <div className="kuro-ichiraku-v4__grid">
               {consumables.map(item => (
@@ -157,9 +172,9 @@ export default function Ichiraku({ player, updatePlayer }) {
                 <button 
                   className="btn-primary w-full flex-row justify-center gap-sm p-3" 
                   onClick={() => handleBuy(item)}
-                  disabled={buyingId === item.id}
+                  disabled={buyingId !== null || (item.cost_ryous > 0 && (player.ryous || 0) < item.cost_ryous) || (item.cost_coins > 0 && (player.vip_coins || 0) < item.cost_coins)}
                 >
-                  {buyingId === item.id ? 'Comprando...' : (
+                  {buyingId === item.id ? 'Comprando...' : ((item.cost_ryous > 0 && (player.ryous || 0) < item.cost_ryous) || (item.cost_coins > 0 && (player.vip_coins || 0) < item.cost_coins)) ? 'Saldo insuficiente' : (
                     <>
                       <span>Comprar por</span>
                       {item.cost_ryous > 0 && <span className="mono flex-row gap-xs">{item.cost_ryous} 💴</span>}

@@ -23,6 +23,9 @@ const CLAN_LEVELS = [
 
 export default function Clas({ player, updatePlayer }) {
   const [clansData, setClansData] = useState([]);
+  const [catalogLoading, setCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState('');
+  const [reloadKey, setReloadKey] = useState(0);
   const [clanJutsus, setClanJutsus] = useState([]);
   const [myLearnedJutsus, setMyLearnedJutsus] = useState([]);
   const [selectedClanIdx, setSelectedClanIdx] = useState(0);
@@ -58,16 +61,21 @@ export default function Clas({ player, updatePlayer }) {
 
   useEffect(() => {
     async function fetchClans() {
-      const { data: cData } = await supabase.from('clans').select('*, clan_skills(*)').order('id', { ascending: true });
-      const { data: jData } = await supabase.from('jutsus').select('*').not('req_clan', 'is', null);
-
-      if (cData) {
+      setCatalogLoading(true);
+      setCatalogError('');
+      try {
+        const [{ data: cData, error: clansError }, { data: jData, error: jutsusError }] = await Promise.all([
+          supabase.from('clans').select('*, clan_skills(*)').order('id', { ascending: true }),
+          supabase.from('jutsus').select('*').not('req_clan', 'is', null)
+        ]);
+        if (clansError || jutsusError) throw clansError || jutsusError;
+        if (cData) {
         const mapped = cData.map(c => ({
           id: c.id,
           name: c.name,
           image: getClanArtworkUrl(c),
           description: c.description,
-          skills: c.clan_skills.map(s => ({
+          skills: (c.clan_skills || []).map(s => ({
             name: s.name,
             req: s.req_label,
             effect: s.description,
@@ -76,13 +84,32 @@ export default function Clas({ player, updatePlayer }) {
         }));
         setClansData(mapped);
       }
-      if (jData) setClanJutsus(jData);
-      await fetchLearned();
+        if (jData) setClanJutsus(jData);
+        await fetchLearned();
+      } catch (error) {
+        setCatalogError(error?.message || 'Não foi possível consultar o catálogo de clãs.');
+      } finally {
+        setCatalogLoading(false);
+      }
     }
     if (player) fetchClans();
-  }, [player]);
+  }, [player?.id, reloadKey]);
 
-  if (!player || clansData.length === 0) return <div>Carregando...</div>;
+  if (!player) return null;
+  if (catalogLoading) return <div className="page" role="status">Carregando clãs...</div>;
+  if (catalogError) return (
+    <div className="page" role="alert">
+      <PageHeader title="Clãs" subtitle="Falha ao consultar o catálogo." />
+      <p className="muted">{catalogError}</p>
+      <GameAction tone="quiet" onClick={() => setReloadKey(value => value + 1)}>Tentar novamente</GameAction>
+    </div>
+  );
+  if (clansData.length === 0) return (
+    <div className="page">
+      <PageHeader title="Clãs" subtitle="Nenhum clã disponível no momento." />
+      <GameAction tone="quiet" onClick={() => setReloadKey(value => value + 1)}>Atualizar catálogo</GameAction>
+    </div>
+  );
 
   const clan = clansData[selectedClanIdx];
 

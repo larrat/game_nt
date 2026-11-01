@@ -126,7 +126,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const portaoAtkMultiplier = getPortaoBoost();
 
   const npcMaxHP = npcInit?.hp || 1;
-  const npcMaxCP = npcInit?.chakra || 1;
+  const npcMaxCP = Math.max(0, Number(npcInit?.chakra ?? 0));
   const npcMaxSt = 100;
 
   const npcAtkTaiBuk = isMirror ? calculateAtkTaiBuk(npcInit) : (npcInit?.atk || 0);
@@ -140,7 +140,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   const [npcHP, setNpcHP] = useState(npcInit?.hp || 1);
   const [npcMaxHPVal, setNpcMaxHPVal] = useState(npcInit?.hp || 1);
-  const [npcCP, setNpcCP] = useState(npcInit?.chakra || 50);
+  const [npcCP, setNpcCP] = useState(Math.max(0, Number(npcInit?.chakra ?? 0)));
   const [npcSt, setNpcSt] = useState(npcMaxSt);
 
   const timeoutRefs = useRef([]);
@@ -336,8 +336,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         .select('*, summons(*)')
         .eq('player_id', player.id)
         .eq('is_equipped', true)
-        .single();
+        .limit(1)
+        .maybeSingle();
       if (data) setEquippedSummon(data.summons);
+      else setEquippedSummon(null);
     }
     fetchSummon();
   }, [player?.id]);
@@ -348,8 +350,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         setGlobalDebuffs(getGlobalDebuffs(npcInit));
         return;
       }
-      const { data } = await supabase.from('global_events').select('*').eq('is_active', true).eq('is_world_boss', true).single();
-      if (data) setGlobalDebuffs(getGlobalDebuffs(data));
+      const { data } = await supabase.from('global_events').select('*')
+        .eq('is_active', true).eq('is_world_boss', true).limit(1).maybeSingle();
+      setGlobalDebuffs(getGlobalDebuffs(data || null));
     }
     checkGlobalDebuffs();
   }, [location.state, npcInit]);
@@ -368,7 +371,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   useEffect(() => {
     let timer;
-    if (isPlayerTurn && !battleResult && !isAltAutoBattle) {
+    if (isPlayerTurn && !battleResult && !isAltAutoBattle &&
+        (!combatSessionEligible || (!combatSessionLoading && !combatSessionFailed && Boolean(combatSessionId)))) {
       timer = setInterval(() => {
         setTimeLeft(prev => {
           if (prev <= 1) {
@@ -403,7 +407,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       }, 1000);
     }
     return () => clearInterval(timer);
-  }, [isPlayerTurn, battleResult, npcHP, isAltAutoBattle]);
+  }, [isPlayerTurn, battleResult, npcHP, isAltAutoBattle,
+    combatSessionEligible, combatSessionId, combatSessionLoading, combatSessionFailed, player?.id]);
 
   useEffect(() => {
     let timer;
@@ -430,7 +435,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
 
   useEffect(() => {
     let timer;
-    if (isPlayerTurn && autoBattle && !battleResult && !isAltAutoBattle) {
+    if (isPlayerTurn && autoBattle && !battleResult && !isAltAutoBattle &&
+        (!combatSessionEligible || (!combatSessionLoading && !combatSessionFailed && Boolean(combatSessionId)))) {
       timer = setTimeout(() => {
         const jutsus = getCombatJutsus(player);
         const availableJutsus = jutsus.filter(j => playerCP >= (j.chakraCost || 20));
@@ -445,7 +451,8 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     }
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPlayerTurn, autoBattle]);
+  }, [isPlayerTurn, autoBattle, combatSessionEligible, combatSessionId,
+    combatSessionLoading, combatSessionFailed, battleResult, isAltAutoBattle]);
 
   const addLog = (msg) => {
     setLogs(prev => [...prev, msg]);
@@ -480,7 +487,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
     const nextFight = raidCurrent + 1;
     setBattleResult(null);
     setNpcHP(npcMaxHPVal);
-    setNpcCP(npcInit?.chakra || npcMaxCP);
+    setNpcCP(Math.max(0, Number(npcInit?.chakra ?? 0)));
     setNpcSt(npcMaxSt);
     setNpcStatus([]);
     setPlayerStatus([]);
@@ -1401,8 +1408,17 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       setTimeout(() => setSurrenderConfirm(false), 4000);
       return;
     }
+    if (combatSessionEligible && (combatSessionLoading || !combatSessionId || combatSessionFailed)) {
+      addToast('Aguarde a validação da sessão antes de desistir.', 'warning');
+      return;
+    }
     setSurrenderConfirm(false);
-    addLog('Você jogou a toalha e desistiu da batalha...');
+    addLog('Você encerrou esta batalha.');
+    // Encerrar o treino com boneco nunca torna o personagem inconsciente.
+    if (npcInit?.is_dummy) {
+      setBattleResult('training_end');
+      return;
+    }
     setBattleResult('surrender');
     if (combatSessionId) {
       const { data, error } = await supabase.rpc('abandonar_combate_sessao', {
@@ -1422,7 +1438,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   const pCPPercent = (playerCP / maxPlayerCP) * 100;
   const pStPercent = (playerSt / maxPlayerSt) * 100;
   const nHPPercent = (npcHP / npcMaxHP) * 100;
-  const nCPPercent = (npcCP / npcMaxCP) * 100;
+  const nCPPercent = npcMaxCP > 0 ? (npcCP / npcMaxCP) * 100 : 0;
   const nStPercent = (npcSt / npcMaxSt) * 100;
 
   if (!player || !npcInit) {
@@ -1680,7 +1696,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               <div className="combat-secondary-actions">
                 <button
                   className={`btn-ghost flex-row justify-center gap-sm text-xs ${!isPlayerTurn ? 'opacity-50' : ''} ${surrenderConfirm ? 'border-2 border-solid border-danger text-danger font-bold' : 'border border-dashed border-danger text-danger font-normal'}`}
-                  disabled={!isPlayerTurn}
+                  disabled={!isPlayerTurn || blockedByServer || loading}
                   onClick={handleSurrender}
                   type="button"
                 >
@@ -1702,16 +1718,16 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         ) : (
           <div className={`flex-col text-center p-6 bg-ink-soft items-center border-line-solid border kuro-combat-result ${battleResult === 'win' ? 'border-gold' : 'border-danger'}`}>
             <h2 className={`page-title mb-4 ${battleResult === 'win' ? 'gold' : 'danger'}`}>
-              {battleResult === 'win' ? 'Vitória!' : (battleResult === 'world_boss_end' ? 'Fim da Incursão' : 'Inconsciente')}
+              {battleResult === 'win' ? 'Vitória!' : (battleResult === 'world_boss_end' ? 'Fim da Incursão' : battleResult === 'training_end' ? 'Treino encerrado' : 'Inconsciente')}
             </h2>
 
             {battleResult === 'world_boss_end' && (
               <p className="muted mb-4">Você causou um total de <strong className="danger text-lg">{accumulatedDamage}</strong> de dano ao Chefe Global!</p>
             )}
 
-            <GameAction tone="seal" loading={loading} onClick={battleResult === 'world_boss_end' ? handleWorldBossEnd : () => navigate(battleResult === 'win' ? (location.state?.isExame ? '/exame' : (location.state?.fromMap ? '/mapa' : '/dojo')) : (location.state?.isExame ? '/exame' : '/hospital'), { state: { roundWon: battleResult === 'win' ? location.state?.exameRound : null } })}>
+            <GameAction tone="seal" loading={loading} onClick={battleResult === 'world_boss_end' ? handleWorldBossEnd : () => navigate(battleResult === 'win' ? (location.state?.isExame ? '/exame' : (location.state?.fromMap ? '/mapa' : '/dojo')) : (location.state?.isExame ? '/exame' : (battleResult === 'training_end' ? '/dojo' : '/hospital')), { state: { roundWon: battleResult === 'win' ? location.state?.exameRound : null } })}>
               <SidebarIcon name="arrowRight" size={17} />
-              <span>{loading ? 'Retornando...' : (battleResult === 'win' ? 'Retornar' : 'Ir para o Hospital')}</span>
+              <span>{loading ? 'Retornando...' : (battleResult === 'win' || battleResult === 'training_end' ? 'Retornar ao Dojo' : 'Ir para o Hospital')}</span>
             </GameAction>
           </div>
         )}

@@ -1,3 +1,4 @@
+import { CURRENT_SEASON_LABEL } from '../utils/season';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { calculateXPForLevel, calculateLevelFromXP, calculateHP, calculateChakra, calculateStamina, getGlobalDebuffs } from '../utils/engine';
@@ -219,7 +220,7 @@ export default function Dashboard({ player, updatePlayer }) {
     <div className="kuro-dashboard kuro-dashboard-v2">
       <header className="kuro-dashboard__header">
         <div>
-          <div className="kuro-eyebrow"><span className="kuro-eyebrow__line" /> CENTRAL SHINOBI <span className="kuro-eyebrow__season">TEMPORADA I</span></div>
+          <div className="kuro-eyebrow"><span className="kuro-eyebrow__line" /> CENTRAL SHINOBI <span className="kuro-eyebrow__season">{CURRENT_SEASON_LABEL.toUpperCase()}</span></div>
           <h1>Painel do Ninja</h1>
           <p>Seu caminho, suas escolhas, sua lenda. Veja o que está acontecendo no mundo shinobi.</p>
         </div>

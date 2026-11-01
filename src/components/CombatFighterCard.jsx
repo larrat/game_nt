@@ -180,7 +180,7 @@ export default function CombatFighterCard({
         )}
 
         <StatBar label="HP" current={hp} max={maxHp} percent={hpPct} color="#ef4444" alignRight={alignRight} />
-        <StatBar label="Chakra" current={cp} max={maxCp} percent={cpPct} color="#4b9eff" alignRight={alignRight} />
+        {maxCp > 0 && <StatBar label="Chakra" current={cp} max={maxCp} percent={cpPct} color="#4b9eff" alignRight={alignRight} />}
         <StatBar label="Stamina" current={st} max={maxSt} percent={stPct} color="#f59e0b" alignRight={alignRight} />
       </div>
     </div>

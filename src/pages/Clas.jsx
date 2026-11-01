@@ -28,6 +28,7 @@ export default function Clas({ player, updatePlayer }) {
   const [clanJutsus, setClanJutsus] = useState([]);
   const [myLearnedJutsus, setMyLearnedJutsus] = useState([]);
   const [selectedClanIdx, setSelectedClanIdx] = useState(0);
+  const [hasSelectedClan, setHasSelectedClan] = useState(false);
   const [customStats, setCustomStats] = useState({
     agilidade: 0, selo: 0, forca: 0, inteligencia: 0, resistencia: 0,
     ninjutsu: 0, genjutsu: 0, taijutsu: 0, energia: 0, bukijutsu: 0
@@ -90,6 +91,10 @@ export default function Clas({ player, updatePlayer }) {
   const clan = clansData[selectedClanIdx];
 
   const handleJoinClan = async () => {
+    if (!hasSelectedClan) {
+      addToast('Selecione um clã na galeria antes de confirmar a entrada.', 'error');
+      return;
+    }
     if (player.clan_id) {
       addToast("Você já possui um clã!", "error");
       return;
@@ -288,7 +293,8 @@ export default function Clas({ player, updatePlayer }) {
         </div>
       ) : (
         <div className="clan-system">
-          <ClanSelector clans={clansData} selectedIndex={selectedClanIdx} onSelect={setSelectedClanIdx} />
+          <ClanSelector clans={clansData} selectedIndex={selectedClanIdx} selectedExplicit={hasSelectedClan}
+            onSelect={index => { setSelectedClanIdx(index); setHasSelectedClan(true); }} />
 
           <div className="card kuro-ui-card flex-col mb-12 items-center text-center">
              <p className="kuro-clan-selector__eyebrow mb-4">CONFIGURE A LINHAGEM SELECIONADA: {clan.name}</p>
@@ -326,8 +332,9 @@ export default function Clas({ player, updatePlayer }) {
              </div>
 
              <div className="text-center w-full">
+               {!hasSelectedClan && <p className="muted text-xs mb-4" role="status">Selecione uma linhagem na galeria acima para habilitar a entrada.</p>}
                <p className="danger text-xs mb-4">Atenção: as escolhas de clã e atributos são <strong>permanentes</strong>.</p>
-               <GameAction tone="seal" className="w-full" onClick={handleJoinClan} disabled={totalSpent !== maxPoints}>
+               <GameAction tone="seal" className="w-full" onClick={handleJoinClan} disabled={!hasSelectedClan || totalSpent !== maxPoints}>
                  <SidebarIcon name="users" size={17} /> Entrar no Clã
                </GameAction>
              </div>

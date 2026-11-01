@@ -1,0 +1,103 @@
+/* Kurokage v4 — common visual contract, not an independent page theme.
+   All styles are scoped to authenticated gameplay so signup/recovery retain their own layout. */
+.app {
+  --kuro-bg: #080d14;
+  --kuro-surface: #131c27;
+  --kuro-surface-up: #1c2835;
+  --kuro-line: rgba(235, 194, 130, .20);
+  --kuro-gold: #ebc17c;
+  --kuro-red: #d64750;
+  --kuro-copy: #f3ecdf;
+  --kuro-muted: #b9bbc0;
+  --kuro-radius: 14px;
+  --kuro-gap: clamp(14px, 1.6vw, 22px);
+  --kuro-focus: #f1c879;
+
+  /* Bridge existing generations of styles onto one palette. */
+  --kui-bg: var(--kuro-bg);
+  --kui-surface: var(--kuro-surface);
+  --kui-surface-raised: var(--kuro-surface-up);
+  --kui-border: var(--kuro-line);
+  --kui-border-focus: var(--kuro-focus);
+  --kui-gold: var(--kuro-gold);
+  --kui-text: var(--kuro-copy);
+  --kui-muted: var(--kuro-muted);
+  --kx-amber: var(--kuro-gold);
+  --kx-ember: var(--kuro-red);
+  --kx-surface: var(--kuro-surface);
+  --kx-surface-raised: var(--kuro-surface-up);
+  --kx-line: var(--kuro-line);
+  --kx-copy: var(--kuro-copy);
+  --kx-muted: var(--kuro-muted);
+}
+
+/* Buttons share geometry and states; each page retains its existing handlers. */
+.app :is(.btn-primary, .btn-ghost, .btn-danger, .kuro-button, .kui-action) {
+  min-height: 44px;
+  border-radius: 10px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.app :is(.btn-primary, .btn-ghost, .btn-danger, .kuro-button, .kui-action):focus-visible {
+  outline: 2px solid var(--kuro-focus);
+  outline-offset: 3px;
+}
+.app :is(.btn-primary, .btn-ghost, .btn-danger, .kuro-button, .kui-action):disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+.app :is(.btn-primary, .btn-ghost, .btn-danger, .kuro-button, .kui-action) > svg {
+  flex-shrink: 0;
+}
+.app .kui-panel { border-radius: var(--kuro-radius); border-color: var(--kuro-line); }
+.app .kuro-rpg-pagehead__title { color: var(--kuro-copy); }
+.app .kuro-rpg-pagehead__eyebrow { color: var(--kuro-gold); }
+
+/* Shared building blocks: cards, icons and metadata. */
+.app .kuro-ui-card {
+  min-width: 0;
+  padding: clamp(18px,2vw,26px);
+  border-radius: var(--kuro-radius);
+  border: 1px solid var(--kuro-line);
+  background: linear-gradient(145deg,var(--kuro-surface-up),var(--kuro-surface));
+}
+.app .kuro-ui-icon {
+  width: 48px;
+  height: 48px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--kuro-gold);
+  background: rgba(235,193,124,.085);
+  border: 1px solid rgba(235,193,124,.27);
+  border-radius: 12px;
+}
+.app .kuro-ui-label {
+  color: var(--kuro-gold);
+  font: 700 10px/1.45 'JetBrains Mono',monospace;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+}
+.app .kuro-ui-muted { color: var(--kuro-muted); }
+.app .kuro-ui-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 4px 9px;
+  border: 1px solid var(--kuro-line);
+  border-radius: 999px;
+  color: #e4d1b4;
+  background: rgba(235,193,124,.06);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.app .kuro-ui-badge[data-tone="danger"] {
+  color: #ffb8b9;
+  border-color: rgba(214,71,80,.45);
+  background: rgba(214,71,80,.11);
+}
+@media (prefers-reduced-motion: reduce) {
+  .app :is(.btn-primary,.btn-ghost,.btn-danger,.kuro-button,.kui-action) {
+    transition: none;
+    transform: none;
+  }
+}

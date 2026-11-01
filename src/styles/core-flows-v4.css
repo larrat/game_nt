@@ -193,3 +193,16 @@
     transition:none!important;animation:none!important;
   }
 }
+
+/* Stable, license-aware item art. No third-party hotlinks. */
+.app .kuro-item-artwork {
+  display:inline-grid;place-items:center;flex-shrink:0;
+  width:var(--kuro-item-art-size,46px);height:var(--kuro-item-art-size,46px);
+  border:1px solid var(--kuro-line);border-radius:12px;
+  background:linear-gradient(145deg,rgba(235,193,124,.11),rgba(10,18,29,.68));
+  color:var(--kuro-gold);overflow:hidden;
+}
+.app .kuro-item-artwork img {display:block;width:100%;height:100%;object-fit:contain;}
+.app .kuro-equipment-v4__item-heading {display:flex;align-items:center;gap:12px;min-width:0;}
+.app .kuro-equipment-v4__item-heading>div {min-width:0;overflow-wrap:anywhere;}
+.app .kuro-equipment-v4__item-heading h4 {line-height:1.45;}

@@ -50,7 +50,10 @@ test('critical keyboard and state paths are maintained in the revised screens',(
   assert.ok(forge.includes('<ItemArtwork name={item.items.name}'));
   assert.ok(summons.includes('role="tablist"'));
   assert.ok(summons.includes("aria-selected={activeTab === 'meus'}"));
-  assert.ok(clans.includes('aria-pressed={idx === selectedClanIdx}'));
+  const clanSelector=readFileSync(new URL('../src/components/ClanSelector.jsx', import.meta.url),'utf8');
+  assert.ok(clans.includes('<ClanSelector'));
+  assert.ok(clans.includes('selectedExplicit={hasSelectedClan}'));
+  assert.ok(clanSelector.includes('aria-pressed={selectedClan && selectedExplicit}'));
   assert.ok(rank.includes('kuro-ranking-v4__scroll'));
   assert.ok(rank.includes('aria-pressed={filter ==='));
   assert.ok(history.includes('aria-pressed={selectedLog?.id === log.id}'));

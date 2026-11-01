@@ -1,0 +1,30 @@
+{
+  "buttons": [],
+  "dialogs": [],
+  "forms": [
+    {
+      "id": "sPlayerTitulo",
+      "name": "sPlayerTitulo",
+      "options": [
+        {
+          "label": "Nenhum(a)",
+          "value": "MA%3D%3D"
+        },
+        {
+          "label": "Genin",
+          "value": "MTUxOTc%3D"
+        }
+      ]
+    }
+  ],
+  "headings": [
+    "Recompensas do Sensei",
+    "Acessar minha conta",
+    "Inicie sua Aventura"
+  ],
+  "tables": [],
+  "title": "Loja do Sensei",
+  "tooltips": [],
+  "url": "https://narutogame.com.br/index.php?secao=loja_sensei",
+  "snapshot": "- heading \"Loja do Sensei\" [level=1]\n- heading \"Recompensas do Sensei\" [level=2]:\n  - generic: \n  - generic: Recompensas do Sensei\n- paragraph: Aqui você poderá comprar itens especiais para seu personagem, como armas, pergaminhos, ramens e muito mais! Os itens da loja do Sensei são limitados e só podem ser comprados uma vez por Round, então fique atento!\n- generic: Desafio 1\n- generic: Vencer 1 desafios do Sensei\n- generic: 500 Ryous\n- button \"Não Recebido\"\n- generic: Desafio 5\n- generic: Vencer 5 desafios do Sensei\n- generic: 1000 de exp\n- button \"Não Recebido\"\n- generic: Desafio 10\n- generic: Vencer 10 desafios do Sensei\n- generic: 3000 Ryous\n- button \"Não Recebido\"\n- generic: Desafio 15\n- generic: Vencer 15 desafios do Sensei\n- generic: 1500 de treino total\n- button \"Não Recebido\"\n- generic: Desafio 20\n- generic: Vencer 20 desafios do Sensei\n- generic: 3000 de treino total\n- button \"Não Recebido\"\n- generic: Desafio 25\n- generic: Vencer 25 desafios do Sensei\n- generic: 5000 Ryous\n- button \"Não Recebido\"\n- generic: Desafio 30\n- generic: Vencer 30 desafios do Sensei\n- generic: 3000 de exp\n- button \"Não Recebido\"\n- generic: Desafio 35\n- generic: Vencer 35 desafios do Sensei\n- generic: 8000 Ryous\n- button \"Não Recebido\"\n- generic: Desafio 40\n- generic: Vencer 40 desafios do Sensei\n- generic: 6000 de treino total\n- button \"Não Recebido\"\n- generic: Desafio 45\n- generic: Vencer 45 desafios do Sensei\n- generic: 3 chakra(s) de bijuu\n- button \"Não Recebido\"\n- generic: Desafio 50\n- generic: Vencer 50 desafios do Sensei\n- generic: 1 Equipamento Lendário Random\n- button \"Não Recebido\"\n- generic: Desafio 60\n- generic: Vencer 60 desafios do Sensei\n- generic: 5 Pontos de Energia\n- button \"Não Recebido\"\n- generic: Desafio 70\n- generic: Vencer 70 desafios do Sensei\n- generic: 500 fragmentos\n- button \"Não Recebido\"\n- generic: Desafio 80\n- generic: Vencer 80 desafios do Sensei\n- generic: 5 Créditos\n- button \"Não Recebido\"\n- generic: Desafio 90\n- generic: Vencer 90 desafios do Sensei\n- generic: 1 Alvo Extra do Bingo Book\n- button \"Não Recebido\"\n- generic: Desafio 100\n- generic: Vencer 100 desafios do Sensei\n- generic: 1500 fragmentos\n- button \"Não Recebido\"\n- generic: Desafio 110\n- generic: Vencer 110 desafios do Sensei\n- generic: Rock Lee - Mestre\n- button \"Não Recebido\"\n- generic: Desafio 120\n- generic: Vencer 120 desafios do Sensei\n- generic: 3 Tokens de Personagem\n- button \"Não Recebido\"\n- generic: Desafio 135\n- generic: Vencer 135 desafios do Sensei\n- generic: 3 Alvo Extra do Bingo Book\n- button \"Não Recebido\"\n- generic: Desafio 150\n- generic: Vencer 150 desafios do Sensei\n- generic: 50 Créditos\n- button \"Não Recebido\"\n"
+}

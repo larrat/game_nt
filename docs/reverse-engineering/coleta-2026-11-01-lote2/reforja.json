@@ -1,0 +1,30 @@
+{
+  "buttons": [],
+  "dialogs": [],
+  "forms": [
+    {
+      "id": "sPlayerTitulo",
+      "name": "sPlayerTitulo",
+      "options": [
+        {
+          "label": "Nenhum(a)",
+          "value": "MA%3D%3D"
+        },
+        {
+          "label": "Genin",
+          "value": "MTUxOTc%3D"
+        }
+      ]
+    }
+  ],
+  "headings": [
+    "Selecione o Equipamento",
+    "Acessar minha conta",
+    "Inicie sua Aventura"
+  ],
+  "tables": [],
+  "title": "Reforja de Equipamentos",
+  "tooltips": [],
+  "url": "https://narutogame.com.br/index.php?secao=reforja",
+  "snapshot": "- heading \"Reforja de Equipamentos\" [level=1]\n- main:\n  - heading \"Selecione o Equipamento\" [level=3]\n  - generic: Favoritos\n  - generic: Bandanas\n  - generic: Coletes\n  - generic: Luvas\n  - generic: Calças\n  - generic: Pergaminhos\n  - generic: Botas\n  - generic: Selecione um equipamento...\n"
+}

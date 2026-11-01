@@ -1,0 +1,31 @@
+{
+  "buttons": [],
+  "dialogs": [],
+  "forms": [
+    {
+      "id": "sPlayerTitulo",
+      "name": "sPlayerTitulo",
+      "options": [
+        {
+          "label": "Nenhum(a)",
+          "value": "MA%3D%3D"
+        },
+        {
+          "label": "Genin",
+          "value": "MTUxOTc%3D"
+        }
+      ]
+    }
+  ],
+  "headings": [
+    "Limite Quinzenal de Armas de Longo Alcance",
+    "Acessar minha conta",
+    "Inicie sua Aventura",
+    "Armas de Longo Alcance1/3"
+  ],
+  "tables": [],
+  "title": "Ninja Shop",
+  "tooltips": [],
+  "url": "https://narutogame.com.br/index.php?secao=ninja_shop",
+  "snapshot": "- heading \"Ninja Shop\" [level=1]\n- heading \"Limite Quinzenal de Armas de Longo Alcance\" [level=2]:\n  - generic: \n  - generic: Limite Quinzenal de Armas de Longo Alcance\n- paragraph: Todos os Ninjas possuem um Limite de Compra Quinzenal de 40 Armas de Longo Alcance, isso foi implementado no jogo para que o uso dessas armas seja feito de uma forma estratégica nos combates. O Reset acontece sempre no dia 1 e 15 de todo mês.\n- generic: 0 de 40 Armas de Longo Alcance Quinzenais\n- generic: Armas de longo alcance\n- generic: Armas de curto alcance\n- generic: Pergaminho\n- generic: x0\n- generic: Shuriken\n- generic: \n- generic: RY$ 7\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Kunai\n- generic: \n- generic: RY$ 12\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Makibishi\n- generic: \n- generic: RY$ 17\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Senbons\n- generic: \n- generic: RY$ 22\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Tarja Explosiva\n- generic: \n- generic: RY$ 21\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Shuriken com Linha\n- generic: \n- generic: RY$ 32\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Shuriken Gigante\n- generic: \n- generic: RY$ 27\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Bomba de Luz\n- generic: \n- generic: RY$ 21\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Sensei Shuriken\n- generic: \n- generic: RY$ 7\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Sensei Shuriken com Linha\n- generic: \n- generic: RY$ 32\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Sensei Senbons\n- generic: \n- generic: RY$ 22\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Sensei Shuriken Gigante\n- generic: \n- generic: RY$ 27\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Tarja Explosiva\n- generic: \n- generic: RY$ 64\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Tarja Explosiva\n- generic: \n- generic: RY$ 85\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Sensei Makibishi\n- generic: \n- generic: RY$ 17\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Tarja Explosiva\n- generic: \n- generic: RY$ 106\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Sensei Kunai\n- generic: \n- generic: RY$ 12\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Tarja Explosiva\n- generic: \n- generic: RY$ 42\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Bomba de Luz\n- generic: \n- generic: RY$ 42\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Bomba de Luz\n- generic: \n- generic: RY$ 64\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Bomba de Luz\n- generic: \n- generic: RY$ 85\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Bomba de Luz\n- generic: \n- generic: RY$ 106\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Etiqueta de Selamento\n- generic: \n- generic: RY$ 21\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Etiqueta de Selamento\n- generic: \n- generic: RY$ 42\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Etiqueta de Selamento\n- generic: \n- generic: RY$ 64\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Etiqueta de Selamento\n- generic: \n- generic: RY$ 85\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Etiqueta de Selamento\n- generic: \n- generic: RY$ 106\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Bomba de Fumaça\n- generic: \n- generic: RY$ 85\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Etiqueta Perfurante\n- generic: \n- generic: RY$ 42\n- textbox: \"1\"\n- button \"Comprar\"\n- generic: x0\n- generic: Etiqueta Perfurante\n- generic: \n- generic: RY$ 85\n- textbox: \"1\"\n- button \"Comprar\"\n- text:                                                        \n- insertion\n"
+}

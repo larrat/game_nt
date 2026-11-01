@@ -1,0 +1,143 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "Ser VIP"
+    },
+    {
+      "disabled": false,
+      "label": "2 Créditos"
+    },
+    {
+      "disabled": false,
+      "label": "2000 Ryous"
+    },
+    {
+      "disabled": false,
+      "label": "2000 Ryous"
+    },
+    {
+      "disabled": false,
+      "label": "2000 Ryous"
+    },
+    {
+      "disabled": false,
+      "label": "5 Créditos"
+    },
+    {
+      "disabled": false,
+      "label": "2 Créditos"
+    },
+    {
+      "disabled": false,
+      "label": "2 Créditos"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "5 Créditos"
+    },
+    {
+      "disabled": false,
+      "label": "Ser VIP"
+    },
+    {
+      "disabled": false,
+      "label": "Ser VIP"
+    },
+    {
+      "disabled": false,
+      "label": "Ser VIP"
+    },
+    {
+      "disabled": false,
+      "label": "2000 Ryous"
+    },
+    {
+      "disabled": false,
+      "label": "Ser VIP"
+    },
+    {
+      "disabled": false,
+      "label": "Virar Aluno"
+    },
+    {
+      "disabled": false,
+      "label": "2000 Ryous"
+    },
+    {
+      "disabled": false,
+      "label": "5 Créditos"
+    },
+    {
+      "disabled": false,
+      "label": "5 Créditos"
+    }
+  ],
+  "dialogs": [],
+  "forms": [
+    {
+      "id": "sPlayerTitulo",
+      "name": "sPlayerTitulo",
+      "options": [
+        {
+          "label": "Nenhum(a)",
+          "value": "MA%3D%3D"
+        },
+        {
+          "label": "Genin",
+          "value": "MTUxOTc%3D"
+        }
+      ]
+    }
+  ],
+  "headings": [
+    "Escolha seu Sensei",
+    "Acessar minha conta",
+    "Inicie sua Aventura"
+  ],
+  "tables": [],
+  "title": "Sensei",
+  "tooltips": [],
+  "url": "https://narutogame.com.br/index.php?secao=sensei",
+  "snapshot": "- heading \"Sensei\" [level=1]\n- main:\n  - heading \"Escolha seu Sensei\" [level=3]\n  - generic: Kakashi Hatake\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 63034\"\n  - button \"Virar Aluno\"\n  - generic: Maito Gai\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 15947\"\n  - button \"Virar Aluno\"\n  - generic: Asuma Sarutobi\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 6530\"\n  - button \"Virar Aluno\"\n  - generic: Kurenai Yuuhi\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 9142\"\n  - button \"Virar Aluno\"\n  - generic: Baki\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 2639\"\n  - button \"Virar Aluno\"\n  - generic: Ebisu\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 2488\"\n  - button \"Virar Aluno\"\n  - generic: Konohamaru Sarutobi\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 736\"\n  - button \"Ser VIP\"\n  - generic: Minato Namikaze\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 2224\"\n  - button \"2 Créditos\"\n  - generic: Jiraiya\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 3855\"\n  - button \"2000 Ryous\"\n  - generic: Tsunade\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 1461\"\n  - button \"2000 Ryous\"\n  - generic: Orochimaru\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 3518\"\n  - button \"2000 Ryous\"\n  - generic: Hashirama e Tobirama\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 797\"\n  - button \"5 Créditos\"\n  - generic: Hiruzen Sarutobi\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 426\"\n  - button \"2 Créditos\"\n  - generic: Danzou Shimura\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 351\"\n  - button \"2 Créditos\"\n  - generic: Iruka Umino\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 2294\"\n  - button \"Virar Aluno\"\n  - generic: Yamato\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 3415\"\n  - button \"Virar Aluno\"\n  - generic: Hiashi Hyuuga\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 3339\"\n  - button \"Virar Aluno\"\n  - generic: Salamander Hanzou\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 3470\"\n  - button \"Virar Aluno\"\n  - generic: Pein\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 595\"\n  - button \"5 Créditos\"\n  - generic: Rasa\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 471\"\n  - button \"Ser VIP\"\n  - generic: Mei Terumii\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 667\"\n  - button \"Ser VIP\"\n  - generic: Ei\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 555\"\n  - button \"Ser VIP\"\n  - generic: Killer Bee\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 935\"\n  - button \"2000 Ryous\"\n  - generic: Oonoki\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 518\"\n  - button \"Ser VIP\"\n  - generic: Dotou Kazahana\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 1416\"\n  - button \"Virar Aluno\"\n  - generic: Kuro Zetsu\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 918\"\n  - button \"2000 Ryous\"\n  - generic: Hagoromo Ootsutsuki\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 1186\"\n  - button \"5 Créditos\"\n  - generic: Sasuke Uchiha\n  - text: \"Melhor Aluno: [omitido]\n  - text: \"Quantidade de Alunos: 614\"\n  - button \"5 Créditos\"\n"
+}

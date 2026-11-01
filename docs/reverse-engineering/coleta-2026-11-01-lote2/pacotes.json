@@ -1,0 +1,226 @@
+{
+  "buttons": [],
+  "dialogs": [],
+  "forms": [
+    {
+      "id": "sPlayerTitulo",
+      "name": "sPlayerTitulo",
+      "options": [
+        {
+          "label": "Nenhum(a)",
+          "value": "MA%3D%3D"
+        },
+        {
+          "label": "Genin",
+          "value": "MTUxOTc%3D"
+        }
+      ]
+    }
+  ],
+  "headings": [
+    "Acessar minha conta",
+    "Inicie sua Aventura"
+  ],
+  "tables": [],
+  "title": "Pacotes",
+  "tooltips": [
+    {
+      "key": "pack-2160",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Ada - Idol ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1649",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Junna Uchiha - Fandom ( 100% de Chance )"
+    },
+    {
+      "key": "pack-799",
+      "text": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Mei Terumii - Halloween ( 100% de Chance )"
+    },
+    {
+      "key": "pack-798",
+      "text": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Temari - Halloween ( 100% de Chance )"
+    },
+    {
+      "key": "pack-797",
+      "text": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• TenTen - Halloween ( 100% de Chance )"
+    },
+    {
+      "key": "pack-2159",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Shikamaru Nara - Pai ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1984",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Temari - Mãe ( 100% de Chance )"
+    },
+    {
+      "key": "pack-980",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Sakura Haruno - Mangá ( 100% de Chance )"
+    },
+    {
+      "key": "pack-979",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Sasuke Uchiha - Mangá ( 100% de Chance )"
+    },
+    {
+      "key": "pack-802",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Momoshiki - Ootsutsuki ( 100% de Chance )"
+    },
+    {
+      "key": "pack-407",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Goku - O Saiyajin Ninja ( 100% de Chance )"
+    },
+    {
+      "key": "pack-406",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Naruto Uzumaki - O Ninja Saiyajin ( 100% de Chance )"
+    },
+    {
+      "key": "pack-293",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Buntan Kurosuki - Boruto ( 100% de Chance )"
+    },
+    {
+      "key": "pack-198",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Delta - Boruto ( 100% de Chance )"
+    },
+    {
+      "key": "pack-197",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Jigen - Boruto ( 100% de Chance )"
+    },
+    {
+      "key": "pack-81",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Urashiki Ootsutsuki - Boruto ( 100% de Chance )"
+    },
+    {
+      "key": "pack-53",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Sasuke Uchiha - Modo Rikudou ( 100% de Chance )"
+    },
+    {
+      "key": "pack-52",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Naruto Uzumaki - Modo Rikudou ( 100% de Chance )"
+    },
+    {
+      "key": "pack-39",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Konan - Anjo ( 100% de Chance )"
+    },
+    {
+      "key": "pack-11",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Kashin Koji - Boruto ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Kawaki - Boruto ( 100% de Chance )"
+    },
+    {
+      "key": "pack-4",
+      "text": "Possíveis recompensas: • Equipamentos Aleatórios"
+    },
+    {
+      "key": "pack-2",
+      "text": "Possíveis recompensas: • Equipamentos Aleatórios"
+    },
+    {
+      "key": "pack-3",
+      "text": "Possíveis recompensas:• Ramen• RyousRecompensa Especial:• Gunbai ( 100% de Chance )"
+    },
+    {
+      "key": "pack-2330",
+      "text": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Shino Aburame - Halloween ( 15% de Chance )• Himawari Uzumaki - Halloween ( 5% de Chance )• Samui - Halloween ( 10% de Chance )"
+    },
+    {
+      "key": "pack-801",
+      "text": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Obito Uchiha - Halloween ( 15% de Chance )• Kabuto Yakushi - Halloween ( 10% de Chance )• Deidara - Halloween ( 20% de Chance )"
+    },
+    {
+      "key": "pack-800",
+      "text": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Hinata Hyuuga - Halloween ( 15% de Chance )• Konan - Halloween ( 20% de Chance )• Kushina Uzumaki - Halloween ( 10% de Chance )"
+    },
+    {
+      "key": "pack-1155",
+      "text": "Possíveis recompensas: • Pontos de Fragmentos de Equipamentos"
+    },
+    {
+      "key": "pack-1154",
+      "text": "Possíveis recompensas: • Pontos do Estudo Ninja"
+    },
+    {
+      "key": "pack-1152",
+      "text": "Possíveis recompensas: • Pergaminhos de Teletransporte"
+    },
+    {
+      "key": "pack-1153",
+      "text": "Possíveis recompensas: • Armas de Longo Alcance"
+    },
+    {
+      "key": "pack-1812",
+      "text": "Possíveis recompensas: • Aprimoramento de jutsu"
+    },
+    {
+      "key": "pack-320",
+      "text": "Possíveis recompensas: • Ramens • Pontos de Treinamento • Ryous • Pontos de Experiência • Fragmento de Equipamento • Pontos de Fidelidade • Pontos do Estudo Ninja • Equipamentos • Chakra de Bijuus"
+    },
+    {
+      "key": "pack-89",
+      "text": "Possíveis recompensas:• Ramen• Experiência• Ryous• Fragmento de Equipamento• Item de Treino• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensa Especial:• 1 Chakra de Bijuu Randomico"
+    },
+    {
+      "key": "pack-2329",
+      "text": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Boruto Uzumaki - Halloween ( 100% de Chance )"
+    },
+    {
+      "key": "pack-2328",
+      "text": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Orochimaru - Halloween ( 100% de Chance )"
+    },
+    {
+      "key": "pack-2158",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Rock Lee - Pai ( 100% de Chance )"
+    },
+    {
+      "key": "pack-2156",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Tenten - Idol ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1987",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Orochimaru - Copa do Mundo ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1986",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Tsunade Senju - Copa do Mundo ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1979",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Hinata Hyuuga - Mangá ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1978",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Ino Yamanaka - Mangá ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1983",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Kushina Uzumaki - Mãe ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1981",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Breeze Dancer - Clássico ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1980",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Azure Fang - Clássico ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1976",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Shin Uchiha - Clássico ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1813",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Boro - Boruto ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1982",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Houki Taketori - Boruto ( 100% de Chance )"
+    },
+    {
+      "key": "pack-1977",
+      "text": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Ryuuzetsu - Clássico ( 100% de Chance )"
+    }
+  ],
+  "url": "https://narutogame.com.br/index.php?secao=packs",
+  "snapshot": "- heading \"Pacotes\" [level=1]\n- generic: Tokens\n- generic: Personagens\n- generic: Equipamentos\n- generic: Fragmentos\n- generic: Armas\n- generic: Especiais\n- generic: Esgotados\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Ada - Idol\n- button \"10 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Junna Uchiha - Fandom\n- button \"10 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- text: Mei - Halloween\n- generic: \"Ativo por: 7 Dias 23 Horas 32 Min 16 Seg\"\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- text: Temari - Halloween\n- generic: \"Ativo por: 7 Dias 23 Horas 32 Min 16 Seg\"\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- text: Tenten - Halloween\n- generic: \"Ativo por: 7 Dias 23 Horas 32 Min 16 Seg\"\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Shikamaru - Pai\n- button \"10 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Temari - Mãe\n- button \"10 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Sakura Haruno - Mangá\n- button \"10 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Sasuke Uchiha - Mangá\n- button \"10 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Momoshiki - Otsutsuki\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Goku - O Saiyajin Ninja\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Naruto - O Ninja Saiyajin\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Buntan - Boruto\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Delta - Boruto\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Jigen - Boruto\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Urashiki Ootsutsuki - Boruto\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Sasuke - Rikudou\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Naruto - Rikudou\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Konan - Anjo\n- button \"5 Créditos\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Kashin Koji - O Clone do Jiraya\n- button \"4000 Ryous\"\n- button \"7 Pts. Fidelidade\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Kawaki - Receptáculo do Otsutsuki\n- button \"2000 Ryous\"\n- button \"7 Pts. Fidelidade\"\n- text: \"3\"\n- text: Items\n- generic: \n- generic: Pacote de Equipamentos II\n- button \"Grátis\"\n- text: \"5\"\n- text: Items\n- generic: Pacote de Equipamentos\n- button \"7 Pts. Fidelidade\"\n- text: \"3\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: \"Arma Lendária: Gunbai\"\n- button \"2000 Ryous\"\n- button \"2 Créditos\"\n- text: \"3\"\n- text: Items\n- generic: \n- text: Bruxinhas(os) no Halloween\n- generic: \"Ativo por: 7 Dias 23 Horas 32 Min 16 Seg\"\n- button \"3 Créditos\"\n- text: \"3\"\n- text: Items\n- generic: \n- text: Meninos no Halloween\n- generic: \"Ativo por: 7 Dias 23 Horas 32 Min 16 Seg\"\n- button \"Grátis\"\n- text: \"3\"\n- text: Items\n- generic: \n- text: Meninas no Halloween\n- generic: \"Ativo por: 7 Dias 23 Horas 32 Min 16 Seg\"\n- button \"3000 Ryous\"\n- text: \"5\"\n- text: Items\n- generic: \n- generic: Pacote de Refinamento\n- button \"10000 Ryous\"\n- text: \"10\"\n- text: Items\n- generic: \n- generic: Pacote de Reforço\n- button \"7500 Ryous\"\n- text: \"3\"\n- text: Items\n- generic: \n- generic: Pacote de Pergaminhos\n- button \"6000 Ryous\"\n- text: \"5\"\n- text: Items\n- generic: \n- generic: Pacote de Armas\n- button \"4000 Ryous\"\n- text: \"2\"\n- text: Items\n- generic: \n- generic: Pacote de Aprim. de Jutsu\n- button \"2000 Ryous\"\n- text: \"3\"\n- text: Items\n- generic: \n- generic: Pacote Sortido\n- button \"3000 Ryous\"\n- button \"3 Créditos\"\n- text: \"3\"\n- text: Items\n- generic: \n- generic: Chakra de Bijuus\n- button \"Grátis\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- text: Boruto - Halloween\n- generic: \"Ativo por: 7 Dias 23 Horas 32 Min 16 Seg\"\n- button \"10 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- text: Orochimaru - Halloween\n- generic: \"Ativo por: 7 Dias 23 Horas 32 Min 16 Seg\"\n- button \"10 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Rock Lee - Pai\n- button \"10 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Tenten - Idol\n- button \"10 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Orochimaru - Copa 2026\n- button \"10 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Tsunade - Copa 2026\n- button \"10 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Hinata Mangá\n- button \"10 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Ino - Mangá\n- button \"10 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Kushina - Mãe\n- button \"7 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Breeze Dancer - Clássica\n- button \"7 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Azure Fang - Clássica\n- button \"7 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Shin Uchiha - Clássico\n- button \"5 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Boro - Boruto\n- button \"5 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Houki Taketori - Boruto\n- button \"3 Tokens\"\n- text: \"5\"\n- text: Items\n- text: \"1\"\n- text: Limite\n- generic: Ryuuzetsu - Clássico\n- button \"3 Tokens\"\n"
+}

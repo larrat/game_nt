@@ -1,0 +1,42 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "label": "Soma de atributos"
+    },
+    {
+      "disabled": false,
+      "label": "Histórico de Drop"
+    }
+  ],
+  "dialogs": [
+    "Atributos e Fórmulas dos seus Equipamentos\n×\nAtributos\nTaijutsu\n\n+ 0\n\nFechar"
+  ],
+  "forms": [
+    {
+      "id": "sPlayerTitulo",
+      "name": "sPlayerTitulo",
+      "options": [
+        {
+          "label": "Nenhum(a)",
+          "value": "MA%3D%3D"
+        },
+        {
+          "label": "Genin",
+          "value": "MTUxOTc%3D"
+        }
+      ]
+    }
+  ],
+  "headings": [
+    "Acessar minha conta",
+    "Inicie sua Aventura",
+    "Atributos e Fórmulas dos seus Equipamentos",
+    "Atributos"
+  ],
+  "tables": [],
+  "title": "Equipamentos Ninja",
+  "tooltips": [],
+  "url": "https://narutogame.com.br/index.php?secao=equipamentos_ninja",
+  "snapshot": "- heading \"Equipamentos Ninja\" [level=1]\n- main:\n  - button \"Soma de atributos\"\n  - button \"Histórico de Drop\"\n"
+}

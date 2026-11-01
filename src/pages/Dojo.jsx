@@ -218,6 +218,7 @@ export default function Dojo({ player, updatePlayer }) {
         eyebrow='Treinamento e Combate'
         title='Dojo da Vila'
         subtitle='Escolha entre teste seguro, combate real e objetivos de risco.'
+        actions={<button type="button" className="btn-ghost" onClick={() => navigate('/adversarios')}>Explorar adversários →</button>}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">

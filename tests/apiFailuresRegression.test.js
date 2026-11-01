@@ -54,8 +54,9 @@ test('world event component no longer spins on expired event timers', () => {
 test('VIP buttons cannot invoke absent economic RPCs', () => {
   const source = file('src/pages/Vip.jsx');
   assert.ok(source.includes('disabled={!vipResetAvailable}'));
-  assert.ok(source.includes('vipResetAvailable = false'));
-  assert.doesNotMatch(source, /supabase\.rpc\(['"]vip_reset_/);
+  assert.ok(source.includes('useState(false)'));
+  assert.ok(source.includes("'vip_point_respec_enabled'"));
+  assert.ok(!source.includes("rpc('vip_reset_personagem'"));
 });
 
 test('defeat screen never attempts an unauthorized direct history INSERT', () => {

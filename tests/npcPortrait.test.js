@@ -44,6 +44,12 @@ test('distinguishes generated rogue NPCs from player ghosts', () => {
   assert.equal(getNpcPortrait({ id: 'rogue_3', name: 'Outro', is_ghost: true, avatar: '🥷' }), null);
 });
 
+test('imagem do jogador não é confundida com personagem de mesmo nome', () => {
+  assert.equal(getNpcPortrait({ id: 'ghost_2', name: 'Naruto Uzumaki', is_ghost: true, avatar: '/images/sasuke.jpg' }), '/images/sasuke.jpg');
+  assert.equal(getNpcPortrait({ id: 'ghost_3', name: 'Sasuke Uchiha', opponent_origin: 'player_shadow', avatar: '🥷' }), null);
+  assert.equal(getNpcPortrait({ id: 'ghost_4', name: 'Kakashi Hatake', is_ghost: true, avatar: 'https://example.invalid/photo.png' }), null);
+});
+
 test('refuses unapproved external paths and docs paths', () => {
   assert.equal(getNpcPortrait({ name: 'Outro', avatar: 'https://narutogame.com.br/example.png' }), null);
   assert.equal(getNpcPortrait({ name: 'Outro', avatar: '//bad.invalid/pic' }), null);

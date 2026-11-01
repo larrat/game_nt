@@ -30,6 +30,7 @@ export const SCREEN_NAV = [
     id: 'combates', group: 'Combates e Jornada', icon: 'swords',
     items: [
       { to: '/dojo', label: 'Dojo', icon: 'swords' },
+      { to: '/adversarios', label: 'Arquivo de Adversários', icon: 'users' },
       { to: '/mapa', label: 'Mapa-múndi', icon: 'map' },
       { to: '/historia', label: 'Modo História', icon: 'book' },
       { to: '/evento', label: 'Eventos globais', icon: 'calendar' },

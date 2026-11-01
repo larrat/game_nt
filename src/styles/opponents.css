@@ -1,0 +1,93 @@
+/* Kurokage 4.0 · Arquivo de Adversários: tokens locais reutilizáveis. */
+.kuro-opponents {
+  --opp-bg: #111923;
+  --opp-card: #19222e;
+  --opp-border: rgba(226, 198, 139, .18);
+  --opp-muted: #b0bdc8;
+  --opp-gold: #e7bd75;
+  --opp-red: #cc695e;
+  color: #f1ede4;
+}
+.kuro-opponents-intro {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.4rem, 3vw, 2.25rem);
+  border: 1px solid var(--opp-border);
+  border-radius: 18px;
+  background: radial-gradient(ellipse at 85% 35%, rgba(170, 68, 55, .22), transparent 48%), linear-gradient(135deg, #222530, #0b111a 78%);
+  overflow: hidden;
+  margin: 1rem 0 1.25rem;
+}
+.kuro-opponents-kicker,
+.kuro-opponents-type {
+  color: var(--opp-gold);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.kuro-opponents-intro h2 { margin: .8rem 0 .65rem; font-size: clamp(1.35rem, 2.7vw, 2.15rem); font-weight: 760; line-height: 1.2; }
+.kuro-opponents-intro p { max-width: 62ch; color: var(--opp-muted); margin: 0; line-height: 1.65; font-size: .92rem; }
+.kuro-opponents-intro-mark { align-self: center; display: grid; place-items: center; min-width: 90px; width: 110px; height: 110px; border: 1px solid rgba(231,189,117,.32); border-radius: 50%; color: var(--opp-gold); background: rgba(11,17,26,.65); box-shadow: 0 0 0 16px rgba(231,189,117,.04); }
+.kuro-opponents-tabs { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .75rem; margin: 0 0 1.15rem; }
+.kuro-opponents-tab {
+  text-align: left; border: 1px solid var(--opp-border); border-radius: 12px; background: #141e29;
+  color: #e8e8e6; display: flex; gap: .7rem; align-items: center; min-height: 72px; padding: .85rem 1rem;
+  cursor: pointer; transition: border-color .15s ease, background .15s ease;
+}
+.kuro-opponents-tab:hover, .kuro-opponents-tab:focus-visible { border-color: var(--opp-gold); }
+.kuro-opponents-tab.is-active { border-color: var(--opp-gold); background: linear-gradient(130deg, #2e2927, #1a222e); box-shadow: inset 0 -2px 0 var(--opp-gold); }
+.kuro-opponents-tab > svg { color: var(--opp-gold); flex-shrink: 0; }
+.kuro-opponents-tab strong, .kuro-opponents-tab small { display: block; }
+.kuro-opponents-tab strong { font-size: .88rem; line-height: 1.4; }
+.kuro-opponents-tab small { color: var(--opp-muted); font-size: .7rem; line-height: 1.35; margin-top: 3px; }
+.kuro-opponents-counter { margin-left: auto; color: var(--opp-gold); border: 1px solid var(--opp-border); border-radius: 8px; min-width: 31px; padding: .2rem .35rem; text-align: center; font-size: .8rem; font-variant-numeric: tabular-nums; }
+.kuro-opponents-toolbar { display: flex; align-items: center; gap: 1rem; justify-content: space-between; margin: 1rem 0; }
+.kuro-opponents-search { display: flex; align-items: center; gap: .6rem; min-height: 46px; padding: 0 .9rem; flex: 1; max-width: 540px; border-radius: 10px; background: #131c25; border: 1px solid var(--opp-border); color: var(--opp-gold); }
+.kuro-opponents-search:focus-within { border-color: var(--opp-gold); }
+.kuro-opponents-search input { appearance: none; border: 0; outline: none; box-shadow: none; background: transparent; color: #fff; width: 100%; font-size: .88rem; }
+.kuro-opponents-search input::placeholder { color: #99a4af; opacity: 1; }
+.kuro-opponents-results { flex-shrink: 0; font-size: .8rem; color: var(--opp-muted); font-variant-numeric: tabular-nums; }
+.kuro-opponents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 245px), 1fr)); gap: 1rem; }
+.kuro-opponents-card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--opp-border); border-radius: 14px; background: linear-gradient(155deg, var(--opp-card), var(--opp-bg)); padding: 1.1rem; min-height: 305px; transition: border-color .15s ease, transform .15s ease; }
+.kuro-opponents-card:hover { border-color: rgba(231,189,117,.55); transform: translateY(-2px); }
+.kuro-opponents-card-portrait { width: 94px; height: 94px; padding: 2px; border-radius: 14px; background: rgba(231,189,117,.1); margin: 0 0 1rem; }
+.kuro-opponents-card-portrait > span { border-radius: 12px !important; }
+.kuro-opponents-card-main { flex: 1; min-width: 0; }
+.kuro-opponents-card h3 { margin: .5rem 0 .6rem; font-size: 1.05rem; font-weight: 750; overflow-wrap: anywhere; line-height: 1.3; }
+.kuro-opponents-tags { display: flex; gap: .4rem; flex-wrap: wrap; font-size: .72rem; color: #e4d5c2; font-variant-numeric: tabular-nums; }
+.kuro-opponents-tags span { padding: .2rem .5rem; border: 1px solid rgba(231,189,117,.2); border-radius: 100px; }
+.kuro-opponents-status { color: var(--opp-muted); font-size: .77rem; margin: .7rem 0; }
+.kuro-opponents-card-action { margin-top: 1rem; min-height: 32px; display: flex; align-items: center; border-top: 1px solid var(--opp-border); padding-top: .75rem; }
+.kuro-opponents-link { display: inline-flex; align-items: center; gap: .35rem; background: transparent; border: 0; color: var(--opp-gold); font-weight: 750; cursor: pointer; font-size: .78rem; padding: .3rem 0; }
+.kuro-opponents-link:hover { color: #fff0d3; text-decoration: underline; }
+.kuro-opponents-locked { display: inline-flex; align-items: center; gap: .4rem; color: #c7b8ad; font-size: .74rem; }
+.kuro-opponents-loading, .kuro-opponents-empty, .kuro-opponents-notice { background: #131c25; border: 1px solid var(--opp-border); border-radius: 12px; padding: 2rem; color: var(--opp-muted); }
+.kuro-opponents-notice { display: flex; align-items: center; gap: .7rem; }
+.kuro-opponents-notice p { flex: 1; }
+.kuro-opponents-pages { display: flex; justify-content: center; align-items: center; gap: .8rem; margin: 1.6rem 0; color: var(--opp-muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+.kuro-opponents-pages button:disabled { opacity: .4; cursor: not-allowed; }
+.kuro-opponents-footer { display: flex; gap: .75rem; color: var(--opp-muted); padding: 1.2rem 1rem; border-top: 1px solid var(--opp-border); margin-top: 1.75rem; font-size: .8rem; line-height: 1.6; }
+.kuro-opponents-footer svg { color: var(--opp-gold); flex-shrink: 0; margin-top: .1rem; }
+.kuro-opponents-footer p { margin: 0; }
+.kuro-opponents button:focus-visible { outline: 2px solid var(--opp-gold); outline-offset: 3px; }
+@media (max-width: 740px) {
+  .kuro-opponents-intro { padding: 1.3rem; }
+  .kuro-opponents-intro-mark { display: none; }
+  .kuro-opponents-tabs { grid-template-columns: repeat(3,minmax(0,1fr)); gap: .35rem; }
+  .kuro-opponents-tab { min-height: 70px; flex-wrap: wrap; gap: .25rem; padding: .75rem .55rem; align-content: start; }
+  .kuro-opponents-tab > svg { width: 16px; }
+  .kuro-opponents-tab small { display: none; }
+  .kuro-opponents-counter { font-size: .7rem; min-width: 22px; padding: .1rem .2rem; }
+  .kuro-opponents-toolbar { align-items: stretch; flex-direction: column; gap: .65rem; }
+  .kuro-opponents-search { max-width: 100%; flex: auto; }
+  .kuro-opponents-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%, 220px), 1fr)); }
+  .kuro-opponents-card { min-height: 240px; }
+  .kuro-opponents-notice { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kuro-opponents-card, .kuro-opponents-tab { transition: none; }
+  .kuro-opponents-card:hover { transform: none; }
+}

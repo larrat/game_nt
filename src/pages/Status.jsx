@@ -18,6 +18,7 @@ import {
 } from '../utils/engine';
 import { BASIC_ATTRIBUTES, getStatusAccountRows, formatStatusNumber } from '../utils/statusPresentation';
 import { RESOURCE_ICON_PATHS } from '../utils/resourceIconRegistry';
+import { getAttributeArtworkUrl } from '../utils/clanArtwork';
 
 const TITLES = [
   'Nenhum(a)',
@@ -180,7 +181,7 @@ export default function Status({ player, updatePlayer }) {
                 const difference = total === null ? 0 : total - Number(base);
                 return (
                   <div className="kuro-status-v3__stat-row" key={attribute.key}>
-                    <span>{attribute.label}</span>
+                    <span className="kuro-status-v3__attribute-label"><img src={getAttributeArtworkUrl(attribute.key)} alt="" loading="lazy" width={24} height={24} />{attribute.label}</span>
                     <strong>{formatStatusNumber(total)}
                       {difference > 0 && <small title="Bônus de clã"> +{formatStatusNumber(difference)}</small>}
                     </strong>

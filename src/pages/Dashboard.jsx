@@ -9,6 +9,7 @@ import SidebarIcon from '../components/SidebarIcon';
 import GamePanel from '../components/ui/GamePanel';
 import GameEmptyState from '../components/ui/GameEmptyState';
 import '../styles/main.css';
+import '../styles/dashboard-operations-v5.css';
 
 const DailyTaskItem = ({
   taskId, title, titleIcon, rewardText,

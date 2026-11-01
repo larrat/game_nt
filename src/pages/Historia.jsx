@@ -236,12 +236,18 @@ export default function Historia({ player, updatePlayer }) {
           <div className="kuro-story-dialog__panel w-full max-w-700 bg-ink-raised border-line-solid rounded-lg flex-row overflow-hidden shadow-2xl animate-fade-in">
             {/* Foto NPC */}
             <div className="kuro-story-dialog__portrait w-1/3 bg-ink relative border-r border-line-dashed">
-              <img 
-                src={getNpcPortrait({ name: activeQuest.story_quests.npc_name, avatar: activeQuest.story_quests.npc_image_url }) || activeQuest.story_quests.npc_image_url || '/images/bg_forest.jpg'} 
-                alt={activeQuest.story_quests.npc_name}
-                onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = '/images/bg_forest.jpg'; }}
-                className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all opacity-80 min-h-[300px]"
-              />
+              <div className="absolute inset-0 flex items-center justify-center muted"
+                role="img" aria-label={`Retrato indisponível de ${activeQuest.story_quests.npc_name}`}>
+                <SidebarIcon name="users" size={56} />
+              </div>
+              {getNpcPortrait({ name: activeQuest.story_quests.npc_name }) && (
+                <img
+                  src={getNpcPortrait({ name: activeQuest.story_quests.npc_name })}
+                  alt={`Retrato de ${activeQuest.story_quests.npc_name}`}
+                  onError={event => { event.currentTarget.style.display = 'none'; }}
+                  className="relative w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all opacity-80 min-h-[300px]"
+                />
+              )}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink to-transparent p-4">
                 <span className="gold font-bold uppercase drop-shadow-md text-lg">{activeQuest.story_quests.npc_name}</span>
               </div>

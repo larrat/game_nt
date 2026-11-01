@@ -11,11 +11,7 @@ export const PORTRAIT_RULES = Object.freeze([
   { key: 'naruto', matches: ['naruto'], src: '/images/naruto.jpg', source: 'existing-project' },
   { key: 'sasuke', matches: ['sasuke'], src: '/images/sasuke.jpg', source: 'existing-project' },
   { key: 'sakura', matches: ['sakura'], src: '/images/sakura.jpg', source: 'existing-project' },
-  { key: 'kakashi', matches: ['kakashi'], src: '/images/kakashi.jpg', source: 'existing-project' },
-  // Personagens genéricos: não inventar identidade para NPCs nomeados sem arte.
-  { key: 'bandido-deserto', matches: ['bandido do deserto'], src: '/images/chars/char_rogue_ninja_1782968348009.jpg', source: 'generic-project' },
-  { key: 'mercenario-nevoa', matches: ['mercenario da nevoa'], src: '/images/chars/char_elite_kage_1782968356836.jpg', source: 'generic-project' },
-  { key: 'ladrao-pergaminhos', matches: ['ladrao de pergaminhos'], src: '/images/chars/char_rogue_ninja_1782968348009.jpg', source: 'generic-project' }
+  { key: 'kakashi', matches: ['kakashi'], src: '/images/kakashi.jpg', source: 'existing-project' }
 ]);
 
 export function normalizeNpcName(name) {
@@ -36,11 +32,6 @@ export const PORTRAIT_VARIANTS = Object.freeze([
   { key: 'sasuke-adulto', cues: ['adulto', 'adult'], src: '/images/avatares/sasuke_27_adulto_full.png' },
   { key: 'sasuke-sharingan', cues: ['sharingan'], src: '/images/avatares/sasuke_07_sharingan.png' }
 ]);
-
-const GENERIC_ROGUE_PORTRAITS = Object.freeze({
-  default: '/images/chars/char_rogue_ninja_1782968348009.jpg',
-  elite: '/images/chars/char_elite_kage_1782968356836.jpg'
-});
 
 export function getNpcPortrait(npc) {
   if (!npc) return null;
@@ -70,17 +61,10 @@ export function getNpcPortrait(npc) {
       return candidate;
     }
   }
-  // Artes genéricas para NPCs dinâmicos; nunca tratar um jogador fantasma como NPC.
-  const dynamicRogue = npc.is_generated_rogue === true ||
-    (typeof npc.id === 'string' && /^rogue_/.test(npc.id));
-  if (dynamicRogue && npc.is_ghost !== true) {
-    return ['Jounin', 'ANBU', 'Sannin', 'Kage'].includes(npc.rank)
-      ? GENERIC_ROGUE_PORTRAITS.elite
-      : GENERIC_ROGUE_PORTRAITS.default;
-  }
+  // Não atribuir identidade visual fictícia a adversários gerados.
   return null;
 }
 
 export function getNpcFallback(npc) {
-  return normalizeNpcName(npc?.name || npc?.npc_name).includes('raposa') ? '🦊' : '🥷';
+  return null;
 }

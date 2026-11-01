@@ -1,3 +1,4 @@
+import { CURRENT_SEASON_LABEL } from '../utils/season';
 import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
@@ -163,7 +164,7 @@ export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
       </nav>
 
       <div className="sidebar-footer kuro-rpg-sidebar__footer">
-        <span>ERA DOS SHINOBI · TEMPORADA I</span>
+        <span>ERA DOS SHINOBI · {CURRENT_SEASON_LABEL.toUpperCase()}</span>
         <button
           type="button"
           className="btn-ghost kuro-rpg-sidebar__sound"

@@ -7,7 +7,7 @@
  * Este arquivo trata só de apresentação, nunca de IDs/estatísticas de combate.
  */
 export const PORTRAIT_RULES = Object.freeze([
-  { key: 'kurama', matches: ['kurama', 'kyuubi', 'kyubi', 'raposa de nove caudas', 'raposa de 9 caudas'], src: '/images/bosses/raposa-nove-caudas.svg', source: 'original' },
+  { key: 'kurama', matches: ['kurama', 'kyuubi', 'kyubi', 'raposa de nove caudas', 'raposa de 9 caudas', 'furia da raposa'], src: '/images/bosses/raposa-nove-caudas.svg', source: 'original' },
   { key: 'naruto', matches: ['naruto'], src: '/images/naruto.jpg', source: 'existing-project' },
   { key: 'sasuke', matches: ['sasuke'], src: '/images/sasuke.jpg', source: 'existing-project' }
 ]);

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { supabase } from '../supabaseClient';
+import { useToast } from '../context/ToastContext';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import GameAction from '../components/ui/GameAction';
@@ -10,9 +12,49 @@ export default function Vip({ player, updatePlayer }) {
 
   const vipCredits = player.vip_coins || 0;
 
-  // As RPCs vip_reset_talento e vip_reset_personagem ainda não existem
-  // no banco. Nunca anunciar cobrança/reset antes de haver função transacional.
-  const vipResetAvailable = false;
+  const { addToast } = useToast();
+  const [vipResetAvailable, setVipResetAvailable] = useState(false);
+  const [chosenAttribute, setChosenAttribute] = useState('forca');
+  const [busy, setBusy] = useState(false);
+  const attributes = [
+    'forca','agilidade','resistencia','inteligencia','energia',
+    'ninjutsu','taijutsu','genjutsu','bukijutsu','selo'
+  ];
+
+  useEffect(() => {
+    let active = true;
+    supabase.from('game_config').select('value').eq('key','vip_point_respec_enabled').maybeSingle()
+      .then(({ data, error }) => {
+        if (active && !error && data?.value === true) setVipResetAvailable(true);
+      });
+    return () => { active = false; };
+  }, []);
+
+  const handleResetTalent = async () => {
+    if (!vipResetAvailable || busy || !player?.id) return;
+    if ((player.vip_coins || 0) < 1) {
+      addToast('Você precisa de 1 crédito VIP.', 'warning');
+      return;
+    }
+    if (!window.confirm('Devolver 1 ponto de ' + chosenAttribute +
+      ' à sua ficha por 1 crédito VIP? A operação será registrada.')) return;
+    setBusy(true);
+    try {
+      const { data, error } = await supabase.rpc('vip_reset_talento', {
+        p_player_id: player.id, p_atributo: chosenAttribute
+      });
+      if (error || !data?.success) {
+        addToast(error?.message || data?.error || 'O servidor recusou o reset.', 'error');
+        return;
+      }
+      await updatePlayer(player.id);
+      addToast('1 ponto devolvido. 1 crédito VIP debitado pelo servidor.', 'success');
+    } catch (error) {
+      addToast(error?.message || 'Falha ao redefinir atributo.', 'error');
+    } finally {
+      setBusy(false);
+    }
+  };
 
   const milestones = [
     { spent: 5, reward: "Personagem Único Rank B" },
@@ -52,8 +94,15 @@ export default function Vip({ player, updatePlayer }) {
             <p className="muted text-xs leading-relaxed mb-4">
               Errou na build? Use este serviço para resetar exatamente UM (1) ponto de atributo sem precisar resetar toda a sua ficha técnica.
             </p>
-            <GameAction tone="quiet" className="w-full" disabled={!vipResetAvailable}>
-              Resetar Talento — indisponível
+            <label htmlFor="vip-reset-attribute" className="muted text-xs mb-2 block">Atributo a ajustar</label>
+            <select id="vip-reset-attribute" value={chosenAttribute}
+              onChange={event => setChosenAttribute(event.target.value)}
+              className="w-full bg-ink paper rounded-md p-2 mb-3" disabled={!vipResetAvailable || busy}>
+              {attributes.map(attribute => <option key={attribute} value={attribute}>{attribute}</option>)}
+            </select>
+            <GameAction tone="quiet" className="w-full" loading={busy}
+              onClick={handleResetTalent} disabled={!vipResetAvailable || busy || vipCredits < 1}>
+              {vipResetAvailable ? 'Devolver 1 ponto — 1 crédito' : 'Resetar Talento — aguardando homologação'}
             </GameAction>
           </div>
 
@@ -104,9 +153,8 @@ export default function Vip({ player, updatePlayer }) {
       </div>
 
       <p className="muted text-xs mt-5" role="status">
-        A redefinição de talentos e a troca de personagem estão suspensas
-        até a validação das regras de economia e das operações no servidor.
-        Nenhum crédito será descontado.
+        O reset de um ponto só será liberado após homologação da RPC transacional e será cobrado no servidor.
+        A troca completa de personagem continua indisponível para preservar inventário, técnicas e histórico.
       </p>
     </div>
   );

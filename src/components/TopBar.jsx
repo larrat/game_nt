@@ -5,6 +5,7 @@ import InventoryModal from './InventoryModal';
 import { getResourceProgress } from '../utils/resourceProgress';
 import { supabase } from '../supabaseClient';
 import { fetchActiveWorldBoss } from '../utils/eventUtils';
+import { RESOURCE_ICON_PATHS } from '../utils/resourceIconRegistry';
 
 const VILLAGES = {
   1: 'Folha', 2: 'Areia', 3: 'Névoa',
@@ -97,10 +98,10 @@ export default function TopBar({ player, updatePlayer, onMenuClick, mobileNavOpe
   const isCursed = debuffs.staminaCostMultiplier > 1;
 
   const resources = [
-    { id: 'hp', label: 'Vida', icon: '/images/imgi_98_heart.png', current: currentHp, max: maxHp, percent: hpPercent, tone: 'red' },
-    { id: 'chakra', label: 'Chakra', icon: '/images/imgi_99_chakra.png', current: currentCp, max: maxCp, percent: cpPercent, tone: 'blue' },
-    { id: 'stamina', label: 'Stamina', icon: '/images/imgi_100_stamina.png', current: currentSp, max: maxSp, percent: spPercent, tone: isCursed ? 'purple' : 'yellow' },
-    { id: 'xp', label: 'Experiência', icon: '/images/imgi_32_star.png', current: currentXp, max: requiredXp, percent: xpPercent, tone: 'green' }
+    { id: 'hp', label: 'Vida', icon: RESOURCE_ICON_PATHS.hp, current: currentHp, max: maxHp, percent: hpPercent, tone: 'red' },
+    { id: 'chakra', label: 'Chakra', icon: RESOURCE_ICON_PATHS.chakra, current: currentCp, max: maxCp, percent: cpPercent, tone: 'blue' },
+    { id: 'stamina', label: 'Stamina', icon: RESOURCE_ICON_PATHS.stamina, current: currentSp, max: maxSp, percent: spPercent, tone: isCursed ? 'purple' : 'yellow' },
+    { id: 'xp', label: 'Experiência', icon: RESOURCE_ICON_PATHS.xp, current: currentXp, max: requiredXp, percent: xpPercent, tone: 'green' }
   ];
   const displayNumber = (value) => Math.max(0, Number(value) || 0).toLocaleString('pt-BR');
 

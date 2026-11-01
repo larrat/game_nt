@@ -66,3 +66,32 @@ END
 $fn$;
 REVOKE ALL ON FUNCTION content_reference.apply_approved_npc_portrait(text)
 FROM PUBLIC,anon,authenticated;
+
+-- All staged references (including non-art records) receive a distinct review
+-- queue. This is NOT an approval and never enables gameplay or publishes media.
+CREATE TABLE IF NOT EXISTS content_reference.catalog_review_queue (
+  batch_id text NOT NULL,
+  entity_kind text NOT NULL,
+  reference_id text NOT NULL,
+  display_name text,
+  source_path text,
+  review_status text NOT NULL DEFAULT 'pending_review'
+    CHECK (review_status IN ('pending_review','needs_source','rejected','approved')),
+  gameplay_spec_ref text,
+  rights_proof_ref text,
+  reviewer text,
+  reviewed_at timestamptz,
+  PRIMARY KEY(batch_id,entity_kind,reference_id),
+  CHECK(review_status<>'approved' OR (
+    NULLIF(btrim(gameplay_spec_ref),'') IS NOT NULL AND
+    NULLIF(btrim(rights_proof_ref),'') IS NOT NULL AND
+    NULLIF(btrim(reviewer),'') IS NOT NULL AND reviewed_at IS NOT NULL
+  ))
+);
+ALTER TABLE content_reference.catalog_review_queue ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON content_reference.catalog_review_queue FROM PUBLIC,anon,authenticated;
+INSERT INTO content_reference.catalog_review_queue
+(batch_id,entity_kind,reference_id,display_name,source_path)
+SELECT batch_id,entity_kind,reference_id,display_name,source_path
+FROM content_reference.entries
+ON CONFLICT(batch_id,entity_kind,reference_id) DO NOTHING;

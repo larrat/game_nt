@@ -1,0 +1,91 @@
+/* Kurokage v4 — Clan, Summons, Chakra Gates, Exams, World Events and Ranking. */
+.app :is(.kuro-clans-v4,.kuro-summons-v4,.kuro-gates-v4,.kuro-exam-v4,.kuro-event-v4,.kuro-ranking-v4,.kuro-history-v4,.kuro-vip-v4) {
+  min-width:0;color:var(--kuro-copy);
+}
+.app :is(.kuro-clans-v4,.kuro-summons-v4,.kuro-gates-v4,.kuro-exam-v4,.kuro-event-v4,.kuro-ranking-v4,.kuro-history-v4,.kuro-vip-v4) :is(.card,.card-glass) {
+  border-radius:var(--kuro-radius);border-color:var(--kuro-line);
+}
+.app :is(.kuro-clans-v4,.kuro-summons-v4,.kuro-gates-v4,.kuro-exam-v4,.kuro-event-v4,.kuro-ranking-v4,.kuro-history-v4,.kuro-vip-v4) .kui-action {
+  min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
+.app .kuro-challenges-v4__grid {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--kuro-gap);
+}
+.app .kuro-challenges-v4__cards {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--kuro-gap);
+}
+.app .kuro-challenges-v4__card {
+  display:flex;flex-direction:column;min-width:0;gap:10px;padding:clamp(18px,2.2vw,26px);
+  border:1px solid var(--kuro-line);border-radius:var(--kuro-radius);
+  background:linear-gradient(145deg,var(--kuro-surface-up),var(--kuro-surface));
+}
+.app .kuro-challenges-v4__card .kui-action {margin-top:auto;}
+.app .kuro-challenges-v4__tabs {
+  display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 20px;
+}
+.app .kuro-challenges-v4__tabs button {
+  min-height:44px;border-radius:9px;padding:9px 15px;
+  border:1px solid var(--kuro-line);color:var(--kuro-muted);
+  background:var(--kuro-surface);cursor:pointer;font-weight:700;font-size:12px;
+}
+.app .kuro-challenges-v4__tabs button[aria-selected="true"],
+.app .kuro-challenges-v4__tabs button[aria-pressed="true"] {
+  border-color:var(--kuro-gold);color:var(--kuro-gold);background:rgba(235,193,124,.11);
+}
+.app .kuro-challenges-v4__tabs button:focus-visible,
+.app .kuro-challenges-v4__choice:focus-visible {
+  outline:2px solid var(--kuro-focus);outline-offset:3px;
+}
+.app .kuro-challenges-v4__illustration {
+  display:grid;place-items:center;width:56px;height:56px;flex-shrink:0;
+  color:var(--kuro-gold);border:1px solid var(--kuro-line);
+  border-radius:14px;background:rgba(235,193,124,.08);
+}
+.app .kuro-gates-v4 .progress-track {border-radius:999px;}
+.app .kuro-gates-v4 .kuro-challenges-v4__card {overflow:hidden;}
+.app .kuro-gates-v4 .kuro-challenges-v4__card[aria-disabled="true"] {opacity:.63;}
+.app .kuro-event-v4 .kuro-world-boss-card {
+  background:radial-gradient(ellipse at 50% 0%,rgba(214,71,80,.1),transparent 60%),var(--kuro-surface);
+}
+.app .kuro-event-v4 .kuro-world-boss-art {max-width:100%;}
+.app .kuro-ranking-v4 .filters {display:flex;gap:9px;flex-wrap:wrap;}
+.app .kuro-ranking-v4 .filters button {
+  min-height:44px;border:1px solid var(--kuro-line);
+  border-radius:9px;padding:9px 15px;color:var(--kuro-muted);
+  background:var(--kuro-surface);cursor:pointer;
+}
+.app .kuro-ranking-v4 .filters button[aria-pressed="true"] {
+  border-color:var(--kuro-gold);color:var(--kuro-gold);
+  background:rgba(235,193,124,.09);
+}
+.app .kuro-ranking-v4 .filters button:focus-visible {outline:2px solid var(--kuro-focus);outline-offset:2px;}
+.app .kuro-ranking-v4 .grid-ranking {min-width:600px;}
+.app .kuro-ranking-v4__scroll {overflow-x:auto;width:100%;border:1px solid var(--kuro-line);border-radius:var(--kuro-radius);}
+.app .kuro-history-v4 .kuro-history-v4__layout {
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:var(--kuro-gap);
+}
+.app .kuro-history-v4 .kuro-history-v4__log {
+  display:flex;justify-content:space-between;gap:12px;
+  min-height:62px;border:1px solid var(--kuro-line);border-radius:9px;
+  background:var(--kuro-surface);color:var(--kuro-copy);
+}
+.app .kuro-history-v4 .kuro-history-v4__log[aria-pressed="true"] {
+  border-color:var(--kuro-gold);background:rgba(235,193,124,.09);
+}
+.app .kuro-history-v4 .kuro-history-v4__log:focus-visible {
+  outline:2px solid var(--kuro-focus);outline-offset:2px;
+}
+@media(max-width:960px){
+  .app .kuro-challenges-v4__cards {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .app .kuro-history-v4 .kuro-history-v4__layout {grid-template-columns:minmax(0,1fr);}
+}
+@media(max-width:640px){
+  .app .kuro-challenges-v4__grid,
+  .app .kuro-challenges-v4__cards {grid-template-columns:minmax(0,1fr);}
+  .app .kuro-challenges-v4__card {padding:18px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .app :is(.kuro-clans-v4,.kuro-summons-v4,.kuro-gates-v4,.kuro-exam-v4,.kuro-event-v4,.kuro-ranking-v4,.kuro-history-v4,.kuro-vip-v4) * {
+    transition-duration:.01ms!important;animation-duration:.01ms!important;
+  }
+}

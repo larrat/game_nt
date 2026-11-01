@@ -31,6 +31,7 @@ const Templo = React.lazy(() => import('./pages/Templo'));
 const Historico = React.lazy(() => import('./pages/Historico'));
 const Hospital = React.lazy(() => import('./pages/Hospital'));
 const Dojo = React.lazy(() => import('./pages/Dojo'));
+const Adversarios = React.lazy(() => import('./pages/Adversarios'));
 const Combate = React.lazy(() => import('./pages/Combate'));
 const Vip = React.lazy(() => import('./pages/Vip'));
 const Ferreiro = React.lazy(() => import('./pages/Ferreiro'));
@@ -338,6 +339,7 @@ function App() {
               <Route path="/hospital" element={<Hospital player={playerState} updatePlayer={updatePlayer} />} />
               <Route path="/mapa" element={<VipMissionBlock player={playerState}><Mapa player={playerState} updatePlayer={updatePlayer} /></VipMissionBlock>} />
               <Route path="/dojo" element={<VipMissionBlock player={playerState}><Dojo player={playerState} updatePlayer={updatePlayer} /></VipMissionBlock>} />
+              <Route path="/adversarios" element={<Adversarios player={playerState} />} />
               <Route path="/combate" element={<Combate player={playerState} updatePlayer={updatePlayer} setPlayerState={setPlayerState} />} />
               <Route path="/ranking" element={<Ranking player={playerState} updatePlayer={updatePlayer} />} />
               <Route path="/portoes" element={<Portoes player={playerState} updatePlayer={updatePlayer} />} />

@@ -29,11 +29,12 @@ test('Dojo uses reusable actions and icon registry without changing gameplay RPC
   assert.ok(dojo.includes("import GameAction from '../components/ui/GameAction'"));
   assert.ok(dojo.includes("import SidebarIcon from '../components/SidebarIcon'"));
   assert.ok(dojo.includes("import '../styles/dojo-v4.css'"));
-  assert.ok(dojo.includes("rpc('reservar_raid_stamina'"));
+  assert.ok(!dojo.includes("rpc('reservar_raid_stamina'"));
   assert.ok(dojo.includes("rpc('resolver_limpeza_rapida'"));
   assert.ok(dojo.includes("rpc('listar_rivais_dojo'"));
-  assert.ok(dojo.includes('generateDynamicRogueNinja(player, 0, template)'));
-  assert.ok(dojo.includes('loadCanonicalNpcPool'));
+  assert.ok(dojo.includes('loadCanonicalDojoNpcs'));
+  assert.ok(dojo.includes('isMirror: false'));
+  assert.ok(dojo.includes('disabled={raidUnavailable}'));
   for (const name of ['swords','shield','target','compass','flame','activity','zap','arrowRight']) {
     assert.ok(dojo.includes('name="' + name + '"'), 'Dojo should use shared icon ' + name);
   }

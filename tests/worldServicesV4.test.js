@@ -27,7 +27,7 @@ test('story dialogue, hospital payment, and food tabs retain semantic states', (
   assert.ok(story.includes('aria-modal="true"'));
   assert.ok(story.includes('kuro-story-empty kuro-ui-card'));
   assert.ok(hospital.includes('loading={loading}'));
-  assert.ok(hospital.includes('disabled={player.ryous < cureCost}'));
+  assert.ok(hospital.includes('disabled={(player.ryous || 0) < cureCost}'));
   assert.ok(ichiraku.includes('role="tablist"'));
   assert.equal((ichiraku.match(/role="tab"/g)||[]).length,2);
   assert.ok(ichiraku.includes("aria-selected={tab === 'loja'}"));

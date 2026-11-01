@@ -580,6 +580,16 @@ export default function Mapa({ player, updatePlayer }) {
             display: 'flex', flexDirection: 'column', alignItems: 'center',
           }}
           onClick={(e) => { e.stopPropagation(); attackNpc(npc); }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              e.stopPropagation();
+              attackNpc(npc);
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label={`Enfrentar ${npc.name}, nível ${npc.level}`}
           title={`${npc.name} - Lv. ${npc.level}`}
         >
           <div style={{

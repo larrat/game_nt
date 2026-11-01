@@ -19,3 +19,15 @@ test('password recovery always points at the dedicated reset screen', () => {
   assert.ok(reset.includes('password !== confirmation'));
   assert.ok(reset.includes('minLength={8}'));
 });
+
+test('PASSWORD_RECOVERY event opens password form instead of selecting a character', () => {
+  assert.ok(app.includes("onAuthStateChange((event, session) =>"));
+  assert.ok(app.includes("if (event === 'PASSWORD_RECOVERY')"));
+  assert.ok(app.includes("setRecoveryFlow(true)"));
+  assert.ok(app.includes("window.history.replaceState(null, '', '/redefinir-senha')"));
+  assert.ok(app.includes("if (recoveryFlow || window.location.pathname === '/redefinir-senha')"));
+  assert.ok(app.indexOf("if (recoveryFlow || window.location.pathname === '/redefinir-senha')") <
+    app.lastIndexOf("if (!session)"));
+  assert.ok(app.indexOf("onAuthStateChange((event, session)") <
+    app.indexOf("supabase.auth.getSession().then"));
+});

@@ -105,20 +105,34 @@ function App() {
   const [session, setSession] = useState(null);
   const [playerState, setPlayerState] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [recoveryFlow, setRecoveryFlow] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setLoading(false);
-    });
-
+    // Register before getSession: the Supabase client may finish processing
+    // recovery links as the initial session is restored.
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        // This event is authoritative even when a PKCE redirect has only a
+        // code (no type=recovery in the URL). Never open the game instead.
+        setRecoveryFlow(true);
+        if (window.location.pathname !== '/redefinir-senha') {
+          window.history.replaceState(null, '', '/redefinir-senha');
+        }
+      }
       setSession(session);
       if (!session) {
         setPlayerState(null);
       }
+    });
+
+    supabase.auth.getSession().then(({ data, error }) => {
+      setSession(error ? null : (data?.session ?? null));
+    }).catch(() => {
+      setSession(null);
+    }).finally(() => {
+      setLoading(false);
     });
 
     return () => subscription.unsubscribe();
@@ -236,7 +250,7 @@ function App() {
     window.history.replaceState(null, '', '/redefinir-senha' + window.location.search + window.location.hash);
   }
   // Recovery UI always wins over the authenticated application shell.
-  if (window.location.pathname === '/redefinir-senha') {
+  if (recoveryFlow || window.location.pathname === '/redefinir-senha') {
     return (
       <ToastProvider>
         <Router>

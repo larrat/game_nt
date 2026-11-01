@@ -1,0 +1,85 @@
+/* Portraits: one visual contract across map, combat and world boss. */
+.kuro-world-boss-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 0.7rem;
+  width: min(100%, 580px);
+  isolation: isolate;
+}
+.kuro-world-boss-art::before {
+  content: '';
+  position: absolute;
+  inset: 7% 10% 18%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(205, 55, 58, .3), rgba(205, 55, 58, 0) 68%);
+  filter: blur(12px);
+}
+.kuro-world-boss-portrait {
+  display: block;
+  width: min(100%, 390px);
+  height: clamp(205px, 29vw, 345px);
+  object-fit: contain;
+  object-position: center;
+  border-radius: 12px;
+}
+.kuro-world-boss-art span.kuro-world-boss-portrait {
+  display: grid;
+  place-items: center;
+  font-size: clamp(6rem, 15vw, 10rem);
+  line-height: 1;
+}
+.kuro-world-boss-art__caption {
+  color: var(--text-muted, #b8b1a8);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.kuro-map-npc-portrait {
+  display: block;
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 2px solid #d4a22a;
+  border-radius: 9px;
+  background: rgba(10, 16, 24, .9);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, .6);
+}
+span.kuro-map-npc-portrait {
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  line-height: 1;
+}
+.npc-node:hover .kuro-map-npc-portrait,
+.npc-node:focus-visible .kuro-map-npc-portrait {
+  border-color: #f3d78b;
+  box-shadow: 0 0 0 3px rgba(225,183,80,.2), 0 5px 16px rgba(0,0,0,.75);
+}
+.combat-portrait-wrap .kuro-combat-character-artwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 165px;
+  max-height: 400px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+.combat-portrait-wrap span.kuro-combat-character-artwork {
+  display: grid;
+  place-items: center;
+  font-size: clamp(4.5rem, 10vw, 8rem);
+  line-height: 1;
+}
+@media (max-width: 640px) {
+  .kuro-map-npc-portrait { width: 38px; height: 38px; }
+  .kuro-world-boss-portrait { height: 230px; }
+  .combat-portrait-wrap .kuro-combat-character-artwork { min-height: 120px; max-height: 260px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kuro-map-npc-portrait { transition: none; }
+}

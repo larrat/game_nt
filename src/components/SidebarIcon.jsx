@@ -1,22 +1,28 @@
 import React from 'react';
 import {
-  Award, BookOpen, CalendarDays, ChevronDown, ChevronRight,
+  Activity, ArrowRight, Award, BookOpen, CalendarDays, ChevronDown, ChevronRight,
+  Coins, Compass, Crosshair,
   CircleHelp, ClipboardList, Crown, DoorOpen, Dumbbell, Flame,
   GraduationCap, Hammer, HeartPulse, History, House, Landmark,
   LayoutDashboard, Map, PawPrint, ScrollText, Search, Shield,
-  Soup, Sparkles, Swords, Trophy, UserRound, UsersRound,
+  Soup, Sparkles, Swords, Target, Trophy, UserRound, UsersRound, Zap,
   Volume2, VolumeX, X
 } from 'lucide-react';
 
 // Fixed, tree-shakeable set; all icons share the same Lucide visual language.
 const ICONS = {
   academy: GraduationCap,
+  activity: Activity,
+  arrowRight: ArrowRight,
   award: Award,
   book: BookOpen,
   calendar: CalendarDays,
   chevronDown: ChevronDown,
   chevronRight: ChevronRight,
   clipboard: ClipboardList,
+  coins: Coins,
+  compass: Compass,
+  crosshair: Crosshair,
   crown: Crown,
   dashboard: LayoutDashboard,
   door: DoorOpen,
@@ -36,8 +42,10 @@ const ICONS = {
   soup: Soup,
   sparkles: Sparkles,
   swords: Swords,
+  target: Target,
   trophy: Trophy,
   user: UserRound,
+  zap: Zap,
   users: UsersRound,
   volumeOn: Volume2,
   volumeOff: VolumeX,

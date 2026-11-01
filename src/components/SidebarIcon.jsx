@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Activity, ArrowRight, Award, BookOpen, CalendarDays, ChevronDown, ChevronRight,
-  Coins, Compass, Crosshair,
+  Coins, Compass, Crosshair, Info, LockKeyhole, RefreshCw,
   CircleHelp, ClipboardList, Crown, DoorOpen, Dumbbell, Flame,
   GraduationCap, Hammer, HeartPulse, History, House, Landmark,
   LayoutDashboard, Map, PawPrint, ScrollText, Search, Shield,
@@ -32,10 +32,13 @@ const ICONS = {
   hammer: Hammer,
   heart: HeartPulse,
   history: History,
+  info: Info,
+  lock: LockKeyhole,
   home: House,
   landmark: Landmark,
   map: Map,
   paw: PawPrint,
+  refresh: RefreshCw,
   scroll: ScrollText,
   search: Search,
   shield: Shield,

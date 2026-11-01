@@ -34,12 +34,13 @@ test('shared UI kit uses native progress and has no domain side effects', () => 
 
 test('dashboard pilot composes design components without changing game RPCs', () => {
   const dashboard = read('../src/pages/Dashboard.jsx');
-  for (const component of ['GameAction', 'GamePanel', 'GameEmptyState', 'ResourceMeter']) {
+  for (const component of ['GameAction', 'GamePanel', 'GameEmptyState']) {
     assert.match(dashboard, new RegExp('<' + component + '\\b'));
   }
+  assert.match(dashboard, /kuro-dashboard-operations/);
+  assert.match(dashboard, /navigate\("\/status"\)/);
+  assert.doesNotMatch(dashboard, /<ResourceMeter\b|kuro-hero--village-/);
   assert.match(dashboard, /reivindicar_recompensa_diaria/);
   assert.match(dashboard, /reivindicar_bonus_diario/);
   assert.match(dashboard, /reset_daily_progress/);
-  assert.match(dashboard, /kuro-hero--village-/);
-  assert.match(dashboard, /aria-label="Progresso de experiência no nível atual"/);
 });

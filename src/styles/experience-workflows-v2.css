@@ -1,0 +1,372 @@
+/* Kurokage — Quartel Ninja v2 for active gameplay.
+   Scoped to the existing four workflows. RPCs, status formulas, and inventory
+   remain server-authoritative; this stylesheet only changes presentation. */
+.app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) {
+  --workflow-gold: var(--kx-amber, #f1c879);
+  --workflow-seal: var(--kx-ember, #ea4d54);
+  --workflow-line: rgba(230,195,137,.18);
+  --workflow-muted: #b8b7b4;
+  --workflow-panel: #151d28;
+  --workflow-raised: #1c2733;
+  width: min(100%, 1640px);
+  margin-inline: auto;
+  color: #efe7da;
+}
+.app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) .kuro-rpg-pagehead {
+  padding-block: 4px 22px;
+  margin-bottom: clamp(20px,2.8vw,32px);
+  border-bottom: 1px solid var(--workflow-line);
+}
+.app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) .kuro-rpg-pagehead__eyebrow {
+  color: var(--workflow-gold);
+}
+.app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) .kuro-rpg-pagehead__title {
+  color: #fff3e2;
+  font-size: clamp(28px,3.15vw,42px);
+}
+.app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) .card {
+  min-width: 0;
+  border-color: var(--workflow-line);
+  border-radius: 13px;
+  background: linear-gradient(145deg,rgba(29,39,51,.96),rgba(15,22,31,.98));
+  box-shadow: inset 0 1px rgba(255,255,255,.025),0 15px 34px rgba(0,0,0,.12);
+}
+.app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) :is(button,a,input,select,summary):focus-visible {
+  outline: 2px solid var(--workflow-gold);
+  outline-offset: 3px;
+}
+.app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) :is(button,input,select):disabled {
+  opacity: .57;
+  cursor: not-allowed;
+}
+.app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) .btn-primary {
+  min-height: 44px;
+  border-radius: 9px;
+  box-shadow: 0 9px 22px rgba(154,41,53,.14);
+}
+.app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) .btn-ghost {
+  min-height: 42px;
+  border-radius: 9px;
+}
+
+/* TREINAMENTO — budget first, choice second, official result last. */
+.app .kuro-training-page > .grid {
+  gap: 14px;
+}
+.app .kuro-training-page > .grid > .card {
+  position: relative;
+  min-height: 138px;
+  padding: 22px 23px;
+  overflow: hidden;
+}
+.app .kuro-training-page > .grid > .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  height: 2px;
+  background: linear-gradient(90deg,var(--workflow-gold),transparent 75%);
+  opacity: .7;
+}
+.app .kuro-training-page > .grid > .card p:first-child {
+  color: var(--workflow-muted);
+}
+.app .kuro-training-page .kuro-training-layout {
+  gap: clamp(16px,2vw,27px);
+}
+.app .kuro-training-page .kuro-training-attributes {
+  overflow: hidden;
+  border: 1px solid var(--workflow-line);
+}
+.app .kuro-training-page .kuro-training-attributes > .bg-ink-soft {
+  background: rgba(9,16,25,.7);
+  padding-block: 18px;
+}
+.app .kuro-training-page .kuro-training-attribute {
+  min-height: 66px;
+  border-bottom-color: rgba(236,196,133,.10);
+  transition: background-color .18s ease,border-color .18s ease;
+}
+.app .kuro-training-page .kuro-training-attribute:hover {
+  background-color: rgba(240,193,113,.065);
+}
+.app .kuro-training-page .kuro-training-attribute:focus-visible {
+  outline-offset: -4px;
+}
+.app .kuro-training-page .kuro-academy-v3__estimate {
+  border: 1px dashed rgba(238,193,112,.48);
+  border-radius: 12px;
+  background: linear-gradient(135deg,rgba(183,125,39,.11),rgba(13,19,28,.96));
+  padding: clamp(17px,2vw,24px);
+}
+.app .kuro-training-page .kuro-academy-v3__receipt {
+  border: 1px solid rgba(110,222,153,.4);
+  border-left: 4px solid #6ad69e;
+  border-radius: 12px;
+  background: linear-gradient(120deg,rgba(41,100,74,.24),rgba(13,22,26,.98));
+}
+.app .kuro-training-page :is(input[type="number"],select) {
+  min-height: 43px;
+  border-radius: 8px;
+}
+
+/* JUTSUS — dense usable academy cards, visible prerequisites. */
+.app .kuro-jutsu-academy-page > .grid {
+  gap: 14px;
+}
+.app .kuro-jutsu-academy-page > .grid > .card {
+  min-height: 122px;
+  padding: 21px;
+}
+.app .kuro-jutsu-academy-page .tabs {
+  display: flex;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid var(--workflow-line);
+  border-radius: 12px;
+  background: #111b26;
+}
+.app .kuro-jutsu-academy-page .tab {
+  min-height: 43px;
+  border-radius: 8px;
+  padding: 10px 16px;
+  color: #c6c0b7;
+}
+.app .kuro-jutsu-academy-page .tab.active {
+  color: #fff2de;
+  background: linear-gradient(100deg,rgba(235,186,107,.19),rgba(202,63,64,.11));
+}
+.app .kuro-jutsu-academy-page :is(input[type="search"],input[type="text"]) {
+  min-height: 47px;
+  border-color: rgba(235,197,136,.3);
+  border-radius: 10px;
+  background: #101a26;
+  color: #fff1df;
+}
+.app .kuro-jutsu-academy-page .kuro-academy-v3__catalog-grid {
+  gap: clamp(14px,1.7vw,22px);
+}
+.app .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-card {
+  border: 1px solid var(--workflow-line);
+  border-radius: 13px;
+  background: linear-gradient(145deg,#1b2632,#111923);
+  box-shadow: 0 13px 32px rgba(0,0,0,.17);
+}
+.app .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-card:hover {
+  border-color: rgba(236,191,113,.56);
+}
+.app .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-title {
+  color: #f8e9ce;
+  font-size: clamp(17px,1.55vw,21px);
+}
+.app .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-metrics {
+  border: 1px solid rgba(233,185,112,.14);
+  border-radius: 9px;
+  background: #0e1620;
+}
+.app .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-details {
+  border-radius: 8px;
+  background: rgba(7,12,18,.52);
+}
+.app .kuro-jutsu-academy-page .kuro-academy-v3__jutsu-footer {
+  border-top-color: rgba(233,185,112,.22);
+}
+
+/* MISSÕES — active jobs prominent, sortable catalog readable. */
+.app .kuro-missions-page .kuro-mission-tabs {
+  padding: 6px;
+  border: 1px solid var(--workflow-line);
+  border-radius: 12px;
+  background: #111b27;
+  gap: 6px;
+}
+.app .kuro-missions-page .segmented-tab {
+  min-height: 43px;
+  border-radius: 8px;
+  color: #c8c1b5;
+}
+.app .kuro-missions-page .segmented-tab.active {
+  background: rgba(222,173,89,.17);
+  color: #ffe6b9;
+}
+.app .kuro-missions-page .kuro-active-missions-panel {
+  padding: clamp(18px,2vw,28px);
+  border-color: rgba(238,191,108,.34);
+}
+.app .kuro-missions-page .kuro-active-missions-panel .kuro-active-mission {
+  border-radius: 11px;
+  background: linear-gradient(120deg,#222d38,#131c28);
+}
+.app .kuro-missions-page .kuro-academy-v3__catalog-note {
+  padding: 11px 14px;
+  border: 1px solid rgba(220,176,101,.2);
+  border-radius: 9px;
+  background: rgba(201,151,69,.06);
+  color: #c7c0b6;
+}
+.app .kuro-missions-page .kuro-mission-catalog {
+  overflow: hidden;
+  border-radius: 13px;
+}
+.app .kuro-missions-page .kuro-mission-catalog .table-responsive {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+.app .kuro-missions-page .kuro-mission-catalog .data-table {
+  min-width: 740px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.app .kuro-missions-page .kuro-mission-catalog .data-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 14px;
+  background: #182330;
+  color: #ddc396;
+  border-bottom: 1px solid rgba(230,194,132,.27);
+  font-size: 10px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.app .kuro-missions-page .kuro-mission-catalog .data-table td {
+  padding: 15px 13px;
+  border-bottom: 1px solid rgba(223,187,128,.10);
+  vertical-align: middle;
+}
+.app .kuro-missions-page .kuro-mission-catalog .data-table tbody tr:hover {
+  background: rgba(212,174,102,.055);
+}
+
+/* COMBATE — visual hierarchy: combatants, turn/clock, action and logs. */
+.app .kuro-combat-page .kuro-combat-v3__turn {
+  border-radius: 13px;
+  border-color: rgba(236,186,102,.38);
+  border-left-width: 4px;
+  background: linear-gradient(115deg,rgba(236,173,83,.14),#121d28 65%);
+  padding: clamp(15px,1.8vw,24px);
+}
+.app .kuro-combat-page .kuro-combat-v3__round {
+  border-radius: 8px;
+  background: rgba(241,194,112,.12);
+}
+.app .kuro-combat-page .kuro-combat-arena {
+  gap: clamp(12px,1.6vw,24px);
+  border: 1px solid rgba(236,187,109,.24);
+  border-radius: 16px;
+  padding: clamp(12px,2vw,26px);
+  background:
+    radial-gradient(ellipse at 50% 0,rgba(173,67,58,.13),transparent 58%),
+    linear-gradient(145deg,#1a2531,#0e1721);
+}
+.app .kuro-combat-page .combat-vs-badge {
+  color: #f6d391;
+  text-shadow: 0 4px 24px rgba(236,172,78,.3);
+}
+.app .kuro-combat-page .kuro-combat-v3__log-heading {
+  border-radius: 10px;
+  border-color: rgba(229,189,126,.26);
+  background: #0e1721;
+}
+.app .kuro-combat-page .kuro-combat-v3__log {
+  border-radius: 10px;
+  color: #e1d6c6;
+}
+.app .kuro-combat-page .kuro-combat-v3__actions {
+  border: 1px solid rgba(234,187,113,.28);
+  border-radius: 14px;
+  padding: clamp(14px,1.8vw,24px);
+  background: linear-gradient(135deg,#18232d,#101821);
+}
+.app .kuro-combat-page .combat-jutsu-btn {
+  min-height: 76px;
+  border: 1px solid rgba(227,192,132,.21);
+  border-radius: 10px;
+  background: #17232f;
+}
+.app .kuro-combat-page .combat-jutsu-btn:hover:not(:disabled) {
+  border-color: rgba(244,203,133,.54);
+  background: #21313e;
+}
+.app .kuro-combat-page .combat-jutsu-btn:disabled {
+  opacity: .5;
+  filter: saturate(.7);
+}
+
+
+/* Native progress in daily quests: responsive, accessible, no inline styles. */
+.app .kuro-dashboard-v2 .kuro-quest__track { height: 8px; border-radius: 999px; overflow: hidden; }
+.app .kuro-dashboard-v2 .kuro-quest__meter {
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  margin: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #26303a;
+}
+.app .kuro-dashboard-v2 .kuro-quest__meter::-webkit-progress-bar {
+  border-radius: 999px;
+  background: #26303a;
+}
+.app .kuro-dashboard-v2 .kuro-quest__meter::-webkit-progress-value {
+  border-radius: 999px;
+  background: #e3b86b;
+}
+.app .kuro-dashboard-v2 .kuro-quest__meter::-moz-progress-bar {
+  border-radius: 999px;
+  background: #e3b86b;
+}
+.app .kuro-dashboard-v2 .kuro-quest__meter.green::-webkit-progress-value { background: #70ce8e; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.green::-moz-progress-bar { background: #70ce8e; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.blue::-webkit-progress-value { background: #67b5ee; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.blue::-moz-progress-bar { background: #67b5ee; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.red::-webkit-progress-value { background: #ed707a; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.red::-moz-progress-bar { background: #ed707a; }
+
+/* Shared responsive behavior. No hover-only controls; preserve native buttons. */
+@media (max-width: 900px) {
+  .app .kuro-training-page .kuro-training-layout {
+    grid-template-columns: minmax(0,1fr);
+  }
+  .app .kuro-missions-page .kuro-active-missions-panel {
+    padding: 16px;
+  }
+}
+@media (max-width: 640px) {
+  .app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) .kuro-rpg-pagehead__title {
+    font-size: clamp(25px,7.2vw,32px);
+  }
+  .app .kuro-jutsu-academy-page .tabs,
+  .app .kuro-missions-page .kuro-mission-tabs {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+  .app .kuro-training-page > .grid > .card,
+  .app .kuro-jutsu-academy-page > .grid > .card {
+    min-height: 105px;
+    padding: 16px;
+  }
+  .app .kuro-training-page .kuro-training-attribute {
+    min-height: 58px;
+  }
+  .app .kuro-jutsu-academy-page .kuro-academy-v3__catalog-grid {
+    grid-template-columns: minmax(0,1fr);
+  }
+  .app .kuro-missions-page .kuro-mission-catalog .data-table {
+    min-width: 680px;
+  }
+  .app .kuro-combat-page .combat-jutsu-btn {
+    min-height: 68px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) *,
+  .app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) *::before,
+  .app :is(.kuro-training-page,.kuro-jutsu-academy-page,.kuro-missions-page,.kuro-combat-page) *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}

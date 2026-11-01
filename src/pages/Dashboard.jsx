@@ -21,7 +21,7 @@ const DailyTaskItem = ({
   progressValue, progressMax, progressColor,
   claimedList, handleClaimTask, claiming
 }) => {
-  const progressPercent = Math.min(100, Math.max(0, (progressValue / progressMax) * 100));
+  const progressCurrent = Math.min(progressMax, Math.max(0, Number(progressValue) || 0));
   const isDone = progressValue >= progressMax;
   const isClaimed = claimedList.includes(taskId);
 
@@ -31,7 +31,7 @@ const DailyTaskItem = ({
       <div className="kuro-quest__body">
         <div className="kuro-quest__topline"><span className="kuro-quest__title">{title}</span><span className="kuro-quest__reward">{rewardText}</span></div>
         <div className="kuro-quest__progress">
-          <div className="kuro-quest__track"><div className={"kuro-quest__fill " + progressColor} style={{ width: progressPercent + "%" }} /></div>
+          <div className="kuro-quest__track"><progress className={"kuro-quest__meter " + progressColor} value={progressCurrent} max={progressMax} aria-label={title + " — progresso"} /></div>
           <span className="kuro-quest__count">{progressValue}/{progressMax}</span>
         </div>
       </div>

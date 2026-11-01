@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
+import '../styles/auth-polish-v4.css';
 
 export default function RedefinirSenha() {
   const { addToast } = useToast();
@@ -59,7 +60,7 @@ export default function RedefinirSenha() {
   };
 
   return (
-    <div className="login-body min-h-screen w-full bg-ink">
+    <div className="login-body kuro-recovery-v4 min-h-screen w-full bg-ink">
       <div className="panel-brand" aria-hidden="true">
         <div className="brand"><div className="mark"></div>KUROKAGE</div>
         <div className="panel-quote">

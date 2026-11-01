@@ -1,3 +1,4 @@
+import { CURRENT_SEASON_LABEL } from '../utils/season';
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
@@ -41,7 +42,7 @@ export default function Ranking({ player }) {
   return (
     <div className="page kuro-ranking-v4">
       <PageHeader
-        eyebrow='Temporada IV'
+        eyebrow={CURRENT_SEASON_LABEL}
         title='Hall da Fama'
         actions={
           <div className="filters">

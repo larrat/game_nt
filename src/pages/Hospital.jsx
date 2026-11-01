@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
 import GameAction from '../components/ui/GameAction';
@@ -6,104 +6,129 @@ import SidebarIcon from '../components/SidebarIcon';
 import '../styles/world-services-v4.css';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
-import { calculateHP, calculateChakra, calculateStamina, getGlobalDebuffs } from '../utils/engine';
+import { calculateHP, calculateChakra, getGlobalDebuffs } from '../utils/engine';
+import { getHospitalViewState } from '../utils/hospitalState';
+
+const RECOVERY_TIME_MS = 5 * 60 * 1000;
 
 export default function Hospital({ player, updatePlayer }) {
   const { addToast } = useToast();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(0);
-  const [isRecovered, setIsRecovered] = useState(false);
-
-  const RECOVERY_TIME_MINUTES = 5;
-  const RECOVERY_TIME_MS = RECOVERY_TIME_MINUTES * 60 * 1000;
-
+  const [now, setNow] = useState(() => Date.now());
   const [globalDebuffs, setGlobalDebuffs] = useState(getGlobalDebuffs(null));
 
   useEffect(() => {
+    let active = true;
     async function checkDebuffs() {
-      const { data } = await supabase.from('global_events').select('*').eq('is_active', true).eq('is_world_boss', true).single();
-      if (data) setGlobalDebuffs(getGlobalDebuffs(data));
+      const { data, error } = await supabase.from('global_events')
+        .select('*').eq('is_active', true).eq('is_world_boss', true).maybeSingle();
+      if (!error && active && data) setGlobalDebuffs(getGlobalDebuffs(data));
     }
     checkDebuffs();
+    return () => { active = false; };
   }, []);
 
-  // O custo de cura escala com o nível e pode dobrar se o debuff de fase 3 da Bijuu estiver ativo
-  // Usa optional chaining para não quebrar se player ainda estiver carregando
-  const cureCost = Math.max(50, (player?.level || 1) * 50) * globalDebuffs.hospitalCostMultiplier;
-
   useEffect(() => {
-    if (!player || !player.fainted_at) return;
-
-    const faintedTime = new Date(player.fainted_at).getTime();
-    const targetTime = faintedTime + RECOVERY_TIME_MS;
-
-    const updateTimer = () => {
-      const now = Date.now();
-      const diff = targetTime - now;
-
-      if (diff <= 0) {
-        setTimeLeft(0);
-        setIsRecovered(true);
-      } else {
-        setTimeLeft(Math.ceil(diff / 1000));
-        setIsRecovered(false);
-      }
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
+    setNow(Date.now());
+    if (!player?.is_fainted) return;
+    const interval = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(interval);
-  }, [player]);
+  }, [player?.id, player?.is_fainted, player?.fainted_at]);
 
-  const formatTime = (seconds) => {
+  if (!player) return null;
+
+  const view = getHospitalViewState(player, now, RECOVERY_TIME_MS);
+  // Somente exibir custo enquanto uma recuperação paga ainda faz sentido.
+  // A autorização e a cobrança efetiva permanecem no RPC hospital_alta.
+  const cureCost = Math.max(50, (player.level || 1) * 50) * globalDebuffs.hospitalCostMultiplier;
+
+  const formatTime = seconds => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
-    return `${m}:${s < 10 ? '0' : ''}${s}`;
+    return `${m}:${String(s).padStart(2, '0')}`;
+  };
+
+  const refreshState = async () => {
+    setLoading(true);
+    try {
+      const updated = await updatePlayer(player.id);
+      if (!updated) addToast('Não foi possível atualizar seu estado. Tente novamente.', 'error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCure = async (paid) => {
-    if (paid && player.ryous < cureCost) {
+    if (loading || view.status !== (paid ? 'recovering' : 'ready_for_discharge')) return;
+    if (paid && (player.ryous || 0) < cureCost) {
       addToast('Ryous insuficientes!', 'error');
       return;
     }
 
     setLoading(true);
+    try {
+      const { data, error } = await supabase.rpc('hospital_alta', {
+        p_player_id: player.id,
+        p_paid: paid,
+        p_max_hp: calculateHP(player),
+        p_max_cp: calculateChakra(player),
+        p_global_hospital_cost_mult: globalDebuffs.hospitalCostMultiplier
+      });
+      if (error || !data?.success) {
+        addToast(error?.message || data?.error || 'Alta não autorizada pelo servidor.', 'error');
+        return;
+      }
 
-    const { data, error } = await supabase.rpc('hospital_alta', {
-      p_player_id: player.id,
-      p_paid: paid,
-      p_max_hp: calculateHP(player),
-      p_max_cp: calculateChakra(player),
-      p_global_hospital_cost_mult: globalDebuffs.hospitalCostMultiplier
-    });
-
-    if (error || data.error) {
-      addToast(error ? error.message : data.error, 'error');
+      const updated = await updatePlayer(player.id);
+      if (!updated) {
+        addToast('Alta registrada. Atualize o personagem para sincronizar o estado.', 'warning');
+        return;
+      }
+      addToast(paid ? 'Tratamento concluído e alta registrada!' : 'Você se recuperou e recebeu alta!', 'success');
+      navigate('/dashboard', { replace: true });
+    } catch (error) {
+      addToast('Falha ao solicitar alta: ' + (error?.message || 'tente novamente'), 'error');
+    } finally {
       setLoading(false);
-      return;
     }
-
-    await updatePlayer(player.id);
-    addToast(paid ? 'Você pagou pelo tratamento e recebeu alta!' : 'Você se recuperou totalmente!', 'success');
-    setLoading(false);
-    navigate('/dashboard', { replace: true });
   };
-
-  if (!player) return null;
 
   return (
     <div className="page kuro-hospital-v4 flex-col items-center justify-center h-full bg-danger-alpha-05 min-h-screen">
       <div className="kuro-hospital-v4__panel kuro-ui-card card-glass w-full text-center p-4 max-w-480">
-        {isRecovered ? (
+        {view.status === 'healthy' ? (
+          <>
+            <span className="kuro-world-v4__emblem"><SidebarIcon name="heart" size={32} /></span>
+            <h3 className="paper mb-2 text-2xl">Nenhum tratamento necessário</h3>
+            <p className="muted mb-6">
+              Seu personagem não está desmaiado. Não existe recuperação hospitalar ou cobrança pendente.
+            </p>
+            <GameAction tone="seal" className="w-full" onClick={() => navigate('/dashboard', { replace: true })}>
+              Voltar ao Painel
+            </GameAction>
+          </>
+        ) : view.status === 'needs_sync' ? (
+          <>
+            <span className="kuro-world-v4__emblem"><SidebarIcon name="activity" size={32} /></span>
+            <h3 className="paper mb-2 text-2xl">Estado hospitalar indisponível</h3>
+            <p className="muted mb-6">
+              O servidor informou um desmaio, mas não há horário válido para calcular a alta.
+              Nenhum tratamento será cobrado até esse estado ser corrigido.
+            </p>
+            <GameAction tone="quiet" className="w-full" loading={loading} onClick={refreshState}>
+              Consultar situação novamente
+            </GameAction>
+          </>
+        ) : view.status === 'ready_for_discharge' ? (
           <>
             <span className="kuro-world-v4__emblem"><SidebarIcon name="sparkles" size={32} /></span>
             <h3 className="paper mb-2 text-2xl">Recuperação Concluída</h3>
             <p className="muted mb-6">
-              Seu corpo se recuperou totalmente. Você já pode voltar para suas missões.
+              O tempo de recuperação terminou. Solicite a alta gratuita para remover o estado de desmaio.
             </p>
             <GameAction tone="seal" className="w-full" loading={loading} onClick={() => handleCure(false)}>
-              <SidebarIcon name="heart" size={17} /> {loading ? 'Recebendo Alta...' : 'Receber Alta e Voltar'}
+              <SidebarIcon name="heart" size={17} /> {loading ? 'Recebendo Alta...' : 'Receber Alta Grátis'}
             </GameAction>
           </>
         ) : (
@@ -111,18 +136,18 @@ export default function Hospital({ player, updatePlayer }) {
             <span className="kuro-world-v4__emblem"><SidebarIcon name="activity" size={32} /></span>
             <h3 className="paper mb-2 text-2xl">Tempo Restante</h3>
             <div className="mono danger font-bold mb-6 text-4xl">
-              {formatTime(timeLeft)}
+              {formatTime(view.remainingSeconds)}
             </div>
             <div className="muted mono text-md mb-6 opacity-80">
               O hospital da vila está cuidando de seus ferimentos...
             </div>
-
             <div className="bg-ink p-4 rounded-md border-line-solid">
-              <p className="paper mb-3 text-lg">Deseja acelerar sua recuperação?</p>
-              <GameAction tone="gold" className="w-full" onClick={() => handleCure(true)} disabled={player.ryous < cureCost} loading={loading}>
+              <p className="paper mb-3 text-lg">Deseja antecipar sua alta?</p>
+              <GameAction tone="gold" className="w-full" onClick={() => handleCure(true)}
+                disabled={(player.ryous || 0) < cureCost} loading={loading}>
                 <SidebarIcon name="coins" size={17} /> Pagar {cureCost} Ryous
               </GameAction>
-              {player.ryous < cureCost && (
+              {(player.ryous || 0) < cureCost && (
                 <div className="danger mono text-xs mt-2">Ryous Insuficientes</div>
               )}
             </div>

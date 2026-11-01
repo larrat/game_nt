@@ -16,7 +16,7 @@ const registry = new Set(
 
 test('every category and destination has a mapped icon independent of label', () => {
   assert.equal(SCREEN_NAV.length, 6);
-  assert.equal(allRoutes.length, 25);
+  assert.equal(allRoutes.length, 26);
   assert.equal(new Set(allRoutes).size, allRoutes.length, 'routes must be unique');
   for (const group of SCREEN_NAV) {
     assert.ok(group.id && group.group && group.items.length);

@@ -8,6 +8,8 @@
 - O roadmap UX v2 definiu cores de carvão, papel envelhecido, dourado controlado e vermelho-selo, com `Shippori Mincho`, `Inter` e `JetBrains Mono`.
 - A PR #68 traz uma versão mais cinematográfica de Login, Seleção, Dashboard e Status, mas o protótipo sem login usa dados explicitamente fictícios. Ainda não existe homologação autenticada.
 - O objetivo é um RPG original moderno, não uma réplica de assets, CSS, branding ou narrativa de Naruto Game.
+- **Diretriz de arte aprovada em 31/10:** ícones, imagens de clãs, técnicas e retratos devem substituir emojis Unicode genéricos e evoluir para versões HD. Ver [Padrão visual: ícones e artes HD, sem emojis](PADRAO-VISUAL-ICONES-ARTE-HD-SEM-EMOJIS.md).
+- **Autorização comunicada em 31/10:** o responsável informou ter conversado com o proprietário do Naruto Game, que autorizou o uso das imagens. A declaração está registrada no padrão visual; extensão de publicação, adaptação, titularidade de artes de terceiros e comprovação ainda não foram documentadas.
 
 ## Recomendação para conciliar
 

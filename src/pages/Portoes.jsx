@@ -280,7 +280,7 @@ export default function Portoes({ player, updatePlayer }) {
               >
                 <SidebarIcon name="flame" size={16} />
                 {isLoading ? 'Abrindo...' : !isUnlocked ? `Nível ${portao.reqLevel}` : cooldownLeft > 0 ? formatCooldown(cooldownLeft) : `Abrir ${portao.kanji}`}
-              </GameAction>     </button>
+              </GameAction>
             </div>
           );
         })}

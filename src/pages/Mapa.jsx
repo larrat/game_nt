@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import { generateDynamicRogueNinja } from '../utils/engine';
+import NpcPortrait from '../components/NpcPortrait';
 
 // =============================================
 // CONFIGURAÇÃO DO GRID DA VILA
@@ -567,7 +568,8 @@ export default function Mapa({ player, updatePlayer }) {
 
       {/* NPC markers */}
       {visibleNpcs.slice(0, 30).map(npc => (
-        <div
+        <button
+          type="button"
           key={npc.id}
           className="npc-node"
           style={{
@@ -576,17 +578,18 @@ export default function Mapa({ player, updatePlayer }) {
             transform: 'translate(-50%, -50%)',
             cursor: 'pointer',
             display: 'flex', flexDirection: 'column', alignItems: 'center',
+            padding: 0, border: 'none', background: 'transparent'
           }}
           onClick={(e) => { e.stopPropagation(); attackNpc(npc); }}
           title={`${npc.name} - Lv. ${npc.level}`}
+          aria-label={`Combater ${npc.name}, nível ${npc.level}`}
         >
-          <div style={{
-            fontSize: '20px',
+          <span style={{
             filter: `drop-shadow(0 0 4px ${npc.is_bingo_book ? '#ef4444' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? 'gold' : '#fff'})`,
           }}>
-            {npc.avatar || '👹'}
-          </div>
-        </div>
+            <NpcPortrait npc={npc} size={34} decorative />
+          </span>
+        </button>
       ))}
 
       {/* Player marker on world map */}
@@ -735,7 +738,7 @@ export default function Mapa({ player, updatePlayer }) {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '18px' }}>{npc.avatar}</span>
+                    <NpcPortrait npc={npc} size={30} decorative />
                     <div>
                       <div style={{ color: '#fff', fontWeight: 'bold', fontSize: '11px' }}>{npc.name}</div>
                       <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '10px' }}>Nv. {npc.level}</div>

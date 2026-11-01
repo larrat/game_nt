@@ -5,6 +5,9 @@ import { calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, cal
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import GameAction from '../components/ui/GameAction';
+import '../styles/dojo-v4.css';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 
@@ -212,114 +215,112 @@ export default function Dojo({ player, updatePlayer }) {
 
   const isAkatsuki = player.village_id === 8;
 
+
   return (
-    <div className="page">
+    <div className="page kuro-dojo-v4">
       <PageHeader
-        eyebrow='Treinamento e Combate'
-        title='Dojo da Vila'
-        subtitle='Escolha entre teste seguro, combate real e objetivos de risco.'
-        actions={<button type="button" className="btn-ghost" onClick={() => navigate('/adversarios')}>Explorar adversários →</button>}
+        eyebrow="Arena shinobi · Quartel Ninja"
+        title="Dojo da Vila"
+        subtitle="Treine, enfrente rivais e trace o caminho da sua próxima vitória."
+        actions={<GameAction type="button" tone="quiet" className="kuro-dojo-v4__archive-action" onClick={() => navigate('/adversarios')}>
+          <SidebarIcon name="compass" size={17} /> Arquivo de adversários <SidebarIcon name="arrowRight" size={16} />
+        </GameAction>}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-ink-card border border-line-solid p-4 flex flex-col items-center rounded shadow-sm">
-          <div className="text-muted text-xs uppercase tracking-widest mb-1">Seu nível</div>
-          <div className="text-xl font-bold text-paper">Nv. {player.level}</div>
+      <section className="kuro-dojo-v4__hero" aria-label="Situação do ninja">
+        <div className="kuro-dojo-v4__hero-content">
+          <span className="kuro-dojo-v4__eyebrow"><span className="kuro-dojo-v4__status-dot" /> POSTO DE COMBATE · {loadingId ? 'EM ATIVIDADE' : 'PRONTO PARA AÇÃO'}</span>
+          <h2>A vitória começa <em>antes do duelo.</em></h2>
+          <p>Conheça seu poder, escolha o risco e domine a arena. Os resultados oficiais dependem das regras do servidor.</p>
+          <div className="kuro-dojo-v4__hero-actions">
+            <GameAction type="button" tone="seal" onClick={handleSearch} disabled={loadingId !== null}>
+              <SidebarIcon name="swords" size={17} /> {loadingId === 'search' ? 'Rastreando oponente…' : 'Buscar combate real'} <SidebarIcon name="arrowRight" size={16} />
+            </GameAction>
+            <GameAction type="button" tone="quiet" onClick={() => navigate('/adversarios')}>
+              Ver adversários
+            </GameAction>
+          </div>
         </div>
-        <div className="bg-ink-card border border-line-solid p-4 flex flex-col items-center rounded shadow-sm">
-          <div className="text-muted text-xs uppercase tracking-widest mb-1">Graduação</div>
-          <div className="text-xl font-bold text-paper">{player.rank || 'Estudante'}</div>
-        </div>
-        <div className="bg-ink-card border border-line-solid p-4 flex flex-col items-center rounded shadow-sm">
-          <div className="text-muted text-xs uppercase tracking-widest mb-1">Estado</div>
-          <div className="text-xl font-bold text-paper">{loadingId ? 'Rastreando...' : 'Disponível'}</div>
-        </div>
+        <div className="kuro-dojo-v4__hero-mark" aria-hidden="true"><SidebarIcon name="swords" size={82} /></div>
+      </section>
+
+      <section className="kuro-dojo-v4__overview" aria-label="Informações atuais do personagem">
+        <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="target" size={15} /> NÍVEL</span><strong>{player.level}</strong><small>Poder atual do ninja</small></div>
+        <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="shield" size={15} /> GRADUAÇÃO</span><strong>{player.rank || 'Estudante'}</strong><small>Patente do personagem</small></div>
+        <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="zap" size={15} /> STAMINA</span><strong>{player.stamina ?? calculateStamina(player)}</strong><small>Recurso para incursões</small></div>
+        <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="activity" size={15} /> ESTADO</span><strong>{loadingId ? 'Em atividade' : 'Disponível'}</strong><small>{loadingId ? 'Aguarde a ação atual' : 'Arena liberada'}</small></div>
+      </section>
+
+      <div className="kuro-dojo-v4__section-heading">
+        <div><span className="kuro-dojo-v4__eyebrow">SELEÇÃO DE TREINAMENTO</span><h2>Escolha seu confronto</h2></div>
+        <p>Do teste sem risco às batalhas que definem sua jornada.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <section className="flex flex-col gap-4 bg-ink-card border border-line-solid p-6 rounded-lg transition-transform hover:-translate-y-1 hover:shadow-lg min-h-[260px]">
-          <div className="w-12 h-12 flex items-center justify-center bg-ink-raised border border-line-bright rounded-md text-2xl">🪵</div>
-          <h3 className="font-shippori text-xl font-bold text-paper">Treinamento Livre</h3>
-          <p className="text-muted-bright text-sm leading-relaxed">Use um alvo sem risco para testar dano, jutsus e equipamentos. Não concede recompensas.</p>
-          <div className="flex flex-wrap gap-2 mt-auto">
-            <span className="bg-green/10 border border-green/40 text-green px-2 py-1 rounded text-xs">Seguro</span>
-            <span className="bg-white/5 border border-line text-muted px-2 py-1 rounded text-xs">Sem custo</span>
-          </div>
-          <button className="btn-ghost w-full mt-2" onClick={handleFreeTraining} disabled={loadingId !== null}>
-            Bater no Boneco
-          </button>
+      <div className="kuro-dojo-v4__grid" aria-label="Modalidades de combate">
+        <section className="kuro-dojo-v4__card kuro-dojo-v4__card--primary">
+          <span className="kuro-dojo-v4__card-number">01 / DESAFIO PRINCIPAL</span>
+          <span className="kuro-dojo-v4__card-icon"><SidebarIcon name="swords" size={27} /></span>
+          <span className="kuro-dojo-v4__card-label">ARENA · PROGRESSÃO</span>
+          <h3>Combate Real</h3>
+          <p>Encontre um NPC ou adversário parelho e lute pela progressão do personagem.</p>
+          <div className="kuro-dojo-v4__tags"><span>Confronto real</span><span>Risco de derrota</span></div>
+          <GameAction type="button" tone="seal" className="kuro-dojo-v4__card-button" onClick={handleSearch} disabled={loadingId !== null}>
+            {loadingId === 'search' ? 'Rastreando…' : 'Procurar luta'} <SidebarIcon name="arrowRight" size={16} />
+          </GameAction>
         </section>
 
-        <section className="flex flex-col gap-4 bg-gradient-to-b from-gold/10 to-ink-card border border-gold/30 p-6 rounded-lg transition-transform hover:-translate-y-1 hover:shadow-lg min-h-[260px]">
-          <div className="w-12 h-12 flex items-center justify-center bg-ink-raised border border-line-bright rounded-md text-2xl">⚔️</div>
-          <h3 className="font-shippori text-xl font-bold text-paper">Combate Real</h3>
-          <p className="text-muted-bright text-sm leading-relaxed">Rastreia um instrutor ou oponente parelho para uma luta completa com risco e progressão.</p>
-          <div className="flex flex-wrap gap-2 mt-auto">
-            <span className="bg-gold/10 border border-gold text-gold px-2 py-1 rounded text-xs">Recomendado</span>
-            <span className="bg-white/5 border border-line text-muted px-2 py-1 rounded text-xs">NPC ou rival</span>
-          </div>
-          <button className="btn-primary w-full mt-2" onClick={handleSearch} disabled={loadingId !== null}>
-            {loadingId === 'search' ? 'Rastreando...' : 'Procurar Luta'}
-          </button>
+        <section className="kuro-dojo-v4__card">
+          <span className="kuro-dojo-v4__card-number">02 / PREPARAÇÃO</span>
+          <span className="kuro-dojo-v4__card-icon"><SidebarIcon name="target" size={27} /></span>
+          <span className="kuro-dojo-v4__card-label">ACADEMIA · SIMULAÇÃO</span>
+          <h3>Treinamento Livre</h3>
+          <p>Teste dano, equipamentos e jutsus em um boneco de madeira sem recompensa.</p>
+          <div className="kuro-dojo-v4__tags"><span>Sem custo</span><span>Sem recompensa</span></div>
+          <GameAction type="button" tone="quiet" className="kuro-dojo-v4__card-button" onClick={handleFreeTraining} disabled={loadingId !== null}>
+            Bater no boneco <SidebarIcon name="arrowRight" size={16} />
+          </GameAction>
         </section>
 
-        <section className="flex flex-col gap-4 bg-ink-card border border-line-solid p-6 rounded-lg transition-transform hover:-translate-y-1 hover:shadow-lg min-h-[260px]">
-          <div className="w-12 h-12 flex items-center justify-center bg-ink-raised border border-line-bright rounded-md text-2xl">⚡</div>
-          <h3 className="font-shippori text-xl font-bold text-paper">Incursão (Raid)</h3>
-          <p className="text-muted-bright text-sm leading-relaxed">Lute várias vezes seguidas sem sair do combate. Custa Stamina antecipada — recompensas acumulam a cada vitória.</p>
-          <div className="flex flex-wrap gap-2 mt-auto">
-            <span className="bg-gold/10 border border-gold text-gold px-2 py-1 rounded text-xs">{RAID_STAMINA_COST} ST/luta</span>
-            <span className="bg-white/5 border border-line text-muted px-2 py-1 rounded text-xs">Stamina: {player.stamina ?? calculateStamina(player)}</span>
+        <section className="kuro-dojo-v4__card">
+          <span className="kuro-dojo-v4__card-number">03 / RESISTÊNCIA</span>
+          <span className="kuro-dojo-v4__card-icon"><SidebarIcon name="zap" size={27} /></span>
+          <span className="kuro-dojo-v4__card-label">DESAFIO · SEQUÊNCIA</span>
+          <h3>Incursão (Raid)</h3>
+          <p>Enfrente uma sequência de lutas. O servidor reserva a stamina antes de começar.</p>
+          <div className="kuro-dojo-v4__tags"><span>{RAID_STAMINA_COST} ST por luta</span><span>Stamina: {player.stamina ?? calculateStamina(player)}</span></div>
+          <div className="kuro-dojo-v4__actions-row">
+            <GameAction type="button" tone="quiet" onClick={() => handleRaid(3)} disabled={loadingId !== null}>Raid 3x</GameAction>
+            <GameAction type="button" tone="seal" onClick={() => handleRaid(5)} disabled={loadingId !== null}>{loadingId === 'raid' ? 'Iniciando…' : 'Raid 5x'}</GameAction>
           </div>
-          <div className="flex flex-col gap-2 w-full mt-2">
-            <div className="flex flex-row gap-2 w-full">
-              <button className="btn-ghost flex-1" onClick={() => handleRaid(3)} disabled={loadingId !== null}>
-                Raid 3x
-              </button>
-              <button className="btn-primary flex-1" onClick={() => handleRaid(5)} disabled={loadingId !== null}>
-                {loadingId === 'raid' ? '...' : 'Raid 5x'}
-              </button>
+          {(player.dojo_clears || player.wins_dojo || 0) >= 3 && (
+            <div className="kuro-dojo-v4__actions-row kuro-dojo-v4__quick">
+              <GameAction type="button" tone="quiet" onClick={() => handleQuickClear(3)} disabled={loadingId !== null}>Limpar 3x</GameAction>
+              <GameAction type="button" tone="quiet" onClick={() => handleQuickClear(5)} disabled={loadingId !== null}>Limpar 5x</GameAction>
             </div>
-            {(player.dojo_clears || player.wins_dojo || 0) >= 3 && (
-              <div className="flex flex-row gap-2 w-full">
-                <button className="btn-ghost flex-1 text-gold border-gold" onClick={() => handleQuickClear(3)} disabled={loadingId !== null}>
-                  ⚡ Limpar 3x
-                </button>
-                <button className="btn-ghost flex-1 text-gold border-gold" onClick={() => handleQuickClear(5)} disabled={loadingId !== null}>
-                  ⚡ Limpar 5x
-                </button>
-              </div>
-            )}
-          </div>
+          )}
         </section>
 
-        <section className={`flex flex-col gap-4 border p-6 rounded-lg transition-transform hover:-translate-y-1 hover:shadow-lg min-h-[260px] ${isAkatsuki ? 'bg-gradient-to-b from-gold/10 to-ink-card border-gold/30' : 'bg-gradient-to-b from-danger/10 to-ink-card border-danger/30'}`}>
-          <div className="w-12 h-12 flex items-center justify-center bg-ink-raised border border-line-bright rounded-md text-2xl">{isAkatsuki ? '☁️' : '⛔'}</div>
-          <h3 className="font-shippori text-xl font-bold text-paper">{isAkatsuki ? 'Caçada Jinchuuriki' : 'Renegado'}</h3>
-          <p className="text-muted-bright text-sm leading-relaxed">
-            {isAkatsuki
-              ? 'Rastreie portadores de Bijuus para cumprir os objetivos da organização. Alvos são extremamente perigosos.'
-              : 'Ataque um companheiro de vila. Se vencer, você rasga a bandana e entra para a Akatsuki.'}
-          </p>
-          <div className="flex flex-wrap gap-2 mt-auto">
-            <span className={`px-2 py-1 rounded text-xs ${isAkatsuki ? 'bg-gold/10 border border-gold text-gold' : 'bg-seal-glow border border-seal-bright text-seal-bright'}`}>{isAkatsuki ? 'Objetivo' : 'Permanente'}</span>
-            <span className="bg-white/5 border border-line text-muted px-2 py-1 rounded text-xs">Alto risco</span>
-          </div>
-          <button
-            className={`w-full mt-2 ${isAkatsuki ? 'btn-primary' : 'btn-danger'}`}
-            onClick={isAkatsuki ? handleBijuuHunt : handleBetrayal}
-            disabled={loadingId !== null}
-          >
-            {isAkatsuki
-              ? (loadingId === 'hunt' ? 'Rastreando...' : 'Caçar Jinchuuriki')
-              : (loadingId === 'betray' ? 'Rastreando...' : 'Trair a Vila')}
-          </button>
+        <section className={'kuro-dojo-v4__card kuro-dojo-v4__card--danger' + (isAkatsuki ? ' is-akatsuki' : '')}>
+          <span className="kuro-dojo-v4__card-number">04 / ALTO RISCO</span>
+          <span className="kuro-dojo-v4__card-icon"><SidebarIcon name="flame" size={27} /></span>
+          <span className="kuro-dojo-v4__card-label">{isAkatsuki ? 'AKATSUKI · OBJETIVO' : 'VILA · DECISÃO PERMANENTE'}</span>
+          <h3>{isAkatsuki ? 'Caçada Jinchuuriki' : 'Renegado'}</h3>
+          <p>{isAkatsuki
+            ? 'Rastreie portadores de Bijuus quando essa modalidade estiver autorizada no servidor.'
+            : 'Ataque um companheiro de vila. Se vencer, você abandona sua bandana e ingressa na Akatsuki.'}</p>
+          <div className="kuro-dojo-v4__tags"><span>Alto risco</span><span>{isAkatsuki ? 'Aguardando servidor' : 'Consequência permanente'}</span></div>
+          <GameAction type="button" tone="danger" className="kuro-dojo-v4__card-button"
+            onClick={isAkatsuki ? handleBijuuHunt : handleBetrayal} disabled={loadingId !== null || isAkatsuki}>
+            {isAkatsuki ? 'Caçada indisponível' : loadingId === 'betray' ? 'Rastreando…' : 'Trair a vila'}
+            <SidebarIcon name="arrowRight" size={16} />
+          </GameAction>
         </section>
       </div>
 
-      <div className="mt-8 p-4 bg-gold/5 border border-gold/20 rounded-lg text-sm">
-        <strong className="text-paper">Dica:</strong> use o Treinamento Livre depois de trocar equipamentos ou jutsus. Para progressão real, vá em Combate Real.
-      </div>
+      <aside className="kuro-dojo-v4__note">
+        <SidebarIcon name="shield" size={18} />
+        <p><strong>Preparação inteligente.</strong> Use o Treinamento Livre para testar sua build. Para explorar NPCs, personagens do catálogo e projeções de jogadores, visite o <GameAction type="button" onClick={() => navigate('/adversarios')}>Arquivo de Adversários <SidebarIcon name="arrowRight" size={14} /></GameAction>. As projeções não são PvP ao vivo.</p>
+      </aside>
     </div>
   );
 }

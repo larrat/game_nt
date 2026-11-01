@@ -1,0 +1,123 @@
+/* Status v4: extends the single Kurokage design contract. No gameplay logic. */
+.app .kuro-status-page.kuro-status-v4 {
+  color: var(--kuro-copy);
+  background: radial-gradient(ellipse at 92% 0,rgba(235,193,124,.08),transparent 39%),var(--kuro-bg);
+}
+.app .kuro-status-v4 .kuro-status-v3__hero {
+  border-color: var(--kuro-line);
+  border-radius: var(--kuro-radius);
+  background: linear-gradient(110deg,rgba(12,20,30,.94),rgba(19,30,42,.91)),url('/images/bg_forest.jpg') center / cover no-repeat;
+}
+.app .kuro-status-v4 .kuro-status-v3__portrait-button {
+  border-radius: 12px;
+  border-color: var(--kuro-line);
+}
+.app .kuro-status-v4 :is(.kuro-status-v3__attributes,.kuro-status-v3__account-row,.kuro-status-v3__stat-row) {
+  border-color: var(--kuro-line);
+  border-radius: 10px;
+}
+.app .kuro-status-v4 .kuro-status-v3__attributes {
+  background: linear-gradient(145deg,var(--kuro-surface-up),var(--kuro-surface));
+  border-radius: var(--kuro-radius);
+}
+.app .kuro-status-v4 .kuro-status-v3__section-eyebrow,
+.app .kuro-status-v4 .kuro-status-v3__eyebrow,
+.app .kuro-status-v4 .kuro-status-v3__level {
+  color: var(--kuro-gold);
+}
+.app .kuro-status-v4 .kuro-status-v3__stat-row,
+.app .kuro-status-v4 .kuro-status-v3__account-row {
+  background: rgba(11,18,27,.45);
+  min-height: 39px;
+}
+.app .kuro-status-v4 .kuro-status-layout {
+  align-items: stretch;
+  gap: var(--kuro-gap);
+}
+.app .kuro-status-v4 .kuro-status-layout > div {
+  min-width: 0;
+}
+.app .kuro-status-v4 :is(.kuro-status-identity,.kuro-status-info,.kuro-status-powers,.kuro-status-account) {
+  border-color: var(--kuro-line);
+  border-radius: var(--kuro-radius);
+  background: linear-gradient(145deg,var(--kuro-surface-up),var(--kuro-surface));
+}
+.app .kuro-status-v4 :is(.kuro-status-info,.kuro-status-powers,.kuro-status-account) > h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--kuro-gold);
+  border-bottom-color: var(--kuro-line);
+}
+.app .kuro-status-v4 .kuro-status-identity select {
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+  border-radius: 9px;
+  color: var(--kuro-copy);
+  background: var(--kuro-surface-up);
+  border-color: var(--kuro-line);
+}
+.app .kuro-status-v4 .kuro-status-identity select:focus-visible {
+  outline: 2px solid var(--kuro-focus);
+  outline-offset: 3px;
+}
+.app .kuro-status-v4 .kuro-status-powers .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 10px;
+}
+.app .kuro-status-v4__power-slot {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 13px;
+  border: 1px solid var(--kuro-line);
+  border-radius: 10px;
+  background: rgba(10,18,27,.52);
+}
+.app .kuro-status-v4__power-slot.is-active {
+  border-color: rgba(235,193,124,.45);
+  background: rgba(235,193,124,.07);
+}
+.app .kuro-status-v4__power-slot.is-unavailable { opacity: .75; }
+.app .kuro-status-v4__power-slot > span:first-child {
+  font: 700 10px/1.35 'JetBrains Mono',monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--kuro-muted);
+}
+.app .kuro-status-v4__power-slot > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.app .kuro-status-v4__power-slot > div > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+.app .kuro-status-v4__power-icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--kuro-line);
+  border-radius: 9px;
+  color: var(--kuro-gold);
+  background: rgba(235,193,124,.055);
+}
+@media (max-width: 1080px) {
+  .app .kuro-status-v4 .kuro-status-powers .grid-3 { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 680px) {
+  .app .kuro-status-v4 > .page { padding: 16px; }
+  .app .kuro-status-v4 .kuro-status-powers .grid-3 { grid-template-columns: minmax(0,1fr); }
+  .app .kuro-status-v4 .kuro-status-v3__attribute-grid { grid-template-columns: minmax(0,1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app .kuro-status-v4 .kuro-status-v3__portrait-button { transition: none; }
+}

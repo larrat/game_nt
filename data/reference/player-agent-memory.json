@@ -7,18 +7,17 @@
   "runtime": {
     "status": "not_implemented",
     "mode": "evidence_and_decision_contract_only",
-    "browserExecution": "unavailable_in_current_turn"
+    "browserExecution": "reconnection_succeeded_in_later_collection; requires_fresh_read"
   },
   "latestConfirmedState": {
-    "observedAt": "2026-10-31T22:41:00Z",
-    "timePrecision": "approximate_after_battle",
+    "timePrecision": "Estado histórico confirmado após Meizu/hospital; horário exato não registrado",
     "requiresFreshReadBeforeAction": true,
     "class": "Taijutsu",
     "rank": "Estudante",
     "level": 5,
-    "xp": 1426,
+    "xp": 1726,
     "xpNextLevel": 3240,
-    "ryous": 3824,
+    "ryous": 4046,
     "resources": {
       "hp": {
         "current": 360,
@@ -29,11 +28,11 @@
         "max": 264
       },
       "stamina": {
-        "current": 500,
+        "current": 627,
         "max": 627
       }
     },
-    "npcWins": 2,
+    "npcWins": 3,
     "tasks": 10,
     "rankDMissions": 0,
     "learnedJutsus": [
@@ -54,6 +53,13 @@
       "seals": 6,
       "resistance": 4,
       "energy": 10
+    },
+    "recordUpdatedAt": "2026-11-01",
+    "npcLosses": 1,
+    "jutsuUpgradePoints": {
+      "free": 2,
+      "used": 1,
+      "lost": 0
     }
   },
   "observations": [
@@ -96,6 +102,18 @@
         "minimumLevel": 1
       },
       "pendingAction": "Consumir uma unidade pela mochila e confirmar saldo e estoque"
+    },
+    {
+      "id": "gouzu-and-meizu",
+      "status": "verified",
+      "source": "historia-gouzu-combate.json + historia-meizu-resultado.txt + aprimoramento-validado.md",
+      "facts": {
+        "gouzu": "vitória",
+        "meizu": "derrota por recursos insuficientes; stamina1 e adversárioHP1",
+        "hospitalCostRyous": 90,
+        "hospitalFullRecovery": true
+      },
+      "lesson": "Recuperar fora de combate antes de iniciar outro desafio; ramen bloqueado em combate"
     }
   ],
   "decisions": [
@@ -112,12 +130,9 @@
     }
   ],
   "nextChecks": [
-    "Conectar e atualizar estado",
-    "Localizar ação visível de usar Merenda na mochila",
-    "Consultar aprimoramento e evolução de Dynamic Kick",
-    "Consultar saldo e efeitos de talentos",
-    "Conferir próximo desafio País das Ondas e requisitos",
-    "Conquistar três vitórias restantes e graduar Genin"
+    "Revalidar estado antes de agir",
+    "Coleta de dados e arquivos do site é a prioridade atual",
+    "Completar diálogos e imagens pendentes conforme relatório de cobertura"
   ],
   "invariants": [
     "Não executar com estado antigo",

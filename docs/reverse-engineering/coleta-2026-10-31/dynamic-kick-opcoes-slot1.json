@@ -1,0 +1,27 @@
+[
+  {
+    "image": "https://narutogame.com.br/assets/images//logado//equipamentos/38/1/Soquinho_UP_03.jpg",
+    "item": "22026",
+    "text": "Aprimoramento em Ataque ( Tai / Buk ) Aprimoramentos Aumenta seu Ataque ( Tai / Buk ) em 7 Melhor Equipado no Slot 1 Necessário 1 Ponto(s) de Aprimoramento updateTooltips();"
+  },
+  {
+    "image": "https://narutogame.com.br/assets/images//logado//equipamentos/38/2/MiraSimples_Down_02.jpg",
+    "item": "22035",
+    "text": "Aprimoramento de Precisão Aprimoramentos Reduz o Requerimento de Selo em 2 Melhor Equipado no Slot 2 Necessário 1 Ponto(s) de Aprimoramento updateTooltips();"
+  },
+  {
+    "image": "https://narutogame.com.br/assets/images//logado//equipamentos/38/2/MiraSimples_Down_02.jpg",
+    "item": "22074",
+    "text": "Aprimoramento de Precisão Aprimoramentos Reduz o Requerimento de Selo em 2 Melhor Equipado no Slot 2 Necessário 1 Ponto(s) de Aprimoramento updateTooltips();"
+  },
+  {
+    "image": "https://narutogame.com.br/assets/images//logado//equipamentos/38/3/Mana_Down_02.jpg",
+    "item": "22191",
+    "text": "Aprimoramento em Redução de Chakra para Ataques Aprimoramentos Reduz o Consumo de Chakra em 8% Melhor Equipado no Slot 3 Necessário 1 Ponto(s) de Aprimoramento updateTooltips();"
+  },
+  {
+    "image": "https://narutogame.com.br/assets/images//logado//equipamentos/38/3/Raio_Down_02.jpg",
+    "item": "22218",
+    "text": "Aprimoramento em Redução de Stamina para Ataques Aprimoramentos Reduz o Consumo de Stamina em 8% Melhor Equipado no Slot 3 Necessário 1 Ponto(s) de Aprimoramento updateTooltips();"
+  }
+]

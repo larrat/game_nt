@@ -1,0 +1,433 @@
+{
+  "observedAt": "2026-11-01",
+  "cards": [
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado do Sol II + 8 + 6 + 6 + 10 Requer graduação: ANBU Requer Level 35 ou maior Requer o item: Selo Amaldiçoado do Sol I Requer o Selo: Selo Amaldiçoado do Sol Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/4/2.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/ken.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 6",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 6",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 10",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_fisico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: ANBU",
+        "Requer Level 35 ou maior",
+        "Requer o item: Selo Amaldiçoado do Sol I",
+        "Requer o Selo: Selo Amaldiçoado do Sol"
+      ],
+      "text": "Selo Amaldiçoado do Sol II + 8 + 6 + 6 + 10 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado do Sol III + 12 + 8 + 8 + 12 Requer graduação: Sannin da Folha Requer Level 45 ou maior Requer o item: Selo Amaldiçoado do Sol II Requer o Selo: Selo Amaldiçoado do Sol Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/4/3.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 12",
+          "url": "https://narutogame.com.br/assets/images/icones/ken.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 12",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_fisico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: Sannin da Folha",
+        "Requer Level 45 ou maior",
+        "Requer o item: Selo Amaldiçoado do Sol  II",
+        "Requer o Selo: Selo Amaldiçoado do Sol"
+      ],
+      "text": "Selo Amaldiçoado do Sol III + 12 + 8 + 8 + 12 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado do Céu I + 4 + 4 + 4 + 8 Requer graduação: Chuunin Requer Level 15 ou maior Requer o Selo: Selo Amaldiçoado do Céu Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/1/1.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/nin.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: Chuunin",
+        "Requer Level 15 ou maior",
+        "Requer o Selo: Selo Amaldiçoado do Céu"
+      ],
+      "text": "Selo Amaldiçoado do Céu I + 4 + 4 + 4 + 8 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado do Céu II + 8 + 6 + 6 + 10 Requer graduação: ANBU Requer Level 35 ou maior Requer o item: Selo Amaldiçoado do Céu I Requer o Selo: Selo Amaldiçoado do Céu Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/1/2.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/nin.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 6",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 6",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 10",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: ANBU",
+        "Requer Level 35 ou maior",
+        "Requer o item: Selo Amaldiçoado do Céu I",
+        "Requer o Selo: Selo Amaldiçoado do Céu"
+      ],
+      "text": "Selo Amaldiçoado do Céu II + 8 + 6 + 6 + 10 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado do Céu III + 12 + 8 + 8 + 12 Requer graduação: Sannin da Folha Requer Level 45 ou maior Requer o item: Selo Amaldiçoado do Céu II Requer o Selo: Selo Amaldiçoado do Céu Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/1/3.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 12",
+          "url": "https://narutogame.com.br/assets/images/icones/nin.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 12",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: Sannin da Folha",
+        "Requer Level 45 ou maior",
+        "Requer o item: Selo Amaldiçoado do Céu II",
+        "Requer o Selo: Selo Amaldiçoado do Céu"
+      ],
+      "text": "Selo Amaldiçoado do Céu III + 12 + 8 + 8 + 12 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado da Terra I + 4 + 4 + 4 + 8 Requer graduação: Chuunin Requer Level 15 ou maior Requer o Selo: Selo Amaldiçoado da Terra Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/2/1.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/tai.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_fisico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: Chuunin",
+        "Requer Level 15 ou maior",
+        "Requer o Selo: Selo Amaldiçoado da Terra"
+      ],
+      "text": "Selo Amaldiçoado da Terra I + 4 + 4 + 4 + 8 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado da Terra II + 8 + 6 + 6 + 10 Requer graduação: ANBU Requer Level 35 ou maior Requer o item: Selo Amaldiçoado da Terra I Requer o Selo: Selo Amaldiçoado da Terra Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/2/2.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/tai.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 6",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 6",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 10",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_fisico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: ANBU",
+        "Requer Level 35 ou maior",
+        "Requer o item: Selo Amaldiçoado da Terra I",
+        "Requer o Selo: Selo Amaldiçoado da Terra"
+      ],
+      "text": "Selo Amaldiçoado da Terra II + 8 + 6 + 6 + 10 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado da Terra III + 12 + 8 + 8 + 12 Requer graduação: Sannin da Folha Requer Level 45 ou maior Requer o item: Selo Amaldiçoado da Terra II Requer o Selo: Selo Amaldiçoado da Terra Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/2/3.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 12",
+          "url": "https://narutogame.com.br/assets/images/icones/tai.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 12",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_fisico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: Sannin da Folha",
+        "Requer Level 45 ou maior",
+        "Requer o item: Selo Amaldiçoado da Terra II",
+        "Requer o Selo: Selo Amaldiçoado da Terra"
+      ],
+      "text": "Selo Amaldiçoado da Terra III + 12 + 8 + 8 + 12 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado do Lua I + 4 + 4 + 4 + 8 Requer graduação: Chuunin Requer Level 15 ou maior Requer o Selo: Selo Amaldiçoado da Lua Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/3/1.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/gen.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: Chuunin",
+        "Requer Level 15 ou maior",
+        "Requer o Selo: Selo Amaldiçoado da Lua"
+      ],
+      "text": "Selo Amaldiçoado do Lua I + 4 + 4 + 4 + 8 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado do Lua II + 8 + 6 + 6 + 10 Requer graduação: ANBU Requer Level 35 ou maior Requer o item: Selo Amaldiçoado do Lua I Requer o Selo: Selo Amaldiçoado da Lua Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/3/2.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/gen.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 6",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 6",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 10",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: ANBU",
+        "Requer Level 35 ou maior",
+        "Requer o item: Selo Amaldiçoado do Lua I",
+        "Requer o Selo: Selo Amaldiçoado da Lua"
+      ],
+      "text": "Selo Amaldiçoado do Lua II + 8 + 6 + 6 + 10 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado do Lua III + 12 + 8 + 8 + 12 Requer graduação: Sannin da Folha Requer Level 45 ou maior Requer o item: Selo Amaldiçoado do Lua II Requer o Selo: Selo Amaldiçoado da Lua Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/3/3.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 12",
+          "url": "https://narutogame.com.br/assets/images/icones/gen.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 12",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: Sannin da Folha",
+        "Requer Level 45 ou maior",
+        "Requer o item: Selo Amaldiçoado do Lua II",
+        "Requer o Selo: Selo Amaldiçoado da Lua"
+      ],
+      "text": "Selo Amaldiçoado do Lua III + 12 + 8 + 8 + 12 Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Selo Amaldiçoado do Sol I + 4 + 4 + 4 + 8 Requer graduação: Chuunin Requer Level 15 ou maior Requer o Selo: Selo Amaldiçoado do Sol Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/selos/4/1.gif"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/ken.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/conhe.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 4",
+          "url": "https://narutogame.com.br/assets/images/icones/agi.png"
+        },
+        {
+          "alt": "",
+          "context": "+ 8",
+          "url": "https://narutogame.com.br/assets/images/icones/atk_fisico.png"
+        }
+      ],
+      "requirements": [
+        "Requer graduação: Chuunin",
+        "Requer Level 15 ou maior",
+        "Requer o Selo: Selo Amaldiçoado do Sol"
+      ],
+      "text": "Selo Amaldiçoado do Sol I + 4 + 4 + 4 + 8 Treinar"
+    }
+  ]
+}

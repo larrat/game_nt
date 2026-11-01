@@ -1,0 +1,191 @@
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                 
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "5" [level=1]
+- img "Vida"
+- generic: 267/360
+- img "Chakra"
+- generic: 189/264
+- img "Stamina"
+- generic: 339/627
+- generic: "EXP: 1726/3240"
+- text: LVL
+- heading "6" [level=1]
+- generic: "1"
+- generic: "8"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link "5":
+  - /url: "?secao=mensagens"
+  - generic: "5"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "66":
+  - /url: "?secao=vantagens"
+- generic: "4136"
+- generic: Ramen
+- img "Merenda Ninja"
+- generic: x 5
+- heading "Desafio Dojo" [level=1]
+- heading "Que pena!" [level=2]:
+  - generic: 
+  - generic: Que pena!
+- paragraph:
+  - text: Você perdeu o combate.
+  - text: Ir para o
+  - link "Hospital":
+    - /url: "?secao=hospital_quarto"
+- main:
+  - generic: 
+  - text: 
+  - generic: "0"
+  - generic: Pontos de Crítico
+  - text: 
+  - generic: "0"
+  - generic: Pontos de Absorção
+  - text: 
+  - generic: "0"
+  - generic: Pontos de Perfuração
+  - generic: Personagem de teste
+  - generic: Estudante
+  - generic: Lvl. 5
+  - generic: "Poder Ninja: 8750"
+  - generic: "Vida: 100"
+  - generic: "Chakra: 96"
+  - generic: "Stamina: 1"
+  - generic: 01:31
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 21 de dano
+  - text: Meizu usa Acrobacia
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 8 de dano
+  - text: Meizu usa Defender com as mãos
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 25 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 10 de dano
+  - text: Meizu usa Chute
+  - text: Personagem de teste recebe 15 de dano
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 25 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 6 de dano
+  - text: Meizu usa Acrobacia
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 25 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 10 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 23 de dano
+  - text: Meizu usa Defender com as mãos
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 8 de dano
+  - text: Meizu usa Defender com as mãos
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 25 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 10 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 25 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 10 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 21 de dano
+  - text: Meizu usa Acrobacia
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 10 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 21 de dano
+  - text: Meizu usa Acrobacia
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 10 de dano
+  - text: Meizu usa Chute
+  - text: Personagem de teste recebe 15 de dano
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 23 de dano
+  - text: Meizu usa Defender com as mãos
+  - separator
+  - text: Personagem de teste usa Soco
+  - text: Meizu recebe 3 de dano
+  - text: Meizu usa Acrobacia
+  - separator
+  - text: Personagem de teste usa Dynamic Kick - Lvl 1
+  - text: Meizu recebe 23 de dano
+  - text: Meizu usa Defender com as mãos
+  - separator
+  - text: Personagem de teste usa Chute
+  - text: Meizu recebe 10 de dano
+  - text: Meizu usa Soco
+  - text: Personagem de teste recebe 12 de dano
+  - separator
+  - generic: Turno 23 - Seu turno
+  - generic: 
+  - text: 
+  - generic: "0"
+  - generic: Pontos de Crítico
+  - text: 
+  - generic: "0"
+  - generic: Pontos de Absorção
+  - text: 
+  - generic: "0"
+  - generic: Pontos de Perfuração
+  - generic: Meizu
+  - generic: NPC Boladão
+  - generic: "--"
+  - generic: Lvl. 5
+  - generic: "Poder Ninja: 11050"
+  - generic: "Vida: 1"
+  - generic: "Chakra: 85"
+  - generic: "Stamina: 459"

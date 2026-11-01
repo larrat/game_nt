@@ -1,0 +1,70 @@
+/* Popover */
+.popover {
+    padding: 0px;
+    max-width: 330px;
+    font-size: unset;
+}
+.popover-header {
+    background-color: transparent;
+}
+.popover-body {
+    border-radius: 0 0 5px 5px;
+    color: unset;
+}
+.bs-popover-top .arrow::after,
+.bs-popover-auto[x-placement^="top"] .arrow::after {
+    transform: translateY(-1px);
+    border-width: .5rem .5rem 0;
+}
+.bs-popover-right .arrow::after,
+.bs-popover-auto[x-placement^="right"] .arrow::after {
+    transform: translateX(1px);
+    border-width: .5rem .5rem .5rem 0;
+}
+.bs-popover-bottom .arrow::after,
+.bs-popover-auto[x-placement^="bottom"] .arrow::after {
+    transform: translateY(1px);
+    border-width: 0 .5rem .5rem;
+}
+.bs-popover-left .arrow::after,
+.bs-popover-auto[x-placement^="left"] .arrow::after {
+    transform: translateX(-1px);
+    border-width: .5rem 0 .5rem .5rem;
+}
+.bs-popover-bottom .popover-header::before{
+    border-bottom: none;
+}
+.tooltip .arrow::after {
+    content: "";
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+}
+.bs-tooltip-top .arrow::after,
+.bs-tooltip-auto[x-placement^="top"] .arrow::after {
+    transform: translateY(-2px);
+    border-width: .4rem .4rem 0;
+}
+.bs-tooltip-right .arrow::after,
+.bs-tooltip-auto[x-placement^="right"] .arrow::after {
+    transform: translateX(2px);
+    border-width: .4rem .4rem .4rem 0;
+}
+.bs-tooltip-bottom .arrow::after,
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::after {
+    transform: translateY(2px);
+    border-width: 0 .4rem .4rem;
+}
+.bs-tooltip-left .arrow::after,
+.bs-tooltip-auto[x-placement^="left"] .arrow::after {
+    transform: translateX(-2px);
+    border-width: .4rem 0 .4rem .4rem;
+}
+.bs-tooltip-top .arrow::before,
+.bs-tooltip-auto[x-placement^="top"] .arrow::before { border-top-color: rgba(43, 131, 119, .85) !important; }
+.bs-tooltip-right .arrow::before,
+.bs-tooltip-auto[x-placement^="right"] .arrow::before { border-right-color: rgba(43, 131, 119, .85) !important; }
+.bs-tooltip-bottom .arrow::before,
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::before { border-bottom-color: rgba(43, 131, 119, .85) !important; }
+.bs-tooltip-left .arrow::before,
+.bs-tooltip-auto[x-placement^="left"] .arrow::before { border-left-color: rgba(43, 131, 119, .85) !important; }

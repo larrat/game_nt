@@ -1,0 +1,97 @@
+#character-data{
+    position: relative;
+    text-align: center;
+    top: 2rem;
+    font-size: 1.5rem;
+}
+.character-background{
+    width: 245px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+}
+#character-info .name{
+    font-size: 2rem;
+}
+#character-status{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+#character-status div{
+  /*flex-grow: 1;*/
+}
+#character-status input{
+    font-size: inherit !important;
+}
+#character-status2{
+    margin-top: 2rem;
+}
+#character-status2 div{
+    font-size: 1.4rem;
+}
+.left-quests-container{
+    font-size: 1.4rem;
+    text-align: center;
+    padding-top: 1rem;
+}
+.left-quests-container .progress{
+    font-size: 1.5rem;
+    height: 1.8rem;
+}
+.left-quests-container li{
+    display: block;
+    padding: 0 !important;
+    margin: 0 auto;
+    text-align: center;
+}
+.left-quests-container .espaco{
+    padding-bottom: 2rem;
+}
+.titulos-menu{
+    text-align: center;
+    padding: 1rem;
+    margin: 3rem 0 0 0;
+}
+.titulos {
+    font-size: 1.5rem;
+    padding: 0rem !important;
+    margin-bottom: 1rem;
+}
+.titulos li{
+    display: block !important;
+    text-align: center;
+    margin-right: 0rem;
+}
+.barra_exp3 {
+    position: relative;
+    height: 18px;
+    margin: auto;
+}
+#character-attributes {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0 2rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#character-attributes .box2 img, #character-attributes .box img{
+    border-radius: 25px;
+    width: 40px;
+}
+/* custom scrollbar */
+.sc2::-webkit-scrollbar {
+    width: 20px;
+}
+  
+.sc2::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.sc2::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}

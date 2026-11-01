@@ -1,0 +1,144 @@
+.box-principal-batalha-4x4{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.box-principal-batalha-4x4 .box-principal-left, .box-principal-batalha-4x4 .box-principal-right-flex{
+    display: flex;
+    flex-wrap: wrap;
+    width: 280px;
+}
+.box-principal-batalha-4x4 .box-filhos-4x4{
+    display: flex;
+    flex-wrap: wrap;
+}
+.box-equipe-name{
+    width:100%;
+}
+.esquerda-profile-4x4, .direita-profile-4x4{
+    width: 140px;
+    height: auto;
+    position: relative;
+    padding-bottom: 2rem;
+}
+.esquerda-profile-4x4 .buff-4x4-players, .box-principal-right .buff-4x4-enemy, .direita-profile-4x4 .buff-4x4-players{
+    display: flex;
+    justify-content: center;
+    height: 80px;
+}
+.pvp-mod-box{
+    height: 80px;
+}
+.character-background-dojo-4x4{
+    width: 130px;
+    height: 129px;
+    margin: auto;
+}
+.barra_exp5 {
+    position: relative;
+    height: 22px !important;
+}
+.barra_exp5 #p {
+    height: 19px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}
+.barra_exp5 #t {
+    position: absolute;
+    top: 0px;
+    left: 7px;
+    font-weight: bold;
+    font-size: 13px;
+    z-index: 3;
+}
+.d-icon-counter img {
+    position: relative;
+    top: 5px;
+    margin: auto;
+    width: 25px;
+}
+.d-icon-counter i{
+    font-size: 1.6rem !important;
+}
+.buff-4x4-players .buffs-4x4{
+    display: flex;
+    flex-wrap: wrap;
+}
+.morto {
+    width: 78px;
+    height: 80px;
+    background-image: url('../images/logado/multi_morto.png');
+    position: absolute;
+    top: 110px;
+    left: 35px;
+    display: none
+}
+.pvp-mod-box .pvp-stat-box, .pvp-mod-box .pvp-role-box, .pvp-mod-box .pvp-buff-box .el-tooltip, .pvp-mod-box .pvp-buff-box .buff-tooltip{
+    float: left;
+}
+.team-role-box {
+    position: relative
+}
+
+.team-role-box .ex_tooltip {
+    z-index: 100 !important
+}
+.evento4-4x1 .mobile{
+    display:none;
+}
+.evento4-4x1 .desktop{
+    display:block;
+}
+.pvp-mod-box .d-icon-counter{
+    width: 34px !important;
+    height: 34px !important;
+
+}
+.pvp-mod-box .d-icon-counter img {
+    width: 25px !important;
+    height: 25px !important;
+}
+@media only screen and (max-width: 920px) {
+    .evento4-4x1 .desktop{
+        display:none;
+    }
+    .evento4-4x1 .mobile{
+        display:block;
+    }
+}
+@media only screen and (max-width: 825px) {
+    .centro-batalha-4x4{
+        width: 20%;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .team-role-box{
+        width:22px !important;
+    }
+    .esquerda-profile-4x4 .buff-4x4-players, .box-principal-right .buff-4x4-enemy, .direita-profile-4x4 .buff-4x4-players {
+        height: 45px;
+    }
+    .box-principal-batalha-4x4 {
+        align-items: center;
+        padding-bottom: 3rem;
+    }
+    .box-principal-batalha-4x4 .box-principal-left, .box-principal-batalha-4x4 .box-principal-right, .box-principal-right-flex {
+        width: 150px !important;
+    }
+    .centro-batalha-4x4{
+        width: 20%;
+    }
+    .esquerda-profile-4x4, .direita-profile-4x4 {
+        height: auto;
+    }
+    .morto {
+        top: 75px;
+    }
+    #pvp-current{
+        font-size: 1.3rem;
+    }
+}

@@ -1,0 +1,4386 @@
+{
+  "observedAt": "2026-11-01",
+  "scope": "Arquivos estáticos observados nas telas desta coleta; não representa todos os arquivos do site",
+  "summary": {
+    "screens": 10,
+    "downloadOccurrences": 1215,
+    "uniqueUrls": 287,
+    "uniqueFiles": 262,
+    "failures": 0
+  },
+  "assets": [
+    {
+      "url": "https://narutogame.com.br/assets/css/battle.css?v=43",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/32fccf4f67c3b15d.css",
+      "sha256": "32fccf4f67c3b15df47c1141d70885d58062c480d58cc521e7a7a98c465b5064",
+      "bytes": 2329,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/main.css?v=43",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/92257f8c1ad36f6d.css",
+      "sha256": "92257f8c1ad36f6d1f7df0f767db2d6db567dd7661c50fdfd1477645adee0c04",
+      "bytes": 3231,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/info-card.css?v=43",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/30b57d5a10f510b7.css",
+      "sha256": "30b57d5a10f510b7c9e672a9ea0b9f90e14306ea40b81670d0cd590845938181",
+      "bytes": 5825,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/box.css?v=43",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/7c3ac2f50e81c711.css",
+      "sha256": "7c3ac2f50e81c711230aa2b868153b67e36bcac380afc2f86d23d101f23b8612",
+      "bytes": 5785,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/light.css?v=43",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/1043e42351ca3141.css",
+      "sha256": "1043e42351ca3141b27a605874bd0c04c48a068306783324b9731b9a36cbe89e",
+      "bytes": 24736,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/externos/bootstrap-tourist.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/17da6d337655ba31.css",
+      "sha256": "17da6d337655ba318827f04fdd3ec94f0a92b13a8ab70aaf774868af8f7ac9c3",
+      "bytes": 2321,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/bootstrap-select.min.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/cda4a81c187015d9.css",
+      "sha256": "cda4a81c187015d95ed2c71f1841540b08203cdec5fa2a7d5d1825a3c2166f8c",
+      "bytes": 16264,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile/142/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/c3796f6c06ad759a.png",
+      "sha256": "c3796f6c06ad759a0dd745029bac6db776eefd7c4b70983f89446f8453f5d932",
+      "bytes": 54890,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/bag.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/b613284b48a3786e.jpg",
+      "sha256": "b613284b48a3786ea2f9d1d35ab54665c94251b7b212988a136e59233e48a7d5",
+      "bytes": 2544,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logo/logo-mobile.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/1b63e5ff63092e90.png",
+      "sha256": "1b63e5ff63092e90f9a2d7ae4412d33fa6da19189a9be00977e5135a49c4a407",
+      "bytes": 8886,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/header.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/ff4b70eb303fc259.css",
+      "sha256": "ff4b70eb303fc259d7fa36acb89579980bc8e493f517873fe467b55018980fc9",
+      "bytes": 4722,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/info-card.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/30b57d5a10f510b7.css",
+      "sha256": "30b57d5a10f510b7c9e672a9ea0b9f90e14306ea40b81670d0cd590845938181",
+      "bytes": 5825,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/main-card.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/4972210433f76537.css",
+      "sha256": "4972210433f7653768a3f94cbaf02a613c145f03edea811f6040f58539cd3eb8",
+      "bytes": 2814,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/points.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/9f617d047f2ea31c.css",
+      "sha256": "9f617d047f2ea31c79c946327aac4fa4d694f637b78974708292ce545bf91e76",
+      "bytes": 2219,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/footer.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/e83098cfbb751514.css",
+      "sha256": "e83098cfbb75151448790980b04aa331b79b163a5a78f67f5b9fe8cd3f253969",
+      "bytes": 2601,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/menu-fixed.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/37b32410bbb9d12c.css",
+      "sha256": "37b32410bbb9d12cc1f4b8649fc0383efc6a90c49869899bbb262ff3aab33bd1",
+      "bytes": 1294,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/alerts.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/3121ce13ceada621.css",
+      "sha256": "3121ce13ceada6216b0252c11fb89486304dcf2862bc5d20b643cdefd005065e",
+      "bytes": 1433,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/menu-mobile.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/a170abd951122eda.css",
+      "sha256": "a170abd951122eda58bb3d25c0c9910920e4650d9cbad5930a90a8ebd987ddfc",
+      "bytes": 1977,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/personagem.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/16446535c20a8f99.css",
+      "sha256": "16446535c20a8f99390756941442fb32450c676eb9c8182a465c6197d41260e9",
+      "bytes": 1798,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/personagem_cri_sel.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/d657ab64c6cef640.css",
+      "sha256": "d657ab64c6cef64012b28404ab600c88a729e005e1243a9eaee0fda9b83752bf",
+      "bytes": 2822,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/bootstrap-theme.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/c8df856d17552125.css",
+      "sha256": "c8df856d17552125fad16abcaa3a65aeb6714de4b720017655ef40baa163d021",
+      "bytes": 2252,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/geral.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/49ec7db5bbc2aa04.css",
+      "sha256": "49ec7db5bbc2aa0494907c0c5a1a078d346545440baecfd25c25eb9ff7b85f24",
+      "bytes": 14897,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/cards.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/b06695533de6388e.css",
+      "sha256": "b06695533de6388eb2ec616a6f485df6d3e8b284b8723cb54b224aaa5983ffba",
+      "bytes": 933,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/box.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/7c3ac2f50e81c711.css",
+      "sha256": "7c3ac2f50e81c711230aa2b868153b67e36bcac380afc2f86d23d101f23b8612",
+      "bytes": 5785,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/box-batalha.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/85fc72aad8dfc6f6.css",
+      "sha256": "85fc72aad8dfc6f677b9263bbb663254ef175ea174fc58f246dff1ba36eae4d5",
+      "bytes": 9149,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/box-batalha-4x4.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/dcc652ab0e3a54d6.css",
+      "sha256": "dcc652ab0e3a54d68cd06262ca2183c849c7841478dbe43b84663c08c8d202cf",
+      "bytes": 3115,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/packs.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/be4569b81bbc1f23.css",
+      "sha256": "be4569b81bbc1f236d478b58684064ef3df529295f94e30a8cee5091ed0dd0bf",
+      "bytes": 4051,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/css/universal-tooltip.css",
+      "kind": "stylesheet",
+      "contentType": "text/css",
+      "file": "assets/0aaf93e1d6c5f11a.css",
+      "sha256": "0aaf93e1d6c5f11adc099cdb4a17bbca3fe7602b1f57be6286216ea735f336a9",
+      "bytes": 3797,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/social/brazil.svg",
+      "kind": "image",
+      "contentType": "image/svg+xml",
+      "file": "assets/d578e5398f9d5228.svg",
+      "sha256": "d578e5398f9d5228c4842ae192a7fa8cc47b502a8ec1e721b0f5c02a9e290902",
+      "bytes": 1980,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/social/usa.svg",
+      "kind": "image",
+      "contentType": "image/svg+xml",
+      "file": "assets/378faac8be26801f.svg",
+      "sha256": "378faac8be26801fb68ea53d6bf4def5a9fa99617b355513cc9a11f61bf42fa4",
+      "bytes": 3428,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/topo-personagem/142.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/9676c7bb42ba1780.png",
+      "sha256": "9676c7bb42ba1780d363198fa0f3521017366a23eff50ee2586890ab2a968212",
+      "bytes": 184715,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/heart.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/25eb81d69fed3e8f.png",
+      "sha256": "25eb81d69fed3e8fea717be1da8cfb60aec3f6e8c6106ba25bdc6f441ea9cb96",
+      "bytes": 5744,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/chakra.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/66b98a2e5881e099.png",
+      "sha256": "66b98a2e5881e099424863a13ef6dbaf4f2f7698df0e0b20ef0b31103f984526",
+      "bytes": 9203,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/stamina.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/03c80bc2cc7b3609.png",
+      "sha256": "03c80bc2cc7b3609b56414ae8166b4c1b7acfc75175152bb906bb7073cc343e9",
+      "bytes": 4836,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/round46.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/e85ace57bedbe4ec.png",
+      "sha256": "e85ace57bedbe4ec6f70278c6e46a1f540370c5a7a6686ca1e01c709e94d54cc",
+      "bytes": 6059,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/templo.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/bd414685cc7eee03.png",
+      "sha256": "bd414685cc7eee030de80c42dc273e1f21917372cab665f3dc76aac2913b10db",
+      "bytes": 6550,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/passe.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/8541688f22e0612b.png",
+      "sha256": "8541688f22e0612b1f77b0bb8fd447d5ae342be5b037a64bbe8f99073c144077",
+      "bytes": 3146,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/rotina.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/0b679ce90fc950c9.png",
+      "sha256": "0b679ce90fc950c961d6221d6af722fb410be22526660849c643884acd886a0d",
+      "bytes": 3177,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/notificacoes.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/b885725df939c6f8.png",
+      "sha256": "b885725df939c6f86799ace8597d7cd0048ac44533e9353c6b0b209ec3a20e7b",
+      "bytes": 3675,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/fidelidade.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/e190a302a66ed444.png",
+      "sha256": "e190a302a66ed4447244e8a3822466b77f50bd3fb9bb366a45519a56d78d880f",
+      "bytes": 4456,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Mensageiro.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/b397352d085d836f.png",
+      "sha256": "b397352d085d836f7a82ca5f59388660753d87e25b5aafbc2fb9a0ef0777e0d1",
+      "bytes": 2267,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Noticias.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/ae2a5ae411a1fbe8.png",
+      "sha256": "ae2a5ae411a1fbe8009b5902697461f9b50fce36d6475168a78cf4b23f919b74",
+      "bytes": 4723,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Creditos.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/47e9fbf944dd24cc.png",
+      "sha256": "47e9fbf944dd24ccdbcee3915e8125fa60546a118eaf997eeea314cc719bf1b1",
+      "bytes": 4519,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/ryous.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/2c08d249635ddf9f.png",
+      "sha256": "2c08d249635ddf9f7b32810c6936b98687eb95cb864b0f88fd1d4b48de0db050",
+      "bytes": 3171,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/menu/Mochila.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/bf223402a58c4a40.png",
+      "sha256": "bf223402a58c4a4072a738f2bedfa536395f9adc6edc053ebeb3130e4971adc0",
+      "bytes": 3884,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/backgrounds/light/b2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/9ba90d9fe2c16d3e.png",
+      "sha256": "9ba90d9fe2c16d3e63a256dd2739a85a6a9defe8a55ce3273aa192871ad05e03",
+      "bytes": 24826,
+      "screen": "status",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "profissoes",
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/backgrounds/light/b1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/e8f8398667992ea8.png",
+      "sha256": "e8f8398667992ea8382c7653d38fa9c4c6e293201d72f8071df3491450d3ac2a",
+      "bytes": 24655,
+      "screen": "status",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "profissoes",
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/topos/vila-1.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/0f13a1df4dc8372a.jpg",
+      "sha256": "0f13a1df4dc8372a8520c824342039104a0c1efb84a5f4a65e8969993ed4322a",
+      "bytes": 388707,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/equipamentos/bg.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/7da16cae9790deb4.png",
+      "sha256": "7da16cae9790deb48fbca928d9d22bdc827c4e717f800f9b89c943ffe80be7cd",
+      "bytes": 40018,
+      "screen": "equipamentos",
+      "screens": [
+        "equipamentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/equipamentos/2/n.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/0aca81d36e3d3b8a.png",
+      "sha256": "0aca81d36e3d3b8a5a8e53545593cc25633bb2770b490c991384db528c49e1b8",
+      "bytes": 7849,
+      "screen": "equipamentos",
+      "screens": [
+        "equipamentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/equipamentos/10/n-1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/846b030dc2de1884.png",
+      "sha256": "846b030dc2de1884db6a7c49c41715e2d7d3a8ea39a17f27a634aaa4f200bada",
+      "bytes": 9761,
+      "screen": "equipamentos",
+      "screens": [
+        "equipamentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/equipamentos/13/n.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/16d1921f4343a4ce.png",
+      "sha256": "16d1921f4343a4ceb132c34cdf421537b87d813bf724cf8e0560f52ca7cde18a",
+      "bytes": 7648,
+      "screen": "equipamentos",
+      "screens": [
+        "equipamentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/equipamentos/11/n.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/884557598496867b.png",
+      "sha256": "884557598496867bf3b506048e6a0987c24115932bc44b0e3e2aff7bb715cfc9",
+      "bytes": 12574,
+      "screen": "equipamentos",
+      "screens": [
+        "equipamentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/equipamentos/14/n.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/8a959debbb65913b.png",
+      "sha256": "8a959debbb65913b2c45623296ab605961ee6bdc917c7f899c09321122710e83",
+      "bytes": 9736,
+      "screen": "equipamentos",
+      "screens": [
+        "equipamentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/equipamentos/15/n.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/e5a6d6ddfc006b57.png",
+      "sha256": "e5a6d6ddfc006b57288d191714176c6051230528be57955aef3980eb67819a1a",
+      "bytes": 9017,
+      "screen": "equipamentos",
+      "screens": [
+        "equipamentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/equipamentos/29/n.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/18499645d2662f64.png",
+      "sha256": "18499645d2662f6450d39bf0e36dc3255a5f7d9a256554bbd6f9a330a2de0ed7",
+      "bytes": 8180,
+      "screen": "equipamentos",
+      "screens": [
+        "equipamentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/social/twitter.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/c9e364d1057438d8.png",
+      "sha256": "c9e364d1057438d8712279e44c30a759c0bbd4a9eb2a6dccf5299657d8d81bd1",
+      "bytes": 988,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/social/facebook.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5d72d57a8bf90e13.png",
+      "sha256": "5d72d57a8bf90e1300f9d05129d703103c7ca06ca12d56ff2eab6d7bf4c9eee3",
+      "bytes": 877,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/social/youtube.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/7867f2e4cd0f37b3.png",
+      "sha256": "7867f2e4cd0f37b37ee69f3a80bb46054c22902df6efd0c35efc38497c77c903",
+      "bytes": 988,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/social/instagram.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/ceed0f2aca98bf0b.png",
+      "sha256": "ceed0f2aca98bf0b20215bf89a234d4120e531294f85262cf361b2a3fb10f01a",
+      "bytes": 1926,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/social/whatsapp.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/e06f857705603087.png",
+      "sha256": "e06f857705603087aed0726349288e8a63bf647928a637105f509e96adc43856",
+      "bytes": 2079,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/social/discord.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/9bc66f89d19e1fde.png",
+      "sha256": "9bc66f89d19e1fde1beacbd53f6eb9d9c4de595cf7ad56561fe76fcc3b36c78c",
+      "bytes": 1969,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/chat/chat_title.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/64f6e5fde4a2a43b.png",
+      "sha256": "64f6e5fde4a2a43b85351f96f0635315ab13f3fdde2d0060a4f0eee718f06812",
+      "bytes": 19260,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "karma-sistema",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/2/17.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/cd20d9f3a7ef4ec3.png",
+      "sha256": "cd20d9f3a7ef4ec3d5910a44ec40ec7906d084e79d301c8e6c6f1c5173309932",
+      "bytes": 71777,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/275/6.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/fbf5e10511b828d5.png",
+      "sha256": "fbf5e10511b828d530102cabc51bd45cdf4943654db493593e3571ccdfd06934",
+      "bytes": 73105,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/3/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5acd04cf0028792d.png",
+      "sha256": "5acd04cf0028792dca368fbb6b630f3a17f087f6c0217d7e9d62cadf7dceef0c",
+      "bytes": 63118,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/456/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/dc10449c37f072c7.png",
+      "sha256": "dc10449c37f072c7c9b415121395cce67795e1b56ce73adc41d2286d758aa86f",
+      "bytes": 24130,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/403/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/ae078893add9c04e.png",
+      "sha256": "ae078893add9c04e7f07ce33a89bc3eb793697afd50434280a5091932caec9e0",
+      "bytes": 29952,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/79/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/761a4bcfa2aaad9a.png",
+      "sha256": "761a4bcfa2aaad9a5380b67dde637ff0f6323d093d96116a257ff23994e4f397",
+      "bytes": 22573,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/3/8.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/572094254a386f4f.png",
+      "sha256": "572094254a386f4f96280a91d281c6d33a878e6adb00bec0893465d66ba874a6",
+      "bytes": 73450,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/43/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/58cff420fb1a5595.png",
+      "sha256": "58cff420fb1a5595207d26de35923fc6864a0681a9b287ed24a3ed383388a624",
+      "bytes": 73204,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/102/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/c96a8e18bb7942f7.png",
+      "sha256": "c96a8e18bb7942f74063bbcfbbdaf5590175f169256537e710b49c6784a36bce",
+      "bytes": 23699,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/84/25.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/75e65c793690ea35.png",
+      "sha256": "75e65c793690ea35bdabf8b3d12a4999cf454012b15815ae4e254483860afa45",
+      "bytes": 39351,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/143/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/54aa0149920ba61d.png",
+      "sha256": "54aa0149920ba61d985e5106d7872ea255b703a42e7b9ee73e33619a889ba7c7",
+      "bytes": 25302,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/2/21.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/991f643f71acf353.png",
+      "sha256": "991f643f71acf353e5c78327c0c8c4b616f1cfa1fd8d3045f7c496e85f7d8d25",
+      "bytes": 24116,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/2/24.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/89260a96829c9d50.png",
+      "sha256": "89260a96829c9d50a7f6f2d80346fb73d3e8704fc8fd002d8ed5a627f87ebcbb",
+      "bytes": 35585,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/505/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/015751c5944716a3.png",
+      "sha256": "015751c5944716a3a16679fb997c72b04ddbfc5de2bcda92a49acb80a8b01e49",
+      "bytes": 31766,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/296/16.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/adb65c7185590cd2.png",
+      "sha256": "adb65c7185590cd287dd1d0f920718495535cf90572875d548993ec2ad8548b9",
+      "bytes": 33693,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/181/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/c81a59ebc85ef536.png",
+      "sha256": "c81a59ebc85ef536dff847d94e0a5037fd2ff50d198460db0d1020a0c67ba465",
+      "bytes": 39238,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/414/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/c1ce6feb7238b212.png",
+      "sha256": "c1ce6feb7238b21257c9dee457ea18f46a10a06c2fe8dd812288ac3ef3d5eb70",
+      "bytes": 36756,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/505/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/b45637c3e18f174d.png",
+      "sha256": "b45637c3e18f174d0e70c3ac707d51b963870d6a6a392a9fc1643dec23320541",
+      "bytes": 22480,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/208/9.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a8c9b647d61b586d.png",
+      "sha256": "a8c9b647d61b586d9c91b7a2ec549c6c6f354d022206416547af514d9fad662f",
+      "bytes": 30258,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/chat/espada.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/02dd9a5350766278.png",
+      "sha256": "02dd9a5350766278db03265c405621c9480d6f2b2e971dabf92530707a73285a",
+      "bytes": 1247,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/102/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5f428a3fe56e6b7f.png",
+      "sha256": "5f428a3fe56e6b7f537dd6a8fe23c8e76b67f0132af606940adc874514efccb4",
+      "bytes": 35093,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/chat/kage_7.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/2ee61b3af47ec687.png",
+      "sha256": "2ee61b3af47ec687e4a88a2d45daa40e9aa264873c1867ce4d13f9e2c1e189b8",
+      "bytes": 1255,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/102/23.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/22910879c077b673.png",
+      "sha256": "22910879c077b673ef4f79f5ac7509765eb6ab790a9d651ee9c7f0a7826a38ce",
+      "bytes": 38719,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/chat/kage_8.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/6eb379ea9177f840.png",
+      "sha256": "6eb379ea9177f840b680001fc546519916c93ce98fc659671b51678e81b82b38",
+      "bytes": 1239,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/287/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a219754bd63b5aa8.png",
+      "sha256": "a219754bd63b5aa8a7b09eda2b1e19ad74d86e6ee439d331af2a2ea6bbab1e10",
+      "bytes": 57012,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/chat/kage_3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/723797296462503c.png",
+      "sha256": "723797296462503cc73ae5ee1a4c61c72d891918ad8bc04e247cd3c773c55c96",
+      "bytes": 1245,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/393/23.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/509b369b1eb527b7.png",
+      "sha256": "509b369b1eb527b7a09938cd35f1093e20a4b88be8ac6c7ff73f57689e3d9f6f",
+      "bytes": 31932,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/60/67.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/bf028212f3a59d0a.png",
+      "sha256": "bf028212f3a59d0acca8ee2282d302281b9cc2b8371ad98798de819df884059c",
+      "bytes": 30090,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/chat/kage_1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/f77ec895d5f1270f.png",
+      "sha256": "f77ec895d5f1270f2dcf0fa670122e5ff3defb611f0c30a5762ba67a65c6769a",
+      "bytes": 1255,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/457/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/7429145740185a93.png",
+      "sha256": "7429145740185a937ba0b05598a35e11f3f4ab3a27c4626b0e2955343ab2d7ce",
+      "bytes": 27891,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/216/6.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/683bc6fe6a97126b.png",
+      "sha256": "683bc6fe6a97126b448104f131aa86c3c0282555807319c1943b1bdbb2ec8021",
+      "bytes": 36648,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/chat/kage_4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/9b9265e522fa9b8e.png",
+      "sha256": "9b9265e522fa9b8ebaa2df95ebc04df0daa7d2b003643cdf1b93f1477f16f7e8",
+      "bytes": 1255,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/240/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/44e08cefeff62775.png",
+      "sha256": "44e08cefeff6277531410162cee5446b19521b406a92ae738864dd6f0c1781a4",
+      "bytes": 27874,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/chat/megafone.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/ee9ac9f31583ff67.png",
+      "sha256": "ee9ac9f31583ff67a2b4210ab750165ec906bff0cf45c56c52e9f042964fd63f",
+      "bytes": 1175,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profile-4x4/842/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/b2cac97802a2690f.png",
+      "sha256": "b2cac97802a2690f6c68e7780ce6c906b3ab872a3ad526ab343e3822ecceeafd",
+      "bytes": 33961,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/tai.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5bb025b3f0b703e9.png",
+      "sha256": "5bb025b3f0b703e959b999793e4fd343ab2034f8857254c8ddc7623b6d4b4dc2",
+      "bytes": 2145,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/conhe.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/cd4301a04ed2c4a1.png",
+      "sha256": "cd4301a04ed2c4a1b2d500458052f6cbdce6e7a3d8af47173ceb50ad1b501619",
+      "bytes": 1308,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/defense.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/d88db98ca92564b5.png",
+      "sha256": "d88db98ca92564b5385e6021451b57a43c36da2473f8489dde6a5badd80cc89b",
+      "bytes": 1920,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/target2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a23cdab6719177e5.png",
+      "sha256": "a23cdab6719177e51acbc5010f449da1c58672579facf2670d87d7064a53364c",
+      "bytes": 2233,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/shield.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/f15ef1decc0042d9.png",
+      "sha256": "f15ef1decc0042d9f1c5a2936ad3c9c6d65b7d2a82814993799b36df31708ff8",
+      "bytes": 1632,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/35a1445e2d45a913.png",
+      "sha256": "35a1445e2d45a9138bb80bbe43f9b75e3f9a310257b17545cbb81d0aa118b304",
+      "bytes": 1753,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/agi.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/b1b69fa8c71e9a36.png",
+      "sha256": "b1b69fa8c71e9a3656d3b51fa672de68c50212a9f9fb3f9b248f53b4f242f176",
+      "bytes": 1659,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/esquiva.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/7e06dd5843382a71.png",
+      "sha256": "7e06dd5843382a71a49f7c89a9aed2d92490a5d9155333677cdba6c2c35565b2",
+      "bytes": 2189,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/ene.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/9c74414969eeb752.png",
+      "sha256": "9c74414969eeb752bf7b39a8e517fc57646a5477466d552de2e16e5923cb7944",
+      "bytes": 1730,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/p_hp.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/0e9f03c9909c820b.png",
+      "sha256": "0e9f03c9909c820b4e6559c6ebfe5919ef544c16b5802274f1a9822a7231c485",
+      "bytes": 2108,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/forc.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/cf74d7962f08054a.png",
+      "sha256": "cf74d7962f08054a3efdfe70cee13f09973b2fc738071872996e39c17c27c050",
+      "bytes": 1900,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/atk_fisico.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/9aa8c70c4d95a3aa.png",
+      "sha256": "9aa8c70c4d95a3aaaba1a2e7940e91f7c9a484f9b9304cfd09e09ab3e43d3203",
+      "bytes": 2009,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/gen.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/d6dff8cb50ec54b1.png",
+      "sha256": "d6dff8cb50ec54b1f91ef94b5339f707d61b0ee6bc44f64afa38bd6f4455da44",
+      "bytes": 2299,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/inte.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a7557113c763d730.png",
+      "sha256": "a7557113c763d7305601154fece4e87559b34a1d8c0718b81e4efdeb305ced93",
+      "bytes": 2060,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/convic.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/aff3e8ccfa631633.png",
+      "sha256": "aff3e8ccfa6316335905dc00bd159bb2b0ba2ec735ff59e68962d420271c3251",
+      "bytes": 2497,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/deter.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/fd3e9e367b867acc.png",
+      "sha256": "fd3e9e367b867acce17a1f56c50e4f4fc3ba55b595ccaebf17756df5a22aa3bd",
+      "bytes": 2509,
+      "screen": "talentos",
+      "screens": [
+        "equipamentos",
+        "invocacoes",
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "profissoes",
+        "selos",
+        "status",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/84c7c8e3075c2137.png",
+      "sha256": "84c7c8e3075c2137c9976d3a1274bcffa38433a5fa821f09f3a9f7a899ce5443",
+      "bytes": 90103,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/b52db5b2c4085843.png",
+      "sha256": "b52db5b2c40858434b8ec72828fd9d861d89a330c6a98f9a4c68f9529f5fcb66",
+      "bytes": 69231,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/00a178461cc3bb85.png",
+      "sha256": "00a178461cc3bb850860b07842ac743b56f8be56d5be85b3b14549bf18d662f1",
+      "bytes": 73816,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/215a4f2ecccc910f.png",
+      "sha256": "215a4f2ecccc910f840e7cc4101571e8cad5a0e9245d0bc49a3e9ab7e858d662",
+      "bytes": 73140,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a81dd5d77b40c5af.png",
+      "sha256": "a81dd5d77b40c5afa6315bd6096082f410841e427cbd593b9c6179a7564d43c5",
+      "bytes": 61570,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/6.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/678e5d22671e9f72.png",
+      "sha256": "678e5d22671e9f726e1e8cafa290ee8386269e434233958d0df0995ed50f2f38",
+      "bytes": 89095,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/8.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/ba6b6a0ebd30a746.png",
+      "sha256": "ba6b6a0ebd30a7469e7c9c6e4a7ede4fc046be63f5a1462f764e03553ab3dcce",
+      "bytes": 77236,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/7.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/2950d5ec2199556c.png",
+      "sha256": "2950d5ec2199556c51c66e33675c680e59a944b3271891cf8be8572e719be488",
+      "bytes": 92415,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/9.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/59e1a5a61be34001.png",
+      "sha256": "59e1a5a61be34001ac5159b0660adefc87f94701d44497a54bd5e096a534e8dd",
+      "bytes": 62747,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/16.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/e7bbc55252045890.png",
+      "sha256": "e7bbc55252045890097a82ca5636dc21f7fc6c20acb2c3571246fd5a1c3464b2",
+      "bytes": 55560,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/15.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/2f4a7f0d07c8f126.png",
+      "sha256": "2f4a7f0d07c8f1263397dab5c16aede850bcf9c14bc8b0db053fab54993a5f6a",
+      "bytes": 65185,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/ken.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/e6bf1e54f17330d0.png",
+      "sha256": "e6bf1e54f17330d09478de89a69c5fbcdbefcf14e4d9b87d31ed088a13a59196",
+      "bytes": 2189,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/ene.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/9c74414969eeb752.png",
+      "sha256": "9c74414969eeb752bf7b39a8e517fc57646a5477466d552de2e16e5923cb7944",
+      "bytes": 1730,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/17.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/e6fcca963dfc7374.png",
+      "sha256": "e6fcca963dfc737424800c6348010177a2d9fa4033f86ca9a397723a00e7bd9d",
+      "bytes": 70999,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/18.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a775fb53133e039f.png",
+      "sha256": "a775fb53133e039f13fe37024775640dcb69499d463bf8513f1170da2a475a79",
+      "bytes": 67035,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/tai.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5bb025b3f0b703e9.png",
+      "sha256": "5bb025b3f0b703e959b999793e4fd343ab2034f8857254c8ddc7623b6d4b4dc2",
+      "bytes": 2145,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/12.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/41f8cb9469b53309.png",
+      "sha256": "41f8cb9469b53309da4cdac1583cd4489d8a7ac977a2d63ae62201d9f3f07f56",
+      "bytes": 78674,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/13.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/c9d07b0396d61b3c.png",
+      "sha256": "c9d07b0396d61b3c55048638dd7fc5f66fea9c8ae90f7285704ccbe6917d1dc5",
+      "bytes": 84986,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/11.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/2c5efcb42e9a59a5.png",
+      "sha256": "2c5efcb42e9a59a5e6c031fa41bbfac337c3a509bde6fb80ef8dfaae47b271b2",
+      "bytes": 69912,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/slider/14.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/49c9e601158f80d7.png",
+      "sha256": "49c9e601158f80d74a5d3d0933f3a6645a97e03680803238d808952b7779a82e",
+      "bytes": 70137,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/nin.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/41f5861e870adccd.png",
+      "sha256": "41f5861e870adccdcbf47cfc6cccba8f414dba2d3d796fd365a633ec3e882536",
+      "bytes": 2369,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/gen.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/d6dff8cb50ec54b1.png",
+      "sha256": "d6dff8cb50ec54b1f91ef94b5339f707d61b0ee6bc44f64afa38bd6f4455da44",
+      "bytes": 2299,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/det.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/fd3e9e367b867acc.png",
+      "sha256": "fd3e9e367b867acce17a1f56c50e4f4fc3ba55b595ccaebf17756df5a22aa3bd",
+      "bytes": 2509,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/inte.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a7557113c763d730.png",
+      "sha256": "a7557113c763d7305601154fece4e87559b34a1d8c0718b81e4efdeb305ced93",
+      "bytes": 2060,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "karma-sistema",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/conc.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a23cdab6719177e5.png",
+      "sha256": "a23cdab6719177e51acbc5010f449da1c58672579facf2670d87d7064a53364c",
+      "bytes": 2233,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/esq.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/7e06dd5843382a71.png",
+      "sha256": "7e06dd5843382a71a49f7c89a9aed2d92490a5d9155333677cdba6c2c35565b2",
+      "bytes": 2189,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/forc.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/cf74d7962f08054a.png",
+      "sha256": "cf74d7962f08054a3efdfe70cee13f09973b2fc738071872996e39c17c27c050",
+      "bytes": 1900,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/res.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/d88db98ca92564b5.png",
+      "sha256": "d88db98ca92564b5385e6021451b57a43c36da2473f8489dde6a5badd80cc89b",
+      "bytes": 1920,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/conhe.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/cd4301a04ed2c4a1.png",
+      "sha256": "cd4301a04ed2c4a1b2d500458052f6cbdce6e7a3d8af47173ceb50ad1b501619",
+      "bytes": 1308,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "karma-sistema",
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/conv.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/aff3e8ccfa631633.png",
+      "sha256": "aff3e8ccfa6316335905dc00bd159bb2b0ba2ec735ff59e68962d420271c3251",
+      "bytes": 2497,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/agi.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/b1b69fa8c71e9a36.png",
+      "sha256": "b1b69fa8c71e9a3656d3b51fa672de68c50212a9f9fb3f9b248f53b4f242f176",
+      "bytes": 1659,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "karma-sistema",
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/bg-cla-azul.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5a635be75b68248b.png",
+      "sha256": "5a635be75b68248b7272a9c1e445e8d6ace6bfdc5c86533262eee862ef85f6d3",
+      "bytes": 23411,
+      "screen": "selos",
+      "screens": [
+        "invocacoes",
+        "profissoes",
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/target2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a23cdab6719177e5.png",
+      "sha256": "a23cdab6719177e51acbc5010f449da1c58672579facf2670d87d7064a53364c",
+      "bytes": 2233,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "karma-sistema",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/1/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/bfee3269913500e7.png",
+      "sha256": "bfee3269913500e7487ad0ac79e833add861f4dbcbf3986208dd80bf73884f3f",
+      "bytes": 6007,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/convic.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/aff3e8ccfa631633.png",
+      "sha256": "aff3e8ccfa6316335905dc00bd159bb2b0ba2ec735ff59e68962d420271c3251",
+      "bytes": 2497,
+      "screen": "status",
+      "screens": [
+        "invocacoes",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/1/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/2a75f377fd174145.png",
+      "sha256": "2a75f377fd17414591910bae9e86ecf03e799f0ae863e06aca91e14e0d24a918",
+      "bytes": 7574,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/1/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a7c96a64c672bed7.png",
+      "sha256": "a7c96a64c672bed728ae9df503a5b73f245a072ae2f4e94db9112a13bfa731a6",
+      "bytes": 6421,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/1/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/b148d480d5a3992d.png",
+      "sha256": "b148d480d5a3992d007245fd8a39149d0e8f46f92c3bef76a2e35eda0eddeb6e",
+      "bytes": 7733,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/invocacoes/1/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/f29cd384b3dcff68.png",
+      "sha256": "f29cd384b3dcff68eb1ff3fef8033c419abbb7faa055143c61bdd3971715c4ed",
+      "bytes": 7069,
+      "screen": "invocacoes",
+      "screens": [
+        "invocacoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/destaques/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/0e527ee90810a5d5.png",
+      "sha256": "0e527ee90810a5d561c21529c5d9aeb795c097a481b2276752013a407efb709c",
+      "bytes": 59286,
+      "screen": "talentos",
+      "screens": [
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/home/backgrounds/border-chamfer-orange.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/454c5f32a45dfbc3.png",
+      "sha256": "454c5f32a45dfbc3915ecd08bb286e201dfc2ec19d8974fc879efc94b90d13ac",
+      "bytes": 9003,
+      "screen": "talentos",
+      "screens": [
+        "karma",
+        "kinjutsus",
+        "medicinais",
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma9.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/1abc4fe9309e426c.jpg",
+      "sha256": "1abc4fe9309e426cfbb23f362f2e01c98fa3d712b796f0e2e25ac79a08ac0ace",
+      "bytes": 2342,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5a9b1b0a7ea9b289.png",
+      "sha256": "5a9b1b0a7ea9b289af5423ddb6939e63a8d4762b34e2008b78ee7118a4711493",
+      "bytes": 2119,
+      "screen": "medicinais",
+      "screens": [
+        "karma",
+        "kinjutsus",
+        "medicinais"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/habilidade-2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/41f5861e870adccd.png",
+      "sha256": "41f5861e870adccdcbf47cfc6cccba8f414dba2d3d796fd365a633ec3e882536",
+      "bytes": 2369,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/99e93cb9a4b4b558.png",
+      "sha256": "99e93cb9a4b4b558214e5fc1cb8dcd2c6355f66581bf4833d20a9723a7047b55",
+      "bytes": 1979,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma1.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/262f4777b934c737.jpg",
+      "sha256": "262f4777b934c737630080c8d87d9efca5f7af52f744db30dba6e4dbc944e919",
+      "bytes": 1813,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma2.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/362c487e898c41b0.jpg",
+      "sha256": "362c487e898c41b00d83b3e1316f62d75d8ca01f56589a3a1b53c7b9b50a84a1",
+      "bytes": 1809,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma3.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/9dfeb97f1c7f2310.jpg",
+      "sha256": "9dfeb97f1c7f23108e758106b7aef0ccecb2b21f2335ef7fe82b510b639cda41",
+      "bytes": 2199,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma4.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/39b2367ce7dd8811.jpg",
+      "sha256": "39b2367ce7dd88114af5c449d838814d0fab56ad451e96c07d92960d7c8d08e3",
+      "bytes": 2541,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma5.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/ea94708046c9e929.jpg",
+      "sha256": "ea94708046c9e929a324283276a3f085a516bab963f582482457d0263bab18e7",
+      "bytes": 2206,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma10.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/09b030e0bafb3ddd.jpg",
+      "sha256": "09b030e0bafb3ddd66e38e002a5d88e5261807b414e529512a4a6bae6ef03256",
+      "bytes": 2552,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma6.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/1296a94875d8e6eb.jpg",
+      "sha256": "1296a94875d8e6eb818db5af449d02b6bca031bd7544b0e75f86384dc1226ca6",
+      "bytes": 1636,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma7.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/cab0643b45f1f251.jpg",
+      "sha256": "cab0643b45f1f251303682ce1e377a89e5ab39726ed7d8767c9938add32b502e",
+      "bytes": 2316,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma8.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/615a11668367a418.jpg",
+      "sha256": "615a11668367a41872ae98e84a75ba47550cb266a19767dce384b7755c7aab15",
+      "bytes": 2194,
+      "screen": "karma",
+      "screens": [
+        "karma"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/atk_magico.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/99e93cb9a4b4b558.png",
+      "sha256": "99e93cb9a4b4b558214e5fc1cb8dcd2c6355f66581bf4833d20a9723a7047b55",
+      "bytes": 1979,
+      "screen": "status",
+      "screens": [
+        "karma-sistema",
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/karma/karma1.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/df6113414e5d509e.jpg",
+      "sha256": "df6113414e5d509e2ec0ad8f70deba14781d9d95c17559c6173f4656a6eb67f0",
+      "bytes": 1856,
+      "screen": "karma-sistema",
+      "screens": [
+        "karma-sistema"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/karma/karma2.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/9d103a366566abc5.jpg",
+      "sha256": "9d103a366566abc5c01a034dac8f42b98ca6d3b4dd2dd450b669ad38574f2588",
+      "bytes": 2004,
+      "screen": "karma-sistema",
+      "screens": [
+        "karma-sistema"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/karma/karma3.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/fb8bad7c2e5d0b7c.jpg",
+      "sha256": "fb8bad7c2e5d0b7cb950ccc4625ccbdefdc2446a732a2e7345645013989e9369",
+      "bytes": 2280,
+      "screen": "karma-sistema",
+      "screens": [
+        "karma-sistema"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/p_hp.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/0e9f03c9909c820b.png",
+      "sha256": "0e9f03c9909c820b4e6559c6ebfe5919ef544c16b5802274f1a9822a7231c485",
+      "bytes": 2108,
+      "screen": "status",
+      "screens": [
+        "karma-sistema",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/karma/karma4.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/8da0a0a9af12245f.jpg",
+      "sha256": "8da0a0a9af12245f63e17fcdbbe01d7009670097eff60187ec4856e26301b27f",
+      "bytes": 2318,
+      "screen": "karma-sistema",
+      "screens": [
+        "karma-sistema"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/karma/karma5.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/b8987591e7ee6b9e.jpg",
+      "sha256": "b8987591e7ee6b9e2a80896ea7a58fe9787751ea421f4fa98dac6682a16b05ee",
+      "bytes": 2260,
+      "screen": "karma-sistema",
+      "screens": [
+        "karma-sistema"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/karma/karma6.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/e6d8d5176769a787.jpg",
+      "sha256": "e6d8d5176769a7870ce68140af9d040f8f8c0cdc3d9ba9a04e3568d4601d06f9",
+      "bytes": 2330,
+      "screen": "karma-sistema",
+      "screens": [
+        "karma-sistema"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/karma/karma7.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/c7a5e31c68660819.jpg",
+      "sha256": "c7a5e31c686608193537a8328832fa77dd936c34b0420ec4b011dc5699ec2a39",
+      "bytes": 2419,
+      "screen": "karma-sistema",
+      "screens": [
+        "karma-sistema"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/karma/karma8.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/89d8b2162a841265.jpg",
+      "sha256": "89d8b2162a84126576c51a4d9f562a7e4d3493ba48bc5ec2b121a27c6f109c0b",
+      "bytes": 2175,
+      "screen": "karma-sistema",
+      "screens": [
+        "karma-sistema"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/edo-tensei.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/869259826377daf8.jpg",
+      "sha256": "869259826377daf8aebc313e602937e2e372113a24cabf865f54d0d980a5c408",
+      "bytes": 2625,
+      "screen": "kinjutsus",
+      "screens": [
+        "kinjutsus"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/habilidade-37.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/ebbd7a19d025c3f5.png",
+      "sha256": "ebbd7a19d025c3f51ea974fec99c36c8d63a81af0a4193079fd114215ca33bb8",
+      "bytes": 2272,
+      "screen": "kinjutsus",
+      "screens": [
+        "kinjutsus"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/Souzou-Saise-no-Jutsu.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/f1f8bfc52958cded.jpg",
+      "sha256": "f1f8bfc52958cdeda2dafd0749bd74887d8c01bd62adb59343292c138e6d6b2e",
+      "bytes": 2771,
+      "screen": "kinjutsus",
+      "screens": [
+        "kinjutsus"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/Ninpou-Souja-Sousa-no-Jutsu.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/7326edb536f13fad.jpg",
+      "sha256": "7326edb536f13fad5d735ee4290c959dc2b8f8d04333db2f5ffbb1809551b6ed",
+      "bytes": 2430,
+      "screen": "kinjutsus",
+      "screens": [
+        "kinjutsus"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/Gedou.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/54efe6b36f36df36.jpg",
+      "sha256": "54efe6b36f36df36274471f4fa6e1a492d3a6a52001a79e2bed77b17109be7d3",
+      "bytes": 2944,
+      "screen": "kinjutsus",
+      "screens": [
+        "kinjutsus"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/chyiute_jutsu.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/bea0a28190fd325c.gif",
+      "sha256": "bea0a28190fd325cd0179392e6cc0b9b2155d9b91817a2f09ffc533f1d09b78e",
+      "bytes": 538862,
+      "screen": "medicinais",
+      "screens": [
+        "medicinais"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/habilidade-24.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/11552c4dc889d34a.png",
+      "sha256": "11552c4dc889d34a317f72329ffa9dc3604c1ea6fa07ee77f875424e172cbb1c",
+      "bytes": 1906,
+      "screen": "medicinais",
+      "screens": [
+        "medicinais"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/shousen_jutsu.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/68f41ebbcbc7b8e0.jpg",
+      "sha256": "68f41ebbcbc7b8e0a71c9ec6b6bccb82e85422c8b87a6e8a75ed344bfde5cb80",
+      "bytes": 1825,
+      "screen": "medicinais",
+      "screens": [
+        "medicinais"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/inyu_shometsu.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/6d99d93e843acbe7.jpg",
+      "sha256": "6d99d93e843acbe7998e57825fe4b3a65e87d48d2ba540136bb192098c007b65",
+      "bytes": 1985,
+      "screen": "medicinais",
+      "screens": [
+        "medicinais"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/chikatsu_saisei.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/5ac209f9d74e4b21.jpg",
+      "sha256": "5ac209f9d74e4b21ee5e806825ff52f134a70dcf0f987f21e2d6981368c234c1",
+      "bytes": 1745,
+      "screen": "medicinais",
+      "screens": [
+        "medicinais"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/jutsu/souzou_saisei.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/e12a324d65b99d80.jpg",
+      "sha256": "e12a324d65b99d80ddd6d3d1b32a183d56e66a7d3df2f231d41ee281ff38982e",
+      "bytes": 2039,
+      "screen": "medicinais",
+      "screens": [
+        "medicinais"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/slider/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/210053e399127829.png",
+      "sha256": "210053e3991278295440b48e10600e6c14776192e94ef198bc726b02b4f50bd6",
+      "bytes": 68074,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/slider/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/143bd5fd61f12bad.png",
+      "sha256": "143bd5fd61f12bad00c47479814fe7c0b23fc63aaa32fa825f053b2415f693fe",
+      "bytes": 62950,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/slider/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/0da02c96572028e4.png",
+      "sha256": "0da02c96572028e498ff145396e9bd4dac7b3da39d98365e71f467955973c437",
+      "bytes": 89943,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/slider/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/dd421c7a9d83e483.png",
+      "sha256": "dd421c7a9d83e483a076200f04def2eeacb3676751be9922d418cb1b81ef2a2d",
+      "bytes": 87762,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/slider/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/1c54aa02f3896189.png",
+      "sha256": "1c54aa02f38961895ca7559186b81f5b98d8239ff8c38035b2d938d0ee798ffb",
+      "bytes": 73380,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/slider/6.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/97e6ab211f163b55.png",
+      "sha256": "97e6ab211f163b5552582bbd911c2d9db73738ec5e6366dee28594a6844d7d7f",
+      "bytes": 79824,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/1/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/af72503c128d270f.png",
+      "sha256": "af72503c128d270f60250834889d04329cc110bbd90dff77f239c9f5facbffa9",
+      "bytes": 3169,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/1/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/f0ae1b782e46f7d1.png",
+      "sha256": "f0ae1b782e46f7d154e0764e46e7c5e706bd31c9c13c3dea56f681f40122f91f",
+      "bytes": 5651,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/1/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/4c4aa064a1e7c4fa.png",
+      "sha256": "4c4aa064a1e7c4fa1a4e47af713e1c866a7b5f72f21113de707d66796a6dda55",
+      "bytes": 6154,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/1/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/3ec55369fccf33c3.png",
+      "sha256": "3ec55369fccf33c361f789eb9e9dd5a2b397364b2b04c0753d9f826a363f94d6",
+      "bytes": 7249,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/1/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/2b1d4fb16c12de03.png",
+      "sha256": "2b1d4fb16c12de0333b8a50fe9c5eba811c61c8a93369ec12fd298daeddaf86a",
+      "bytes": 8074,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/2/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/37bd5816a9976c4d.png",
+      "sha256": "37bd5816a9976c4dae51b54f9eeb3715087e273a1db8457685ec54b733cdf034",
+      "bytes": 2543,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/2/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/6e3b22f5460c3772.png",
+      "sha256": "6e3b22f5460c3772f939e2bc98b0f4d7d09812f42ada04930d12346945c9d7af",
+      "bytes": 4984,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/2/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/c817df916269ba5c.png",
+      "sha256": "c817df916269ba5cae62d11714d292a9e464d5193442375cbb4df825438ab0e4",
+      "bytes": 6259,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/2/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/6e88cd62ff829bb2.png",
+      "sha256": "6e88cd62ff829bb2de87860387ec855974e19324bda782414fe1ff32edcde30f",
+      "bytes": 7653,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/2/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/675b6e2ee6fcd94c.png",
+      "sha256": "675b6e2ee6fcd94cac0ccc64534c28cdfe1e1c3458cee66804dc48e0256c8491",
+      "bytes": 9297,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/3/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/ad418f89f4196669.png",
+      "sha256": "ad418f89f4196669f28219fd0f55d877e53f31ea62bae171ed7947fd4779a059",
+      "bytes": 4882,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/3/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/af55421b35613ac7.png",
+      "sha256": "af55421b35613ac7ac21ee0bd1e04b3664336154c7200c3ed4e2974d9078e15b",
+      "bytes": 5671,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/3/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5eec3592bbcdd089.png",
+      "sha256": "5eec3592bbcdd0895a75317591ae87d29eeeaa34861387fb5b1ce0cca8e34739",
+      "bytes": 6657,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/3/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/388e254e7d41b4e1.png",
+      "sha256": "388e254e7d41b4e1ad9f9bfa818f2c539560e741f3f3638fcd81cb33e54e844a",
+      "bytes": 7661,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/3/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/c3fd39924d87214b.png",
+      "sha256": "c3fd39924d87214b68dff09147b4306b1d5c70ced02df7e133aefba60dd20346",
+      "bytes": 7893,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/4/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/a7c48481a32352aa.png",
+      "sha256": "a7c48481a32352aa3c38e199568e258d6776cf6b555640d430a4db68a817bc52",
+      "bytes": 4760,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/4/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/3e2cce467b91cb49.png",
+      "sha256": "3e2cce467b91cb494de1dcd1f8383c4acc5150e566804dbc1e6396a9cbf72b6d",
+      "bytes": 4856,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/4/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/949a8b21ed9561c8.png",
+      "sha256": "949a8b21ed9561c8fd56cd3831cbaceaa58fcecd3993fe77571d10ca193cbeef",
+      "bytes": 4919,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/4/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/8387c569c711f268.png",
+      "sha256": "8387c569c711f268ff65e6b3780c9d0acc2e3575b83c886f237d9a97281ccd66",
+      "bytes": 6567,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/4/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/70f221738e44d5c2.png",
+      "sha256": "70f221738e44d5c2d860d7a0190b8f2adfe47ff95f0e4860cb5831b8c5973c40",
+      "bytes": 7558,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/5/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/7aede6b088b2a825.png",
+      "sha256": "7aede6b088b2a825bac7bf2a481d5aa48d32f3472926083198ea9b2758960ba2",
+      "bytes": 5045,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/5/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/98173777d4f2a4f3.png",
+      "sha256": "98173777d4f2a4f311134798817e25840f64309f9ecd4dae6530f71926b93689",
+      "bytes": 6333,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/5/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/24a20b973dab484b.png",
+      "sha256": "24a20b973dab484b8e8b9886d502b55d69e319b69c95c2c8e2e196c5761a6e8b",
+      "bytes": 6578,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/5/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/2e0c2acd13caad18.png",
+      "sha256": "2e0c2acd13caad1836757d0c36222893e4fac8bc9e76eb7b4ea2e747b467585c",
+      "bytes": 7473,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/5/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/c7e62f868a43e890.png",
+      "sha256": "c7e62f868a43e890e62b2463e35fe3340632ddda0a703779d6053bb204029f56",
+      "bytes": 7225,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/6/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/aa11bf58d226f8e5.png",
+      "sha256": "aa11bf58d226f8e579866db0edf0556bbbaebbc4f7e1482a3251f2651ffe4489",
+      "bytes": 6144,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/6/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/6247fcdb45dd101e.png",
+      "sha256": "6247fcdb45dd101e81c82c126bc66137527562daecb0c0df7819126ae4e84442",
+      "bytes": 7307,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/6/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/1d7ebca211ff4f9e.png",
+      "sha256": "1d7ebca211ff4f9e985a25b020d21bfa9a0b105f08d86c7a48a13c278ed26dff",
+      "bytes": 7646,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/6/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5cc657fd4bdef7b7.png",
+      "sha256": "5cc657fd4bdef7b7f9a7995c0819ef10dd8589bddc76cf0e797b33b56e748814",
+      "bytes": 7735,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/profissao/6/5.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5b2f6ba95351ecf1.png",
+      "sha256": "5b2f6ba95351ecf1115e541968faa6cab9f61938d1f899ceddb4810baf6fac27",
+      "bytes": 7786,
+      "screen": "profissoes",
+      "screens": [
+        "profissoes"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/slider/1.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/0eff5921a12d534e.png",
+      "sha256": "0eff5921a12d534e9b7defadf271b243ac422c513e15ba9a97e9400d9d4f2427",
+      "bytes": 76048,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/slider/3.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/9e14be5ad8824dce.png",
+      "sha256": "9e14be5ad8824dce473ff18be4b767adb4a64e534cd753cb8df4ffa8da6e4d2e",
+      "bytes": 86882,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/slider/2.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/0d4e0120f7f0222a.png",
+      "sha256": "0d4e0120f7f0222a48aedad183f524378ca07a49a10ca7c8fd211910b4fd12df",
+      "bytes": 76970,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/slider/4.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/f590aebde7a4389b.png",
+      "sha256": "f590aebde7a4389b77a762ee81dd9ade66ebaa73672d43f7692c293429f42a82",
+      "bytes": 80667,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/1/1.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/7bfe2d67d0d5dc30.gif",
+      "sha256": "7bfe2d67d0d5dc30b01e85bea9ab961617092cf4439cce43422e432935d399cb",
+      "bytes": 41628,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/1/2.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/38b12e17a9e69ae6.gif",
+      "sha256": "38b12e17a9e69ae6878d1ec489c84c2e4e2849bc18a3dd07e7dfe772ff575f85",
+      "bytes": 27525,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/1/3.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/12e5172211d9e182.gif",
+      "sha256": "12e5172211d9e182970b3994d96c22bd110c99aa7c4d11dd14bd8bbdea525f2e",
+      "bytes": 33206,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/atk_fisico.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/9aa8c70c4d95a3aa.png",
+      "sha256": "9aa8c70c4d95a3aaaba1a2e7940e91f7c9a484f9b9304cfd09e09ab3e43d3203",
+      "bytes": 2009,
+      "screen": "status",
+      "screens": [
+        "selos",
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/2/1.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/69c27fc1bf565e2b.gif",
+      "sha256": "69c27fc1bf565e2b809a83eb2b19b28ff658af2ca004680082a9ef082ea19a88",
+      "bytes": 57961,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/2/3.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/910d3ce89fdd589c.gif",
+      "sha256": "910d3ce89fdd589cc0db5c9d1577b532a94e183d84fe9d9fd080238965bd7881",
+      "bytes": 42978,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/2/2.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/6763c2577d425f08.gif",
+      "sha256": "6763c2577d425f0885b71d7e55f17d0f9b26902f55f851e4df3f9806f5e3d930",
+      "bytes": 102443,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/3/2.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/b56dd54dc03bcbb6.gif",
+      "sha256": "b56dd54dc03bcbb6135ccac950ec50868769b37bd1cb03f4e86b8797f0dce3cc",
+      "bytes": 146411,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/3/1.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/f2f72e5ceb9eec58.gif",
+      "sha256": "f2f72e5ceb9eec58d7fd8f9970550eaf2bb3105be6df302aebfc44c7adca898b",
+      "bytes": 107600,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/3/3.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/3d73728f698002fc.gif",
+      "sha256": "3d73728f698002fc6885fd87837fd84b17ada615a29011952c64e27adf2230bd",
+      "bytes": 105601,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/4/1.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/833eda94b073753e.gif",
+      "sha256": "833eda94b073753eaaf73bd400dc58ce41f993307a97bdd29c1b1ea1fac5095f",
+      "bytes": 7972,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/4/2.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/f008e46e93b8fde0.gif",
+      "sha256": "f008e46e93b8fde0eb9db2d72be4bf54297fadf717c2f341e928e3d42bda83c5",
+      "bytes": 7828,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/selos/4/3.gif",
+      "kind": "image",
+      "contentType": "image/gif",
+      "file": "assets/e19e844bf1a5544e.gif",
+      "sha256": "e19e844bf1a5544e1e2a4bfc41e4eeae1d873aa397ab7e28649dafbd2d6bb86c",
+      "bytes": 2775,
+      "screen": "selos",
+      "screens": [
+        "selos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/fonts/GTAmericaBold.ttf",
+      "kind": "font",
+      "contentType": "font/ttf",
+      "file": "assets/199922857f3bb0ce.ttf",
+      "sha256": "199922857f3bb0cefab2786879dcb11fd80ef4712d710f3a70ca0f3bb07a3750",
+      "bytes": 17728,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/fonts/TAHOAMA.ttf",
+      "kind": "font",
+      "contentType": "font/ttf",
+      "file": "assets/6c699c428b608679.ttf",
+      "sha256": "6c699c428b608679c7ade6d9c0ff76664a1b59274c394cf0aba0ee2c33f89848",
+      "bytes": 265528,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/fonts/phagspa.ttf",
+      "kind": "font",
+      "contentType": "font/ttf",
+      "file": "assets/111319fa89cd66d0.ttf",
+      "sha256": "111319fa89cd66d0f8b23a8a262cb32e6fb64134b63611a1b2220811029d605d",
+      "bytes": 146496,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/defense.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/d88db98ca92564b5.png",
+      "sha256": "d88db98ca92564b5385e6021451b57a43c36da2473f8489dde6a5badd80cc89b",
+      "bytes": 1920,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/p_chakra.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/5a9b1b0a7ea9b289.png",
+      "sha256": "5a9b1b0a7ea9b289af5423ddb6939e63a8d4762b34e2008b78ee7118a4711493",
+      "bytes": 2119,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/p_stamina.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/35a1445e2d45a913.png",
+      "sha256": "35a1445e2d45a9138bb80bbe43f9b75e3f9a310257b17545cbb81d0aa118b304",
+      "bytes": 1753,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/shield_fisico.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/b7a620906887defd.png",
+      "sha256": "b7a620906887defd46a122563399196f82189ffc3ad4dca037b40bf94ccf738d",
+      "bytes": 1709,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/shield_magico.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/964a1152e0abab41.png",
+      "sha256": "964a1152e0abab413d7af31fcf458ab5a125e2df5e7b6089a1368ff83ea6712b",
+      "bytes": 2082,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/precisao.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/6eba8a0e16ead971.png",
+      "sha256": "6eba8a0e16ead971fddb577b351f33f1ea484c84ace4131a9641d9505f069378",
+      "bytes": 2029,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/prec_tai.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/f57226106f7925db.png",
+      "sha256": "f57226106f7925dbc300ed5e1df145a9f60eea0ebe8b87a61e6b5b5b615edd6e",
+      "bytes": 1756,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/esquiva.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/7e06dd5843382a71.png",
+      "sha256": "7e06dd5843382a71a49f7c89a9aed2d92490a5d9155333677cdba6c2c35565b2",
+      "bytes": 2189,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/icones/deter.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/fd3e9e367b867acc.png",
+      "sha256": "fd3e9e367b867acce17a1f56c50e4f4fc3ba55b595ccaebf17756df5a22aa3bd",
+      "bytes": 2509,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/home/backgrounds/border-chamfer-azul.png",
+      "kind": "image",
+      "contentType": "image/png",
+      "file": "assets/0ff21fb5a88fb599.png",
+      "sha256": "0ff21fb5a88fb599095a14943a2c9d4dc5059258e1e8d91cde8404bb9b32b94b",
+      "bytes": 4378,
+      "screen": "status",
+      "screens": [
+        "status"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/ampliador_interno.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/67b8bcce4e13303d.jpg",
+      "sha256": "67b8bcce4e13303dd37ed58f0821b316fc230823b56286fa16a44354c8039747",
+      "bytes": 3998,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/quebra_de_limite.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/3d5e6e385e60ceda.jpg",
+      "sha256": "3d5e6e385e60ceda4f9b029b4e6bb05ad6e536992fc6e2cdc85e7eb8e26650e6",
+      "bytes": 3325,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/exceder_limites.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/a7b23ecf6e0def7d.jpg",
+      "sha256": "a7b23ecf6e0def7d5e5d357237f52177879a0f01db7800ceb7cf1ff3862fae84",
+      "bytes": 2619,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/finta.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/d685eeb52d66b423.jpg",
+      "sha256": "d685eeb52d66b42325a2065d3898accd71cfd5a9582ebb99519859a3fdb052ef",
+      "bytes": 3343,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/aprendiz_genjutsu.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/21a51d6ca23c8f4c.jpg",
+      "sha256": "21a51d6ca23c8f4cf092779317707e8be1b29fd2fe73b4979a3aef271eb28c4f",
+      "bytes": 3218,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/aprendiz_ninjutsu.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/1d5a290b0eb9edcc.jpg",
+      "sha256": "1d5a290b0eb9edcc6285a23f2491bb4957ce032b11bf27090133f43e0d69ee3f",
+      "bytes": 3092,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/aprendiz_bukijutsu.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/a3a2821789171bfe.jpg",
+      "sha256": "a3a2821789171bfedb756e66d1fbc010491409ed80809e4b3cc693bdd63aa04b",
+      "bytes": 3248,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/olhos_cacadores.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/267a73d832bf8ce1.jpg",
+      "sha256": "267a73d832bf8ce14043066c8805d9a1c1c4305fa0bc369c813941455b94826e",
+      "bytes": 2872,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/treinamento_muscular.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/fdf43bcab45a5ce1.jpg",
+      "sha256": "fdf43bcab45a5ce13fd7cba6e0b61ff5d08e89652e78c10e40651be9314b50a2",
+      "bytes": 3537,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/genio.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/321f6c505097e39d.jpg",
+      "sha256": "321f6c505097e39d645fac7d5da34bdceb5cfa08fc82aa8dcffd3112e4fed9b3",
+      "bytes": 2533,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/fonte_de_poder.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/57e716359c551155.jpg",
+      "sha256": "57e716359c551155e4e5de7a22f44668c85e62c8dd3d9ce61338334764b142da",
+      "bytes": 3100,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/treino_ninjutsu.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/17295cf9f2e8ad00.jpg",
+      "sha256": "17295cf9f2e8ad00cbbcbd7e3bb11d92872d8b24a654c75d4dd02ad3f6e0c212",
+      "bytes": 3416,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/trabalho_duro.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/3fd7335e78087b5f.jpg",
+      "sha256": "3fd7335e78087b5fd257327efe525c6828df6d924bfa9e0cfa4b506231033e3d",
+      "bytes": 3607,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/andar_pela_sombra.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/9904932f58a7fe48.jpg",
+      "sha256": "9904932f58a7fe482a5c3f6e241a1695b97b1c160b9ac3b037cbb7aed0ae688d",
+      "bytes": 2704,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/perito_missao.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/fddfdf5031ce66f9.jpg",
+      "sha256": "fddfdf5031ce66f921c886fa53ceb8f948670e8a2424f03605dd6e59c07b2ab0",
+      "bytes": 4566,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/dojo.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/8c67f8591d046cb5.jpg",
+      "sha256": "8c67f8591d046cb5940560c52eb2e456efdf601f27e5c8d5f3856c090799d5fd",
+      "bytes": 2254,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/suplemento_vitaminico.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/6d46ffc37e9e2b4b.jpg",
+      "sha256": "6d46ffc37e9e2b4b75f96383dc2ab3210bb8a12de07f3bcf1f89dd92e2f10385",
+      "bytes": 3276,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/ampliador_fisico.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/7df2b1298c32af9a.jpg",
+      "sha256": "7df2b1298c32af9a4b81615038bbefc7414ebf9bfdd595269671a3effb8ec2d1",
+      "bytes": 3432,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/reforco_defensivo.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/af8837d4431ea01d.jpg",
+      "sha256": "af8837d4431ea01da159606b92356bd9de6507326b88449f64386fb264574c94",
+      "bytes": 3862,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/origem_de_poder.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/e0a3333bf86e9a29.jpg",
+      "sha256": "e0a3333bf86e9a29c14cd9b493a48b15b7209c27365c713709ca76eebdbe27ca",
+      "bytes": 3554,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/determinacao.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/5bd858314d6b3f44.jpg",
+      "sha256": "5bd858314d6b3f442b7b17dfdf375d3fc9b923daf036718d53a3043f2d458ae0",
+      "bytes": 3936,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/perito_arma.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/59aa6f526a2b3bbb.jpg",
+      "sha256": "59aa6f526a2b3bbb341ff64304cc7260d18f503194d3123a5d71a4168c1113c6",
+      "bytes": 4182,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/stamina.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/835035a23aaf0c4c.jpg",
+      "sha256": "835035a23aaf0c4c8c1e5444a4906b13eb261f7338300c45adc97a504fcf1f81",
+      "bytes": 3096,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/chakra.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/80de53338d7cdb9f.jpg",
+      "sha256": "80de53338d7cdb9f275579c50e1f0a55a23f9f9f05219ff1dd45c9119ef6524b",
+      "bytes": 3284,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/concentracao.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/60db00a981915f80.jpg",
+      "sha256": "60db00a981915f80cb199324505245d39915927954e90daf96c625465ed57e83",
+      "bytes": 2774,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/elemento_critico.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/4f0519fd355e13be.jpg",
+      "sha256": "4f0519fd355e13be06ecc546a30ce2eeb9b03923b81aad8a1888b36abd6c9b20",
+      "bytes": 2549,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/mente_brilhante.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/3a878764250b3363.jpg",
+      "sha256": "3a878764250b3363403296792305af2cad8e7a6ccff23659f86d56a722304902",
+      "bytes": 4089,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/absorcao.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/78afc4eefc7797f6.jpg",
+      "sha256": "78afc4eefc7797f688146c0e8fc9cc3402ae2076863e30cb005d44bb89aef065",
+      "bytes": 3145,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/evasao.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/2d372db6effbd585.jpg",
+      "sha256": "2d372db6effbd5859d4146820c195d0aa2184805a180ef339a4f6ca9423f5a5a",
+      "bytes": 3457,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/fortaleza_interna.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/e08e950e443ffa0a.jpg",
+      "sha256": "e08e950e443ffa0aeed6478b62a34419bbfa9ab53560cdf3acb542e6311c7eef",
+      "bytes": 3054,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/aprendizado_continuo.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/d23c938d91243145.jpg",
+      "sha256": "d23c938d912431451acfb8c43b174436c9ebc47da45109f0655e905ccd93020d",
+      "bytes": 3795,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    },
+    {
+      "url": "https://narutogame.com.br/assets/images/logado/arvore/chakra_ofensivo.jpg",
+      "kind": "image",
+      "contentType": "image/jpeg",
+      "file": "assets/dfb5907d5346ccef.jpg",
+      "sha256": "dfb5907d5346ccef959be90ecd7df47c31217906b86af098cb5242212750d211",
+      "bytes": 2954,
+      "screen": "talentos",
+      "screens": [
+        "talentos"
+      ]
+    }
+  ],
+  "failures": []
+}

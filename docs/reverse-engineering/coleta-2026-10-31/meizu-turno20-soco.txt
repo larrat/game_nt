@@ -1,0 +1,122 @@
+0
+Pontos de Crítico
+0
+Pontos de Absorção
+0
+Pontos de Perfuração
+Personagem de teste
+Estudante
+Lvl. 5
+Poder Ninja: 8750
+Vida: 129
+Chakra: 114
+Stamina: 51
+02:03
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 21 de dano
+Meizu usa Acrobacia
+
+Personagem de teste usa Chute
+Meizu recebe 8 de dano
+Meizu usa Defender com as mãos
+
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 25 de dano
+Meizu usa Soco
+Personagem de teste recebe 12 de dano
+
+Personagem de teste usa Chute
+Meizu recebe 10 de dano
+Meizu usa Chute
+Personagem de teste recebe 15 de dano
+
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 25 de dano
+Meizu usa Soco
+Personagem de teste recebe 12 de dano
+
+Personagem de teste usa Chute
+Meizu recebe 6 de dano
+Meizu usa Acrobacia
+
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 25 de dano
+Meizu usa Soco
+Personagem de teste recebe 12 de dano
+
+Personagem de teste usa Chute
+Meizu recebe 10 de dano
+Meizu usa Soco
+Personagem de teste recebe 12 de dano
+
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 23 de dano
+Meizu usa Defender com as mãos
+
+Personagem de teste usa Chute
+Meizu recebe 8 de dano
+Meizu usa Defender com as mãos
+
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 25 de dano
+Meizu usa Soco
+Personagem de teste recebe 12 de dano
+
+Personagem de teste usa Chute
+Meizu recebe 10 de dano
+Meizu usa Soco
+Personagem de teste recebe 12 de dano
+
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 25 de dano
+Meizu usa Soco
+Personagem de teste recebe 12 de dano
+
+Personagem de teste usa Chute
+Meizu recebe 10 de dano
+Meizu usa Soco
+Personagem de teste recebe 12 de dano
+
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 21 de dano
+Meizu usa Acrobacia
+
+Personagem de teste usa Chute
+Meizu recebe 10 de dano
+Meizu usa Soco
+Personagem de teste recebe 12 de dano
+
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 21 de dano
+Meizu usa Acrobacia
+
+Personagem de teste usa Chute
+Meizu recebe 10 de dano
+Meizu usa Chute
+Personagem de teste recebe 15 de dano
+
+Personagem de teste usa Dynamic Kick - Lvl 1
+Meizu recebe 23 de dano
+Meizu usa Defender com as mãos
+
+Turno 20 - Seu turno
+0
+Pontos de Crítico
+0
+Pontos de Absorção
+1
+Pontos de Perfuração
+Meizu
+NPC Boladão
+--
+Lvl. 5
+Poder Ninja: 11050
+Vida: 44
+Chakra: 115
+Stamina: 526
+
+
+Meus Jutsus:
+Ataques (Tai/Buk)
+1
+1

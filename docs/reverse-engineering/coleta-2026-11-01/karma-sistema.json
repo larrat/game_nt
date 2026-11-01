@@ -1,0 +1,705 @@
+{
+  "headings": [
+    "5",
+    "6",
+    "Karma",
+    "Acessar minha conta",
+    "Inicie sua Aventura",
+    "Aceite o Karma1/1"
+  ],
+  "images": [
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/profile/142/1.png"
+    },
+    {
+      "alt": "Sua mochila ninja",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/bag.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logo/logo-mobile.png"
+    },
+    {
+      "alt": "Naruto",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logo/logo-mobile.png"
+    },
+    {
+      "alt": "Naruto Game - Versão em Português",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/social/brazil.svg"
+    },
+    {
+      "alt": "Naruto Game - English Version",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/social/usa.svg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/index.php?secao=karma"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/topo-personagem/142.png"
+    },
+    {
+      "alt": "Vida",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/heart.png"
+    },
+    {
+      "alt": "Chakra",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/chakra.png"
+    },
+    {
+      "alt": "Stamina",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/stamina.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/round46.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/templo.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/passe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/rotina.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/notificacoes.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/fidelidade.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/Mensageiro.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/Noticias.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/Creditos.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/ryous.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/icones/menu/Mochila.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma7.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma8.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma1.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma2.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma3.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma4.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma5.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma6.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma7.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma8.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma1.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma2.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma3.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma4.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma5.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma6.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma7.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/logado/karma/karma8.jpg"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/inte.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/conhe.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/agi.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/target2.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/atk_magico.png"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/assets/images/icones/p_hp.png"
+    },
+    {
+      "alt": "Código",
+      "id": "captcha-image",
+      "src": "https://narutogame.com.br/index.php?acao=captcha&s"
+    },
+    {
+      "alt": "",
+      "id": "",
+      "src": "https://narutogame.com.br/index.php?acao=captcha&_cache=20261101001331&quick"
+    }
+  ],
+  "tables": [],
+  "tooltips": [],
+  "url": "https://narutogame.com.br/index.php?secao=karma"
+}

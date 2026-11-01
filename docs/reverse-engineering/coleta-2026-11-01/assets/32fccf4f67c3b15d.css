@@ -1,0 +1,104 @@
+:root {
+  --battle-shake-amplitude: 25px; /* How far the element will shake (left and right) */
+  --battle-shake-frequency: 0.15s; /* How fast the element will shake */
+  --battle-shake-repeat: 2; /* How long the element will shake */
+  --battle-shake-normal-damage-color: #ff0000;
+  --battle-shake-normal-damage-font-size: 60px;
+  --battle-shake-critical-damage-color: purple;
+  --battle-shake-critical-damage-font-size: 80px;
+  --battle-shake-reduced-damage-color: yellow;
+  --battle-shake-reduced-damage-font-size: 80px;
+}
+
+@keyframes shake-opacity-fade-out {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes shake-horizontal {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(calc(-1 * var(--battle-shake-amplitude)));
+  }
+
+  75% {
+    transform: translateX(calc(var(--battle-shake-amplitude)));
+  }
+}
+
+@keyframes shake-damage-text {
+  0% {
+    font-size: 50px;
+    opacity: 1;
+    top: 20%;
+    margin-top: 20%;
+  }
+  100% {
+    font-size: 30px;
+    opacity: 0;
+    top: -20%;
+    margin-top: -20%;
+  }
+}
+
+.shaking-element {
+  animation: shake-horizontal var(--battle-shake-frequency) ease-in-out var(--battle-shake-repeat);
+}
+
+.shaking-element::before {
+  content: ' ';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+  opacity: 0;
+  animation: shake-opacity-fade-out 0.5s linear;
+}
+
+.shaking-element.shake-damage-normal::before {
+  background-color: var(--battle-shake-normal-damage-color);
+}
+
+.shaking-element.shake-damage-critical::before {
+  background-color: var(--battle-shake-critical-damage-color);
+}
+
+.shaking-element.shake-damage-reduced::before {
+  background-color: var(--battle-shake-reduced-damage-color);
+}
+
+.shaking-element::after {
+  position: absolute;
+  opacity: 0;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 10px darkred;
+  font-weight: bold;
+  animation: shake-damage-text 1s linear;
+}
+
+.shaking-element.shake-damage-normal::after {
+  font-size: var(--battle-shake-normal-damage-font-size);
+}
+
+.shaking-element.shake-damage-critical::after {
+  font-size: var(--battle-shake-critical-damage-font-size);
+  color: yellow;
+}
+
+.shaking-element.shake-damage-reduced::after {
+  font-size: var(--battle-shake-reduced-damage-font-size);
+  color: green;
+}

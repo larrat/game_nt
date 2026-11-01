@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { getAuthErrorMessage, isUnconfirmedEmailError } from '../utils/authFeedback';
+import '../styles/auth-polish-v4.css';
 
 const AUTH_MODES = ['login', 'signup', 'forgot', 'pending'];
 
@@ -117,7 +118,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-body kuro-auth-v2 min-h-screen w-full bg-ink">
+    <div className="login-body kuro-auth-v2 kuro-login-v4 min-h-screen w-full bg-ink">
       <div className="panel-brand" aria-hidden="true">
         <div className="strokes">
           <svg viewBox="0 0 500 700" preserveAspectRatio="xMidYMid slice">

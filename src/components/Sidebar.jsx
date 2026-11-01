@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { motion, useReducedMotion } from 'motion/react';
+import { MOTION_TIMING } from '../utils/motionPresets';
 import { playHoverSound, playClickSound } from '../utils/audioEngine';
 import SidebarIcon from './SidebarIcon';
 import { SCREEN_NAV, filterScreenNavigation, findScreenGroup } from '../utils/screenNavigation';
@@ -12,6 +14,7 @@ const QUICK_LINKS = [
 
 export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
   const location = useLocation();
+  const reduceMotion = useReducedMotion();
   const activeGroup = findScreenGroup(location.pathname);
   const [expanded, setExpanded] = useState(() => ({
     central: true,
@@ -115,32 +118,45 @@ export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
                   </span>
                   <span className="kuro-rpg-sidebar-v3__group-meta" aria-hidden="true">
                     <span className="kuro-rpg-sidebar-v3__count">{group.items.length}</span>
-                    <SidebarIcon name={open ? 'chevronDown' : 'chevronRight'} size={15} />
+                    <motion.span
+                      className="kuro-rpg-sidebar-v3__chevron"
+                      animate={{ rotate: open ? 90 : 0 }}
+                      transition={{ duration: reduceMotion ? 0 : MOTION_TIMING.fast, ease: 'easeOut' }}
+                    >
+                      <SidebarIcon name="chevronRight" size={15} />
+                    </motion.span>
                   </span>
                 </button>
               </h2>
-              <div
+              <motion.div
                 className={'navgroup-content' + (open ? ' open' : '')}
                 id={'kuro-nav-' + group.id}
-                hidden={!open}
+                initial={false}
+                animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
+                transition={{ duration: reduceMotion ? 0 : MOTION_TIMING.standard, ease: 'easeInOut' }}
+                aria-hidden={!open}
+                inert={!open}
+                style={{ pointerEvents: open ? 'auto' : 'none' }}
               >
-                {group.items.map(item => (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    onClick={handleLinkClick}
-                    onMouseEnter={playHoverSound}
-                    className={({ isActive }) =>
-                      'navitem' + (isActive ? ' active' : '') + (group.id === 'premium' ? ' premium' : '')
-                    }
-                  >
-                    <span className="kuro-rpg-sidebar__link-icon" aria-hidden="true">
-                      <SidebarIcon name={item.icon} size={18} />
-                    </span>
-                    <span>{item.label}</span>
-                  </NavLink>
-                ))}
-              </div>
+                <div className="kuro-rpg-sidebar-v3__link-stack">
+                  {group.items.map(item => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      onClick={handleLinkClick}
+                      onMouseEnter={playHoverSound}
+                      className={({ isActive }) =>
+                        'navitem' + (isActive ? ' active' : '') + (group.id === 'premium' ? ' premium' : '')
+                      }
+                    >
+                      <span className="kuro-rpg-sidebar__link-icon" aria-hidden="true">
+                        <SidebarIcon name={item.icon} size={18} />
+                      </span>
+                      <span>{item.label}</span>
+                    </NavLink>
+                  ))}
+                </div>
+              </motion.div>
             </section>
           );
         })}

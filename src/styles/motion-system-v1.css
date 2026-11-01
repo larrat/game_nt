@@ -1,0 +1,61 @@
+/* Kurokage UI motion v1: restrained feedback, no gameplay or data transitions. */
+.app .kuro-rpg-sidebar-v3 .navgroup-content,
+.app .kuro-rpg-sidebar-v3 .navgroup-content.open {
+  padding: 0;
+  max-height: none !important;
+  overflow: hidden;
+}
+.app .kuro-rpg-sidebar-v3__link-stack {
+  padding: 4px 0 6px 8px;
+}
+.app .kuro-rpg-sidebar-v3__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
+}
+.app .kuro-rpg-sidebar-v3__quick-link,
+.app .kuro-rpg-sidebar-v3 .navitem {
+  transition: transform .14s ease-out, background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+@media (hover: hover) {
+  .app .kuro-rpg-sidebar-v3__quick-link:hover {
+    transform: translateY(-2px);
+  }
+  .app .kuro-rpg-sidebar-v3 .navitem:hover:not(.active) {
+    transform: translateX(3px);
+  }
+}
+.app .kuro-rpg-sidebar-v3__quick-link:active,
+.app .kuro-rpg-sidebar-v3 .navitem:active {
+  transform: scale(.985);
+}
+.app :is(.btn-primary, .btn-ghost, .btn-danger, .kuro-button, .kui-action):not(:disabled) {
+  transition: transform .14s ease-out, background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+@media (hover: hover) {
+  .app :is(.btn-primary, .btn-ghost, .btn-danger, .kuro-button, .kui-action):not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+}
+.app :is(.btn-primary, .btn-ghost, .btn-danger, .kuro-button, .kui-action):not(:disabled):active {
+  transform: scale(.985);
+}
+.app .kuro-ui-card {
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+@media (hover: hover) {
+  .app .kuro-ui-card:hover {
+    border-color: rgba(235, 193, 124, .34);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .14);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app .kuro-rpg-sidebar-v3__quick-link,
+  .app .kuro-rpg-sidebar-v3 .navitem,
+  .app :is(.btn-primary, .btn-ghost, .btn-danger, .kuro-button, .kui-action),
+  .app .kuro-ui-card {
+    transition: none !important;
+    transform: none !important;
+  }
+}

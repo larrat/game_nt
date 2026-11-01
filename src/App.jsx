@@ -10,6 +10,7 @@ import './styles/sidebar-v3.css';
 import './styles/experience-workflows-v2.css';
 import './styles/design-system-v4.css';
 import './styles/shared-screen-v4.css';
+import './styles/motion-system-v1.css';
 import { ToastProvider } from './context/ToastContext';
 
 import Sidebar from './components/Sidebar';

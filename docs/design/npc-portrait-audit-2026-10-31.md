@@ -7,7 +7,7 @@ Auditoria de leitura em 31/10/2026. Fontes: `public.characters`, `public.npcs` d
 | Conjunto | Total | Cobertura observada |
 | --- | ---: | --- |
 | Catálogo de personagens (`characters`) | 188 | 4 URLs locais em `base_avatar_url`; 184 URLs externas sob `narutogame.com.br` |
-| NPCs ativos (`npcs`) | 14 | Apenas Naruto tinha retrato nomeado local reconhecido pelo resolvedor anterior; a maioria dos registros usa emoji |
+| NPCs ativos (`npcs`) | 15 | Apenas Naruto tinha retrato nomeado local reconhecido pelo resolvedor anterior; a maioria dos registros usa emoji |
 | Acervo local nomeado | 4 imagens principais | `naruto.jpg`, `sasuke.jpg`, `sakura.jpg`, `kakashi.jpg` |
 | Variações do Sasuke | 28 imagens | Em `public/images/avatares/`; cinco variantes explicitamente reconhecidas pelo novo resolvedor |
 | Arte genérica do jogo | 2 imagens | `public/images/chars/`, utilizadas como substituto visual de NPCs **genéricos** e renegados dinâmicos |
@@ -15,7 +15,7 @@ Auditoria de leitura em 31/10/2026. Fontes: `public.characters`, `public.npcs` d
 
 **Atenção:** 184 URLs externas não equivalem a arquivos locais disponíveis. Não usar automaticamente imagens protegidas de terceiros em produção; depender do site de origem cria risco de hotlink, indisponibilidade e licenciamento. A correspondência `characters.id` (texto) **não é** a mesma de `npcs.id` (número), e IDs do Naruto Game não podem ser usados como IDs internos.
 
-## NPCs observados no banco (14 ativos)
+## NPCs observados no banco (15 ativos)
 
 - **Arte exata local:** Naruto Uzumaki.
 - **Arte genérica local apropriada ao papel (provisória):** Bandido do Deserto, Mercenário da Névoa, Ladrão de Pergaminhos. O último possuía a URL legada incorreta `/images/char_rogue_ninja_1782968348009.jpg`; o arquivo real está em `/images/chars/` e agora é resolvido por identidade, sem alteração SQL.

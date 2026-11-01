@@ -1,0 +1,132 @@
+{
+  "status": "Anúncios históricos; sem arredondamento, caps, ordem de aplicação ou validação de servidor recuperados.",
+  "entries": [
+    {
+      "news": "408",
+      "date": "04/12/2021",
+      "claims": [
+        "Convicção: remoção anunciada de 85% para 100%.",
+        "Agilidade passa a precisão; esquiva sai de equipamentos e talentos."
+      ]
+    },
+    {
+      "news": "415",
+      "date": "03/03/2022",
+      "claims": [
+        "Agilidade passa a perfuração; selo fica com precisão.",
+        "Derrota PVP: recompensa/3; empate: recompensa/2."
+      ]
+    },
+    {
+      "news": "424",
+      "date": "10/04/2022",
+      "claims": [
+        "XP NPC = XP PVP / 2, conforme anúncio histórico."
+      ]
+    },
+    {
+      "news": "426",
+      "date": "13/04/2022",
+      "claims": [
+        "XP NPC = XP PVP / 3; substitui proporção da notícia 424.",
+        "Graduação aceita via PVP OU NPC."
+      ]
+    },
+    {
+      "news": "451",
+      "date": "22/10/2022",
+      "claims": [
+        "Perfuração descrita como agilidade / 1,5.",
+        "Treino de jutsu: um ponto/2h, reserva máxima dez."
+      ]
+    },
+    {
+      "news": "465",
+      "date": "20/01/2023",
+      "claims": [
+        "Perfuração = agilidade / 2; Determinação = nível / 2, nos termos do anúncio."
+      ]
+    },
+    {
+      "news": "485",
+      "date": "10/05/2023",
+      "claims": [
+        "Perfurante depende de precisão de ataque em 100%."
+      ]
+    },
+    {
+      "news": "499",
+      "date": "08/09/2023",
+      "claims": [
+        "Cinco pontos de atributo por nível.",
+        "Andar do Sensei define nível do oponente."
+      ]
+    },
+    {
+      "news": "507",
+      "date": "28/11/2023",
+      "claims": [
+        "Coeficiente de recurso associado às quatro classes sobe de 14 para 20.",
+        "Requisito de selo de aprendizado cai pela metade.",
+        "Perfuração ganha limite de uma utilização por cinco pontos."
+      ]
+    },
+    {
+      "news": "527",
+      "date": "20/04/2024",
+      "claims": [
+        "Perfuração: um ponto percentual por agilidade.",
+        "Determinação: um ponto percentual a cada quatro níveis."
+      ]
+    },
+    {
+      "news": "560",
+      "date": "11/12/2024",
+      "claims": [
+        "Empate: recompensa integral anunciada."
+      ]
+    },
+    {
+      "news": "572",
+      "date": "11/03/2025",
+      "claims": [
+        "Empate volta à metade da recompensa de vitória.",
+        "Derrota com HP zero, em vez do limiar antigo de nove.",
+        "Bijuu: intervalo sete para dez dias."
+      ]
+    },
+    {
+      "news": "580",
+      "date": "14/06/2025",
+      "claims": [
+        "Determinação: nível / divisor por graduação."
+      ],
+      "divisors": {
+        "Estudante": 1,
+        "Genin": 1,
+        "Chunin": 1.5,
+        "Jounin": 2,
+        "ANBU": 3,
+        "Sannin": 4,
+        "Heroi": 4
+      },
+      "roundLabelConflict": true
+    },
+    {
+      "news": "637",
+      "date": "27/06/2026",
+      "claims": [
+        "Bijuu: intervalo dez para quinze dias.",
+        "Incrementos de crítico/percepção revistos, sem coeficientes publicados."
+      ]
+    },
+    {
+      "news": "646",
+      "date": "12/09/2026",
+      "claims": [
+        "Escolha de Kekkei Genkai desvinculada do clã.",
+        "Equipamentos/reforja: retiradas precisão, perfuração e defesas por classe; defesa base permanece."
+      ]
+    }
+  ]
+}

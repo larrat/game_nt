@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import { generateDynamicRogueNinja } from '../utils/engine';
+import NpcPortrait from '../components/NpcPortrait';
+import { createPlayerShadow } from '../utils/opponentRoster';
 
 // =============================================
 // CONFIGURAÇÃO DO GRID DA VILA
@@ -225,16 +227,9 @@ export default function Mapa({ player, updatePlayer }) {
     if (!profileError && topPlayers?.length > 0) {
       const shuffled = topPlayers.filter(p => p.id !== player.id)
         .sort(() => Math.random() - 0.5).slice(0, 5);
-      const ghosts = shuffled.map(p => ({
-        id: `ghost_${p.id}`, name: p.name, level: p.level,
-        avatar: '🥷', hp: Math.max(1, p.level * 50), chakra: Math.max(1, p.level * 50),
-        atk: Math.max(1, p.level * 5), def: Math.max(1, p.level * 3),
-        nin: Math.max(1, p.level), element: p.element || 'Katon',
-        is_ghost: true,
-        xpReward: Math.floor(p.level * 3), ryouReward: Math.floor(p.level * 2),
-        x: 10 + ((Number(p.id) * 17) % 80),
-        y: 10 + ((Number(p.id) * 23) % 80),
-      }));
+      const ghosts = shuffled
+        .map(p => createPlayerShadow(p, player.id))
+        .filter(Boolean);
       activeNpcs = [...activeNpcs, ...ghosts];
     }
 
@@ -567,7 +562,8 @@ export default function Mapa({ player, updatePlayer }) {
 
       {/* NPC markers */}
       {visibleNpcs.slice(0, 30).map(npc => (
-        <div
+        <button
+          type="button"
           key={npc.id}
           className="npc-node"
           style={{
@@ -576,17 +572,18 @@ export default function Mapa({ player, updatePlayer }) {
             transform: 'translate(-50%, -50%)',
             cursor: 'pointer',
             display: 'flex', flexDirection: 'column', alignItems: 'center',
+            padding: 0, border: 'none', background: 'transparent'
           }}
           onClick={(e) => { e.stopPropagation(); attackNpc(npc); }}
           title={`${npc.name} - Lv. ${npc.level}`}
+          aria-label={`Combater ${npc.name}, nível ${npc.level}`}
         >
-          <div style={{
-            fontSize: '20px',
+          <span style={{
             filter: `drop-shadow(0 0 4px ${npc.is_bingo_book ? '#ef4444' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? 'gold' : '#fff'})`,
           }}>
-            {npc.avatar || '👹'}
-          </div>
-        </div>
+            <NpcPortrait npc={npc} size={34} decorative />
+          </span>
+        </button>
       ))}
 
       {/* Player marker on world map */}
@@ -735,7 +732,7 @@ export default function Mapa({ player, updatePlayer }) {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ fontSize: '18px' }}>{npc.avatar}</span>
+                    <NpcPortrait npc={npc} size={30} decorative />
                     <div>
                       <div style={{ color: '#fff', fontWeight: 'bold', fontSize: '11px' }}>{npc.name}</div>
                       <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '10px' }}>Nv. {npc.level}</div>

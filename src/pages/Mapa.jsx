@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import { generateDynamicRogueNinja } from '../utils/engine';
+import CharacterArtwork from '../components/CharacterArtwork';
+import { resolveNpcArtwork } from '../utils/npcArtwork';
 
 // =============================================
 // CONFIGURAÇÃO DO GRID DA VILA
@@ -584,7 +586,9 @@ export default function Mapa({ player, updatePlayer }) {
             fontSize: '20px',
             filter: `drop-shadow(0 0 4px ${npc.is_bingo_book ? '#ef4444' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? 'gold' : '#fff'})`,
           }}>
-            {npc.avatar || '👹'}
+            <CharacterArtwork src={resolveNpcArtwork(npc)} name={npc.name}
+              fallback={typeof npc.avatar === 'string' && !npc.avatar.startsWith('/') ? npc.avatar : '👹'}
+              className="kuro-map-npc-portrait" />
           </div>
         </div>
       ))}

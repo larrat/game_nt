@@ -101,3 +101,6 @@
     transform: none;
   }
 }
+
+.app .kui-action--danger { color: #fff; border-color: #e66b71; background: linear-gradient(110deg,#c63e47,#832931); }
+.app .kui-action--danger:hover:not(:disabled) { background: #cc454e; }

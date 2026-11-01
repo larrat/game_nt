@@ -46,7 +46,8 @@ test('sidebar uses a real search input, direct actions, accessible accordion and
   assert.ok(sidebar.includes('filterScreenNavigation(searchQuery)'));
   assert.ok(sidebar.includes('type="search"'));
   assert.ok(sidebar.includes('aria-expanded={open}'));
-  assert.ok(sidebar.includes('hidden={!open}'));
+  assert.ok(sidebar.includes('aria-hidden={!open}'));
+  assert.ok(sidebar.includes('inert={!open}'));
   assert.ok(sidebar.includes('aria-controls={'));
   assert.ok(sidebar.includes('disabled={searching}'));
   assert.ok(sidebar.includes('<NavLink'));

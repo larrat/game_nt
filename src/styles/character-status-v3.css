@@ -294,3 +294,8 @@
   .kuro-status-v3__attributes { padding: 16px; }
   .kuro-status-v3__stat-grid, .kuro-status-v3__account-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Illustrated icons shared with Training and Clan attributes. */
+.kuro-status-v3__resource-icon img {display:block;width:22px;height:22px;object-fit:contain;}
+.kuro-status-v3__attribute-label {display:inline-flex;align-items:center;gap:8px;overflow-wrap:anywhere;}
+.kuro-status-v3__attribute-label img {display:block;flex-shrink:0;width:24px;height:24px;object-fit:contain;border-radius:4px;}

@@ -3,6 +3,9 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import GameAction from '../components/ui/GameAction';
+import '../styles/world-services-v4.css';
 import { getNpcPortrait } from '../utils/npcPortrait';
 
 export default function Historia({ player, updatePlayer }) {
@@ -166,7 +169,7 @@ export default function Historia({ player, updatePlayer }) {
   if (loading) return <div className="page text-center muted p-8">Lendo pergaminhos de história...</div>;
 
   return (
-    <div className="page kuro-story-page">
+    <div className="page kuro-story-page kuro-story-v4">
       <PageHeader 
         eyebrow="Narrativa Principal" 
         title="Escritório do Hokage" 
@@ -174,13 +177,13 @@ export default function Historia({ player, updatePlayer }) {
       />
 
       {!activeQuest ? (
-        <div className="kuro-story-empty card text-center p-8">
-          <div className="text-6xl mb-4 opacity-50">📜</div>
+        <div className="kuro-story-empty kuro-ui-card card text-center p-8">
+          <span className="kuro-world-v4__emblem"><SidebarIcon name="scroll" size={32} /></span>
           <h3 className="section-title">Sem Missões</h3>
           <p className="muted">O Hokage não tem missões de história para você no momento. Continue treinando!</p>
         </div>
       ) : (
-        <div className="kuro-story-quest card-glass border-gold p-6 relative overflow-hidden">
+        <div className="kuro-story-quest kuro-ui-card card-glass border-gold p-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 to-transparent pointer-events-none" />
           
           <div className="flex-between mb-4 z-10 relative">
@@ -229,7 +232,7 @@ export default function Historia({ player, updatePlayer }) {
 
       {/* MODAL DE DIÁLOGO */}
       {showDialog && (
-        <div className="kuro-story-dialog fixed inset-0 bg-ink/90 z-50 flex items-center justify-center p-4">
+        <div role="dialog" aria-modal="true" aria-label="Diálogo da história" className="kuro-story-dialog fixed inset-0 bg-ink/90 z-50 flex items-center justify-center p-4">
           <div className="kuro-story-dialog__panel w-full max-w-700 bg-ink-raised border-line-solid rounded-lg flex-row overflow-hidden shadow-2xl animate-fade-in">
             {/* Foto NPC */}
             <div className="kuro-story-dialog__portrait w-1/3 bg-ink relative border-r border-line-dashed">

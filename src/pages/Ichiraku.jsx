@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import GameAction from '../components/ui/GameAction';
+import '../styles/world-services-v4.css';
 import { useToast } from '../context/ToastContext';
 
 export default function Ichiraku({ player, updatePlayer }) {
@@ -85,20 +88,18 @@ export default function Ichiraku({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page">
+    <div className="page kuro-ichiraku-v4">
       <PageHeader 
         eyebrow="Comércio" 
         title="Ichiraku Ramen" 
         subtitle="Sente-se, relaxe e coma uma boa tigela de Ramen. Restauramos sua energia para a próxima missão!" 
       />
 
-      <div className="bg-ichiraku-hero p-8 rounded-lg relative overflow-hidden mb-6 border-line-solid border-line-bright">
+      <div className="kuro-ichiraku-v4__hero bg-ichiraku-hero p-8 rounded-lg relative overflow-hidden mb-6 border-line-solid border-line-bright">
         <div className="absolute inset-0 bg-ichiraku-overlay pointer-events-none" />
         
         <div className="relative z-10 flex-row gap-6 items-center">
-          <div className="text-6xl bg-ink-raised rounded-full w-100px h-100px flex-row items-center justify-center border-2 border-gold">
-            🍜
-          </div>
+          <span className="kuro-world-v4__emblem"><SidebarIcon name="soup" size={35} /></span>
           <div>
             <h2 className="paper shippori m-0 mb-2">Teuchi</h2>
             <p className="muted m-0 max-w-480 text-sm leading-relaxed">
@@ -109,14 +110,14 @@ export default function Ichiraku({ player, updatePlayer }) {
       </div>
 
       <div className="card-glass">
-        <div className="tabs mb-6">
-          <div className={`tab ${tab === 'loja' ? 'active' : ''}`} onClick={() => setTab('loja')}>Cardápio</div>
-          <div className={`tab ${tab === 'mochila' ? 'active' : ''}`} onClick={() => setTab('mochila')}>
+        <div className="tabs mb-6" role="tablist" aria-label="Navegação da loja">
+          <button type="button" role="tab" aria-selected={tab === 'loja'} className={`tab ${tab === 'loja' ? 'active' : ''}`} onClick={() => setTab('loja')}>Cardápio</button>
+          <button type="button" role="tab" aria-selected={tab === 'mochila'} className={`tab ${tab === 'mochila' ? 'active' : ''}`} onClick={() => setTab('mochila')}>
             Sua Mochila 
             <span className="ml-2 bg-seal-glow border-line-solid border-seal-bright text-seal-bright rounded-sm px-2 py-1 text-xs">
               {player.consumables?.length || 0}
             </span>
-          </div>
+          </button>
         </div>
 
         <div className="flex-between mb-6">
@@ -134,9 +135,9 @@ export default function Ichiraku({ player, updatePlayer }) {
           loading ? (
             <div className="muted mono text-center p-10">Preparando a cozinha...</div>
           ) : (
-            <div className="grid-3">
+            <div className="kuro-ichiraku-v4__grid">
               {consumables.map(item => (
-                <div key={item.id} className="bg-ink-card border-line-solid rounded-md p-4 flex-col">
+                <div key={item.id} className="kuro-ichiraku-v4__item">
                 <div className="flex-row gap-sm mb-3">
                   <div className="text-4xl w-12 h-12 bg-ink-raised rounded-sm flex-row items-center justify-center">
                     {item.icon}

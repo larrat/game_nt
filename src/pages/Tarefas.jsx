@@ -3,6 +3,9 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import GameAction from '../components/ui/GameAction';
+import '../styles/core-flows-v4.css';
 import '../styles/academy-v3.css';
 import { MISSION_TABS, getMissionBlockReason as missionBlockReason, formatMissionCompletionMessage } from '../utils/progression';
 
@@ -146,13 +149,18 @@ export default function Tarefas({ player, updatePlayer }) {
   }, {});
 
   return (
-    <div className="page kuro-missions-page">
+    <div className="page kuro-missions-page kuro-missions-v4">
       <PageHeader
         eyebrow="Rotina Shinobi"
         title="Missões Ninja"
         subtitle="Explore todas as categorias, confira requisitos e resgate as recompensas confirmadas pelo servidor."
       />
 
+      <section className="kuro-missions-v4__overview" aria-label="Resumo das missões">
+        <div><span className="kuro-ui-label"><SidebarIcon name="scroll" size={16} /> CATÁLOGO</span><strong>{tarefas.length}</strong><small>Missões disponíveis para consulta</small></div>
+        <div><span className="kuro-ui-label"><SidebarIcon name="activity" size={16} /> EM ANDAMENTO</span><strong>{activeMissions.length} / {slots}</strong><small>Espaços de missão utilizados</small></div>
+        <div><span className="kuro-ui-label"><SidebarIcon name="coins" size={16} /> NOVO ESPAÇO</span><strong>{SLOT_COST} KC</strong><small>Custo informado de um slot adicional</small></div>
+      </section>
       <div className="segmented-tabs kuro-mission-tabs" role="tablist" aria-label="Categorias de missão">
         {TABS.map(tab => {
           const locked = player.level < tab.minLevel;
@@ -166,14 +174,14 @@ export default function Tarefas({ player, updatePlayer }) {
               aria-selected={activeTab === tab.id}
               title={locked ? `Missões visíveis para consulta; requer Nv.${tab.minLevel} para iniciar` : undefined}
             >
-              {locked ? '🔒 ' : ''}{tab.label}
+              {locked && <SidebarIcon name="lock" size={13} />}{tab.label}
               <span className="count">{missionsByType[tab.id] || 0}</span>
             </button>
           );
         })}
       </div>
 
-      <section className="kuro-active-missions-panel kuro-academy-v3__missions card mb-6" aria-labelledby="active-missions-heading">
+      <section className="kuro-active-missions-panel kuro-academy-v3__missions card mb-6 kuro-ui-card" aria-labelledby="active-missions-heading">
         <div className={`flex-between flex-wrap gap-md ${activeMissions.length ? 'mb-[18px]' : 'mb-0'}`}>
           <div>
             <h2 id="active-missions-heading" className="card-title mb-2">Missões em andamento</h2>
@@ -206,14 +214,15 @@ export default function Tarefas({ player, updatePlayer }) {
                     <span className="badge badge-muted">XP {tDef.xp}</span>
                     <span className="badge badge-gold">RY$ {tDef.ryous}</span>
                   </div>
-                  <button
-                    className={`w-full ${isDone ? 'btn-primary' : 'btn-ghost'}`}
+                  <GameAction
+                    tone={isDone ? 'seal' : 'quiet'}
+                    className="w-full"
                     onClick={() => finishTask(tDef)}
                     disabled={loading || !isDone}
                     type="button"
                   >
                     <span>{isDone ? 'Resgatar' : 'Em progresso'}</span>
-                  </button>
+                  </GameAction>
                 </div>
               );
             })}
@@ -224,7 +233,7 @@ export default function Tarefas({ player, updatePlayer }) {
         <strong>Recompensas previstas:</strong> os valores abaixo são os do catálogo.
         O servidor confirma os valores efetivamente creditados ao concluir cada missão.
       </p>
-      <div className="kuro-mission-catalog kuro-academy-v3__catalog card p-0">
+      <div className="kuro-mission-catalog kuro-academy-v3__catalog card p-0 kuro-ui-card">
         <div className="table-responsive m-0 border-none">
           <table className="data-table">
             <thead>
@@ -259,16 +268,17 @@ export default function Tarefas({ player, updatePlayer }) {
                     ) : (player.completed_missions || []).includes(t.id) ? (
                       <span className="badge badge-green">✓ Concluída</span>
                     ) : locked ? (
-                      <span className="badge badge-red" title={blockReason}>🔒 {blockReason}</span>
+                      <span className="badge badge-red kuro-missions-v4__locked" title={blockReason}><SidebarIcon name="lock" size={13} /> {blockReason}</span>
                     ) : (
-                      <button
-                        className="btn-primary py-2 px-4 text-sm"
+                      <GameAction
+                        tone="seal"
+                        size="small"
                         onClick={() => startTask(t)}
                         disabled={loading || startingTaskIds[t.id]}
                         type="button"
                       >
                         <span>{startingTaskIds[t.id] ? 'Iniciando...' : 'Iniciar'}</span>
-                      </button>
+                      </GameAction>
                     )}
                   </td>
                 </tr>

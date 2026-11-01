@@ -3,6 +3,10 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import ItemArtwork from '../components/ItemArtwork';
+import GameAction from '../components/ui/GameAction';
+import '../styles/core-flows-v4.css';
 
 export default function Equipamentos({ player, updatePlayer }) {
   const { addToast } = useToast();
@@ -158,8 +162,9 @@ export default function Equipamentos({ player, updatePlayer }) {
         
         {equipped && (
           <div className="flex-col gap-sm mt-3 items-center w-full">
+            <ItemArtwork name={equipped.items.name} size={42} />
             <span className="text-muted-bright text-xs">{equipped.items.name}</span>
-            <button className="btn-ghost p-1 text-xs w-full" onClick={() => handleUnequip(equipped)}>Remover</button>
+            <GameAction tone="quiet" size="small" className="w-full" onClick={() => handleUnequip(equipped)}>Remover</GameAction>
           </div>
         )}
       </div>
@@ -187,26 +192,31 @@ export default function Equipamentos({ player, updatePlayer }) {
   const totalBonus = calculateTotalBonus();
 
   return (
-    <div className="page kuro-equipment-page">
+    <div className="page kuro-equipment-page kuro-equipment-v4">
       <PageHeader 
         eyebrow={`${player.name} · ${player.clan_id ? `Clã ID ${player.clan_id}` : 'Sem Clã'}`} 
-        title='Arsenal e Arsenal Ninja' 
+        title='Arsenal Ninja' 
         subtitle='Gerencie seus equipamentos e veja o impacto nos seus atributos gerais.' 
       />
 
+      <section className="kuro-equipment-v4__overview" aria-label="Resumo de equipamentos">
+        <div><span className="kuro-ui-label"><SidebarIcon name="shield" size={15} /> ITENS EQUIPADOS</span><strong>{inventory.filter(i => i.is_equipped).length} / 6</strong><small>Espaços de equipamento em uso</small></div>
+        <div><span className="kuro-ui-label"><SidebarIcon name="users" size={15} /> MOCHILA</span><strong>{bagItems.length}</strong><small>Itens disponíveis para equipar</small></div>
+        <div><span className="kuro-ui-label"><SidebarIcon name="sparkles" size={15} /> BÔNUS ATIVOS</span><strong>{Object.keys(totalBonus).length}</strong><small>Atributos afetados pelo arsenal</small></div>
+      </section>
       <div className="kuro-equipment-layout flex-row gap-xl items-start flex-wrap">
         
         {/* LADO ESQUERDO: HERÓI & STATUS TOTAIS */}
         <div className="flex-col gap-lg flex-1 min-w-[350px] max-w-[400px]">
           
-          <div className="kuro-equipment-profile card-glass flex-col items-center p-8 relative overflow-hidden border-line-solid border-seal-bright">
+          <div className="kuro-equipment-profile kuro-ui-card card-glass flex-col items-center p-8 relative overflow-hidden border-line-solid border-seal-bright">
             <div className="absolute inset-0 pointer-events-none bg-gradient-radial-gold" />
             
             <div className="bg-ink z-10 mb-4 rounded-md overflow-hidden flex-row items-center justify-center border-gold border-2 w-[100px] h-[100px]">
               {player.avatar?.startsWith('/') ? (
                 <img src={player.avatar} alt="Avatar" className="w-full h-full object-cover" />
               ) : (
-                <span className="text-5xl">🥷</span>
+                <span className="kuro-equipment-v4__avatar-fallback" aria-hidden="true">忍</span>
               )}
             </div>
             
@@ -214,7 +224,7 @@ export default function Equipamentos({ player, updatePlayer }) {
             <div className="badge badge-gold z-10 mt-2">Nível {player.level}</div>
           </div>
 
-          <div className="kuro-equipment-bonuses card flex-col">
+          <div className="kuro-equipment-bonuses kuro-ui-card card flex-col">
             <h3 className="section-title gold mb-4 pb-3 border-line-solid border-b">Bônus de Equipamentos</h3>
             {Object.keys(totalBonus).length === 0 ? (
               <div className="muted text-center py-6">Nenhum bônus provido pelo equipamento atual.</div>
@@ -240,7 +250,7 @@ export default function Equipamentos({ player, updatePlayer }) {
         <div className="kuro-equipment-main flex-col flex-[2_1_600px] gap-xl">
           
           {/* SLOTS EQUIPADOS */}
-          <div className="kuro-equipment-slots card">
+          <div className="kuro-equipment-slots kuro-ui-card card">
             <h3 className="section-title gold border-b border-line pb-3 mb-6">Equipamentos Ativos</h3>
             <div className="flex-row gap-md overflow-x-auto pb-4">
               {renderSlot('Cabeça', '額', 'Cabeça')}
@@ -253,54 +263,62 @@ export default function Equipamentos({ player, updatePlayer }) {
           </div>
 
           {/* MOCHILA */}
-          <div className="kuro-equipment-backpack card">
+          <div className="kuro-equipment-backpack kuro-ui-card card">
             <div className="kuro-inventory-toolbar flex-between mb-6 pb-4 border-line-solid border-b">
               <h3 className="section-title mb-0 pb-0 border-none">Mochila</h3>
               
               <div className="flex-row gap-sm overflow-x-auto flex-wrap">
                 <div className="flex-row gap-sm">
                   {['Todos', 'Favoritos', 'Cabeça', 'Tronco', 'Braços', 'Pernas', 'Arma', 'Acessório'].map(f => (
-                    <button 
-                      key={f} 
+                    <GameAction
+                      key={f}
+                      tone={filter === f ? 'gold' : 'quiet'}
+                      size="small"
+                      aria-pressed={filter === f}
                       onClick={() => setFilter(f)}
-                      className={`text-xs p-2 whitespace-nowrap ${filter === f ? 'btn-attr' : 'btn-ghost'}`}
+                      className="kuro-equipment-v4__filter"
                     >
-                      {f === 'Favoritos' ? '⭐' : f}
-                    </button>
+                      {f === 'Favoritos' && <SidebarIcon name="star" size={14} />}{f}
+                    </GameAction>
                   ))}
                 </div>
                 
-                <button onClick={handleMassSell} className="btn-ghost text-xs p-2 ml-auto text-red border border-red">
-                  🗑️ Vender Lixo
-                </button>
+                <GameAction tone="danger" size="small" onClick={handleMassSell} className="kuro-equipment-v4__sell">
+                  <SidebarIcon name="trash" size={15} /> Vender itens comuns
+                </GameAction>
               </div>
             </div>
             
             {loading ? (
-              <div className="muted text-center py-10">Vasculhando a mochila...</div>
+              <div className="kuro-equipment-v4__empty" role="status">Consultando seu inventário…</div>
             ) : displayedItems.length === 0 ? (
-              <div className="muted text-center py-10 border-line-dashed border-line">
+              <div className="kuro-equipment-v4__empty" role="status">
                 {filter === 'Favoritos' ? 'Nenhum equipamento favoritado.' : 'Sua mochila está vazia para este filtro.'}
               </div>
             ) : (
               <div className="grid-auto gap-md grid-cols-[repeat(auto-fill,minmax(220px,1fr))]">
                 {displayedItems.map(invItem => (
-                  <div key={invItem.id} className="kuro-equipment-item card-glass flex-col relative p-4 gap-sm border-t-3" style={{ 
+                  <div key={invItem.id} className="kuro-equipment-item kuro-ui-card card-glass flex-col relative p-4 gap-sm border-t-3" style={{ 
                     borderTopColor: getRarityColor(invItem.rarity || invItem.items.rarity)
                   }}>
                     
-                    <button 
+                    <button type="button"
                         onClick={() => handleFavorite(invItem)}
-                        className={`absolute bg-transparent border-none cursor-pointer text-sm transition-all top-3 right-3 ${invItem.is_favorite ? 'opacity-100' : 'opacity-20'}`}
+                        aria-label={invItem.is_favorite ? `Remover ${invItem.items.name} dos favoritos` : `Adicionar ${invItem.items.name} aos favoritos`}
+                        aria-pressed={Boolean(invItem.is_favorite)}
+                        className={`kuro-equipment-v4__favorite ${invItem.is_favorite ? 'is-active' : ''}`}
                     >
-                        ⭐
+                        <SidebarIcon name="star" size={18} />
                     </button>
 
-                    <div>
+                    <div className="kuro-equipment-v4__item-heading">
+                      <ItemArtwork name={invItem.items.name} size={44} />
+                      <div>
                       <h4 className="text-sm mb-1 pr-6" style={{ color: getRarityColor(invItem.rarity || invItem.items.rarity) }}>
                           {invItem.items.name}
                       </h4>
                       <div className="muted text-xs">{invItem.rarity || invItem.items.rarity}</div>
+                      </div>
                     </div>
                     
                     <div className="flex-row gap-sm">
@@ -319,13 +337,15 @@ export default function Equipamentos({ player, updatePlayer }) {
                       </div>
                     </div>
                     
-                    <button 
-                      className={`w-full p-2 text-xs ${player.level >= invItem.items.req_level ? "btn-primary opacity-100" : "btn-danger opacity-50"}`} 
-                      onClick={() => handleEquip(invItem)} 
+                    <GameAction
+                      tone={player.level >= invItem.items.req_level ? 'seal' : 'quiet'}
+                      className="w-full"
+                      onClick={() => handleEquip(invItem)}
                       disabled={player.level < invItem.items.req_level}
                     >
-                      {player.level >= invItem.items.req_level ? 'Equipar Item' : 'Nível Muito Baixo'}
-                    </button>
+                      <SidebarIcon name="shield" size={16} />
+                      {player.level >= invItem.items.req_level ? 'Equipar item' : 'Nível insuficiente'}
+                    </GameAction>
                   </div>
                 ))}
               </div>

@@ -5,6 +5,9 @@ import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import { generateDynamicRogueNinja } from '../utils/engine';
 import NpcPortrait from '../components/NpcPortrait';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/core-flows-v4.css';
 import { createPlayerShadow } from '../utils/opponentRoster';
 
 // =============================================
@@ -51,8 +54,12 @@ function VillageTile({ type, onClick, isHovered, onHover, onLeave, playerAnimati
 
   const baseBg = building ? building.bgImage : terrain.bgImage;
 
+  const TileElement = building ? 'button' : 'div';
   return (
-    <div
+    <TileElement
+      type={building ? 'button' : undefined}
+      className={'kuro-map-v4__tile' + (building ? ' is-building' : '')}
+      aria-label={building ? `Explorar ${building.label}` : undefined}
       onClick={building ? onClick : undefined}
       onMouseEnter={building ? onHover : undefined}
       onMouseLeave={building ? onLeave : undefined}
@@ -156,7 +163,7 @@ function VillageTile({ type, onClick, isHovered, onHover, onLeave, playerAnimati
           }}>Você</div>
         </div>
       )}
-    </div>
+    </TileElement>
   );
 }
 
@@ -319,10 +326,7 @@ export default function Mapa({ player, updatePlayer }) {
     const selectedBldg = selectedBuilding ? BUILDING_CONFIG[selectedBuilding] : null;
 
     return (
-      <div style={{
-        position: 'fixed', inset: 0, overflow: 'hidden',
-        fontFamily: "'Inter', sans-serif",
-      }}>
+      <div className="kuro-map-v4 kuro-map-v4--village" aria-label="Mapa interativo da vila">
         {/* Background image from the new assets */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 0,
@@ -337,7 +341,7 @@ export default function Mapa({ player, updatePlayer }) {
         }} />
 
         {/* Top info bar */}
-        <div style={{
+        <div className="kuro-map-v4__topbar" style={{
           position: 'absolute', top: 0, left: 0, right: 0, zIndex: 20,
           background: 'rgba(0,0,0,0.75)',
           backdropFilter: 'blur(8px)',
@@ -358,21 +362,7 @@ export default function Mapa({ player, updatePlayer }) {
           </div>
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px' }}>Clique num edifício para interagir</div>
-            <button
-              onClick={() => setViewMode('world')}
-              style={{
-                background: 'rgba(212,162,42,0.12)',
-                border: '1px solid rgba(212,162,42,0.4)',
-                color: '#d4a22a',
-                borderRadius: '6px',
-                padding: '6px 14px',
-                cursor: 'pointer',
-                fontSize: '12px',
-                fontWeight: 'bold',
-              }}
-            >
-              🌍 Mapa Mundi
-            </button>
+            <GameAction tone="quiet" className="kuro-map-v4__nav-action" onClick={() => setViewMode('world')} aria-label="Abrir mapa mundi"><SidebarIcon name="map" size={16} /> Mapa Mundi</GameAction>
           </div>
         </div>
 
@@ -416,7 +406,7 @@ export default function Mapa({ player, updatePlayer }) {
 
         {/* Building info panel (side panel) */}
         {selectedBldg && (
-          <div className="map-panel" style={{
+          <div className="map-panel kuro-map-v4__detail" style={{
             position: 'absolute',
             right: '20px',
             top: '80px',
@@ -440,44 +430,14 @@ export default function Mapa({ player, updatePlayer }) {
               {selectedBldg.desc}
             </p>
             {selectedBldg.route && selectedBldg.route !== 'world' && (
-              <button
-                onClick={() => navigate(selectedBldg.route)}
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  background: selectedBldg.color,
-                  border: 'none',
-                  borderRadius: '8px',
-                  color: '#000',
-                  fontWeight: 'bold',
-                  fontSize: '14px',
-                  cursor: 'pointer',
-                  marginBottom: '8px',
-                }}
-              >
-                Entrar
-              </button>
+              <GameAction tone="gold" className="kuro-map-v4__panel-action" onClick={() => navigate(selectedBldg.route)}>Entrar</GameAction>
             )}
-            <button
-              onClick={() => setSelectedBuilding(null)}
-              style={{
-                width: '100%',
-                padding: '10px',
-                background: 'transparent',
-                border: '1px solid rgba(255,255,255,0.15)',
-                borderRadius: '8px',
-                color: 'rgba(255,255,255,0.5)',
-                fontSize: '13px',
-                cursor: 'pointer',
-              }}
-            >
-              Fechar
-            </button>
+            <GameAction tone="quiet" className="kuro-map-v4__panel-action" onClick={() => setSelectedBuilding(null)}>Fechar</GameAction>
           </div>
         )}
 
         {/* Legend bottom-left */}
-        <div style={{
+        <div className="kuro-map-v4__legend" style={{
           position: 'absolute',
           bottom: '16px',
           left: '16px',
@@ -501,7 +461,7 @@ export default function Mapa({ player, updatePlayer }) {
   // RENDER: WORLD MAP MODE
   // ========================
   return (
-    <div style={{ padding: 0, overflow: 'hidden', position: 'fixed', inset: 0 }} onClick={handleMapClick}>
+    <div className="kuro-map-v4 kuro-map-v4--world" onClick={handleMapClick} aria-label="Mapa mundi ninja">
 
       {/* Map background */}
       <div style={{
@@ -514,9 +474,11 @@ export default function Mapa({ player, updatePlayer }) {
 
       {/* Village tiles on the world map */}
       {Object.entries(villages).map(([vId, v]) => v.x != null && (
-        <div
+        <button
+          type="button"
           key={vId}
-          className="village-node"
+          className="village-node kuro-map-v4__village-node"
+          aria-label={currentLoc === parseInt(vId) ? `Voltar à vila de ${v.name}` : `Selecionar viagem para a vila de ${v.name}`}
           style={{
             position: 'absolute', zIndex: 6,
             left: `${v.x}%`, top: `${v.y}%`,
@@ -557,7 +519,7 @@ export default function Mapa({ player, updatePlayer }) {
               (clique para voltar)
             </div>
           )}
-        </div>
+        </button>
       ))}
 
       {/* NPC markers */}
@@ -565,7 +527,7 @@ export default function Mapa({ player, updatePlayer }) {
         <button
           type="button"
           key={npc.id}
-          className="npc-node"
+          className="npc-node kuro-map-v4__npc-node"
           style={{
             position: 'absolute', zIndex: 7,
             left: `${npc.x}%`, top: `${npc.y}%`,
@@ -604,7 +566,7 @@ export default function Mapa({ player, updatePlayer }) {
       </div>
 
       {/* TOP LEFT: Location + back button */}
-      <div className="map-panel" style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 10 }}>
+      <div className="map-panel kuro-map-v4__location" style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 10 }}>
         <div style={{
           background: 'rgba(8,12,18,0.92)',
           backdropFilter: 'blur(8px)',
@@ -622,26 +584,12 @@ export default function Mapa({ player, updatePlayer }) {
           <div style={{ color: '#d4a22a', fontWeight: 'bold', fontSize: '14px' }}>
             {villages[currentLoc]?.icon} Vila de {villages[currentLoc]?.name}
           </div>
-          <button
-            onClick={() => setViewMode('village')}
-            style={{
-              background: 'rgba(212,162,42,0.12)',
-              border: '1px solid rgba(212,162,42,0.4)',
-              color: '#d4a22a',
-              borderRadius: '6px',
-              padding: '7px 12px',
-              cursor: 'pointer',
-              fontSize: '12px',
-              fontWeight: 'bold',
-            }}
-          >
-            ← Voltar à Vila
-          </button>
+          <GameAction tone="quiet" className="kuro-map-v4__nav-action" onClick={() => setViewMode('village')}><SidebarIcon name="arrowLeft" size={16} /> Voltar à Vila</GameAction>
         </div>
       </div>
 
       {/* RIGHT PANEL: Travel confirm + Threat radar */}
-      <div className="map-panel" style={{
+      <div className="map-panel kuro-map-v4__radar-panel" style={{
         position: 'absolute', top: '16px', right: '16px',
         zIndex: 10, width: '280px',
         display: 'flex', flexDirection: 'column', gap: '12px',
@@ -664,30 +612,8 @@ export default function Mapa({ player, updatePlayer }) {
               <span style={{ color: '#f59e0b', fontSize: '12px' }}>Custo: 100 Ryous</span>
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <button
-                onClick={handleTravel}
-                disabled={loadingId !== null}
-                style={{
-                  width: '100%', padding: '10px',
-                  background: '#d4a22a', border: 'none',
-                  borderRadius: '6px', color: '#000',
-                  fontWeight: 'bold', fontSize: '13px', cursor: 'pointer',
-                }}
-              >
-                {loadingId ? 'Viajando...' : '🚀 Viajar'}
-              </button>
-              <button
-                onClick={() => setConfirmTarget(null)}
-                style={{
-                  width: '100%', padding: '8px',
-                  background: 'transparent',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  borderRadius: '6px', color: 'rgba(255,255,255,0.5)',
-                  fontSize: '13px', cursor: 'pointer',
-                }}
-              >
-                Cancelar
-              </button>
+              <GameAction tone="gold" className="kuro-map-v4__panel-action" onClick={handleTravel} loading={loadingId !== null}>{loadingId ? 'Viajando…' : 'Confirmar viagem'}</GameAction>
+              <GameAction tone="quiet" className="kuro-map-v4__panel-action" onClick={() => setConfirmTarget(null)}>Cancelar</GameAction>
             </div>
           </div>
         )}
@@ -738,22 +664,7 @@ export default function Mapa({ player, updatePlayer }) {
                       <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '10px' }}>Nv. {npc.level}</div>
                     </div>
                   </div>
-                  <button
-                    onClick={() => attackNpc(npc)}
-                    style={{
-                      background: 'rgba(239,68,68,0.15)',
-                      border: '1px solid rgba(239,68,68,0.4)',
-                      color: '#ef4444',
-                      borderRadius: '4px',
-                      padding: '4px 10px',
-                      fontSize: '11px',
-                      fontWeight: 'bold',
-                      cursor: 'pointer',
-                      flexShrink: 0,
-                    }}
-                  >
-                    Atacar
-                  </button>
+                  <GameAction tone="danger" size="small" onClick={() => attackNpc(npc)}>Atacar</GameAction>
                 </div>
               ))}
             </div>

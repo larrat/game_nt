@@ -1,5 +1,6 @@
 import React from 'react';
 import { getJutsuEligibility } from '../utils/jutsuEligibility';
+import JutsuArtwork from './JutsuArtwork';
 
 // The card and purchase handlers share the same pure, server-aligned eligibility check.
 export default function JutsuCard({
@@ -30,11 +31,7 @@ export default function JutsuCard({
       </div>
 
       <div className="kuro-academy-v3__jutsu-art w-16 h-16 rounded-md bg-ink-raised border border-line-bright flex items-center justify-center overflow-hidden mb-3">
-        {jutsu.icon_url ? (
-          <img src={jutsu.icon_url} alt="" className="w-full h-full object-cover" loading="lazy" />
-        ) : (
-          <span className="text-3xl" aria-hidden="true">📜</span>
-        )}
+        <JutsuArtwork key={jutsu.id ?? jutsu.name} jutsu={jutsu} />
       </div>
 
       <h3 className="kuro-academy-v3__jutsu-title paper font-bold text-base mb-2">{jutsu.name}</h3>

@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { calculateXPForLevel, calculateLevelFromXP, calculateHP, calculateChakra, calculateStamina, getGlobalDebuffs } from '../utils/engine';
+import { getGlobalDebuffs } from '../utils/engine';
 import { supabase } from '../supabaseClient';
 import { fetchActiveGlobalEvents } from '../utils/eventUtils';
 import { useToast } from '../context/ToastContext';
-import AvatarModal from '../components/AvatarModal';
 import GameAction from '../components/ui/GameAction';
 import SidebarIcon from '../components/SidebarIcon';
 import GamePanel from '../components/ui/GamePanel';
 import GameEmptyState from '../components/ui/GameEmptyState';
-import ResourceMeter from '../components/ui/ResourceMeter';
 import '../styles/main.css';
-
-const VILLAGES = {
-  1: 'Folha', 2: 'Areia', 3: 'Névoa',
-  4: 'Pedra', 5: 'Nuvem', 6: 'Som', 7: 'Chuva', 8: 'Akatsuki'
-};
+import '../styles/dashboard-operations-v5.css';
 
 const DailyTaskItem = ({
   taskId, title, titleIcon, rewardText,
@@ -46,12 +40,10 @@ const DailyTaskItem = ({
 };
 
 export default function Dashboard({ player, updatePlayer }) {
-  const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
   const [claiming, setClaiming] = useState(false);
   const [activeEvents, setActiveEvents] = useState([]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [timeRemaining, setTimeRemaining] = useState({});
-  const [avatarUrl, setAvatarUrl] = useState('');
   const { addToast } = useToast();
   const navigate = useNavigate();
 
@@ -201,21 +193,6 @@ export default function Dashboard({ player, updatePlayer }) {
   const todayStr = new Date().toISOString().split('T')[0];
   const fidelityClaimed = player.last_daily_claim === todayStr;
   const claimedList = Array.isArray(player.daily_rewards_claimed) ? player.daily_rewards_claimed : [];
-  const heroVillage = Number.isInteger(Number(player.village_id)) && Number(player.village_id) >= 1 && Number(player.village_id) <= 7
-    ? Number(player.village_id) : 'default';
-
-  const currentLevel = calculateLevelFromXP(player.xp || 0);
-  const maxHp = Math.max(1, calculateHP(player));
-  const maxChakra = Math.max(1, calculateChakra(player));
-  const maxStamina = Math.max(1, calculateStamina(player));
-  const currentHp = Math.max(0, Math.min(player.hp ?? maxHp, maxHp));
-  const currentChakra = Math.max(0, Math.min(player.chakra ?? maxChakra, maxChakra));
-  const currentStamina = Math.max(0, Math.min(player.stamina ?? maxStamina, maxStamina));
-  const levelStartXp = calculateXPForLevel(currentLevel);
-  const nextLevelXp = calculateXPForLevel(currentLevel + 1);
-  const xpToNextLevel = Math.max(1, nextLevelXp - levelStartXp);
-  const currentLevelXp = Math.max(0, (player.xp || 0) - levelStartXp);
-  const villageName = VILLAGES[player.village_id] || "Vila desconhecida";
   const dailyTasks = [
     { key: "t1", complete: (player.daily_npcs_defeated || 0) >= 3 },
     { key: "t2", complete: (player.daily_chakra_spent || 0) >= 100 },
@@ -235,39 +212,21 @@ export default function Dashboard({ player, updatePlayer }) {
         <GameAction onClick={() => navigate("/historia")}>Continuar jornada <span aria-hidden="true">↗</span></GameAction>
       </header>
 
-      <section className={"kuro-hero kuro-hero--village-" + heroVillage}>
-        <div className="kuro-hero__shade" />
-        <div className="kuro-hero__identity">
-          <button className="kuro-hero__portrait" onClick={() => setIsAvatarModalOpen(true)} title="Personalizar avatar" aria-label="Personalizar avatar">
-            {player.avatar?.startsWith("/") ? <img src={player.avatar} alt={"Avatar de " + player.name} /> : <span>{player.avatar || "忍"}</span>}
-            <span className="kuro-hero__portrait-edit">Editar</span>
-          </button>
-          <div className="kuro-hero__profile">
-            <span className="kuro-hero__kicker">SHINOBI IDENTIFICADO</span>
-            <h2>{player.name}</h2>
-            <div className="kuro-hero__badges">
-              <span className="kuro-chip kuro-chip--gold">{player.rank || "Estudante da Academia"}</span>
-              <span className="kuro-chip">{villageName}</span>
-              {player.clan && <span className="kuro-chip">{player.clan}</span>}
-            </div>
-            <div className="kuro-hero__level"><span>NÍVEL <strong>{currentLevel}</strong></span><span className="kuro-hero__xp-copy">{Math.floor(currentLevelXp).toLocaleString()} / {xpToNextLevel.toLocaleString()} XP</span></div>
-            <progress className="kui-resource__track kui-resource__track--xp kuro-hero__xp-meter" value={Math.min(currentLevelXp, xpToNextLevel)} max={xpToNextLevel} aria-label="Progresso de experiência no nível atual" />
-          </div>
+      <section className="kuro-dashboard-operations" aria-label="Prioridades de hoje">
+        <div className="kuro-dashboard-operations__main">
+          <span className="kuro-section__eyebrow">CENTRO DE OPERAÇÕES</span>
+          <h2>Suas prioridades de hoje</h2>
+          <p>Missões, recompensas e eventos estão aqui. Para consultar seu personagem e atributos, abra a ficha do ninja.</p>
+          <GameAction tone="quiet" onClick={() => navigate("/status")}>
+            <SidebarIcon name="user" size={17} /> Ver ficha do ninja <SidebarIcon name="arrowRight" size={15} />
+          </GameAction>
         </div>
-
-        <div className="kuro-hero__resources" aria-label="Recursos do personagem">
-          <ResourceMeter label="Vida" current={currentHp} max={maxHp} tone="hp" symbol="♥" />
-          <ResourceMeter label="Chakra" current={currentChakra} max={maxChakra} tone="chakra" symbol="✦" />
-          <ResourceMeter label="Stamina" current={currentStamina} max={maxStamina} tone="stamina" symbol="ϟ" />
+        <div className="kuro-dashboard-operations__metrics" aria-label="Atividades e oportunidades">
+          <div><span>Objetivos concluídos</span><strong>{dailyCompleted}/3</strong><small>Rotina diária</small></div>
+          <div><span>Prêmios resgatados</span><strong>{claimedTasks}/3</strong><small>Da rotina de hoje</small></div>
+          <div><span>Eventos ativos</span><strong>{activeEvents.length}</strong><small>Oportunidades do mundo</small></div>
+          <div><span>Pontos de atributo</span><strong>{(player.pontos_atributos || 0).toLocaleString('pt-BR')}</strong><small>Disponíveis para treinar</small></div>
         </div>
-        <div className="kuro-hero__ornament" aria-hidden="true">影</div>
-      </section>
-
-      <section className="kuro-kpis" aria-label="Resumo do personagem">
-        <article className="kuro-kpi"><span className="kuro-kpi__icon"><SidebarIcon name="swords" size={25} /></span><div><span className="kuro-kpi__label">Vitórias no dojo</span><strong>{(player.wins_dojo || 0).toLocaleString()}</strong><small>Combates vencidos</small></div></article>
-        <article className="kuro-kpi"><span className="kuro-kpi__icon"><SidebarIcon name="scroll" size={25} /></span><div><span className="kuro-kpi__label">Missões concluídas</span><strong>{((player.missions_s || 0) + (player.missions_a || 0) + (player.missions_b || 0) + (player.missions_c || 0) + (player.missions_d || 0)).toLocaleString()}</strong><small>Ranks S a D</small></div></article>
-        <article className="kuro-kpi"><span className="kuro-kpi__icon is-gold"><SidebarIcon name="coins" size={25} /></span><div><span className="kuro-kpi__label">Ryous disponíveis</span><strong>{(player.ryous || 0).toLocaleString()}</strong><small>Moeda shinobi</small></div></article>
-        <article className="kuro-kpi"><span className="kuro-kpi__icon"><SidebarIcon name="sparkles" size={25} /></span><div><span className="kuro-kpi__label">Pontos de atributo</span><strong>{(player.pontos_atributos || 0).toLocaleString()}</strong><small>Prontos para distribuir</small></div></article>
       </section>
 
       <section className="kuro-section">
@@ -350,7 +309,6 @@ export default function Dashboard({ player, updatePlayer }) {
           {player.pending_boss_boxes > 0 && <section className="kuro-pending-reward"><div className="kuro-pending-reward__mark">✦</div><div><span className="kuro-section__eyebrow">RECOMPENSA PENDENTE</span><h3>{player.pending_boss_boxes} Baús do Colapso</h3><p>Há recompensas antigas associadas à sua conta.</p></div><button className="kuro-button kuro-button--muted" onClick={handleOpenBossChest} disabled={claiming}>Ver detalhes</button></section>}
         </aside>
       </div>
-      <AvatarModal isOpen={isAvatarModalOpen} onClose={() => setIsAvatarModalOpen(false)} player={player} updatePlayer={updatePlayer} />
     </div>
   );
 }

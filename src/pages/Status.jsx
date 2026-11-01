@@ -17,6 +17,8 @@ import {
   calculateCritChance, calculateDodgeChance, calculateChakraDiscount
 } from '../utils/engine';
 import { BASIC_ATTRIBUTES, getStatusAccountRows, formatStatusNumber } from '../utils/statusPresentation';
+import { RESOURCE_ICON_PATHS } from '../utils/resourceIconRegistry';
+import { getAttributeArtworkUrl } from '../utils/clanArtwork';
 
 const TITLES = [
   'Nenhum(a)',
@@ -86,10 +88,10 @@ export default function Status({ player, updatePlayer }) {
   const currentRelativeXp = Math.max(0, (Number(player.xp) || 0) - startXp);
 
   const resources = [
-    { kind: 'hp', label: 'Vida', icon: '♥', current: player.hp, max: maxHp },
-    { kind: 'chakra', label: 'Chakra', icon: '✧', current: player.chakra, max: maxCp },
-    { kind: 'stamina', label: 'Stamina', icon: '⚡', current: player.stamina, max: maxSp },
-    { kind: 'xp', label: 'Experiência', icon: '★', current: currentRelativeXp, max: requiredRelativeXp }
+    { kind: 'hp', label: 'Vida', icon: RESOURCE_ICON_PATHS.hp, current: player.hp, max: maxHp },
+    { kind: 'chakra', label: 'Chakra', icon: RESOURCE_ICON_PATHS.chakra, current: player.chakra, max: maxCp },
+    { kind: 'stamina', label: 'Stamina', icon: RESOURCE_ICON_PATHS.stamina, current: player.stamina, max: maxSp },
+    { kind: 'xp', label: 'Experiência', icon: RESOURCE_ICON_PATHS.xp, current: currentRelativeXp, max: requiredRelativeXp }
   ];
 
   const derivedAttributes = [
@@ -179,7 +181,7 @@ export default function Status({ player, updatePlayer }) {
                 const difference = total === null ? 0 : total - Number(base);
                 return (
                   <div className="kuro-status-v3__stat-row" key={attribute.key}>
-                    <span>{attribute.label}</span>
+                    <span className="kuro-status-v3__attribute-label"><img src={getAttributeArtworkUrl(attribute.key)} alt="" loading="lazy" width={24} height={24} />{attribute.label}</span>
                     <strong>{formatStatusNumber(total)}
                       {difference > 0 && <small title="Bônus de clã"> +{formatStatusNumber(difference)}</small>}
                     </strong>

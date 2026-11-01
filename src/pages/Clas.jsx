@@ -8,6 +8,8 @@ import '../styles/challenges-v4.css';
 import { useToast } from '../context/ToastContext';
 import JutsuCard from '../components/JutsuCard';
 import ClanArtwork from '../components/ClanArtwork';
+import ClanSelector from '../components/ClanSelector';
+import '../styles/clan-selector-v5.css';
 import { getClanArtworkUrl, getAttributeArtworkUrl } from '../utils/clanArtwork';
 import { rankValue } from '../utils/engine';
 
@@ -26,6 +28,7 @@ export default function Clas({ player, updatePlayer }) {
   const [clanJutsus, setClanJutsus] = useState([]);
   const [myLearnedJutsus, setMyLearnedJutsus] = useState([]);
   const [selectedClanIdx, setSelectedClanIdx] = useState(0);
+  const [hasSelectedClan, setHasSelectedClan] = useState(false);
   const [customStats, setCustomStats] = useState({
     agilidade: 0, selo: 0, forca: 0, inteligencia: 0, resistencia: 0,
     ninjutsu: 0, genjutsu: 0, taijutsu: 0, energia: 0, bukijutsu: 0
@@ -82,11 +85,16 @@ export default function Clas({ player, updatePlayer }) {
     if (player) fetchClans();
   }, [player]);
 
-  if (!player || clansData.length === 0) return <div>Carregando...</div>;
+  if (!player) return null;
+  if (clansData.length === 0) return <div className="page kuro-clans-v4" role="status">Nenhum clã disponível no momento. Verifique o catálogo do jogo.</div>;
 
   const clan = clansData[selectedClanIdx];
 
   const handleJoinClan = async () => {
+    if (!hasSelectedClan) {
+      addToast('Selecione um clã na galeria antes de confirmar a entrada.', 'error');
+      return;
+    }
     if (player.clan_id) {
       addToast("Você já possui um clã!", "error");
       return;
@@ -143,7 +151,7 @@ export default function Clas({ player, updatePlayer }) {
   };
 
   const renderClanContent = (myClan) => {
-    const myJutsus = clanJutsus.filter(j => myClan.name.includes(j.req_clan) || j.req_clan.includes(myClan.name)).sort((a,b) => a.lvl - b.lvl);
+    const myJutsus = clanJutsus.filter(j => j.req_clan && (myClan.name.includes(j.req_clan) || j.req_clan.includes(myClan.name))).sort((a,b) => (a.req_level || a.lvl || 0) - (b.req_level || b.lvl || 0));
     const myClanLvl = player.clan_lvl || 0;
     const myStats = player.clan_custom_stats || {};
 
@@ -285,31 +293,11 @@ export default function Clas({ player, updatePlayer }) {
         </div>
       ) : (
         <div className="clan-system">
-          {/* CAROUSEL CLAN SELECTION */}
-          <div className="clan-carousel flex-row gap-lg mb-10 justify-center">
-            <GameAction tone="quiet" aria-label="Clã anterior" onClick={() => setSelectedClanIdx(Math.max(0, selectedClanIdx - 1))}><SidebarIcon name="arrowLeft" size={19} /></GameAction>
-            
-            <div className="flex-row gap-md overflow-hidden max-w-600 justify-center">
-              {clansData.map((c, idx) => (
-                <button
-                  type="button"
-                  key={c.id}
-                  aria-label={`Selecionar clã ${c.name}`}
-                  aria-pressed={idx === selectedClanIdx}
-                  onClick={() => setSelectedClanIdx(idx)}
-                  className={`cursor-pointer transition-all duration-300 ${idx === selectedClanIdx ? 'opacity-100 scale-110 border-2 border-seal-bright rounded-sm z-10 shadow-lg' : 'opacity-40 scale-90 border-2 border-transparent rounded-sm'}`}
-                >
-                  <ClanArtwork clan={c} className="clan-hero-img object-cover rounded-sm w-32 h-32" />
-                </button>
-              ))}
-            </div>
-
-            <GameAction tone="quiet" aria-label="Próximo clã" onClick={() => setSelectedClanIdx(Math.min(clansData.length - 1, selectedClanIdx + 1))}><SidebarIcon name="arrowRight" size={19} /></GameAction>
-          </div>
+          <ClanSelector clans={clansData} selectedIndex={selectedClanIdx} selectedExplicit={hasSelectedClan}
+            onSelect={index => { setSelectedClanIdx(index); setHasSelectedClan(true); }} />
 
           <div className="card kuro-ui-card flex-col mb-12 items-center text-center">
-             <h2 className="page-title mb-4">{clan.name}</h2>
-             <p className="muted leading-relaxed max-w-600 mx-auto mb-8">{clan.description}</p>
+             <p className="kuro-clan-selector__eyebrow mb-4">CONFIGURE A LINHAGEM SELECIONADA: {clan.name}</p>
 
              {/* UI DE PERSONALIZAÇÃO DE ATRIBUTOS */}
              <div className="w-full bg-black-alpha-40 border border-line-solid rounded-md p-6 mb-8 max-w-800">
@@ -320,8 +308,10 @@ export default function Clas({ player, updatePlayer }) {
                  {ATTR_NAMES.map(attr => (
                    <div key={attr} className="flex-col items-center bg-ink border border-line-solid rounded-sm p-3 w-20">
                      <img src={getAttributeArtworkUrl(attr)} alt="" className="w-9 h-9 mb-2 object-cover rounded-sm" loading="lazy" />
+                     <span className="text-[10px] font-semibold uppercase text-muted mb-1">{attr}</span>
                      <select 
                        className="bg-black-alpha-90 text-white border border-line-solid rounded px-2 py-1 text-sm outline-none cursor-pointer"
+                       aria-label={`Pontos de ${attr} para o clã ${clan.name}`}
                        value={customStats[attr]}
                        onChange={(e) => handleStatChange(attr, e.target.value)}
                      >
@@ -342,8 +332,9 @@ export default function Clas({ player, updatePlayer }) {
              </div>
 
              <div className="text-center w-full">
+               {!hasSelectedClan && <p className="muted text-xs mb-4" role="status">Selecione uma linhagem na galeria acima para habilitar a entrada.</p>}
                <p className="danger text-xs mb-4">Atenção: as escolhas de clã e atributos são <strong>permanentes</strong>.</p>
-               <GameAction tone="seal" className="w-full" onClick={handleJoinClan} disabled={totalSpent !== maxPoints}>
+               <GameAction tone="seal" className="w-full" onClick={handleJoinClan} disabled={!hasSelectedClan || totalSpent !== maxPoints}>
                  <SidebarIcon name="users" size={17} /> Entrar no Clã
                </GameAction>
              </div>

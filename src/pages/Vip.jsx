@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import { supabase } from '../supabaseClient';
-import { useNavigate } from 'react-router-dom';
-import { useToast } from '../context/ToastContext';
+import React from 'react';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import GameAction from '../components/ui/GameAction';
@@ -9,71 +6,13 @@ import SidebarIcon from '../components/SidebarIcon';
 import '../styles/challenges-v4.css';
 
 export default function Vip({ player, updatePlayer }) {
-  const { addToast } = useToast();
-  const [loading, setLoading] = useState(false);
-  const [showTalentModal, setShowTalentModal] = useState(false);
-  const [talentInput, setTalentInput] = useState('taijutsu');
-  const [showCharModal, setShowCharModal] = useState(false);
-  const navigate = useNavigate();
-
   if (!player) return null;
 
   const vipCredits = player.vip_coins || 0;
 
-  const handleSingleTalentReset = () => {
-    if (vipCredits < 1) {
-      return addToast("Créditos VIP insuficientes! (Requer 1 Crédito)", "error");
-    }
-    setShowTalentModal(true);
-  };
-
-  const confirmSingleTalentReset = async () => {
-    setShowTalentModal(false);
-    if (!talentInput || !player[talentInput]) {
-      return addToast("Atributo inválido ou zerado.", "error");
-    }
-
-    const statKey = talentInput;
-    
-    setLoading(true);
-    const { error } = await supabase.rpc('vip_reset_talento', {
-      p_player_id: player.id,
-      p_stat_name: statKey
-    });
-
-    if (error) {
-      addToast("Erro: " + error.message, "error");
-    } else {
-      addToast(`Sucesso! Você devolveu 1 ponto de ${statKey.toUpperCase()} e gastou 1 Crédito VIP.`, "success");
-      updatePlayer(player.id);
-    }
-    setLoading(false);
-  };
-
-  const handleCharacterChange = () => {
-    if (vipCredits < 2) {
-      return addToast("Créditos VIP insuficientes! (Requer 2 Créditos)", "error");
-    }
-    setShowCharModal(true);
-  };
-
-  const confirmCharacterChange = async () => {
-    setShowCharModal(false);
-    setLoading(true);
-    const { error } = await supabase.rpc('vip_reset_personagem', {
-      p_player_id: player.id
-    });
-
-    if (!error) {
-      addToast("Conta preparada para troca de personagem!", "success");
-      updatePlayer(player.id);
-      // Aqui faríamos a lógica de redirecionar para a tela de Seleção
-      navigate('/selecionar');
-    } else {
-      addToast("Erro: " + error.message, "error");
-    }
-    setLoading(false);
-  };
+  // As RPCs vip_reset_talento e vip_reset_personagem ainda não existem
+  // no banco. Nunca anunciar cobrança/reset antes de haver função transacional.
+  const vipResetAvailable = false;
 
   const milestones = [
     { spent: 5, reward: "Personagem Único Rank B" },
@@ -113,8 +52,8 @@ export default function Vip({ player, updatePlayer }) {
             <p className="muted text-xs leading-relaxed mb-4">
               Errou na build? Use este serviço para resetar exatamente UM (1) ponto de atributo sem precisar resetar toda a sua ficha técnica.
             </p>
-            <GameAction tone="quiet" className="w-full" onClick={handleSingleTalentReset} disabled={loading}>
-              Resetar Talento Avulso
+            <GameAction tone="quiet" className="w-full" disabled={!vipResetAvailable}>
+              Resetar Talento — indisponível
             </GameAction>
           </div>
 
@@ -126,8 +65,8 @@ export default function Vip({ player, updatePlayer }) {
             <p className="muted text-xs leading-relaxed mb-4">
               Permite trocar de personagem. <strong className="danger">Atenção:</strong> Seu personagem será totalmente resetado. Recomendado apenas para o 1º dia do round.
             </p>
-            <GameAction tone="danger" className="w-full" onClick={handleCharacterChange} disabled={loading}>
-              Mudar Personagem Inicial
+            <GameAction tone="danger" className="w-full" disabled={!vipResetAvailable}>
+              Trocar Personagem — indisponível
             </GameAction>
           </div>
         </div>
@@ -164,56 +103,11 @@ export default function Vip({ player, updatePlayer }) {
         </div>
       </div>
 
-      {/* Modal Reset Talento */}
-      {showTalentModal && (
-        <div className="modal-overlay">
-          <div className="modal-content card">
-            <h3 className="card-title text-xl mb-4">Reset de Talento</h3>
-            <p className="muted mb-4 leading-relaxed">
-              Selecione qual atributo você deseja remover 1 ponto. Você receberá 1 ponto livre para redistribuir.
-              <br/><span className="gold">Custo: 1 Crédito VIP</span>
-            </p>
-            <div className="mb-6">
-              <select 
-                value={talentInput}
-                onChange={(e) => setTalentInput(e.target.value)}
-                className="w-full p-3 bg-ink border-line-solid text-paper rounded-md"
-              >
-                <option value="taijutsu">Taijutsu (Atual: {player.taijutsu || 0})</option>
-                <option value="ninjutsu">Ninjutsu (Atual: {player.ninjutsu || 0})</option>
-                <option value="genjutsu">Genjutsu (Atual: {player.genjutsu || 0})</option>
-                <option value="bukijutsu">Bukijutsu (Atual: {player.bukijutsu || 0})</option>
-                <option value="forca">Força (Atual: {player.forca || 0})</option>
-                <option value="agilidade">Agilidade (Atual: {player.agilidade || 0})</option>
-                <option value="resistencia">Resistência (Atual: {player.resistencia || 0})</option>
-                <option value="energia">Energia (Atual: {player.energia || 0})</option>
-                <option value="selo">Selo (Atual: {player.selo || 0})</option>
-                <option value="inteligencia">Inteligência (Atual: {player.inteligencia || 0})</option>
-              </select>
-            </div>
-            <div className="flex-row justify-end gap-3">
-              <GameAction tone="quiet" onClick={() => setShowTalentModal(false)}>Cancelar</GameAction>
-              <GameAction tone="seal" onClick={confirmSingleTalentReset}>Confirmar Reset</GameAction>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal Troca Personagem */}
-      {showCharModal && (
-        <div className="modal-overlay">
-          <div className="modal-content card border-danger-solid">
-            <h3 className="card-title danger text-xl mb-4">Troca de Personagem</h3>
-            <p className="muted mb-6 leading-relaxed">
-              <strong className="danger">Atenção:</strong> Essa vantagem só é recomendada no 1º Dia do Round. Ao aceitar, você perderá <span className="gold">2 Créditos VIP</span> e será enviado à tela de seleção de personagem, onde sua conta será resetada para o personagem novo! Deseja prosseguir?
-            </p>
-            <div className="flex-row justify-end gap-3">
-              <GameAction tone="quiet" onClick={() => setShowCharModal(false)}>Cancelar</GameAction>
-              <GameAction tone="danger" onClick={confirmCharacterChange}>Resetar Personagem</GameAction>
-            </div>
-          </div>
-        </div>
-      )}
+      <p className="muted text-xs mt-5" role="status">
+        A redefinição de talentos e a troca de personagem estão suspensas
+        até a validação das regras de economia e das operações no servidor.
+        Nenhum crédito será descontado.
+      </p>
     </div>
   );
 }

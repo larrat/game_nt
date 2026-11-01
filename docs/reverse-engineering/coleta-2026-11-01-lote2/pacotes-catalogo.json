@@ -1,0 +1,553 @@
+{
+  "date": "2026-11-01",
+  "items": [
+    {
+      "id": "#pack-2160",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1252.png\")",
+      "name": "Ada - Idol",
+      "prices": [
+        "10 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Ada - Idol ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/d0b091d3785fbe73.png"
+    },
+    {
+      "id": "#pack-1649",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1227.png\")",
+      "name": "Junna Uchiha - Fandom",
+      "prices": [
+        "10 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Junna Uchiha - Fandom ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/117820fafc969778.png"
+    },
+    {
+      "id": "#pack-799",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/323.png\")",
+      "name": "Mei - Halloween\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAtivo por: 7 Dias 23 Horas 32 Min 16 Seg\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t$(document).ready(function () {\n                      $('#clock-799').countdown(\"2026-11-08 23:59:59\", function(event) {\n\n                          var dias = event.offset.totalDays;\n\n                          if (dias > 0) {\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  dias + (dias == 1 ? ' Dia ' : ' Dias ') +\n                                  event.strftime('%H Horas %M Min %S Seg')\n                              );\n                          } else {\n                              var horas = event.offset.hours;\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  horas + (horas == 1 ? ' Hora ' : ' Horas ') +\n                                  event.strftime('%M Min %S Seg')\n                              );\n                          }\n\n                      });\n                  });",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Mei Terumii - Halloween ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/8070f49d2c425b0c.png"
+    },
+    {
+      "id": "#pack-798",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/320.png\")",
+      "name": "Temari - Halloween\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAtivo por: 7 Dias 23 Horas 32 Min 16 Seg\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t$(document).ready(function () {\n                      $('#clock-798').countdown(\"2026-11-08 23:59:59\", function(event) {\n\n                          var dias = event.offset.totalDays;\n\n                          if (dias > 0) {\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  dias + (dias == 1 ? ' Dia ' : ' Dias ') +\n                                  event.strftime('%H Horas %M Min %S Seg')\n                              );\n                          } else {\n                              var horas = event.offset.hours;\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  horas + (horas == 1 ? ' Hora ' : ' Horas ') +\n                                  event.strftime('%M Min %S Seg')\n                              );\n                          }\n\n                      });\n                  });",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Temari - Halloween ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/4c4cea475654d2cd.png"
+    },
+    {
+      "id": "#pack-797",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/321.png\")",
+      "name": "Tenten - Halloween\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAtivo por: 7 Dias 23 Horas 32 Min 16 Seg\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t$(document).ready(function () {\n                      $('#clock-797').countdown(\"2026-11-08 23:59:59\", function(event) {\n\n                          var dias = event.offset.totalDays;\n\n                          if (dias > 0) {\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  dias + (dias == 1 ? ' Dia ' : ' Dias ') +\n                                  event.strftime('%H Horas %M Min %S Seg')\n                              );\n                          } else {\n                              var horas = event.offset.hours;\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  horas + (horas == 1 ? ' Hora ' : ' Horas ') +\n                                  event.strftime('%M Min %S Seg')\n                              );\n                          }\n\n                      });\n                  });",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• TenTen - Halloween ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/afa41c70dba0b85f.png"
+    },
+    {
+      "id": "#pack-2159",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1251.png\")",
+      "name": "Shikamaru - Pai",
+      "prices": [
+        "10 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Shikamaru Nara - Pai ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/52ce7b8bdb11327b.png"
+    },
+    {
+      "id": "#pack-1984",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1229.png\")",
+      "name": "Temari - Mãe",
+      "prices": [
+        "10 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Temari - Mãe ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/1e532bd5e7a79b87.png"
+    },
+    {
+      "id": "#pack-980",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/328.png\")",
+      "name": "Sakura Haruno - Mangá",
+      "prices": [
+        "10 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Sakura Haruno - Mangá ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/81365a29783d9767.png"
+    },
+    {
+      "id": "#pack-979",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/327.png\")",
+      "name": "Sasuke Uchiha - Mangá",
+      "prices": [
+        "10 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Sasuke Uchiha - Mangá ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/da6cff94824e64f4.png"
+    },
+    {
+      "id": "#pack-802",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/326.png\")",
+      "name": "Momoshiki - Otsutsuki",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Momoshiki - Ootsutsuki ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/b175bcfa61c9d3da.png"
+    },
+    {
+      "id": "#pack-407",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/317.png\")",
+      "name": "Goku - O Saiyajin Ninja",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Goku - O Saiyajin Ninja ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/e52fd9ac6a19ecb1.png"
+    },
+    {
+      "id": "#pack-406",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/316.png\")",
+      "name": "Naruto - O Ninja Saiyajin",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Naruto Uzumaki - O Ninja Saiyajin ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/fd52e78f80999acd.png"
+    },
+    {
+      "id": "#pack-293",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/293.png\")",
+      "name": "Buntan - Boruto",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Buntan Kurosuki - Boruto ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/d4af5a17a0968747.png"
+    },
+    {
+      "id": "#pack-198",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/120.png\")",
+      "name": "Delta - Boruto",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Delta - Boruto ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/fe8914406d783715.png"
+    },
+    {
+      "id": "#pack-197",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/119.png\")",
+      "name": "Jigen - Boruto",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Jigen - Boruto ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/80e0f6f167c8f7d5.png"
+    },
+    {
+      "id": "#pack-81",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/81.png\")",
+      "name": "Urashiki Ootsutsuki - Boruto",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Urashiki Ootsutsuki - Boruto ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/1d5b0b33fb76efe5.png"
+    },
+    {
+      "id": "#pack-53",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/53.png\")",
+      "name": "Sasuke - Rikudou",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Sasuke Uchiha - Modo Rikudou ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/3651ff0b9416e79d.png"
+    },
+    {
+      "id": "#pack-52",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/52.png\")",
+      "name": "Naruto - Rikudou",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Naruto Uzumaki - Modo Rikudou ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/3710c415ecf4b000.png"
+    },
+    {
+      "id": "#pack-39",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/39.png\")",
+      "name": "Konan - Anjo",
+      "prices": [
+        "5 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Konan - Anjo ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/774efdf72589e3db.png"
+    },
+    {
+      "id": "#pack-11",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/11.png\")",
+      "name": "Kashin Koji - O Clone do Jiraya",
+      "prices": [
+        "4000 Ryous",
+        "7 Pts. Fidelidade"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Kashin Koji - Boruto ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/e8c31a6c0513d25a.png"
+    },
+    {
+      "id": "#pack-1",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1.png\")",
+      "name": "Kawaki - Receptáculo do Otsutsuki",
+      "prices": [
+        "2000 Ryous",
+        "7 Pts. Fidelidade"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Kawaki - Boruto ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/fb351038213bdb0c.png"
+    },
+    {
+      "id": "#pack-4",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/4.png\")",
+      "name": "Pacote de Equipamentos II",
+      "prices": [
+        "Grátis"
+      ],
+      "rewards": "Possíveis recompensas: • Equipamentos Aleatórios",
+      "summary": "3Items",
+      "localImage": "assets/05bc2e4c11d3032c.png"
+    },
+    {
+      "id": "#pack-2",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/4.png\")",
+      "name": "Pacote de Equipamentos",
+      "prices": [
+        "7 Pts. Fidelidade"
+      ],
+      "rewards": "Possíveis recompensas: • Equipamentos Aleatórios",
+      "summary": "5Items",
+      "localImage": "assets/05bc2e4c11d3032c.png"
+    },
+    {
+      "id": "#pack-3",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/3.png\")",
+      "name": "Arma Lendária: Gunbai",
+      "prices": [
+        "2000 Ryous",
+        "2 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• RyousRecompensa Especial:• Gunbai ( 100% de Chance )",
+      "summary": "3Items 1Limite",
+      "localImage": "assets/e090eaab5cbd6dc4.png"
+    },
+    {
+      "id": "#pack-2330",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1260.png\")",
+      "name": "Bruxinhas(os) no Halloween\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAtivo por: 7 Dias 23 Horas 32 Min 16 Seg\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t$(document).ready(function () {\n                      $('#clock-2330').countdown(\"2026-11-08 23:59:59\", function(event) {\n\n                          var dias = event.offset.totalDays;\n\n                          if (dias > 0) {\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  dias + (dias == 1 ? ' Dia ' : ' Dias ') +\n                                  event.strftime('%H Horas %M Min %S Seg')\n                              );\n                          } else {\n                              var horas = event.offset.hours;\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  horas + (horas == 1 ? ' Hora ' : ' Horas ') +\n                                  event.strftime('%M Min %S Seg')\n                              );\n                          }\n\n                      });\n                  });",
+      "prices": [
+        "3 Créditos"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Shino Aburame - Halloween ( 15% de Chance )• Himawari Uzumaki - Halloween ( 5% de Chance )• Samui - Halloween ( 10% de Chance )",
+      "summary": "3Items",
+      "localImage": "assets/9f38b543246131a8.png"
+    },
+    {
+      "id": "#pack-801",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/325.png\")",
+      "name": "Meninos no Halloween\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAtivo por: 7 Dias 23 Horas 32 Min 16 Seg\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t$(document).ready(function () {\n                      $('#clock-801').countdown(\"2026-11-08 23:59:59\", function(event) {\n\n                          var dias = event.offset.totalDays;\n\n                          if (dias > 0) {\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  dias + (dias == 1 ? ' Dia ' : ' Dias ') +\n                                  event.strftime('%H Horas %M Min %S Seg')\n                              );\n                          } else {\n                              var horas = event.offset.hours;\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  horas + (horas == 1 ? ' Hora ' : ' Horas ') +\n                                  event.strftime('%M Min %S Seg')\n                              );\n                          }\n\n                      });\n                  });",
+      "prices": [
+        "Grátis"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Obito Uchiha - Halloween ( 15% de Chance )• Kabuto Yakushi - Halloween ( 10% de Chance )• Deidara - Halloween ( 20% de Chance )",
+      "summary": "3Items",
+      "localImage": "assets/6440b91cebafe727.png"
+    },
+    {
+      "id": "#pack-800",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/324.png\")",
+      "name": "Meninas no Halloween\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAtivo por: 7 Dias 23 Horas 32 Min 16 Seg\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t$(document).ready(function () {\n                      $('#clock-800').countdown(\"2026-11-08 23:59:59\", function(event) {\n\n                          var dias = event.offset.totalDays;\n\n                          if (dias > 0) {\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  dias + (dias == 1 ? ' Dia ' : ' Dias ') +\n                                  event.strftime('%H Horas %M Min %S Seg')\n                              );\n                          } else {\n                              var horas = event.offset.hours;\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  horas + (horas == 1 ? ' Hora ' : ' Horas ') +\n                                  event.strftime('%M Min %S Seg')\n                              );\n                          }\n\n                      });\n                  });",
+      "prices": [
+        "3000 Ryous"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Hinata Hyuuga - Halloween ( 15% de Chance )• Konan - Halloween ( 20% de Chance )• Kushina Uzumaki - Halloween ( 10% de Chance )",
+      "summary": "3Items",
+      "localImage": "assets/4c92781814a4f93c.png"
+    },
+    {
+      "id": "#pack-1155",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1226.png\")",
+      "name": "Pacote de Refinamento",
+      "prices": [
+        "10000 Ryous"
+      ],
+      "rewards": "Possíveis recompensas: • Pontos de Fragmentos de Equipamentos",
+      "summary": "5Items",
+      "localImage": "assets/ba60eb5e2d9549fa.png"
+    },
+    {
+      "id": "#pack-1154",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1225.png\")",
+      "name": "Pacote de Reforço",
+      "prices": [
+        "7500 Ryous"
+      ],
+      "rewards": "Possíveis recompensas: • Pontos do Estudo Ninja",
+      "summary": "10Items",
+      "localImage": "assets/7546abb257a69c01.png"
+    },
+    {
+      "id": "#pack-1152",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1223.png\")",
+      "name": "Pacote de Pergaminhos",
+      "prices": [
+        "6000 Ryous"
+      ],
+      "rewards": "Possíveis recompensas: • Pergaminhos de Teletransporte",
+      "summary": "3Items",
+      "localImage": "assets/7c4441303d3afd64.png"
+    },
+    {
+      "id": "#pack-1153",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1224.png\")",
+      "name": "Pacote de Armas",
+      "prices": [
+        "4000 Ryous"
+      ],
+      "rewards": "Possíveis recompensas: • Armas de Longo Alcance",
+      "summary": "5Items",
+      "localImage": "assets/32d87e025166fd5b.png"
+    },
+    {
+      "id": "#pack-1812",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1228.png\")",
+      "name": "Pacote de Aprim. de Jutsu",
+      "prices": [
+        "2000 Ryous"
+      ],
+      "rewards": "Possíveis recompensas: • Aprimoramento de jutsu",
+      "summary": "2Items",
+      "localImage": "assets/4e25f5bf6afce894.png"
+    },
+    {
+      "id": "#pack-320",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/315.png\")",
+      "name": "Pacote Sortido",
+      "prices": [
+        "3000 Ryous",
+        "3 Créditos"
+      ],
+      "rewards": "Possíveis recompensas: • Ramens • Pontos de Treinamento • Ryous • Pontos de Experiência • Fragmento de Equipamento • Pontos de Fidelidade • Pontos do Estudo Ninja • Equipamentos • Chakra de Bijuus",
+      "summary": "3Items",
+      "localImage": "assets/499762e9f3fe77bf.png"
+    },
+    {
+      "id": "#pack-89",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/89.png\")",
+      "name": "Chakra de Bijuus",
+      "prices": [
+        "Grátis"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• Experiência• Ryous• Fragmento de Equipamento• Item de Treino• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensa Especial:• 1 Chakra de Bijuu Randomico",
+      "summary": "3Items",
+      "localImage": "assets/d62b1a61f950ac4d.png"
+    },
+    {
+      "id": "#pack-2329",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1258.png\")",
+      "name": "Boruto - Halloween\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAtivo por: 7 Dias 23 Horas 32 Min 16 Seg\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t$(document).ready(function () {\n                      $('#clock-2329').countdown(\"2026-11-08 23:59:59\", function(event) {\n\n                          var dias = event.offset.totalDays;\n\n                          if (dias > 0) {\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  dias + (dias == 1 ? ' Dia ' : ' Dias ') +\n                                  event.strftime('%H Horas %M Min %S Seg')\n                              );\n                          } else {\n                              var horas = event.offset.hours;\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  horas + (horas == 1 ? ' Hora ' : ' Horas ') +\n                                  event.strftime('%M Min %S Seg')\n                              );\n                          }\n\n                      });\n                  });",
+      "prices": [
+        "10 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Boruto Uzumaki - Halloween ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/85e0530db361bfe0.png"
+    },
+    {
+      "id": "#pack-2328",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1259.png\")",
+      "name": "Orochimaru - Halloween\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAtivo por: 7 Dias 23 Horas 32 Min 16 Seg\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t$(document).ready(function () {\n                      $('#clock-2328').countdown(\"2026-11-08 23:59:59\", function(event) {\n\n                          var dias = event.offset.totalDays;\n\n                          if (dias > 0) {\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  dias + (dias == 1 ? ' Dia ' : ' Dias ') +\n                                  event.strftime('%H Horas %M Min %S Seg')\n                              );\n                          } else {\n                              var horas = event.offset.hours;\n                              $(this).html(\n                                  'Ativo por: ' +\n                                  horas + (horas == 1 ? ' Hora ' : ' Horas ') +\n                                  event.strftime('%M Min %S Seg')\n                              );\n                          }\n\n                      });\n                  });",
+      "prices": [
+        "10 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Ramen• Ryous• Pontos do Estudo Ninja • Pontos de Fidelidade• Fragmento de PersonagemRecompensas Especiais:• Orochimaru - Halloween ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/f2a47cbb12691ed3.png"
+    },
+    {
+      "id": "#pack-2158",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1250.png\")",
+      "name": "Rock Lee - Pai",
+      "prices": [
+        "10 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Rock Lee - Pai ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/da1426038a861d88.png"
+    },
+    {
+      "id": "#pack-2156",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1248.png\")",
+      "name": "Tenten - Idol",
+      "prices": [
+        "10 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Tenten - Idol ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/3bc7e1ac1c7a4e46.png"
+    },
+    {
+      "id": "#pack-1987",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1241.png\")",
+      "name": "Orochimaru - Copa 2026",
+      "prices": [
+        "10 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Orochimaru - Copa do Mundo ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/9e979410618e778e.png"
+    },
+    {
+      "id": "#pack-1986",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1240.png\")",
+      "name": "Tsunade - Copa 2026",
+      "prices": [
+        "10 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Tsunade Senju - Copa do Mundo ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/a47538e1dd174193.png"
+    },
+    {
+      "id": "#pack-1979",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/16.png\")",
+      "name": "Hinata Mangá",
+      "prices": [
+        "10 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Hinata Hyuuga - Mangá ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/bec0a61ddeed458b.png"
+    },
+    {
+      "id": "#pack-1978",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/15.png\")",
+      "name": "Ino - Mangá",
+      "prices": [
+        "10 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Ino Yamanaka - Mangá ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/eaf69f2907218e88.png"
+    },
+    {
+      "id": "#pack-1983",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/1231.png\")",
+      "name": "Kushina - Mãe",
+      "prices": [
+        "7 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Kushina Uzumaki - Mãe ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/56cb6d9f2817adc3.png"
+    },
+    {
+      "id": "#pack-1981",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/18.png\")",
+      "name": "Breeze Dancer - Clássica",
+      "prices": [
+        "7 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Breeze Dancer - Clássico ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/1c0ee6eefcd3ece6.png"
+    },
+    {
+      "id": "#pack-1980",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/17.png\")",
+      "name": "Azure Fang - Clássica",
+      "prices": [
+        "7 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Azure Fang - Clássico ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/c9cd98316873cdd0.png"
+    },
+    {
+      "id": "#pack-1976",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/13.png\")",
+      "name": "Shin Uchiha - Clássico",
+      "prices": [
+        "5 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Shin Uchiha - Clássico ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/3363c2b790807f00.png"
+    },
+    {
+      "id": "#pack-1813",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/12.png\")",
+      "name": "Boro - Boruto",
+      "prices": [
+        "5 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Boro - Boruto ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/dd47d6cf77734f28.png"
+    },
+    {
+      "id": "#pack-1982",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/19.png\")",
+      "name": "Houki Taketori - Boruto",
+      "prices": [
+        "3 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Houki Taketori - Boruto ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/a9048eb9ce6b2444.png"
+    },
+    {
+      "id": "#pack-1977",
+      "image": "url(\"https://narutogame.com.br/assets/images/logado/packs/packs_novo/14.png\")",
+      "name": "Ryuuzetsu - Clássico",
+      "prices": [
+        "3 Tokens"
+      ],
+      "rewards": "Possíveis recompensas:• Armas de longo alcance• Ramen• Ryous• Fragmento de PersonagemRecompensas Especiais:• Ryuuzetsu - Clássico ( 100% de Chance )",
+      "summary": "5Items 1Limite",
+      "localImage": "assets/86354f44cac571ff.png"
+    }
+  ],
+  "context": {
+    "date": "2026-11-01",
+    "status": "Referência observada no cliente; não é regra de servidor validada.",
+    "purchasesExecuted": false
+  }
+}

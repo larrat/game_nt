@@ -1,0 +1,40 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "label": "Adquirir por 44 créditos"
+    },
+    {
+      "disabled": false,
+      "label": "Adquirir por 20 créditos"
+    }
+  ],
+  "dialogs": [],
+  "forms": [
+    {
+      "id": "sPlayerTitulo",
+      "name": "sPlayerTitulo",
+      "options": [
+        {
+          "label": "Nenhum(a)",
+          "value": "MA%3D%3D"
+        },
+        {
+          "label": "Genin",
+          "value": "MTUxOTc%3D"
+        }
+      ]
+    }
+  ],
+  "headings": [
+    "Hinata Lunar",
+    "Himawari Uzumaki - Time Skip",
+    "Acessar minha conta",
+    "Inicie sua Aventura"
+  ],
+  "tables": [],
+  "title": "Baú",
+  "tooltips": [],
+  "url": "https://narutogame.com.br/index.php?secao=bau",
+  "snapshot": "- heading \"Baú\" [level=1]\n- main:\n  - heading \"Hinata Lunar\" [level=3]\n  - paragraph: No Round 44 a Hinata Lunar chegava em nosso jogo e agora você pode reviver esse momento e desbloquear este Personagem e seu Background da época.\n  - button \"Adquirir por 44 créditos\"\n  - heading \"Himawari Uzumaki - Time Skip\" [level=3]\n  - paragraph: No Round 45 a Himawari Uzumaki - Time Skip chegava em nosso jogo e agora você pode reviver esse momento e desbloquear este Personagem Especial da época.\n  - button \"Adquirir por 20 créditos\"\n"
+}

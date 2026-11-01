@@ -1,0 +1,40 @@
+{
+  "buttons": [
+    {
+      "disabled": false,
+      "label": "10 Fragmentos por 5 Créditos"
+    },
+    {
+      "disabled": false,
+      "label": "Desbloquear Personagem"
+    }
+  ],
+  "dialogs": [],
+  "forms": [
+    {
+      "id": "sPlayerTitulo",
+      "name": "sPlayerTitulo",
+      "options": [
+        {
+          "label": "Nenhum(a)",
+          "value": "MA%3D%3D"
+        },
+        {
+          "label": "Genin",
+          "value": "MTUxOTc%3D"
+        }
+      ]
+    }
+  ],
+  "headings": [
+    "Ino - Halloween",
+    "Acessar minha conta",
+    "Inicie sua Aventura",
+    "Conheça a Caçada Ninja1/1"
+  ],
+  "tables": [],
+  "title": "Caçada Ninja",
+  "tooltips": [],
+  "url": "https://narutogame.com.br/index.php?secao=cacada",
+  "snapshot": "- heading \"Caçada Ninja\" [level=1]\n- main:\n  - heading \"Ino - Halloween\" [level=3]\n  - paragraph: A cada Round você terá um personagem para caçar , duele contra os npcs para obter os Fragmentos necessários!\n  - paragraph: \"Caçada Ninja disponível: 598 Hora 03 Min 32 Seg\"\n  - link \"10 Fragmentos por 5 Créditos\":\n    - /url: \"?secao=jogador_vip\"\n    - button \"10 Fragmentos por 5 Créditos\"\n  - generic: \"0\"\n  - generic: 0 de 100 fragmentos\n  - generic: \"100\"\n  - button \"Desbloquear Personagem\"\n"
+}

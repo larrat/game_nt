@@ -44,7 +44,7 @@ test('unsupported VIP economic actions remain visibly disabled', () => {
   const source = load('Vip');
   assert.match(source, /vipResetAvailable = false/);
   assert.match(source, /disabled={!vipResetAvailable}/);
-  assert.doesNotMatch(source, /supabase\\.rpc\\(['"]vip_reset_/);
+  assert.ok(!source.includes("supabase.rpc('vip_reset_"));
 });
 test('critical keyboard and state paths are maintained in the revised screens',()=>{
   const village=load('Vila'), forge=load('Ferreiro'), summons=load('Invocacoes');

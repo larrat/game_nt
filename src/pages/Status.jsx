@@ -4,9 +4,11 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { VILLAGES } from '../constants';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
 import AvatarModal from '../components/AvatarModal';
 import CharacterResourceMeter from '../components/CharacterResourceMeter';
 import '../styles/character-status-v3.css';
+import '../styles/status-v4.css';
 import {
   calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP,
   getTotalStat, calculateAtkTaiBuk, calculateAtkNinGen, calculateDefTaiBuk,
@@ -108,7 +110,7 @@ export default function Status({ player, updatePlayer }) {
   const accountRows = getStatusAccountRows(player);
 
   return (
-    <div className="kuro-status-page kuro-status-v2 min-h-screen text-paper">
+    <div className="kuro-status-page kuro-status-v2 kuro-status-v4 min-h-screen text-paper">
       <div className="page relative z-10 p-8">
         
         <PageHeader 
@@ -209,7 +211,7 @@ export default function Status({ player, updatePlayer }) {
         <div className="kuro-status-layout grid-responsive gap-lg">
           {/* Coluna Esquerda: Títulos */}
           <div className="flex-col gap-md flex-[1_1_300px]">
-            <div className="kuro-status-identity card-glass border-line-solid p-6 flex-col items-center gap-md">
+            <div className="kuro-status-identity kuro-ui-card card-glass border-line-solid p-6 flex-col items-center gap-md">
               <div className="flex-col w-full gap-sm">
                 <div className="flex-between">
                   <span className="muted uppercase text-xs">Nome Ninja:</span>
@@ -232,7 +234,7 @@ export default function Status({ player, updatePlayer }) {
               </div>
             </div>
 
-            <div className="kuro-status-info card-glass border-line-solid p-6">
+            <div className="kuro-status-info kuro-ui-card card-glass border-line-solid p-6">
               <h3 className="gold mb-4 border-b border-line-bright pb-2">Informações Gerais</h3>
               <div className="flex-col gap-sm">
                 <div className="flex-between">
@@ -266,27 +268,27 @@ export default function Status({ player, updatePlayer }) {
           {/* Coluna Direita: Poderes Especiais e Estatísticas da Conta */}
           <div className="flex-col gap-lg flex-[2_1_500px]">
             
-            <div className="kuro-status-powers card-glass border-line-solid p-6">
+            <div className="kuro-status-powers kuro-ui-card card-glass border-line-solid p-6">
               <h3 className="gold mb-4 border-b border-line-bright pb-2 flex-row items-center gap-xs">
-                <span>⚡</span> Poderes Especiais & Linhagens
+                <SidebarIcon name="sparkles" size={18} /> Poderes Especiais & Linhagens
               </h3>
               <p className="muted text-sm mb-4">Essas habilidades especiais podem ser adquiridas em eventos ou missões raras pelo mundo.</p>
               
               <div className="grid-3 gap-sm">
-                <StatusPowerSlot label="Bijuu" value="Não disponível" icon="🦊" />
-                <StatusPowerSlot label="Espada da Névoa" value="Não disponível" icon="🗡️" />
-                <StatusPowerSlot label="Clã" value={player.clan || 'Sem Clã'} icon="⛩️" isActive={!!player.clan} />
-                <StatusPowerSlot label="Selo Amaldiçoado" value="Não disponível" icon="🌑" />
-                <StatusPowerSlot label="Invocação" value="Não disponível" icon="🐸" />
-                <StatusPowerSlot label="Modo Sennin" value="Não disponível" icon="🐸" />
-                <StatusPowerSlot label="Hachimon Tonkou" value="Não disponível" icon="🚪" />
-                <StatusPowerSlot label="Karma" value="Não disponível" icon="♦️" />
-                <StatusPowerSlot label="Elemento" value={player.element || 'Não definido'} icon="🌪️" isActive={!!player.element} />
-                <StatusPowerSlot label="Segundo elemento" value={player.element2 || 'Não definido'} icon="❄️" isActive={!!player.element2} />
+                <StatusPowerSlot label="Bijuu" value="Não disponível" icon="flame" />
+                <StatusPowerSlot label="Espada da Névoa" value="Não disponível" icon="swords" />
+                <StatusPowerSlot label="Clã" value={player.clan || 'Sem Clã'} icon="users" isActive={!!player.clan} />
+                <StatusPowerSlot label="Selo Amaldiçoado" value="Não disponível" icon="shield" />
+                <StatusPowerSlot label="Invocação" value="Não disponível" icon="paw" />
+                <StatusPowerSlot label="Modo Sennin" value="Não disponível" icon="sparkles" />
+                <StatusPowerSlot label="Hachimon Tonkou" value="Não disponível" icon="door" />
+                <StatusPowerSlot label="Karma" value="Não disponível" icon="award" />
+                <StatusPowerSlot label="Elemento" value={player.element || 'Não definido'} icon="zap" isActive={!!player.element} />
+                <StatusPowerSlot label="Segundo elemento" value={player.element2 || 'Não definido'} icon="sparkles" isActive={!!player.element2} />
               </div>
             </div>
 
-            <section className="kuro-status-account card-glass border-line-solid p-6" aria-labelledby="account-stats-title">
+            <section className="kuro-status-account kuro-ui-card card-glass border-line-solid p-6" aria-labelledby="account-stats-title">
               <h3 id="account-stats-title" className="gold mb-4 border-b border-line-bright pb-2">Histórico registrado</h3>
               <p className="kuro-status-v3__hint">Dados registrados no personagem. Informações ainda não armazenadas aparecem como “—”.</p>
               <div className="kuro-status-v3__account-grid">
@@ -317,10 +319,10 @@ export default function Status({ player, updatePlayer }) {
 // Mini-componente para os blocos de poder
 function StatusPowerSlot({ label, value, icon, isActive }) {
   return (
-    <div className={`p-3 rounded-sm border-line-solid flex-col gap-xs ${isActive ? 'bg-ink-raised border-gold' : 'bg-ink-transparent opacity-60'}`}>
+    <div className={`kuro-status-v4__power-slot ${isActive ? 'is-active' : 'is-unavailable'}`}>
       <span className="muted uppercase text-[10px] tracking-wide">{label}</span>
       <div className="flex-row items-center gap-xs">
-        <span className="text-sm">{icon}</span>
+        <span className="kuro-status-v4__power-icon"><SidebarIcon name={icon} size={19} /></span>
         <span className={`font-bold text-sm ${isActive ? 'gold' : 'paper'}`}>{value}</span>
       </div>
     </div>

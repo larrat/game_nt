@@ -29,7 +29,10 @@ Não criar paletas, botões, cartões ou iconografias diferentes por página. Ca
 ## Aplicação
 - **Dojo v4:** apresenta arena, métricas reais, modalidades, Raid e ações de risco. Usa ícones e botões compartilhados, preserva handler e chamada RPC existentes.
 - **Painel:** KPI e atalhos deixam caracteres Unicode decorativos e passam a usar o mesmo registro de ícones. Inclui atalho ao Arquivo de Adversários.
-- **Demais telas:** recebem os aliases de tema, geometria/foco e estados globais nos botões existentes sem troca de lógica. A migração de marcação para `GameAction` e `GamePanel` será progressiva por tela, priorizando Status, Mapa, Combate, Missões, Academia e Inventário.
+- **Todas as telas declaradas em `src/App.jsx` (31 módulos):** `src/styles/shared-screen-v4.css` aplica `--kuro-*` ao tema global, tokens legados, cartões, controles, badges, filtros, estados de foco e responsividade. Inclui login/recuperação e criação/seleção de personagem sem alterar seus layouts cinematográficos.
+- **Status v4:** ícones de poderes e linhagens via registro Lucide e painéis no mesmo padrão, mantendo fórmulas e RPC de título.
+- **Arquivo de Adversários v4:** cores originadas no tema global, botões `GameAction` e ícones Lucide; continua estritamente de leitura, sem habilitar combate de catálogo/PvP ao vivo.
+- **Demais telas:** recebem automaticamente tokens, geometria e estados globais. A migração **completa do layout** de cada módulo para `GameAction` e `GamePanel` é progressiva, priorizando Mapa, Combate, Missões, Academia, Inventário e sistemas secundários.
 
 ## Regras de qualidade
 1. Não adicionar pacote pago, credenciais, chamadas a serviço externo ou lógica de combate no UI kit.
@@ -39,4 +42,13 @@ Não criar paletas, botões, cartões ou iconografias diferentes por página. Ca
 5. Alterações no motor de combate, no Supabase ou na política de recompensas são trabalho separado, com validação no servidor.
 
 ## Estado e limite
-A instalação do design system na aplicação é automática, mas **não significa que cada página já foi completamente redesenhada**. As telas migradas neste pacote são Dojo e atalhos/KPIs do Painel. Uma sessão autenticada continua necessária para homologação visual.
+A camada comum chega às **31 telas** por meio de `App.jsx`, mas **isso não significa que cada página já foi completamente redesenhada ou homologada visualmente**. Migrações específicas concluídas: Dojo, atalhos/KPIs do Painel, Status e Arquivo de Adversários. Os outros módulos herdam o tema e aguardam revisão visual contextual. Uma sessão autenticada é necessária para homologar telas de jogo; login/recuperação exigem sua própria revisão sem autenticação.
+
+### Inventário de rotas
+- **Acesso/conta:** Login, RedefinirSenha, Selecionar, Criar.
+- **Personagem e evolução:** Dashboard, Status, Treino, Elementos, Graduacoes, Tarefas, Tecnicas, AprimorarJutsus, Equipamentos.
+- **Mundo e atividades:** Clas, Vila, Mapa, Historia, Templo, Hospital, Ichiraku, Ferreiro, Invocacoes, Portoes, Exame, Evento.
+- **Batalha e progressão:** Dojo, Adversarios, Combate, Ranking, Historico, Vip.
+
+### Checklist por tela (pendente após a base comum)
+Verificar navegação real, consistência de botão principal/segundário, ícone Lucide, estados vazios/erro/carregamento, toque mobile, modais, imagens/fallback e contraste. A validação de contas reais não deve ser substituída por passar CI. Não modificar Supabase, fórmulas de motor ou recompensas para corrigir somente aparência.

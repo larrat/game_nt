@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Compass, Info, LockKeyhole, RefreshCw, Search, ShieldCheck, Swords, Users } from 'lucide-react';
+import SidebarIcon from '../components/SidebarIcon';
+import GameAction from '../components/ui/GameAction';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
 import NpcPortrait from '../components/NpcPortrait';
@@ -20,7 +21,7 @@ async function fetchOpponents(source) {
   return supabase.rpc('listar_perfis_ninja', { p_limit: 100 });
 }
 
-const SOURCE_ICON = { catalog: Swords, npc: ShieldCheck, players: Users };
+const SOURCE_ICON = { catalog: 'swords', npc: 'shield', players: 'users' };
 
 export default function Adversarios({ player }) {
   const navigate = useNavigate();
@@ -79,9 +80,9 @@ export default function Adversarios({ player }) {
       <PageHeader eyebrow="Academia Ninja · Inteligência de combate"
         title="Arquivo de Adversários"
         subtitle="Explore personagens do universo ninja, NPCs cadastrados e projeções públicas de jogadores. A seleção não altera os combates ou recompensas."
-        actions={<button type="button" className="btn-ghost" onClick={() => navigate('/dojo')}>
-          <ArrowLeft size={16} aria-hidden="true" /> Voltar ao Dojo
-        </button>} />
+        actions={<GameAction type="button" tone="quiet" onClick={() => navigate('/dojo')}>
+          <SidebarIcon name="arrowLeft" size={16} /> Voltar ao Dojo
+        </GameAction>} />
 
       <section className="kuro-opponents-intro" aria-label="Visão geral dos adversários">
         <div>
@@ -89,18 +90,18 @@ export default function Adversarios({ player }) {
           <h2>Conheça o inimigo antes da batalha.</h2>
           <p>Retratos, graduação e origem em um só lugar. A arena só libera confrontos após a validação das regras no servidor.</p>
         </div>
-        <div className="kuro-opponents-intro-mark" aria-hidden="true"><Swords size={60} strokeWidth={1.3} /></div>
+        <div className="kuro-opponents-intro-mark" aria-hidden="true"><SidebarIcon name="swords" size={60} /></div>
       </section>
 
       <div className="kuro-opponents-tabs" role="tablist" aria-label="Origem dos adversários">
         {OPPONENT_TABS.map(tab => {
-          const Icon = SOURCE_ICON[tab.key];
+          const iconName = SOURCE_ICON[tab.key];
           return (
             <button type="button" role="tab" key={tab.key} id={`opponent-tab-${tab.key}`}
               aria-selected={active === tab.key} aria-controls="opponents-panel"
               className={`kuro-opponents-tab ${active === tab.key ? 'is-active' : ''}`}
               onClick={() => selectTab(tab.key)}>
-              <Icon size={19} aria-hidden="true" />
+              <SidebarIcon name={iconName} size={19} />
               <span><strong>{tab.label}</strong><small>{tab.description}</small></span>
               <span className="kuro-opponents-counter">{rowsByTab[tab.key]?.length ?? '—'}</span>
             </button>
@@ -111,7 +112,7 @@ export default function Adversarios({ player }) {
       <section id="opponents-panel" role="tabpanel" aria-labelledby={`opponent-tab-${active}`}>
         <div className="kuro-opponents-toolbar">
           <label className="kuro-opponents-search">
-            <Search size={18} aria-hidden="true" />
+            <SidebarIcon name="search" size={18} />
             <span className="sr-only">Pesquisar adversário</span>
             <input type="search" value={query} onChange={e => search(e.target.value)}
               placeholder="Buscar por nome, patente ou elemento" autoComplete="off" />
@@ -121,9 +122,9 @@ export default function Adversarios({ player }) {
 
         {errorsByTab[active] && (
           <div className="kuro-opponents-notice" role="alert">
-            <Info size={18} aria-hidden="true" />
+            <SidebarIcon name="info" size={18} />
             <p>{errorsByTab[active]}</p>
-            <button type="button" className="btn-ghost" onClick={retry}><RefreshCw size={16} aria-hidden="true" /> Tentar novamente</button>
+            <GameAction type="button" tone="quiet" onClick={retry}><SidebarIcon name="refresh" size={16} /> Tentar novamente</GameAction>
           </div>
         )}
 
@@ -156,15 +157,15 @@ export default function Adversarios({ player }) {
                     </div>
                     <div className="kuro-opponents-card-action">
                       {actionAvailable ? (
-                        <button className="kuro-opponents-link" type="button" onClick={() => navigate('/mapa')}>
-                          <Compass size={15} aria-hidden="true" /> Procurar no mapa <ArrowRight size={15} aria-hidden="true" />
-                        </button>
+                        <GameAction tone="quiet" className="kuro-opponents-link" type="button" onClick={() => navigate('/mapa')}>
+                          <SidebarIcon name="compass" size={15} /> Procurar no mapa <SidebarIcon name="arrowRight" size={15} />
+                        </GameAction>
                       ) : actionPlayer ? (
-                        <button className="kuro-opponents-link" type="button" onClick={() => navigate('/mapa')}>
-                          <Compass size={15} aria-hidden="true" /> Explorar projeções <ArrowRight size={15} aria-hidden="true" />
-                        </button>
+                        <GameAction tone="quiet" className="kuro-opponents-link" type="button" onClick={() => navigate('/mapa')}>
+                          <SidebarIcon name="compass" size={15} /> Explorar projeções <SidebarIcon name="arrowRight" size={15} />
+                        </GameAction>
                       ) : (
-                        <span className="kuro-opponents-locked"><LockKeyhole size={15} aria-hidden="true" /> Combate individual indisponível</span>
+                        <span className="kuro-opponents-locked"><SidebarIcon name="lock" size={15} /> Combate individual indisponível</span>
                       )}
                     </div>
                   </article>
@@ -173,9 +174,9 @@ export default function Adversarios({ player }) {
             </div>
             {pageCount > 1 && (
               <nav className="kuro-opponents-pages" aria-label="Páginas de adversários">
-                <button type="button" className="btn-ghost" disabled={currentPage === 1} onClick={() => setPage(p => Math.max(1, p - 1))}>Anterior</button>
+                <GameAction type="button" tone="quiet" disabled={currentPage === 1} onClick={() => setPage(p => Math.max(1, p - 1))}>Anterior</GameAction>
                 <span>Página {currentPage} de {pageCount}</span>
-                <button type="button" className="btn-ghost" disabled={currentPage === pageCount} onClick={() => setPage(p => Math.min(pageCount, p + 1))}>Próxima</button>
+                <GameAction type="button" tone="quiet" disabled={currentPage === pageCount} onClick={() => setPage(p => Math.min(pageCount, p + 1))}>Próxima</GameAction>
               </nav>
             )}
           </>
@@ -183,7 +184,7 @@ export default function Adversarios({ player }) {
       </section>
 
       <aside className="kuro-opponents-footer">
-        <Info size={18} aria-hidden="true" />
+        <SidebarIcon name="info" size={18} />
         <p>Adversários do catálogo ainda não geram combate. Projeções são representações públicas, não PvP ao vivo. Os confrontos oficiais permanecem no Mapa, no Dojo e nas Missões, com validação do servidor para recompensas.</p>
       </aside>
     </div>

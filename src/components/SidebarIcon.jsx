@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  Activity, ArrowRight, Award, BookOpen, CalendarDays, ChevronDown, ChevronRight,
-  Coins, Compass, Crosshair,
+  Activity, ArrowLeft, ArrowRight, Award, BookOpen, CalendarDays, ChevronDown, ChevronRight,
+  Coins, Compass, Crosshair, Info, LockKeyhole, RefreshCw,
   CircleHelp, ClipboardList, Crown, DoorOpen, Dumbbell, Flame,
   GraduationCap, Hammer, HeartPulse, History, House, Landmark,
   LayoutDashboard, Map, PawPrint, ScrollText, Search, Shield,
@@ -13,6 +13,7 @@ import {
 const ICONS = {
   academy: GraduationCap,
   activity: Activity,
+  arrowLeft: ArrowLeft,
   arrowRight: ArrowRight,
   award: Award,
   book: BookOpen,
@@ -32,10 +33,13 @@ const ICONS = {
   hammer: Hammer,
   heart: HeartPulse,
   history: History,
+  info: Info,
+  lock: LockKeyhole,
   home: House,
   landmark: Landmark,
   map: Map,
   paw: PawPrint,
+  refresh: RefreshCw,
   scroll: ScrollText,
   search: Search,
   shield: Shield,

@@ -33,8 +33,8 @@ export default function Evento({ player, updatePlayer }) {
     const tick = () => {
       const diff = new Date(event.ends_at) - new Date();
       if (diff <= 0) {
-        setTimeLeft('Renovando...');
-        fetchEvent();
+        setTimeLeft('Encerrado');
+        setEvent(null);
         return;
       }
       const hours = Math.floor(diff / (1000 * 60 * 60));

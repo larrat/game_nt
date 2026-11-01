@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-import { calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules, generateDynamicRogueNinja, getDynamicNpcJutsus, calculateLevelFromXP } from '../utils/engine';
-import { rollRarity, generateLootStats } from '../utils/lootEngine';
+import { calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules } from '../utils/engine';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import SidebarIcon from '../components/SidebarIcon';
 import GameAction from '../components/ui/GameAction';
 import '../styles/dojo-v4.css';
 import { useToast } from '../context/ToastContext';
-import { useGameConfig } from '../context/GameConfigContext';
 
 export default function Dojo({ player, updatePlayer }) {
   const navigate = useNavigate();
   const [loadingId, setLoadingId] = useState(null);
   const { addToast } = useToast();
-  const gameConfig = useGameConfig();
 
   useEffect(() => {
     if (player && player.is_fainted) {
@@ -38,44 +35,41 @@ export default function Dojo({ player, updatePlayer }) {
     return data || [];
   };
 
-  const loadCanonicalNpcPool = async () => {
+  const loadCanonicalDojoNpcs = async () => {
+    // Somente adversários oficiais: o RPC iniciar_combate_sessao aceita
+    // p_is_dojo=true exclusivamente para NPCs não-mapa, não-história e não-bingo.
     const { data, error } = await supabase.from('npcs').select('*')
-      .eq('is_active', true).eq('is_chunin_exam', false)
+      .eq('is_active', true)
+      .eq('is_map_npc', false)
+      .eq('is_story_mode', false)
+      .eq('is_bingo_book', false)
+      .eq('is_chunin_exam', false)
       .not('character_id', 'is', null);
     if (error) throw error;
-    return (data || []).filter(npc => npc.character_id && npc.name);
+    return (data || []).filter(npc =>
+      Number.isSafeInteger(Number(npc.id)) &&
+      Number(npc.id) > 0 &&
+      npc.character_id && npc.name
+    );
   };
 
   const handleSearch = async () => {
+    if (loadingId) return;
     setLoadingId('search');
     try {
-      const pool = await loadCanonicalNpcPool();
-      if (!pool.length) {
-        addToast('Nenhum personagem canônico disponível para combate.', 'warning');
+      const pool = await loadCanonicalDojoNpcs();
+      const candidates = pool.filter(npc => Number(npc.level) <= Number(player.level) + 5);
+      if (!candidates.length) {
+        addToast('Não há adversários oficiais do Dojo disponíveis para seu nível.', 'info');
         return;
       }
 
-      const dojoChance = Number(gameConfig?.dojo_story_npc_chance) || 0.35;
-      const dojoPool = pool.filter(npc => !npc.is_map_npc &&
-        npc.level <= player.level + 5 && !npc.is_story_mode);
-
-      if (Math.random() < dojoChance && dojoPool.length) {
-        const chosen = dojoPool[Math.floor(Math.random() * dojoPool.length)];
-        const enemy = { ...chosen, activeJutsus: getDynamicNpcJutsus(chosen) };
-        navigate('/combate', { state: { bgType: 'dojo', npc: enemy, isMirror: false } });
-        return;
-      }
-
-      // Encontros parelhos variam atributos, nunca criam identidade/clã fictícios.
-      const eligible = pool.filter(npc => !npc.is_story_mode && !npc.is_chunin_exam);
-      const candidates = eligible.length ? eligible : pool;
-      const template = candidates[Math.floor(Math.random() * candidates.length)];
-      const enemy = generateDynamicRogueNinja(player, 0, template);
-      if (!enemy) {
-        addToast('Não foi possível validar a identidade do adversário.', 'error');
-        return;
-      }
-      navigate('/combate', { state: { bgType: 'dojo', npc: enemy, isMirror: true } });
+      const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+      // O servidor carrega estatísticas e autoriza recompensas pelo ID real.
+      // Nunca usar isMirror ou IDs temporários em partidas com progressão.
+      navigate('/combate', {
+        state: { bgType: 'dojo', npc: { ...chosen, activeJutsus: [] }, isMirror: false }
+      });
     } catch (error) {
       addToast('Não foi possível consultar os adversários do catálogo.', 'error');
     } finally {
@@ -130,50 +124,9 @@ export default function Dojo({ player, updatePlayer }) {
     addToast('Caçada às Bijuus indisponível até o cadastro de Jinchuurikis no servidor.', 'info');
   };
 
-  const RAID_STAMINA_COST = 25;
-
-  const handleRaid = async (fightCount) => {
-    setLoadingId('raid');
-    try {
-      // Selecionar antes de consumir stamina: nenhum combate com NPC inventado.
-      const pool = (await loadCanonicalNpcPool()).filter(npc => !npc.is_story_mode);
-      if (!pool.length) {
-        addToast('Não existem personagens disponíveis para a incursão.', 'warning');
-        return;
-      }
-      const template = pool[Math.floor(Math.random() * pool.length)];
-      const rogue = generateDynamicRogueNinja(player, 0, template);
-      if (!rogue) {
-        addToast('A identidade do adversário não pôde ser validada.', 'error');
-        return;
-      }
-      const { data, error } = await supabase.rpc('reservar_raid_stamina', {
-        p_player_id: player.id,
-        p_fight_count: fightCount
-      });
-
-      if (error || !data?.success) {
-        addToast('Erro ao iniciar incursão: ' + (error?.message || data?.error || 'operação recusada'), 'error');
-        return;
-      }
-
-      await updatePlayer(player.id);
-      await new Promise(r => setTimeout(r, 400));
-      navigate('/combate', {
-        state: {
-          bgType: 'dojo',
-          npc: rogue,
-          isMirror: true,
-          raidTotal: fightCount,
-          raidCurrent: 1
-        }
-      });
-    } catch (error) {
-      addToast('Erro ao iniciar incursão: ' + (error?.message || 'erro inesperado'), 'error');
-    } finally {
-      setLoadingId(null);
-    }
-  };
+  // Raids antigas reservam stamina sem criar sessões de combate verificáveis.
+  // Manter o recurso indisponível até existir uma RPC transacional por incursão.
+  const raidUnavailable = true;
 
   const handleQuickClear = async (fightCount) => {
     if (!player) return;
@@ -284,7 +237,7 @@ export default function Dojo({ player, updatePlayer }) {
           <span className="kuro-dojo-v4__card-icon"><SidebarIcon name="swords" size={27} /></span>
           <span className="kuro-dojo-v4__card-label">ARENA · PROGRESSÃO</span>
           <h3>Combate Real</h3>
-          <p>Encontre um NPC ou adversário parelho e lute pela progressão do personagem.</p>
+          <p>Enfrente um personagem cadastrado em uma batalha validada pelo servidor.</p>
           <div className="kuro-dojo-v4__tags"><span>Confronto real</span><span>Risco de derrota</span></div>
           <GameAction type="button" tone="seal" className="kuro-dojo-v4__card-button" onClick={handleSearch} disabled={loadingId !== null}>
             {loadingId === 'search' ? 'Rastreando…' : 'Procurar luta'} <SidebarIcon name="arrowRight" size={16} />
@@ -308,11 +261,11 @@ export default function Dojo({ player, updatePlayer }) {
           <span className="kuro-dojo-v4__card-icon"><SidebarIcon name="zap" size={27} /></span>
           <span className="kuro-dojo-v4__card-label">DESAFIO · SEQUÊNCIA</span>
           <h3>Incursão (Raid)</h3>
-          <p>Enfrente uma sequência de lutas. O servidor reserva a stamina antes de começar.</p>
-          <div className="kuro-dojo-v4__tags"><span>{RAID_STAMINA_COST} ST por luta</span><span>Stamina: {player.stamina ?? calculateStamina(player)}</span></div>
+          <p>Incursões em sequência aguardam sessões verificáveis no servidor. Nenhuma stamina será cobrada enquanto o recurso estiver indisponível.</p>
+          <div className="kuro-dojo-v4__tags"><span>Indisponível temporariamente</span><span>Stamina preservada</span></div>
           <div className="kuro-dojo-v4__actions-row">
-            <GameAction type="button" tone="quiet" onClick={() => handleRaid(3)} disabled={loadingId !== null}>Raid 3x</GameAction>
-            <GameAction type="button" tone="seal" onClick={() => handleRaid(5)} disabled={loadingId !== null}>{loadingId === 'raid' ? 'Iniciando…' : 'Raid 5x'}</GameAction>
+            <GameAction type="button" tone="quiet" disabled={raidUnavailable}>Raid 3x — indisponível</GameAction>
+            <GameAction type="button" tone="seal" disabled={raidUnavailable}>Raid 5x — indisponível</GameAction>
           </div>
           {(player.dojo_clears || player.wins_dojo || 0) >= 3 && (
             <div className="kuro-dojo-v4__actions-row kuro-dojo-v4__quick">

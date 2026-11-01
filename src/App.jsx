@@ -16,6 +16,7 @@ import { ToastProvider } from './context/ToastContext';
 import Sidebar from './components/Sidebar';
 import MissionManager from './components/MissionManager';
 import TopBar from './components/TopBar';
+import RouteErrorBoundary from './components/RouteErrorBoundary';
 
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const Treino = React.lazy(() => import('./pages/Treino'));
@@ -269,11 +270,11 @@ function App() {
       <ToastProvider>
         <Router>
           <div className="grain"></div>
-          <Suspense fallback={<div className="page flex items-center justify-center min-h-screen text-muted">Carregando...</div>}>
+          <RouteErrorBoundary><Suspense fallback={<div className="page flex items-center justify-center min-h-screen text-muted">Carregando...</div>}>
             <Routes>
               <Route path="/redefinir-senha" element={<RedefinirSenha />} />
             </Routes>
-          </Suspense>
+          </Suspense></RouteErrorBoundary>
         </Router>
       </ToastProvider>
     );
@@ -285,12 +286,12 @@ function App() {
       <ToastProvider>
         <Router>
           <div className="grain"></div>
-          <Suspense fallback={<div className="page flex items-center justify-center min-h-screen text-muted">Carregando...</div>}>
+          <RouteErrorBoundary><Suspense fallback={<div className="page flex items-center justify-center min-h-screen text-muted">Carregando...</div>}>
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
-          </Suspense>
+          </Suspense></RouteErrorBoundary>
         </Router>
       </ToastProvider>
     );
@@ -302,13 +303,13 @@ function App() {
       <ToastProvider>
         <Router>
           <div className="grain"></div>
-          <Suspense fallback={<div className="page flex items-center justify-center min-h-screen text-muted">Carregando...</div>}>
+          <RouteErrorBoundary><Suspense fallback={<div className="page flex items-center justify-center min-h-screen text-muted">Carregando...</div>}>
             <Routes>
               <Route path="/selecionar" element={<Selecionar session={session} setPlayerState={setPlayerState} updatePlayer={updatePlayer} />} />
               <Route path="/criar" element={<Criar session={session} setPlayerState={setPlayerState} updatePlayer={updatePlayer} />} />
               <Route path="*" element={<Navigate to="/selecionar" replace />} />
             </Routes>
-          </Suspense>
+          </Suspense></RouteErrorBoundary>
         </Router>
       </ToastProvider>
     );
@@ -319,11 +320,11 @@ function App() {
       <ToastProvider>
         <Router>
           <div className="grain"></div>
-          <Suspense fallback={<div className="page flex items-center justify-center min-h-screen text-muted">Carregando...</div>}>
+          <RouteErrorBoundary><Suspense fallback={<div className="page flex items-center justify-center min-h-screen text-muted">Carregando...</div>}>
             <Routes>
               <Route path="*" element={<Hospital player={playerState} updatePlayer={updatePlayer} />} />
             </Routes>
-          </Suspense>
+          </Suspense></RouteErrorBoundary>
         </Router>
       </ToastProvider>
     );
@@ -334,7 +335,7 @@ function App() {
       <Router>
         <div className="grain"></div>
         <MainLayout playerState={playerState} updatePlayer={updatePlayer}>
-          <Suspense fallback={<div className="page flex items-center justify-center min-h-[50vh] text-muted">Carregando Tela...</div>}>
+          <RouteErrorBoundary><Suspense fallback={<div className="page flex items-center justify-center min-h-[50vh] text-muted">Carregando Tela...</div>}>
             <Routes>
               <Route path="/" element={<Dashboard player={playerState} updatePlayer={updatePlayer} session={session} setPlayerState={setPlayerState} />} />
               <Route path="/dashboard" element={<Dashboard player={playerState} updatePlayer={updatePlayer} />} />
@@ -366,7 +367,7 @@ function App() {
               <Route path="/invocacoes" element={<Invocacoes player={playerState} updatePlayer={updatePlayer} />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
-          </Suspense>
+          </Suspense></RouteErrorBoundary>
         </MainLayout>
       </Router>
     </ToastProvider>

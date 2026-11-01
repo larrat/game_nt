@@ -45,6 +45,15 @@ const GENERIC_ROGUE_PORTRAITS = Object.freeze({
 export function getNpcPortrait(npc) {
   if (!npc) return null;
   const name = normalizeNpcName(npc.name || npc.npc_name || npc.boss_name || npc.event_name);
+  // Um jogador pode ter o mesmo nome de um herói do catálogo. Sua projeção
+  // deve usar apenas o retrato público autorizado, nunca a arte do herói.
+  if (npc.is_ghost === true || npc.opponent_origin === 'player_shadow') {
+    const ownPortrait = npc.portrait || npc.avatar;
+    return typeof ownPortrait === 'string' &&
+      ownPortrait.startsWith('/images/') &&
+      !ownPortrait.startsWith('//') &&
+      !ownPortrait.includes('..') ? ownPortrait : null;
+  }
   // Variantes somente quando o nome identifica Sasuke e a forma correspondente.
   if (matchesName(name, 'sasuke')) {
     const variant = PORTRAIT_VARIANTS.find(item => item.cues.some(cue => matchesName(name, cue)));

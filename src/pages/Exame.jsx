@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/challenges-v4.css';
 import { useToast } from '../context/ToastContext';
 import { getDynamicNpcJutsus } from '../utils/engine';
 
@@ -95,23 +98,23 @@ export default function Exame({ player, updatePlayer }) {
 
   if (player.passou_exame_chunin) {
     return (
-      <div className="page">
+      <div className="page kuro-exam-v4">
         <PageHeader eyebrow="Evento" title="Floresta da Morte" subtitle="Exame Chunin" />
         <div className="card flex-col items-center p-12 bg-ink-raised border-line-solid border-gold">
-          <div className="text-6xl mb-6">📜</div>
+          <span className="kuro-challenges-v4__illustration"><SidebarIcon name="award" size={33} /></span>
           <h2 className="gold mb-4">Você já foi Aprovado!</h2>
           <p className="muted max-w-400 text-center leading-relaxed">
             Você já obteve os Pergaminhos do Céu e da Terra e sobreviveu à Floresta. 
             Não há necessidade de arriscar sua vida novamente.
           </p>
-          <button className="btn-ghost mt-6" onClick={() => navigate('/graduacoes')}>Ir para Graduações</button>
+          <GameAction tone="quiet" onClick={() => navigate('/graduacoes')}>Ir para Graduações</GameAction>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="page">
+    <div className="page kuro-exam-v4">
       <PageHeader eyebrow="Evento de Sobrevivência" title="Exame Chunin: Floresta da Morte" subtitle="Enfrente 3 desafios seguidos SEM RECUPERAR VIDA E CHAKRA." />
       
       <div className="card mb-6 border-line-solid border-danger">
@@ -125,7 +128,7 @@ export default function Exame({ player, updatePlayer }) {
         </ul>
       </div>
 
-      <div className="grid-3 gap-lg">
+      <div className="kuro-challenges-v4__cards">
         {[1, 2, 3].map(round => {
           const isActive = currentRound === round;
           const isPassed = currentRound > round;
@@ -136,7 +139,7 @@ export default function Exame({ player, updatePlayer }) {
           else baseClasses += ' border-line opacity-50';
 
           return (
-            <div key={round} className={baseClasses}>
+            <div key={round} className={baseClasses+" kuro-challenges-v4__card"}>
               <div className="text-5xl mb-4">
                 {isPassed ? '✅' : (round === 1 ? '🌲' : round === 2 ? '🕷️' : '⛩️')}
               </div>
@@ -148,13 +151,9 @@ export default function Exame({ player, updatePlayer }) {
               </p>
               
               {isActive && (
-                <button 
-                  className="btn-primary" 
-                  onClick={() => startRound(round)}
-                  disabled={loading}
-                >
-                  {loading ? 'Entrando...' : 'Lutar!'}
-                </button>
+                <GameAction tone="seal" loading={loading} onClick={() => startRound(round)}>
+                  <SidebarIcon name="swords" size={17} /> {loading ? 'Entrando...' : 'Lutar!'}
+                </GameAction>
               )}
             </div>
           );

@@ -3,6 +3,8 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import CharacterArtwork from '../components/CharacterArtwork';
+import { resolveWorldBossArtwork } from '../utils/npcArtwork';
 import { fetchActiveWorldBoss, isEventExpired } from '../utils/eventUtils';
 
 export default function Evento({ player, updatePlayer }) {
@@ -94,7 +96,7 @@ export default function Evento({ player, updatePlayer }) {
     const bossNpc = {
       id: `worldboss_${event.id}`,
       name: startData.event_name || event.name,
-      avatar: '/images/bg_forest.jpg',
+      avatar: resolveWorldBossArtwork(event),
       level: 100,
       hp: startData.boss_hp,
       maxHp: startData.boss_max_hp,
@@ -111,6 +113,7 @@ export default function Evento({ player, updatePlayer }) {
   };
 
   if (!player) return null;
+  const bossArt = resolveWorldBossArtwork(event);
 
   return (
     <div className="page kuro-event-page">
@@ -151,8 +154,9 @@ export default function Evento({ player, updatePlayer }) {
             {timeLeft && <span className="badge badge-muted">Termina em: {timeLeft}</span>}
           </div>
 
-          <div className="kuro-world-boss-art text-8xl mb-8 animate-pulse z-10">
-            🦊
+          <div className="kuro-world-boss-art mb-8 z-10">
+            <CharacterArtwork src={bossArt} name={event.name} fallback="🦊" className="kuro-world-boss-portrait" loading="eager" />
+            <span className="kuro-world-boss-art__caption">ALVO GLOBAL · {event.name}</span>
           </div>
 
           <div className="kuro-world-boss-health w-full max-w-600 mb-8 z-10">

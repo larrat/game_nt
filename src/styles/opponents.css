@@ -1,12 +1,12 @@
-/* Kurokage 4.0 · Arquivo de Adversários: tokens locais reutilizáveis. */
+/* Arquivo de Adversários — herda o mesmo design system de todas as telas. */
 .kuro-opponents {
-  --opp-bg: #111923;
-  --opp-card: #19222e;
-  --opp-border: rgba(226, 198, 139, .18);
-  --opp-muted: #b0bdc8;
-  --opp-gold: #e7bd75;
-  --opp-red: #cc695e;
-  color: #f1ede4;
+  --opp-bg: var(--kuro-surface, #131c27);
+  --opp-card: var(--kuro-surface-up, #1c2835);
+  --opp-border: var(--kuro-line, rgba(235, 194, 130, .20));
+  --opp-muted: var(--kuro-muted, #b9bbc0);
+  --opp-gold: var(--kuro-gold, #ebc17c);
+  --opp-red: var(--kuro-red, #d64750);
+  color: var(--kuro-copy, #f3ecdf);
 }
 .kuro-opponents-intro {
   position: relative;
@@ -51,7 +51,7 @@
 .kuro-opponents-search input::placeholder { color: #99a4af; opacity: 1; }
 .kuro-opponents-results { flex-shrink: 0; font-size: .8rem; color: var(--opp-muted); font-variant-numeric: tabular-nums; }
 .kuro-opponents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 245px), 1fr)); gap: 1rem; }
-.kuro-opponents-card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--opp-border); border-radius: 14px; background: linear-gradient(155deg, var(--opp-card), var(--opp-bg)); padding: 1.1rem; min-height: 305px; transition: border-color .15s ease, transform .15s ease; }
+.kuro-opponents-card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--opp-border); border-radius: var(--kuro-radius, 14px); background: linear-gradient(155deg, var(--opp-card), var(--opp-bg)); padding: 1.1rem; min-height: 305px; transition: border-color .15s ease, transform .15s ease; }
 .kuro-opponents-card:hover { border-color: rgba(231,189,117,.55); transform: translateY(-2px); }
 .kuro-opponents-card-portrait { width: 94px; height: 94px; padding: 2px; border-radius: 14px; background: rgba(231,189,117,.1); margin: 0 0 1rem; }
 .kuro-opponents-card-portrait > span { border-radius: 12px !important; }
@@ -91,3 +91,20 @@
   .kuro-opponents-card, .kuro-opponents-tab { transition: none; }
   .kuro-opponents-card:hover { transform: none; }
 }
+
+/* Shared GameAction replaces the old ad hoc action button. */
+.app .kuro-opponents .kuro-opponents-link {
+  width: 100%;
+  justify-content: space-between;
+  min-height: 44px;
+  padding-inline: 12px;
+  border: 1px solid var(--opp-border);
+  border-radius: 9px;
+  background: rgba(235,193,124,.05);
+  color: var(--opp-gold);
+  font-size: .78rem;
+  text-decoration: none;
+}
+.app .kuro-opponents .kuro-opponents-link:hover { background: rgba(235,193,124,.11); }
+.app .kuro-opponents .kuro-opponents-tab { border-radius: var(--kuro-radius, 14px); }
+.app .kuro-opponents .kuro-opponents-card { border-color: var(--opp-border); }

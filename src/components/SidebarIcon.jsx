@@ -4,7 +4,7 @@ import {
   Coins, Compass, Crosshair, Info, LockKeyhole, RefreshCw,
   CircleHelp, ClipboardList, Crown, DoorOpen, Dumbbell, Flame,
   GraduationCap, Hammer, HeartPulse, History, House, Landmark,
-  LayoutDashboard, Map, PawPrint, ScrollText, Search, Shield,
+  LayoutDashboard, Map, Package, PawPrint, ScrollText, Search, Shield,
   Soup, Sparkles, Star, Swords, Target, Trash2, Trophy, UserRound, UsersRound, Zap,
   Volume2, VolumeX, X
 } from 'lucide-react';
@@ -38,6 +38,7 @@ const ICONS = {
   home: House,
   landmark: Landmark,
   map: Map,
+  package: Package,
   paw: PawPrint,
   refresh: RefreshCw,
   scroll: ScrollText,

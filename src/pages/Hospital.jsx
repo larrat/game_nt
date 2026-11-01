@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/world-services-v4.css';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { calculateHP, calculateChakra, calculateStamina, getGlobalDebuffs } from '../utils/engine';
@@ -90,26 +93,22 @@ export default function Hospital({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page flex-col items-center justify-center h-full bg-danger-alpha-05 min-h-screen">
-      <div className="card-glass w-full text-center p-4 max-w-480">
+    <div className="page kuro-hospital-v4 flex-col items-center justify-center h-full bg-danger-alpha-05 min-h-screen">
+      <div className="kuro-hospital-v4__panel kuro-ui-card card-glass w-full text-center p-4 max-w-480">
         {isRecovered ? (
           <>
-            <div className="mb-4 text-5xl">🌟</div>
+            <span className="kuro-world-v4__emblem"><SidebarIcon name="sparkles" size={32} /></span>
             <h3 className="paper mb-2 text-2xl">Recuperação Concluída</h3>
             <p className="muted mb-6">
               Seu corpo se recuperou totalmente. Você já pode voltar para suas missões.
             </p>
-            <button
-              className="btn-primary p-3 text-lg"
-              onClick={() => handleCure(false)}
-              disabled={loading}
-            >
-              {loading ? 'Recebendo Alta...' : 'Receber Alta e Voltar'}
-            </button>
+            <GameAction tone="seal" className="w-full" loading={loading} onClick={() => handleCure(false)}>
+              <SidebarIcon name="heart" size={17} /> {loading ? 'Recebendo Alta...' : 'Receber Alta e Voltar'}
+            </GameAction>
           </>
         ) : (
           <>
-            <div className="mb-4 text-5xl">⏳</div>
+            <span className="kuro-world-v4__emblem"><SidebarIcon name="activity" size={32} /></span>
             <h3 className="paper mb-2 text-2xl">Tempo Restante</h3>
             <div className="mono danger font-bold mb-6 text-4xl">
               {formatTime(timeLeft)}
@@ -120,14 +119,9 @@ export default function Hospital({ player, updatePlayer }) {
 
             <div className="bg-ink p-4 rounded-md border-line-solid">
               <p className="paper mb-3 text-lg">Deseja acelerar sua recuperação?</p>
-              <button
-                className="btn-primary flex-row items-center gap-sm justify-center w-full"
-                onClick={() => handleCure(true)}
-                disabled={loading || player.ryous < cureCost}
-              >
-                <img src="/images/imgi_20_ryous.png" alt="ryous" className="w-4" onError={(e) => e.target.style.display = 'none'} />
-                Pagar {cureCost} Ryous
-              </button>
+              <GameAction tone="gold" className="w-full" onClick={() => handleCure(true)} disabled={player.ryous < cureCost} loading={loading}>
+                <SidebarIcon name="coins" size={17} /> Pagar {cureCost} Ryous
+              </GameAction>
               {player.ryous < cureCost && (
                 <div className="danger mono text-xs mt-2">Ryous Insuficientes</div>
               )}

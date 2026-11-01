@@ -1,0 +1,114 @@
+{
+  "assets": [
+    {
+      "source": "https://i.imgur.com/Y1oWjVA.png",
+      "file": "assets/Y1oWjVA.webp",
+      "bytes": 32788,
+      "sha256": "c22a3bab33cbc071275bdaa14954eb1e316c8af8fb82bb1d5bd9df548040fac5"
+    },
+    {
+      "source": "https://i.imgur.com/wQUJejh.png",
+      "file": "assets/wQUJejh.webp",
+      "bytes": 140236,
+      "sha256": "5c4c8ce60b6a6eebb0662ad393ac7d820c8c65a9f79baf8c952147d1776d30c1"
+    },
+    {
+      "source": "https://i.imgur.com/CiCjI1M.jpeg",
+      "file": "assets/CiCjI1M.webp",
+      "bytes": 185116,
+      "sha256": "927d3cb48592db39f3e21fcf4a04a95b690815a16088087844f5d5328c4257ad"
+    },
+    {
+      "source": "https://i.imgur.com/n4jwJEi.jpeg",
+      "file": "assets/n4jwJEi.webp",
+      "bytes": 185632,
+      "sha256": "a29cd51831fa25f0d8c3da7e0341d2f3271b4d534c8748e30ed6a673d69616b3"
+    },
+    {
+      "source": "https://i.imgur.com/jGMDqZb.jpeg",
+      "file": "assets/jGMDqZb.webp",
+      "bytes": 185344,
+      "sha256": "81d931d0e1e7b585bee23d88baff127fadda86a53d49bfd523a8ce58965df543"
+    },
+    {
+      "source": "https://i.imgur.com/uzqvNip.jpeg",
+      "file": "assets/uzqvNip.webp",
+      "bytes": 185368,
+      "sha256": "8e3b16477e2a27c75341e28f9c83076369d82bfc0459e348b07289ad0c0ba65e"
+    },
+    {
+      "source": "https://i.imgur.com/qgnhXiL.jpeg",
+      "file": "assets/qgnhXiL.webp",
+      "bytes": 185930,
+      "sha256": "10b1edc1cfe4346b766c9338439107e2e5653986df1e1f77b8b40360b11acb04"
+    },
+    {
+      "source": "https://i.imgur.com/62jAqja.jpeg",
+      "file": "assets/62jAqja.webp",
+      "bytes": 185498,
+      "sha256": "0a9431b6ba5fbfa8daef341a232c0db09809a4a713010e74648ecacff67f70e5"
+    },
+    {
+      "source": "https://i.imgur.com/kF2JU2K.png",
+      "file": "assets/kF2JU2K.webp",
+      "bytes": 57338,
+      "sha256": "b303c12c24ce53104f665415c03833260a2e7ef2572c30d42f1f1e2ff15e86b5"
+    },
+    {
+      "source": "https://i.imgur.com/2jqlPLl.png",
+      "file": "assets/2jqlPLl.webp",
+      "bytes": 57818,
+      "sha256": "9285f0be860b8c8c936ffbb9ea9e6e9ac6846d534f0643831a390f2f19ad6f8f"
+    },
+    {
+      "source": "https://narutogame.com.br/assets/images/equipamentos/equip_parte1.jpg",
+      "file": "assets/equip_parte1.jpg",
+      "bytes": 262991,
+      "sha256": "714b3599f00ecff864e94d1a7b49c8d1c2cdbe12d4525adb8b10be11ae7700ea"
+    },
+    {
+      "source": "https://narutogame.com.br/assets/images/equipamentos/equip_parte2.jpg",
+      "file": "assets/equip_parte2.jpg",
+      "bytes": 251825,
+      "sha256": "99889b7c5b99a118e3bee542e60bcfbb5dca322688c29e167a1c921edd91f06f"
+    },
+    {
+      "source": "https://narutogame.com.br/assets/images/equipamentos/equip_parte3_1e2.jpg",
+      "file": "assets/equip_parte3_1e2.jpg",
+      "bytes": 291564,
+      "sha256": "8f57e60cd69619188d13abbb039f14b83571fef9f715903cb00ea8ea691505fc"
+    },
+    {
+      "source": "https://narutogame.com.br/assets/images/equipamentos/equip_parte3_3.jpg",
+      "file": "assets/equip_parte3_3.jpg",
+      "bytes": 291338,
+      "sha256": "117448adffaf20d01cd3392d56c12f1959aaf5c86400628c668f58cc17edc3ad"
+    },
+    {
+      "source": "https://narutogame.com.br/assets/images/equipamentos/equip_parte3_6.jpg",
+      "file": "assets/equip_parte3_6.jpg",
+      "bytes": 315036,
+      "sha256": "61aa59060510b44830db444aa2833809971baa3ac7c1103c72853dadaa6c0083"
+    },
+    {
+      "source": "https://narutogame.com.br/assets/images/equipamentos/equip_parte3_4.jpg",
+      "file": "assets/equip_parte3_4.jpg",
+      "bytes": 314569,
+      "sha256": "5b170cd660cd77ec6c42c91011616979f201085218bc876b9880c9fdcbbe7707"
+    },
+    {
+      "source": "https://narutogame.com.br/assets/images/equipamentos/equip_parte3_5.jpg",
+      "file": "assets/equip_parte3_5.jpg",
+      "bytes": 314844,
+      "sha256": "2b694e0b11db490f59cc8d4f6bf2c32ce3136cc3f93c0c55fed8a05a6344eda6"
+    },
+    {
+      "source": "https://narutogame.com.br/assets/images/equipamentos/equip_parte3_7.jpg",
+      "file": "assets/equip_parte3_7.jpg",
+      "bytes": 315835,
+      "sha256": "2c51abfc1f1fa0477a806ea090dafff10be891561c7cac796af2000c9b0832eb"
+    }
+  ],
+  "pending": 0,
+  "scope": "18 anexos de equipamentos selecionados. As demais referências do catálogo não estão integralmente baixadas neste lote."
+}

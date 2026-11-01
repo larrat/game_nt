@@ -1,0 +1,337 @@
+{
+  "status": "historico-anunciado-nao-validado-em-drop",
+  "newsId": "638",
+  "publishedDate": "08/07/2026",
+  "rarityDistribution": [
+    {
+      "rank": "Estudante/Genin",
+      "common": 85,
+      "rare": 10,
+      "epic": 4,
+      "legendary": 1
+    },
+    {
+      "rank": "Chunin",
+      "common": 10,
+      "rare": 80,
+      "epic": 7,
+      "legendary": 3
+    },
+    {
+      "rank": "Jounin",
+      "common": 0,
+      "rare": 63,
+      "epic": 30,
+      "legendary": 7
+    },
+    {
+      "rank": "ANBU",
+      "common": 0,
+      "rare": 20,
+      "epic": 65,
+      "legendary": 15
+    },
+    {
+      "rank": "Sannin",
+      "common": 0,
+      "rare": 0,
+      "epic": 75,
+      "legendary": 25
+    },
+    {
+      "rank": "Herói",
+      "common": 0,
+      "rare": 0,
+      "epic": 50,
+      "legendary": 50
+    }
+  ],
+  "dropInterpretation": "Percentuais somam 100 por graduação. Não fornecem a probabilidade absoluta de um combate gerar equipamento.",
+  "affixCounts": {
+    "common": {
+      "fixed": 1,
+      "possibleExtra": 1
+    },
+    "rare": {
+      "fixed": 2,
+      "possibleExtra": 1
+    },
+    "epic": {
+      "fixed": 3,
+      "possibleExtra": 1
+    },
+    "legendary": {
+      "fixed": 4,
+      "possibleExtra": 1
+    }
+  },
+  "extraAffixChanceShownPercent": 20,
+  "rangeTupleMeaning": [
+    "min",
+    "max",
+    "bonusComIconeDeFogo"
+  ],
+  "ranks": [
+    {
+      "rank": "Estudante/Genin",
+      "image": "assets/CiCjI1M.webp",
+      "primaryAttributes": [
+        1,
+        3,
+        1
+      ],
+      "energy": [
+        1,
+        1,
+        1
+      ],
+      "attackDefense": [
+        1,
+        1,
+        1
+      ],
+      "hp": [
+        1,
+        8,
+        4
+      ],
+      "chakraStamina": [
+        1,
+        4,
+        2
+      ],
+      "precisionPiercing": [
+        1,
+        3,
+        1
+      ],
+      "otherFormulaPercent": [
+        1,
+        5,
+        2
+      ]
+    },
+    {
+      "rank": "Chunin",
+      "image": "assets/n4jwJEi.webp",
+      "primaryAttributes": [
+        3,
+        5,
+        2
+      ],
+      "energy": [
+        1,
+        2,
+        1
+      ],
+      "attackDefense": [
+        1,
+        2,
+        1
+      ],
+      "hp": [
+        8,
+        16,
+        8
+      ],
+      "chakraStamina": [
+        2,
+        4,
+        2
+      ],
+      "precisionPiercing": [
+        3,
+        5,
+        2
+      ],
+      "otherFormulaPercent": [
+        1,
+        5,
+        2
+      ]
+    },
+    {
+      "rank": "Jounin",
+      "image": "assets/jGMDqZb.webp",
+      "primaryAttributes": [
+        4,
+        7,
+        2
+      ],
+      "energy": [
+        2,
+        3,
+        1
+      ],
+      "attackDefense": [
+        2,
+        3,
+        1
+      ],
+      "hp": [
+        12,
+        24,
+        12
+      ],
+      "chakraStamina": [
+        3,
+        6,
+        3
+      ],
+      "precisionPiercing": [
+        4,
+        7,
+        2
+      ],
+      "otherFormulaPercent": [
+        1,
+        5,
+        2
+      ]
+    },
+    {
+      "rank": "ANBU",
+      "image": "assets/uzqvNip.webp",
+      "primaryAttributes": [
+        6,
+        9,
+        3
+      ],
+      "energy": [
+        2,
+        4,
+        2
+      ],
+      "attackDefense": [
+        3,
+        4,
+        2
+      ],
+      "hp": [
+        16,
+        32,
+        16
+      ],
+      "chakraStamina": [
+        4,
+        6,
+        3
+      ],
+      "precisionPiercing": [
+        6,
+        9,
+        3
+      ],
+      "otherFormulaPercent": [
+        1,
+        5,
+        2
+      ]
+    },
+    {
+      "rank": "Sannin",
+      "image": "assets/qgnhXiL.webp",
+      "primaryAttributes": [
+        9,
+        12,
+        4
+      ],
+      "energy": [
+        3,
+        5,
+        2
+      ],
+      "attackDefense": [
+        4,
+        6,
+        2
+      ],
+      "hp": [
+        20,
+        40,
+        20
+      ],
+      "chakraStamina": [
+        4,
+        8,
+        4
+      ],
+      "precisionPiercing": [
+        9,
+        12,
+        4
+      ],
+      "otherFormulaPercent": [
+        1,
+        5,
+        2
+      ]
+    },
+    {
+      "rank": "Herói",
+      "image": "assets/62jAqja.webp",
+      "primaryAttributes": [
+        10,
+        14,
+        4
+      ],
+      "energy": [
+        4,
+        6,
+        2
+      ],
+      "attackDefense": [
+        5,
+        7,
+        2
+      ],
+      "hp": [
+        24,
+        48,
+        24
+      ],
+      "chakraStamina": [
+        6,
+        8,
+        4
+      ],
+      "precisionPiercing": [
+        10,
+        14,
+        4
+      ],
+      "otherFormulaPercent": [
+        1,
+        5,
+        2
+      ]
+    }
+  ],
+  "primaryAttributes": [
+    "Inteligência",
+    "Força",
+    "Resistência",
+    "Taijutsu",
+    "Ninjutsu",
+    "Genjutsu",
+    "Bukijutsu",
+    "Agilidade",
+    "Selo"
+  ],
+  "otherFormulas": [
+    "Concentração",
+    "Percepção",
+    "Precisão (segunda linha da imagem)",
+    "Convicção",
+    "Determinação",
+    "Incremento Crítico",
+    "Incremento Absorção"
+  ],
+  "warnings": [
+    "A linha Precisão aparece duas vezes em cada faixa, com valores diferentes. Não corrigida por inferência.",
+    "O diagrama de composição afirma duas bases comuns, mas o quadro superior e guia de raridade indicam um atributo fixo. Inconsistência preservada.",
+    "O bônus acompanhado de fogo foi transcrito como exibido; aplicação e probabilidade não testadas.",
+    "R53 (notícia 646) anuncia remoção de precisão/perfuração de equipamentos e defesas por classe. Não ativar tabelas de julho como regras atuais.",
+    "Anexo de 2024 mostra até dois extras lendários; revisão de 2026 mostra um."
+  ]
+}

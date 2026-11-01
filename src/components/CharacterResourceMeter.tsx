@@ -20,7 +20,7 @@ export default function CharacterResourceMeter({
     <div className={`kuro-status-v3__resource is-${kind}`}>
       <div className="kuro-status-v3__resource-heading">
         <span className="kuro-status-v3__resource-label">
-          <span aria-hidden="true" className="kuro-status-v3__resource-icon">{icon}</span>
+          <span aria-hidden="true" className="kuro-status-v3__resource-icon"><img src={icon} alt="" width={22} height={22} /></span>
           {label}
         </span>
         <span className="kuro-status-v3__resource-value">

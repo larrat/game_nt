@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useLocation } from 'react-router-dom';
 import { playClickSound } from '../utils/audioEngine';
+import '../styles/inventory-modal.css';
 
 export default function InventoryModal({ isOpen, onClose, player, updatePlayer }) {
   const location = useLocation();
@@ -11,6 +13,41 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
   const [loading, setLoading] = useState(true);
   const [usingId, setUsingId] = useState(null);
   const { addToast } = useToast();
+  const closeButtonRef = useRef(null);
+  const modalRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const priorFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+    const onKeyDown = event => {
+      if (event.key === 'Escape') onCloseRef.current();
+      if (event.key !== 'Tab') return;
+      const focusable = Array.from(modalRef.current?.querySelectorAll(
+        'button:not(:disabled), [href], input:not(:disabled), [tabindex]:not([tabindex="-1"])'
+      ) || []);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      if (priorFocus?.isConnected) priorFocus.focus();
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen && player) {
@@ -83,15 +120,17 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
 
   if (!isOpen) return null;
 
-  return (
-    <div className="modal-overlay" onClick={onClose} style={{ zIndex: 100 }}>
-      <div className="avatar-modal" onClick={e => e.stopPropagation()} style={{ maxWidth: '600px' }}>
+  return createPortal(
+    <div className="modal-overlay inventory-modal__overlay" onClick={onClose}>
+      
+      <div ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="kuro-inventory-title"
+        className="avatar-modal inventory-modal__panel" onClick={e => e.stopPropagation()}>
 
         <div className="modal-header">
-          <h2 className="flex-row items-center gap-xs">
+          <h2 id="kuro-inventory-title" className="flex-row items-center gap-xs">
             🎒 Mochila de Suprimentos
           </h2>
-          <button className="btn-close" onClick={onClose}>×</button>
+          <button ref={closeButtonRef} type="button" className="btn-close" aria-label="Fechar mochila" onClick={onClose}>×</button>
         </div>
 
         <div className="modal-content p-6 bg-ink">
@@ -139,6 +178,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
         </div>
 
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

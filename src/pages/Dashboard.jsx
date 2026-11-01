@@ -55,15 +55,6 @@ export default function Dashboard({ player, updatePlayer }) {
   const { addToast } = useToast();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function loadData() {
-      // 2. Eventos
-      const { data: eventsData } = await supabase.from('world_events').select('*').order('start_time', { ascending: true });
-      if (eventsData) setUpcomingEvents(eventsData);
-    }
-    if (player) loadData();
-  }, [player]);
-
   // Busca Eventos Ativos
   useEffect(() => {
     async function fetchEvents() {

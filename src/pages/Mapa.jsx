@@ -362,22 +362,7 @@ export default function Mapa({ player, updatePlayer }) {
           </div>
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px' }}>Clique num edifício para interagir</div>
-            <button
-              onClick={() => setViewMode('world')}
-              aria-label="Abrir mapa mundi"
-              style={{
-                background: 'rgba(212,162,42,0.12)',
-                border: '1px solid rgba(212,162,42,0.4)',
-                color: '#d4a22a',
-                borderRadius: '6px',
-                padding: '6px 14px',
-                cursor: 'pointer',
-                fontSize: '12px',
-                fontWeight: 'bold',
-              }}
-            >
-              <SidebarIcon name="map" size={16} /> Mapa Mundi
-            </button>
+            <GameAction tone="quiet" className="kuro-map-v4__nav-action" onClick={() => setViewMode('world')} aria-label="Abrir mapa mundi"><SidebarIcon name="map" size={16} /> Mapa Mundi</GameAction>
           </div>
         </div>
 
@@ -445,39 +430,9 @@ export default function Mapa({ player, updatePlayer }) {
               {selectedBldg.desc}
             </p>
             {selectedBldg.route && selectedBldg.route !== 'world' && (
-              <button
-                onClick={() => navigate(selectedBldg.route)}
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  background: selectedBldg.color,
-                  border: 'none',
-                  borderRadius: '8px',
-                  color: '#000',
-                  fontWeight: 'bold',
-                  fontSize: '14px',
-                  cursor: 'pointer',
-                  marginBottom: '8px',
-                }}
-              >
-                Entrar
-              </button>
+              <GameAction tone="gold" className="kuro-map-v4__panel-action" onClick={() => navigate(selectedBldg.route)}>Entrar</GameAction>
             )}
-            <button
-              onClick={() => setSelectedBuilding(null)}
-              style={{
-                width: '100%',
-                padding: '10px',
-                background: 'transparent',
-                border: '1px solid rgba(255,255,255,0.15)',
-                borderRadius: '8px',
-                color: 'rgba(255,255,255,0.5)',
-                fontSize: '13px',
-                cursor: 'pointer',
-              }}
-            >
-              Fechar
-            </button>
+            <GameAction tone="quiet" className="kuro-map-v4__panel-action" onClick={() => setSelectedBuilding(null)}>Fechar</GameAction>
           </div>
         )}
 
@@ -629,21 +584,7 @@ export default function Mapa({ player, updatePlayer }) {
           <div style={{ color: '#d4a22a', fontWeight: 'bold', fontSize: '14px' }}>
             {villages[currentLoc]?.icon} Vila de {villages[currentLoc]?.name}
           </div>
-          <button
-            onClick={() => setViewMode('village')}
-            style={{
-              background: 'rgba(212,162,42,0.12)',
-              border: '1px solid rgba(212,162,42,0.4)',
-              color: '#d4a22a',
-              borderRadius: '6px',
-              padding: '7px 12px',
-              cursor: 'pointer',
-              fontSize: '12px',
-              fontWeight: 'bold',
-            }}
-          >
-            <SidebarIcon name="arrowLeft" size={16} /> Voltar à Vila
-          </button>
+          <GameAction tone="quiet" className="kuro-map-v4__nav-action" onClick={() => setViewMode('village')}><SidebarIcon name="arrowLeft" size={16} /> Voltar à Vila</GameAction>
         </div>
       </div>
 
@@ -671,31 +612,8 @@ export default function Mapa({ player, updatePlayer }) {
               <span style={{ color: '#f59e0b', fontSize: '12px' }}>Custo: 100 Ryous</span>
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <button
-                onClick={handleTravel}
-                disabled={loadingId !== null}
-                aria-busy={loadingId !== null}
-                style={{
-                  width: '100%', padding: '10px',
-                  background: '#d4a22a', border: 'none',
-                  borderRadius: '6px', color: '#000',
-                  fontWeight: 'bold', fontSize: '13px', cursor: 'pointer',
-                }}
-              >
-                {loadingId ? 'Viajando...' : '🚀 Viajar'}
-              </button>
-              <button
-                onClick={() => setConfirmTarget(null)}
-                style={{
-                  width: '100%', padding: '8px',
-                  background: 'transparent',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  borderRadius: '6px', color: 'rgba(255,255,255,0.5)',
-                  fontSize: '13px', cursor: 'pointer',
-                }}
-              >
-                Cancelar
-              </button>
+              <GameAction tone="gold" className="kuro-map-v4__panel-action" onClick={handleTravel} loading={loadingId !== null}>{loadingId ? 'Viajando…' : 'Confirmar viagem'}</GameAction>
+              <GameAction tone="quiet" className="kuro-map-v4__panel-action" onClick={() => setConfirmTarget(null)}>Cancelar</GameAction>
             </div>
           </div>
         )}
@@ -746,22 +664,7 @@ export default function Mapa({ player, updatePlayer }) {
                       <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '10px' }}>Nv. {npc.level}</div>
                     </div>
                   </div>
-                  <button
-                    onClick={() => attackNpc(npc)}
-                    style={{
-                      background: 'rgba(239,68,68,0.15)',
-                      border: '1px solid rgba(239,68,68,0.4)',
-                      color: '#ef4444',
-                      borderRadius: '4px',
-                      padding: '4px 10px',
-                      fontSize: '11px',
-                      fontWeight: 'bold',
-                      cursor: 'pointer',
-                      flexShrink: 0,
-                    }}
-                  >
-                    Atacar
-                  </button>
+                  <GameAction tone="danger" size="small" onClick={() => attackNpc(npc)}>Atacar</GameAction>
                 </div>
               ))}
             </div>

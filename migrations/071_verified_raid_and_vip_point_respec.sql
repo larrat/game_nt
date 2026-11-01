@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS app_private.vip_point_respec_ledger (
 ALTER TABLE app_private.vip_point_respec_ledger ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON app_private.vip_point_respec_ledger FROM PUBLIC,anon,authenticated;
 
+INSERT INTO public.game_config(key,value) VALUES ('verified_raids_enabled','false'::jsonb),('vip_point_respec_enabled','false'::jsonb) ON CONFLICT(key) DO NOTHING;
 ALTER TABLE public.players ADD COLUMN IF NOT EXISTS total_vip_spent integer NOT NULL DEFAULT 0;
 ALTER TABLE public.players ADD CONSTRAINT players_total_vip_spent_nonnegative CHECK (total_vip_spent>=0);
 
@@ -52,8 +53,11 @@ DECLARE
  v_cost constant integer := 25;
  v_max_stamina integer;
  v_current_stamina integer;
+ v_enabled boolean;
 BEGIN
  IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória'; END IF;
+ SELECT value='true'::jsonb INTO v_enabled FROM public.game_config WHERE key='verified_raids_enabled';
+ IF NOT COALESCE(v_enabled,false) THEN RETURN jsonb_build_object('success',false,'error','Raids aguardam homologação.'); END IF;
  IF p_fight_count NOT IN (3,5) OR p_fight_count IS NULL THEN
    RETURN jsonb_build_object('success',false,'error','Raid precisa ter 3 ou 5 lutas.');
  END IF;
@@ -104,8 +108,8 @@ BEGIN
  VALUES (p_player_id,auth.uid(),p_fight_count,(v_start->>'session_id')::uuid,v_cost)
  RETURNING id INTO v_id;
  UPDATE public.players SET stamina=v_current_stamina-v_cost WHERE id=p_player_id;
-
- RETURN v_start || jsonb_build_object('raid_id',v_id,'raid_total',p_fight_count,
+ UPDATE public.player_combat_sessions SET player_stamina=v_current_stamina-v_cost WHERE session_id=(v_start->>'session_id')::uuid AND player_id=p_player_id;
+ RETURN v_start || jsonb_build_object('player_stamina',v_current_stamina-v_cost,'raid_id',v_id,'raid_total',p_fight_count,
    'raid_current',1,'raid_completed',false,'raid_stamina_charged',v_cost);
 END;
 $function$;
@@ -124,8 +128,11 @@ DECLARE
  v_current integer;
  v_next integer;
  v_cost constant integer := 25;
+ v_enabled boolean;
 BEGIN
  IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória'; END IF;
+ SELECT value='true'::jsonb INTO v_enabled FROM public.game_config WHERE key='verified_raids_enabled';
+ IF NOT COALESCE(v_enabled,false) THEN RETURN jsonb_build_object('success',false,'error','Raids aguardam homologação.'); END IF;
  SELECT * INTO v_player FROM public.players
  WHERE id=p_player_id AND user_id=auth.uid() FOR UPDATE;
  IF NOT FOUND THEN RAISE EXCEPTION 'Personagem não pertence à conta.'; END IF;
@@ -193,11 +200,12 @@ BEGIN
  END IF;
 
  UPDATE public.players SET stamina=v_current-v_cost WHERE id=p_player_id;
+ UPDATE public.player_combat_sessions SET player_stamina=v_current-v_cost WHERE session_id=(v_start->>'session_id')::uuid AND player_id=p_player_id;
  UPDATE app_private.raid_runs
  SET fights_completed=v_next,current_session_id=(v_start->>'session_id')::uuid,
      stamina_spent=stamina_spent+v_cost,updated_at=now()
  WHERE id=v_raid.id;
- RETURN v_start || jsonb_build_object('raid_id',v_raid.id,'raid_total',v_raid.fight_total,
+ RETURN v_start || jsonb_build_object('player_stamina',v_current-v_cost,'raid_id',v_raid.id,'raid_total',v_raid.fight_total,
     'raid_current',v_next+1,'raid_completed',false,'raid_stamina_charged',v_raid.stamina_spent+v_cost);
 END;
 $function$;
@@ -229,9 +237,11 @@ RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER
 SET search_path=pg_catalog,public
 AS $function$
 DECLARE v_player public.players%ROWTYPE; v_old integer;
- v_base integer; v_operation uuid;
+ v_base integer; v_operation uuid; v_enabled boolean;
 BEGIN
  IF auth.uid() IS NULL THEN RAISE EXCEPTION 'Autenticação obrigatória'; END IF;
+ SELECT value='true'::jsonb INTO v_enabled FROM public.game_config WHERE key='vip_point_respec_enabled';
+ IF NOT COALESCE(v_enabled,false) THEN RETURN jsonb_build_object('success',false,'error','Respec VIP aguarda homologação.'); END IF;
  IF p_atributo NOT IN ('forca','agilidade','resistencia','inteligencia','energia',
   'ninjutsu','taijutsu','genjutsu','bukijutsu','selo') OR p_atributo IS NULL THEN
     RETURN jsonb_build_object('success',false,'error','Atributo inválido.');

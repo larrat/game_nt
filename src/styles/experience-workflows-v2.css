@@ -293,6 +293,39 @@
   filter: saturate(.7);
 }
 
+
+/* Native progress in daily quests: responsive, accessible, no inline styles. */
+.app .kuro-dashboard-v2 .kuro-quest__track { height: 8px; border-radius: 999px; overflow: hidden; }
+.app .kuro-dashboard-v2 .kuro-quest__meter {
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  margin: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #26303a;
+}
+.app .kuro-dashboard-v2 .kuro-quest__meter::-webkit-progress-bar {
+  border-radius: 999px;
+  background: #26303a;
+}
+.app .kuro-dashboard-v2 .kuro-quest__meter::-webkit-progress-value {
+  border-radius: 999px;
+  background: #e3b86b;
+}
+.app .kuro-dashboard-v2 .kuro-quest__meter::-moz-progress-bar {
+  border-radius: 999px;
+  background: #e3b86b;
+}
+.app .kuro-dashboard-v2 .kuro-quest__meter.green::-webkit-progress-value { background: #70ce8e; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.green::-moz-progress-bar { background: #70ce8e; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.blue::-webkit-progress-value { background: #67b5ee; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.blue::-moz-progress-bar { background: #67b5ee; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.red::-webkit-progress-value { background: #ed707a; }
+.app .kuro-dashboard-v2 .kuro-quest__meter.red::-moz-progress-bar { background: #ed707a; }
+
 /* Shared responsive behavior. No hover-only controls; preserve native buttons. */
 @media (max-width: 900px) {
   .app .kuro-training-page .kuro-training-layout {

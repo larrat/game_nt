@@ -23,6 +23,9 @@ import {
 } from '../utils/engine';
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import GameAction from '../components/ui/GameAction';
+import '../styles/core-flows-v4.css';
 import CombatFighterCard from '../components/CombatFighterCard';
 import { getNpcPortrait, getNpcFallback } from '../utils/npcPortrait';
 import CombatTurnPanel from '../components/CombatTurnPanel';
@@ -1486,7 +1489,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
   ].filter(Boolean);
 
   return (
-    <div className="page kuro-combat-page">
+    <div className="page kuro-combat-page kuro-combat-v4">
       <PageHeader eyebrow={combatModeEyebrow} title={combatModeTitle} subtitle={combatModeSubtitle} />
 
       {!battleResult && (
@@ -1534,7 +1537,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               </div>
             )}
             <div className="kuro-combat-v3__log-heading">
-              <strong>Registro de combate <span className="muted mono">({logs.length})</span></strong>
+              <strong><SidebarIcon name="scroll" size={16} /> Registro de combate <span className="muted mono">({logs.length})</span></strong>
               <button
                 type="button"
                 className="kuro-combat-v3__log-toggle"
@@ -1597,7 +1600,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
         {!battleResult ? (
           isAltAutoBattle ? (
             <div className="card flex-col text-center border-dashed border-gold bg-ink kuro-auto-battle">
-              <div className="text-3xl mb-2">🤖</div>
+              <div className="kuro-combat-v4__auto-icon"><SidebarIcon name="activity" size={31} /></div>
               <h3 className="gold mb-2">Modo Auto-Battle</h3>
               <p className="muted text-xs">O Wintrading Shield foi ativado. Você não pode interferir no combate contra seu próprio alter ego. O sistema resolverá a batalha com base nos atributos e na sorte de ambos.</p>
             </div>
@@ -1619,7 +1622,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                     return (
                       <button
                         key={tab}
-                        className={`badge cursor-pointer border-none px-3 py-1 ${activeJutsuTab === tab ? 'badge-gold' : 'badge-muted'}`}
+                        className={`kuro-combat-v4__tech-tab ${activeJutsuTab === tab ? 'is-active' : ''}`}
+                        type="button"
+                        aria-pressed={activeJutsuTab === tab}
                         onClick={() => setActiveJutsuTab(tab)}
                       >
                         {tab === 'All' ? 'Todos' : tab} ({count})
@@ -1636,7 +1641,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                     title={`Ataque Básico\n${Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2))} DMG | ${BASE_PHYSICAL_ACCURACY + (playerArmorPen / 2) - globalDebuffs.accuracyPenalty}% ACC`}
                     type="button"
                   >
-                    <span className="combat-basic-icon">👊</span>
+                    <span className="combat-basic-icon"><SidebarIcon name="swords" size={23} /></span>
                     <span className="jutsu-name">Básico</span>
                     <span className="jutsu-cost">{Math.max(1, Math.floor(playerAtkTaiBuk * portaoAtkMultiplier) - Math.floor(npcDef / 2))} DMG</span>
                   </button>
@@ -1688,7 +1693,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                   onClick={handleSurrender}
                   type="button"
                 >
-                  <span className="text-lg">🏳️</span>
+                  <span className="text-lg"><SidebarIcon name="shield" size={19} /></span>
                   {surrenderConfirm ? 'Confirmar!' : 'Desistir'}
                 </button>
 
@@ -1697,7 +1702,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
                   onClick={() => setAutoBattle(!autoBattle)}
                   type="button"
                 >
-                  <span className="text-lg">🤖</span>
+                  <span className="text-lg"><SidebarIcon name="activity" size={19} /></span>
                   Auto: {autoBattle ? 'ON' : 'OFF'}
                 </button>
               </div>
@@ -1713,10 +1718,10 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
               <p className="muted mb-4">Você causou um total de <strong className="danger text-lg">{accumulatedDamage}</strong> de dano ao Chefe Global!</p>
             )}
 
-            <button className="btn-primary" onClick={battleResult === 'world_boss_end' ? handleWorldBossEnd : () => navigate(battleResult === 'win' ? (location.state?.isExame ? '/exame' : (location.state?.fromMap ? '/mapa' : '/dojo')) : (location.state?.isExame ? '/exame' : '/hospital'), { state: { roundWon: battleResult === 'win' ? location.state?.exameRound : null } })} disabled={loading}>
+            <GameAction tone="seal" loading={loading} onClick={battleResult === 'world_boss_end' ? handleWorldBossEnd : () => navigate(battleResult === 'win' ? (location.state?.isExame ? '/exame' : (location.state?.fromMap ? '/mapa' : '/dojo')) : (location.state?.isExame ? '/exame' : '/hospital'), { state: { roundWon: battleResult === 'win' ? location.state?.exameRound : null } })}>
+              <SidebarIcon name="arrowRight" size={17} />
               <span>{loading ? 'Retornando...' : (battleResult === 'win' ? 'Retornar' : 'Ir para o Hospital')}</span>
-              <div className="stamp"></div>
-            </button>
+            </GameAction>
           </div>
         )}
 

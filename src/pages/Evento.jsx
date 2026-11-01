@@ -4,6 +4,7 @@ import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import { fetchActiveWorldBoss, isEventExpired } from '../utils/eventUtils';
+import { getNpcPortrait } from '../utils/npcPortrait';
 
 export default function Evento({ player, updatePlayer }) {
   const [event, setEvent] = useState(null);
@@ -94,7 +95,7 @@ export default function Evento({ player, updatePlayer }) {
     const bossNpc = {
       id: `worldboss_${event.id}`,
       name: startData.event_name || event.name,
-      avatar: '/images/bg_forest.jpg',
+      avatar: getNpcPortrait({ name: startData.event_name || event.name, avatar: event.boss_image_url || event.image_url }) || '🦊',
       level: 100,
       hp: startData.boss_hp,
       maxHp: startData.boss_max_hp,
@@ -151,8 +152,16 @@ export default function Evento({ player, updatePlayer }) {
             {timeLeft && <span className="badge badge-muted">Termina em: {timeLeft}</span>}
           </div>
 
-          <div className="kuro-world-boss-art text-8xl mb-8 animate-pulse z-10">
-            🦊
+          <div className="kuro-world-boss-art mb-8 z-10">
+            {getNpcPortrait({ name: event.name, avatar: event.boss_image_url || event.image_url }) ? (
+              <img
+                src={getNpcPortrait({ name: event.name, avatar: event.boss_image_url || event.image_url })}
+                alt={'Retrato do chefe ' + event.name}
+                className="w-64 h-72 max-w-full object-contain rounded-xl shadow-2xl"
+                loading="lazy"
+                onError={e => { e.currentTarget.hidden = true; }}
+              />
+            ) : <span className="text-8xl" aria-label="Chefe mundial">🦊</span>}
           </div>
 
           <div className="kuro-world-boss-health w-full max-w-600 mb-8 z-10">

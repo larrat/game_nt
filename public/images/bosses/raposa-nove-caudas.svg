@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 660" role="img" aria-labelledby="title desc">
+<title id="title">Raposa das nove caudas — arte original Kurokage</title>
+<desc id="desc">Silhueta de uma raposa mística com nove caudas flamejantes diante de um eclipse rubro.</desc>
+<defs>
+<radialGradient id="sky"><stop stop-color="#76322f"/><stop offset=".53" stop-color="#2e1d2a"/><stop offset="1" stop-color="#0b121d"/></radialGradient>
+<radialGradient id="halo"><stop stop-color="#ffcf7f"/><stop offset=".65" stop-color="#ef5a37"/><stop offset="1" stop-color="#ab2533" stop-opacity="0"/></radialGradient>
+<linearGradient id="tail" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#63202d"/><stop offset=".38" stop-color="#d9582c"/><stop offset=".75" stop-color="#f6a34e"/><stop offset="1" stop-color="#ffe8a3"/></linearGradient>
+<linearGradient id="fur" x1=".15" y1="1" x2=".8" y2="0"><stop stop-color="#401523"/><stop offset=".55" stop-color="#ba402b"/><stop offset="1" stop-color="#e77731"/></linearGradient>
+<filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<rect x="4" y="4" width="592" height="652" rx="30" fill="url(#sky)"/>
+<circle cx="303" cy="280" r="190" fill="url(#halo)" opacity=".77"/>
+<circle cx="303" cy="277" r="126" fill="#1b1b2b" stroke="#ec8550" stroke-opacity=".6" stroke-width="3"/>
+<g fill="none" stroke="url(#tail)" stroke-width="43" stroke-linecap="round" opacity=".88">
+<path d="M273 459 C130 400 86 336 89 223 Q48 281 63 359"/>
+<path d="M264 471 C111 431 67 391 36 312 Q26 413 103 468"/>
+<path d="M258 480 C101 476 59 467 27 421 Q37 523 154 538"/>
+<path d="M280 457 C186 326 169 245 181 162 Q118 230 160 341"/>
+<path d="M301 451 C250 292 253 193 290 115 Q213 180 228 333"/>
+<path d="M327 458 C345 317 382 214 432 146 Q329 193 301 322"/>
+<path d="M342 469 C428 346 482 285 521 224 Q523 332 448 420"/>
+<path d="M349 480 C463 413 511 390 562 318 Q567 434 486 486"/>
+<path d="M346 493 C460 476 528 479 571 436 Q554 531 449 548"/>
+</g>
+<g stroke="#290f20" stroke-width="6" stroke-linejoin="round">
+<path fill="url(#fur)" d="M226 410 L178 267 L245 308 L276 261 L320 299 L385 235 L373 389 Q405 447 391 502 L365 575 L235 575 L207 491 Q199 444 226 410Z"/>
+<path fill="#ed8645" d="M209 320 L179 264 L245 308 L259 338 Q231 328 209 320Z"/>
+<path fill="#ed8645" d="M336 324 L384 237 L373 388 L358 386 Q360 352 336 324Z"/>
+<path fill="#6d2731" d="M237 386 Q289 406 343 379 L364 421 L347 471 Q289 501 234 463 L213 420Z"/>
+<path fill="#ec9a57" d="M234 451 Q293 486 353 443 L343 481 L310 505 L276 505 L245 481Z"/>
+<path fill="#2b1523" d="M208 530 Q286 495 366 533 L377 604 L207 604Z"/>
+</g>
+<path d="M234 413 L282 416 L258 428Z M314 416 L358 403 L340 428Z" fill="#ffe1a2"/>
+<path d="M234 413 L282 416" stroke="#f8e6bc" stroke-width="8" stroke-linecap="round" filter="url(#glow)"/>
+<path d="M314 416 L358 403" stroke="#f8e6bc" stroke-width="8" stroke-linecap="round" filter="url(#glow)"/>
+<path d="M275 448 L303 437 L324 446 L301 463Z" fill="#1b1420"/>
+<path d="M270 475 L301 485 L329 474" fill="none" stroke="#2b1523" stroke-width="7" stroke-linecap="round"/>
+<g fill="#f9b65b" opacity=".7"><circle cx="104" cy="146" r="3"/><circle cx="474" cy="169" r="4"/><circle cx="72" cy="553" r="3"/><circle cx="505" cy="570" r="2"/><circle cx="410" cy="93" r="2"/></g>
+<path d="M53 596 H547" stroke="#f4a568" stroke-width="2" opacity=".45"/>
+<text x="300" y="630" fill="#edc69e" font-family="serif" font-size="17" text-anchor="middle" letter-spacing="6">KUROKAGE · WORLD BOSS</text>
+</svg>

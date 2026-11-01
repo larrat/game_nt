@@ -60,7 +60,8 @@ export default function CombatFighterCard({
   fighterObj = null
 }) {
   const alignRight = side === 'right';
-  const isImg = typeof portrait === 'string' && portrait.startsWith('/');
+  const [failedPortrait, setFailedPortrait] = React.useState(null);
+  const isImg = typeof portrait === 'string' && portrait.startsWith('/') && !portrait.startsWith('//') && failedPortrait !== portrait;
 
   // Generate Stats Summary
   const statsList = fighterObj ? [
@@ -152,9 +153,9 @@ export default function CombatFighterCard({
           </div>
         )}
         {isImg ? (
-          <img src={portrait} alt={name} />
+          <img src={portrait} alt={name} onError={() => setFailedPortrait(portrait)} />
         ) : (
-          <span className="combat-portrait-emoji">{portrait || '🥷'}</span>
+          <span className="combat-portrait-emoji" role="img" aria-label={'Retrato indisponível de ' + name}>{failedPortrait === portrait ? '🥷' : (portrait || '🥷')}</span>
         )}
       </div>
 

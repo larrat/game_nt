@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import { getNpcPortrait } from '../utils/npcPortrait';
 
 export default function Historia({ player, updatePlayer }) {
   const { addToast } = useToast();
@@ -233,7 +234,7 @@ export default function Historia({ player, updatePlayer }) {
             {/* Foto NPC */}
             <div className="kuro-story-dialog__portrait w-1/3 bg-ink relative border-r border-line-dashed">
               <img 
-                src={activeQuest.story_quests.npc_image_url || '/images/bg_forest.jpg'} 
+                src={getNpcPortrait({ name: activeQuest.story_quests.npc_name, avatar: activeQuest.story_quests.npc_image_url }) || activeQuest.story_quests.npc_image_url || '/images/bg_forest.jpg'} 
                 alt={activeQuest.story_quests.npc_name}
                 onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = '/images/bg_forest.jpg'; }}
                 className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all opacity-80 min-h-[300px]"

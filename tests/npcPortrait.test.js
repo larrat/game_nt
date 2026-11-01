@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import { getNpcPortrait, normalizeNpcName, PORTRAIT_RULES } from '../src/utils/npcPortrait.js';
 
 test('resolves boss art by canonical name and aliases', () => {
-  for (const name of ['Kurama', 'A Kurama — World Boss', 'Kyūbi', 'Raposa de Nove Caudas']) {
+  for (const name of ['Kurama', 'A Kurama — World Boss', 'Kyūbi', 'Raposa de Nove Caudas', 'A Fúria da Raposa']) {
     assert.equal(getNpcPortrait({ name, avatar: '/images/bg_forest.jpg' }), '/images/bosses/raposa-nove-caudas.svg');
   }
 });

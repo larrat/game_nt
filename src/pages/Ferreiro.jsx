@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import GameAction from '../components/ui/GameAction';
+import ItemArtwork from '../components/ItemArtwork';
+import '../styles/world-services-v4.css';
 import { getRefinableItems } from '../utils/refinement';
 
 export default function Ferreiro({ player, updatePlayer }) {
@@ -56,15 +60,15 @@ export default function Ferreiro({ player, updatePlayer }) {
   const canAfford = player.ryous >= cost;
 
   return (
-    <div className="page">
+    <div className="page kuro-smith-v4">
       <PageHeader 
         eyebrow="Forja" 
         title="Ferreiro da Vila" 
         subtitle="Refine equipamentos fundindo duplicatas. Itens favoritos e equipados nunca são consumidos."
       />
 
-      <div className="grid-2">
-        <div className="card">
+      <div className="kuro-world-v4__columns">
+        <div className="card kuro-ui-card">
           <h3 className="section-title">Itens Disponíveis para Refino</h3>
           {upgradableItems.length === 0 ? (
             <div className="muted mono text-sm p-4 text-center border-line-dashed">
@@ -73,11 +77,14 @@ export default function Ferreiro({ player, updatePlayer }) {
           ) : (
             <div className="flex-col gap-3">
               {upgradableItems.map(item => (
-                <div 
-                  key={item.id} 
-                  className={`p-3 border-line-solid rounded-md cursor-pointer flex-row flex-between ${selectedItem?.id === item.id ? 'border-seal-bright bg-ink-raised' : 'bg-ink'}`}
+                <button
+                  type="button"
+                  key={item.id}
+                  className="kuro-smith-v4__item"
+                  aria-pressed={selectedItem?.id === item.id}
                   onClick={() => setSelectedItem(item)}
                 >
+                  <ItemArtwork name={item.items.name} size={40} />
                   <div className="flex-col">
                     <span className={item.rarity === 'Lendário' ? 'gold' : item.rarity === 'Raro' ? 'success' : 'paper'}>
                       {item.items.name} {item.upgrade_level > 0 ? `+${item.upgrade_level}` : ''}
@@ -85,19 +92,19 @@ export default function Ferreiro({ player, updatePlayer }) {
                     <span className="muted text-xs">{item.items.type.toUpperCase()}</span>
                   </div>
                   {item.is_equipped && <span className="badge badge-gold">Equipado</span>}
-                </div>
+                </button>
               ))}
             </div>
           )}
         </div>
 
-        <div className="card flex-col items-center gap-6">
+        <div className="card kuro-ui-card flex-col items-center gap-6">
           <h3 className="section-title w-full text-left">Bigorna</h3>
           
           <div className="flex-col items-center p-6 border-line-dashed rounded-md w-full min-h-[200px] justify-center">
             {selectedItem ? (
               <>
-                <div className="text-4xl mb-4 filter drop-shadow-md">⚔️</div>
+                <span className="kuro-smith-v4__anvil"><SidebarIcon name="hammer" size={32} /></span>
                 <h4 className="gold text-lg mb-2">{selectedItem.items.name} +{(selectedItem.upgrade_level || 0)} ➔ +{(selectedItem.upgrade_level || 0) + 1}</h4>
                 <p className="muted text-sm text-center max-w-400 mb-6">
                   Este processo consumirá uma cópia não equipada e não favoritada deste item.
@@ -107,13 +114,9 @@ export default function Ferreiro({ player, updatePlayer }) {
                   <span className={canAfford ? "gold mono" : "danger mono"}>¥ {cost.toLocaleString()}</span>
                 </div>
                 
-                <button 
-                  className="btn-primary w-full" 
-                  onClick={handleUpgrade} 
-                  disabled={loading || !canAfford}
-                >
-                  {loading ? 'Forjando...' : 'Forjar Equipamento'}
-                </button>
+                <GameAction tone="seal" loading={loading} disabled={!canAfford} onClick={handleUpgrade} className="w-full">
+                  <SidebarIcon name="hammer" size={17} /> {loading ? 'Forjando...' : 'Forjar Equipamento'}
+                </GameAction>
               </>
             ) : (
               <div className="muted mono text-sm text-center">

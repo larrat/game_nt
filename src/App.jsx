@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useCallback, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect, useLayoutEffect, useRef, useState, useCallback, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { supabase } from './supabaseClient';
 import { normalizeBonusStats } from './utils/engine';
 import './styles/main.css';
@@ -79,6 +79,14 @@ const VipMissionBlock = ({ player, children }) => {
 
 const MainLayout = ({ children, playerState, updatePlayer }) => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const contentRef = useRef(null);
+  const { pathname } = useLocation();
+
+  // A barra superior permanece fixa; não herdar a rolagem da tela anterior.
+  useLayoutEffect(() => {
+    if (contentRef.current) contentRef.current.scrollTop = 0;
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className={"app" + (mobileNavOpen ? " mobile-nav-open" : "")}>
@@ -101,7 +109,7 @@ const MainLayout = ({ children, playerState, updatePlayer }) => {
           mobileNavOpen={mobileNavOpen}
           onMenuClick={() => setMobileNavOpen(open => !open)}
         />
-        <main className="main">{children}</main>
+        <main ref={contentRef} className="main">{children}</main>
       </div>
     </div>
   );
@@ -306,7 +314,7 @@ function App() {
     );
   }
 
-  if (playerState.is_fainted || playerState.fainted_at) {
+  if (playerState.is_fainted) {
     return (
       <ToastProvider>
         <Router>

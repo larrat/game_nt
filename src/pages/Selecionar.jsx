@@ -7,6 +7,7 @@ import { useToast } from '../context/ToastContext';
 import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 import PageHeader from '../components/PageHeader';
 import '../styles/character-selection.css';
+import '../styles/auth-polish-v4.css';
 import { getCharacterResources, formatCharacterRyous, getCharacterLevel } from '../utils/characterPresentation';
 
 export default function Selecionar({ session, setPlayerState, updatePlayer }) {
@@ -123,7 +124,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   }) : [];
 
   return (
-    <div className="page auth-screen-layout kuro-character-select kuro-select-v2">
+    <div className="page auth-screen-layout kuro-character-select kuro-select-v2 kuro-selection-v4">
       <div className="auth-bg-title">SELECIONE SEU PERSONAGEM</div>
       
       <header className="auth-header">

@@ -1,0 +1,108 @@
+/* Kurokage v4 — universal screen bridge.
+   A screen can customize layout, but colors, surfaces, controls and focus all
+   inherit the same tokens. Imported after the existing screen style families.
+   No application data, permissions or game mechanics are touched. */
+:root {
+  --kuro-bg: #080d14;
+  --kuro-surface: #131c27;
+  --kuro-surface-up: #1c2835;
+  --kuro-line: rgba(235,194,130,.20);
+  --kuro-gold: #ebc17c;
+  --kuro-red: #d64750;
+  --kuro-copy: #f3ecdf;
+  --kuro-muted: #b9bbc0;
+  --kuro-radius: 14px;
+  --kuro-gap: clamp(14px,1.6vw,22px);
+  --kuro-focus: #f1c879;
+}
+
+/* Keep old modules readable while they migrate their markup to kui-*/
+.app {
+  --ink: var(--kuro-bg);
+  --ink-soft: #0d1520;
+  --ink-raised: var(--kuro-surface-up);
+  --ink-card: var(--kuro-surface);
+  --paper: var(--kuro-copy);
+  --muted: var(--kuro-muted);
+  --muted-bright: #c8c3bc;
+  --gold: var(--kuro-gold);
+  --gold-dim: rgba(235,193,124,.13);
+  --gold-glow: rgba(235,193,124,.28);
+  --line: var(--kuro-line);
+  --line-solid: rgba(235,193,124,.24);
+  --line-bright: rgba(235,193,124,.35);
+  --seal: #b92f3b;
+  --seal-bright: var(--kuro-red);
+  --seal-glow: rgba(214,71,80,.19);
+  --border-radius: 10px;
+  --border-radius-sm: 8px;
+}
+.app .page {
+  min-width: 0;
+  color: var(--kuro-copy);
+}
+.app .page :is(.card,.card-glass,.bg-ink-card) {
+  border-radius: var(--kuro-radius);
+}
+.app .page :is(.card,.card-glass) {
+  border-color: var(--kuro-line);
+}
+.app .page :is(.section-title,.card-title,.page-title) {
+  color: var(--kuro-copy);
+  overflow-wrap: anywhere;
+}
+.app .page :is(.badge,.tag) {
+  border-radius: 999px;
+}
+.app .page :is(.tabs,.filters) {
+  border-color: var(--kuro-line);
+  border-radius: 12px;
+}
+.app .page :is(input[type="text"],input[type="email"],input[type="password"],input[type="search"],input[type="number"],select,textarea) {
+  min-height: 44px;
+  max-width: 100%;
+  border-radius: 9px;
+  accent-color: var(--kuro-gold);
+}
+.app .page :is(input,select,textarea)::placeholder {
+  color: #a8acaf;
+}
+.app .page :is(input,select,textarea):focus-visible,
+.app .page [role="tab"]:focus-visible {
+  outline: 2px solid var(--kuro-focus);
+  outline-offset: 3px;
+}
+.app .page :is(input,select,textarea,button):disabled,
+.app .page [aria-disabled="true"] {
+  cursor: not-allowed;
+}
+.app .page :is(.info-banner,.alert,.notice) {
+  border-radius: var(--kuro-radius);
+}
+/* Align public authentication flows and pre-game character selection with
+   the same colors and keyboard focus, preserving their cinematic layouts. */
+:is(.login-body,.auth-screen,.kuro-character-select,.kuro-character-create) {
+  --gold: var(--kuro-gold);
+  --paper: var(--kuro-copy);
+  --muted-bright: var(--kuro-muted);
+  --line: var(--kuro-line);
+  --line-solid: var(--kuro-line);
+}
+:is(.login-body,.auth-screen,.kuro-character-select,.kuro-character-create)
+:is(button,a,input,select,textarea):focus-visible {
+  outline: 2px solid var(--kuro-focus);
+  outline-offset: 3px;
+}
+:is(.login-body,.auth-screen,.kuro-character-select,.kuro-character-create)
+:is(.btn-primary,.btn-ghost,.kui-action) {
+  min-height: 44px;
+  border-radius: 10px;
+}
+@media (max-width: 690px) {
+  .app .page :is(.card,.card-glass) { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app .page :is(.card,.card-glass),.app .page :is(button,a) {
+    scroll-behavior: auto;
+  }
+}

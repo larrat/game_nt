@@ -1,0 +1,107 @@
+/* Dojo follows the shared v4 tokens; gameplay/RPC handlers remain in Dojo.jsx. */
+.app .kuro-dojo-v4 {
+  width: min(100%, 1640px);
+  margin-inline: auto;
+  color: var(--kuro-copy);
+}
+.kuro-dojo-v4__hero {
+  display: flex;
+  position: relative;
+  min-height: 310px;
+  overflow: hidden;
+  border: 1px solid rgba(235,193,124,.35);
+  border-radius: 18px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: clamp(22px,3.5vw,50px);
+  background:
+    linear-gradient(100deg,rgba(9,14,23,.95),rgba(13,22,32,.78) 70%,rgba(9,15,23,.45)),
+    url('/images/bg_dojo.jpg') center / cover no-repeat,
+    var(--kuro-surface);
+  box-shadow: 0 20px 55px rgba(0,0,0,.22);
+}
+.kuro-dojo-v4__hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  background: linear-gradient(90deg,var(--kuro-gold),rgba(214,71,80,.6),transparent);
+}
+.kuro-dojo-v4__hero-content { position: relative; z-index: 1; max-width: 760px; }
+.kuro-dojo-v4__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--kuro-gold);
+  font: 700 10px/1.5 'JetBrains Mono',monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.kuro-dojo-v4__status-dot { width: 7px; height: 7px; border-radius: 50%; background: #67dca2; box-shadow: 0 0 0 4px rgba(103,220,162,.09); }
+.kuro-dojo-v4__hero h2 { margin: 16px 0; font: 800 clamp(28px,3.8vw,52px)/1.15 'Shippori Mincho',serif; letter-spacing: -.04em; }
+.kuro-dojo-v4__hero h2 em { color: var(--kuro-gold); font-style: normal; }
+.kuro-dojo-v4__hero p { max-width: 61ch; font-size: 14px; line-height: 1.7; color: var(--kuro-muted); }
+.kuro-dojo-v4__hero-actions { display: flex; gap: 11px; flex-wrap: wrap; align-items: center; margin-top: 24px; }
+.kuro-dojo-v4__hero-actions button { display: inline-flex; align-items: center; gap: 9px; justify-content: center; padding: 10px 17px; }
+.kuro-dojo-v4__hero-mark { flex: 0 0 152px; display: grid; place-items: center; width: 152px; height: 152px; color: var(--kuro-gold); border: 1px solid rgba(235,193,124,.3); border-radius: 50%; background: rgba(7,15,23,.65); box-shadow: 0 0 0 18px rgba(235,193,124,.04); }
+.kuro-dojo-v4__overview { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: var(--kuro-gap); margin: 20px 0 32px; }
+.kuro-dojo-v4__metric { min-width: 0; padding: 17px 19px; border: 1px solid var(--kuro-line); background: linear-gradient(145deg,#202a35,#111a25); border-radius: var(--kuro-radius); }
+.kuro-dojo-v4__metric span { display: flex; align-items: center; gap: 7px; font: 700 10px/1.5 'JetBrains Mono',monospace; letter-spacing: .09em; color: var(--kuro-gold); }
+.kuro-dojo-v4__metric strong { display: block; overflow-wrap: anywhere; font-size: clamp(18px,2vw,27px); margin: 7px 0 2px; line-height: 1.25; }
+.kuro-dojo-v4__metric small { display: block; color: var(--kuro-muted); font-size: 11px; }
+.kuro-dojo-v4__section-heading { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin: 0 0 18px; }
+.kuro-dojo-v4__section-heading h2 { margin-top: 7px; font: 750 clamp(23px,2.6vw,32px)/1.2 'Shippori Mincho',serif; }
+.kuro-dojo-v4__section-heading > p { color: var(--kuro-muted); font-size: 12px; }
+.kuro-dojo-v4__grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--kuro-gap); }
+.kuro-dojo-v4__card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 11px;
+  min-width: 0;
+  min-height: 335px;
+  padding: clamp(19px,2.2vw,30px);
+  border: 1px solid var(--kuro-line);
+  border-radius: var(--kuro-radius);
+  background: linear-gradient(140deg,var(--kuro-surface-up),var(--kuro-surface));
+}
+.kuro-dojo-v4__card--primary {
+  border-color: rgba(235,193,124,.46);
+  background: radial-gradient(ellipse at 100% 0,rgba(235,193,124,.12),transparent 58%),linear-gradient(135deg,#222b36,#121923);
+}
+.kuro-dojo-v4__card--danger { border-color: rgba(214,71,80,.3); background: linear-gradient(135deg,#2a2029,#151821); }
+.kuro-dojo-v4__card--danger.is-akatsuki { border-color: rgba(235,193,124,.35); }
+.kuro-dojo-v4__card-number { position: absolute; top: 20px; right: 20px; color: #a6aab0; font: 600 9px/1.4 'JetBrains Mono',monospace; letter-spacing: .06em; }
+.kuro-dojo-v4__card-icon { display: grid; place-items: center; width: 54px; height: 54px; color: var(--kuro-gold); border: 1px solid rgba(235,193,124,.25); border-radius: 13px; background: rgba(235,193,124,.08); }
+.kuro-dojo-v4__card--danger .kuro-dojo-v4__card-icon { color: #f19b99; border-color: rgba(214,71,80,.3); background: rgba(214,71,80,.09); }
+.kuro-dojo-v4__card-label { font: 700 10px/1.4 'JetBrains Mono',monospace; letter-spacing: .12em; color: var(--kuro-gold); }
+.kuro-dojo-v4__card h3 { font: 800 clamp(23px,2.5vw,31px)/1.2 'Shippori Mincho',serif; }
+.kuro-dojo-v4__card p { font-size: 13px; line-height: 1.65; color: var(--kuro-muted); max-width: 58ch; flex: 1; }
+.kuro-dojo-v4__tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 10px; }
+.kuro-dojo-v4__tags span { display: inline-flex; align-items: center; padding: 4px 9px; border: 1px solid rgba(235,193,124,.2); border-radius: 999px; font-size: 11px; color: #e4d4bb; background: rgba(235,193,124,.035); }
+.kuro-dojo-v4__card-button { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 11px 17px; }
+.kuro-dojo-v4__actions-row { display: flex; gap: 9px; margin-top: auto; }
+.kuro-dojo-v4__actions-row button { flex: 1; min-width: 0; padding: 10px 12px; }
+.kuro-dojo-v4__actions-row.kuro-dojo-v4__quick { margin-top: 0; }
+.kuro-dojo-v4__note { display: flex; gap: 12px; margin-top: 24px; padding: 18px 20px; border-top: 1px solid var(--kuro-line); color: var(--kuro-muted); font-size: 12px; line-height: 1.65; }
+.kuro-dojo-v4__note > svg { flex-shrink: 0; color: var(--kuro-gold); margin-top: 2px; }
+.kuro-dojo-v4__note button { display: inline-flex; gap: 3px; align-items: baseline; background: transparent; border: 0; color: var(--kuro-gold); font-weight: 700; text-decoration: underline; cursor: pointer; }
+.kuro-dojo-v4__archive-action { display: inline-flex; align-items: center; gap: 7px; }
+@media (max-width: 980px) {
+  .kuro-dojo-v4__overview { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 690px) {
+  .kuro-dojo-v4__hero { min-height: 0; padding: 23px 18px; }
+  .kuro-dojo-v4__hero-mark { display: none; }
+  .kuro-dojo-v4__hero-actions button { width: 100%; }
+  .kuro-dojo-v4__overview { gap: 9px; margin: 13px 0 25px; }
+  .kuro-dojo-v4__metric { padding: 13px 12px; }
+  .kuro-dojo-v4__grid { grid-template-columns: minmax(0,1fr); }
+  .kuro-dojo-v4__section-heading { display: block; }
+  .kuro-dojo-v4__section-heading > p { margin-top: 8px; }
+  .kuro-dojo-v4__card-number { font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kuro-dojo-v4__card { transition: none; }
+}

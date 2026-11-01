@@ -3,6 +3,9 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { getJutsuEnhancementBonus } from '../utils/engine';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/academy-progression-v4.css';
 import '../styles/main.css';
 
 export default function AprimorarJutsus({ player, updatePlayer }) {
@@ -131,17 +134,17 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
   };
 
   return (
-    <div className="page">
+    <div className="page kuro-enhance-v4">
       <PageHeader
         eyebrow="Treinamento"
         title="Aprimorar Jutsus"
         subtitle="Personalize suas habilidades com Essências Marciais."
       />
 
-      <div className="grid-2">
+      <div className="kuro-enhance-v4__layout">
         {/* Lista de Jutsus */}
-        <div className="card">
-          <h2 className="card-title">Seus Jutsus</h2>
+        <div className="card kuro-enhance-v4__list">
+          <h2 className="card-title"><SidebarIcon name="scroll" size={18} /> Seus Jutsus</h2>
           <div className="flex-col gap-md">
             {learnedJutsus.map(jObj => {
               const fullData = getFullJutsuData(jObj);
@@ -151,9 +154,11 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
               const slotsFilled = jObj.slots.filter(s => s !== null).length;
 
               return (
-                <div 
-                  key={jObj.id} 
-                  className={`flex-between p-3 rounded-md cursor-pointer ${isSelected ? 'bg-gold-alpha-10 border-line-solid border-gold' : 'bg-ink-soft border-line-solid'}`}
+                <button
+                  type="button"
+                  key={jObj.id}
+                  className="kuro-enhance-v4__jutsu-choice"
+                  aria-pressed={isSelected}
                   onClick={() => setSelectedJutsu(jObj)}
                 >
                   <div className="flex-row gap-md items-center">
@@ -168,7 +173,7 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
                   <div className={`mono text-md ${slotsFilled === 3 ? 'success' : 'muted'}`}>
                     Slots: {slotsFilled}/3
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -176,7 +181,7 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
 
         {/* Painel do Jutsu Selecionado */}
         {selectedJutsu ? (
-          <div className="card sticky top-6">
+          <div className="card kuro-enhance-v4__detail sticky top-6">
             <h2 className="card-title flex-row items-center gap-sm mb-2">
               <span className="gold">Nível {selectedJutsu.level}</span>
             </h2>
@@ -249,14 +254,15 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
                 const slotted = selectedJutsu.slots[idx];
                 return (
                   <div key={idx} className="flex-col items-center gap-sm">
-                    <div 
-                      className={`rounded-full flex-row items-center justify-center text-center text-2xl ${slotted ? 'border-2 border-gold bg-gold-alpha-10 cursor-pointer shadow-gold' : 'border-2 border-dashed border-muted bg-black-alpha-20 cursor-default shadow-none'}`}
-                      style={{ width: '64px', height: '64px' }}
+                    <button
+                      type="button"
+                      className="kuro-enhance-v4__slot"
                       onClick={() => removeEssence(idx)}
-                      title={slotted ? 'Clique para remover' : 'Slot Vazio'}
+                      disabled={!slotted || loading}
+                      aria-label={slotted ? `Remover essência do slot ${idx + 1}` : `Slot ${idx + 1} vazio`}
                     >
-                      {slotted ? '📜' : '+'}
-                    </div>
+                      {slotted ? <SidebarIcon name="scroll" size={24} /> : '+'}
+                    </button>
                     <div className={`mono text-xs break-word text-center max-w-[80px] ${slotted ? 'gold' : 'muted'}`}>
                       {slotted ? slotted.replace('_', ' ').toUpperCase() : 'SLOT VAZIO'}
                     </div>
@@ -267,9 +273,9 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
 
             {selectedJutsu.slots.every(s => s !== null) ? (
               <div className="text-center">
-                <button className="btn-primary w-full p-3" onClick={upgradeJutsuLevel} disabled={loading}>
-                  Evoluir para Nível {selectedJutsu.level + 1} (RY$ {selectedJutsu.level * 15000})
-                </button>
+                <GameAction tone="seal" className="w-full" loading={loading} onClick={upgradeJutsuLevel}>
+                  <SidebarIcon name="sparkles" size={16} /> Evoluir para Nível {selectedJutsu.level + 1} (RY$ {selectedJutsu.level * 15000})
+                </GameAction>
                 <div className="muted text-sm mt-2">O Jutsu absorverá os atributos dos 3 pergaminhos permanentemente.</div>
               </div>
             ) : (
@@ -287,18 +293,19 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
                     const meta = essenceDesc[tipo] || { cor: 'gold', desc: 'Bônus especial', hex: 'var(--gold)' };
                     const tier = key.split('_')[1] ? ` T${key.split('_')[1]}` : '';
                     return (
-                    <div key={key} className="flex-col bg-ink p-2 rounded-sm items-center cursor-pointer gap-xs border-line-solid hover-border-gold transition-colors" 
+                    <button type="button" key={key} className="kuro-enhance-v4__essence"
+                         disabled={loading}
                          style={{ borderColor: `${meta.hex}40` }}
                          onClick={() => {
                            const emptySlotIndex = selectedJutsu.slots.findIndex(s => s === null);
                            if (emptySlotIndex !== -1) equipEssence(emptySlotIndex, key);
                            else addToast('Todos os slots estão cheios!', 'error');
                          }}>
-                      <span className="text-xl">📜</span>
+                      <SidebarIcon name="scroll" size={23} />
                       <span className={`mono text-xs mt-1 text-center font-bold ${meta.cor}`}>{tipo.toUpperCase()}{tier}</span>
                       <span className="text-center muted text-[9px]">{meta.desc}</span>
                       <span className="muted text-[9px]">Qtd: {count}</span>
-                    </div>
+                    </button>
                   );})}
                   {Object.values(inventoryEssences).every(v => v === 0) && (
                     <div className="muted text-center p-4 col-span-full">Você não tem pergaminhos. Batalhe no mapa ou compre na Loja.</div>
@@ -309,7 +316,7 @@ export default function AprimorarJutsus({ player, updatePlayer }) {
           </div>
         ) : (
           <div className="card flex-col items-center justify-center muted min-h-[300px]">
-            <span className="mb-4 text-3xl">🥷</span>
+            <span className="kuro-progression-v4__empty-icon"><SidebarIcon name="book" size={31} /></span>
             Selecione um Jutsu na lista para aprimorá-lo.
           </div>
         )}

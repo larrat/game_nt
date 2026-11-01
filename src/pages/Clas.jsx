@@ -7,22 +7,12 @@ import SidebarIcon from '../components/SidebarIcon';
 import '../styles/challenges-v4.css';
 import { useToast } from '../context/ToastContext';
 import JutsuCard from '../components/JutsuCard';
+import ClanArtwork from '../components/ClanArtwork';
+import { getClanArtworkUrl, getAttributeArtworkUrl } from '../utils/clanArtwork';
 import { rankValue } from '../utils/engine';
 
 const ATTR_NAMES = ['agilidade', 'selo', 'forca', 'inteligencia', 'resistencia', 'ninjutsu', 'genjutsu', 'taijutsu', 'energia', 'bukijutsu'];
 
-const ATTR_ICONS = {
-  agilidade: '🏃',
-  selo: '🙏',
-  forca: '💪',
-  inteligencia: '🧠',
-  resistencia: '🛡️',
-  ninjutsu: '🔥',
-  genjutsu: '👁️',
-  taijutsu: '👊',
-  energia: '⚡',
-  bukijutsu: '🗡️'
-};
 
 const CLAN_LEVELS = [
   { level: 1, name: 'Nível 1', cost: 1500, reqLvl: 10, reqRank: 'Genin' },
@@ -75,7 +65,7 @@ export default function Clas({ player, updatePlayer }) {
         const mapped = cData.map(c => ({
           id: c.id,
           name: c.name,
-          image: c.image_url,
+          image: getClanArtworkUrl(c),
           description: c.description,
           skills: c.clan_skills.map(s => ({
             name: s.name,
@@ -160,7 +150,7 @@ export default function Clas({ player, updatePlayer }) {
     return (
       <>
         <div className="flex-col max-w-800 mx-auto items-center text-center mb-12">
-          <img src={myClan.image} alt={myClan.name} className="clan-hero-img object-cover rounded-sm mb-6 border-2 border-seal-bright shadow-lg" />
+          <ClanArtwork clan={myClan} className="clan-hero-img object-cover rounded-sm mb-6 border-2 border-seal-bright shadow-lg" />
           <h2 className="page-title mb-4">{myClan.name}</h2>
           <p className="muted leading-relaxed mb-8">{myClan.description}</p>
           
@@ -176,7 +166,7 @@ export default function Clas({ player, updatePlayer }) {
                  const totalVal = baseVal * Math.max(1, myClanLvl); // Se lvl 0, mostra como se fosse 1 pra vizualizar
                  return (
                    <div key={attr} className="flex-col items-center bg-ink p-3 rounded-md border border-line-solid w-24">
-                     <span className="text-2xl mb-2">{ATTR_ICONS[attr]}</span>
+                     <img src={getAttributeArtworkUrl(attr)} alt="" className="w-9 h-9 mb-2 object-cover rounded-sm" loading="lazy" />
                      <span className="text-[10px] uppercase text-muted tracking-wider mb-2">{attr}</span>
                      <div className="text-xl font-bold gold">+{totalVal}</div>
                    </div>
@@ -207,7 +197,7 @@ export default function Clas({ player, updatePlayer }) {
                return (
                  <div key={levelObj.level} className={`${cardStyle} w-[260px] min-h-[300px]`}>
                     <div className="w-16 h-16 bg-black-alpha-40 border-line-solid rounded-sm mb-4 mt-2 flex items-center justify-center overflow-hidden">
-                       <img src={myClan.image} alt={myClan.name} className="w-full h-full object-cover filter grayscale-50" style={{ transform: `scale(${1 + (idx*0.2)})` }} />
+                       <ClanArtwork clan={myClan} className="w-full h-full object-cover filter grayscale-50" />
                     </div>
                     <h4 className={`text-xl font-bold mb-4 ${isNext ? 'text-seal-bright' : 'text-gold'}`}>
                       {myClan.name} {levelObj.name}
@@ -217,7 +207,7 @@ export default function Clas({ player, updatePlayer }) {
                     {isNext && (
                       <div className="relative group/tooltip mb-4 mt-auto w-full flex-col items-center">
                         <div className="text-3xl text-seal cursor-help hover:text-seal-bright transition-colors">
-                          📋
+                          <SidebarIcon name="scroll" size={24} />
                         </div>
                         <div className="absolute bottom-full mb-2 w-56 bg-black-alpha-90 border border-line-bright p-3 rounded-md text-xs z-50 opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all text-left shadow-lg pointer-events-none">
                           <div className="flex-col gap-1">
@@ -282,7 +272,7 @@ export default function Clas({ player, updatePlayer }) {
         <div className="clan-system">
           <div className="card kuro-ui-card flex-col items-center p-12 mb-10 border-line-solid border-seal-bright bg-danger-alpha-05">
             <h2 className="page-title danger mb-4 flex items-center gap-md">
-              <span className="text-2xl">🩸</span> Linhagem Ativa
+              <SidebarIcon name="sparkles" size={24} /> Linhagem Ativa
             </h2>
             <p className="muted text-center">O sangue ancestral já corre nas suas veias. O bônus base de clã está ativo.</p>
           </div>
@@ -309,7 +299,7 @@ export default function Clas({ player, updatePlayer }) {
                   onClick={() => setSelectedClanIdx(idx)}
                   className={`cursor-pointer transition-all duration-300 ${idx === selectedClanIdx ? 'opacity-100 scale-110 border-2 border-seal-bright rounded-sm z-10 shadow-lg' : 'opacity-40 scale-90 border-2 border-transparent rounded-sm'}`}
                 >
-                  <img src={c.image} alt={c.name} className="clan-hero-img object-cover rounded-sm w-32 h-32" />
+                  <ClanArtwork clan={c} className="clan-hero-img object-cover rounded-sm w-32 h-32" />
                 </button>
               ))}
             </div>
@@ -329,7 +319,7 @@ export default function Clas({ player, updatePlayer }) {
                <div className="flex-row flex-wrap justify-center gap-md mb-6">
                  {ATTR_NAMES.map(attr => (
                    <div key={attr} className="flex-col items-center bg-ink border border-line-solid rounded-sm p-3 w-20">
-                     <span className="text-2xl mb-2">{ATTR_ICONS[attr]}</span>
+                     <img src={getAttributeArtworkUrl(attr)} alt="" className="w-9 h-9 mb-2 object-cover rounded-sm" loading="lazy" />
                      <select 
                        className="bg-black-alpha-90 text-white border border-line-solid rounded px-2 py-1 text-sm outline-none cursor-pointer"
                        value={customStats[attr]}
@@ -352,7 +342,7 @@ export default function Clas({ player, updatePlayer }) {
              </div>
 
              <div className="text-center w-full">
-               <p className="danger text-xs mb-4">⚠️ Atenção: as escolhas de clã e atributos são <strong>permanentes</strong>.</p>
+               <p className="danger text-xs mb-4">Atenção: as escolhas de clã e atributos são <strong>permanentes</strong>.</p>
                <GameAction tone="seal" className="w-full" onClick={handleJoinClan} disabled={totalSpent !== maxPoints}>
                  <SidebarIcon name="users" size={17} /> Entrar no Clã
                </GameAction>

@@ -89,3 +89,20 @@
     transition-duration:.01ms!important;animation-duration:.01ms!important;
   }
 }
+
+
+/* Clan artwork fallback uses the vector system, never a Unicode emoji. */
+.app .kuro-clans-v4 .kuro-clan-art-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  background: linear-gradient(145deg, rgba(28,36,44,.98), rgba(13,17,24,.98));
+  border: 1px solid var(--kuro-line);
+  color: var(--kuro-gold, #e1b750);
+}
+.app .kuro-clans-v4 .clan-hero-img {
+  object-fit: contain;
+  background-color: rgba(7,10,15,.82);
+}

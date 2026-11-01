@@ -16,6 +16,17 @@ test('resolves Naruto and Sasuke in NPC battle while preserving other real portr
   assert.equal(getNpcPortrait({ name: 'Ninja da Folha', avatar: '🥷' }), null);
   assert.equal(getNpcPortrait({ name: 'Sasukex' }), null);
 });
+test('maps confirmed local art and generic NPCs from the live catalog', () => {
+  assert.equal(getNpcPortrait({ id: 1, name: 'Naruto Uzumaki', avatar: '🍥' }), '/images/naruto.jpg');
+  assert.equal(getNpcPortrait({ name: 'Sakura Haruno' }), '/images/sakura.jpg');
+  assert.equal(getNpcPortrait({ name: 'Kakashi Hatake' }), '/images/kakashi.jpg');
+  assert.equal(getNpcPortrait({ id: 17, name: 'Bandido do Deserto', avatar: '🥷' }), '/images/chars/char_rogue_ninja_1782968348009.jpg');
+  assert.equal(getNpcPortrait({ id: 18, name: 'Mercenário da Névoa', avatar: '👺' }), '/images/chars/char_elite_kage_1782968356836.jpg');
+  // Legacy record points to a non-existent root path; presentation must resolve the real asset.
+  assert.equal(getNpcPortrait({ id: 54, name: 'Ladrão de Pergaminhos', avatar: '/images/char_rogue_ninja_1782968348009.jpg' }), '/images/chars/char_rogue_ninja_1782968348009.jpg');
+  assert.equal(getNpcPortrait({ name: 'Kiba Inuzuka', avatar: '🐺' }), null);
+});
+
 test('uses available Sasuke forms only for matching variants', () => {
   assert.equal(getNpcPortrait({ name: 'Sasuke Uchiha — Susanoo' }), '/images/avatares/sasuke_23_susanoo.png');
   assert.equal(getNpcPortrait({ name: 'Sasuke Hebi' }), '/images/avatares/sasuke_19_hebi.png');

@@ -7,11 +7,11 @@ const routes = SCREEN_NAV.flatMap(group => group.items.map(item => item.to));
 const expected = [
   '/dashboard','/status','/equipamentos','/tecnicas','/aprimorar-jutsus',
   '/treino','/tarefas','/graduacoes','/exame','/historia',
-  '/mapa','/vila','/dojo','/evento','/ranking','/historico','/clas',
+  '/mapa','/vila','/dojo','/adversarios','/evento','/ranking','/historico','/clas',
   '/invocacoes','/elementos','/portoes','/templo','/hospital',
   '/ferreiro','/ichiraku','/vip'
 ];
-test('menu acessa todas as 25 telas autenticadas, sem duplicações', () => {
+test('menu acessa todas as 26 telas autenticadas, sem duplicações', () => {
   assert.deepEqual([...routes].sort(), [...expected].sort());
   assert.equal(new Set(routes).size, routes.length);
 });

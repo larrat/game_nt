@@ -30,9 +30,11 @@ export function getNpcPortrait(npc) {
   if (rule) return rule.src;
 
   // Não exibir URL externa ou caminho de "docs/" como se fosse imagem de jogo.
-  const candidate = npc.portrait || npc.image_url || npc.npc_image_url || npc.boss_image_url || npc.avatar;
-  if (typeof candidate === 'string' && candidate.startsWith('/') && !candidate.startsWith('//') && !candidate.includes('..')) {
-    return candidate;
+  const candidates = [npc.portrait, npc.image_url, npc.npc_image_url, npc.boss_image_url, npc.avatar];
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.startsWith('/') && !candidate.startsWith('//') && !candidate.includes('..')) {
+      return candidate;
+    }
   }
   return null;
 }

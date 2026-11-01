@@ -170,3 +170,35 @@ Documentos de origem (mantidos para rastreabilidade): `README.md`, `docs/README.
 
 **Governança:** PR #99 levou a coleta à master; PR #100 prepara a infraestrutura e o manual consolidado. Como o documento mestre havia sido criado na branch da PR #98 *depois* do merge daquela PR, esta PR #100 traz a primeira inclusão efetiva do documento mestre na linha de integração principal. Não supor que ele já estivesse na master.
 
+
+## 14. Política obrigatória de NPCs canônicos — 01/11/2026
+
+**Decisão do responsável:** todo NPC de combate ou história deve corresponder a um personagem existente em `public.characters`. É proibido gerar um NPC com identidade, nome, clã ou retrato inventado. NPCs de treino do tipo `is_dummy` representam objetos de treinamento, não personagens. Projeções de outros jogadores (`player_shadow`) não representam NPCs nem podem se apropriar da identidade do catálogo.
+
+**Alteração confirmada no Supabase `gvtbixbyqayhdwowgqrp`:** migração `065_link_npcs_to_canonical_characters` aplicada. `public.npcs.character_id` é obrigatório, FK de `public.characters(id)`; cada nome atual de NPC foi sincronizado com seu personagem-base. Antes da mudança, 15 registros foram copiados integralmente para `content_reference.npc_identity_before_20261101`. IDs, progressão, atributos de combate, flags de mapa/exame/história e recompensas foram preservados; 2 jogadores e 3 sessões de combate permanecem na base.
+
+| NPC id | Personagem efetivo do catálogo |
+|---:|---|
+| 1 | Naruto Uzumaki (Clássico) |
+| 2 | Kiba Inuzuka |
+| 3 | Rock Lee |
+| 4 | Neji Hyuuga |
+| 5 | Sabaku no Gaara |
+| 6 | Itachi Uchiha |
+| 7 | Kisame Hoshigaki |
+| 15 | Zabuza Momochi |
+| 16 | Deidara |
+| 17 | Temari (substitui Bandido do Deserto) |
+| 18 | Haku (substitui Mercenário da Névoa) |
+| 49 | Shikamaru Nara (Exame Chunin, rodada 1) |
+| 50 | Hinata Hyuuga (Exame Chunin, rodada 2) |
+| 51 | Sasuke Uchiha (Clássico) (Exame Chunin, rodada 3) |
+| 54 | Mizuki Touji (substitui Ladrão de Pergaminhos) |
+
+**História:** a missão `O Teste do Hokage` agora referencia Mizuki (NPC 54) e tem Hiruzen Sarutobi como interlocutor, ambos registrados em `public.characters`. Nomes em sessões históricas não são reescritos.
+
+**Arte:** apenas caminhos locais aprovados sob `/images/` são usados como avatar operacional; retratos do Naruto Game armazenados em acervo ou com URL externa permanecem referência, sem hotlink direto. Personagens sem arte local exibem placeholder neutro, não emojis ou retratos incorretos. A curadoria/licença e integração da arte específica ainda precisam de homologação.
+
+**Código de encontros:** PR #102, branch `fix/npc-canonical-character-link-20261101`, altera o gerador, Dojo, Mapa, Exame e diálogo de História. Essa parte é proposta em PR, **não presumir que esteja em master ou publicada**. O gerador de encontros exige template de NPC com `character_id`, conserva nome e identidade, e não atribui clãs ou invocações aleatórios. Combates escaláveis em modo espelho exigem auditoria separada de autoridade de servidor e recompensas.
+
+**Gates:** CI verde, merge/deploy e QA reais de História, mapa, Dojo e Exame antes de anunciar UI 100% homologada. Consultar dados do Supabase no momento do release, já que as contagens acima são snapshot de 01/11/2026.

@@ -12,6 +12,7 @@ test('resolves Naruto and Sasuke in NPC battle while preserving other real portr
   assert.equal(getNpcPortrait({ name: 'Naruto Uzumaki', avatar: '🥷' }), '/images/naruto.jpg');
   assert.equal(getNpcPortrait({ name: 'Sasuke Uchiha' }), '/images/sasuke.jpg');
   assert.equal(getNpcPortrait({ name: 'Ninja da Folha', avatar: '/images/custom-npc.png' }), '/images/custom-npc.png');
+  assert.equal(getNpcPortrait({ name: 'Ninja da Folha', image_url: 'https://example.com/unavailable.jpg', avatar: '/images/custom-npc.png' }), '/images/custom-npc.png');
   assert.equal(getNpcPortrait({ name: 'Ninja da Folha', avatar: '🥷' }), null);
   assert.equal(getNpcPortrait({ name: 'Sasukex' }), null);
 });

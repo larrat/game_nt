@@ -126,3 +126,20 @@ Documentos de origem (mantidos para rastreabilidade): `README.md`, `docs/README.
 **Evidências brutas relacionadas:** `data/reference/`, `docs/reverse-engineering/coleta-2026-10-30/`, `coleta-2026-10-31/`, `coleta-2026-11-01/`. Permanecem arquivos de suporte, não se duplicam integralmente aqui: milhares de linhas de capturas e JSONs não devem ser interpretados como texto normativo. **Esta é uma síntese consolidada, não a transcrição integral dos 344 arquivos textuais encontrados**.
 
 **Controle de revisão:** atualizar este documento na mesma PR de toda mudança relevante: registrar data, commit/PR, ambiente, estado e prova. Propostas não entram como “publicado” sem evidência.
+
+## 12. Nova base de referências — implantação controlada de 01/11/2026
+
+**Estado confirmado no Supabase `gvtbixbyqayhdwowgqrp`: STAGING PRIVADO CARREGADO; catálogo operacional anterior preservado. Não houve limpeza de dados de produção, nem merge de conteúdo no gameplay.**
+
+- Lote: `content_reference.import_batches.batch_id = ng-2026-11-01-v2` (`status=staging`).
+- `content_reference.entries`: **1.767** registros observados — **241 referências de personagens** (184 iniciais + 57 nomes adicionais presentes na galeria, todos ainda sujeitos a curadoria canônica), **767 variantes**, **40 clãs** e **719 jutsus** (700 anteriores +19 de 01/11).
+- `content_reference.source_files`: **2.855 arquivos indexados** por caminho, SHA de blob GitHub, tamanho e tipo. Índice não duplica os 348 MB de arte/acervo nem concede licença de publicação.
+- `content_reference.legacy_catalog_snapshot`: **668 registros de oito catálogos antigos** (`characters` 188, `avatars` 222, `clans` 19, `clan_skills` 75, `jutsus` 57, `npcs` 15, `items` 13, `missions` 79).
+- A infraestrutura permanece privada: sem privilégios de `USAGE` para `anon` nem `authenticated`, RLS habilitado sem políticas de acesso; nenhum item tem `gameplay_enabled=true` ou `review_status=approved`.
+- `public.players` permanece com 2 registros; catálogos ativos `public.characters` e `public.jutsus` permanecem com 188 e 57, respectivamente. **Nenhum dado operacional foi apagado.**
+- Referências de personagens foram coletadas da galeria; nomes presentes nela **não significam confirmação universal de canonicidade Naruto**. Validar identidade, clã e versão antes de transformá-las em NPC jogável.
+- A revisão inicial identificou 28 referências de clã sem correspondência exata de nome em `public.clans` e apenas 1 jutsu do novo acervo que coincide por nome com `public.jutsus`; isso torna inadequada uma troca cega de IDs/requisitos.
+- O banco registra dependências: `players` → `characters`/`avatars`/`clans`, `player_jutsus` e `jutsu_effects` → `jutsus`, `player_inventory` → `items`, sessões e derrotas → `npcs`. Não executar `TRUNCATE CASCADE`.
+- Esquema SQL versionado e auditoria offline na branch `content/reference-catalog-v2-20261101`, com teste automatizado. PR de revisão separada do PR #98 de ícones/NPCs.
+
+**Próximos gates para troca do catálogo ativo:** validar personagens verdadeiros e correspondência de clãs; comprovar direitos/proveniência de artes; revisar custos, requisitos AND/OR e efeitos por classe; mapear IDs existentes preservando chaves estrangeiras; montar cutover idempotente com rollback em staging; rodar testes com contas A/B; só depois aplicar aprovações e migração de conteúdo ativo em produção. Técnicas observadas não devem ser ativadas automaticamente.

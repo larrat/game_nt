@@ -1,4 +1,5 @@
 import React from 'react';
+import CharacterArtwork from './CharacterArtwork';
 import {
   calculateAtkTaiBuk,
   calculateAtkNinGen,
@@ -60,7 +61,6 @@ export default function CombatFighterCard({
   fighterObj = null
 }) {
   const alignRight = side === 'right';
-  const isImg = typeof portrait === 'string' && portrait.startsWith('/');
 
   // Generate Stats Summary
   const statsList = fighterObj ? [
@@ -151,11 +151,13 @@ export default function CombatFighterCard({
             />
           </div>
         )}
-        {isImg ? (
-          <img src={portrait} alt={name} />
-        ) : (
-          <span className="combat-portrait-emoji">{portrait || '🥷'}</span>
-        )}
+        <CharacterArtwork
+          src={portrait}
+          name={name}
+          fallback={typeof portrait === 'string' && !portrait.startsWith('/') ? portrait : '🥷'}
+          className="kuro-combat-character-artwork"
+          loading="eager"
+        />
       </div>
 
       <div className="combat-fighter-info">

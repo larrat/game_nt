@@ -15,6 +15,7 @@ test('retratos explícitos válidos têm prioridade; URLs externas e caminhos in
   assert.equal(resolveNpcArtwork({ name: 'Naruto', avatar: '/images/avatares/naruto_custom.png' }), '/images/avatares/naruto_custom.png');
   assert.equal(resolveNpcArtwork({ name: 'Naruto', avatar: '/images/bg_forest.jpg' }), '/images/naruto.jpg');
   assert.equal(resolveNpcArtwork({ name: 'Ninja genérico', avatar: '👹' }), null);
+  assert.equal(resolveNpcArtwork({ name: 'Ninja genérico', avatar: '/images/bg_forest.jpg' }), null);
   assert.equal(localArtworkPath('https://unknown.example/image.png'), null);
   assert.equal(localArtworkPath('/images/../secret.png'), null);
   assert.equal(localArtworkPath('/images/chars/ninja.png'), '/images/chars/ninja.png');

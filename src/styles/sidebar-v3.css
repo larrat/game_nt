@@ -247,3 +247,15 @@
 @media (prefers-reduced-motion: reduce) {
   .app .kuro-rpg-sidebar-v3 * { transition-duration: 0s !important; }
 }
+
+/* Topbar navigation actions use the same icon stroke and focus language. */
+.app .kuro-rpg-topbar :is(.mobile-nav-toggle,.kuro-rpg-topbar__inventory) {
+  display: inline-grid;
+  place-items: center;
+  min-width: 40px;
+  min-height: 40px;
+}
+.app .kuro-rpg-topbar :is(.mobile-nav-toggle,.kuro-rpg-topbar__inventory):focus-visible {
+  outline: 2px solid #edc47d;
+  outline-offset: 2px;
+}

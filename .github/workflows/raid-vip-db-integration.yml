@@ -1,0 +1,50 @@
+name: Raid and VIP SQL integration
+on:
+  pull_request:
+    paths:
+      - 'migrations/071_verified_raid_and_vip_point_respec.sql'
+      - 'migrations/072_art_rights_approval_gate.sql'
+      - 'tests/sql/**'
+      - '.github/workflows/raid-vip-db-integration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verified-economy-sql:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: local_qa_only
+          POSTGRES_DB: kurokage_synthetic_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d kurokage_synthetic_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: local_qa_only
+      PGDATABASE: kurokage_synthetic_test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client
+      - name: Create synthetic test schema
+        run: psql -v ON_ERROR_STOP=1 -f tests/sql/raid_economy_fixture.sql
+      - name: Compile and install Raid and VIP functions
+        run: psql -v ON_ERROR_STOP=1 -f migrations/071_verified_raid_and_vip_point_respec.sql
+      - name: Compile and install art-rights gates
+        run: psql -v ON_ERROR_STOP=1 -f migrations/072_art_rights_approval_gate.sql
+      - name: Check cross-account security, replay and debit invariants
+        run: psql -v ON_ERROR_STOP=1 -f tests/sql/raid_economy_integrity.sql

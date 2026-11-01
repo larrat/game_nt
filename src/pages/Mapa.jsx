@@ -5,6 +5,7 @@ import { useToast } from '../context/ToastContext';
 import { useGameConfig } from '../context/GameConfigContext';
 import { generateDynamicRogueNinja } from '../utils/engine';
 import NpcPortrait from '../components/NpcPortrait';
+import { createPlayerShadow } from '../utils/opponentRoster';
 
 // =============================================
 // CONFIGURAÇÃO DO GRID DA VILA
@@ -226,16 +227,9 @@ export default function Mapa({ player, updatePlayer }) {
     if (!profileError && topPlayers?.length > 0) {
       const shuffled = topPlayers.filter(p => p.id !== player.id)
         .sort(() => Math.random() - 0.5).slice(0, 5);
-      const ghosts = shuffled.map(p => ({
-        id: `ghost_${p.id}`, name: p.name, level: p.level,
-        avatar: '🥷', hp: Math.max(1, p.level * 50), chakra: Math.max(1, p.level * 50),
-        atk: Math.max(1, p.level * 5), def: Math.max(1, p.level * 3),
-        nin: Math.max(1, p.level), element: p.element || 'Katon',
-        is_ghost: true,
-        xpReward: Math.floor(p.level * 3), ryouReward: Math.floor(p.level * 2),
-        x: 10 + ((Number(p.id) * 17) % 80),
-        y: 10 + ((Number(p.id) * 23) % 80),
-      }));
+      const ghosts = shuffled
+        .map(p => createPlayerShadow(p, player.id))
+        .filter(Boolean);
       activeNpcs = [...activeNpcs, ...ghosts];
     }
 

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/academy-progression-v4.css';
 import { useToast } from '../context/ToastContext';
 
 const ELEMENT_POS = {
@@ -99,7 +102,7 @@ export default function Elementos({ player, updatePlayer }) {
 
 
   return (
-    <div className="page flex-col min-h-screen">
+    <div className="page kuro-elements-v4 flex-col min-h-screen">
       <PageHeader eyebrow='Naturezas de Chakra' title='Elementos' subtitle='Descubra e domine sua natureza de chakra elementar.' />
 
       <div className="element-summary">
@@ -120,7 +123,7 @@ export default function Elementos({ player, updatePlayer }) {
       <div className="element-layout">
         
         {/* ÁREA DO CÍRCULO ELEMENTAL */}
-        <div className="card element-stage">
+        <div className="card element-stage kuro-ui-card">
           <div className="element-wheel-container">
             {/* SVG para desenhar as linhas de vantagem (Estrela) */}
             <svg className="element-wheel-svg">
@@ -170,17 +173,22 @@ export default function Elementos({ player, updatePlayer }) {
               }
 
               return (
-                <div 
+                <button
+                  type="button"
                   key={el.id}
                   className={nodeClass}
+                  aria-label={`Consultar elemento ${el.name}`}
+                  aria-pressed={selectedNode?.id === el.id}
                   onMouseEnter={() => setHoveredElement(el)}
                   onMouseLeave={() => setHoveredElement(null)}
+                  onFocus={() => setHoveredElement(el)}
+                  onBlur={() => setHoveredElement(null)}
                   onClick={() => setSelectedNode(el)}
                   style={{ color: el.color, top: el.pos.top, left: el.pos.left, cursor: 'pointer' }}
                 >
                   {el.icon}
-                  <div className="el-label">{el.name.split(' ')[0]}</div>
-                </div>
+                  <span className="el-label">{el.name.split(' ')[0]}</span>
+                </button>
               );
             })}
           </div>
@@ -189,8 +197,8 @@ export default function Elementos({ player, updatePlayer }) {
         {/* TOOLTIP FIXA NA DIREITA (INFORMAÇÕES) */}
         <div className="element-side">
           
-          <div className="card">
-            <h3 className="card-title gold border-b-0 pb-0 mb-2">Seus Elementos</h3>
+          <div className="card kuro-ui-card">
+            <h3 className="card-title gold border-b-0 pb-0 mb-2"><SidebarIcon name="sparkles" size={19} /> Seus Elementos</h3>
             {currentElement ? (
               <div className="flex-col gap-sm mt-4">
                 <div className="flex-row">
@@ -220,7 +228,7 @@ export default function Elementos({ player, updatePlayer }) {
           </div>
 
           {displayElement && (
-            <div className="card" style={{ background: 'var(--ink-raised)', borderColor: displayElement.color, position: 'relative', overflow: 'hidden' }}>
+            <div className="card kuro-ui-card kuro-elements-v4__detail" style={{ background: 'var(--ink-raised)', borderColor: displayElement.color, position: 'relative', overflow: 'hidden' }}>
               <div style={{ position: 'absolute', top: '-20px', right: '-20px', fontSize: '120px', opacity: 0.05, pointerEvents: 'none', color: displayElement.color }}>{displayElement.icon}</div>
               <h3 className="page-title" style={{ color: displayElement.color, marginBottom: '16px', fontSize: '20px' }}>{displayElement.name}</h3>
               <p className="paper text-[13px] leading-relaxed mb-6">
@@ -251,14 +259,15 @@ export default function Elementos({ player, updatePlayer }) {
                   <div className="mt-4 p-2 bg-danger/10 border border-dashed border-danger rounded-md text-center">
                     <span className="mono text-danger text-[11px] tracking-[1px]">⚠️ AVISO: Esta escolha é permanente!</span>
                   </div>
-                  <button 
-                    className="btn-primary" 
-                    style={{ width: '100%', marginTop: '12px', background: displayElement.color, opacity: canLearn ? 1 : 0.5, cursor: canLearn ? 'pointer' : 'not-allowed' }}
+                  <GameAction
+                    tone="seal"
+                    loading={loading}
                     onClick={() => handleLearnElement(displayElement.id)}
-                    disabled={!canLearn || loading}
+                    disabled={!canLearn}
                   >
+                    <SidebarIcon name="sparkles" size={16} />
                     {loading ? 'Aprendendo...' : canLearn ? 'Aprender Elemento' : 'Requisitos Incompletos'}
-                  </button>
+                  </GameAction>
                 </>
               )}
             </div>

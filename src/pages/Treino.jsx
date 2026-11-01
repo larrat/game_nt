@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/academy-progression-v4.css';
 import '../styles/academy-v3.css';
 import { useToast } from '../context/ToastContext';
 import { findRankIndex } from '../utils/progression';
@@ -183,20 +186,20 @@ export default function Treino({ player, updatePlayer }) {
   };
 
   return (
-    <div className="page kuro-training-page">
+    <div className="page kuro-training-page kuro-training-v4">
       <PageHeader 
         eyebrow={`Graduação: ${playerRank}`} 
         title='Centro de Treinamento' 
         subtitle='Escolha seu atributo, simule os efeitos e confirme a distribuição de até 5 pontos por ação.' 
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6" aria-label="Resumo dos pontos de treinamento">
-        <div className="card border-line-solid border-seal-bright p-4">
+      <section className="kuro-progression-v4__metrics" aria-label="Resumo dos pontos de treinamento">
+        <div className="kuro-progression-v4__metric is-highlighted">
           <p className="muted uppercase mono tracking-wider text-xs mb-2">Pontos disponíveis</p>
           <p className="gold mono text-3xl m-0">{availablePoints}</p>
           <p className="muted text-xs mt-2">Saldo oficial do personagem</p>
         </div>
-        <div className="card border-line-solid p-4">
+        <div className="kuro-progression-v4__metric">
           <p className="muted uppercase mono tracking-wider text-xs mb-2">Limite nesta ação</p>
           <p className="paper mono text-3xl m-0">{maxQuantity} <span className="muted text-sm">/ 5</span></p>
           <p className="muted text-xs mt-2">Respeita o saldo disponível</p>
@@ -206,7 +209,7 @@ export default function Treino({ player, updatePlayer }) {
           <p className="paper mono text-3xl m-0">{Math.max(0, Number(player.daily_trainings) || 0)}</p>
           <p className="muted text-xs mt-2">Contagem registrada no servidor</p>
         </div>
-      </div>
+      </section>
 
       {lastTraining?.playerId === player.id && (
         <div className="card kuro-academy-v3__receipt border border-success mb-6 p-4" role="status" aria-live="polite">
@@ -225,7 +228,7 @@ export default function Treino({ player, updatePlayer }) {
       <div className="kuro-training-layout grid-sidebar gap-6 items-start">
         
         {/* LISTA DE ATRIBUTOS */}
-        <div className="kuro-training-attributes card p-0 overflow-hidden">
+        <div className="kuro-training-attributes kuro-ui-card card p-0 overflow-hidden">
           <div className="bg-ink-soft px-6 py-3 border-b border-line-solid">
             <h3 className="gold mono uppercase tracking-widest text-sm m-0">
               Seus Atributos Base
@@ -271,7 +274,7 @@ export default function Treino({ player, updatePlayer }) {
         {/* SIMULADOR DE BUILD (PAINEL DIREITO) */}
         <div className="kuro-training-simulator kuro-academy-v3__training-simulator sticky top-6">
           {selectedAttr ? (
-            <div className="card border-line-solid border-seal-bright bg-ink">
+            <div className="card kuro-ui-card border-line-solid border-seal-bright bg-ink">
               <div className="flex-row gap-3 items-center mb-4">
                 <div className="w-12 h-12 rounded-sm overflow-hidden border-line-solid">
                   <img src={`/images/icons/${selectedAttr.field}.jpg`} alt={selectedAttr.label} className="w-full h-full object-cover" />
@@ -340,18 +343,19 @@ export default function Treino({ player, updatePlayer }) {
                 <span>Saldo após esta ação</span>
                 <strong className="gold mono">{remaining} ponto(s)</strong>
               </div>
-              <button
-                type="button"
-                className="btn-primary w-full p-4 text-md"
+              <GameAction
+                tone="seal"
+                className="w-full"
+                loading={loading}
                 onClick={handleTrain}
-                disabled={loading || maxQuantity === 0}
+                disabled={maxQuantity === 0}
               >
-                <span>{loading ? 'Treinando...' : maxQuantity === 0 ? 'Sem pontos disponíveis' : `Confirmar ${quantity} ponto(s) em ${selectedAttr.label}`}</span>
-              </button>
+                <SidebarIcon name="dumbbell" size={17} /><span>{loading ? 'Treinando...' : maxQuantity === 0 ? 'Sem pontos disponíveis' : `Confirmar ${quantity} ponto(s) em ${selectedAttr.label}`}</span>
+              </GameAction>
             </div>
           ) : (
             <div className="card flex-col items-center justify-center h-[300px] text-center text-muted">
-              <span className="text-5xl mb-4">⚖️</span>
+              <span className="kuro-progression-v4__empty-icon"><SidebarIcon name="target" size={34} /></span>
               <h3>Selecione um Atributo</h3>
               <p className="text-sm">Clique em um atributo na lista ao lado para simular o crescimento do seu personagem antes de aplicar os pontos.</p>
             </div>

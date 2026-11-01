@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/academy-progression-v4.css';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { findRankIndex } from '../utils/progression';
@@ -112,7 +115,7 @@ export default function Graduacoes({ player, updatePlayer }) {
   }
 
   return (
-    <div className="page">
+    <div className="page kuro-ranks-v4">
       <PageHeader 
         eyebrow="Academia Ninja" 
         title="Graduações" 
@@ -125,18 +128,18 @@ export default function Graduacoes({ player, updatePlayer }) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full pt-4">
+      <div className="kuro-ranks-v4__grid" aria-label="Graduações ninja">
         {ranksData.map((rank, idx) => {
           const isNextRank = nextRank && rank.id === nextRank.id;
           const isPassed = currentIndex >= idx;
 
-          let cardStyle = "flex flex-col items-center p-6 rounded-lg transition-all relative min-h-[400px]";
+          let cardStyle = "kuro-ranks-v4__card";
           if (isNextRank) {
-            cardStyle += " border-2 border-blue bg-ink shadow-xl scale-105 z-10 opacity-100";
+            cardStyle += " is-next";
           } else if (isPassed) {
-            cardStyle += " border border-line-solid bg-ink-raised opacity-75";
+            cardStyle += " is-passed";
           } else {
-            cardStyle += " border border-line-solid bg-black/40 opacity-50 z-0";
+            cardStyle += " is-locked";
           }
 
           const canGrad = isNextRank ? canGraduate : false;
@@ -148,7 +151,7 @@ export default function Graduacoes({ player, updatePlayer }) {
                 {rank.iconSrc ? (
                   <img src={rank.iconSrc} alt={rank.title} className="max-w-full max-h-full object-contain filter drop-shadow-md" />
                 ) : (
-                  <span>🥷</span>
+                  <SidebarIcon name="award" size={48} />
                 )}
               </div>
               
@@ -161,26 +164,19 @@ export default function Graduacoes({ player, updatePlayer }) {
               </div>
 
               {isNextRank && (
-                <div className="w-full relative group flex flex-col items-center mb-6">
-                  <div className="cursor-pointer bg-ink-raised border border-line-solid rounded p-2 text-2xl hover:bg-black/60 transition-colors">
-                     📋
+                <details className="kuro-ranks-v4__requirements">
+                  <summary><SidebarIcon name="clipboard" size={17} /> Ver requisitos</summary>
+                  <div className="kuro-ranks-v4__requirement-list">
+                    {rank.reqs.map((req, i) => {
+                      const isMet = req.check(player);
+                      return (
+                        <div key={i} className={isMet ? 'text-success' : 'text-danger'}>
+                          {req.label} {isMet ? '✓' : `(${req.progress(player)})`}
+                        </div>
+                      );
+                    })}
                   </div>
-                  
-                  {/* Tooltip Hover for Requirements */}
-                  <div className="absolute bottom-full mb-2 w-64 bg-ink border border-line-bright shadow-lg p-3 rounded-md text-xs z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all pointer-events-none">
-                    <div className="font-bold text-center mb-2 border-b border-line-solid pb-1">Requisitos</div>
-                    <div className="flex flex-col gap-1">
-                      {rank.reqs.map((req, i) => {
-                        const isMet = req.check(player);
-                        return (
-                          <div key={i} className={`${isMet ? 'text-muted' : 'text-danger'}`}>
-                            {req.label} {isMet ? '' : `(${req.progress(player)})`}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
+                </details>
               )}
 
               <div className="mt-auto w-full flex flex-col items-center">
@@ -188,20 +184,13 @@ export default function Graduacoes({ player, updatePlayer }) {
                   <div className="text-success font-bold text-sm tracking-widest uppercase">Graduado ✓</div>
                 ) : isNextRank ? (
                   rank.id === 'chunin' && !player.passou_exame_chunin ? (
-                    <button 
-                      className="btn-primary w-full max-w-[200px]" 
-                      onClick={() => navigate('/exame')}
-                    >
-                      Floresta da Morte
-                    </button>
+                    <GameAction tone="seal" onClick={() => navigate('/exame')}>
+                      <SidebarIcon name="arrowRight" size={16} /> Floresta da Morte
+                    </GameAction>
                   ) : (
-                    <button 
-                      className={`btn-primary w-full max-w-[200px] ${!canGrad ? 'opacity-50 cursor-not-allowed filter grayscale' : ''}`} 
-                      disabled={!canGrad} 
-                      onClick={() => graduarPara(rank.id)}
-                    >
-                      Graduar
-                    </button>
+                    <GameAction tone="seal" disabled={!canGrad} onClick={() => graduarPara(rank.id)}>
+                      <SidebarIcon name="award" size={16} /> Graduar
+                    </GameAction>
                   )
                 ) : (
                   <div className="text-danger opacity-70 font-bold text-sm tracking-widest uppercase">

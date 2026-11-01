@@ -28,7 +28,7 @@ export function resolveNpcArtwork(npc) {
   const curated = PORTRAITS.find(entry => entry.name.test(name))?.src || null;
   const direct = localArtworkPath(npc?.avatar) || localArtworkPath(npc?.image_url);
   if (direct && !GENERIC_IMAGES.has(direct)) return direct;
-  return curated || direct || null;
+  return curated || (direct && !GENERIC_IMAGES.has(direct) ? direct : null);
 }
 
 export function resolveWorldBossArtwork(event) {

@@ -24,6 +24,7 @@ import {
 import { rollRarity, generateLootStats } from '../utils/lootEngine';
 import PageHeader from '../components/PageHeader';
 import CombatFighterCard from '../components/CombatFighterCard';
+import { getNpcPortrait, getNpcFallback } from '../utils/npcPortrait';
 import CombatTurnPanel from '../components/CombatTurnPanel';
 import '../styles/combat-v3.css';
 import { useToast } from '../context/ToastContext';
@@ -1574,7 +1575,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             shake={npcShake}
             fcts={fcts.filter(f => f.target === 'npc')}
             bgStyle={combatBg(npcInit.village_id || (isMirror ? 8 : 1))}
-            portrait={typeof npcInit.avatar === 'string' && npcInit.avatar.startsWith('/') ? npcInit.avatar : (npcInit.avatar || '🥷')}
+            portrait={getNpcPortrait(npcInit) || getNpcFallback(npcInit)}
             name={npcInit.name}
             level={npcInit.level}
             badges={npcBadges}

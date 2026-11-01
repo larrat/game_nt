@@ -8,9 +8,7 @@ import SidebarIcon from '../components/SidebarIcon';
 import '../styles/challenges-v4.css';
 
 export default function Vip({ player, updatePlayer }) {
-  if (!player) return null;
-
-  const vipCredits = player.vip_coins || 0;
+  const vipCredits = player?.vip_coins || 0;
 
   const { addToast } = useToast();
   const [vipResetAvailable, setVipResetAvailable] = useState(false);
@@ -55,6 +53,8 @@ export default function Vip({ player, updatePlayer }) {
       setBusy(false);
     }
   };
+
+  if (!player) return null;
 
   const milestones = [
     { spent: 5, reward: "Personagem Único Rank B" },

@@ -13,7 +13,7 @@ const serverRpcs = {
   Vila:['doar_vila'],Templo:['desbloquear_avatar_templo'],Ferreiro:['aprimorar_equipamento'],
   Invocacoes:['assinar_invocacao','equipar_invocacao'],Portoes:['abrir_portao'],
   Exame:['iniciar_exame_chunin'],Evento:['iniciar_world_boss'],
-  Ranking:['listar_perfis_ninja'],Vip:['vip_reset_talento','vip_reset_personagem'],
+  Ranking:['listar_perfis_ninja'],
   Clas:['entrar_cla','treinar_cla','aprender_kinjutsu'],
   Selecionar:['excluir_personagem'],Criar:['criar_personagem'],
 };
@@ -39,6 +39,12 @@ test('authoritative domain actions remain in their page modules',()=>{
     const source=load(page);
     for(const rpc of rpcs)assert.ok(source.includes("rpc('"+rpc+"'"),page+' missing RPC '+rpc);
   }
+});
+test('unsupported VIP economic actions remain visibly disabled', () => {
+  const source = load('Vip');
+  assert.match(source, /vipResetAvailable = false/);
+  assert.match(source, /disabled={!vipResetAvailable}/);
+  assert.ok(!source.includes("supabase.rpc('vip_reset_"));
 });
 test('critical keyboard and state paths are maintained in the revised screens',()=>{
   const village=load('Vila'), forge=load('Ferreiro'), summons=load('Invocacoes');

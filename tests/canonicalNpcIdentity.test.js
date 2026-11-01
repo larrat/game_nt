@@ -42,9 +42,13 @@ test('fluxos mapa dojo e exame usam identidade do catalogo', () => {
   const map = readFileSync('src/pages/Mapa.jsx', 'utf8');
   const exam = readFileSync('src/pages/Exame.jsx', 'utf8');
   const migration = readFileSync('migrations/065_link_npcs_to_canonical_characters.sql', 'utf8');
-  assert.match(dojo, /loadCanonicalNpcPool/);
-  assert.match(dojo, /generateDynamicRogueNinja\(player, 0, template\)/);
-  assert.match(map, /generateDynamicRogueNinja\(player, Math\.floor\(dist \/ 10\), template\)/);
+  assert.match(dojo, /loadCanonicalDojoNpcs/);
+  assert.match(dojo, /isMirror: false/);
+  assert.match(map, /template\\.name/);
+  assert.match(map, /isMirror: false, fromMap: true/);
+  assert.doesNotMatch(dojo, /generateDynamicRogueNinja\\(/);
+  assert.doesNotMatch(map, /generateDynamicRogueNinja\\(/);
+  assert.doesNotMatch(dojo, /rpc\\('reservar_raid_stamina'/);
   assert.match(exam, /npcRecord\?\.avatar \|\| null/);
   assert.doesNotMatch(exam, /avatar: round === 1 \? '🥷'/);
   assert.match(migration, /ALTER TABLE public\.npcs ALTER COLUMN character_id SET NOT NULL/);

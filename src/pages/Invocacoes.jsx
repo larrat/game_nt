@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import '../styles/challenges-v4.css';
 import { useToast } from '../context/ToastContext';
 
 export default function Invocacoes({ player, updatePlayer }) {
@@ -130,22 +132,22 @@ export default function Invocacoes({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page">
+    <div className="page kuro-summons-v4">
       <PageHeader 
         eyebrow="Arte Ninja Especial" 
         title="Kuchiyose no Jutsu" 
         subtitle="Gerencie seus contratos de invocação e mascotes de batalha." 
       />
 
-      <div className="flex-row gap-md mb-6">
+      <div className="kuro-challenges-v4__tabs" role="tablist" aria-label="Contratos de invocação">
         <button 
-          className={activeTab === 'meus' ? 'btn-primary' : 'btn-ghost'} 
+          className="kuro-challenges-v4__tab" role="tab" aria-selected={activeTab === 'meus'} 
           onClick={() => setActiveTab('meus')}
         >
           Meus Contratos ({playerSummons.length})
         </button>
         <button 
-          className={activeTab === 'todos' ? 'btn-primary' : 'btn-ghost'} 
+          className="kuro-challenges-v4__tab" role="tab" aria-selected={activeTab === 'todos'} 
           onClick={() => setActiveTab('todos')}
         >
           Explorar Invocações
@@ -163,7 +165,7 @@ export default function Invocacoes({ player, updatePlayer }) {
               Você ainda não assinou nenhum contrato de invocação.
             </div>
           ) : (
-            <div className="grid-2">
+            <div className="kuro-challenges-v4__grid">
               {playerSummons.map(ps => {
                 const s = ps.summons;
                 return (
@@ -188,13 +190,13 @@ export default function Invocacoes({ player, updatePlayer }) {
                         </div>
 
                         {ps.is_equipped ? (
-                          <button className="btn-ghost w-full" onClick={unequipAll} disabled={actionLoading}>
+                          <GameAction tone="quiet" className="w-full" disabled={actionLoading} onClick={unequipAll}>
                             Recolher Mascote
-                          </button>
+                          </GameAction>
                         ) : (
-                          <button className="btn-primary w-full" onClick={() => equipSummon(ps.id)} disabled={actionLoading}>
+                          <GameAction tone="seal" className="w-full" disabled={actionLoading} onClick={() => equipSummon(ps.id)}>
                             Invocar para Combate
-                          </button>
+                          </GameAction>
                         )}
                       </div>
                     </div>
@@ -205,12 +207,12 @@ export default function Invocacoes({ player, updatePlayer }) {
           )}
         </div>
       ) : (
-        <div className="grid-2">
+        <div className="kuro-challenges-v4__grid">
           {summons.map(s => {
             const hasContract = playerSummons.some(ps => ps.summon_id === s.id);
             const cost = s.req_level * 100;
             return (
-              <div key={s.id} className="card-glass flex-col">
+              <div key={s.id} className="card-glass kuro-challenges-v4__card flex-col">
                 <div className="flex-row gap-md items-start">
                   <div className="text-4xl">{s.animal_type === 'Sapo' ? '🐸' : s.animal_type === 'Cobra' ? '🐍' : s.animal_type === 'Lesma' ? '🐌' : s.animal_type === 'Cachorro' ? '🐶' : '🐾'}</div>
                   <div className="flex-1">
@@ -229,13 +231,13 @@ export default function Invocacoes({ player, updatePlayer }) {
                     </div>
 
                     {hasContract ? (
-                      <button className="btn-ghost w-full opacity-50" disabled>
+                      <GameAction tone="quiet" className="w-full" disabled >
                         Contrato Assinado
-                      </button>
+                      </GameAction>
                     ) : (
-                      <button className="btn-primary w-full" onClick={() => signContract(s)} disabled={actionLoading}>
+                      <GameAction tone="seal" className="w-full" disabled={actionLoading} onClick={() => signContract(s)}>
                         Assinar Contrato ({cost} ¥)
-                      </button>
+                      </GameAction>
                     )}
                   </div>
                 </div>

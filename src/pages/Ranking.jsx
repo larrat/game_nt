@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import '../styles/challenges-v4.css';
 import { VILLAGES, KAGES } from '../constants';
 
 
@@ -38,14 +39,14 @@ export default function Ranking({ player }) {
   const rest = ranking.slice(3);
 
   return (
-    <div className="page">
+    <div className="page kuro-ranking-v4">
       <PageHeader
         eyebrow='Temporada IV'
         title='Hall da Fama'
         actions={
           <div className="filters">
-            <div className={`filter cursor-pointer ${filter === 'geral' ? 'active' : ''}`} onClick={() => setFilter('geral')}>Geral</div>
-            <div className={`filter cursor-pointer ${filter === 'vila' ? 'active' : ''}`} onClick={() => setFilter('vila')}>Por Vila</div>
+            <button type="button" aria-pressed={filter === 'geral'} onClick={() => setFilter('geral')}>Geral</button>
+            <button type="button" aria-pressed={filter === 'vila'} onClick={() => setFilter('vila')}>Por Vila</button>
 
           </div>
         }
@@ -88,7 +89,7 @@ export default function Ranking({ player }) {
             </div>
           )}
 
-          <div className="list-head muted uppercase grid-ranking items-center gap-sm p-4 border-line-solid border-b text-xs tracking-wide">
+          <div className="kuro-ranking-v4__scroll"><div className="list-head muted uppercase grid-ranking items-center gap-sm p-4 border-line-solid border-b text-xs tracking-wide">
             <div>Pos.</div><div>Personagem</div><div>Vila</div><div>Nível</div><div>XP</div>
           </div>
 
@@ -111,7 +112,7 @@ export default function Ranking({ player }) {
               );
             })}
             {ranking.length === 0 && <div className="muted text-center py-6">Nenhum ninja encontrado.</div>}
-          </div>
+          </div></div>
         </>
       )}
     </div>

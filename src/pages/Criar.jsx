@@ -6,6 +6,7 @@ import { VILLAGES_LIST } from '../constants';
 import PageHeader from '../components/PageHeader';
 import { canCreateCharacter, MAX_CHARACTERS_PER_ACCOUNT, validateCharacterName } from '../utils/characterCreationRules';
 import '../styles/character-creation.css';
+import '../styles/auth-polish-v4.css';
 
 const CLASSES = [
   { id: 'NIN', name: 'Ninjutsu', icon: '📜', desc: 'Especialista em magias.', stats: { ninjutsu: 5, inteligencia: 4, selo: 3, energia: 3, agilidade: 2, resistencia: 1, genjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
@@ -134,7 +135,7 @@ export default function Criar({ session, setPlayerState }) {
   const creationBlocked = loading || catalogLoading || Boolean(catalogError) || !canCreateCharacter(accountCount, characters.length);
 
   return (
-    <div className="page auth-screen-layout">
+    <div className="page auth-screen-layout kuro-creation-v4">
       
       <header className="auth-header">
         <nav className="auth-nav">

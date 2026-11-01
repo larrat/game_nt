@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/challenges-v4.css';
 
 export default function Vip({ player, updatePlayer }) {
   const { addToast } = useToast();
@@ -79,7 +82,7 @@ export default function Vip({ player, updatePlayer }) {
   ];
 
   return (
-    <div className="page">
+    <div className="page kuro-vip-v4">
       <PageHeader 
         eyebrow="Benefícios Exclusivos" 
         title="Vantagens VIP" 
@@ -97,9 +100,9 @@ export default function Vip({ player, updatePlayer }) {
         </div>
       </div>
 
-      <div className="grid-2">
+      <div className="kuro-challenges-v4__grid">
         {/* VANTAGENS */}
-        <div className="card">
+        <div className="card kuro-ui-card">
           <h3 className="section-title">Serviços Ninja</h3>
           
           <div className="p-4 border-line-solid rounded-md mb-4">
@@ -110,9 +113,9 @@ export default function Vip({ player, updatePlayer }) {
             <p className="muted text-xs leading-relaxed mb-4">
               Errou na build? Use este serviço para resetar exatamente UM (1) ponto de atributo sem precisar resetar toda a sua ficha técnica.
             </p>
-            <button className="btn-ghost w-full border-seal-bright" onClick={handleSingleTalentReset} disabled={loading}>
+            <GameAction tone="quiet" className="w-full" onClick={handleSingleTalentReset} disabled={loading}>
               Resetar Talento Avulso
-            </button>
+            </GameAction>
           </div>
 
           <div className="p-4 border-line-dashed border-danger rounded-md">
@@ -123,14 +126,14 @@ export default function Vip({ player, updatePlayer }) {
             <p className="muted text-xs leading-relaxed mb-4">
               Permite trocar de personagem. <strong className="danger">Atenção:</strong> Seu personagem será totalmente resetado. Recomendado apenas para o 1º dia do round.
             </p>
-            <button className="btn-ghost w-full border-danger text-danger" onClick={handleCharacterChange} disabled={loading}>
+            <GameAction tone="danger" className="w-full" onClick={handleCharacterChange} disabled={loading}>
               Mudar Personagem Inicial
-            </button>
+            </GameAction>
           </div>
         </div>
 
         {/* RECOMPENSA DE TEMPORADA */}
-        <div className="card">
+        <div className="card kuro-ui-card">
           <h3 className="section-title">Recompensas da Temporada</h3>
           <p className="muted text-sm mb-6">
             O valor gasto em VIP desbloqueia personagens únicos ao final da rodada! Acompanhe seu progresso:
@@ -189,8 +192,8 @@ export default function Vip({ player, updatePlayer }) {
               </select>
             </div>
             <div className="flex-row justify-end gap-3">
-              <button className="btn-ghost" onClick={() => setShowTalentModal(false)}>Cancelar</button>
-              <button className="btn-primary" onClick={confirmSingleTalentReset}>Confirmar Reset</button>
+              <GameAction tone="quiet" onClick={() => setShowTalentModal(false)}>Cancelar</GameAction>
+              <GameAction tone="seal" onClick={confirmSingleTalentReset}>Confirmar Reset</GameAction>
             </div>
           </div>
         </div>
@@ -205,8 +208,8 @@ export default function Vip({ player, updatePlayer }) {
               <strong className="danger">Atenção:</strong> Essa vantagem só é recomendada no 1º Dia do Round. Ao aceitar, você perderá <span className="gold">2 Créditos VIP</span> e será enviado à tela de seleção de personagem, onde sua conta será resetada para o personagem novo! Deseja prosseguir?
             </p>
             <div className="flex-row justify-end gap-3">
-              <button className="btn-ghost" onClick={() => setShowCharModal(false)}>Cancelar</button>
-              <button className="btn-danger py-2 px-4" onClick={confirmCharacterChange}>Resetar Personagem</button>
+              <GameAction tone="quiet" onClick={() => setShowCharModal(false)}>Cancelar</GameAction>
+              <GameAction tone="danger" onClick={confirmCharacterChange}>Resetar Personagem</GameAction>
             </div>
           </div>
         </div>

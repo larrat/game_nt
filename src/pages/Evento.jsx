@@ -3,6 +3,9 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/challenges-v4.css';
 import { fetchActiveWorldBoss, isEventExpired } from '../utils/eventUtils';
 import { getNpcPortrait } from '../utils/npcPortrait';
 
@@ -114,7 +117,7 @@ export default function Evento({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="page kuro-event-page">
+    <div className="page kuro-event-page kuro-event-v4">
       <PageHeader
         eyebrow="Guerra Ninja"
         title="Evento Global"
@@ -127,16 +130,16 @@ export default function Evento({ player, updatePlayer }) {
         <div className="kuro-event-empty card text-center px-6 py-12">
           <h2 className="muted">Fim de Semana de Descanso</h2>
           <p className="muted max-w-400 mx-auto mt-4">Os Kages ordenaram que as expedições param aos sábados e domingos para a manutenção das barreiras da Vila. Volte segunda-feira!</p>
-          <button className="btn-ghost mt-6" onClick={() => navigate('/dashboard')}>Voltar</button>
+          <GameAction tone="quiet" onClick={() => navigate('/dashboard')}>Voltar</GameAction>
         </div>
       ) : !event ? (
         <div className="card text-center px-6 py-12">
           <h2 className="muted">Nenhum Evento Ativo</h2>
           <p className="muted max-w-400 mx-auto mt-4">O mundo ninja está em paz no momento. Continue seu treinamento.</p>
-          <button className="btn-ghost mt-6" onClick={() => navigate('/dashboard')}>Voltar</button>
+          <GameAction tone="quiet" onClick={() => navigate('/dashboard')}>Voltar</GameAction>
         </div>
       ) : (
-        <div className="kuro-world-boss-card card-glass flex-col items-center p-12 relative overflow-hidden border-danger">
+        <div className="kuro-world-boss-card kuro-ui-card card-glass flex-col items-center p-12 relative overflow-hidden border-danger">
 
           <div className="absolute inset-0 bg-gradient-radial-danger pointer-events-none" />
 
@@ -174,14 +177,16 @@ export default function Evento({ player, updatePlayer }) {
             </div>
           </div>
 
-          <button
-            className="btn-primary px-12 py-4 text-xl bg-danger border-danger z-10"
+          <GameAction
+            tone="danger"
+            className="z-10"
             onClick={handleAttack}
-            disabled={attacking || event.boss_hp <= 0 || currentTickets <= 0 || eventExpired}
+            loading={attacking}
+            disabled={event.boss_hp <= 0 || currentTickets <= 0 || eventExpired}
           >
-            <span>{event.boss_hp <= 0 ? 'Chefe Morto' : currentTickets <= 0 ? 'Sem Tickets' : attacking ? 'Entrando...' : 'Atacar o Chefe!'}</span>
-            <div className="stamp"></div>
-          </button>
+            <SidebarIcon name="swords" size={18} />
+            {event.boss_hp <= 0 ? 'Chefe Derrotado' : currentTickets <= 0 ? 'Sem Tickets' : attacking ? 'Entrando...' : 'Atacar o Chefe!'}
+          </GameAction>
 
           <div className="muted mono mt-4 text-sm z-10 text-center">
             Sua patente ({player.rank}) garante {maxTickets} entradas diárias. <br/> Você ganha XP e Ryous proporcionais ao dano causado.

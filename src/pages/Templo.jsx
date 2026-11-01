@@ -3,6 +3,9 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/world-services-v4.css';
 
 // Removemos EVOLUTION_TREES mock
 
@@ -68,7 +71,7 @@ export default function Templo({ player, updatePlayer }) {
   };
 
   return (
-    <div className="page">
+    <div className="page kuro-temple-v4">
       <PageHeader 
         eyebrow="Legado e Herança" 
         title="Templo Ninja" 
@@ -82,7 +85,7 @@ export default function Templo({ player, updatePlayer }) {
         </p>
       </div>
 
-      <div className="card">
+      <div className="card kuro-temple-v4__stage">
         {evolution ? (
           unlocked.includes(evolution.nextId) ? (
             <div className="text-center py-12">
@@ -101,7 +104,7 @@ export default function Templo({ player, updatePlayer }) {
               </div>
 
               {/* Seta de Evolução */}
-              <div className="text-4xl text-seal-bright animate-pulse">
+              <div className="text-4xl text-seal-bright" aria-hidden="true">
                 →
               </div>
 
@@ -114,7 +117,7 @@ export default function Templo({ player, updatePlayer }) {
               </div>
 
               {/* Requisitos e Botão */}
-              <div className="flex-1 min-w-[300px] bg-ink-raised p-6 rounded-md border-line-solid">
+              <div className="kuro-temple-v4__requirements flex-1 min-w-[260px]">
                 <h4 className="mb-4 text-md">Requisitos de Despertar</h4>
                 <p className="muted text-sm mb-6 leading-relaxed">
                   {evolution.desc}
@@ -130,14 +133,9 @@ export default function Templo({ player, updatePlayer }) {
                   {/* Podemos adicionar mais métricas aqui no futuro */}
                 </div>
 
-                <button 
-                  className="btn-primary w-full" 
-                  onClick={handleUnlock}
-                  disabled={loading || player.level < evolution.requirements.level}
-                >
-                  <span>{loading ? 'Despertando...' : 'Desbloquear Personagem'}</span>
-                  <div className="stamp"></div>
-                </button>
+                <GameAction tone="seal" className="w-full" onClick={handleUnlock} loading={loading} disabled={player.level < evolution.requirements.level}>
+                  <SidebarIcon name="sparkles" size={16} /> {loading ? 'Despertando...' : 'Desbloquear Personagem'}
+                </GameAction>
               </div>
 
             </div>

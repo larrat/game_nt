@@ -1,0 +1,50 @@
+/* Kurokage v4 — login, recovery, character selection and creation.
+   Visual-only adjustments; Supabase auth logic and character RPCs are untouched. */
+:root {
+  --kuro-bg:#080d14;--kuro-surface:#131c27;--kuro-surface-up:#1c2835;
+  --kuro-line:rgba(235,194,130,.20);--kuro-gold:#ebc17c;
+  --kuro-copy:#f3ecdf;--kuro-muted:#b9bbc0;--kuro-focus:#f1c879;
+}
+:is(.kuro-login-v4,.kuro-recovery-v4,.kuro-selection-v4,.kuro-creation-v4) {
+  --gold:var(--kuro-gold);--paper:var(--kuro-copy);--line:var(--kuro-line);
+}
+:is(.kuro-login-v4,.kuro-recovery-v4) .panel-form {
+  min-width:0;
+  color:var(--kuro-copy);
+}
+:is(.kuro-login-v4,.kuro-recovery-v4) .panel-form :is(input,select) {
+  min-height:44px;border-radius:9px;
+}
+:is(.kuro-login-v4,.kuro-recovery-v4) .panel-form :is(input,button,a):focus-visible {
+  outline:2px solid var(--kuro-focus);outline-offset:3px;
+}
+:is(.kuro-login-v4,.kuro-recovery-v4) .panel-form :is(.btn-primary,.btn-ghost) {
+  min-height:44px;border-radius:10px;
+}
+.kuro-recovery-v4 .panel-quote em {color:var(--kuro-gold);}
+:is(.kuro-selection-v4,.kuro-creation-v4) :is(.btn-primary,.btn-ghost,.selection-btn-play,.selection-btn-delete) {
+  min-height:44px;border-radius:10px;
+}
+:is(.kuro-selection-v4,.kuro-creation-v4) :is(button,input,select):focus-visible {
+  outline:2px solid var(--kuro-focus);outline-offset:3px;
+}
+:is(.kuro-selection-v4,.kuro-creation-v4) :is(.card,.card-glass) {
+  border-color:var(--kuro-line);border-radius:14px;
+}
+.kuro-selection-v4 .kuro-character-select__stage {min-width:0;}
+.kuro-creation-v4 .kuro-character-create__layout {min-width:0;gap:clamp(12px,2vw,25px);}
+.kuro-creation-v4 .kuro-character-create__visual-choice[aria-pressed="true"] {
+  border-color:var(--kuro-gold);box-shadow:0 0 0 2px rgba(235,193,124,.15);
+}
+.kuro-creation-v4 .kuro-character-create__visual-choice:focus-visible {
+  outline:2px solid var(--kuro-focus);outline-offset:3px;
+}
+@media(max-width:650px) {
+  .kuro-selection-v4 .kuro-character-select__stage,
+  .kuro-creation-v4 .kuro-character-create__layout {width:100%;}
+}
+@media(prefers-reduced-motion:reduce) {
+  :is(.kuro-login-v4,.kuro-recovery-v4,.kuro-selection-v4,.kuro-creation-v4) * {
+    transition-duration:.01ms!important;animation-duration:.01ms!important;
+  }
+}

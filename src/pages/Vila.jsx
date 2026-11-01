@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import GameAction from '../components/ui/GameAction';
+import '../styles/world-services-v4.css';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
@@ -125,7 +128,7 @@ export default function Vila({ player, updatePlayer }) {
   if (!player) return null;
 
   return (
-    <div className="kuro-village-screen p-0 fixed inset-0 overflow-hidden">
+    <div className="kuro-village-screen kuro-village-v4 p-0 overflow-hidden">
 
       {/* Background Image */}
       <div 
@@ -144,7 +147,7 @@ export default function Vila({ player, updatePlayer }) {
       <div className="absolute z-10 bottom-6 right-6">
         <div className="card-glass text-center p-3 w-[180px] bg-black-alpha-90 backdrop-blur-md border border-solid border-gold">
           <div className="gold uppercase text-xs font-bold mb-1">{villageData?.leader_title || 'Líder'}</div>
-          <div className="text-3xl mb-1">👑</div>
+          <div className="kuro-village-v4__leader-mark"><SidebarIcon name="crown" size={28} /></div>
           <div className="paper font-medium mb-1 text-lg">{kage ? kage.name : 'Vago'}</div>
           <div className="muted text-xs">{kage ? `${kage.class || 'NIN'} - Nv. ${kage.level}` : 'Nenhum líder'}</div>
         </div>
@@ -156,10 +159,12 @@ export default function Vila({ player, updatePlayer }) {
 
         {/* Renderizar Prédios */}
         {Object.entries(BUILDING_INFO).map(([key, info]) => (
-          <div
+          <button
+            type="button"
             key={key}
+            aria-label={`Visitar ${info.name}: ${info.desc}`}
             onClick={() => handleBuildingClick(key)}
-            className="kuro-village-building absolute flex-col items-center cursor-pointer z-5"
+            className="kuro-village-building kuro-village-v4__building absolute flex-col items-center cursor-pointer z-5"
             style={{
               top: info.top,
               left: info.left,
@@ -181,12 +186,12 @@ export default function Vila({ player, updatePlayer }) {
             <div className="kuro-village-building__label paper bg-black-alpha-80 px-3 py-1 rounded-sm mt-2 text-xs whitespace-nowrap border-line-solid">
               {info.name}
             </div>
-          </div>
+          </button>
         ))}
 
         {/* Modal Simples do Prédio */}
         {selectedBuildingInfo && !selectedBuildingInfo.isGate && (
-          <div className="kuro-village-modal absolute z-20 w-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div role="dialog" aria-modal="true" aria-label="Informações do edifício" className="kuro-village-modal kuro-village-v4__modal absolute z-20 w-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <div className={`card-glass bg-black-alpha-95 border border-solid ${isDamaged ? 'border-danger' : 'border-gold'}`}>
               <div className="text-center mb-4">
                 <img src={selectedBuildingInfo.img} alt={selectedBuildingInfo.name} className={`w-20 h-20 rounded-full border-2 border-gold inline-block ${isDamaged ? 'grayscale brightness-50' : ''}`} />
@@ -229,7 +234,7 @@ export default function Vila({ player, updatePlayer }) {
               )}
 
               <div className="flex-col gap-md">
-                <button className="btn-ghost" onClick={() => setSelectedBuildingKey(null)}>Fechar</button>
+                <GameAction tone="quiet" onClick={() => setSelectedBuildingKey(null)}>Fechar</GameAction>
               </div>
             </div>
           </div>

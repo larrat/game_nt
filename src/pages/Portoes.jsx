@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/challenges-v4.css';
 import { useToast } from '../context/ToastContext';
 import { calculateHP, calculateAtkTaiBuk } from '../utils/engine';
 import '../styles/main.css';
@@ -171,7 +174,7 @@ export default function Portoes({ player, updatePlayer }) {
   const hpPercent = Math.max(0, Math.min(100, (currentHP / maxHP) * 100));
 
   return (
-    <div className="page">
+    <div className="page kuro-gates-v4">
       <PageHeader
         eyebrow="Técnica Proibida"
         title="8 Portões do Chakra"
@@ -215,7 +218,7 @@ export default function Portoes({ player, updatePlayer }) {
       </div>
 
       {/* Grid dos 8 portões */}
-      <div className="grid-2 gap-6">
+      <div className="kuro-challenges-v4__grid">
         {PORTOES.map((portao) => {
           const isUnlocked = player.level >= portao.reqLevel;
           const hpCusto = Math.floor(maxHP * portao.hpCusto);
@@ -225,7 +228,8 @@ export default function Portoes({ player, updatePlayer }) {
           return (
             <div
               key={portao.id}
-              className="card"
+              className="kuro-challenges-v4__card"
+              aria-disabled={!isUnlocked}
               style={{
                 border: `1px solid ${isUnlocked ? portao.color + '55' : 'var(--line)'}`,
                 opacity: isUnlocked ? 1 : 0.5,
@@ -267,18 +271,16 @@ export default function Portoes({ player, updatePlayer }) {
                 </div>
               </div>
 
-              <button
-                className={`${portao.id === 8 ? 'btn-danger' : 'btn-ghost'} w-full ${(!isUnlocked || loading || cooldownLeft > 0) ? 'cursor-not-allowed' : 'cursor-pointer'}`}
-                style={{
-                  borderColor: portao.color,
-                  color: isUnlocked ? portao.color : 'var(--muted)',
-                  opacity: isUnlocked && !loading && cooldownLeft === 0 ? 1 : 0.5,
-                }}
+              <GameAction
+                tone={portao.id === 8 ? 'danger' : 'quiet'}
+                className="w-full"
+                loading={isLoading}
                 disabled={!isUnlocked || loading || cooldownLeft > 0}
                 onClick={() => handleAbrir(portao)}
               >
-                {isLoading ? 'Abrindo...' : !isUnlocked ? `🔒 Level ${portao.reqLevel}` : cooldownLeft > 0 ? `⏳ ${formatCooldown(cooldownLeft)}` : `Abrir ${portao.kanji}`}
-              </button>
+                <SidebarIcon name="flame" size={16} />
+                {isLoading ? 'Abrindo...' : !isUnlocked ? `Nível ${portao.reqLevel}` : cooldownLeft > 0 ? formatCooldown(cooldownLeft) : `Abrir ${portao.kanji}`}
+              </GameAction>
             </div>
           );
         })}

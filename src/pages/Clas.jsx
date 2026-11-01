@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
+import '../styles/challenges-v4.css';
 import { useToast } from '../context/ToastContext';
 import JutsuCard from '../components/JutsuCard';
 import { rankValue } from '../utils/engine';
@@ -272,12 +275,12 @@ export default function Clas({ player, updatePlayer }) {
   };
 
   return (
-    <div className="page">
+    <div className="page kuro-clans-v4">
       <PageHeader eyebrow='Sangue e Linhagem' title='Clãs Ninja' />
 
       {player.clan_id ? (
         <div className="clan-system">
-          <div className="card flex-col items-center p-12 mb-10 border-line-solid border-seal-bright bg-danger-alpha-05">
+          <div className="card kuro-ui-card flex-col items-center p-12 mb-10 border-line-solid border-seal-bright bg-danger-alpha-05">
             <h2 className="page-title danger mb-4 flex items-center gap-md">
               <span className="text-2xl">🩸</span> Linhagem Ativa
             </h2>
@@ -294,24 +297,27 @@ export default function Clas({ player, updatePlayer }) {
         <div className="clan-system">
           {/* CAROUSEL CLAN SELECTION */}
           <div className="clan-carousel flex-row gap-lg mb-10 justify-center">
-            <button className="btn-ghost text-4xl hover:text-gold" onClick={() => setSelectedClanIdx(Math.max(0, selectedClanIdx - 1))}>❮</button>
+            <GameAction tone="quiet" aria-label="Clã anterior" onClick={() => setSelectedClanIdx(Math.max(0, selectedClanIdx - 1))}><SidebarIcon name="arrowLeft" size={19} /></GameAction>
             
             <div className="flex-row gap-md overflow-hidden max-w-600 justify-center">
               {clansData.map((c, idx) => (
-                <div 
-                  key={c.id} 
+                <button
+                  type="button"
+                  key={c.id}
+                  aria-label={`Selecionar clã ${c.name}`}
+                  aria-pressed={idx === selectedClanIdx}
                   onClick={() => setSelectedClanIdx(idx)}
                   className={`cursor-pointer transition-all duration-300 ${idx === selectedClanIdx ? 'opacity-100 scale-110 border-2 border-seal-bright rounded-sm z-10 shadow-lg' : 'opacity-40 scale-90 border-2 border-transparent rounded-sm'}`}
                 >
                   <img src={c.image} alt={c.name} className="clan-hero-img object-cover rounded-sm w-32 h-32" />
-                </div>
+                </button>
               ))}
             </div>
 
-            <button className="btn-ghost text-4xl hover:text-gold" onClick={() => setSelectedClanIdx(Math.min(clansData.length - 1, selectedClanIdx + 1))}>❯</button>
+            <GameAction tone="quiet" aria-label="Próximo clã" onClick={() => setSelectedClanIdx(Math.min(clansData.length - 1, selectedClanIdx + 1))}><SidebarIcon name="arrowRight" size={19} /></GameAction>
           </div>
 
-          <div className="card flex-col mb-12 items-center text-center">
+          <div className="card kuro-ui-card flex-col mb-12 items-center text-center">
              <h2 className="page-title mb-4">{clan.name}</h2>
              <p className="muted leading-relaxed max-w-600 mx-auto mb-8">{clan.description}</p>
 
@@ -347,13 +353,9 @@ export default function Clas({ player, updatePlayer }) {
 
              <div className="text-center w-full">
                <p className="danger text-xs mb-4">⚠️ Atenção: as escolhas de clã e atributos são <strong>permanentes</strong>.</p>
-               <button 
-                 className={`btn-primary w-full max-w-400 py-3 ${totalSpent !== maxPoints ? 'opacity-50 cursor-not-allowed filter grayscale' : ''}`} 
-                 onClick={handleJoinClan}
-                 disabled={totalSpent !== maxPoints}
-               >
-                 <span>Entrar no Clã</span>
-               </button>
+               <GameAction tone="seal" className="w-full" onClick={handleJoinClan} disabled={totalSpent !== maxPoints}>
+                 <SidebarIcon name="users" size={17} /> Entrar no Clã
+               </GameAction>
              </div>
           </div>
         </div>

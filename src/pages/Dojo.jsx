@@ -38,38 +38,49 @@ export default function Dojo({ player, updatePlayer }) {
     return data || [];
   };
 
+  const loadCanonicalNpcPool = async () => {
+    const { data, error } = await supabase.from('npcs').select('*')
+      .eq('is_active', true).eq('is_chunin_exam', false)
+      .not('character_id', 'is', null);
+    if (error) throw error;
+    return (data || []).filter(npc => npc.character_id && npc.name);
+  };
+
   const handleSearch = async () => {
     setLoadingId('search');
-    await new Promise(r => setTimeout(r, 2000));
-    
-    const roll = Math.random();
-    
-    // A pedido do usuário, o sistema de espelho (PvP no Dojo) foi desativado temporariamente
-    // para focar na criação de NPCs perfeitamente parelhos (paralelos) com os status do jogador.
-    
-    // 1) Checa se existe NPC da História disponível no banco
-    const npcChance = Number(gameConfig?.dojo_story_npc_chance) || 0.35;
-    if (roll < npcChance) {
-      const { data: dojoNpcs } = await supabase
-        .from('npcs')
-        .select('*')
-        .eq('is_map_npc', false)
-        .eq('is_active', true)
-        .lte('level', player.level + 5);
-
-      if (dojoNpcs && dojoNpcs.length > 0) {
-        const chosenNPC = dojoNpcs[Math.floor(Math.random() * dojoNpcs.length)];
-        chosenNPC.activeJutsus = getDynamicNpcJutsus(chosenNPC);
-        setLoadingId(null);
-        return navigate('/combate', { state: { bgType: 'dojo', npc: chosenNPC, isMirror: false } });
+    try {
+      const pool = await loadCanonicalNpcPool();
+      if (!pool.length) {
+        addToast('Nenhum personagem canônico disponível para combate.', 'warning');
+        return;
       }
-    }
 
-    // 2) Fallback para Gerar Ninja Renegado Dinâmico Parelho
-    // Simulamos um IsMirror para garantir que as fórmulas de Combate usem os atributos recém gerados!
-    const rogue = generateDynamicRogueNinja(player);
-    setLoadingId(null);
-    return navigate('/combate', { state: { bgType: 'dojo', npc: rogue, isMirror: true } });
+      const dojoChance = Number(gameConfig?.dojo_story_npc_chance) || 0.35;
+      const dojoPool = pool.filter(npc => !npc.is_map_npc &&
+        npc.level <= player.level + 5 && !npc.is_story_mode);
+
+      if (Math.random() < dojoChance && dojoPool.length) {
+        const chosen = dojoPool[Math.floor(Math.random() * dojoPool.length)];
+        const enemy = { ...chosen, activeJutsus: getDynamicNpcJutsus(chosen) };
+        navigate('/combate', { state: { bgType: 'dojo', npc: enemy, isMirror: false } });
+        return;
+      }
+
+      // Encontros parelhos variam atributos, nunca criam identidade/clã fictícios.
+      const eligible = pool.filter(npc => !npc.is_story_mode && !npc.is_chunin_exam);
+      const candidates = eligible.length ? eligible : pool;
+      const template = candidates[Math.floor(Math.random() * candidates.length)];
+      const enemy = generateDynamicRogueNinja(player, 0, template);
+      if (!enemy) {
+        addToast('Não foi possível validar a identidade do adversário.', 'error');
+        return;
+      }
+      navigate('/combate', { state: { bgType: 'dojo', npc: enemy, isMirror: true } });
+    } catch (error) {
+      addToast('Não foi possível consultar os adversários do catálogo.', 'error');
+    } finally {
+      setLoadingId(null);
+    }
   };
 
   const handleBetrayal = async () => {
@@ -124,6 +135,18 @@ export default function Dojo({ player, updatePlayer }) {
   const handleRaid = async (fightCount) => {
     setLoadingId('raid');
     try {
+      // Selecionar antes de consumir stamina: nenhum combate com NPC inventado.
+      const pool = (await loadCanonicalNpcPool()).filter(npc => !npc.is_story_mode);
+      if (!pool.length) {
+        addToast('Não existem personagens disponíveis para a incursão.', 'warning');
+        return;
+      }
+      const template = pool[Math.floor(Math.random() * pool.length)];
+      const rogue = generateDynamicRogueNinja(player, 0, template);
+      if (!rogue) {
+        addToast('A identidade do adversário não pôde ser validada.', 'error');
+        return;
+      }
       const { data, error } = await supabase.rpc('reservar_raid_stamina', {
         p_player_id: player.id,
         p_fight_count: fightCount
@@ -136,7 +159,6 @@ export default function Dojo({ player, updatePlayer }) {
 
       await updatePlayer(player.id);
       await new Promise(r => setTimeout(r, 400));
-      const rogue = generateDynamicRogueNinja(player);
       navigate('/combate', {
         state: {
           bgType: 'dojo',

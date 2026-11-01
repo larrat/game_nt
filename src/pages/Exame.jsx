@@ -6,7 +6,6 @@ import GameAction from '../components/ui/GameAction';
 import SidebarIcon from '../components/SidebarIcon';
 import '../styles/challenges-v4.css';
 import { useToast } from '../context/ToastContext';
-import { getDynamicNpcJutsus } from '../utils/engine';
 
 export default function Exame({ player, updatePlayer }) {
   const navigate = useNavigate();
@@ -62,10 +61,17 @@ export default function Exame({ player, updatePlayer }) {
         return;
       }
 
+      // A RPC é autoritativa para o combate; a identidade visual vem do
+      // NPC persistido, sempre vinculado a um personagem em public.characters.
+      const { data: npcRecord } = await supabase.from('npcs')
+        .select('character_id,avatar')
+        .eq('id', data.enemy_id)
+        .maybeSingle();
       const npc = {
         id: data.enemy_id,
         name: data.enemy_name,
-        avatar: round === 1 ? '🥷' : round === 2 ? '👺' : '👹',
+        character_id: npcRecord?.character_id || null,
+        avatar: npcRecord?.avatar || null,
         level: data.enemy_level,
         hp: data.enemy_max_hp,
         chakra: data.enemy_chakra,

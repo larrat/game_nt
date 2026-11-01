@@ -32,7 +32,8 @@ test('Dojo uses reusable actions and icon registry without changing gameplay RPC
   assert.ok(dojo.includes("rpc('reservar_raid_stamina'"));
   assert.ok(dojo.includes("rpc('resolver_limpeza_rapida'"));
   assert.ok(dojo.includes("rpc('listar_rivais_dojo'"));
-  assert.ok(dojo.includes('generateDynamicRogueNinja(player)'));
+  assert.ok(dojo.includes('generateDynamicRogueNinja(player, 0, template)'));
+  assert.ok(dojo.includes('loadCanonicalNpcPool'));
   for (const name of ['swords','shield','target','compass','flame','activity','zap','arrowRight']) {
     assert.ok(dojo.includes('name="' + name + '"'), 'Dojo should use shared icon ' + name);
   }

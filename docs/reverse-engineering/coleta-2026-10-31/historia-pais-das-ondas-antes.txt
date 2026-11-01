@@ -1,0 +1,77 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                                 
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "5" [level=1]
+- img "Vida"
+- generic: 360/360
+- img "Chakra"
+- generic: 264/264
+- img "Stamina"
+- generic: 627/627
+- generic: "EXP: 1126/3240"
+- text: LVL
+- heading "6" [level=1]
+- generic: "1"
+- generic: "8"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link "5":
+  - /url: "?secao=mensagens"
+  - generic: "5"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "66":
+  - /url: "?secao=vantagens"
+- generic: "3512"
+- heading "Modo História" [level=1]
+- main:
+  - heading "Escolha a Saga" [level=3]
+  - tablist:
+    - tab "Naruto" [selected]
+    - tab "Naruto Shipuuden"
+    - tab "Quarta Guerra Ninja"
+    - tab "A Verdadeira Batalha"
+  - heading "Escolha a História" [level=3]
+  - tabpanel:
+    - paragraph: País das Ondas
+    - paragraph: Exame Chuunin - Primeira Fase
+    - paragraph: Exame Chuunin - Segunda Fase
+    - paragraph: Exame Chuunin - Terceira Fase
+    - paragraph: Batalha dos Sannins
+    - paragraph: Resgate de Sasuke
+- generic: Mizuki Touji
+- generic: Principal responsável por fazer com que Naruto roubasse o pergaminho de jutsus proibidos.
+- generic: 
+- button "Duelar"
+- generic: Gouzu
+- generic: Ninja da nevoa que atacou a Equipe 7 enquanto escoltavam Tazuna até o pais das ondas
+- generic: 
+- generic: Meizu
+- generic: Ninja da nevoa que atacou a Equipe 7 enquanto escoltavam Tazuna até o pais das ondas
+- generic: 
+- generic: Haku
+- generic: Haku foi um morador do País da Água. Ele se tornou um ninja após encontrar Zabuza Momochi. Haku tinha o Kekkei Genkai, que lhe permitia controlar o Hyouton (Elemento Gelo).
+- generic: 
+- generic: Zabuza Momochi
+- generic: Zabuza foi inicialmente retratado como agressivo, arrogante, cruel, frio e ambicioso, disposto a se tornar bandido para ganhar dinheiro o suficiente para iniciar um segundo golpe de estado contra o Mizukage.
+- generic: 
+- text:                                                                                                                                                                                                                            

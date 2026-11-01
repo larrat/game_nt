@@ -1,0 +1,186 @@
+{
+  "date": "2026-11-01",
+  "note": "Originais visuais de sessão permanecem locais; os resultados foram transcritos em documentação. ZIPs antigos duplicam arquivos já publicados. Manifestos temporários da coleta01/11 foram substituídos pelo manifesto de origem/hash publicado.",
+  "files": [
+    {
+      "file": "categorias-pendentes-acesso.json",
+      "sha256": "ece0c91a3fcd1bf52714f65724c82d541c366a0d38b61682dc3550a4f198e1e7",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "combate-npc-taijutsu-1.json",
+      "sha256": "d3559951d10593f8e31795c130aebcb989d3a7767f0ed520eb9c08150a4b193a",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "dez-tarefas-taijutsu.png",
+      "sha256": "605a2f9c571ab0e523081a0a0f65c0d43bade1580c5020bb566d549f5ba084d4",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "dynamic-kick-aprendido.png",
+      "sha256": "44ac27201e8b4429ab7daf31bba26e1e8a371a41c842d19bb0932a9c423a0842",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "dynamic-kick-aprimorado.png",
+      "sha256": "f21ed5d81bdecc63e7278ae54824a80f0bddc3f290bcc7c2761abb2d5b9227dc",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "dynamic-kick-aprimorado.txt",
+      "sha256": "b6d6581261956e47f6f68d952c46b3f95a67054719b8a8dc08ab4a3a28ecd328",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "dynamic-kick-opcoes-slot1.json",
+      "sha256": "944a6f112e74bbbe0ec984b695bf9123a74ab26ef2ab1cebe458de033497602d",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "dynamic-kick-taijutsu.json",
+      "sha256": "8c4ce5c0af39078dc33b21c7339430fd84adbe6379f5726e75c44c9c20afc226",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "formulas-contexto-genjutsu.json",
+      "sha256": "a7f99ca234b0c7456b20ba9f24d55b83eaaea00909acb6eac54144df1b9d2eb9",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "formulas-contexto-taijutsu.json",
+      "sha256": "6b06c48c2695a6ddd61151cb0a0bb1cf5bbae7f679e0d9c9ff1e61a7043ed1e9",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "graduacoes-taijutsu.json",
+      "sha256": "11c72283aefad0367123b8c70306e21cdbc19c91cf074d480ed6091799e059d9",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "historia-gouzu-combate.json",
+      "sha256": "f6e0bdde3dc8c3d3cc7cd298b03ed791ea990d4e15ab6bbc950c23818c37b17d",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "historia-gouzu-resultado.png",
+      "sha256": "39dd586f0d1332d296bacec6a9c0f9c5312902143be97170ae6c9df13b247b35",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "historia-meizu-combate.json",
+      "sha256": "f2d9f37d8e7a9b4f56ba71f2ede4dab23e1786ae05df04fb8ac87634df6c2d9b",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "historia-meizu-derrota.png",
+      "sha256": "2cb022346c43d70233f3dee02bd2edb9741c6c7da4931307e86aae89419247fe",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "historia-meizu-resultado.txt",
+      "sha256": "39c52a046178a117f34e1085e12bdd13775b313ee9ac8b26c2c27001bb5b82e2",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "historia-mizuki-combate.json",
+      "sha256": "6376e392d7a59fc33c2469b22f306cd71bc71e135095f128f83a138ae2d49278",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "historia-mizuki-resultado.png",
+      "sha256": "f647ede93ab7fcbd380fb2187f0409a187c0e3133fb6d96e6d8349dacbf07143",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "historia-pais-das-ondas-antes.txt",
+      "sha256": "aad4c3c5220b33fce68044b938c6e236065f6b8451d876cf821c0eca041c7a85",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "hospital-cura-confirmada.png",
+      "sha256": "aaa6fe181e49d0cd4d0742246107a0c85b3e8712f063645aa70ac64eefe07f07",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "jutsus-cla-detalhes.json",
+      "sha256": "780a22aa9cefebd77ad60ac4333216fe86d091f586a51f244fe1902b6647ae44",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "jutsus-elementais.json",
+      "sha256": "a0089aea3970acece720878dc59100696f0353568417accb6e7f803a50534402",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "jutsus-gerais.json",
+      "sha256": "ff0af8e971244f6046b3cdbd89be64dbfdbbed5a8b15289d5b77ef0e54de1600",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "jutsus-portoes.json",
+      "sha256": "80f48e8696d510b8536549ec40231ebe07077a73e62e1d025c80fa0b0e6e2ef9",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "karma-acesso.json",
+      "sha256": "4a97c66f24903673f9bb84649bfa11c720fbbd4dc7495ed38091c74a98eed3b5",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "meizu-turno20-soco.txt",
+      "sha256": "a56a24382ef33ec1144098cabbe95375d551f51fd7b0aefee28eda5779a82571",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "primeira-licao-taijutsu.png",
+      "sha256": "6b31ef08466b14f36fb7892160e8b8eaf95cbe7e8fc950acb111e9d9fdc3edf3",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "ramen-bloqueio-em-combate.txt",
+      "sha256": "ee280675135c2e51f89bcab7eba26784727c305c9a5118fa76f9435af5c6ea7b",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "ramen-detalhes.json",
+      "sha256": "ca49ee6bfbe4d34169e120000f74ef7bc177c7858e9477a969f82ca286254ec2",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "status-inicial-taijutsu.png",
+      "sha256": "08d47c5474f9d0e5d4691a3d99d7eff1d5c7dce20f654bb03fca0bbd3ef95407",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "status-pos-mizuki.txt",
+      "sha256": "6b141d30c0af48c6c5df87dd32d7f597498eca95c8f7fbdf8f9cfde2b4daaa72",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "status-sessao.png",
+      "sha256": "e0645b7a238be652071bb2fe49c9689477d145fd132548e8956a936b9641e02c",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "status-taijutsu-12-pontos.png",
+      "sha256": "4b93c7ebe408b42e84962cd767c6dd60300efc034b80ae1984dd447f1077448e",
+      "disposition": "original_visual_local_com_dados_de_sessao"
+    },
+    {
+      "file": "status-taijutsu-12-pontos.txt",
+      "sha256": "a21fcad97014f11d6a8c530f6f65f64e59a05b4e4eca5c27f61418e7b8d7ffe6",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "talentos-detalhes-taijutsu.json",
+      "sha256": "f9877e71e0552cba06399ed73017a05c09e50cd162ef3cbcc710ba3df095a789",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    },
+    {
+      "file": "templo-requisitos-versoes.json",
+      "sha256": "b4bcd2be52d0f61276c214a908a5613fb798bdb4b1dd5be161dbbe8c152688c1",
+      "disposition": "informacao_copiada_revisada_no_acervo"
+    }
+  ]
+}

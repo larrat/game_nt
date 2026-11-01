@@ -1,0 +1,95 @@
+- navigation:
+  - generic: 
+- text: 
+- banner:
+  - navigation:
+    - generic: 
+    - text:                                                                                                                 
+    - img "Naruto"
+    - text:           
+    - link "Naruto Game - Versão em Português":
+      - /url: "#"
+      - img "Naruto Game - Versão em Português"
+    - link "Naruto Game - English Version":
+      - /url: "#"
+      - img "Naruto Game - English Version"
+    - link:
+      - /url: javascript:logoff()
+      - generic: 
+- text: LVL
+- heading "5" [level=1]
+- img "Vida"
+- generic: 360/360
+- img "Chakra"
+- generic: 264/264
+- img "Stamina"
+- generic: 627/627
+- generic: "EXP: 1426/3240"
+- text: LVL
+- heading "6" [level=1]
+- generic: "1"
+- generic: "8"
+- generic: "4"
+- link "1":
+  - /url: "?secao=fidelidade"
+  - generic: "1"
+- link "5":
+  - /url: "?secao=mensagens"
+  - generic: "5"
+- link "5":
+  - /url: "?secao=noticias"
+  - generic: "5"
+- link "66":
+  - /url: "?secao=vantagens"
+- generic: "3824"
+- heading "Treinamento de Jutsus" [level=1]
+- heading "Os pontos são ganhos a partir do level 5." [level=2]:
+  - generic: 
+  - generic: Os pontos são ganhos a partir do level 5.
+- heading "Pontos de Aprimoramento de Jutsus" [level=2]:
+  - generic: 
+  - generic: Pontos de Aprimoramento de Jutsus
+- paragraph: Ganhe 3 pontos para treinar seus jutsus a cada level upado.
+- generic: "2"
+- text: Pontos Livres
+- generic: "1"
+- text: Pontos Usados
+- generic: "0"
+- text: Pontos Perdidos
+- generic: "1"
+- text: Estudante
+- generic: "0"
+- text: Genin
+- generic: "0"
+- text: Chunin
+- generic: "0"
+- text: Jounin
+- generic: "0"
+- text: ANBU
+- generic: "0"
+- text: Sannin
+- generic: "0"
+- text: Herói
+- paragraph
+- text: Filtro Avançado -
+- radio [checked]
+- text: Mostrar todos
+- radio
+- text: Estudante
+- radio
+- text: Genin
+- radio
+- text: Chunin
+- radio
+- text: Jounin
+- radio
+- text: ANBU
+- radio
+- text: Sanin
+- radio
+- text: Herói
+- generic: Taijutsu
+- generic: Dynamic Kick - Lvl 1
+- generic: Estudante
+- checkbox [checked]
+- text: Mostrar na luta

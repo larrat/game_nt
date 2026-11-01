@@ -57,7 +57,7 @@ test('roster preserves the public-only sources and read-only individual combat',
   assert.ok(opponents.includes('Combate individual indisponível'));
   assert.ok(opponents.includes('Projeções são representações públicas, não PvP ao vivo'));
   assert.ok(!opponents.includes('<Swords'));
-  assert.equal((opponents.match(/<GameAction\\b/g) || []).length, (opponents.match(/<\\/GameAction>/g) || []).length);
+  assert.equal((opponents.match(/<GameAction\b/g) || []).length, (opponents.match(/<\/GameAction>/g) || []).length);
   for (const name of ['arrowLeft','arrowRight','compass','swords','shield','users','search','info','refresh','lock']) {
     assert.ok(icons.includes(name + ':'), 'Icon registry missing ' + name);
   }

@@ -190,11 +190,11 @@ export default function Invocacoes({ player, updatePlayer }) {
                         </div>
 
                         {ps.is_equipped ? (
-                          <GameAction tone="quiet" className="w-full" disabled={actionLoading}onClick={unequipAll}>
+                          <GameAction tone="quiet" className="w-full" disabled={actionLoading} onClick={unequipAll}>
                             Recolher Mascote
                           </GameAction>
                         ) : (
-                          <GameAction tone="seal" className="w-full" disabled={actionLoading}onClick={() => equipSummon(ps.id)}>
+                          <GameAction tone="seal" className="w-full" disabled={actionLoading} onClick={() => equipSummon(ps.id)}>
                             Invocar para Combate
                           </GameAction>
                         )}
@@ -235,7 +235,7 @@ export default function Invocacoes({ player, updatePlayer }) {
                         Contrato Assinado
                       </GameAction>
                     ) : (
-                      <GameAction tone="seal" className="w-full" disabled={actionLoading}onClick={() => signContract(s)}>
+                      <GameAction tone="seal" className="w-full" disabled={actionLoading} onClick={() => signContract(s)}>
                         Assinar Contrato ({cost} ¥)
                       </GameAction>
                     )}

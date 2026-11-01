@@ -9,7 +9,13 @@
 export const PORTRAIT_RULES = Object.freeze([
   { key: 'kurama', matches: ['kurama', 'kyuubi', 'kyubi', 'raposa de nove caudas', 'raposa de 9 caudas', 'furia da raposa'], src: '/images/bosses/raposa-nove-caudas.svg', source: 'original' },
   { key: 'naruto', matches: ['naruto'], src: '/images/naruto.jpg', source: 'existing-project' },
-  { key: 'sasuke', matches: ['sasuke'], src: '/images/sasuke.jpg', source: 'existing-project' }
+  { key: 'sasuke', matches: ['sasuke'], src: '/images/sasuke.jpg', source: 'existing-project' },
+  { key: 'sakura', matches: ['sakura'], src: '/images/sakura.jpg', source: 'existing-project' },
+  { key: 'kakashi', matches: ['kakashi'], src: '/images/kakashi.jpg', source: 'existing-project' },
+  // Personagens genéricos: não inventar identidade para NPCs nomeados sem arte.
+  { key: 'bandido-deserto', matches: ['bandido do deserto'], src: '/images/chars/char_rogue_ninja_1782968348009.jpg', source: 'generic-project' },
+  { key: 'mercenario-nevoa', matches: ['mercenario da nevoa'], src: '/images/chars/char_elite_kage_1782968356836.jpg', source: 'generic-project' },
+  { key: 'ladrao-pergaminhos', matches: ['ladrao de pergaminhos'], src: '/images/chars/char_rogue_ninja_1782968348009.jpg', source: 'generic-project' }
 ]);
 
 export function normalizeNpcName(name) {

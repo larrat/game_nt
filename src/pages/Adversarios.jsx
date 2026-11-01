@@ -90,7 +90,7 @@ export default function Adversarios({ player }) {
           <h2>Conheça o inimigo antes da batalha.</h2>
           <p>Retratos, graduação e origem em um só lugar. A arena só libera confrontos após a validação das regras no servidor.</p>
         </div>
-        <div className="kuro-opponents-intro-mark" aria-hidden="true"><Swords size={60} strokeWidth={1.3} /></div>
+        <div className="kuro-opponents-intro-mark" aria-hidden="true"><SidebarIcon name="swords" size={60} /></div>
       </section>
 
       <div className="kuro-opponents-tabs" role="tablist" aria-label="Origem dos adversários">

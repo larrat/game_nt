@@ -34,7 +34,7 @@ export default function NpcPortrait({ npc, size = 32, decorative = false }) {
         <span role={decorative ? undefined : 'img'}
           aria-label={decorative ? undefined : `Retrato indisponível de ${label}`}
           style={{ fontSize: Math.round(size * 0.55), lineHeight: 1 }}>
-          {getNpcFallback(npc)}
+          {getNpcFallback(npc) || <span aria-hidden="true" style={{ display: 'block', width: '45%', height: '58%', borderRadius: '45% 45% 20% 20%', background: 'rgba(212, 162, 42, 0.25)' }} />}
         </span>
       )}
     </span>

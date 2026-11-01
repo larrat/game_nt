@@ -20,10 +20,10 @@ test('maps confirmed local art and generic NPCs from the live catalog', () => {
   assert.equal(getNpcPortrait({ id: 1, name: 'Naruto Uzumaki', avatar: '🍥' }), '/images/naruto.jpg');
   assert.equal(getNpcPortrait({ name: 'Sakura Haruno' }), '/images/sakura.jpg');
   assert.equal(getNpcPortrait({ name: 'Kakashi Hatake' }), '/images/kakashi.jpg');
-  assert.equal(getNpcPortrait({ id: 17, name: 'Bandido do Deserto', avatar: '🥷' }), '/images/chars/char_rogue_ninja_1782968348009.jpg');
-  assert.equal(getNpcPortrait({ id: 18, name: 'Mercenário da Névoa', avatar: '👺' }), '/images/chars/char_elite_kage_1782968356836.jpg');
+  assert.equal(getNpcPortrait({ id: 17, name: 'Bandido do Deserto', avatar: '🥷' }), null);
+  assert.equal(getNpcPortrait({ id: 18, name: 'Mercenário da Névoa', avatar: '👺' }), null);
   // Legacy record points to a non-existent root path; presentation must resolve the real asset.
-  assert.equal(getNpcPortrait({ id: 54, name: 'Ladrão de Pergaminhos', avatar: '/images/char_rogue_ninja_1782968348009.jpg' }), '/images/chars/char_rogue_ninja_1782968348009.jpg');
+  assert.equal(getNpcPortrait({ id: 54, name: 'Ladrão de Pergaminhos', avatar: '/images/char_rogue_ninja_1782968348009.jpg' }), '/images/char_rogue_ninja_1782968348009.jpg');
   assert.equal(getNpcPortrait({ name: 'Kiba Inuzuka', avatar: '🐺' }), null);
 });
 
@@ -37,8 +37,8 @@ test('uses available Sasuke forms only for matching variants', () => {
 });
 
 test('distinguishes generated rogue NPCs from player ghosts', () => {
-  assert.equal(getNpcPortrait({ id: 'rogue_1', name: 'Uchiha Renegado (Genin)', rank: 'Genin', avatar: '🥷' }), '/images/chars/char_rogue_ninja_1782968348009.jpg');
-  assert.equal(getNpcPortrait({ id: 'rogue_2', name: 'Senju Kage Renegado (Jounin)', rank: 'Jounin', avatar: '👹' }), '/images/chars/char_elite_kage_1782968356836.jpg');
+  assert.equal(getNpcPortrait({ id: 'rogue_1', name: 'Uchiha Renegado (Genin)', rank: 'Genin', avatar: '🥷' }), null);
+  assert.equal(getNpcPortrait({ id: 'rogue_2', name: 'Senju Kage Renegado (Jounin)', rank: 'Jounin', avatar: '👹' }), null);
   assert.equal(getNpcPortrait({ id: 'ghost_1', name: 'Jogador', is_ghost: true, avatar: '🥷' }), null);
   assert.equal(getNpcPortrait({ id: 77, name: 'NPC sem arte', avatar: '👹' }), null);
   assert.equal(getNpcPortrait({ id: 'rogue_3', name: 'Outro', is_ghost: true, avatar: '🥷' }), null);

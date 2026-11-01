@@ -11,11 +11,11 @@ test('qualquer personagem cadastrado pode virar entrada de NPC visual sem libera
     id: entry.id, name: entry.name, avatar: entry.avatar,
     origin: entry.opponent_origin, ready: entry.combat_ready
   }, {
-    id: 'catalog_ng-initial-53', name: 'Akasuna no Sasori', avatar: '🥷',
+    id: 'catalog_ng-initial-53', name: 'Akasuna no Sasori', avatar: null,
     origin: OPPONENT_ORIGINS.CATALOG, ready: false
   });
   assert.equal(createCatalogOpponent({ id: '4', name: 'Kakashi', base_avatar_url: '/images/kakashi.jpg' }).avatar, '/images/kakashi.jpg');
-  assert.equal(createCatalogOpponent({ id: 'a', name: 'Exemplo', base_avatar_url: '/images/../secret.jpg' }).avatar, '🥷');
+  assert.equal(createCatalogOpponent({ id: 'a', name: 'Exemplo', base_avatar_url: '/images/../secret.jpg' }).avatar, null);
   assert.equal(createCatalogOpponent({ id: null, name: 'Incompleto' }), null);
 });
 
@@ -40,6 +40,6 @@ test('sombra do jogador usa apenas campos públicos e exclui a própria conta', 
 test('projeção não carrega URL remota nem herda campos privados', () => {
   const result = createPlayerShadow({ id: 2, name: 'Naruto Uzumaki',
     level: 11, avatar: 'https://narutogame.com.br/avatar.png', email: 'secret@invalid' }, 1);
-  assert.equal(result.avatar, '🥷');
+  assert.equal(result.avatar, null);
   assert.equal(result.email, undefined);
 });

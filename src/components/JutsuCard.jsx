@@ -33,7 +33,7 @@ export default function JutsuCard({
         {jutsu.icon_url ? (
           <img src={jutsu.icon_url} alt="" className="w-full h-full object-cover" loading="lazy" />
         ) : (
-          <span className="text-3xl" aria-hidden="true">📜</span>
+          <span className="text-xs muted text-center px-1" role="img" aria-label="Arte da técnica indisponível">Sem arte</span>
         )}
       </div>
 

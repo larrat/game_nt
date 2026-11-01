@@ -27,7 +27,7 @@ export function createCatalogOpponent(character) {
     id: `catalog_${encodeURIComponent(character.id)}`,
     catalog_character_id: character.id,
     name: character.name.trim(),
-    avatar: safePortraitPath(character.base_avatar_url) || '🥷',
+    avatar: safePortraitPath(character.base_avatar_url),
     opponent_origin: OPPONENT_ORIGINS.CATALOG,
     is_catalog_projection: true,
     combat_ready: false
@@ -52,7 +52,7 @@ export function createPlayerShadow(publicProfile, viewerPlayerId) {
     id: `ghost_${id}`,
     name,
     level: lvl,
-    avatar: safePortraitPath(publicProfile.avatar) || '🥷',
+    avatar: safePortraitPath(publicProfile.avatar),
     hp: Math.max(1, lvl * 50),
     chakra: Math.max(1, lvl * 50),
     atk: Math.max(1, lvl * 5),

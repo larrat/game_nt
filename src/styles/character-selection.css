@@ -199,3 +199,25 @@
 @media(prefers-reduced-motion:reduce) {
   .kuro-character-select .selection-showcase {animation:none;transition:none;}
 }
+
+/* A2: the oversized decorative title must never expand the mobile document. */
+.kuro-character-select {
+  max-width: 100%;
+  overflow-x: clip;
+}
+.kuro-character-select .auth-bg-title {
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+  line-height: 1.12;
+  letter-spacing: clamp(0px, 1vw, 12px);
+}
+@media (max-width: 520px) {
+  .kuro-character-select .auth-bg-title {
+    width: calc(100% - 24px);
+    font-size: clamp(28px, 8vw, 42px);
+    top: 13%;
+  }
+}

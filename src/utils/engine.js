@@ -501,12 +501,12 @@ export const generateDynamicRogueNinja = (player, extraLevelBonus = 0, catalogNp
     id: `encounter_${catalogNpc.id}_${Date.now()}`,
     npc_source_id: Number(catalogNpc.id),
     character_id: String(catalogNpc.character_id),
-    name: catalogNpc.name.trim(),
+    name: String(catalogNpc.name).trim(),
     avatar: typeof catalogNpc.avatar === 'string' &&
       catalogNpc.avatar.startsWith('/images/') && !catalogNpc.avatar.includes('..')
       ? catalogNpc.avatar : null,
     level: npcLevel,
-    rank,
+    rank: catalogNpc.rank || rank,
     element: catalogNpc.element || null,
     clan: null,
     clan_bonus: null,

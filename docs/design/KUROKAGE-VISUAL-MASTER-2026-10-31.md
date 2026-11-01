@@ -24,6 +24,10 @@
 - **Arte da criatura Kurama não verificada em public/images:** manter fallback acessível até haver uma arte identificada e com direitos avaliados; não reutilizar floresta ou uma pessoa como chefe.
 - `data/reference/initial-characters.json` documenta 188 personagens e 222 avatares após seed; os números não equivalem a retratos locais prontos ou NPCs ativos.
 
+## Auditoria automatizada (sem custo)
+
+Execute `node scripts/audit-artwork.mjs` para contar retratos locais efetivamente disponíveis entre as variantes do catálogo inicial e os quatro retratos públicos nomeados. O script não baixa imagens, não grava arquivos e não acessa Supabase; o resultado orienta a curadoria por prioridade, sem enviar todas as 711 mídias de referência à Vercel.
+
 ## Contrato do novo registro
 - `resolveNpcArtwork(npc)`: caminho `/images/*` válido do NPC ou retrato curado para nome conhecido; nunca altera o NPC enviado ao servidor.
 - `resolveWorldBossArtwork(event)`: caminho `/images/*` explícito; nunca retorna `bg_forest.jpg` como criatura.

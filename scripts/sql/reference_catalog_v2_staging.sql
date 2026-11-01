@@ -2,6 +2,7 @@
 -- Espelho versionado do DDL aplicado no projeto Supabase via migrations MCP:
 -- create_private_reference_catalog_staging_v2
 -- index_private_reference_catalog_source_files_v2
+-- expand_reference_staging_to_shop_packs_screens_20261101
 -- NÃO faz TRUNCATE, DELETE, alterações em players ou publicação de conteúdos.
 -- As cargas de registros usam fontes em data/reference e docs/reverse-engineering.
 create schema if not exists content_reference;
@@ -16,7 +17,7 @@ create table if not exists content_reference.import_batches(
 );
 create table if not exists content_reference.entries(
  batch_id text not null references content_reference.import_batches(batch_id) on delete restrict,
- entity_kind text not null check(entity_kind in ('character','character_variant','clan','jutsu')),
+ entity_kind text not null check(entity_kind in ('character','character_variant','clan','jutsu','item','pack','observed_screen')),
  reference_id text not null,
  display_name text not null check(length(btrim(display_name))>0),
  source_path text not null,
@@ -76,4 +77,6 @@ select 'missions',id::text,to_jsonb(t) from public.missions t on conflict do not
 -- WHERE batch_id='ng-2026-11-01-v2' GROUP BY entity_kind;
 -- SELECT source_kind,count(*) FROM content_reference.source_files
 -- WHERE batch_id='ng-2026-11-01-v2' GROUP BY source_kind;
--- REGRA: nunca migrar automaticamente técnicas observadas para public.jutsus.
+-- Lote 2 (PR #99): 86 items, 49 packs, 9 telas observadas; 187 fontes novas indexadas.
+-- Entradas totais (01/11): 1911; fontes Git indexadas: 3042.
+-- REGRA: nunca migrar automaticamente técnicas, itens ou pacotes observados para o catálogo ativo.

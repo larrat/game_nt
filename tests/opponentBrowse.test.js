@@ -9,7 +9,7 @@ test('catálogo inclui personagens sem baixar imagens externas', () => {
     { id: '4', name: 'Kakashi Hatake', base_avatar_url: '/images/kakashi.jpg' }
   ], 1);
   assert.equal(rows.length, 2);
-  assert.equal(rows[0].avatar, '🥷');
+  assert.equal(rows[0].avatar, null);
   assert.equal(rows[1].avatar, '/images/kakashi.jpg');
   assert.equal(rows[0].opponent_origin, OPPONENT_ORIGINS.CATALOG);
   assert.equal(rows[0].combat_ready, false);

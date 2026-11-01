@@ -302,8 +302,10 @@ export default function Clas({ player, updatePlayer }) {
                  {ATTR_NAMES.map(attr => (
                    <div key={attr} className="flex-col items-center bg-ink border border-line-solid rounded-sm p-3 w-20">
                      <img src={getAttributeArtworkUrl(attr)} alt="" className="w-9 h-9 mb-2 object-cover rounded-sm" loading="lazy" />
+                     <span className="text-[10px] font-semibold uppercase text-muted mb-1">{attr}</span>
                      <select 
                        className="bg-black-alpha-90 text-white border border-line-solid rounded px-2 py-1 text-sm outline-none cursor-pointer"
+                       aria-label={`Pontos de ${attr} para o clã ${clan.name}`}
                        value={customStats[attr]}
                        onChange={(e) => handleStatChange(attr, e.target.value)}
                      >

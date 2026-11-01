@@ -7,7 +7,7 @@ import { normalizeClanName } from '../utils/clanArtwork';
  * Catalog selection is based on the real DB records; duplicate names retain
  * their distinct IDs so we cannot silently change the clan the player joins.
  */
-export default function ClanSelector({ clans, selectedIndex, onSelect }) {
+export default function ClanSelector({ clans, selectedIndex, selectedExplicit = false, onSelect }) {
   const [search, setSearch] = useState('');
   const selected = clans[selectedIndex];
   const duplicates = useMemo(() => {
@@ -29,7 +29,7 @@ export default function ClanSelector({ clans, selectedIndex, onSelect }) {
           <ClanArtwork clan={selected} className="kuro-clan-selector__featured-image" iconSize={64} />
         </div>
         <div className="kuro-clan-selector__featured-info">
-          <span className="kuro-clan-selector__eyebrow">CLÃ SELECIONADO · {selectedIndex + 1} DE {clans.length}</span>
+          <span className="kuro-clan-selector__eyebrow">{selectedExplicit ? 'CLÃ SELECIONADO' : 'PRÉVIA DA LINHAGEM'} · {selectedIndex + 1} DE {clans.length}</span>
           <h2 aria-live="polite">{selected.name}</h2>
           <p>{selected.description || 'Descrição não cadastrada para este clã.'}</p>
           {duplicates.get(normalizeClanName(selected.name)) > 1 && (
@@ -65,13 +65,13 @@ export default function ClanSelector({ clans, selectedIndex, onSelect }) {
             return (
               <button key={clan.id} type="button"
                 onClick={() => onSelect(index)}
-                aria-pressed={selectedClan}
+                aria-pressed={selectedClan && selectedExplicit}
                 aria-label={'Selecionar ' + clan.name + (duplicate ? ', registro ' + clan.id : '')}
-                className={'kuro-clan-selector__choice' + (selectedClan ? ' is-selected' : '')}>
+                className={'kuro-clan-selector__choice' + (selectedClan && selectedExplicit ? ' is-selected' : '')}>
                 <ClanArtwork clan={clan} className="kuro-clan-selector__choice-image" iconSize={30} />
                 <span className="kuro-clan-selector__choice-name">{clan.name}</span>
                 {duplicate && <small>Registro #{clan.id}</small>}
-                {selectedClan && <span className="kuro-clan-selector__selected-tag">Selecionado</span>}
+                {selectedClan && selectedExplicit && <span className="kuro-clan-selector__selected-tag">Selecionado</span>}
               </button>
             );
           })}

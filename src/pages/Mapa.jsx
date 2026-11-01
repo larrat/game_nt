@@ -305,12 +305,22 @@ export default function Mapa({ player, updatePlayer }) {
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     const dist = Math.sqrt(Math.pow(x - playerX, 2) + Math.pow(y - playerY, 2));
     setPlayerX(x); setPlayerY(y); setIsWalking(true);
-    if (dist > 5 && Math.random() < 0.15) {
-      const rogue = generateDynamicRogueNinja(player, Math.floor(dist / 10));
+    const canonicalPool = npcs.filter(npc =>
+      npc.character_id && !npc.is_ghost && !npc.is_story_mode &&
+      !npc.is_chunin_exam && npc.is_active !== false
+    );
+    if (dist > 5 && Math.random() < 0.15 && canonicalPool.length) {
+      const template = canonicalPool[Math.floor(Math.random() * canonicalPool.length)];
+      const enemy = generateDynamicRogueNinja(player, Math.floor(dist / 10), template);
+      if (!enemy) {
+        setIsWalking(false);
+        addToast('Encontro cancelado: adversário sem identidade válida.', 'warning');
+        return;
+      }
       setTimeout(() => {
         setIsWalking(false);
-        addToast(rogue.desc, 'error');
-        navigate('/combate', { state: { bgType: 'map', npc: rogue, isMirror: true, fromMap: true } });
+        addToast(enemy.desc, 'info');
+        navigate('/combate', { state: { bgType: 'map', npc: enemy, isMirror: true, fromMap: true } });
       }, 800);
     } else {
       setTimeout(() => setIsWalking(false), 1000);

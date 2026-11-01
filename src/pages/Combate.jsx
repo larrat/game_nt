@@ -624,18 +624,9 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
       addToast('Não foi possível registrar a derrota: ' + (error?.message || data?.error || 'operação recusada'), 'error');
     }
 
-    try {
-      await supabase.from('battle_logs').insert({
-        player_id: player.id,
-        enemy_name: npcInit.name,
-        result: 'Derrota',
-        xp_gained: 0,
-        ryous_gained: 0,
-        turn_count: roundCount,
-        combat_log: [...logs, `[STATUS FINAL] HP: ${Math.max(0, playerHP)}/${maxPlayerHP} | Chakra: ${playerCP}/${maxPlayerCP} | Stamina: ${playerSt}/${maxPlayerSt}`]
-      });
-    } catch (e) { }
-
+    // Inserção direta em battle_logs não é autorizada por RLS (HTTP 403).
+    // O registro auditável de derrotas exigirá a sessão validada pelo servidor,
+    // jamais um INSERT arbitrário feito no navegador.
     await updatePlayer(player.id);
   };
 

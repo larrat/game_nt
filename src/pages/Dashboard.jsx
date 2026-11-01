@@ -6,6 +6,7 @@ import { fetchActiveGlobalEvents } from '../utils/eventUtils';
 import { useToast } from '../context/ToastContext';
 import AvatarModal from '../components/AvatarModal';
 import GameAction from '../components/ui/GameAction';
+import SidebarIcon from '../components/SidebarIcon';
 import GamePanel from '../components/ui/GamePanel';
 import GameEmptyState from '../components/ui/GameEmptyState';
 import ResourceMeter from '../components/ui/ResourceMeter';
@@ -263,19 +264,20 @@ export default function Dashboard({ player, updatePlayer }) {
       </section>
 
       <section className="kuro-kpis" aria-label="Resumo do personagem">
-        <article className="kuro-kpi"><span className="kuro-kpi__icon">⚔</span><div><span className="kuro-kpi__label">Vitórias no dojo</span><strong>{(player.wins_dojo || 0).toLocaleString()}</strong><small>Combates vencidos</small></div></article>
-        <article className="kuro-kpi"><span className="kuro-kpi__icon">巻</span><div><span className="kuro-kpi__label">Missões concluídas</span><strong>{((player.missions_s || 0) + (player.missions_a || 0) + (player.missions_b || 0) + (player.missions_c || 0) + (player.missions_d || 0)).toLocaleString()}</strong><small>Ranks S a D</small></div></article>
-        <article className="kuro-kpi"><span className="kuro-kpi__icon is-gold">¥</span><div><span className="kuro-kpi__label">Ryous disponíveis</span><strong>{(player.ryous || 0).toLocaleString()}</strong><small>Moeda shinobi</small></div></article>
-        <article className="kuro-kpi"><span className="kuro-kpi__icon">✧</span><div><span className="kuro-kpi__label">Pontos de atributo</span><strong>{(player.pontos_atributos || 0).toLocaleString()}</strong><small>Prontos para distribuir</small></div></article>
+        <article className="kuro-kpi"><span className="kuro-kpi__icon"><SidebarIcon name="swords" size={25} /></span><div><span className="kuro-kpi__label">Vitórias no dojo</span><strong>{(player.wins_dojo || 0).toLocaleString()}</strong><small>Combates vencidos</small></div></article>
+        <article className="kuro-kpi"><span className="kuro-kpi__icon"><SidebarIcon name="scroll" size={25} /></span><div><span className="kuro-kpi__label">Missões concluídas</span><strong>{((player.missions_s || 0) + (player.missions_a || 0) + (player.missions_b || 0) + (player.missions_c || 0) + (player.missions_d || 0)).toLocaleString()}</strong><small>Ranks S a D</small></div></article>
+        <article className="kuro-kpi"><span className="kuro-kpi__icon is-gold"><SidebarIcon name="coins" size={25} /></span><div><span className="kuro-kpi__label">Ryous disponíveis</span><strong>{(player.ryous || 0).toLocaleString()}</strong><small>Moeda shinobi</small></div></article>
+        <article className="kuro-kpi"><span className="kuro-kpi__icon"><SidebarIcon name="sparkles" size={25} /></span><div><span className="kuro-kpi__label">Pontos de atributo</span><strong>{(player.pontos_atributos || 0).toLocaleString()}</strong><small>Prontos para distribuir</small></div></article>
       </section>
 
       <section className="kuro-section">
         <div className="kuro-section__heading"><div><span className="kuro-section__eyebrow">ACESSO RÁPIDO</span><h2>Escolha seu próximo passo</h2></div><span className="kuro-section__hint">Sua próxima evolução começa aqui</span></div>
         <div className="kuro-shortcuts">
-          <button className="kuro-shortcut" onClick={() => navigate("/dojo")}><span className="kuro-shortcut__icon">⚔</span><span><strong>Entrar no Dojo</strong><small>Teste sua força</small></span><b>↗</b></button>
-          <button className="kuro-shortcut" onClick={() => navigate("/treino")}><span className="kuro-shortcut__icon">ϟ</span><span><strong>Treinar atributos</strong><small>Fortaleça seu ninja</small></span><b>↗</b></button>
-          <button className="kuro-shortcut" onClick={() => navigate("/equipamentos")}><span className="kuro-shortcut__icon">◈</span><span><strong>Ver equipamentos</strong><small>Prepare seu arsenal</small></span><b>↗</b></button>
-          <button className="kuro-shortcut" onClick={() => navigate("/ranking")}><span className="kuro-shortcut__icon">♛</span><span><strong>Ver ranking</strong><small>Compare seu poder</small></span><b>↗</b></button>
+          <button className="kuro-shortcut" onClick={() => navigate("/dojo")}><span className="kuro-shortcut__icon"><SidebarIcon name="swords" size={24} /></span><span><strong>Entrar no Dojo</strong><small>Teste sua força</small></span><b>↗</b></button>
+          <button className="kuro-shortcut" onClick={() => navigate("/treino")}><span className="kuro-shortcut__icon"><SidebarIcon name="dumbbell" size={24} /></span><span><strong>Treinar atributos</strong><small>Fortaleça seu ninja</small></span><b>↗</b></button>
+          <button className="kuro-shortcut" onClick={() => navigate("/equipamentos")}><span className="kuro-shortcut__icon"><SidebarIcon name="shield" size={24} /></span><span><strong>Ver equipamentos</strong><small>Prepare seu arsenal</small></span><b>↗</b></button>
+          <button className="kuro-shortcut" onClick={() => navigate("/ranking")}><span className="kuro-shortcut__icon"><SidebarIcon name="trophy" size={24} /></span><span><strong>Ver ranking</strong><small>Compare seu poder</small></span><b>↗</b></button>
+          <button className="kuro-shortcut" onClick={() => navigate("/adversarios")}><span className="kuro-shortcut__icon"><SidebarIcon name="users" size={24} /></span><span><strong>Arquivo de adversários</strong><small>Conheça ninjas, NPCs e rivais</small></span><b>↗</b></button>
         </div>
       </section>
 

@@ -12,7 +12,7 @@ test('clan picker makes selection visible, searchable and unambiguous', () => {
   const css = read('src/styles/clan-selector-v5.css');
   assert.equal(normalizeClanName('Clã Uchiha'), normalizeClanName('Uchiha'));
   assert.equal(normalizeClanName('Hyūga'), 'hyuga');
-  assert.match(selector, /aria-pressed=\{selectedClan\}/);
+  assert.match(selector, /aria-pressed=\{selectedClan && selectedExplicit\}/);
   assert.match(selector, /aria-live="polite"/);
   assert.match(selector, /type="search"/);
   assert.match(selector, /registro #\{selected.id\}/);

@@ -162,3 +162,18 @@
     transition-duration:.01ms!important;animation-duration:.01ms!important;
   }
 }
+
+/* The elemental wheel uses semantic buttons for mouse, touch and keyboard. */
+.app .kuro-elements-v4 .element-node {
+  appearance:none;display:grid;place-items:center;padding:0;
+  border:1px solid transparent;background:transparent;
+  font:inherit;line-height:1.1;
+}
+.app .kuro-elements-v4 .element-node:focus-visible {
+  outline:2px solid var(--kuro-focus);outline-offset:4px;
+  border-radius:50%;z-index:3;
+}
+.app .kuro-elements-v4 .element-node[aria-pressed="true"] {
+  filter:drop-shadow(0 0 11px rgba(235,193,124,.4));
+}
+.app .kuro-elements-v4 .element-stage {min-width:0;}

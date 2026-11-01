@@ -12,6 +12,8 @@ import { useToast } from '../context/ToastContext';
 export default function Dojo({ player, updatePlayer }) {
   const navigate = useNavigate();
   const [loadingId, setLoadingId] = useState(null);
+  const [raidEnabled, setRaidEnabled] = useState(false);
+  const [raidState, setRaidState] = useState(null);
   const { addToast } = useToast();
 
   useEffect(() => {
@@ -19,6 +21,60 @@ export default function Dojo({ player, updatePlayer }) {
       navigate('/hospital');
     }
   }, [player, navigate]);
+
+  useEffect(() => {
+    let active = true;
+    async function loadRaidFeature() {
+      const { data, error } = await supabase.from('game_config').select('value')
+        .eq('key', 'verified_raids_enabled').maybeSingle();
+      if (!active || error || data?.value !== true) return;
+      setRaidEnabled(true);
+      const { data: state, error: stateError } = await supabase.rpc('estado_raid_verificada', {
+        p_player_id: player?.id
+      });
+      if (active && !stateError && state?.success) setRaidState(state);
+    }
+    if (player?.id) loadRaidFeature();
+    return () => { active = false; };
+  }, [player?.id]);
+
+  const openRaidBattle = async (data) => {
+    const { data: npc, error } = await supabase.from('npcs').select('*').eq('id', data.enemy_id).maybeSingle();
+    if (error || !npc?.character_id || !npc.is_active) {
+      addToast('Sessão iniciada, mas personagem indisponível. Reabra o Dojo para retomar.', 'error');
+      return;
+    }
+    navigate('/combate', {
+      state: { bgType: 'dojo', npc: { ...npc, activeJutsus: [] }, isMirror: false }
+    });
+  };
+
+  const handleVerifiedRaid = async (count, continuation = false) => {
+    if (loadingId || !raidEnabled || !player?.id) return;
+    setLoadingId(continuation ? 'raid_continue' : 'raid_start');
+    try {
+      const { data, error } = await supabase.rpc(
+        continuation ? 'continuar_raid_verificada' : 'iniciar_raid_verificada',
+        continuation ? { p_player_id: player.id } : { p_player_id: player.id, p_fight_count: count }
+      );
+      if (error || !data?.success) {
+        addToast(error?.message || data?.error || 'Não foi possível prosseguir na Raid.', 'error');
+        return;
+      }
+      if (data.raid_completed) {
+        setRaidState(null);
+        await updatePlayer(player.id);
+        addToast('Raid concluída! Vitórias confirmadas pelo servidor.', 'success');
+        return;
+      }
+      await updatePlayer(player.id);
+      await openRaidBattle(data);
+    } catch (error) {
+      addToast(error?.message || 'Falha na sessão de Raid.', 'error');
+    } finally {
+      setLoadingId(null);
+    }
+  };
 
   if (!player) return null;
 
@@ -124,9 +180,8 @@ export default function Dojo({ player, updatePlayer }) {
     addToast('Caçada às Bijuus indisponível até o cadastro de Jinchuurikis no servidor.', 'info');
   };
 
-  // Raids antigas reservam stamina sem criar sessões de combate verificáveis.
-  // Manter o recurso indisponível até existir uma RPC transacional por incursão.
-  const raidUnavailable = true;
+  // O servidor controla acesso, stamina e sessão. Desativado em game_config até homologação.
+  const raidUnavailable = !raidEnabled || loadingId !== null;
 
   const handleQuickClear = async (fightCount) => {
     if (!player) return;
@@ -261,12 +316,17 @@ export default function Dojo({ player, updatePlayer }) {
           <span className="kuro-dojo-v4__card-icon"><SidebarIcon name="zap" size={27} /></span>
           <span className="kuro-dojo-v4__card-label">DESAFIO · SEQUÊNCIA</span>
           <h3>Incursão (Raid)</h3>
-          <p>Incursões em sequência aguardam sessões verificáveis no servidor. Nenhuma stamina será cobrada enquanto o recurso estiver indisponível.</p>
-          <div className="kuro-dojo-v4__tags"><span>Indisponível temporariamente</span><span>Stamina preservada</span></div>
+          <p>Incursões sequenciais: 25 de stamina por luta iniciada, com sessão oficial e recompensas verificadas pelo servidor.</p>
+          <div className="kuro-dojo-v4__tags"><span>{raidEnabled ? 'Sessão oficial' : 'Aguardando homologação'}</span><span>25 ST por luta</span></div>
           <div className="kuro-dojo-v4__actions-row">
-            <GameAction type="button" tone="quiet" disabled={raidUnavailable}>Raid 3x — indisponível</GameAction>
-            <GameAction type="button" tone="seal" disabled={raidUnavailable}>Raid 5x — indisponível</GameAction>
+            <GameAction type="button" tone="quiet" disabled={raidUnavailable || raidState?.active} onClick={() => handleVerifiedRaid(3)}>{raidEnabled ? 'Raid 3x' : 'Raid 3x — indisponível'}</GameAction>
+            <GameAction type="button" tone="seal" disabled={raidUnavailable || raidState?.active} onClick={() => handleVerifiedRaid(5)}>{raidEnabled ? 'Raid 5x' : 'Raid 5x — indisponível'}</GameAction>
           </div>
+          {raidEnabled && raidState?.active && (
+            <GameAction type="button" tone="seal" disabled={raidUnavailable} onClick={() => handleVerifiedRaid(null, true)}>
+              Continuar Raid {raidState.fights_completed + 1}/{raidState.raid_total}
+            </GameAction>
+          )}
           {(player.dojo_clears || player.wins_dojo || 0) >= 3 && (
             <div className="kuro-dojo-v4__actions-row kuro-dojo-v4__quick">
               <GameAction type="button" tone="quiet" onClick={() => handleQuickClear(3)} disabled={loadingId !== null}>Limpar 3x</GameAction>

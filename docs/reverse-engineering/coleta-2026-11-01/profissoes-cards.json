@@ -1,0 +1,449 @@
+{
+  "observedAt": "2026-11-01",
+  "cards": [
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Aventureiro - Lvl. 4 Reduz o tempo das Missões de Tempo em 8 Minutos. Requer profissão nível 3 Você precisa estar no Level 35 ou superior Requer graduação: ANBU updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/6/4.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 3",
+        "Você precisa estar no Level 35 ou superior",
+        "Requer graduação: ANBU"
+      ],
+      "text": "Aventureiro - Lvl. 4 Reduz o tempo das Missões de Tempo em 8 Minutos. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Aventureiro - Lvl. 5 Reduz o tempo das Missões de Tempo em 10 Minutos. Requer profissão nível 4 Você precisa estar no Level 45 ou superior Requer graduação: Sannin da Folha updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/6/5.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 4",
+        "Você precisa estar no Level 45 ou superior",
+        "Requer graduação: Sannin da Folha"
+      ],
+      "text": "Aventureiro - Lvl. 5 Reduz o tempo das Missões de Tempo em 10 Minutos. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Médico - Lvl. 1 Sai das batalhas com 30% a mais dos atributos do final da batalha. Você precisa estar no Level 5 ou superior Requer graduação: Genin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/1/1.png"
+        }
+      ],
+      "requirements": [
+        "Você precisa estar no Level 5 ou superior",
+        "Requer graduação: Genin"
+      ],
+      "text": "Médico - Lvl. 1 Sai das batalhas com 30% a mais dos atributos do final da batalha. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Médico - Lvl. 2 Sai das batalhas com 35% a mais dos atributos do final da batalha. Requer profissão nível 1 Você precisa estar no Level 15 ou superior Requer graduação: Chuunin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/1/2.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 1",
+        "Você precisa estar no Level 15 ou superior",
+        "Requer graduação: Chuunin"
+      ],
+      "text": "Médico - Lvl. 2 Sai das batalhas com 35% a mais dos atributos do final da batalha. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Médico - Lvl. 3 Sai das batalhas com 40% a mais dos atributos do final da batalha. Requer profissão nível 2 Você precisa estar no Level 25 ou superior Requer graduação: Jounin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/1/3.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 2",
+        "Você precisa estar no Level 25 ou superior",
+        "Requer graduação: Jounin"
+      ],
+      "text": "Médico - Lvl. 3 Sai das batalhas com 40% a mais dos atributos do final da batalha. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Médico - Lvl. 4 Sai das batalhas com 45% a mais dos atributos do final da batalha. Requer profissão nível 3 Você precisa estar no Level 35 ou superior Requer graduação: ANBU updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/1/4.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 3",
+        "Você precisa estar no Level 35 ou superior",
+        "Requer graduação: ANBU"
+      ],
+      "text": "Médico - Lvl. 4 Sai das batalhas com 45% a mais dos atributos do final da batalha. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Médico - Lvl. 5 Sai das batalhas com 50% a mais dos atributos do final da batalha. Requer profissão nível 4 Você precisa estar no Level 45 ou superior Requer graduação: Sannin da Folha updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/1/5.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 4",
+        "Você precisa estar no Level 45 ou superior",
+        "Requer graduação: Sannin da Folha"
+      ],
+      "text": "Médico - Lvl. 5 Sai das batalhas com 50% a mais dos atributos do final da batalha. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Cozinheiro - Lvl. 1 Aumenta a cura dos Ramens em 30%. Você precisa estar no Level 5 ou superior Requer graduação: Genin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/2/1.png"
+        }
+      ],
+      "requirements": [
+        "Você precisa estar no Level 5 ou superior",
+        "Requer graduação: Genin"
+      ],
+      "text": "Cozinheiro - Lvl. 1 Aumenta a cura dos Ramens em 30%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Cozinheiro - Lvl. 2 Aumenta a cura dos Ramens em 35%. Requer profissão nível 1 Você precisa estar no Level 15 ou superior Requer graduação: Chuunin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/2/2.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 1",
+        "Você precisa estar no Level 15 ou superior",
+        "Requer graduação: Chuunin"
+      ],
+      "text": "Cozinheiro - Lvl. 2 Aumenta a cura dos Ramens em 35%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Cozinheiro - Lvl. 3 Aumenta a cura dos Ramens em 40%. Requer profissão nível 2 Você precisa estar no Level 25 ou superior Requer graduação: Jounin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/2/3.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 2",
+        "Você precisa estar no Level 25 ou superior",
+        "Requer graduação: Jounin"
+      ],
+      "text": "Cozinheiro - Lvl. 3 Aumenta a cura dos Ramens em 40%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Cozinheiro - Lvl. 4 Aumenta a cura dos Ramens em 45%. Requer profissão nível 3 Você precisa estar no Level 35 ou superior Requer graduação: ANBU updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/2/4.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 3",
+        "Você precisa estar no Level 35 ou superior",
+        "Requer graduação: ANBU"
+      ],
+      "text": "Cozinheiro - Lvl. 4 Aumenta a cura dos Ramens em 45%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Cozinheiro - Lvl. 5 Aumenta a cura dos Ramens em 50%. Requer profissão nível 4 Você precisa estar no Level 45 ou superior Requer graduação: Sannin da Folha updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/2/5.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 4",
+        "Você precisa estar no Level 45 ou superior",
+        "Requer graduação: Sannin da Folha"
+      ],
+      "text": "Cozinheiro - Lvl. 5 Aumenta a cura dos Ramens em 50%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Ferreiro - Lvl. 1 Reduz o preço das Armas de Curto em 30%. Você precisa estar no Level 5 ou superior Requer graduação: Genin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/3/1.png"
+        }
+      ],
+      "requirements": [
+        "Você precisa estar no Level 5 ou superior",
+        "Requer graduação: Genin"
+      ],
+      "text": "Ferreiro - Lvl. 1 Reduz o preço das Armas de Curto em 30%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Ferreiro - Lvl. 2 Reduz o preço das Armas de Curto em 35%. Requer profissão nível 1 Você precisa estar no Level 15 ou superior Requer graduação: Chuunin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/3/2.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 1",
+        "Você precisa estar no Level 15 ou superior",
+        "Requer graduação: Chuunin"
+      ],
+      "text": "Ferreiro - Lvl. 2 Reduz o preço das Armas de Curto em 35%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Ferreiro - Lvl. 3 Reduz o preço das Armas de Curto em 40%. Requer profissão nível 2 Você precisa estar no Level 25 ou superior Requer graduação: Jounin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/3/3.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 2",
+        "Você precisa estar no Level 25 ou superior",
+        "Requer graduação: Jounin"
+      ],
+      "text": "Ferreiro - Lvl. 3 Reduz o preço das Armas de Curto em 40%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Ferreiro - Lvl. 4 Reduz o preço das Armas de Curto em 45%. Requer profissão nível 3 Você precisa estar no Level 35 ou superior Requer graduação: ANBU updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/3/4.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 3",
+        "Você precisa estar no Level 35 ou superior",
+        "Requer graduação: ANBU"
+      ],
+      "text": "Ferreiro - Lvl. 4 Reduz o preço das Armas de Curto em 45%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Ferreiro - Lvl. 5 Reduz o preço das Armas de Curto em 50%. Requer profissão nível 4 Você precisa estar no Level 45 ou superior Requer graduação: Sannin da Folha updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/3/5.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 4",
+        "Você precisa estar no Level 45 ou superior",
+        "Requer graduação: Sannin da Folha"
+      ],
+      "text": "Ferreiro - Lvl. 5 Reduz o preço das Armas de Curto em 50%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Caçador - Lvl. 1 Aumenta a recompensa em 13% ao matar Bingo Book. Você precisa estar no Level 5 ou superior Requer graduação: Genin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/4/1.png"
+        }
+      ],
+      "requirements": [
+        "Você precisa estar no Level 5 ou superior",
+        "Requer graduação: Genin"
+      ],
+      "text": "Caçador - Lvl. 1 Aumenta a recompensa em 13% ao matar Bingo Book. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Caçador - Lvl. 2 Aumenta a recompensa em 16% ao matar Bingo Book. Requer profissão nível 1 Você precisa estar no Level 15 ou superior Requer graduação: Chuunin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/4/2.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 1",
+        "Você precisa estar no Level 15 ou superior",
+        "Requer graduação: Chuunin"
+      ],
+      "text": "Caçador - Lvl. 2 Aumenta a recompensa em 16% ao matar Bingo Book. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Caçador - Lvl. 3 Aumenta a recompensa em 19% ao matar Bingo Book. Requer profissão nível 2 Você precisa estar no Level 25 ou superior Requer graduação: Jounin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/4/3.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 2",
+        "Você precisa estar no Level 25 ou superior",
+        "Requer graduação: Jounin"
+      ],
+      "text": "Caçador - Lvl. 3 Aumenta a recompensa em 19% ao matar Bingo Book. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Caçador - Lvl. 4 Aumenta a recompensa em 22% ao matar Bingo Book. Requer profissão nível 3 Você precisa estar no Level 35 ou superior Requer graduação: ANBU updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/4/4.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 3",
+        "Você precisa estar no Level 35 ou superior",
+        "Requer graduação: ANBU"
+      ],
+      "text": "Caçador - Lvl. 4 Aumenta a recompensa em 22% ao matar Bingo Book. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Caçador - Lvl. 5 Aumenta a recompensa em 25% ao matar Bingo Book. Requer profissão nível 4 Você precisa estar no Level 45 ou superior Requer graduação: Sannin da Folha updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/4/5.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 4",
+        "Você precisa estar no Level 45 ou superior",
+        "Requer graduação: Sannin da Folha"
+      ],
+      "text": "Caçador - Lvl. 5 Aumenta a recompensa em 25% ao matar Bingo Book. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Instrutor - Lvl. 1 Aumenta o ganho de fragmentos ao destruir equipamentos em 10%. Você precisa estar no Level 5 ou superior Requer graduação: Genin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/5/1.png"
+        }
+      ],
+      "requirements": [
+        "Você precisa estar no Level 5 ou superior",
+        "Requer graduação: Genin"
+      ],
+      "text": "Instrutor - Lvl. 1 Aumenta o ganho de fragmentos ao destruir equipamentos em 10%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Instrutor - Lvl. 2 Aumenta o ganho de fragmentos ao destruir equipamentos em 15%. Requer profissão nível 1 Você precisa estar no Level 15 ou superior Requer graduação: Chuunin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/5/2.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 1",
+        "Você precisa estar no Level 15 ou superior",
+        "Requer graduação: Chuunin"
+      ],
+      "text": "Instrutor - Lvl. 2 Aumenta o ganho de fragmentos ao destruir equipamentos em 15%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Instrutor - Lvl. 3 Aumenta o ganho de fragmentos ao destruir equipamentos em 20%. Requer profissão nível 2 Você precisa estar no Level 25 ou superior Requer graduação: Jounin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/5/3.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 2",
+        "Você precisa estar no Level 25 ou superior",
+        "Requer graduação: Jounin"
+      ],
+      "text": "Instrutor - Lvl. 3 Aumenta o ganho de fragmentos ao destruir equipamentos em 20%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Instrutor - Lvl. 4 Aumenta o ganho de fragmentos ao destruir equipamentos em 25%. Requer profissão nível 3 Você precisa estar no Level 35 ou superior Requer graduação: ANBU updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/5/4.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 3",
+        "Você precisa estar no Level 35 ou superior",
+        "Requer graduação: ANBU"
+      ],
+      "text": "Instrutor - Lvl. 4 Aumenta o ganho de fragmentos ao destruir equipamentos em 25%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Instrutor - Lvl. 5 Aumenta o ganho de fragmentos ao destruir equipamentos em 30%. Requer profissão nível 4 Você precisa estar no Level 45 ou superior Requer graduação: Sannin da Folha updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/5/5.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 4",
+        "Você precisa estar no Level 45 ou superior",
+        "Requer graduação: Sannin da Folha"
+      ],
+      "text": "Instrutor - Lvl. 5 Aumenta o ganho de fragmentos ao destruir equipamentos em 30%. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Aventureiro - Lvl. 1 Reduz o tempo das Missões de Tempo em 2 Minutos. Você precisa estar no Level 5 ou superior Requer graduação: Genin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/6/1.png"
+        }
+      ],
+      "requirements": [
+        "Você precisa estar no Level 5 ou superior",
+        "Requer graduação: Genin"
+      ],
+      "text": "Aventureiro - Lvl. 1 Reduz o tempo das Missões de Tempo em 2 Minutos. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Aventureiro - Lvl. 2 Reduz o tempo das Missões de Tempo em 4 Minutos. Requer profissão nível 1 Você precisa estar no Level 15 ou superior Requer graduação: Chuunin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/6/2.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 1",
+        "Você precisa estar no Level 15 ou superior",
+        "Requer graduação: Chuunin"
+      ],
+      "text": "Aventureiro - Lvl. 2 Reduz o tempo das Missões de Tempo em 4 Minutos. Treinar"
+    },
+    {
+      "images": [
+        {
+          "alt": "",
+          "context": "Aventureiro - Lvl. 3 Reduz o tempo das Missões de Tempo em 6 Minutos. Requer profissão nível 2 Você precisa estar no Level 25 ou superior Requer graduação: Jounin updateTooltips(); Treinar",
+          "url": "https://narutogame.com.br/assets/images/logado/profissao/6/3.png"
+        }
+      ],
+      "requirements": [
+        "Requer profissão nível 2",
+        "Você precisa estar no Level 25 ou superior",
+        "Requer graduação: Jounin"
+      ],
+      "text": "Aventureiro - Lvl. 3 Reduz o tempo das Missões de Tempo em 6 Minutos. Treinar"
+    }
+  ]
+}

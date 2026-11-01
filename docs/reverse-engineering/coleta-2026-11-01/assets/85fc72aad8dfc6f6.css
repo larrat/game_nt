@@ -1,0 +1,440 @@
+.box-principal-batalha{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-evenly;
+    position: relative;
+}
+.box-principal-batalha .box-filhos{
+    padding: 1rem 1rem;
+    font-size: 1.6rem;
+    display: flex;
+}
+.flex-100_porcento{
+    flex: 1;
+}
+.box-principal-batalha .box-filhos .box-netos{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+}
+.box-principal-batalha .box-filhos-fullsize{
+    flex: 1 1 100%;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.box-principal-batalha .box-shadow{
+    border-radius: 10px;
+}
+.centro-batalha{
+    z-index: 3;
+}
+.esquerda-profile{
+    width: 240px;
+    z-index: 2;
+}
+.direita-profile{
+    width: 240px;
+    z-index: 2;
+}
+.a-esquerda-batalha .a-habilidades-batalha, .b-direita-batalha .b-habilidades-batalha{
+    padding-top: 5rem;
+}
+.a-esquerda-batalha .a-habilidades-batalha .d-buff, .b-direita-batalha .b-habilidades-batalha .d-buff{
+   flex: 1;
+}
+.esquerda-profile .box-bijuu{
+  position: absolute;
+  top: -112px;
+  z-index: -1;
+  width: 38%;
+}
+.direita-profile .box-bijuu{
+    position: absolute;
+    right: 57px;
+    top: -112px;
+    z-index: -1;
+    width: 38%;
+}
+.a-esquerda-batalha img, .b-direita-batalha img{
+    display: inline;
+    max-width: initial;
+}
+.pvp-atk-filter{
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+    opacity: 0.5;
+}
+.pvp-atk-filter-selected{
+    opacity: 1;
+}
+.d-icon-counter{
+    border-radius: 10px;
+    width: 34px;
+    height: 34px;
+    position: relative;
+}
+.cnLog hr{
+    width:90%;
+    margin: auto;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#imgDP, #imgDE, #cnPBuff, #cnEBuff{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+.d-icon-counter i{
+    position: relative;
+    top: 7px;
+}
+.topMessages .red-badge2 {
+    border-radius: 3px;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 15px;
+    top: -10px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+.flex-basico{
+    display:flex; 
+    flex-wrap:wrap; 
+    justify-content: center;
+}
+#cnLog2{
+    display:none;
+}
+.cnLog {
+    overflow: auto;
+    margin: auto;
+    height: 206px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: left;
+    padding-left: 8px;
+    padding-top: 5px;
+}
+.topo-batalha{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 1.4rem;
+    position: relative;
+    z-index: 100;
+}
+.topo-batalha .title{
+    font-size: 2rem;
+}
+.topo-batalha-span{
+    font-size: 2.4rem;
+    padding-left: 1rem;
+    position: relative;
+    top: -3px;
+}
+.topo-batalha div{
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.player-info-box div img{
+    margin: auto;
+}
+.pvp_p_atk{
+	cursor: pointer;
+	text-decoration:none;
+}
+.pvp_p_atk:hover{
+	text-decoration:underline;
+}
+.cnPVPLog{
+    font-size: 1.6rem;
+    padding-top: 1rem;
+}
+#d-atk-timer{
+    font-size: 3rem;
+    padding-bottom: 1rem;
+}
+.player-info-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.player-info-box div{
+    border-radius: 10px;
+    padding: 2px;
+    margin: 4px;
+    font-size: 1.4rem;
+    flex: 1;
+}
+.topo-batalha .title{
+    flex-basis: 200px;
+}
+#d-actionbar .esquerda{
+    width: 100%;
+}
+.map-invite{
+    font-size: 1.2rem;
+}
+.map-tip img{
+    max-width: 100%
+}
+.desktop{
+    display:block;
+}
+.mobile{
+    display:none;
+}
+.log-batalha{
+    width:70%;
+}
+.pvp_amortizacao{
+	font-size:12px;
+	margin:3px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.pvp_criticoA{
+	font-size:12px;
+	margin:3px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+}
+.pvp_preciso{
+	font-size:12px;
+	margin:3px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+}
+.pvp_criticoD{
+	font-size:12px;
+	padding: 2px;
+	margin: 3px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.pvp_esquiva{
+	font-size:12px;
+	margin:3px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+@media only screen and (max-width: 800px) {
+      .esquerda-profile .box-bijuu{
+        position: absolute;
+        left: 25px;
+        top: -40px;
+        z-index: -1;
+        width: 40%;
+    }
+    .direita-profile .box-bijuu{
+        position: absolute;
+        right: 25px;
+        top: -40px;
+        z-index: -1;
+        width: 40%;
+    }
+    .desktop{
+        display:none;
+    }
+    .mobile{
+        display:block;
+    }
+    .topo-batalha .title{
+        flex-basis: 100%;
+    }
+    .centro-batalha{
+        flex-grow: 1;
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .log-batalha{
+        width: 100%;
+    }
+    #cnLog, #pvp-log-data{
+        display: none;
+    }
+    #cnLog2{
+        display: block;
+    }
+    .esquerda-profile, .direita-profile{
+        width: 170px;
+    }
+    .box-principal-batalha .box-filhos-fullsize {
+        flex-wrap: wrap;
+        overflow: auto;
+    }
+    #d-actionbar .esquerda {
+        width: 55%;
+        height: 207px;
+        display: flex;
+    }
+    #d-actionbar .direita {
+        width: 40%;
+    }
+    .centro-batalha {
+        margin-top: 45px;
+        justify-content: flex-start;
+    }
+    .d-icon-counter {
+        width: 20px;
+        height: 20px;
+    }
+    .topMessages {
+        top: 4px;
+        left: 4px;
+    }
+    .d-icon-counter .fa-2x {
+        font-size: 1em;
+    }
+    .character-info .name {
+        font-size: 1.8rem;
+    }
+    .d-icon-counter i {
+        top: 1px;
+    }
+    .d-icon-counter img{
+        width:16px;
+        height:16px;
+    }
+    .d-buff .img-lateral-dojo img{
+        width: 30px
+    }
+    .a-esquerda-batalha .a-habilidades-batalha, .b-direita-batalha .b-habilidades-batalha {
+        padding-top: 0rem;
+    }
+    .d-buff {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .d-buff div {
+        left: 3px !important;
+        top: 38px !important;
+        padding: 2px !important;
+    }
+    .d-buff img {
+        width: 30px !important;
+    }
+    .a-habilidades-batalha, .b-habilidades-batalha {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .a-esquerda-batalha .a-habilidades-batalha .d-buff, .b-direita-batalha .b-habilidades-batalha .d-buff {
+        flex: none;
+    }
+    .pvp-atk-filter {
+        font-size: 1.4rem;
+    }
+    .character-info .headline {
+        height: 45px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .esquerda-profile, .direita-profile {
+        width: 150px;
+    }
+    .centro-batalha {
+        width: 14%;
+    }
+    #d-atk-timer{
+        font-size:2rem;
+    }
+}
+@media only screen and (max-width: 340px) {
+  .esquerda-profile, .direita-profile {
+      width: 130px;
+  }
+  .centro-batalha {
+    width: 40px;
+  }
+  #d-atk-timer{
+    font-size:1.4rem;
+  }
+  .character-info .name {
+    font-size: 1.6rem;
+  }
+  .character-info .headline {
+    font-size: 1.3rem;
+  }
+  .player-info-box div {
+    font-size: 1.2rem;
+  }
+  .barra_exp4 #p{
+    width: 127px !important;
+  }
+  .cnPVPLog {
+    font-size: 1.4rem;
+  }
+  .character-info .headline {
+    height: 35px;
+  }
+}

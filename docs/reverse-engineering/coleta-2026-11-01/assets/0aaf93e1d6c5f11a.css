@@ -1,0 +1,190 @@
+.universal-tooltip-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000000;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.universal-tooltip-overlay .universal-tooltip {
+  transform: none !important;
+  top: inherit !important;
+  left: inherit !important;
+  position: relative !important;
+}
+
+.universal-tooltip-rarity-none {
+  --rarity-color: rgba(0, 0, 0, 0.1);
+  --rarity-text-color: #b4b4b4;
+}
+
+/* Raridade comum */
+.universal-tooltip-rarity-c {
+  --rarity-color: #b4b4b4;
+  --rarity-text-color: #b4b4b4;
+}
+
+/* Raridade raro */
+.universal-tooltip-rarity-r {
+  --rarity-color: #265ec1;
+  --rarity-text-color: #265ec1;
+}
+
+/* Raridade épico */
+.universal-tooltip-rarity-e {
+  --rarity-color: #df42b6;
+  --rarity-text-color: #df42b6;
+}
+
+/* Raridade lendário */
+.universal-tooltip-rarity-l {
+  --rarity-color: #d77810;
+  --rarity-text-color: #d77810;
+}
+
+/* Raridade set */
+.universal-tooltip-rarity-u {
+  --rarity-color: #489C33;
+  --rarity-text-color: #489C33;
+}
+
+.universal-tooltip {
+  z-index: 10000000000;
+  background-color: black;
+  color: white;
+  box-shadow: 0px 0px 15px var(--rarity-color);
+  border: solid 1px var(--rarity-color);
+  border-radius: 5px;
+  padding: 1rem;
+  min-width: 300px;
+  margin: 1rem;
+  --success-color: green;
+  --error-color: red;
+  --small-font-size: 12px;
+}
+
+.universal-tooltip .top {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.universal-tooltip .name-and-type {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.universal-tooltip .title {
+  color: var(--rarity-text-color);
+  font-size: 1.5rem;
+}
+
+.universal-tooltip .attributes {
+  padding: 1rem 0;
+}
+
+.universal-tooltip .attribute {
+  font-size: var(--small-font-size);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 28px;
+}
+
+.universal-tooltip .attribute img {
+  width: 22px;
+  height: 22px;
+  margin-right: 0.5rem;
+}
+
+.universal-tooltip .sign-positive {
+  color: var(--success-color);
+}
+
+.universal-tooltip .sign-negative {
+  color: var(--error-color);
+}
+
+.universal-tooltip .requirements {
+  font-size: var(--small-font-size);
+}
+
+.universal-tooltip .requirement-any::before {
+  content: "- ";
+}
+.universal-tooltip .requirement-met::before {
+  content: "• ";
+}
+
+.universal-tooltip .requirement-unmet::before {
+  content: "× ";
+}
+
+.universal-tooltip .requirement-met {
+  color: var(--success-color);
+}
+
+.universal-tooltip .requirement-unmet {
+  color: var(--error-color);
+}
+
+.universal-tooltip .consumes {
+  font-size: var(--small-font-size);
+}
+
+.universal-tooltip .consume-hp, .universal-tooltip .consume-sp, .universal-tooltip .consume-sta {
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.universal-tooltip .team-effect {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-top: dotted 1px #333;
+  border-bottom: dotted 1px #333;
+}
+
+.universal-tooltip .consume-hp {
+  background-image: url(/assets/images/logado/icones/p_hp.png);
+}
+
+.universal-tooltip .consume-sp {
+  background-image: url(/assets/images/logado/icones/p_chakra.png);
+}
+
+.universal-tooltip .consume-sta {
+  background-image: url(/assets/images/logado/icones/p_stamina.png);
+}
+
+.universal-tooltip .turns, .universal-tooltip .item-type, .universal-tooltip .rarity-name {
+  font-size: var(--small-font-size);
+}
+
+.universal-tooltip .turns {
+  margin-top: 3px;
+  text-align: right;
+}
+
+.universal-tooltip .chat-link {
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.25rem;
+  border-top: dotted 1px #eee;
+  text-transform: uppercase;
+  border: solid 1px #ccc;
+  padding: 0.25rem;
+  background-color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+}

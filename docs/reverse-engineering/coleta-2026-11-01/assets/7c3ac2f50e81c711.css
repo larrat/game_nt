@@ -1,0 +1,287 @@
+@media (max-width: 1024px) {
+  .box-principal {
+    justify-content: center;
+  }
+}
+/* box novo */
+.new-box{
+  width: 400px;
+  margin: 2rem;
+}
+.new-box2{
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -2px 6px 0px inset;
+  background-color: #333335;
+  color: #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+
+}
+.slick-current .new-box2{
+  background-color: #525253;
+}
+.new-box2 div{
+  margin-bottom: 1rem;
+}
+.new-box .image{
+  position: relative;
+  top: 50px;
+}
+.new-box .image img{
+  margin: auto !important;
+  border-radius: 10px;
+}
+.new-box2 .botoes{
+  display:flex;
+  justify-content: space-around;
+}
+/* box novo */
+
+.box-principal{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    text-align: center;
+}
+.box-principal .box-filhos{
+    border-radius: 10px;
+    padding: 3rem 1rem;
+    flex: 1 1 200px;
+    font-size: 1.6rem;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.box-principal .box-bijuus{
+    border-radius: 10px;
+    flex: 0 0 209px;
+    font-size: 1.6rem;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.box-principal .box-filhos2{
+    border-radius: 10px;
+    padding: 1rem 1rem;
+    flex: 1 1 200px;
+    font-size: 1.6rem;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.box-principal .box-filhos-size{
+    flex: 1 1 250px;
+}
+.box-principal .box-filhos-auto{
+  flex: 1;
+  padding: 1rem 1rem;
+}
+.box-principal .box-filhos-height{
+    height:300px;
+}
+.box-principal .box-filhos-size2{
+    flex: 0 0 250px;
+}
+.box-principal .box-filhos-size3{
+    flex: 0 0 145px;
+}
+.box-principal .box-filhos-size6{
+    flex: 0 0 175px;
+}
+.box-principal .box-filhos-size5{
+    flex: 1 1 35%;
+}
+
+.box-principal .box-filhos-size5 .atributos{
+    display: flex;
+    flex-wrap: wrap;
+}
+.box-principal .box-filhos-size5 .atributos div{
+    flex-basis: 20%;
+
+}
+.box-principal .box-filhos-size4{
+    flex: 1 1 100%;
+    border-radius: 10px;
+    padding: 3rem 1rem;
+    font-size: 1.6rem;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.box-principal .box-filhos img{
+    text-align: center;
+    display: inline-block;
+}
+.box-principal .box-filhos input, select, textarea{
+    font-size: 1.6rem !important;
+    height: auto !important;
+}
+.box-principal .box-filhos div .titulo{
+    font-size: 2rem;
+}
+
+input[type="radio"] {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+    transform: scale(1.5);
+}
+.box-principal .box-filhos .tipo-jutsu{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 6px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.box-principal .box-filhos .vila{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 6px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.box-principal .box-filhos .graduacao{
+    text-transform: uppercase;
+}
+
+.box-titulo{
+    font-size: 2rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-principal .box-filhos .botao a:hover{
+    text-decoration: none !important;
+}
+.box-principal .box-filhos a{
+    font-size: 1.8rem;
+}
+.box-principal .box-filhos a:hover{
+    text-decoration: underline !important;
+}
+.box-principal .box-filhos .titulo, .box-principal .box-bijuus .titulo{
+    font-size: 1.8rem;
+}
+.box-principal .box-filhos .descricao{
+    font-size: 1.4rem;
+}
+.box-principal .box-filhos .aprimoramentos{
+    justify-content: center;
+    display: flex;
+}
+.box-principal .box-filhos .custo{
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+.box-principal .box-filhos .botao{
+    margin-bottom: 2rem;
+}
+.box-principal .box-filhos div{
+    margin-bottom: 1rem;
+}
+.box-principal .box-filhos .expira{
+    width: 100%;
+    font-size: 1.3rem;
+}
+/*Box Medicinal*/
+
+.box-order-1{
+    order: 1
+}
+.box-order-2{
+    order: 0
+}
+.box-order-3{
+    order: 2
+}
+/* BOX de Level de Equipe, Vila e Organização */
+.box-principal-lvl{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    border-radius: 10px;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    flex: 1;
+}
+.box-principal-lvl2{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    
+}
+.box-principal-lvl3{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    
+}
+.box-principal-lvl3 button{
+    font-size: 1.4rem;
+}
+.box-principal-lvl2 .div-filhos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    flex: 1 1 200px;
+}
+.box-principal-lvl2 .div-filhos div{
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.box-principal-lvl2 .div-filhos h4{
+    font-size: 2rem;
+}
+.box-principal-lvl2 .div-filhos span{
+    font-size: 1.5rem;
+}
+.box-basis-10{
+    flex-basis: 10%;
+}
+.box-basis-100{
+    flex-basis: 100%;
+}
+.box-principal-lvl .level p{
+    font-size: 2rem;
+    color: #4f4f4f;
+    margin: 0rem !important;
+}
+.box-principal-lvl .level b{
+    font-size: 6rem;
+}
+.box-principal-lvl-filhos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/* BOX de Level de Equipe, Vila e Organização */
+@media only screen and (max-width: 900px) {
+    .box-principal .box-filhos-size5{
+        flex: 1 1 50%;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .box-principal-lvl-filhos,.box-principal-lvl3 {
+        justify-content: center;
+    }
+    
+}

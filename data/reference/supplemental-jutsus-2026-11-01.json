@@ -1,0 +1,1257 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-11-01",
+  "total": 19,
+  "combinedUniqueWithPrevious": 719,
+  "warning": "Contexto Taijutsu; payload de tooltip pode conter valores brutos diferentes dos requisitos renderizados. Não ativar como regras sem normalização e testes.",
+  "jutsus": [
+    {
+      "id": "i-jutsu-1748",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/chyiute_jutsu.gif",
+      "name": "Chiyute no Jutsu",
+      "rank": "Genin",
+      "requirementsDisplayed": [
+        "Requer 8 ponto(s) em selo",
+        "Requer graduação: Genin",
+        "Requer a Especialização: Mestre Medicinal Level 1"
+      ],
+      "tooltipData": {
+        "requirements": {
+          "req_level": null,
+          "req_graduacao": 2,
+          "req_tai": 0,
+          "req_ken": 0,
+          "req_nin": 0,
+          "req_gen": 0,
+          "req_agi": 0,
+          "req_con": 15,
+          "req_for": 0,
+          "req_ene": 0,
+          "req_int": 0,
+          "req_res": 0,
+          "req_no_selo": "0",
+          "req_arvore_gasto": 0,
+          "req_no_cla": "0",
+          "req_no_portao": "0",
+          "req_no_karma": "0",
+          "req_no_sennin": "0",
+          "req_battle": 0,
+          "req_sensei_battle": 0,
+          "req_especializacao": [
+            21958
+          ],
+          "id_cla": null,
+          "id_selo": null,
+          "id_invocacao": null,
+          "id_sennin": null,
+          "id_elemento": null,
+          "id_elemento2": null
+        },
+        "consume_sp": 90,
+        "consume_sta": 90,
+        "bonus_hp": 150,
+        "turnos": 4,
+        "cooldown": 4,
+        "tipo_bonus": 1,
+        "id": 1748,
+        "id_tipo": 24,
+        "sem_turno": 0,
+        "imagem": "https://narutogame.com.br:443/assets/images/logado/jutsu/chyiute_jutsu.gif",
+        "nome_br": "Chiyute no Jutsu",
+        "nome_en": "Chiyute no Jutsu",
+        "raridade": "comum"
+      },
+      "tooltipDataStatus": "DOM payload; valores brutos exigem comparação com texto renderizado",
+      "category": "medicinais",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/medicinais-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/bea0a28190fd325c.gif"
+    },
+    {
+      "id": "i-jutsu-1749",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/shousen_jutsu.jpg",
+      "name": "Shousen no Jutsu",
+      "rank": "Chuunin",
+      "requirementsDisplayed": [
+        "Requer 15 ponto(s) em selo",
+        "Requer graduação: Chuunin",
+        "Requer a Especialização: Mestre Medicinal Level 2"
+      ],
+      "tooltipData": {
+        "requirements": {
+          "req_level": null,
+          "req_graduacao": 3,
+          "req_tai": 0,
+          "req_ken": 0,
+          "req_nin": 0,
+          "req_gen": 0,
+          "req_agi": 0,
+          "req_con": 30,
+          "req_for": 0,
+          "req_ene": 0,
+          "req_int": 0,
+          "req_res": 0,
+          "req_no_selo": "0",
+          "req_arvore_gasto": 0,
+          "req_no_cla": "0",
+          "req_no_portao": "0",
+          "req_no_karma": "0",
+          "req_no_sennin": "0",
+          "req_battle": 0,
+          "req_sensei_battle": 0,
+          "req_especializacao": [
+            21959
+          ],
+          "id_cla": null,
+          "id_selo": null,
+          "id_invocacao": null,
+          "id_sennin": null,
+          "id_elemento": null,
+          "id_elemento2": null
+        },
+        "consume_sp": 150,
+        "consume_sta": 150,
+        "bonus_sp": 250,
+        "turnos": 4,
+        "cooldown": 4,
+        "tipo_bonus": 1,
+        "id": 1749,
+        "id_tipo": 24,
+        "sem_turno": 0,
+        "imagem": "https://narutogame.com.br:443/assets/images/logado/jutsu/shousen_jutsu.jpg",
+        "nome_br": "Shousen no Jutsu",
+        "nome_en": "Shousen no Jutsu",
+        "raridade": "comum"
+      },
+      "tooltipDataStatus": "DOM payload; valores brutos exigem comparação com texto renderizado",
+      "category": "medicinais",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/medicinais-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/68f41ebbcbc7b8e0.jpg"
+    },
+    {
+      "id": "i-jutsu-1750",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/inyu_shometsu.jpg",
+      "name": "Inyu Shometsu",
+      "rank": "Jounin",
+      "requirementsDisplayed": [
+        "Requer 23 ponto(s) em selo",
+        "Requer graduação: Jounin",
+        "Requer a Especialização: Mestre Medicinal Level 3"
+      ],
+      "tooltipData": {
+        "requirements": {
+          "req_level": null,
+          "req_graduacao": 4,
+          "req_tai": 0,
+          "req_ken": 0,
+          "req_nin": 0,
+          "req_gen": 0,
+          "req_agi": 0,
+          "req_con": 45,
+          "req_for": 0,
+          "req_ene": 0,
+          "req_int": 0,
+          "req_res": 0,
+          "req_no_selo": "0",
+          "req_arvore_gasto": 0,
+          "req_no_cla": "0",
+          "req_no_portao": "0",
+          "req_no_karma": "0",
+          "req_no_sennin": "0",
+          "req_battle": 0,
+          "req_sensei_battle": 0,
+          "req_especializacao": [
+            21960
+          ],
+          "id_cla": null,
+          "id_selo": null,
+          "id_invocacao": null,
+          "id_sennin": null,
+          "id_elemento": null,
+          "id_elemento2": null
+        },
+        "consume_sp": 160,
+        "consume_sta": 160,
+        "bonus_sta": 250,
+        "turnos": 8,
+        "cooldown": 8,
+        "tipo_bonus": 1,
+        "id": 1750,
+        "id_tipo": 24,
+        "sem_turno": 0,
+        "imagem": "https://narutogame.com.br:443/assets/images/logado/jutsu/inyu_shometsu.jpg",
+        "nome_br": "Inyu Shometsu",
+        "nome_en": "Inyu Shometsu",
+        "raridade": "comum"
+      },
+      "tooltipDataStatus": "DOM payload; valores brutos exigem comparação com texto renderizado",
+      "category": "medicinais",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/medicinais-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/6d99d93e843acbe7.jpg"
+    },
+    {
+      "id": "i-jutsu-1751",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/chikatsu_saisei.jpg",
+      "name": "Chikatsu Saisei no Jutsu",
+      "rank": "ANBU",
+      "requirementsDisplayed": [
+        "Requer 30 ponto(s) em selo",
+        "Requer graduação: ANBU",
+        "Requer a Especialização: Mestre Medicinal Level 4"
+      ],
+      "tooltipData": {
+        "requirements": {
+          "req_level": null,
+          "req_graduacao": 5,
+          "req_tai": 0,
+          "req_ken": 0,
+          "req_nin": 0,
+          "req_gen": 0,
+          "req_agi": 0,
+          "req_con": 60,
+          "req_for": 0,
+          "req_ene": 0,
+          "req_int": 0,
+          "req_res": 0,
+          "req_no_selo": "0",
+          "req_arvore_gasto": 0,
+          "req_no_cla": "0",
+          "req_no_portao": "0",
+          "req_no_karma": "0",
+          "req_no_sennin": "0",
+          "req_battle": 0,
+          "req_sensei_battle": 0,
+          "req_especializacao": [
+            21961
+          ],
+          "id_cla": null,
+          "id_selo": null,
+          "id_invocacao": null,
+          "id_sennin": null,
+          "id_elemento": null,
+          "id_elemento2": null
+        },
+        "consume_sp": 260,
+        "consume_sta": 260,
+        "bonus_hp": 400,
+        "turnos": 10,
+        "cooldown": 10,
+        "tipo_bonus": 1,
+        "id": 1751,
+        "id_tipo": 24,
+        "sem_turno": 0,
+        "imagem": "https://narutogame.com.br:443/assets/images/logado/jutsu/chikatsu_saisei.jpg",
+        "nome_br": "Chikatsu Saisei no Jutsu",
+        "nome_en": "Chikatsu Saisei no Jutsu",
+        "raridade": "comum"
+      },
+      "tooltipDataStatus": "DOM payload; valores brutos exigem comparação com texto renderizado",
+      "category": "medicinais",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/medicinais-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/5ac209f9d74e4b21.jpg"
+    },
+    {
+      "id": "i-jutsu-1752",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/souzou_saisei.jpg",
+      "name": "Souzou Saisei",
+      "rank": "Sannin da Folha",
+      "requirementsDisplayed": [
+        "Requer 38 ponto(s) em selo",
+        "Requer graduação: Sannin da Folha",
+        "Requer a Especialização: Mestre Medicinal Level 5"
+      ],
+      "tooltipData": {
+        "requirements": {
+          "req_level": null,
+          "req_graduacao": 6,
+          "req_tai": 0,
+          "req_ken": 0,
+          "req_nin": 0,
+          "req_gen": 0,
+          "req_agi": 0,
+          "req_con": 75,
+          "req_for": 0,
+          "req_ene": 0,
+          "req_int": 0,
+          "req_res": 0,
+          "req_no_selo": "0",
+          "req_arvore_gasto": 0,
+          "req_no_cla": "0",
+          "req_no_portao": "0",
+          "req_no_karma": "0",
+          "req_no_sennin": "0",
+          "req_battle": 0,
+          "req_sensei_battle": 0,
+          "req_especializacao": [
+            21962
+          ],
+          "id_cla": null,
+          "id_selo": null,
+          "id_invocacao": null,
+          "id_sennin": null,
+          "id_elemento": null,
+          "id_elemento2": null
+        },
+        "consume_sp": 330,
+        "consume_sta": 330,
+        "bonus_hp": 500,
+        "turnos": 12,
+        "cooldown": 12,
+        "tipo_bonus": 1,
+        "id": 1752,
+        "id_tipo": 24,
+        "sem_turno": 0,
+        "imagem": "https://narutogame.com.br:443/assets/images/logado/jutsu/souzou_saisei.jpg",
+        "nome_br": "Souzou Saisei",
+        "nome_en": "Souzou Saisei",
+        "raridade": "comum"
+      },
+      "tooltipDataStatus": "DOM payload; valores brutos exigem comparação com texto renderizado",
+      "category": "medicinais",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/medicinais-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/e12a324d65b99d80.jpg"
+    },
+    {
+      "id": "i-jutsu-21917",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/edo-tensei.jpg",
+      "name": "Kinjutsu • Edo Tensei",
+      "rank": "Genin",
+      "requirementsDisplayed": [
+        "Requer graduação: Genin",
+        "Requer a Especialização: Mestre Kinjutsu Level 1"
+      ],
+      "tooltipData": {
+        "requirements": {
+          "req_level": null,
+          "req_graduacao": 2,
+          "req_tai": 0,
+          "req_ken": 0,
+          "req_nin": 0,
+          "req_gen": 0,
+          "req_agi": 0,
+          "req_con": 0,
+          "req_for": 0,
+          "req_ene": 0,
+          "req_int": 0,
+          "req_res": 0,
+          "req_no_selo": "0",
+          "req_arvore_gasto": 0,
+          "req_no_cla": "0",
+          "req_no_portao": "0",
+          "req_no_karma": "0",
+          "req_no_sennin": "0",
+          "req_battle": 0,
+          "req_sensei_battle": 0,
+          "req_especializacao": [
+            21973
+          ],
+          "id_cla": null,
+          "id_selo": null,
+          "id_invocacao": null,
+          "id_sennin": null,
+          "id_elemento": null,
+          "id_elemento2": null
+        },
+        "atk_fisico": 10,
+        "consume_hp": 40,
+        "consume_sp": 40,
+        "consume_sta": 40,
+        "bonus_hp": 20,
+        "bonus_sp": 20,
+        "bonus_sta": 20,
+        "id": 21917,
+        "id_tipo": 37,
+        "sem_turno": 0,
+        "imagem": "https://narutogame.com.br:443/assets/images/logado/jutsu/edo-tensei.jpg",
+        "nome_br": "Kinjutsu &bull; Edo Tensei",
+        "nome_en": "Kinjutsu &bull; Edo Tensei",
+        "raridade": "comum",
+        "kinjutsuDirection": "P",
+        "kinjutsuType": "O"
+      },
+      "tooltipDataStatus": "DOM payload; valores brutos exigem comparação com texto renderizado",
+      "category": "kinjutsus",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/kinjutsus-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/869259826377daf8.jpg"
+    },
+    {
+      "id": "i-jutsu-21991",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/Souzou-Saise-no-Jutsu.jpg",
+      "name": "Kinjutsu • Souzou Saise no Jutsu",
+      "rank": "Chuunin",
+      "requirementsDisplayed": [
+        "Requer graduação: Chuunin",
+        "Requer a Especialização: Mestre Kinjutsu Level 2"
+      ],
+      "tooltipData": {
+        "requirements": {
+          "req_level": null,
+          "req_graduacao": 3,
+          "req_tai": 0,
+          "req_ken": 0,
+          "req_nin": 0,
+          "req_gen": 0,
+          "req_agi": 0,
+          "req_con": 0,
+          "req_for": 0,
+          "req_ene": 0,
+          "req_int": 0,
+          "req_res": 0,
+          "req_no_selo": "0",
+          "req_arvore_gasto": 0,
+          "req_no_cla": "0",
+          "req_no_portao": "0",
+          "req_no_karma": "0",
+          "req_no_sennin": "0",
+          "req_battle": 0,
+          "req_sensei_battle": 0,
+          "req_especializacao": [
+            21974
+          ],
+          "id_cla": null,
+          "id_selo": null,
+          "id_invocacao": null,
+          "id_sennin": null,
+          "id_elemento": null,
+          "id_elemento2": null
+        },
+        "consume_hp": 30,
+        "consume_sp": 30,
+        "consume_sta": 30,
+        "bonus_hp": 30,
+        "bonus_sp": 30,
+        "bonus_sta": 30,
+        "id": 21991,
+        "id_tipo": 37,
+        "sem_turno": 0,
+        "imagem": "https://narutogame.com.br:443/assets/images/logado/jutsu/Souzou-Saise-no-Jutsu.jpg",
+        "nome_br": "Kinjutsu &bull; Souzou Saise no Jutsu",
+        "nome_en": "Kinjutsu &bull; Souzou Saise no Jutsu",
+        "raridade": "comum",
+        "kinjutsuDirection": "P",
+        "kinjutsuType": "O"
+      },
+      "tooltipDataStatus": "DOM payload; valores brutos exigem comparação com texto renderizado",
+      "category": "kinjutsus",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/kinjutsus-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/f1f8bfc52958cded.jpg"
+    },
+    {
+      "id": "i-jutsu-21992",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/Ninpou-Souja-Sousa-no-Jutsu.jpg",
+      "name": "Kinjutsu • Souja Sousa no Jutsu",
+      "rank": "Jounin",
+      "requirementsDisplayed": [
+        "Requer graduação: Jounin",
+        "Requer a Especialização: Mestre Kinjutsu Level 3"
+      ],
+      "tooltipData": {
+        "requirements": {
+          "req_level": null,
+          "req_graduacao": 4,
+          "req_tai": 0,
+          "req_ken": 0,
+          "req_nin": 0,
+          "req_gen": 0,
+          "req_agi": 0,
+          "req_con": 0,
+          "req_for": 0,
+          "req_ene": 0,
+          "req_int": 0,
+          "req_res": 0,
+          "req_no_selo": "0",
+          "req_arvore_gasto": 0,
+          "req_no_cla": "0",
+          "req_no_portao": "0",
+          "req_no_karma": "0",
+          "req_no_sennin": "0",
+          "req_battle": 0,
+          "req_sensei_battle": 0,
+          "req_especializacao": [
+            21975
+          ],
+          "id_cla": null,
+          "id_selo": null,
+          "id_invocacao": null,
+          "id_sennin": null,
+          "id_elemento": null,
+          "id_elemento2": null
+        },
+        "consume_hp": 30,
+        "consume_sp": 30,
+        "consume_sta": 30,
+        "bonus_hp": 10,
+        "bonus_sp": 10,
+        "bonus_sta": 10,
+        "tipo_bonus": 1,
+        "id": 21992,
+        "id_tipo": 37,
+        "sem_turno": 0,
+        "imagem": "https://narutogame.com.br:443/assets/images/logado/jutsu/Ninpou-Souja-Sousa-no-Jutsu.jpg",
+        "nome_br": "Kinjutsu &bull; Souja Sousa no Jutsu",
+        "nome_en": "Kinjutsu &bull; Souja Sousa no Jutsu",
+        "raridade": "comum",
+        "kinjutsuDirection": "E",
+        "kinjutsuType": "O"
+      },
+      "tooltipDataStatus": "DOM payload; valores brutos exigem comparação com texto renderizado",
+      "category": "kinjutsus",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/kinjutsus-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/7326edb536f13fad.jpg"
+    },
+    {
+      "id": "i-jutsu-21993",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/Gedou.jpg",
+      "name": "Kinjutsu • Gedou",
+      "rank": "ANBU",
+      "requirementsDisplayed": [
+        "Requer graduação: ANBU",
+        "Requer a Especialização: Mestre Kinjutsu Level 4"
+      ],
+      "tooltipData": {
+        "requirements": {
+          "req_level": null,
+          "req_graduacao": 5,
+          "req_tai": 0,
+          "req_ken": 0,
+          "req_nin": 0,
+          "req_gen": 0,
+          "req_agi": 0,
+          "req_con": 0,
+          "req_for": 0,
+          "req_ene": 0,
+          "req_int": 0,
+          "req_res": 0,
+          "req_no_selo": "0",
+          "req_arvore_gasto": 0,
+          "req_no_cla": "0",
+          "req_no_portao": "0",
+          "req_no_karma": "0",
+          "req_no_sennin": "0",
+          "req_battle": 0,
+          "req_sensei_battle": 0,
+          "req_especializacao": [
+            21976
+          ],
+          "id_cla": null,
+          "id_selo": null,
+          "id_invocacao": null,
+          "id_sennin": null,
+          "id_elemento": null,
+          "id_elemento2": null
+        },
+        "consume_hp": 50,
+        "consume_sp": 50,
+        "consume_sta": 50,
+        "bonus_hp": 5,
+        "bonus_sp": 5,
+        "bonus_sta": 5,
+        "tipo_bonus": 1,
+        "bonus_treino": 1,
+        "id": 21993,
+        "id_tipo": 37,
+        "sem_turno": 0,
+        "imagem": "https://narutogame.com.br:443/assets/images/logado/jutsu/Gedou.jpg",
+        "nome_br": "Kinjutsu &bull; Gedou",
+        "nome_en": "Kinjutsu &bull; Gedou",
+        "raridade": "comum",
+        "kinjutsuDirection": "E",
+        "kinjutsuType": "A"
+      },
+      "tooltipDataStatus": "DOM payload; valores brutos exigem comparação com texto renderizado",
+      "category": "kinjutsus",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/kinjutsus-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/54efe6b36f36df36.jpg"
+    },
+    {
+      "id": "i-jutsu-1494919",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma9.jpg",
+      "name": "Transformação otsutsuki",
+      "rank": "Genin",
+      "requirements": [
+        "Requer graduação: Genin",
+        "Requer o item: Karma - Estágio 1",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:5 em Ninjutsu5 em Genjutsu",
+        "5 em Ninjutsu",
+        "5 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Transformação otsutsuki"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Buff"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Efeitos no seu personagem"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/target2.png"
+            ],
+            "text": "Incremento de Crítico"
+          },
+          {
+            "icons": [],
+            "text": "15"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/target2.png"
+            ],
+            "text": "Concentração"
+          },
+          {
+            "icons": [],
+            "text": "15"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 22 2 Intervalo de uso: 99 turno(s) Duração: 99 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Transformação otsutsuki</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Buff\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">Efeitos no seu personagem</td>\n\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\"> Incremento de Crítico</td>\n\t\t\t\t\t<td>\n\n\t\t\t\t\t15\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\"> Concentração</td>\n\t\t\t\t\t<td>\n\n\t\t\t\t\t15\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 22\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 2\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 99 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t\tDuração: 99 turno(s)\n\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 44 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 4\t\t",
+      "tooltipText": "Transformação otsutsuki Jutsu - Buff Valores para Combate Efeitos no seu personagem Incremento de Crítico 15 Concentração 15 Custo em batalha 22 2 Intervalo de uso: 99 turno(s) Duração: 99 turno(s) Aprenda esse jutsu com: 44 4",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/1abc4fe9309e426c.jpg"
+    },
+    {
+      "id": "i-jutsu-1494911",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma1.jpg",
+      "name": "Desvanescimento de Chakra",
+      "rank": "Genin",
+      "requirements": [
+        "Requer 9 ponto(s) em selo",
+        "Requer 20 ponto(s) em inteligência",
+        "Requer graduação: Genin",
+        "Requer o item: Karma - Estágio 1",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:13 em Ninjutsu13 em Genjutsu",
+        "13 em Ninjutsu",
+        "13 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Desvanescimento de Chakra"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Técnica de Ataque"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png"
+            ],
+            "text": "Ataque ( Nin / Gen )"
+          },
+          {
+            "icons": [],
+            "text": "+ 61"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 71 12 Intervalo de uso: 4 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Desvanescimento de Chakra</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\"> Ataque ( Nin / Gen )</td>\n\t\t\t\t\t<td align=\"left\">+ 61</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 71\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 12\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 4 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 142 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 24\t\t",
+      "tooltipText": "Desvanescimento de Chakra Jutsu - Técnica de Ataque Valores para Combate Ataque ( Nin / Gen ) + 61 Custo em batalha 71 12 Intervalo de uso: 4 turno(s) Aprenda esse jutsu com: 142 24",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/262f4777b934c737.jpg"
+    },
+    {
+      "id": "i-jutsu-1494912",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma2.jpg",
+      "name": "Portal Espaço-Temporal",
+      "rank": "Chuunin",
+      "requirements": [
+        "Requer 10 ponto(s) em selo",
+        "Requer 24 ponto(s) em inteligência",
+        "Requer graduação: Chuunin",
+        "Requer o item: Karma - Estágio 2",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:16 em Ninjutsu16 em Genjutsu",
+        "16 em Ninjutsu",
+        "16 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Portal Espaço-Temporal"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Técnica de Ataque"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png"
+            ],
+            "text": "Ataque ( Nin / Gen )"
+          },
+          {
+            "icons": [],
+            "text": "+ 74"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 86 14 Intervalo de uso: 4 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Portal Espaço-Temporal</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\"> Ataque ( Nin / Gen )</td>\n\t\t\t\t\t<td align=\"left\">+ 74</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 86\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 14\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 4 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 172 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 28\t\t",
+      "tooltipText": "Portal Espaço-Temporal Jutsu - Técnica de Ataque Valores para Combate Ataque ( Nin / Gen ) + 74 Custo em batalha 86 14 Intervalo de uso: 4 turno(s) Aprenda esse jutsu com: 172 28",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/362c487e898c41b0.jpg"
+    },
+    {
+      "id": "i-jutsu-1494913",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma3.jpg",
+      "name": "Karma: Destruição",
+      "rank": "Chuunin",
+      "requirements": [
+        "Requer 15 ponto(s) em selo",
+        "Requer 34 ponto(s) em inteligência",
+        "Requer graduação: Chuunin",
+        "Requer o item: Karma - Estágio 2",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:23 em Ninjutsu23 em Genjutsu",
+        "23 em Ninjutsu",
+        "23 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Karma: Destruição"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Técnica de Ataque"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png"
+            ],
+            "text": "Ataque ( Nin / Gen )"
+          },
+          {
+            "icons": [],
+            "text": "+ 108"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 124 21 Intervalo de uso: 6 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Karma: Destruição</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\"> Ataque ( Nin / Gen )</td>\n\t\t\t\t\t<td align=\"left\">+ 108</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 124\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 21\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 6 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 248 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 42\t\t",
+      "tooltipText": "Karma: Destruição Jutsu - Técnica de Ataque Valores para Combate Ataque ( Nin / Gen ) + 108 Custo em batalha 124 21 Intervalo de uso: 6 turno(s) Aprenda esse jutsu com: 248 42",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/9dfeb97f1c7f2310.jpg"
+    },
+    {
+      "id": "i-jutsu-1494914",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma4.jpg",
+      "name": "Karma: Esfera de Destruição",
+      "rank": "Jounin",
+      "requirements": [
+        "Requer 16 ponto(s) em selo",
+        "Requer 40 ponto(s) em inteligência",
+        "Requer graduação: Jounin",
+        "Requer o item: Karma - Estágio 4",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:26 em Ninjutsu26 em Genjutsu",
+        "26 em Ninjutsu",
+        "26 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Karma: Esfera de Destruição"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Técnica de Ataque"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png"
+            ],
+            "text": "Ataque ( Nin / Gen )"
+          },
+          {
+            "icons": [],
+            "text": "+ 121"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 139 23 Intervalo de uso: 6 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Karma: Esfera de Destruição</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\"> Ataque ( Nin / Gen )</td>\n\t\t\t\t\t<td align=\"left\">+ 121</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 139\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 23\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 6 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 278 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 46\t\t",
+      "tooltipText": "Karma: Esfera de Destruição Jutsu - Técnica de Ataque Valores para Combate Ataque ( Nin / Gen ) + 121 Custo em batalha 139 23 Intervalo de uso: 6 turno(s) Aprenda esse jutsu com: 278 46",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/39b2367ce7dd8811.jpg"
+    },
+    {
+      "id": "i-jutsu-1494915",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma5.jpg",
+      "name": "Técnica Parasita",
+      "rank": "Jounin",
+      "requirements": [
+        "Requer 21 ponto(s) em selo",
+        "Requer 50 ponto(s) em inteligência",
+        "Requer graduação: Jounin",
+        "Requer o item: Karma - Estágio 4",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:33 em Ninjutsu33 em Genjutsu",
+        "33 em Ninjutsu",
+        "33 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Técnica Parasita"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Técnica de Ataque"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png"
+            ],
+            "text": "Ataque ( Nin / Gen )"
+          },
+          {
+            "icons": [],
+            "text": "+ 153"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 177 30 Intervalo de uso: 8 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Técnica Parasita</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\"> Ataque ( Nin / Gen )</td>\n\t\t\t\t\t<td align=\"left\">+ 153</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 177\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 30\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 8 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 354 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 60\t\t",
+      "tooltipText": "Técnica Parasita Jutsu - Técnica de Ataque Valores para Combate Ataque ( Nin / Gen ) + 153 Custo em batalha 177 30 Intervalo de uso: 8 turno(s) Aprenda esse jutsu com: 354 60",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/ea94708046c9e929.jpg"
+    },
+    {
+      "id": "i-jutsu-1494920",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma10.jpg",
+      "name": "Transformação otsutsuki",
+      "rank": "ANBU",
+      "requirements": [
+        "Requer graduação: ANBU",
+        "Requer o item: Karma - Estágio 5",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:35 em Ninjutsu35 em Genjutsu",
+        "35 em Ninjutsu",
+        "35 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Transformação otsutsuki"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Buff"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Efeitos no seu personagem"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/target2.png"
+            ],
+            "text": "Incremento de Crítico"
+          },
+          {
+            "icons": [],
+            "text": "20"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/target2.png"
+            ],
+            "text": "Concentração"
+          },
+          {
+            "icons": [],
+            "text": "20"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 166 16 Intervalo de uso: 99 turno(s) Duração: 99 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Transformação otsutsuki</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Buff\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">Efeitos no seu personagem</td>\n\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\"> Incremento de Crítico</td>\n\t\t\t\t\t<td>\n\n\t\t\t\t\t20\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/target2.png\"> Concentração</td>\n\t\t\t\t\t<td>\n\n\t\t\t\t\t20\t\t\t\t\t</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 166\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 16\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 99 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t\tDuração: 99 turno(s)\n\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 332 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 32\t\t",
+      "tooltipText": "Transformação otsutsuki Jutsu - Buff Valores para Combate Efeitos no seu personagem Incremento de Crítico 20 Concentração 20 Custo em batalha 166 16 Intervalo de uso: 99 turno(s) Duração: 99 turno(s) Aprenda esse jutsu com: 332 32",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/09b030e0bafb3ddd.jpg"
+    },
+    {
+      "id": "i-jutsu-1494916",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma6.jpg",
+      "name": "Super Rasengan Gigante",
+      "rank": "ANBU",
+      "requirements": [
+        "Requer 22 ponto(s) em selo",
+        "Requer 54 ponto(s) em inteligência",
+        "Requer graduação: ANBU",
+        "Requer o item: Karma - Estágio 5",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:36 em Ninjutsu36 em Genjutsu",
+        "36 em Ninjutsu",
+        "36 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Super Rasengan Gigante"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Técnica de Ataque"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png"
+            ],
+            "text": "Ataque ( Nin / Gen )"
+          },
+          {
+            "icons": [],
+            "text": "+ 166"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 192 32 Intervalo de uso: 8 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Super Rasengan Gigante</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\"> Ataque ( Nin / Gen )</td>\n\t\t\t\t\t<td align=\"left\">+ 166</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 192\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 32\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 8 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 384 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 64\t\t",
+      "tooltipText": "Super Rasengan Gigante Jutsu - Técnica de Ataque Valores para Combate Ataque ( Nin / Gen ) + 166 Custo em batalha 192 32 Intervalo de uso: 8 turno(s) Aprenda esse jutsu com: 384 64",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/1296a94875d8e6eb.jpg"
+    },
+    {
+      "id": "i-jutsu-1494917",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma7.jpg",
+      "name": "Sukunahikona",
+      "rank": "ANBU",
+      "requirements": [
+        "Requer 27 ponto(s) em selo",
+        "Requer 64 ponto(s) em inteligência",
+        "Requer graduação: ANBU",
+        "Requer o item: Karma - Estágio 5",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:43 em Ninjutsu43 em Genjutsu",
+        "43 em Ninjutsu",
+        "43 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Sukunahikona"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Técnica de Ataque"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png"
+            ],
+            "text": "Ataque ( Nin / Gen )"
+          },
+          {
+            "icons": [],
+            "text": "+ 199"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 230 37 Intervalo de uso: 10 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Sukunahikona</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\"> Ataque ( Nin / Gen )</td>\n\t\t\t\t\t<td align=\"left\">+ 199</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 230\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 37\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 10 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 460 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 74\t\t",
+      "tooltipText": "Sukunahikona Jutsu - Técnica de Ataque Valores para Combate Ataque ( Nin / Gen ) + 199 Custo em batalha 230 37 Intervalo de uso: 10 turno(s) Aprenda esse jutsu com: 460 74",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/cab0643b45f1f251.jpg"
+    },
+    {
+      "id": "i-jutsu-1494918",
+      "image": "https://narutogame.com.br/assets/images/logado/jutsu/jutsu_karma8.jpg",
+      "name": "Daikokuten",
+      "rank": "Sannin da Folha",
+      "requirements": [
+        "Requer 28 ponto(s) em selo",
+        "Requer 70 ponto(s) em inteligência",
+        "Requer graduação: Sannin da Folha",
+        "Requer o item: Karma - Estágio Final",
+        "Requer o total de pontos em QUALQUER um dos atributos abaixo:46 em Ninjutsu46 em Genjutsu",
+        "46 em Ninjutsu",
+        "46 em Genjutsu"
+      ],
+      "rows": [
+        [
+          {
+            "icons": [],
+            "text": "Daikokuten"
+          }
+        ],
+        [],
+        [
+          {
+            "icons": [],
+            "text": "Jutsu - Técnica de Ataque"
+          }
+        ],
+        [
+          {
+            "icons": [],
+            "text": "Valores para Combate"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/atk_magico.png"
+            ],
+            "text": "Ataque ( Nin / Gen )"
+          },
+          {
+            "icons": [],
+            "text": "+ 212"
+          }
+        ],
+        [
+          {
+            "icons": [
+              "https://narutogame.com.br/assets/images/logado/icones/p_chakra.png",
+              "https://narutogame.com.br/assets/images/logado/icones/p_stamina.png"
+            ],
+            "text": "Custo em batalha 245 41 Intervalo de uso: 10 turno(s)"
+          }
+        ]
+      ],
+      "tooltipMarkup": "\n\t\t<table border=\"0\" cellpadding=\"2\" cellspacing=\"2\" style=\"width:255px !important;\">\n\t\t<tbody><tr>\n\t\t\t<td colspan=\"6\"><strong class=\"azul\" style=\"font-size:16px\">Daikokuten</strong><br></td>\n\t\t</tr>\n        <tr>\n  \t\t\t  \t\t\t\t\t\t\t\t</tr>\n        <tr>\n\t\t\t<td colspan=\"6\" style=\"font-size:14px\">\n\t\t\t\tJutsu\t\t\t\t - Técnica de Ataque\t\t\t</td>\n\t\t</tr>\n    \t\t\t<tr>\n\t\t\t<td colspan=\"6\"><span class=\"laranja\">Valores para Combate</span><hr></td>\n\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td><img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/atk_magico.png\"> Ataque ( Nin / Gen )</td>\n\t\t\t\t\t<td align=\"left\">+ 212</td>\n\t\t\t\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>\n\t\t\t\t\t<td colspan=\"6\">\n\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCusto em batalha\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 245\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 41\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIntervalo de uso: 10 turno(s)\n\t\t\t\t\t\t\t\t\t\t\t\t<hr>\n\t\t\t</td>\n        \t\t</tr>\n\t\t</tbody></table>\n\t\t\t<hr>Aprenda esse jutsu com:<img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_chakra.png\"> 490 <img align=\"absmiddle\" src=\"https://narutogame.com.br:443/assets/images/logado/icones/p_stamina.png\"> 82\t\t",
+      "tooltipText": "Daikokuten Jutsu - Técnica de Ataque Valores para Combate Ataque ( Nin / Gen ) + 212 Custo em batalha 245 41 Intervalo de uso: 10 turno(s) Aprenda esse jutsu com: 490 82",
+      "category": "karma",
+      "observedInClass": "Taijutsu",
+      "sourceFile": "docs/reverse-engineering/coleta-2026-11-01/karma-jutsus.json",
+      "status": "observed_reference_not_combat_validated",
+      "localImage": "assets/615a11668367a418.jpg"
+    }
+  ],
+  "assetBasePath": "docs/reverse-engineering/coleta-2026-11-01"
+}

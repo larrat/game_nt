@@ -1,0 +1,207 @@
+{
+  "requirements": [],
+  "selects": [
+    {
+      "id": "sPlayerTitulo",
+      "name": "sPlayerTitulo",
+      "options": [
+        {
+          "label": "Nenhum(a)",
+          "value": "MA%3D%3D"
+        },
+        {
+          "label": "Genin",
+          "value": "MTUxOTc%3D"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-ene",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        },
+        {
+          "label": "1",
+          "value": "1"
+        },
+        {
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
+        },
+        {
+          "label": "4",
+          "value": "4"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-tai",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-ken",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-nin",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-gen",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-agi",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-con",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        },
+        {
+          "label": "1",
+          "value": "1"
+        },
+        {
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-forc",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-inte",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        },
+        {
+          "label": "1",
+          "value": "1"
+        },
+        {
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-res",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-esq",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-det",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-conv",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        },
+        {
+          "label": "1",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "id": "invocacao-selector-conc",
+      "name": "",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        },
+        {
+          "label": "1",
+          "value": "1"
+        }
+      ]
+    }
+  ]
+}

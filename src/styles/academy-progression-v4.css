@@ -1,0 +1,164 @@
+/* Kurokage v4 — progression routes, shared presentation without changing formulas.
+   Progression, rank and item actions stay in the page/RPC domain. */
+.app :is(.kuro-training-v4,.kuro-techniques-v4,.kuro-elements-v4,.kuro-ranks-v4,.kuro-enhance-v4) {
+  color:var(--kuro-copy);min-width:0;
+}
+.app .kuro-progression-v4__metrics {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--kuro-gap);margin:16px 0 24px;
+}
+.app .kuro-progression-v4__metric {
+  display:flex;flex-direction:column;gap:5px;min-width:0;
+  padding:18px 19px;
+  border:1px solid var(--kuro-line);border-radius:var(--kuro-radius);
+  background:linear-gradient(145deg,var(--kuro-surface-up),var(--kuro-surface));
+}
+.app .kuro-progression-v4__metric.is-highlighted {
+  border-color:rgba(235,193,124,.43);
+  background:radial-gradient(ellipse at 100% 0,rgba(235,193,124,.12),transparent 60%),var(--kuro-surface);
+}
+.app .kuro-progression-v4__metric .kuro-ui-label {
+  display:inline-flex;align-items:center;gap:7px;
+}
+.app .kuro-progression-v4__metric strong {
+  font:700 clamp(21px,2.6vw,30px)/1.3 'Shippori Mincho',serif;color:var(--kuro-copy);
+  overflow-wrap:anywhere;
+}
+.app .kuro-progression-v4__metric small {font-size:11px;line-height:1.5;color:var(--kuro-muted);}
+.app .kuro-progression-v4__empty-icon {
+  display:grid;place-items:center;margin:0 auto 18px;
+  width:62px;height:62px;border-radius:13px;
+  border:1px solid var(--kuro-line);background:rgba(235,193,124,.08);color:var(--kuro-gold);
+}
+.app .kuro-training-v4 .kuro-training-layout {gap:var(--kuro-gap);min-width:0;}
+.app .kuro-training-v4 :is(.kuro-training-attributes,.kuro-training-simulator>.card) {
+  border-radius:var(--kuro-radius);border-color:var(--kuro-line);
+}
+.app .kuro-training-v4 .kuro-training-attribute {
+  min-height:66px;gap:12px;transition:background .15s ease;
+}
+.app .kuro-training-v4 .kuro-training-attribute:focus-visible {
+  outline:2px solid var(--kuro-focus);outline-offset:-3px;
+}
+.app .kuro-training-v4 .kuro-academy-v3__estimate {border-radius:10px;}
+.app .kuro-training-v4 .kuro-training-simulator .kui-action {gap:9px;justify-content:center;}
+.app .kuro-techniques-v4 .tabs {
+  display:flex;flex-wrap:wrap;gap:9px;border-color:var(--kuro-line);
+}
+.app .kuro-techniques-v4 .tabs [role="tab"] {
+  min-height:44px;border:1px solid var(--kuro-line);
+  border-radius:10px;color:var(--kuro-muted);
+}
+.app .kuro-techniques-v4 .tabs [role="tab"].active {
+  color:var(--kuro-gold);background:rgba(235,193,124,.11);border-color:var(--kuro-gold);
+}
+.app .kuro-techniques-v4 .tabs [role="tab"]:focus-visible {
+  outline:2px solid var(--kuro-focus);outline-offset:2px;
+}
+.app .kuro-techniques-v4__category {
+  min-height:44px;padding:9px 13px;border:1px solid var(--kuro-line);
+  border-radius:9px;color:var(--kuro-muted);background:rgba(17,28,40,.65);
+  font-size:11px;font-weight:700;letter-spacing:.06em;cursor:pointer;
+}
+.app .kuro-techniques-v4__category[aria-pressed="true"] {
+  background:rgba(235,193,124,.12);border-color:var(--kuro-gold);color:var(--kuro-gold);
+}
+.app .kuro-techniques-v4__category:focus-visible {
+  outline:2px solid var(--kuro-focus);outline-offset:2px;
+}
+.app .kuro-techniques-v4__modal {
+  border:1px solid var(--kuro-line);border-radius:var(--kuro-radius);
+  background:linear-gradient(145deg,var(--kuro-surface-up),var(--kuro-surface));
+}
+.app .kuro-techniques-v4 .kuro-academy-v3__catalog-grid {min-width:0;}
+.app .kuro-elements-v4 .element-summary {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--kuro-gap);
+}
+.app .kuro-elements-v4 .summary-tile,
+.app .kuro-elements-v4 .element-stage {
+  border:1px solid var(--kuro-line);border-radius:var(--kuro-radius);
+  background:linear-gradient(145deg,var(--kuro-surface-up),var(--kuro-surface));
+}
+.app .kuro-elements-v4 .summary-tile {min-width:0;padding:15px;overflow-wrap:anywhere;}
+.app .kuro-elements-v4 .summary-tile .label {color:var(--kuro-gold);}
+.app .kuro-elements-v4 .element-layout {gap:var(--kuro-gap);}
+.app .kuro-elements-v4__detail {border-radius:var(--kuro-radius);}
+.app .kuro-elements-v4__detail .kui-action {width:100%;margin-top:13px;gap:8px;justify-content:center;}
+.app .kuro-ranks-v4__grid {
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--kuro-gap);align-items:stretch;
+}
+.app .kuro-ranks-v4__card {
+  display:flex;position:relative;flex-direction:column;align-items:center;min-width:0;
+  min-height:370px;padding:22px 18px;
+  border:1px solid var(--kuro-line);border-radius:var(--kuro-radius);
+  background:linear-gradient(145deg,var(--kuro-surface-up),var(--kuro-surface));
+}
+.app .kuro-ranks-v4__card.is-next {
+  border-color:rgba(235,193,124,.67);
+  background:radial-gradient(ellipse at top,rgba(235,193,124,.14),transparent 60%),var(--kuro-surface);
+}
+.app .kuro-ranks-v4__card.is-passed {opacity:.85;}
+.app .kuro-ranks-v4__card.is-locked {opacity:.67;}
+.app .kuro-ranks-v4__card .kui-action {width:100%;max-width:250px;}
+.app .kuro-ranks-v4__requirements {width:100%;position:relative;margin-bottom:16px;}
+.app .kuro-ranks-v4__requirements summary {
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:9px;border:1px solid var(--kuro-line);border-radius:10px;
+  color:var(--kuro-gold);background:rgba(235,193,124,.07);
+  cursor:pointer;list-style:none;font-size:12px;font-weight:700;
+}
+.app .kuro-ranks-v4__requirements summary::-webkit-details-marker {display:none;}
+.app .kuro-ranks-v4__requirements summary:focus-visible {outline:2px solid var(--kuro-focus);outline-offset:2px;}
+.app .kuro-ranks-v4__requirement-list {padding:11px;border:1px solid var(--kuro-line);border-radius:10px;font-size:12px;}
+.app .kuro-enhance-v4 .kuro-enhance-v4__layout {
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--kuro-gap);align-items:start;
+}
+.app .kuro-enhance-v4 :is(.kuro-enhance-v4__list,.kuro-enhance-v4__detail) {
+  min-width:0;border-radius:var(--kuro-radius);border-color:var(--kuro-line);
+  background:linear-gradient(145deg,var(--kuro-surface-up),var(--kuro-surface));
+}
+.app .kuro-enhance-v4__jutsu-choice {
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  width:100%;min-height:68px;padding:12px;
+  border:1px solid var(--kuro-line);border-radius:10px;
+  color:var(--kuro-copy);background:var(--kuro-surface);cursor:pointer;text-align:left;
+}
+.app .kuro-enhance-v4__jutsu-choice[aria-pressed="true"] {
+  border-color:var(--kuro-gold);background:rgba(235,193,124,.07);
+}
+.app .kuro-enhance-v4__jutsu-choice:focus-visible,
+.app .kuro-enhance-v4__essence:focus-visible,
+.app .kuro-enhance-v4__slot:focus-visible {outline:2px solid var(--kuro-focus);outline-offset:2px;}
+.app .kuro-enhance-v4__slot {
+  display:grid;place-items:center;width:64px;height:64px;
+  border:2px solid var(--kuro-line);border-radius:50%;
+  background:rgba(8,13,20,.7);color:var(--kuro-gold);
+}
+.app .kuro-enhance-v4__slot:not(:disabled) {cursor:pointer;border-color:var(--kuro-gold);}
+.app .kuro-enhance-v4__slot:disabled {cursor:default;opacity:.55;}
+.app .kuro-enhance-v4__essence {
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  min-height:108px;padding:12px 8px;
+  border:1px solid var(--kuro-line);border-radius:10px;
+  background:var(--kuro-surface);cursor:pointer;color:var(--kuro-copy);
+}
+.app .kuro-enhance-v4__essence:hover {border-color:var(--kuro-gold);}
+@media(max-width:1150px){
+  .app .kuro-ranks-v4__grid {grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media(max-width:860px){
+  .app .kuro-ranks-v4__grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .app .kuro-enhance-v4 .kuro-enhance-v4__layout {grid-template-columns:minmax(0,1fr);}
+}
+@media(max-width:640px){
+  .app .kuro-progression-v4__metrics {grid-template-columns:minmax(0,1fr);gap:9px;}
+  .app .kuro-elements-v4 .element-summary {grid-template-columns:minmax(0,1fr);}
+  .app .kuro-ranks-v4__grid {grid-template-columns:minmax(0,1fr);}
+  .app .kuro-training-v4 .kuro-training-attribute {padding:12px 14px;gap:8px;}
+  .app .kuro-enhance-v4__jutsu-choice {flex-wrap:wrap;}
+}
+@media(prefers-reduced-motion:reduce){
+  .app :is(.kuro-training-v4,.kuro-techniques-v4,.kuro-elements-v4,.kuro-ranks-v4,.kuro-enhance-v4) * {
+    transition-duration:.01ms!important;animation-duration:.01ms!important;
+  }
+}

@@ -5,7 +5,7 @@ import {
   CircleHelp, ClipboardList, Crown, DoorOpen, Dumbbell, Flame,
   GraduationCap, Hammer, HeartPulse, History, House, Landmark,
   LayoutDashboard, Map, PawPrint, ScrollText, Search, Shield,
-  Soup, Sparkles, Swords, Target, Trophy, UserRound, UsersRound, Zap,
+  Soup, Sparkles, Star, Swords, Target, Trash2, Trophy, UserRound, UsersRound, Zap,
   Volume2, VolumeX, X
 } from 'lucide-react';
 
@@ -45,6 +45,8 @@ const ICONS = {
   shield: Shield,
   soup: Soup,
   sparkles: Sparkles,
+  star: Star,
+  trash: Trash2,
   swords: Swords,
   target: Target,
   trophy: Trophy,

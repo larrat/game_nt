@@ -46,3 +46,7 @@
 - Não interpretar "76 rotas visitadas" como 76 fluxos validados. Bloqueios documentados refletem o estado da sessão.
 - Os catálogos e protótipos **adicionados à master pela PR #65** são material de referência; não publicar mídias de terceiros no app nem importar mecânicas ativas sem revisar licenças, modelagem e regras.
 - Para cada nova entrega, atualizar o roadmap e adicionar link à PR, evidência de teste e status `proposto/implementado/homologado/publicado`.
+
+## Itens e imagens de referência
+
+- [Catálogo visual de 73 nomes, ícones e preparação para artes autorizadas](design/ITEMS-REFERENCE-AND-ARTWORK-V4.md). Não importa itens nem mídias sem licença.

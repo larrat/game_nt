@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Activity, ArrowRight, Award, BookOpen, CalendarDays, ChevronDown, ChevronRight,
+  Activity, ArrowLeft, ArrowRight, Award, BookOpen, CalendarDays, ChevronDown, ChevronRight,
   Coins, Compass, Crosshair, Info, LockKeyhole, RefreshCw,
   CircleHelp, ClipboardList, Crown, DoorOpen, Dumbbell, Flame,
   GraduationCap, Hammer, HeartPulse, History, House, Landmark,
@@ -13,6 +13,7 @@ import {
 const ICONS = {
   academy: GraduationCap,
   activity: Activity,
+  arrowLeft: ArrowLeft,
   arrowRight: ArrowRight,
   award: Award,
   book: BookOpen,

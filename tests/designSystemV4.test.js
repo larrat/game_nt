@@ -45,7 +45,7 @@ test('Dojo uses reusable actions and icon registry without changing gameplay RPC
 test('Painel uses the same named icons and a shortcut to roster', () => {
   assert.ok(dashboard.includes("import SidebarIcon from '../components/SidebarIcon'"));
   assert.ok(dashboard.includes('navigate("/adversarios")'));
-  assert.ok(dashboard.includes('name="coins"'));
+  assert.ok(dashboard.includes('name="user"'));
   assert.ok(dashboard.includes('name="trophy"'));
   assert.ok(dashboard.includes('name="swords"'));
   assert.ok(tokens.includes('.kuro-dashboard-v2 .kuro-shortcuts'));

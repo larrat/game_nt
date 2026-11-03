@@ -1,0 +1,262 @@
+/* Character creator v5 — original Kurokage presentation; isolated from gameplay economy. */
+.kuro-create-v5 {
+  --create-bg: #101924;
+  --create-panel: #141f2d;
+  --create-line: rgba(234,193,122,.24);
+  --create-gold: #efc884;
+  --create-copy: #f4eee6;
+  --create-muted: #b7b9bc;
+  min-width: 0;
+  padding-bottom: 48px;
+  color: var(--create-copy);
+  background:
+    radial-gradient(ellipse at 17% 0,rgba(144,42,45,.15),transparent 45%),
+    radial-gradient(ellipse at 89% 15%,rgba(221,170,79,.07),transparent 40%);
+}
+.kuro-create-v5__intro { max-width: 1200px; margin: 0 auto 20px; padding: 8px 18px 0; }
+.kuro-create-v5__intro .kuro-rpg-pagehead { margin: 8px 0 22px; }
+.kuro-create-v5__steps {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 10px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+.kuro-create-v5__step {
+  min-width: 0; display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--create-line);
+  border-radius: 12px;
+  background: rgba(12,19,29,.72);
+  opacity: .68;
+}
+.kuro-create-v5__step.is-current {
+  opacity: 1;
+  border-color: rgba(239,200,132,.75);
+  background: linear-gradient(110deg,rgba(173,57,58,.18),rgba(211,160,76,.09));
+  box-shadow: 0 0 0 1px rgba(239,200,132,.12) inset;
+}
+.kuro-create-v5__step.is-completed { opacity: .9; }
+.kuro-create-v5__step-number {
+  flex: 0 0 32px; height: 32px; display: grid; place-items: center;
+  border: 1px solid rgba(239,200,132,.47); border-radius: 10px;
+  color: var(--create-gold); font: 700 14px 'JetBrains Mono',monospace;
+}
+.kuro-create-v5__step strong { display: block; color: var(--create-copy); font-size: 13px; }
+.kuro-create-v5__step small { display: block; margin-top: 4px; color: var(--create-muted); font-size: 11px; }
+.kuro-create-v5 .kuro-character-create__feedback {
+  max-width: 1164px;
+  margin: 0 auto 18px;
+  border-radius: 12px;
+  color: var(--create-muted);
+}
+.kuro-create-v5__layout {
+  display: grid;
+  grid-template-columns: minmax(260px,.82fr) minmax(0,1.55fr);
+  align-items: start;
+  gap: clamp(16px,2.1vw,28px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+.kuro-create-v5__preview, .kuro-create-v5__editor {
+  min-width: 0;
+  border: 1px solid var(--create-line);
+  border-radius: 18px;
+  background: linear-gradient(160deg,rgba(27,41,56,.94),rgba(11,17,25,.98));
+  box-shadow: 0 16px 46px rgba(0,0,0,.18);
+}
+.kuro-create-v5__preview {
+  position: sticky;
+  top: 18px;
+  overflow: hidden;
+  padding: 16px;
+}
+.kuro-create-v5__preview-label, .kuro-create-v5__eyebrow, .kuro-create-v5__preview-caption > span {
+  color: var(--create-gold);
+  font: 700 10px/1.6 'JetBrains Mono',monospace;
+  letter-spacing: .11em;
+}
+.kuro-create-v5__portrait-stage {
+  min-height: 300px;
+  height: clamp(310px,34vw,460px);
+  margin: 12px 0;
+  overflow: hidden;
+  display: grid; place-items: center;
+  border-radius: 13px;
+  border: 1px solid rgba(239,200,132,.2);
+  background:
+    radial-gradient(circle at 50% 33%,rgba(210,158,83,.24),transparent 53%),
+    linear-gradient(135deg,#1b2635,#0b1017);
+}
+.kuro-create-v5__portrait-stage img {
+  display: block; width: 100%; height: 100%;
+  object-fit: contain; object-position: center bottom;
+}
+.kuro-create-v5__portrait-stage .kuro-character-portrait__fallback {
+  display: grid; place-items: center; width: 100%; height: 100%;
+  color: var(--create-gold); font: 700 78px 'Shippori Mincho',serif;
+}
+.kuro-create-v5__preview-caption h2 { margin: 6px 0; font-size: clamp(18px,2vw,25px); line-height: 1.3; }
+.kuro-create-v5__preview-caption p { margin: 0 0 16px; color: var(--create-muted); font-size: 12px; }
+.kuro-create-v5__preview-meta { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+.kuro-create-v5__preview-meta > div {
+  border: 1px solid rgba(234,193,122,.15);
+  border-radius: 9px; padding: 12px;
+  background: rgba(234,193,122,.055);
+}
+.kuro-create-v5__preview-meta span, .kuro-create-v5__review span {
+  display: block; margin-bottom: 5px; color: var(--create-muted);
+  font: 700 10px/1.3 'JetBrains Mono',monospace;
+}
+.kuro-create-v5__preview-meta strong { display: block; font-size: 13px; }
+.kuro-create-v5__editor { padding: clamp(18px,2.4vw,30px); }
+.kuro-create-v5__section-heading {
+  display: flex; align-items: start; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 18px;
+}
+.kuro-create-v5__section-heading h2 { margin: 5px 0 7px; font: 600 clamp(21px,2.2vw,29px)/1.25 'Shippori Mincho',serif; }
+.kuro-create-v5__section-heading p:not(.kuro-create-v5__eyebrow),.kuro-create-v5__variants > p {
+  color: var(--create-muted); font-size: 13px; line-height: 1.6;
+}
+.kuro-create-v5__counter {
+  border: 1px solid rgba(239,200,132,.28); border-radius: 999px;
+  padding: 7px 10px; color: var(--create-gold); font-size: 11px; white-space: nowrap;
+}
+.kuro-create-v5__search {
+  display: flex; align-items: center; gap: 12px; min-height: 48px;
+  padding: 0 14px; border-radius: 10px; border: 1px solid rgba(234,193,122,.35);
+  background: #0c1420; color: var(--create-gold); margin-bottom: 16px;
+}
+.kuro-create-v5__search input {
+  width: 100%; min-width: 0; min-height: 46px; border: 0; outline: none;
+  color: var(--create-copy); background: transparent; font-size: 13px;
+}
+.kuro-create-v5__search:focus-within { outline: 2px solid var(--create-gold); outline-offset: 2px; }
+.kuro-create-v5__catalog {
+  display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px;
+}
+.kuro-create-v5__character, .kuro-create-v5__variant, .kuro-create-v5__class, .kuro-create-v5__village {
+  min-width: 0; border: 1px solid rgba(234,193,122,.19);
+  color: var(--create-copy); border-radius: 11px; background: rgba(24,36,49,.78);
+  cursor: pointer; transition: border-color .18s,background-color .18s,transform .18s;
+}
+.kuro-create-v5__character:hover:not(:disabled), .kuro-create-v5__variant:hover:not(:disabled),
+.kuro-create-v5__class:hover:not(:disabled), .kuro-create-v5__village:hover:not(:disabled) {
+  border-color: rgba(239,200,132,.64); transform: translateY(-2px);
+}
+.kuro-create-v5 :is(.kuro-create-v5__character,.kuro-create-v5__variant,.kuro-create-v5__class,.kuro-create-v5__village):focus-visible {
+  outline: 2px solid var(--create-gold); outline-offset: 3px;
+}
+.kuro-create-v5 :is(.kuro-create-v5__character,.kuro-create-v5__variant,.kuro-create-v5__class,.kuro-create-v5__village).is-selected {
+  border-color: var(--create-gold);
+  background: linear-gradient(150deg,rgba(177,53,57,.2),rgba(216,160,72,.1));
+  box-shadow: inset 0 0 0 1px rgba(239,200,132,.25);
+}
+.kuro-create-v5__character { padding: 7px; text-align: left; }
+.kuro-create-v5__character-image {
+  display: grid; place-items: center; height: 112px; overflow: hidden;
+  margin-bottom: 8px; border-radius: 8px;
+  background: radial-gradient(circle,#334052,#111c29);
+}
+.kuro-create-v5__character-image img { width: 100%; height: 100%; object-fit: contain; }
+.kuro-create-v5__character-image .kuro-character-portrait__fallback {
+  color: var(--create-gold); font-size: 30px;
+}
+.kuro-create-v5__character strong {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; min-height: 34px; font-size: 11px; line-height: 1.5;
+}
+.kuro-create-v5__empty { grid-column: 1/-1; padding: 35px 12px; text-align: center; color: var(--create-muted); }
+.kuro-create-v5__pagination {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: 14px; margin: 17px 0;
+}
+.kuro-create-v5__pagination span { color: var(--create-muted); font-size: 12px; }
+.kuro-create-v5__variants {
+  border-top: 1px solid var(--create-line); margin-top: 18px; padding-top: 16px;
+}
+.kuro-create-v5__variants h3,.kuro-create-v5__field-title,
+.kuro-create-v5__attribute-panel h3 { color: var(--create-gold); font-size: 14px; margin: 0 0 9px; }
+.kuro-create-v5__variant-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
+.kuro-create-v5__variant { flex: 0 0 105px; padding: 7px; font-size: 11px; }
+.kuro-create-v5__variant img { height: 72px; width: 100%; object-fit: contain; }
+.kuro-create-v5__variant span { display: block; overflow-wrap: anywhere; }
+.kuro-create-v5__villages {
+  display: grid; grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 10px; margin-bottom: 25px;
+}
+.kuro-create-v5__village { display: flex; align-items: center; gap: 10px; padding: 9px; text-align: left; }
+.kuro-create-v5__village img { flex: 0 0 51px; width: 51px; height: 51px; object-fit: cover; border-radius: 8px; }
+.kuro-create-v5__village strong,.kuro-create-v5__class strong { display: block; font-size: 13px; }
+.kuro-create-v5__village small,.kuro-create-v5__class small {
+  display: block; margin-top: 5px; font-size: 11px; color: var(--create-muted);
+}
+.kuro-create-v5__classes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+.kuro-create-v5__class { display: flex; align-items: center; gap: 12px; padding: 15px; text-align: left; }
+.kuro-create-v5__class-icon {
+  display: grid; place-items: center; flex: 0 0 40px; height: 40px;
+  border-radius: 10px; border: 1px solid var(--create-line);
+  color: var(--create-gold); background: rgba(234,193,122,.08);
+}
+.kuro-create-v5__attribute-panel {
+  border: 1px solid var(--create-line);
+  border-radius: 12px; background: rgba(5,12,20,.45);
+  margin-top: 18px; padding: 16px;
+}
+.kuro-create-v5__attributes { display: flex; flex-wrap: wrap; gap: 8px; }
+.kuro-create-v5__attribute {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 9px; border-radius: 7px; font-size: 11px;
+  background: rgba(234,193,122,.09); text-transform: capitalize;
+}
+.kuro-create-v5__attribute strong { color: var(--create-gold); }
+.kuro-create-v5__name-label { display: block; margin-bottom: 10px; color: var(--create-gold); font-weight: 700; font-size: 13px; }
+.kuro-create-v5__name-input { width: 100%; min-height: 52px; font-size: 15px; }
+.kuro-create-v5__hint { margin: 9px 0 22px; color: var(--create-muted); font-size: 12px; }
+.kuro-create-v5__review {
+  display: grid; grid-template-columns: repeat(2,minmax(0,1fr));
+  border: 1px solid var(--create-line); border-radius: 12px; overflow: hidden;
+}
+.kuro-create-v5__review > div { padding: 16px; border-bottom: 1px solid var(--create-line); background: rgba(234,193,122,.035); }
+.kuro-create-v5__review > div:nth-child(odd) { border-right: 1px solid var(--create-line); }
+.kuro-create-v5__review strong { font-size: 14px; }
+.kuro-create-v5__warning {
+  border-left: 3px solid var(--create-gold); margin-top: 18px;
+  padding: 8px 14px; color: var(--create-muted); font-size: 12px; line-height: 1.5;
+}
+.kuro-create-v5__actions {
+  display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px;
+  margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--create-line);
+}
+.kuro-create-v5__actions button { min-height: 46px; padding: 10px 22px; border-radius: 10px; }
+.kuro-create-v5__actions button:disabled { opacity: .5; cursor: not-allowed; }
+@media(max-width:1020px) {
+  .kuro-create-v5__catalog { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .kuro-create-v5__villages { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:760px) {
+  .kuro-create-v5__layout { grid-template-columns: minmax(0,1fr); padding: 0 12px; }
+  .kuro-create-v5__intro { padding: 8px 12px 0; }
+  .kuro-create-v5__preview { position: static; }
+  .kuro-create-v5__portrait-stage { height: 260px; min-height: 260px; }
+  .kuro-create-v5__preview-meta { display: none; }
+  .kuro-create-v5__steps { gap: 6px; }
+  .kuro-create-v5__step { padding: 9px; gap: 7px; }
+  .kuro-create-v5__step-number { flex-basis: 25px; height: 25px; }
+  .kuro-create-v5__step small { display: none; }
+  .kuro-create-v5__step strong { font-size: 10px; }
+}
+@media(max-width:420px) {
+  .kuro-create-v5__catalog { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .kuro-create-v5__villages { grid-template-columns: 1fr; }
+  .kuro-create-v5__classes { grid-template-columns: 1fr; }
+  .kuro-create-v5__review { grid-template-columns: 1fr; }
+  .kuro-create-v5__review > div:nth-child(odd) { border-right: 0; }
+  .kuro-create-v5__actions button { flex: 1 1 auto; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .kuro-create-v5 :is(button,a) { transition: none !important; }
+  .kuro-create-v5 :is(button,a):hover { transform: none !important; }
+}

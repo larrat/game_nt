@@ -36,7 +36,7 @@ test('shared fallback is visible in oversized portraits without stretching sourc
   const portrait = read('src/components/CharacterPortrait.jsx');
   const style = read('src/styles/character-portraits.css');
   assert.ok(portrait.includes("import '../styles/character-portraits.css'"));
-  assert.ok(portrait.includes('onError={() => setFailed(true)}'));
+  assert.ok(portrait.includes('onError={() => setFailedIndex(index => index + 1)}'));
   assert.ok(portrait.includes('https:'));
   assert.ok(style.includes('.kuro-hero__portrait'));
   assert.ok(style.includes('.combat-portrait-wrap'));

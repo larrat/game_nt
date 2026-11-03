@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { resolveLocalCharacterPortrait } from '../utils/localCharacterPortrait';
 import '../styles/character-portraits.css';
 
-// Accept project-local media and HTTPS assets authorized by the project owner.
-// Never turn arbitrary catalog text into an executable URL.
+// Accept local paths and HTTPS media URLs. All other schemes fall back safely.
 export function isSupportedPortraitSource(src) {
   return typeof src === 'string' &&
     (/^\/(?!\/)/.test(src) || /^https:\/\/[^\s/]+\/[^\s]*$/i.test(src));
@@ -11,18 +11,24 @@ export function isSupportedPortraitSource(src) {
 export default function CharacterPortrait({
   src, alt = '', className = '', loading = 'lazy'
 }) {
-  const [failed, setFailed] = useState(false);
-  useEffect(() => setFailed(false), [src]);
+  const [failedIndex, setFailedIndex] = useState(0);
+  useEffect(() => setFailedIndex(0), [src]);
 
-  if (!failed && isSupportedPortraitSource(src)) {
+  // Keep the source URL as fallback if an existing local copy cannot be loaded.
+  // The remote URL remains the stable avatar ID in Supabase.
+  const localSource = resolveLocalCharacterPortrait(src);
+  const candidates = localSource !== src ? [localSource, src] : [src];
+  const activeSource = candidates[failedIndex];
+
+  if (isSupportedPortraitSource(activeSource)) {
     return (
       <img
-        src={src}
+        src={activeSource}
         alt={alt}
         className={className}
         loading={loading}
         decoding="async"
-        onError={() => setFailed(true)}
+        onError={() => setFailedIndex(index => index + 1)}
       />
     );
   }

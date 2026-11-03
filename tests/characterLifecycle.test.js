@@ -55,7 +55,9 @@ test('creation is blocked on bad data and uses the same server-side RPC',()=>{
 });
 test('deletion never uses a direct table write and requires server confirmation',()=>{
   assert.ok(select.includes("rpc('excluir_personagem'"));
-  assert.ok(select.includes('window.prompt('));
+  assert.ok(!select.includes('window.prompt('));
+  assert.ok(select.includes('<dialog ref={dialogRef}'));
+  assert.ok(select.includes('deleteConfirmation !== pendingDelete.name'));
   assert.ok(select.includes('confirmation !== char.name'));
   assert.ok(select.includes('data?.success'));
   assert.ok(!select.includes("from('players').delete()"));

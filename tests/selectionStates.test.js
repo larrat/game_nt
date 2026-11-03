@@ -21,7 +21,7 @@ test('network error cannot be mistaken for no characters and can be retried',()=
   assert.ok(select.indexOf('{loadError ? (') < select.indexOf('characters.length === 0 ? ('));
 });
 test('player switching prevents duplicate clicks; removal uses an owner-only RPC',()=>{
-  assert.ok(select.includes('if (joining !== null) return'));
+  assert.ok(select.includes('if (joining !== null || deletingRef.current || pendingDelete) return'));
   assert.ok(select.includes('disabled={joining !== null || loading}'));
   assert.ok(select.includes("rpc('excluir_personagem'"));
   assert.ok(select.includes('p_confirmation: confirmation'));

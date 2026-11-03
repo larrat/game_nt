@@ -27,7 +27,9 @@ test('inventory UI keeps server RPC consumption and portal, blocks concurrent cl
   assert.ok(src.includes("rpc('usar_consumivel_inventario'"));
   assert.ok(src.includes('filterConsumables(items, search)'));
   assert.ok(src.includes('disabled={usingId !== null || inCombat}'));
-  assert.ok(src.includes('if (!player || !updatePlayer || usingId !== null) return;'));
+  assert.ok(src.includes('if (!player || !updatePlayer || usingId !== null || consumingRef.current) return;'));
+  assert.ok(src.includes('consumingRef.current = true;'));
+  assert.ok(src.includes('consumingRef.current = false;'));
   assert.ok(src.includes('aria-busy={loading || usingId !== null}'));
   assert.ok(css.includes('@media (max-width: 390px)'));
   assert.ok(css.includes('focus-visible'));

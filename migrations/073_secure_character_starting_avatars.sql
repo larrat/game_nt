@@ -42,7 +42,7 @@ BEGIN
     v_stats := CASE v_class WHEN 'NIN' THEN '{"forca":0,"agilidade":1,"resistencia":1,"inteligencia":2,"energia":1,"ninjutsu":3,"taijutsu":0,"genjutsu":1,"bukijutsu":0,"selo":1}'::jsonb WHEN 'TAI' THEN '{"forca":2,"agilidade":2,"resistencia":1,"inteligencia":0,"energia":1,"ninjutsu":0,"taijutsu":3,"genjutsu":0,"bukijutsu":1,"selo":0}'::jsonb WHEN 'GEN' THEN '{"forca":0,"agilidade":1,"resistencia":1,"inteligencia":2,"energia":1,"ninjutsu":0,"taijutsu":0,"genjutsu":3,"bukijutsu":0,"selo":2}'::jsonb WHEN 'BUK' THEN '{"forca":2,"agilidade":2,"resistencia":1,"inteligencia":0,"energia":1,"ninjutsu":0,"taijutsu":0,"genjutsu":0,"bukijutsu":3,"selo":1}'::jsonb END;
     SELECT COALESCE(sum(t.value::integer), 0) INTO v_starting_total
       FROM pg_catalog.jsonb_each_text(v_stats) AS t;
-    IF v_starting_total <> 10 OR pg_catalog.jsonb_object_length(v_stats) <> 10
+    IF v_starting_total <> 10 OR (SELECT count(*) FROM pg_catalog.jsonb_each_text(v_stats)) <> 10
        OR EXISTS(SELECT 1 FROM pg_catalog.jsonb_each_text(v_stats) AS t WHERE t.value::integer < 0) THEN
         RAISE EXCEPTION 'Configuração de atributos iniciais inválida.';
     END IF;

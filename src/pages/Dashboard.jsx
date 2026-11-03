@@ -12,7 +12,9 @@ import SidebarIcon from '../components/SidebarIcon';
 import GamePanel from '../components/ui/GamePanel';
 import GameEmptyState from '../components/ui/GameEmptyState';
 import ResourceMeter from '../components/ui/ResourceMeter';
+import { getDashboardAttributes, getDashboardNextAction } from '../utils/dashboardOverview';
 import '../styles/main.css';
+import '../styles/dashboard-overview-v3.css';
 
 const VILLAGES = {
   1: 'Folha', 2: 'Areia', 3: 'Névoa',
@@ -209,6 +211,8 @@ export default function Dashboard({ player, updatePlayer }) {
   const xpToNextLevel = Math.max(1, nextLevelXp - levelStartXp);
   const currentLevelXp = Math.max(0, (player.xp || 0) - levelStartXp);
   const villageName = VILLAGES[player.village_id] || "Vila desconhecida";
+  const dashboardAttributes = getDashboardAttributes(player);
+  const nextAction = getDashboardNextAction(player);
   const dailyTasks = [
     { key: "t1", complete: (player.daily_npcs_defeated || 0) >= 3 },
     { key: "t2", complete: (player.daily_chakra_spent || 0) >= 100 },
@@ -218,7 +222,7 @@ export default function Dashboard({ player, updatePlayer }) {
   const claimedTasks = dailyTasks.filter(task => claimedList.includes(task.key)).length;
 
   return (
-    <div className="kuro-dashboard kuro-dashboard-v2">
+    <div className="kuro-dashboard kuro-dashboard-v2 kuro-dashboard-v3">
       <header className="kuro-dashboard__header">
         <div>
           <div className="kuro-eyebrow"><span className="kuro-eyebrow__line" /> CENTRAL SHINOBI <span className="kuro-eyebrow__season">{CURRENT_SEASON_LABEL.toUpperCase()}</span></div>
@@ -255,6 +259,39 @@ export default function Dashboard({ player, updatePlayer }) {
         </div>
         <div className="kuro-hero__ornament" aria-hidden="true">影</div>
       </section>
+
+      <div className="kuro-dashboard-v3__first-actions">
+        <section className="kuro-dashboard-v3__attributes" aria-labelledby="kuro-dashboard-v3-attributes-heading">
+          <div className="kuro-dashboard-v3__section-top">
+            <div>
+              <span className="kuro-dashboard-v3__eyebrow">SUA EVOLUÇÃO</span>
+              <h2 id="kuro-dashboard-v3-attributes-heading">Os 10 atributos do seu ninja</h2>
+            </div>
+            <GameAction tone="quiet" size="small" onClick={() => navigate('/status')}>
+              Ficha completa
+            </GameAction>
+          </div>
+          <div className="kuro-dashboard-v3__attribute-grid">
+            {dashboardAttributes.map(attribute => (
+              <div className="kuro-dashboard-v3__attribute" key={attribute.key}>
+                <span>{attribute.label}</span>
+                <strong>{attribute.value === null ? '—' : attribute.value.toLocaleString('pt-BR')}</strong>
+              </div>
+            ))}
+          </div>
+          <p className="kuro-dashboard-v3__attributes-footnote">
+            Valores atuais do personagem. Atributos sem dados disponíveis são indicados por um traço.
+          </p>
+        </section>
+        <aside className="kuro-dashboard-v3__next" aria-labelledby="kuro-dashboard-v3-next-heading">
+          <span className="kuro-dashboard-v3__eyebrow">SEU PRÓXIMO PASSO</span>
+          <h2 id="kuro-dashboard-v3-next-heading">{nextAction.title}</h2>
+          <p>{nextAction.description}</p>
+          <GameAction onClick={() => navigate(nextAction.path)}>
+            {nextAction.action} <span aria-hidden="true">→</span>
+          </GameAction>
+        </aside>
+      </div>
 
       <section className="kuro-kpis" aria-label="Resumo do personagem">
         <article className="kuro-kpi"><span className="kuro-kpi__icon"><SidebarIcon name="swords" size={25} /></span><div><span className="kuro-kpi__label">Vitórias no dojo</span><strong>{(player.wins_dojo || 0).toLocaleString()}</strong><small>Combates vencidos</small></div></article>
@@ -312,7 +349,7 @@ export default function Dashboard({ player, updatePlayer }) {
             <div><strong>Treino de hoje</strong><p>Complete objetivos para receber ryous e liberar o baú diário.</p><div className="kuro-meter"><div style={{ width: (dailyCompleted / 3 * 100) + "%" }} /></div><small>{claimedTasks}/3 recompensas resgatadas</small></div>
           </div>
           <div className="kuro-quest-list">
-            <DailyTaskItem taskId="t1" title="Derrote 3 inimigos" titleIcon="/images/imgi_112_1.png" rewardText="RY$ 20" progressValue={player.daily_npcs_defeated || 0} progressMax={3} progressColor="green" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
+            <DailyTaskItem taskId="t1" title="Derrote 3 inimigos" titleIcon="/images/imgi_112_1.png" rewardText="Recompensa no resgate" progressValue={player.daily_npcs_defeated || 0} progressMax={3} progressColor="green" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
             <DailyTaskItem taskId="t2" title="Gaste 100 de Chakra" titleIcon="/images/imgi_9_chakra.png" rewardText="RY$ 20" progressValue={player.daily_chakra_spent || 0} progressMax={100} progressColor="blue" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
             <DailyTaskItem taskId="t3" title="Treine 1 vez" titleIcon="/images/imgi_10_stamina.png" rewardText="RY$ 20" progressValue={player.daily_trainings || 0} progressMax={1} progressColor="red" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
           </div>
@@ -326,7 +363,7 @@ export default function Dashboard({ player, updatePlayer }) {
           <section className={"kuro-panel kuro-fidelity " + (fidelityClaimed ? "is-claimed" : "")}>
             <div className="kuro-fidelity__top"><span className="kuro-section__eyebrow">RECOMPENSA DE PRESENÇA</span><span className="kuro-fidelity__seal">日</span></div>
             <h2>Bônus diário</h2><p>Entre no Kurokage todos os dias para manter sua jornada em movimento.</p>
-            <div className="kuro-fidelity__reward"><img src="/images/imgi_20_ryous.png" alt="" /><strong>RY$ 50</strong><span>por dia</span></div>
+            <div className="kuro-fidelity__reward"><img src="/images/imgi_20_ryous.png" alt="" /><strong>Ryous</strong><span>valor confirmado no resgate</span></div>
             <button className={"kuro-button " + (fidelityClaimed ? "kuro-button--muted" : "kuro-button--primary")} onClick={handleDailyFidelity} disabled={fidelityClaimed || claiming}>{fidelityClaimed ? "Resgatado hoje" : claiming ? "Processando…" : "Resgatar bônus"}</button>
           </section>
 

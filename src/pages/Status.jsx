@@ -4,6 +4,7 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { VILLAGES } from '../constants';
 import PageHeader from '../components/PageHeader';
+import CharacterPortrait from '../components/CharacterPortrait';
 import SidebarIcon from '../components/SidebarIcon';
 import AvatarModal from '../components/AvatarModal';
 import CharacterResourceMeter from '../components/CharacterResourceMeter';
@@ -136,11 +137,7 @@ export default function Status({ player, updatePlayer }) {
               aria-label={`Alterar avatar de ${player.name}`}
               title="Alterar avatar"
             >
-              {player.avatar?.startsWith('/') ? (
-                <img src={player.avatar} alt="" />
-              ) : (
-                <span aria-hidden="true" className="kuro-status-v3__portrait-fallback">忍</span>
-              )}
+              <CharacterPortrait src={player.avatar} alt="" loading="eager" />
             </button>
             <span className="kuro-status-v3__portrait-caption">ALTERAR AVATAR</span>
           </div>

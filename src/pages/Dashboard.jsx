@@ -6,6 +6,7 @@ import { supabase } from '../supabaseClient';
 import { fetchActiveGlobalEvents } from '../utils/eventUtils';
 import { useToast } from '../context/ToastContext';
 import AvatarModal from '../components/AvatarModal';
+import CharacterPortrait from '../components/CharacterPortrait';
 import GameAction from '../components/ui/GameAction';
 import SidebarIcon from '../components/SidebarIcon';
 import GamePanel from '../components/ui/GamePanel';
@@ -231,7 +232,7 @@ export default function Dashboard({ player, updatePlayer }) {
         <div className="kuro-hero__shade" />
         <div className="kuro-hero__identity">
           <button className="kuro-hero__portrait" onClick={() => setIsAvatarModalOpen(true)} title="Personalizar avatar" aria-label="Personalizar avatar">
-            {player.avatar?.startsWith("/") ? <img src={player.avatar} alt={"Avatar de " + player.name} /> : <span>{player.avatar || "忍"}</span>}
+            <CharacterPortrait src={player.avatar} alt={'Avatar de ' + player.name} loading="eager" />
             <span className="kuro-hero__portrait-edit">Editar</span>
           </button>
           <div className="kuro-hero__profile">

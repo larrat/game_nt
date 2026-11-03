@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Backpack, Menu, X } from 'lucide-react';
 import { calculateHP, calculateChakra, calculateStamina, calculateXPForLevel, calculateLevelFromXP, getGlobalDebuffs } from '../utils/engine';
 import InventoryModal from './InventoryModal';
+import CharacterPortrait from './CharacterPortrait';
 import { getResourceProgress } from '../utils/resourceProgress';
 import { supabase } from '../supabaseClient';
 import { fetchActiveWorldBoss } from '../utils/eventUtils';
@@ -118,9 +119,7 @@ export default function TopBar({ player, updatePlayer, onMenuClick, mobileNavOpe
           {mobileNavOpen ? <X size={20} strokeWidth={1.9} aria-hidden="true" /> : <Menu size={20} strokeWidth={1.9} aria-hidden="true" />}
         </button>
         <div className="topbar-avatar kuro-rpg-topbar__portrait">
-          {player.avatar?.startsWith('/') ?
-            <img src={player.avatar} alt="" /> :
-            <span aria-hidden="true">忍</span>}
+          <CharacterPortrait src={player.avatar} alt="" loading="eager" />
         </div>
         <div className="kuro-rpg-topbar__name">
           <span className="kuro-rpg-topbar__village">{VILLAGES[player.village_id] || 'Nukenin'} · {player.rank || 'Estudante da Academia'}</span>

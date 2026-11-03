@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import CharacterPortrait from './CharacterPortrait';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import { useToast } from '../context/ToastContext';
@@ -78,14 +79,18 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
 
         <div className="avatar-grid">
           {availableAvatars.map((av) => (
-            <div 
-              key={av.id} 
+            <button
+              type="button"
+              key={av.id}
               className={`avatar-opt ${selectedAvatar === av.id ? 'selected' : ''}`}
+              aria-pressed={selectedAvatar === av.id}
+              aria-label={'Selecionar ' + av.name}
+              disabled={loading}
               onClick={() => setSelectedAvatar(av.id)}
             >
-              <img src={av.id} alt={av.name} className="avatar-img" />
-              <div className="tag">{av.name}</div>
-            </div>
+              <CharacterPortrait src={av.id} alt="" className="avatar-img" />
+              <span className="tag">{av.name}</span>
+            </button>
           ))}
         </div>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import CharacterPortrait, { isSupportedPortraitSource } from './CharacterPortrait';
 import {
   calculateAtkTaiBuk,
   calculateAtkNinGen,
@@ -60,8 +61,7 @@ export default function CombatFighterCard({
   fighterObj = null
 }) {
   const alignRight = side === 'right';
-  const [failedPortrait, setFailedPortrait] = React.useState(null);
-  const isImg = typeof portrait === 'string' && portrait.startsWith('/') && !portrait.startsWith('//') && failedPortrait !== portrait;
+  const isImg = isSupportedPortraitSource(portrait);
 
   // Generate Stats Summary
   const statsList = fighterObj ? [
@@ -153,9 +153,9 @@ export default function CombatFighterCard({
           </div>
         )}
         {isImg ? (
-          <img src={portrait} alt={name} onError={() => setFailedPortrait(portrait)} />
+          <CharacterPortrait src={portrait} alt={name} loading="eager" />
         ) : (
-          <span className="combat-portrait-emoji" role="img" aria-label={'Retrato indisponível de ' + name}>{failedPortrait === portrait ? '🥷' : (portrait || '🥷')}</span>
+          <span className="combat-portrait-emoji" role="img" aria-label={'Retrato indisponível de ' + name}>🥷</span>
         )}
       </div>
 

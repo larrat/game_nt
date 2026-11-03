@@ -6,6 +6,7 @@ import { VILLAGES } from '../constants';
 import { useToast } from '../context/ToastContext';
 import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 import PageHeader from '../components/PageHeader';
+import CharacterPortrait from '../components/CharacterPortrait';
 import '../styles/character-selection.css';
 import '../styles/auth-polish-v4.css';
 import { getCharacterResources, formatCharacterRyous, getCharacterLevel } from '../utils/characterPresentation';
@@ -176,11 +177,12 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
           )}
 
           <div className="selection-avatar-container">
-            {char.avatar?.startsWith('/') ? (
-              <img src={char.avatar} alt={char.name} />
-            ) : (
-              <span className="kuro-character-select__avatar-fallback" aria-label={char.name}>忍</span>
-            )}
+            <CharacterPortrait
+              src={char.avatar}
+              alt={char.name}
+              loading="eager"
+              className="kuro-character-select__portrait"
+            />
           </div>
 
           <div className="selection-details-container">

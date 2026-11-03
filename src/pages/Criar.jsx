@@ -5,19 +5,16 @@ import { useToast } from '../context/ToastContext';
 import { VILLAGES_LIST } from '../constants';
 import PageHeader from '../components/PageHeader';
 import SidebarIcon from '../components/SidebarIcon';
+import {
+  STARTING_CLASS_PROFILES, STARTING_ATTRIBUTES, STARTING_ATTRIBUTE_BUDGET,
+  getStartingAttributeTotal, getStartingClassProfile
+} from '../utils/startingClassProfiles';
 import CharacterPortrait from '../components/CharacterPortrait';
 import { filterCharacterCatalog, paginateCharacterCatalog, isStartingAvatar, chooseStartingAvatar } from '../utils/characterCatalog';
 import { canCreateCharacter, MAX_CHARACTERS_PER_ACCOUNT, validateCharacterName } from '../utils/characterCreationRules';
 import '../styles/character-creation.css';
 import '../styles/auth-polish-v4.css';
 import '../styles/character-creation-v5.css';
-
-const CLASSES = [
-  { id: 'NIN', name: 'Ninjutsu', icon: 'scroll', desc: 'Especialista em magias.', stats: { ninjutsu: 5, inteligencia: 4, selo: 3, energia: 3, agilidade: 2, resistencia: 1, genjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
-  { id: 'TAI', name: 'Taijutsu', icon: 'swords', desc: 'Corpo-a-corpo letal.', stats: { taijutsu: 5, forca: 4, agilidade: 3, resistencia: 3, energia: 2, ninjutsu: 1, bukijutsu: 1, inteligencia: 1, genjutsu: 0, selo: 0 } },
-  { id: 'GEN', name: 'Genjutsu', icon: 'sparkles', desc: 'Mestre das ilusões.', stats: { genjutsu: 5, inteligencia: 4, energia: 3, selo: 3, agilidade: 2, resistencia: 1, ninjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
-  { id: 'BUK', name: 'Bukijutsu', icon: 'shield', desc: 'Arsenal ninja.', stats: { bukijutsu: 5, agilidade: 4, forca: 3, selo: 3, resistencia: 2, taijutsu: 1, ninjutsu: 1, energia: 1, inteligencia: 0, genjutsu: 0 } }
-];
 
 export default function Criar({ session, setPlayerState }) {
   const { addToast } = useToast();
@@ -148,7 +145,7 @@ export default function Criar({ session, setPlayerState }) {
     }
   };
 
-  const currentClass = CLASSES.find(c => c.id === selectedClass) || CLASSES[0];
+  const currentClass = getStartingClassProfile(selectedClass);
   const creationBlocked = loading || catalogLoading || Boolean(catalogError) || !canCreateCharacter(accountCount, characters.length);
   const filteredCharacters = filterCharacterCatalog(characters, searchQuery);
   const { items: visibleCharacters, totalPages: pageCount } = paginateCharacterCatalog(filteredCharacters, catalogPage);
@@ -320,24 +317,37 @@ export default function Criar({ session, setPlayerState }) {
               </div>
               <h3 className="kuro-create-v5__field-title">Especialização ninja</h3>
               <div className="kuro-create-v5__classes">
-                {CLASSES.map(c => (
+                {STARTING_CLASS_PROFILES.map(c => (
                   <button key={c.id} type="button"
                     className={'kuro-create-v5__class' + (selectedClass === c.id ? ' is-selected' : '')}
                     onClick={() => setSelectedClass(c.id)}
                     aria-pressed={selectedClass === c.id}
                     disabled={loading}>
                     <span className="kuro-create-v5__class-icon"><SidebarIcon name={c.icon} size={22} /></span>
-                    <span><strong>{c.name}</strong><small>{c.desc}</small></span>
+                    <span><strong>{c.name}</strong><small>{c.desc}</small><small>{getStartingAttributeTotal(c.stats)} pontos iniciais</small></span>
                   </button>
                 ))}
               </div>
               <div className="kuro-create-v5__attribute-panel">
-                <h3>Atributos base · {currentClass.name}</h3>
-                <div className="kuro-create-v5__attributes">
-                  {Object.entries(currentClass.stats).filter(([, val]) => val > 0).map(([stat, val]) => (
-                    <span key={stat} className="kuro-create-v5__attribute">
-                      <span>{stat}</span><strong>+{val}</strong>
-                    </span>
+                <div className="kuro-create-v5__attribute-header">
+                  <h3>Atributos iniciais · {currentClass.name}</h3>
+                  <strong className="kuro-create-v5__attribute-budget" aria-label="Total de pontos distribuídos">
+                    {getStartingAttributeTotal(currentClass.stats)} / {STARTING_ATTRIBUTE_BUDGET} pontos
+                  </strong>
+                </div>
+                <p className="kuro-create-v5__attribute-description">Todas as classes começam com o mesmo total. A especialização altera apenas a distribuição.</p>
+                <div className="kuro-create-v5__attribute-bars">
+                  {STARTING_ATTRIBUTES.map(attribute => (
+                    <div key={attribute.key} className="kuro-create-v5__attribute-row">
+                      <span>{attribute.label}</span>
+                      <progress
+                        value={currentClass.stats[attribute.key]}
+                        max={STARTING_ATTRIBUTE_BUDGET}
+                        aria-label={attribute.label}
+                        aria-valuetext={currentClass.stats[attribute.key] + ' de ' + STARTING_ATTRIBUTE_BUDGET + ' pontos'}
+                      />
+                      <strong>{currentClass.stats[attribute.key]}</strong>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -364,6 +374,8 @@ export default function Criar({ session, setPlayerState }) {
                 <div><span>Vila</span><strong>{selectedVillageRecord?.name || '—'}</strong></div>
                 <div><span>Classe</span><strong>{currentClass.name}</strong></div>
                 <div><span>Início</span><strong>Nível 1 · 1.000 ryous</strong></div>
+                <div><span>Atributos iniciais</span><strong>{getStartingAttributeTotal(currentClass.stats)} / {STARTING_ATTRIBUTE_BUDGET} pontos</strong></div>
+                <div><span>Pontos para distribuir</span><strong>0 (já distribuídos na classe)</strong></div>
               </div>
               <p className="kuro-create-v5__warning">Confirme suas escolhas. A classe e a vila inicial são definidas na criação.</p>
             </section>

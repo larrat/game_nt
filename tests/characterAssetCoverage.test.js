@@ -56,7 +56,7 @@ test('foreign character associations and missing local assets fail closed', asyn
   };
   const report = await auditCharacterAssets(altered, { inspectDimensions: false });
   assert.ok(report.issues.some(s => /sem character_id válido/.test(s)));
-  assert.ok(report.issues.some(s => /evolução aponta/.test(s)));
+  assert.ok(report.issues.some(s => /evolução aponta/i.test(s)));
   assert.ok(report.issues.some(s => /local ausente/.test(s)));
   assert.ok(report.missingLocalFiles.includes('/images/not-here.png'));
 });

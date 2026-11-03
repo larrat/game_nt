@@ -10,6 +10,7 @@
 | **Instalar ou configurar ambiente** | [Guia rápido](GUIA-RAPIDO.md) |
 | **Ver o que está pronto e o que falta** | [Estado do projeto](STATUS-DO-PROJETO.md) |
 | **Entender a arquitetura e as regras** | [Documentação mestra](KUROKAGE-DOCUMENTACAO-MESTRA-2026-11-01.md) |
+| **Planejar login → personagens → dashboard** | [Escopo do primeiro acesso](design/KUROKAGE-PRIMEIRO-ACESSO-ESCOPO-2026-11-03.md) |
 | **Consultar interface e componentes** | [Design System v4](design/KUROKAGE-DESIGN-SYSTEM-V4.md) |
 | **Ver testes críticos** | [Jornada de QA](qa/JORNADA-CRITICA-2026-10-31.md) |
 

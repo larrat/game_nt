@@ -67,3 +67,32 @@
 @media (prefers-reduced-motion: reduce) {
   .inventory-modal__panel { animation: none; }
 }
+
+/* Search remains inside the scrollable portal, never under the fixed top bar. */
+.inventory-modal__tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.inventory-modal__tools label { color: var(--kuro-copy, #f3ecdf); font-size: 0.875rem; }
+.inventory-modal__tools input {
+  flex: 1 1 160px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--kuro-line, rgba(235,194,130,.20));
+  border-radius: 8px;
+  background: var(--kuro-surface, #131c27);
+  color: var(--kuro-copy, #f3ecdf);
+}
+.inventory-modal__tools input:focus-visible { outline: 2px solid var(--kuro-gold, #ebc17c); outline-offset: 2px; }
+.inventory-modal__tools span { margin-left: auto; }
+.inventory-modal__empty-icon { margin: 0 auto 12px; color: var(--kuro-gold, #ebc17c); opacity: .65; }
+.inventory-modal__no-results { padding: 24px 12px; text-align: center; }
+@media (max-width: 390px) {
+  .inventory-modal__tools { flex-direction: column; align-items: stretch; }
+  .inventory-modal__tools input { flex-basis: auto; width: 100%; }
+  .inventory-modal__tools span { margin-left: 0; }
+}

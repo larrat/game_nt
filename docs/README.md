@@ -1,6 +1,19 @@
 # Documentação do GAME_NT / Kurokage
 
-**Índice canônico — 31/10/2026.** Use o [roadmap integrado](ROADMAP-INTEGRADO-2026-10-31.md) como ponto de entrada para prioridades e estado de execução. Este índice não altera as especificações históricas e não declara como homologado o que foi apenas implementado.
+**Navegação atualizada em 03/11/2026.** Para saber o que está integrado e o que ainda depende de testes, consulte primeiro o [estado atual do projeto](STATUS-DO-PROJETO.md). O [roadmap de 31/10](ROADMAP-INTEGRADO-2026-10-31.md) e os demais documentos datados permanecem como histórico de decisões, não como status em tempo real.
+
+## ✨ Comece por aqui
+
+| Quero… | Abra |
+| :--- | :--- |
+| **Entender o jogo em 2 minutos** | [README do projeto](../README.md) |
+| **Instalar ou configurar ambiente** | [Guia rápido](GUIA-RAPIDO.md) |
+| **Ver o que está pronto e o que falta** | [Estado do projeto](STATUS-DO-PROJETO.md) |
+| **Entender a arquitetura e as regras** | [Documentação mestra](KUROKAGE-DOCUMENTACAO-MESTRA-2026-11-01.md) |
+| **Consultar interface e componentes** | [Design System v4](design/KUROKAGE-DESIGN-SYSTEM-V4.md) |
+| **Ver testes críticos** | [Jornada de QA](qa/JORNADA-CRITICA-2026-10-31.md) |
+
+> Os inventários e boards antigos são registros históricos. Verifique PRs, migrações e deploys atuais antes de tomar decisões operacionais.
 
 ## Regras de interpretação
 
@@ -14,7 +27,7 @@
 
 | Tema | Fonte principal | Uso e observação |
 |---|---|---|
-| Instalação, deploy, configuração | [README raiz](../README.md) | Procedimentos operacionais e domínio canônico |
+| Instalação, deploy, configuração | [Guia rápido](GUIA-RAPIDO.md) | Setup, variáveis públicas, Supabase Auth e deploy seguro |
 | Contribuição e padrões | [AGENTS.md](../.agents/AGENTS.md) | Regras de frontend; contém caminho local de referência que precisa ser removido |
 | Direção de produto e arquitetura | [Roadmap integrado](ROADMAP-INTEGRADO-2026-10-31.md) | Fonte de verdade para prioridades |
 | Quadro de trabalho | [Execution Board](EXECUTION-BOARD-2026-10-31.md) | Etapas, bloqueios, dependências e critérios de pronto |

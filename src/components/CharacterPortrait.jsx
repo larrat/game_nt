@@ -5,7 +5,7 @@ import '../styles/character-portraits.css';
 // Accept local paths and HTTPS media URLs. All other schemes fall back safely.
 export function isSupportedPortraitSource(src) {
   return typeof src === 'string' &&
-    (/^\\/(?!\\/)/.test(src) || /^https:\\/\\/[^\\s/]+\\/[^\\s]*$/i.test(src));
+    (/^\/(?!\/)/.test(src) || /^https:\/\/[^\s/]+\/[^\s]*$/i.test(src));
 }
 
 export default function CharacterPortrait({

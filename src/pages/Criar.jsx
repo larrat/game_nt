@@ -6,6 +6,7 @@ import { VILLAGES_LIST } from '../constants';
 import PageHeader from '../components/PageHeader';
 import SidebarIcon from '../components/SidebarIcon';
 import CharacterPortrait from '../components/CharacterPortrait';
+import { filterCharacterCatalog, paginateCharacterCatalog, isStartingAvatar, chooseStartingAvatar } from '../utils/characterCatalog';
 import { canCreateCharacter, MAX_CHARACTERS_PER_ACCOUNT, validateCharacterName } from '../utils/characterCreationRules';
 import '../styles/character-creation.css';
 import '../styles/auth-polish-v4.css';
@@ -17,10 +18,6 @@ const CLASSES = [
   { id: 'GEN', name: 'Genjutsu', icon: 'sparkles', desc: 'Mestre das ilusões.', stats: { genjutsu: 5, inteligencia: 4, energia: 3, selo: 3, agilidade: 2, resistencia: 1, ninjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
   { id: 'BUK', name: 'Bukijutsu', icon: 'shield', desc: 'Arsenal ninja.', stats: { bukijutsu: 5, agilidade: 4, forca: 3, selo: 3, resistencia: 2, taijutsu: 1, ninjutsu: 1, energia: 1, inteligencia: 0, genjutsu: 0 } }
 ];
-
-const PAGE_SIZE = 18;
-const normalizeName = value => String(value ?? '').normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR');
 
 export default function Criar({ session, setPlayerState }) {
   const { addToast } = useToast();
@@ -71,9 +68,7 @@ export default function Criar({ session, setPlayerState }) {
         setCharacters(available);
         setAvatars(eligibleAvatars);
         setSelectedCharacter(available[0].id);
-        setSelectedAvatar(eligibleAvatars.find(avatar =>
-          avatar.character_id === available[0].id && avatar.id === available[0].base_avatar_url
-        )?.id || eligibleAvatars.find(avatar => avatar.character_id === available[0].id)?.id || '');
+        setSelectedAvatar(chooseStartingAvatar(eligibleAvatars, available[0]));
         setCatalogPage(0);
 
         if (accountResult.error || accountResult.count == null) {
@@ -123,7 +118,7 @@ export default function Criar({ session, setPlayerState }) {
         : 'O catálogo ou os espaços da conta não estão disponíveis. Tente novamente.', 'error');
       return;
     }
-    if (!avatars.some(avatar => avatar.id === selectedAvatar && avatar.character_id === selectedCharacter && avatar.is_base === true)) {
+    if (!isStartingAvatar(avatars, selectedCharacter, selectedAvatar)) {
       addToast('Selecione um visual válido para o personagem.', 'error');
       return;
     }
@@ -155,21 +150,15 @@ export default function Criar({ session, setPlayerState }) {
 
   const currentClass = CLASSES.find(c => c.id === selectedClass) || CLASSES[0];
   const creationBlocked = loading || catalogLoading || Boolean(catalogError) || !canCreateCharacter(accountCount, characters.length);
-  const filteredCharacters = characters.filter(character =>
-    normalizeName(character.name).includes(normalizeName(searchQuery.trim()))
-  );
-  const pageCount = Math.max(1, Math.ceil(filteredCharacters.length / PAGE_SIZE));
-  const visibleCharacters = filteredCharacters.slice(catalogPage * PAGE_SIZE, (catalogPage + 1) * PAGE_SIZE);
+  const filteredCharacters = filterCharacterCatalog(characters, searchQuery);
+  const { items: visibleCharacters, totalPages: pageCount } = paginateCharacterCatalog(filteredCharacters, catalogPage);
   const selectedRecord = characters.find(character => character.id === selectedCharacter);
   const startingVariants = avatars.filter(avatar => avatar.character_id === selectedCharacter);
   const selectedVariant = startingVariants.find(avatar => avatar.id === selectedAvatar);
   const selectedVillageRecord = VILLAGES_LIST.find(village => village.id === selectedVillage);
   const selectCharacter = character => {
     setSelectedCharacter(character.id);
-    setSelectedAvatar(
-      avatars.find(avatar => avatar.character_id === character.id && avatar.id === character.base_avatar_url)?.id ||
-      avatars.find(avatar => avatar.character_id === character.id)?.id || ''
-    );
+    setSelectedAvatar(chooseStartingAvatar(avatars, character));
   };
 
   return (

@@ -110,7 +110,7 @@ test('server migration and UI use identical ten-point starting distributions', (
       'migration must insert ' + field);
   }
   for (const profile of STARTING_CLASS_PROFILES) {
-    const expression = new RegExp("WHEN '" + profile.id + "' THEN '(\\\\{[^']+\\\\})'::jsonb");
+    const expression = new RegExp("WHEN '" + profile.id + "' THEN '(\\{[^']+\\})'::jsonb");
     const match = migration.match(expression);
     assert.ok(match, 'missing SQL stats for class ' + profile.id);
     assert.deepEqual(JSON.parse(match[1]), profile.stats,

@@ -1,6 +1,7 @@
 -- 073: Starting avatar authorization at the server boundary.
 -- Apply only after two-account staging tests; no production player rows are changed.
--- Base selection remains valid for the current 188 catalog characters.
+-- Base selection remains valid for the current catalog characters.
+-- Existing players are NOT modified or rebalanced by this migration.
 -- Registration lifecycle: preserve the live server-assigned starting stats.
 -- Apply before deploying frontend that calls excluir_personagem.
 -- No player data changes at migration time.
@@ -16,6 +17,8 @@ DECLARE
     v_class text := upper(trim(COALESCE(p_class, '')));
     v_name text := btrim(COALESCE(p_name, ''));
     v_existing_count integer;
+    v_stats jsonb;
+    v_starting_total integer;
 BEGIN
     IF auth.uid() IS NULL THEN
         RAISE EXCEPTION 'Autenticação obrigatória.';
@@ -33,6 +36,15 @@ BEGIN
     END IF;
     IF v_class NOT IN ('NIN', 'TAI', 'GEN', 'BUK') THEN
         RAISE EXCEPTION 'Classe inválida.';
+    END IF;
+    -- All four classes start with the same ten allocated points.
+    -- No extra free points at creation; specialist distributions differ only by class.
+    v_stats := CASE v_class WHEN 'NIN' THEN '{"forca":0,"agilidade":1,"resistencia":1,"inteligencia":2,"energia":1,"ninjutsu":3,"taijutsu":0,"genjutsu":1,"bukijutsu":0,"selo":1}'::jsonb WHEN 'TAI' THEN '{"forca":2,"agilidade":2,"resistencia":1,"inteligencia":0,"energia":1,"ninjutsu":0,"taijutsu":3,"genjutsu":0,"bukijutsu":1,"selo":0}'::jsonb WHEN 'GEN' THEN '{"forca":0,"agilidade":1,"resistencia":1,"inteligencia":2,"energia":1,"ninjutsu":0,"taijutsu":0,"genjutsu":3,"bukijutsu":0,"selo":2}'::jsonb WHEN 'BUK' THEN '{"forca":2,"agilidade":2,"resistencia":1,"inteligencia":0,"energia":1,"ninjutsu":0,"taijutsu":0,"genjutsu":0,"bukijutsu":3,"selo":1}'::jsonb END;
+    SELECT COALESCE(sum(t.value::integer), 0) INTO v_starting_total
+      FROM pg_catalog.jsonb_each_text(v_stats) AS t;
+    IF v_starting_total <> 10 OR pg_catalog.jsonb_object_length(v_stats) <> 10
+       OR EXISTS(SELECT 1 FROM pg_catalog.jsonb_each_text(v_stats) AS t WHERE t.value::integer < 0) THEN
+        RAISE EXCEPTION 'Configuração de atributos iniciais inválida.';
     END IF;
     IF NOT EXISTS (SELECT 1 FROM public.villages WHERE id = p_village_id AND id <> 8) THEN
         RAISE EXCEPTION 'Vila inválida para criação de personagem.';
@@ -61,17 +73,17 @@ BEGIN
     )
     VALUES (
         auth.uid(), v_name, p_village_id, p_character_id, v_avatar, v_class,
-        1, 0, 1000, 5,
-        CASE v_class WHEN 'NIN' THEN 0 WHEN 'TAI' THEN 4 WHEN 'GEN' THEN 0 ELSE 3 END,
-        CASE v_class WHEN 'NIN' THEN 2 WHEN 'TAI' THEN 3 WHEN 'GEN' THEN 2 ELSE 4 END,
-        CASE v_class WHEN 'NIN' THEN 1 WHEN 'TAI' THEN 3 WHEN 'GEN' THEN 1 ELSE 2 END,
-        CASE v_class WHEN 'NIN' THEN 4 WHEN 'TAI' THEN 1 WHEN 'GEN' THEN 4 ELSE 0 END,
-        CASE v_class WHEN 'NIN' THEN 3 WHEN 'TAI' THEN 2 WHEN 'GEN' THEN 3 ELSE 1 END,
-        CASE v_class WHEN 'NIN' THEN 5 WHEN 'TAI' THEN 1 WHEN 'GEN' THEN 1 ELSE 1 END,
-        CASE v_class WHEN 'NIN' THEN 1 WHEN 'TAI' THEN 5 WHEN 'GEN' THEN 1 ELSE 1 END,
-        CASE v_class WHEN 'NIN' THEN 1 WHEN 'TAI' THEN 0 WHEN 'GEN' THEN 5 ELSE 0 END,
-        CASE v_class WHEN 'NIN' THEN 0 WHEN 'TAI' THEN 1 WHEN 'GEN' THEN 0 ELSE 5 END,
-        CASE v_class WHEN 'NIN' THEN 3 WHEN 'TAI' THEN 0 WHEN 'GEN' THEN 3 ELSE 3 END
+        1, 0, 1000, 0,
+        (v_stats->>'forca')::integer,
+        (v_stats->>'agilidade')::integer,
+        (v_stats->>'resistencia')::integer,
+        (v_stats->>'inteligencia')::integer,
+        (v_stats->>'energia')::integer,
+        (v_stats->>'ninjutsu')::integer,
+        (v_stats->>'taijutsu')::integer,
+        (v_stats->>'genjutsu')::integer,
+        (v_stats->>'bukijutsu')::integer,
+        (v_stats->>'selo')::integer
     )
     RETURNING * INTO v_player;
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/character-portraits.css';
 
 // Accept project-local media and HTTPS assets authorized by the project owner.
 // Never turn arbitrary catalog text into an executable URL.

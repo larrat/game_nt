@@ -1518,7 +1518,7 @@ export default function Combate({ player, updatePlayer, setPlayerState }) {
             shake={playerShake}
             fcts={fcts.filter(f => f.target === 'player')}
             bgStyle={combatBg(player.village_id)}
-            portrait={player.avatar?.startsWith('/') ? player.avatar : (player.avatar || '忍')}
+            portrait={player.avatar || '忍'}
             name={player.name}
             level={player.level}
             subtitle={equippedSummon ? equippedSummon.name : null}

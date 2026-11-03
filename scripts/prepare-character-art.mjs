@@ -41,7 +41,7 @@ export function planArtwork(manifest, catalog, root = process.cwd()) {
       continue;
     }
     if (typeof item.sourcePath !== 'string' ||
-        !/\\.(?:png|jpe?g|webp)$/i.test(item.sourcePath)) {
+        !/\.(?:png|jpe?g|webp)$/i.test(item.sourcePath)) {
       problems.push(tag + ': sourcePath must be a local PNG/JPG/WebP');
       continue;
     }
@@ -66,7 +66,7 @@ export async function processArtwork({ root = process.cwd(), manifestPath = DEFA
   write = false, approval = '' } = {}) {
   const manifestFile = resolve(root, manifestPath);
   const dataRoot = resolve(root, 'data');
-  if (!inside(dataRoot, manifestFile) || !/\\.json$/i.test(manifestFile)) {
+  if (!inside(dataRoot, manifestFile) || !/\.json$/i.test(manifestFile)) {
     throw new Error('Manifest must be a JSON file under data/');
   }
   const manifest = JSON.parse(readFileSync(manifestFile, 'utf8'));

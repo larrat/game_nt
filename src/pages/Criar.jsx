@@ -330,7 +330,7 @@ export default function Criar({ session, setPlayerState }) {
                   </div>
                 ) : (
                   <div className="kuro-create-v6__single-variant">
-                    <SidebarIcon name="check-circle" size={19} />
+                    <SidebarIcon name="info" size={19} />
                     <span>{startingVariants[0]?.name || 'Retrato inicial'} selecionado. Este personagem tem um visual inicial cadastrado.</span>
                   </div>
                 )}

@@ -4,6 +4,8 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import { useLocation } from 'react-router-dom';
 import { playClickSound } from '../utils/audioEngine';
+import { Backpack, PackageOpen } from 'lucide-react';
+import { filterConsumables, getConsumableUnits } from '../utils/inventorySearch';
 import '../styles/inventory-modal.css';
 
 export default function InventoryModal({ isOpen, onClose, player, updatePlayer }) {
@@ -12,6 +14,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [usingId, setUsingId] = useState(null);
+  const [search, setSearch] = useState('');
   const { addToast } = useToast();
   const closeButtonRef = useRef(null);
   const modalRef = useRef(null);
@@ -20,6 +23,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
 
   useEffect(() => {
     if (!isOpen) return;
+    setSearch('');
     const priorFocus = document.activeElement;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -74,7 +78,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
   };
 
   const handleUseItem = async (invItem) => {
-    if (!player || !updatePlayer) return;
+    if (!player || !updatePlayer || usingId !== null) return;
     if (inCombat) {
       addToast('Consumíveis não podem ser usados durante o combate.', 'error');
       return;
@@ -118,33 +122,47 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
     }
   };
 
+  const filteredItems = filterConsumables(items, search);
+  const totalUnits = getConsumableUnits(items);
+
   if (!isOpen) return null;
 
   return createPortal(
     <div className="modal-overlay inventory-modal__overlay" onClick={onClose}>
       
-      <div ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="kuro-inventory-title"
+      <div ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="kuro-inventory-title" aria-busy={loading || usingId !== null}
         className="avatar-modal inventory-modal__panel" onClick={e => e.stopPropagation()}>
 
         <div className="modal-header">
           <h2 id="kuro-inventory-title" className="flex-row items-center gap-xs">
-            🎒 Mochila de Suprimentos
+            <Backpack size={22} aria-hidden="true" /> Mochila de Suprimentos
           </h2>
           <button ref={closeButtonRef} type="button" className="btn-close" aria-label="Fechar mochila" onClick={onClose}>×</button>
         </div>
 
         <div className="modal-content p-6 bg-ink">
+          <div className="inventory-modal__tools">
+            <label htmlFor="kuro-inventory-search">Buscar suprimento</label>
+            <input id="kuro-inventory-search" type="search" value={search}
+              onChange={event => setSearch(event.target.value)}
+              placeholder="Nome ou descrição" disabled={loading || items.length === 0} />
+            <span className="muted text-xs" role="status">
+              {items.length} tipos · {totalUnits} unidades
+            </span>
+          </div>
           {loading ? (
             <div className="muted mono text-center p-10">Revirando a mochila...</div>
           ) : items.length === 0 ? (
             <div className="text-center p-10 bg-black-alpha-20 rounded-sm border-dashed border-line">
-              <div className="text-5xl mb-4 grayscale opacity-50">🍜</div>
+              <PackageOpen size={44} className="inventory-modal__empty-icon" aria-hidden="true" />
               <h3 className="paper mb-2">Mochila Vazia</h3>
               <p className="muted text-sm">Você não tem nenhum consumível. Visite o Ichiraku Ramen para comprar suprimentos para suas missões.</p>
             </div>
+          ) : filteredItems.length === 0 ? (
+            <p className="muted text-sm inventory-modal__no-results" role="status">Nenhum suprimento encontrado para esta busca.</p>
           ) : (
             <div className="flex-col gap-sm">
-              {items.map(invItem => (
+              {filteredItems.map(invItem => (
                 <div key={invItem.id} className="flex-row bg-ink-raised border-line-solid rounded-sm p-3 items-center gap-md">
                   <div className="text-3xl w-12 h-12 bg-ink-card rounded-xs flex-row items-center justify-center border-line-solid border-line-bright">
                     {invItem.consumables.icon}
@@ -159,7 +177,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
                   <button
                     className={`btn-primary p-2 px-4 text-xs ${inCombat ? 'opacity-50' : 'opacity-100'}`}
                     onClick={() => handleUseItem(invItem)}
-                    disabled={usingId === invItem.id || inCombat}
+                    disabled={usingId !== null || inCombat}
                     title={inCombat ? 'Consumíveis não podem ser usados em combate.' : ''}
                   >
                     {inCombat ? 'Bloqueado' : 'Usar'}

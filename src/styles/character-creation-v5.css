@@ -1,11 +1,11 @@
 /* Character creator v5 — original Kurokage presentation; isolated from gameplay economy. */
 .kuro-create-v5 {
-  --create-bg: #101924;
-  --create-panel: #141f2d;
-  --create-line: rgba(234,193,122,.24);
-  --create-gold: #efc884;
-  --create-copy: #f4eee6;
-  --create-muted: #b7b9bc;
+  --create-bg: var(--kuro-bg, #080d14);
+  --create-panel: var(--kuro-surface, #131c27);
+  --create-line: var(--kuro-line, rgba(235,194,130,.20));
+  --create-gold: var(--kuro-gold, #ebc17c);
+  --create-copy: var(--kuro-copy, #f3ecdf);
+  --create-muted: var(--kuro-muted, #b9bbc0);
   min-width: 0;
   padding-bottom: 48px;
   color: var(--create-copy);
@@ -309,4 +309,85 @@
     grid-template-columns: minmax(90px,1.1fr) minmax(50px,1.5fr) 24px;
     gap: 7px;
   }
+}
+
+
+/* Creator V6 — consistent navigation and a quieter catalog hierarchy. */
+.kuro-create-v5__preview-label { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.kuro-create-v6__preview-step { white-space: nowrap; color: var(--create-muted); }
+.kuro-create-v6__catalog-toolbar {
+  display: flex; align-items: flex-end; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 16px;
+}
+.kuro-create-v6__catalog-toolbar .kuro-create-v5__search {
+  flex: 1 1 260px; min-width: min(100%, 220px); margin-bottom: 0;
+}
+.kuro-create-v6__filters { display: flex; flex-wrap: wrap; gap: 7px; }
+.kuro-create-v6__filter {
+  min-height: 44px; padding: 9px 14px;
+  color: var(--create-muted); border: 1px solid var(--create-line);
+  border-radius: 10px; background: rgba(12,19,29,.85);
+  font: 600 12px/1.3 inherit; cursor: pointer;
+  transition: background .18s ease, border-color .18s ease;
+}
+.kuro-create-v6__filter.is-active {
+  color: var(--create-copy); border-color: var(--create-gold);
+  background: rgba(235, 194, 130, .16);
+}
+.kuro-create-v6__filter:hover:not(:disabled) { background: rgba(235,194,130,.13); }
+.kuro-create-v6__filter:focus-visible { outline: 2px solid var(--create-gold); outline-offset: 2px; }
+.kuro-create-v6__character-count {
+  display: block; margin-top: 7px; padding: 5px 2px 0;
+  border-top: 1px solid rgba(235,194,130,.13);
+  color: var(--create-muted); font-size: 10px; line-height: 1.4;
+}
+.kuro-create-v6__variant-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 8px;
+}
+.kuro-create-v6__variant-count {
+  color: var(--create-gold); border: 1px solid var(--create-line);
+  border-radius: 999px; padding: 4px 11px; font-size: 11px; white-space: nowrap;
+}
+.kuro-create-v5__variant-row {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(112px, 130px);
+  gap: 9px; overflow-x: auto; max-width: 100%; padding: 7px 3px 14px;
+  scroll-snap-type: x proximity; overscroll-behavior-inline: contain;
+}
+.kuro-create-v5__variant { flex: none; min-height: 120px; scroll-snap-align: start; }
+.kuro-create-v5__variant img,
+.kuro-create-v5__variant .kuro-character-portrait__fallback {
+  display: block; width: 100%; height: 72px; object-fit: contain;
+}
+.kuro-create-v6__single-variant {
+  display: flex; align-items: center; gap: 11px;
+  min-height: 54px; margin-top: 14px; padding: 12px 14px;
+  border: 1px solid rgba(235, 194, 130, .16);
+  border-radius: 10px;
+  background: rgba(235, 194, 130, .055);
+  color: var(--create-muted); font-size: 12px; line-height: 1.6;
+}
+.kuro-create-v6__single-variant svg { flex: 0 0 auto; color: var(--create-gold); }
+.kuro-create-v5__empty { display: grid; gap: 8px; justify-items: center; }
+.kuro-create-v5__empty strong { color: var(--create-copy); font-size: 14px; }
+.kuro-create-v5__empty p { margin: 0 0 4px; font-size: 12px; }
+.kuro-create-v5__character { overflow: hidden; }
+.kuro-create-v5__character-image { height: clamp(112px, 12vw, 158px); }
+.kuro-create-v5__catalog { gap: clamp(9px, 1.2vw, 15px); }
+@media (max-width: 760px) {
+  .kuro-create-v6__catalog-toolbar { align-items: stretch; }
+  .kuro-create-v6__catalog-toolbar .kuro-create-v5__search { flex-basis: 100%; }
+  .kuro-create-v5__character-image { height: 132px; }
+  .kuro-create-v5__preview { padding: 12px; }
+  .kuro-create-v5__portrait-stage { height: clamp(140px, 36vw, 240px); min-height: 140px; margin: 8px 0; }
+}
+@media (max-width: 420px) {
+  .kuro-create-v6__filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  .kuro-create-v6__filter { padding-inline: 8px; }
+  .kuro-create-v5__character-image { height: 115px; }
+  .kuro-create-v5__preview-caption h2 { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kuro-create-v6__filter { transition: none; }
+  .kuro-create-v5__variant-row { scroll-behavior: auto; }
 }

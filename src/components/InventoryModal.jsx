@@ -18,6 +18,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
   const { addToast } = useToast();
   const closeButtonRef = useRef(null);
   const modalRef = useRef(null);
+  const consumingRef = useRef(false);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 
@@ -78,7 +79,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
   };
 
   const handleUseItem = async (invItem) => {
-    if (!player || !updatePlayer || usingId !== null) return;
+    if (!player || !updatePlayer || usingId !== null || consumingRef.current) return;
     if (inCombat) {
       addToast('Consumíveis não podem ser usados durante o combate.', 'error');
       return;
@@ -90,6 +91,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
       return;
     }
 
+    consumingRef.current = true;
     setUsingId(invItem.id);
     playClickSound();
 
@@ -118,6 +120,7 @@ export default function InventoryModal({ isOpen, onClose, player, updatePlayer }
     } catch (error) {
       addToast('Erro inesperado ao usar item: ' + (error?.message || 'tente novamente.'), 'error');
     } finally {
+      consumingRef.current = false;
       setUsingId(null);
     }
   };

@@ -350,8 +350,8 @@ export default function Dashboard({ player, updatePlayer }) {
           </div>
           <div className="kuro-quest-list">
             <DailyTaskItem taskId="t1" title="Derrote 3 inimigos" titleIcon="/images/imgi_112_1.png" rewardText="Recompensa no resgate" progressValue={player.daily_npcs_defeated || 0} progressMax={3} progressColor="green" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
-            <DailyTaskItem taskId="t2" title="Gaste 100 de Chakra" titleIcon="/images/imgi_9_chakra.png" rewardText="RY$ 20" progressValue={player.daily_chakra_spent || 0} progressMax={100} progressColor="blue" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
-            <DailyTaskItem taskId="t3" title="Treine 1 vez" titleIcon="/images/imgi_10_stamina.png" rewardText="RY$ 20" progressValue={player.daily_trainings || 0} progressMax={1} progressColor="red" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
+            <DailyTaskItem taskId="t2" title="Gaste 100 de Chakra" titleIcon="/images/imgi_9_chakra.png" rewardText="Recompensa no resgate" progressValue={player.daily_chakra_spent || 0} progressMax={100} progressColor="blue" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
+            <DailyTaskItem taskId="t3" title="Treine 1 vez" titleIcon="/images/imgi_10_stamina.png" rewardText="Recompensa no resgate" progressValue={player.daily_trainings || 0} progressMax={1} progressColor="red" claimedList={claimedList} handleClaimTask={handleClaimTask} claiming={claiming} />
           </div>
           <div className="kuro-daily-chest">
             <div className="kuro-daily-chest__icon">▣</div><div className="kuro-daily-chest__copy"><strong>Baú de esforço diário</strong><p>Complete as três tarefas e receba Kuro Coins.</p></div>

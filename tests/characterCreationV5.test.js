@@ -60,7 +60,7 @@ test('three-step creator and selected character screen use remote-aware portrait
   assert.ok(create.includes('avatar.is_base === true'));
   assert.ok(create.includes('CharacterPortrait'));
   assert.ok(select.includes('<CharacterPortrait'));
-  assert.ok(portrait.includes('onError={() => setFailed(true)}'));
+  assert.ok(portrait.includes('onError={() => setFailedIndex(index => index + 1)}'));
   assert.ok(portrait.includes('https:'));
   assert.ok(style.includes('@media(max-width:760px)'));
   assert.ok(style.includes('prefers-reduced-motion'));

@@ -27,6 +27,7 @@ export default function Criar({ session, setPlayerState }) {
   const [characters, setCharacters] = useState([]);
   const [avatars, setAvatars] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [appearanceFilter, setAppearanceFilter] = useState('all');
   const [catalogPage, setCatalogPage] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
   const [villageStats, setVillageStats] = useState({});
@@ -62,10 +63,12 @@ export default function Criar({ session, setPlayerState }) {
           eligibleAvatars.some(avatar => avatar.character_id === item.id)
         );
         if (!available.length) throw new Error('Nenhum personagem inicial está disponível.');
-        setCharacters(available);
+        // Stable alphabetical catalog; never expose order-by-ID as a visual hierarchy.
+        const alphabetical = [...available].sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+        setCharacters(alphabetical);
         setAvatars(eligibleAvatars);
-        setSelectedCharacter(available[0].id);
-        setSelectedAvatar(chooseStartingAvatar(eligibleAvatars, available[0]));
+        setSelectedCharacter(alphabetical[0].id);
+        setSelectedAvatar(chooseStartingAvatar(eligibleAvatars, alphabetical[0]));
         setCatalogPage(0);
 
         if (accountResult.error || accountResult.count == null) {
@@ -147,15 +150,26 @@ export default function Criar({ session, setPlayerState }) {
 
   const currentClass = getStartingClassProfile(selectedClass);
   const creationBlocked = loading || catalogLoading || Boolean(catalogError) || !canCreateCharacter(accountCount, characters.length);
-  const filteredCharacters = filterCharacterCatalog(characters, searchQuery);
+  const initialVariantCounts = new Map();
+  avatars.forEach(avatar => initialVariantCounts.set(avatar.character_id,
+    (initialVariantCounts.get(avatar.character_id) || 0) + 1));
+  const filteredCharacters = filterCharacterCatalog(characters, searchQuery)
+    .filter(character => appearanceFilter === 'multiple'
+      ? (initialVariantCounts.get(character.id) || 0) > 1 : true);
   const { items: visibleCharacters, totalPages: pageCount } = paginateCharacterCatalog(filteredCharacters, catalogPage);
   const selectedRecord = characters.find(character => character.id === selectedCharacter);
-  const startingVariants = avatars.filter(avatar => avatar.character_id === selectedCharacter);
+  const startingVariants = avatars.filter(avatar => avatar.character_id === selectedCharacter)
+    .sort((a, b) => (a.id === selectedRecord?.base_avatar_url ? -1 : b.id === selectedRecord?.base_avatar_url ? 1 : a.name.localeCompare(b.name, 'pt-BR')));
   const selectedVariant = startingVariants.find(avatar => avatar.id === selectedAvatar);
   const selectedVillageRecord = VILLAGES_LIST.find(village => village.id === selectedVillage);
   const selectCharacter = character => {
     setSelectedCharacter(character.id);
     setSelectedAvatar(chooseStartingAvatar(avatars, character));
+  };
+  const clearSearch = () => {
+    setSearchQuery('');
+    setAppearanceFilter('all');
+    setCatalogPage(0);
   };
 
   return (
@@ -173,7 +187,7 @@ export default function Criar({ session, setPlayerState }) {
         <PageHeader
           eyebrow="Novo Shinobi"
           title="Crie sua Lenda"
-          subtitle="Escolha seu personagem, defina seu caminho e confirme sua jornada."
+          subtitle="Três escolhas simples para começar sua história: aparência, especialização e identidade."
         />
         <ol className="kuro-create-v5__steps" aria-label="Etapas de criação">
           {[
@@ -204,7 +218,10 @@ export default function Criar({ session, setPlayerState }) {
 
       <div className="kuro-create-v5__layout">
         <aside className="kuro-create-v5__preview" aria-label="Prévia do personagem">
-          <div className="kuro-create-v5__preview-label">PRÉVIA DO SHINOBI</div>
+          <div className="kuro-create-v5__preview-label">
+            <span>PRÉVIA DO SHINOBI</span>
+            <span className="kuro-create-v6__preview-step">ETAPA 0{currentStep} / 03</span>
+          </div>
           <div className="kuro-create-v5__portrait-stage">
             <CharacterPortrait
               src={selectedAvatar || selectedRecord?.base_avatar_url}
@@ -214,7 +231,7 @@ export default function Criar({ session, setPlayerState }) {
             />
           </div>
           <div className="kuro-create-v5__preview-caption">
-            <span>PERSONAGEM BASE</span>
+            <span>PERSONAGEM SELECIONADO</span>
             <h2>{selectedRecord?.name || 'Selecione um ninja'}</h2>
             <p>{selectedVariant?.name || 'Visual inicial'}</p>
           </div>
@@ -235,18 +252,30 @@ export default function Criar({ session, setPlayerState }) {
                 </div>
                 <span className="kuro-create-v5__counter">{filteredCharacters.length} personagens</span>
               </div>
-              <label className="kuro-create-v5__search">
-                <SidebarIcon name="search" size={19} />
-                <span className="sr-only">Buscar personagem pelo nome</span>
-                <input type="search" value={searchQuery} placeholder="Buscar personagem pelo nome..."
-                  onChange={event => { setSearchQuery(event.target.value); setCatalogPage(0); }}
-                  aria-label="Buscar personagem pelo nome" />
-              </label>
+              <div className="kuro-create-v6__catalog-toolbar">
+                <label className="kuro-create-v5__search">
+                  <SidebarIcon name="search" size={19} />
+                  <span className="sr-only">Buscar personagem pelo nome</span>
+                  <input type="search" value={searchQuery} placeholder="Buscar entre os personagens..."
+                    onChange={event => { setSearchQuery(event.target.value); setCatalogPage(0); }}
+                    aria-label="Buscar personagem pelo nome" />
+                </label>
+                <div className="kuro-create-v6__filters" role="group" aria-label="Filtros de aparências">
+                  <button type="button" className={'kuro-create-v6__filter' + (appearanceFilter === 'all' ? ' is-active' : '')}
+                    aria-pressed={appearanceFilter === 'all'} onClick={() => { setAppearanceFilter('all'); setCatalogPage(0); }}>
+                    Todos
+                  </button>
+                  <button type="button" className={'kuro-create-v6__filter' + (appearanceFilter === 'multiple' ? ' is-active' : '')}
+                    aria-pressed={appearanceFilter === 'multiple'} onClick={() => { setAppearanceFilter('multiple'); setCatalogPage(0); }}>
+                    Mais de um visual
+                  </button>
+                </div>
+              </div>
               <div className="kuro-create-v5__catalog" role="group" aria-labelledby="character-create-visual-label">
                 {visibleCharacters.map(character => (
                   <button key={character.id} type="button"
                     className={'kuro-create-v5__character' + (selectedCharacter === character.id ? ' is-selected' : '')}
-                    aria-label={'Escolher visual ' + character.name}
+                    aria-label={'Escolher personagem ' + character.name + ', ' + (initialVariantCounts.get(character.id) || 0) + ' aparências iniciais'}
                     aria-pressed={selectedCharacter === character.id}
                     disabled={loading || catalogLoading}
                     onClick={() => selectCharacter(character)}>
@@ -254,10 +283,17 @@ export default function Criar({ session, setPlayerState }) {
                       <CharacterPortrait src={character.base_avatar_url} alt="" />
                     </span>
                     <strong>{character.name}</strong>
+                    <small className="kuro-create-v6__character-count">
+                      {initialVariantCounts.get(character.id) || 0} {(initialVariantCounts.get(character.id) || 0) === 1 ? 'aparência inicial' : 'aparências iniciais'}
+                    </small>
                   </button>
                 ))}
                 {!catalogLoading && filteredCharacters.length === 0 &&
-                  <p className="kuro-create-v5__empty">Nenhum personagem encontrado. Tente outro nome.</p>}
+                  <div className="kuro-create-v5__empty" role="status">
+                    <strong>Nenhum personagem encontrado</strong>
+                    <p>Experimente outro nome ou remova os filtros.</p>
+                    <button type="button" className="btn-ghost" onClick={clearSearch}>Limpar filtros</button>
+                  </div>}
               </div>
               {pageCount > 1 && (
                 <nav className="kuro-create-v5__pagination" aria-label="Páginas de personagens">
@@ -270,16 +306,20 @@ export default function Criar({ session, setPlayerState }) {
                     disabled={catalogPage >= pageCount - 1}>Próxima</button>
                 </nav>
               )}
-              {startingVariants.length > 1 && (
-                <div className="kuro-create-v5__variants">
-                  <h3>Visuais iniciais disponíveis</h3>
-                  <p>Variações desbloqueadas durante a jornada não aparecem nesta etapa.</p>
+              <div className="kuro-create-v5__variants">
+                <div className="kuro-create-v6__variant-header">
+                  <h3>Aparências iniciais de {selectedRecord?.name || 'seu ninja'}</h3>
+                  <span className="kuro-create-v6__variant-count">
+                    {startingVariants.length} {startingVariants.length === 1 ? 'visual' : 'visuais'}
+                  </span>
+                </div>
+                <p>Escolha o retrato que acompanhará seu ninja. Evoluções e transformações são desbloqueadas no jogo.</p>
+                {startingVariants.length > 1 ? (
                   <div className="kuro-create-v5__variant-row" role="group" aria-label="Selecionar variante inicial">
                     {startingVariants.map(avatar => (
                       <button key={avatar.id} type="button"
                         className={'kuro-create-v5__variant' + (selectedAvatar === avatar.id ? ' is-selected' : '')}
-                        aria-label={'Escolher ' + avatar.name}
-                        title={avatar.name}
+                        aria-label={'Escolher ' + avatar.name} title={avatar.name}
                         aria-pressed={selectedAvatar === avatar.id}
                         onClick={() => setSelectedAvatar(avatar.id)}
                         disabled={loading}>
@@ -288,8 +328,13 @@ export default function Criar({ session, setPlayerState }) {
                       </button>
                     ))}
                   </div>
-                </div>
-              )}
+                ) : (
+                  <div className="kuro-create-v6__single-variant">
+                    <SidebarIcon name="check-circle" size={19} />
+                    <span>{startingVariants[0]?.name || 'Retrato inicial'} selecionado. Este personagem tem um visual inicial cadastrado.</span>
+                  </div>
+                )}
+              </div>
             </section>
           )}
 
@@ -371,6 +416,7 @@ export default function Criar({ session, setPlayerState }) {
               <p className="kuro-create-v5__hint">Entre 3 e 24 caracteres. O nome precisa estar disponível.</p>
               <div className="kuro-create-v5__review" aria-label="Resumo de criação">
                 <div><span>Personagem</span><strong>{selectedRecord?.name || '—'}</strong></div>
+                <div><span>Retrato</span><strong>{selectedVariant?.name || '—'}</strong></div>
                 <div><span>Vila</span><strong>{selectedVillageRecord?.name || '—'}</strong></div>
                 <div><span>Classe</span><strong>{currentClass.name}</strong></div>
                 <div><span>Início</span><strong>Nível 1 · 1.000 ryous</strong></div>

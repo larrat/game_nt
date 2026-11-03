@@ -107,14 +107,6 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
     }
   };
 
-  const nextChar = () => {
-    setCurrentIndex((prev) => (prev + 1) % characters.length);
-  };
-
-  const prevChar = () => {
-    setCurrentIndex((prev) => (prev - 1 + characters.length) % characters.length);
-  };
-
   if (loading) return <div className="page flex-col items-center justify-center kuro-character-select__loading" role="status" aria-live="polite">Carregando personagens...</div>;
 
   const char = characters[currentIndex];
@@ -201,10 +193,6 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
           exit={reduceMotion ? undefined : { opacity: 0, x: -14 }}
           transition={{ duration: 0.24, ease: 'easeOut' }}
         >
-          {characters.length > 1 && (
-            <button type="button" className="selection-nav-arrow" onClick={prevChar} disabled={joining !== null || loading}
-              aria-label="Personagem anterior">‹</button>
-          )}
 
           <div className="selection-avatar-container">
             <CharacterPortrait
@@ -279,21 +267,11 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
               </button>
             </div>
           </div>
-          
-          {characters.length > 1 && (
-            <button type="button" className="selection-nav-arrow" onClick={nextChar} disabled={joining !== null || loading}
-              aria-label="Próximo personagem">›</button>
-          )}
         </motion.div>
         </AnimatePresence>
         </div>
       )}
 
-      {characters.length > 0 && characters.length < 3 && (
-         <div className="text-center mt-16 relative z-[2]">
-            <button className="btn-ghost" onClick={() => navigate('/criar')}>+ Criar Novo Personagem</button>
-         </div>
-      )}
     </div>
   );
 }

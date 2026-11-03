@@ -4,16 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
 import { VILLAGES_LIST } from '../constants';
 import PageHeader from '../components/PageHeader';
+import SidebarIcon from '../components/SidebarIcon';
+import CharacterPortrait from '../components/CharacterPortrait';
 import { canCreateCharacter, MAX_CHARACTERS_PER_ACCOUNT, validateCharacterName } from '../utils/characterCreationRules';
 import '../styles/character-creation.css';
 import '../styles/auth-polish-v4.css';
+import '../styles/character-creation-v5.css';
 
 const CLASSES = [
-  { id: 'NIN', name: 'Ninjutsu', icon: '📜', desc: 'Especialista em magias.', stats: { ninjutsu: 5, inteligencia: 4, selo: 3, energia: 3, agilidade: 2, resistencia: 1, genjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
-  { id: 'TAI', name: 'Taijutsu', icon: '👊', desc: 'Corpo-a-corpo letal.', stats: { taijutsu: 5, forca: 4, agilidade: 3, resistencia: 3, energia: 2, ninjutsu: 1, bukijutsu: 1, inteligencia: 1, genjutsu: 0, selo: 0 } },
-  { id: 'GEN', name: 'Genjutsu', icon: '👁️', desc: 'Mestre das ilusões.', stats: { genjutsu: 5, inteligencia: 4, energia: 3, selo: 3, agilidade: 2, resistencia: 1, ninjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
-  { id: 'BUK', name: 'Bukijutsu', icon: '🗡️', desc: 'Arsenal ninja.', stats: { bukijutsu: 5, agilidade: 4, forca: 3, selo: 3, resistencia: 2, taijutsu: 1, ninjutsu: 1, energia: 1, inteligencia: 0, genjutsu: 0 } }
+  { id: 'NIN', name: 'Ninjutsu', icon: 'scroll', desc: 'Especialista em magias.', stats: { ninjutsu: 5, inteligencia: 4, selo: 3, energia: 3, agilidade: 2, resistencia: 1, genjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
+  { id: 'TAI', name: 'Taijutsu', icon: 'swords', desc: 'Corpo-a-corpo letal.', stats: { taijutsu: 5, forca: 4, agilidade: 3, resistencia: 3, energia: 2, ninjutsu: 1, bukijutsu: 1, inteligencia: 1, genjutsu: 0, selo: 0 } },
+  { id: 'GEN', name: 'Genjutsu', icon: 'sparkles', desc: 'Mestre das ilusões.', stats: { genjutsu: 5, inteligencia: 4, energia: 3, selo: 3, agilidade: 2, resistencia: 1, ninjutsu: 1, taijutsu: 1, forca: 0, bukijutsu: 0 } },
+  { id: 'BUK', name: 'Bukijutsu', icon: 'shield', desc: 'Arsenal ninja.', stats: { bukijutsu: 5, agilidade: 4, forca: 3, selo: 3, resistencia: 2, taijutsu: 1, ninjutsu: 1, energia: 1, inteligencia: 0, genjutsu: 0 } }
 ];
+
+const PAGE_SIZE = 18;
+const normalizeName = value => String(value ?? '').normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR');
 
 export default function Criar({ session, setPlayerState }) {
   const { addToast } = useToast();
@@ -24,6 +31,10 @@ export default function Criar({ session, setPlayerState }) {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [loading, setLoading] = useState(false);
   const [characters, setCharacters] = useState([]);
+  const [avatars, setAvatars] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [catalogPage, setCatalogPage] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
   const [villageStats, setVillageStats] = useState({});
   const [accountCount, setAccountCount] = useState(null);
   const [catalogLoading, setCatalogLoading] = useState(true);
@@ -41,19 +52,29 @@ export default function Criar({ session, setPlayerState }) {
       setAccountCount(null);
 
       try {
-        const [catalogResult, accountResult, villageResult] = await Promise.all([
+        const [catalogResult, avatarResult, accountResult, villageResult] = await Promise.all([
           supabase.from('characters').select('id,name,base_avatar_url').order('id'),
+          supabase.from('avatars').select('id,name,character_id,is_base').eq('is_base', true),
           supabase.from('players').select('id', { count: 'exact', head: true }).eq('user_id', session.user.id),
           supabase.rpc('contar_ninjas_vila')
         ]);
         if (!active) return;
 
         if (catalogResult.error) throw catalogResult.error;
-        const available = (catalogResult.data || []).filter(item => item.id && item.base_avatar_url);
-        if (!available.length) throw new Error('Nenhum visual está disponível no catálogo.');
+        if (avatarResult.error) throw avatarResult.error;
+        const eligibleAvatars = (avatarResult.data || []).filter(avatar => avatar.id && avatar.character_id && avatar.is_base === true);
+        const available = (catalogResult.data || []).filter(item =>
+          item.id && item.base_avatar_url &&
+          eligibleAvatars.some(avatar => avatar.character_id === item.id)
+        );
+        if (!available.length) throw new Error('Nenhum personagem inicial está disponível.');
         setCharacters(available);
-        setSelectedCharacter(previous => available.some(item => item.id === previous) ? previous : available[0].id);
-        setSelectedAvatar(previous => available.some(item => item.base_avatar_url === previous) ? previous : available[0].base_avatar_url);
+        setAvatars(eligibleAvatars);
+        setSelectedCharacter(available[0].id);
+        setSelectedAvatar(eligibleAvatars.find(avatar =>
+          avatar.character_id === available[0].id && avatar.id === available[0].base_avatar_url
+        )?.id || eligibleAvatars.find(avatar => avatar.character_id === available[0].id)?.id || '');
+        setCatalogPage(0);
 
         if (accountResult.error || accountResult.count == null) {
           setCatalogError('Não foi possível verificar seus espaços de personagem. Tente novamente.');
@@ -72,6 +93,7 @@ export default function Criar({ session, setPlayerState }) {
       } catch {
         if (active) {
           setCharacters([]);
+          setAvatars([]);
           setCatalogError('Não foi possível carregar os personagens disponíveis. Tente novamente.');
         }
       } finally {
@@ -101,7 +123,7 @@ export default function Criar({ session, setPlayerState }) {
         : 'O catálogo ou os espaços da conta não estão disponíveis. Tente novamente.', 'error');
       return;
     }
-    if (!characters.some(item => item.id === selectedCharacter && item.base_avatar_url === selectedAvatar)) {
+    if (!avatars.some(avatar => avatar.id === selectedAvatar && avatar.character_id === selectedCharacter && avatar.is_base === true)) {
       addToast('Selecione um visual válido para o personagem.', 'error');
       return;
     }
@@ -133,6 +155,22 @@ export default function Criar({ session, setPlayerState }) {
 
   const currentClass = CLASSES.find(c => c.id === selectedClass) || CLASSES[0];
   const creationBlocked = loading || catalogLoading || Boolean(catalogError) || !canCreateCharacter(accountCount, characters.length);
+  const filteredCharacters = characters.filter(character =>
+    normalizeName(character.name).includes(normalizeName(searchQuery.trim()))
+  );
+  const pageCount = Math.max(1, Math.ceil(filteredCharacters.length / PAGE_SIZE));
+  const visibleCharacters = filteredCharacters.slice(catalogPage * PAGE_SIZE, (catalogPage + 1) * PAGE_SIZE);
+  const selectedRecord = characters.find(character => character.id === selectedCharacter);
+  const startingVariants = avatars.filter(avatar => avatar.character_id === selectedCharacter);
+  const selectedVariant = startingVariants.find(avatar => avatar.id === selectedAvatar);
+  const selectedVillageRecord = VILLAGES_LIST.find(village => village.id === selectedVillage);
+  const selectCharacter = character => {
+    setSelectedCharacter(character.id);
+    setSelectedAvatar(
+      avatars.find(avatar => avatar.character_id === character.id && avatar.id === character.base_avatar_url)?.id ||
+      avatars.find(avatar => avatar.character_id === character.id)?.id || ''
+    );
+  };
 
   return (
     <div className="page auth-screen-layout kuro-creation-v4">

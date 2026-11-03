@@ -1,0 +1,2733 @@
+{
+  "schemaVersion": 1,
+  "observedOn": "2026-11-03",
+  "purpose": "Read-only public character/appearance catalog snapshot used to audit local image coverage. Not an authority for player data or SQL writes.",
+  "source": "Supabase public.characters and public.avatars; no auth or player records exported.",
+  "counts": {
+    "characters": 188,
+    "avatars": 222,
+    "baseRemote": 184,
+    "avatarRemote": 191,
+    "localAvatarIds": 31
+  },
+  "characters": [
+    {
+      "id": "1",
+      "name": "Naruto Uzumaki (Clássico)",
+      "base_avatar_url": "/images/naruto.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Sasuke Uchiha (Clássico)",
+      "base_avatar_url": "/images/avatares/sasuke_01_kunai.png"
+    },
+    {
+      "id": "3",
+      "name": "Sakura Haruno (Clássico)",
+      "base_avatar_url": "/images/sakura.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Kakashi Hatake (Clássico)",
+      "base_avatar_url": "/images/kakashi.jpg"
+    },
+    {
+      "id": "ng-initial-100",
+      "name": "Yamato",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/100/1.png"
+    },
+    {
+      "id": "ng-initial-101",
+      "name": "Kabuto Yakushi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/101/1.png"
+    },
+    {
+      "id": "ng-initial-102",
+      "name": "Tsunade Senju",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/102/1.png"
+    },
+    {
+      "id": "ng-initial-105",
+      "name": "Hidan",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/105/2.png"
+    },
+    {
+      "id": "ng-initial-109",
+      "name": "Kakuzu",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/109/1.png"
+    },
+    {
+      "id": "ng-initial-110",
+      "name": "Hiruzen Sarutobi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/110/2.png"
+    },
+    {
+      "id": "ng-initial-111",
+      "name": "Sora",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/111/1.png"
+    },
+    {
+      "id": "ng-initial-112",
+      "name": "Rin Nohara",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/112/1.png"
+    },
+    {
+      "id": "ng-initial-113",
+      "name": "Konan",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/113/3.png"
+    },
+    {
+      "id": "ng-initial-114",
+      "name": "Matsuri (Clássico)",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/114/1.png"
+    },
+    {
+      "id": "ng-initial-115",
+      "name": "Guren",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/115/1.png"
+    },
+    {
+      "id": "ng-initial-116",
+      "name": "Juugo",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/116/2.png"
+    },
+    {
+      "id": "ng-initial-117",
+      "name": "Karin Uzumaki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/117/1.png"
+    },
+    {
+      "id": "ng-initial-118",
+      "name": "Suigetsu Hoozuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/118/1.png"
+    },
+    {
+      "id": "ng-initial-119",
+      "name": "Killer Bee",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/119/1.png"
+    },
+    {
+      "id": "ng-initial-120",
+      "name": "Chiyo",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/120/1.png"
+    },
+    {
+      "id": "ng-initial-122",
+      "name": "Madara Uchiha",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/122/16.png"
+    },
+    {
+      "id": "ng-initial-123",
+      "name": "Chouza Akimichi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/123/1.png"
+    },
+    {
+      "id": "ng-initial-124",
+      "name": "Kotetsu Hagane",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/124/1.png"
+    },
+    {
+      "id": "ng-initial-125",
+      "name": "Ei",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/125/9.png"
+    },
+    {
+      "id": "ng-initial-126",
+      "name": "Kushina Uzumaki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/126/4.png"
+    },
+    {
+      "id": "ng-initial-127",
+      "name": "Sakumo Hatake",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/127/1.png"
+    },
+    {
+      "id": "ng-initial-129",
+      "name": "Danzou Shimura",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/129/1.png"
+    },
+    {
+      "id": "ng-initial-131",
+      "name": "Hanabi Hyuuga",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/131/4.png"
+    },
+    {
+      "id": "ng-initial-132",
+      "name": "Hiashi Hyuuga",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/132/1.png"
+    },
+    {
+      "id": "ng-initial-135",
+      "name": "Salamander Hanzou",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/135/1.png"
+    },
+    {
+      "id": "ng-initial-136",
+      "name": "Inoichi Yamanaka",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/136/1.png"
+    },
+    {
+      "id": "ng-initial-137",
+      "name": "Nagato Uzumaki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/137/5.png"
+    },
+    {
+      "id": "ng-initial-138",
+      "name": "Yahiko",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/138/1.png"
+    },
+    {
+      "id": "ng-initial-139",
+      "name": "Shikaku Nara",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/139/1.png"
+    },
+    {
+      "id": "ng-initial-140",
+      "name": "Mei Terumii",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/140/8.png"
+    },
+    {
+      "id": "ng-initial-141",
+      "name": "Oonoki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/141/2.png"
+    },
+    {
+      "id": "ng-initial-142",
+      "name": "Yagura",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/142/2.png"
+    },
+    {
+      "id": "ng-initial-143",
+      "name": "Utakata",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/143/1.png"
+    },
+    {
+      "id": "ng-initial-144",
+      "name": "Raiga Kurosuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/144/1.png"
+    },
+    {
+      "id": "ng-initial-147",
+      "name": "Shibi Aburame",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/147/3.png"
+    },
+    {
+      "id": "ng-initial-151",
+      "name": "Rikudou Sennin",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/151/1.png"
+    },
+    {
+      "id": "ng-initial-155",
+      "name": "Omoi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/155/1.png"
+    },
+    {
+      "id": "ng-initial-156",
+      "name": "Samui",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/156/1.png"
+    },
+    {
+      "id": "ng-initial-157",
+      "name": "Uzuki Yuugao",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/157/4.png"
+    },
+    {
+      "id": "ng-initial-162",
+      "name": "Homura Mitokado",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/162/1.png"
+    },
+    {
+      "id": "ng-initial-163",
+      "name": "Izumo Kamizuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/163/1.png"
+    },
+    {
+      "id": "ng-initial-165",
+      "name": "Koharu Utatane",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/165/1.png"
+    },
+    {
+      "id": "ng-initial-167",
+      "name": "Mizuki Touji",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/167/1.png"
+    },
+    {
+      "id": "ng-initial-169",
+      "name": "Raidou Namiashi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/169/1.png"
+    },
+    {
+      "id": "ng-initial-170",
+      "name": "Shigure",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/170/1.png"
+    },
+    {
+      "id": "ng-initial-172",
+      "name": "Rasa",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/172/1.png"
+    },
+    {
+      "id": "ng-initial-173",
+      "name": "Darui",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/173/16.png"
+    },
+    {
+      "id": "ng-initial-174",
+      "name": "Karui",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/174/1.png"
+    },
+    {
+      "id": "ng-initial-175",
+      "name": "Aoba Yamashiro",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/175/1.png"
+    },
+    {
+      "id": "ng-initial-176",
+      "name": "Dan Katou",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/176/1.png"
+    },
+    {
+      "id": "ng-initial-177",
+      "name": "Ebizou",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/177/1.png"
+    },
+    {
+      "id": "ng-initial-178",
+      "name": "Fugaku Uchiha",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/178/1.png"
+    },
+    {
+      "id": "ng-initial-179",
+      "name": "Fuu Yamanaka",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/179/1.png"
+    },
+    {
+      "id": "ng-initial-180",
+      "name": "Hana Inuzuka",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/180/1.png"
+    },
+    {
+      "id": "ng-initial-181",
+      "name": "Hotaru Katsuragi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/181/1.png"
+    },
+    {
+      "id": "ng-initial-182",
+      "name": "Kakkou",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/182/3.png"
+    },
+    {
+      "id": "ng-initial-183",
+      "name": "Kurotsuchi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/183/6.png"
+    },
+    {
+      "id": "ng-initial-184",
+      "name": "Moegi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/184/1.png"
+    },
+    {
+      "id": "ng-initial-185",
+      "name": "Nawaki Senju",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/185/1.png"
+    },
+    {
+      "id": "ng-initial-186",
+      "name": "Shee",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/186/1.png"
+    },
+    {
+      "id": "ng-initial-187",
+      "name": "Tsume Inuzuka",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/187/1.png"
+    },
+    {
+      "id": "ng-initial-188",
+      "name": "Udon",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/188/1.png"
+    },
+    {
+      "id": "ng-initial-189",
+      "name": "Ao",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/189/1.png"
+    },
+    {
+      "id": "ng-initial-190",
+      "name": "Akatsuchi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/190/1.png"
+    },
+    {
+      "id": "ng-initial-191",
+      "name": "Choujuurou",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/191/5.png"
+    },
+    {
+      "id": "ng-initial-192",
+      "name": "Torune Aburame",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/192/1.png"
+    },
+    {
+      "id": "ng-initial-193",
+      "name": "Kinkaku",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/193/1.png"
+    },
+    {
+      "id": "ng-initial-194",
+      "name": "Ginkaku",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/194/1.png"
+    },
+    {
+      "id": "ng-initial-195",
+      "name": "Pakura",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/195/2.png"
+    },
+    {
+      "id": "ng-initial-196",
+      "name": "Oboro",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/196/4.png"
+    },
+    {
+      "id": "ng-initial-197",
+      "name": "Mubi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/197/3.png"
+    },
+    {
+      "id": "ng-initial-198",
+      "name": "Kagari",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/198/1.png"
+    },
+    {
+      "id": "ng-initial-199",
+      "name": "Baiu",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/199/1.png"
+    },
+    {
+      "id": "ng-initial-200",
+      "name": "Midare",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/200/3.png"
+    },
+    {
+      "id": "ng-initial-201",
+      "name": "Yoroi Akado",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/201/3.png"
+    },
+    {
+      "id": "ng-initial-202",
+      "name": "Misumi Tsurugi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/202/1.png"
+    },
+    {
+      "id": "ng-initial-203",
+      "name": "Fuu",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/203/2.png"
+    },
+    {
+      "id": "ng-initial-207",
+      "name": "Fuguki Suikazan",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/207/4.png"
+    },
+    {
+      "id": "ng-initial-209",
+      "name": "Mangetsu Hoozuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/209/2.png"
+    },
+    {
+      "id": "ng-initial-210",
+      "name": "Muta Aburame",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/210/2.png"
+    },
+    {
+      "id": "ng-initial-211",
+      "name": "Ensui Nara",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/211/2.png"
+    },
+    {
+      "id": "ng-initial-212",
+      "name": "Izuna Uchiha",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/212/1.png"
+    },
+    {
+      "id": "ng-initial-213",
+      "name": "Maki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/213/1.png"
+    },
+    {
+      "id": "ng-initial-214",
+      "name": "Nidaime Mizukage",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/214/1.png"
+    },
+    {
+      "id": "ng-initial-215",
+      "name": "Sandaime Raikage",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/215/1.png"
+    },
+    {
+      "id": "ng-initial-216",
+      "name": "Muu",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/216/5.png"
+    },
+    {
+      "id": "ng-initial-217",
+      "name": "Roushi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/217/2.png"
+    },
+    {
+      "id": "ng-initial-218",
+      "name": "Han",
+      "base_avatar_url": "https://narutogame.com.br/assets/images//logado/profile-4x4/218/6.png"
+    },
+    {
+      "id": "ng-initial-219",
+      "name": "Gari",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/219/4.png"
+    },
+    {
+      "id": "ng-initial-220",
+      "name": "Shisui Uchiha",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/220/10.png"
+    },
+    {
+      "id": "ng-initial-222",
+      "name": "Yota",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/222/2.png"
+    },
+    {
+      "id": "ng-initial-223",
+      "name": "Mabui",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/223/1.png"
+    },
+    {
+      "id": "ng-initial-224",
+      "name": "Kagami Uchiha",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/224/4.png"
+    },
+    {
+      "id": "ng-initial-225",
+      "name": "Fukai",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/225/1.png"
+    },
+    {
+      "id": "ng-initial-226",
+      "name": "Mifune",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/226/4.png"
+    },
+    {
+      "id": "ng-initial-227",
+      "name": "Shin",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/227/2.png"
+    },
+    {
+      "id": "ng-initial-228",
+      "name": "Toroi (Edo Tensei)",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/228/1.png"
+    },
+    {
+      "id": "ng-initial-229",
+      "name": "Atsui",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/229/1.png"
+    },
+    {
+      "id": "ng-initial-230",
+      "name": "Yukimaru",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/230/1.png"
+    },
+    {
+      "id": "ng-initial-231",
+      "name": "Mikoto Uchiha",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/231/1.png"
+    },
+    {
+      "id": "ng-initial-232",
+      "name": "Kizashi Haruno",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/232/1.png"
+    },
+    {
+      "id": "ng-initial-233",
+      "name": "Kitsuchi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/233/3.png"
+    },
+    {
+      "id": "ng-initial-234",
+      "name": "Toneri Ootsutsuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/234/2.png"
+    },
+    {
+      "id": "ng-initial-235",
+      "name": "Boruto Uzumaki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/235/1.png"
+    },
+    {
+      "id": "ng-initial-236",
+      "name": "Sarada Uchiha",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/236/11.png"
+    },
+    {
+      "id": "ng-initial-237",
+      "name": "Mitsuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/237/9.png"
+    },
+    {
+      "id": "ng-initial-238",
+      "name": "Kaguya Ootsutsuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/238/2.png"
+    },
+    {
+      "id": "ng-initial-239",
+      "name": "Mito Uzumaki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/239/3.png"
+    },
+    {
+      "id": "ng-initial-240",
+      "name": "Shira",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/240/3.png"
+    },
+    {
+      "id": "ng-initial-241",
+      "name": "Dotou Kazahana",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/241/1.png"
+    },
+    {
+      "id": "ng-initial-242",
+      "name": "Nadare Rouga",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/242/1.png"
+    },
+    {
+      "id": "ng-initial-243",
+      "name": "Fubuki Kakuyoku",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/243/1.png"
+    },
+    {
+      "id": "ng-initial-244",
+      "name": "Mizore Fuyukuma",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/244/1.png"
+    },
+    {
+      "id": "ng-initial-245",
+      "name": "Inojin Yamanaka",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/245/2.png"
+    },
+    {
+      "id": "ng-initial-246",
+      "name": "Shikadai Nara",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/246/4.png"
+    },
+    {
+      "id": "ng-initial-247",
+      "name": "Chouchou Akimichi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/247/1.png"
+    },
+    {
+      "id": "ng-initial-248",
+      "name": "Metal Lee",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/248/1.png"
+    },
+    {
+      "id": "ng-initial-249",
+      "name": "Himawari Uzumaki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/249/3.png"
+    },
+    {
+      "id": "ng-initial-250",
+      "name": "Mirai Sarutobi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/250/1.png"
+    },
+    {
+      "id": "ng-initial-251",
+      "name": "Shinki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/251/3.png"
+    },
+    {
+      "id": "ng-initial-252",
+      "name": "Yodo",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/252/1.png"
+    },
+    {
+      "id": "ng-initial-253",
+      "name": "Araya",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/253/1.png"
+    },
+    {
+      "id": "ng-initial-254",
+      "name": "Yurui",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/254/1.png"
+    },
+    {
+      "id": "ng-initial-255",
+      "name": "Tarui",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/255/1.png"
+    },
+    {
+      "id": "ng-initial-256",
+      "name": "Toroi (Boruto)",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/256/1.png"
+    },
+    {
+      "id": "ng-initial-257",
+      "name": "Momoshiki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/257/3.png"
+    },
+    {
+      "id": "ng-initial-258",
+      "name": "Kinshiki Ootsutsuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/258/2.png"
+    },
+    {
+      "id": "ng-initial-259",
+      "name": "Ashura Ootsutsuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/259/3.png"
+    },
+    {
+      "id": "ng-initial-260",
+      "name": "Indra Ootsutsuki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/260/1.png"
+    },
+    {
+      "id": "ng-initial-261",
+      "name": "Iwabee Yuino",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/261/1.png"
+    },
+    {
+      "id": "ng-initial-262",
+      "name": "Juzo Biwa",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/262/3.png"
+    },
+    {
+      "id": "ng-initial-263",
+      "name": "Kagura Karatachi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/263/1.png"
+    },
+    {
+      "id": "ng-initial-264",
+      "name": "Maito Dai",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/264/2.png"
+    },
+    {
+      "id": "ng-initial-265",
+      "name": "Sumire",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/265/5.png"
+    },
+    {
+      "id": "ng-initial-3",
+      "name": "Rock Lee",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/3/1.png"
+    },
+    {
+      "id": "ng-initial-4",
+      "name": "Sabaku no Gaara",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/4/14.png"
+    },
+    {
+      "id": "ng-initial-43",
+      "name": "Zabuza Momochi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/43/1.png"
+    },
+    {
+      "id": "ng-initial-44",
+      "name": "Haku",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/44/1.png"
+    },
+    {
+      "id": "ng-initial-46",
+      "name": "Kankurou",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/46/6.png"
+    },
+    {
+      "id": "ng-initial-47",
+      "name": "Temari",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/47/1.png"
+    },
+    {
+      "id": "ng-initial-50",
+      "name": "Suzumebachi Kamizuru",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/50/1.png"
+    },
+    {
+      "id": "ng-initial-51",
+      "name": "Yugito Nii",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/51/2.png"
+    },
+    {
+      "id": "ng-initial-52",
+      "name": "Deidara",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/52/3.png"
+    },
+    {
+      "id": "ng-initial-53",
+      "name": "Akasuna no Sasori",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/53/1.png"
+    },
+    {
+      "id": "ng-initial-54",
+      "name": "Kisame Hoshigaki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/54/1.png"
+    },
+    {
+      "id": "ng-initial-55",
+      "name": "Itachi Uchiha",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/55/1.png"
+    },
+    {
+      "id": "ng-initial-56",
+      "name": "Tenten",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/56/10.png"
+    },
+    {
+      "id": "ng-initial-57",
+      "name": "Neji Hyuuga",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/57/1.png"
+    },
+    {
+      "id": "ng-initial-58",
+      "name": "Shino Aburame",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/58/2.png"
+    },
+    {
+      "id": "ng-initial-59",
+      "name": "Ino Yamanaka",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/59/1.png"
+    },
+    {
+      "id": "ng-initial-61",
+      "name": "Maito Gai",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/61/17.png"
+    },
+    {
+      "id": "ng-initial-62",
+      "name": "Shikamaru Nara",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/62/2.png"
+    },
+    {
+      "id": "ng-initial-63",
+      "name": "Jiraiya",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/63/9.png"
+    },
+    {
+      "id": "ng-initial-64",
+      "name": "Zaku Abumi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/64/1.png"
+    },
+    {
+      "id": "ng-initial-65",
+      "name": "Baki",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/65/4.png"
+    },
+    {
+      "id": "ng-initial-66",
+      "name": "Ebisu",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/66/1.png"
+    },
+    {
+      "id": "ng-initial-67",
+      "name": "Hayate Gekkou",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/67/1.png"
+    },
+    {
+      "id": "ng-initial-69",
+      "name": "Hinata Hyuuga",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/69/13.png"
+    },
+    {
+      "id": "ng-initial-70",
+      "name": "Jiroubou",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/70/2.png"
+    },
+    {
+      "id": "ng-initial-71",
+      "name": "Kimimaro Kaguya",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/71/3.png"
+    },
+    {
+      "id": "ng-initial-72",
+      "name": "Kidoumaru",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/72/1.png"
+    },
+    {
+      "id": "ng-initial-73",
+      "name": "Konohamaru Sarutobi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/73/4.png"
+    },
+    {
+      "id": "ng-initial-74",
+      "name": "Dosu Kinuta",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/74/1.png"
+    },
+    {
+      "id": "ng-initial-75",
+      "name": "Tobirama Senju",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/75/1.png"
+    },
+    {
+      "id": "ng-initial-76",
+      "name": "Orochimaru",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/76/2.png"
+    },
+    {
+      "id": "ng-initial-77",
+      "name": "Sakon e Ukon",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/77/1.png"
+    },
+    {
+      "id": "ng-initial-78",
+      "name": "Hashirama Senju",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/78/6.png"
+    },
+    {
+      "id": "ng-initial-79",
+      "name": "Asuma Sarutobi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/79/1.png"
+    },
+    {
+      "id": "ng-initial-80",
+      "name": "Genma Shiranui",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/80/1.png"
+    },
+    {
+      "id": "ng-initial-81",
+      "name": "Shizune",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/81/1.png"
+    },
+    {
+      "id": "ng-initial-819",
+      "name": "Koyuki Kazahana",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/819/1.png"
+    },
+    {
+      "id": "ng-initial-84",
+      "name": "Minato Namikaze",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/84/30.png"
+    },
+    {
+      "id": "ng-initial-85",
+      "name": "Zetsu",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/85/1.png"
+    },
+    {
+      "id": "ng-initial-86",
+      "name": "Ibiki Morino",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/86/4.png"
+    },
+    {
+      "id": "ng-initial-87",
+      "name": "Anko Mitarashi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/87/7.png"
+    },
+    {
+      "id": "ng-initial-88",
+      "name": "Tayuya",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/88/10.png"
+    },
+    {
+      "id": "ng-initial-89",
+      "name": "Tsuchi Kin",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/89/4.png"
+    },
+    {
+      "id": "ng-initial-90",
+      "name": "Obito Uchiha",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/90/3.png"
+    },
+    {
+      "id": "ng-initial-91",
+      "name": "Kurenai Yuuhi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/91/1.png"
+    },
+    {
+      "id": "ng-initial-94",
+      "name": "Chouji Akimichi",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/94/2.png"
+    },
+    {
+      "id": "ng-initial-95",
+      "name": "Kiba Inuzuka",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/95/1.png"
+    },
+    {
+      "id": "ng-initial-98",
+      "name": "Iruka Umino",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/98/10.png"
+    },
+    {
+      "id": "ng-initial-99",
+      "name": "Sai",
+      "base_avatar_url": "https://narutogame.com.br/assets/images/logado/profile/99/11.png"
+    }
+  ],
+  "avatars": [
+    {
+      "id": "/images/naruto.jpg",
+      "name": "Naruto - Clássico",
+      "character_id": "1",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_01_kunai.png",
+      "name": "Sasuke - Kunai",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": "/images/avatares/sasuke_19_hebi.png",
+      "evolution_req_level": 10
+    },
+    {
+      "id": "/images/avatares/sasuke_02_selagem.png",
+      "name": "Sasuke - Selagem",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_03_flauta.png",
+      "name": "Sasuke - Flauta",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_04_corrida.png",
+      "name": "Sasuke - Corrida",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_05_costas_katana.png",
+      "name": "Sasuke - Katana",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_06_kunais.png",
+      "name": "Sasuke - Kunais",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_07_sharingan.png",
+      "name": "Sasuke - Sharingan",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_08_chidori.png",
+      "name": "Sasuke - Chidori",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_09_roupa_preta.png",
+      "name": "Sasuke - Som",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_10_chidori_preto.png",
+      "name": "Sasuke - Chidori II",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_11_kunai_boca.png",
+      "name": "Sasuke - Furtivo",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_12_maldição.png",
+      "name": "Sasuke - Maldição",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_13_combate.png",
+      "name": "Sasuke - Combate",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_14_sorrindo.png",
+      "name": "Sasuke - Sorrindo",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_15_velocidade.png",
+      "name": "Sasuke - Velocidade",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_16_sharingan_preto.png",
+      "name": "Sasuke - Sharingan II",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_17_fogo.png",
+      "name": "Sasuke - Fogo",
+      "character_id": "2",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_18_jovem.png",
+      "name": "Sasuke - Jovem",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_19_hebi.png",
+      "name": "Sasuke - Hebi",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": "/images/avatares/sasuke_20_sharingan_adulto.png",
+      "evolution_req_level": 25
+    },
+    {
+      "id": "/images/avatares/sasuke_20_sharingan_adulto.png",
+      "name": "Sasuke - Adulto",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_21_folhas.png",
+      "name": "Sasuke - Folhas",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_22_neji_like.png",
+      "name": "Sasuke - Bandanas",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_23_susanoo.png",
+      "name": "Sasuke - Susanoo",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_24_eletrico.png",
+      "name": "Sasuke - Elétrico",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_25_chidori_adulto.png",
+      "name": "Sasuke - Chidori III",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_26_voo.png",
+      "name": "Sasuke - Voo",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_27_adulto_full.png",
+      "name": "Sasuke - Full Art",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/avatares/sasuke_28_espada.png",
+      "name": "Sasuke - Espada",
+      "character_id": "2",
+      "is_base": false,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/sakura.jpg",
+      "name": "Sakura - Clássica",
+      "character_id": "3",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "/images/kakashi.jpg",
+      "name": "Kakashi Base",
+      "character_id": "4",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/100/1.png",
+      "name": "Yamato — Shippuden",
+      "character_id": "ng-initial-100",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/101/1.png",
+      "name": "Kabuto Yakushi — Clássico",
+      "character_id": "ng-initial-101",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/102/1.png",
+      "name": "Tsunade Senju — Clássico",
+      "character_id": "ng-initial-102",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/105/2.png",
+      "name": "Hidan — Shippuden",
+      "character_id": "ng-initial-105",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/109/1.png",
+      "name": "Kakuzu — Shippuden",
+      "character_id": "ng-initial-109",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/110/2.png",
+      "name": "Hiruzen Sarutobi — Clássico",
+      "character_id": "ng-initial-110",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/111/1.png",
+      "name": "Sora — Shippuden",
+      "character_id": "ng-initial-111",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/112/1.png",
+      "name": "Rin Nohara — Shippuden",
+      "character_id": "ng-initial-112",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/113/3.png",
+      "name": "Konan — Shippuden",
+      "character_id": "ng-initial-113",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/114/1.png",
+      "name": "Matsuri — Clássico",
+      "character_id": "ng-initial-114",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/115/1.png",
+      "name": "Guren — Shippuden",
+      "character_id": "ng-initial-115",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/116/2.png",
+      "name": "Juugo — Shippuden",
+      "character_id": "ng-initial-116",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/117/1.png",
+      "name": "Karin Uzumaki — Shippuden",
+      "character_id": "ng-initial-117",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/118/1.png",
+      "name": "Suigetsu Hoozuki — Shippuden",
+      "character_id": "ng-initial-118",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/119/1.png",
+      "name": "Killer Bee — Shippuden",
+      "character_id": "ng-initial-119",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/120/1.png",
+      "name": "Chiyo — Shippuden",
+      "character_id": "ng-initial-120",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/122/16.png",
+      "name": "Madara Uchiha — Shippuden",
+      "character_id": "ng-initial-122",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/123/1.png",
+      "name": "Chouza Akimichi — Clássico",
+      "character_id": "ng-initial-123",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/124/1.png",
+      "name": "Kotetsu Hagane — Shippuden",
+      "character_id": "ng-initial-124",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/125/9.png",
+      "name": "Ei — Shippuden",
+      "character_id": "ng-initial-125",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/126/4.png",
+      "name": "Kushina Uzumaki — Shippuden",
+      "character_id": "ng-initial-126",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/127/1.png",
+      "name": "Sakumo Hatake — Shippuden",
+      "character_id": "ng-initial-127",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/129/1.png",
+      "name": "Danzou Shimura — Shippuden",
+      "character_id": "ng-initial-129",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/131/4.png",
+      "name": "Hanabi Hyuuga — Clássico",
+      "character_id": "ng-initial-131",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/132/1.png",
+      "name": "Hiashi Hyuuga — Clássico",
+      "character_id": "ng-initial-132",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/135/1.png",
+      "name": "Salamander Hanzou — Shippuden",
+      "character_id": "ng-initial-135",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/136/1.png",
+      "name": "Inoichi Yamanaka — Clássico",
+      "character_id": "ng-initial-136",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/137/5.png",
+      "name": "Nagato Uzumaki — Shippuden",
+      "character_id": "ng-initial-137",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/138/1.png",
+      "name": "Yahiko — Shippuden",
+      "character_id": "ng-initial-138",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/521/7.png",
+      "name": "Yahiko — Gakido",
+      "character_id": "ng-initial-138",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/522/5.png",
+      "name": "Yahiko — Chikushodo",
+      "character_id": "ng-initial-138",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/523/5.png",
+      "name": "Yahiko — Jigokudo",
+      "character_id": "ng-initial-138",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/524/6.png",
+      "name": "Yahiko — Ningendo",
+      "character_id": "ng-initial-138",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/525/6.png",
+      "name": "Yahiko — Shurado",
+      "character_id": "ng-initial-138",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/526/1.png",
+      "name": "Yahiko — Tendo",
+      "character_id": "ng-initial-138",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/139/1.png",
+      "name": "Shikaku Nara — Clássico",
+      "character_id": "ng-initial-139",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/140/8.png",
+      "name": "Mei Terumii — Shippuden",
+      "character_id": "ng-initial-140",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/141/2.png",
+      "name": "Oonoki — Shippuden",
+      "character_id": "ng-initial-141",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/142/2.png",
+      "name": "Yagura — Shippuden",
+      "character_id": "ng-initial-142",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/143/1.png",
+      "name": "Utakata — Shippuden",
+      "character_id": "ng-initial-143",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/144/1.png",
+      "name": "Raiga Kurosuki — Clássico",
+      "character_id": "ng-initial-144",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/147/3.png",
+      "name": "Shibi Aburame — Clássico",
+      "character_id": "ng-initial-147",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/151/1.png",
+      "name": "Rikudou Sennin — Shippuden",
+      "character_id": "ng-initial-151",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/155/1.png",
+      "name": "Omoi — Shippuden",
+      "character_id": "ng-initial-155",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/156/1.png",
+      "name": "Samui — Shippuden",
+      "character_id": "ng-initial-156",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/157/4.png",
+      "name": "Uzuki Yuugao — Clássico",
+      "character_id": "ng-initial-157",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/162/1.png",
+      "name": "Homura Mitokado — Clássico",
+      "character_id": "ng-initial-162",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/163/1.png",
+      "name": "Izumo Kamizuki — Clássico",
+      "character_id": "ng-initial-163",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/165/1.png",
+      "name": "Koharu Utatane — Clássico",
+      "character_id": "ng-initial-165",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/167/1.png",
+      "name": "Mizuki Touji — Clássico",
+      "character_id": "ng-initial-167",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/169/1.png",
+      "name": "Raidou Namiashi — Clássico",
+      "character_id": "ng-initial-169",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/170/1.png",
+      "name": "Shigure — Clássico",
+      "character_id": "ng-initial-170",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/172/1.png",
+      "name": "Rasa — Clássico",
+      "character_id": "ng-initial-172",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/173/16.png",
+      "name": "Darui — Shippuden",
+      "character_id": "ng-initial-173",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/174/1.png",
+      "name": "Karui — Shippuden",
+      "character_id": "ng-initial-174",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/175/1.png",
+      "name": "Aoba Yamashiro — Clássico",
+      "character_id": "ng-initial-175",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/176/1.png",
+      "name": "Dan Katou — Clássico",
+      "character_id": "ng-initial-176",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/177/1.png",
+      "name": "Ebizou — Clássico",
+      "character_id": "ng-initial-177",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/178/1.png",
+      "name": "Fugaku Uchiha — Clássico",
+      "character_id": "ng-initial-178",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/179/1.png",
+      "name": "Fuu Yamanaka — Shippuden",
+      "character_id": "ng-initial-179",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/180/1.png",
+      "name": "Hana Inuzuka — Clássico",
+      "character_id": "ng-initial-180",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/181/1.png",
+      "name": "Hotaru Katsuragi — Shippuden",
+      "character_id": "ng-initial-181",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/182/3.png",
+      "name": "Kakkou — Clássico",
+      "character_id": "ng-initial-182",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/183/6.png",
+      "name": "Kurotsuchi — Shippuden",
+      "character_id": "ng-initial-183",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/184/1.png",
+      "name": "Moegi — Clássico",
+      "character_id": "ng-initial-184",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/185/1.png",
+      "name": "Nawaki Senju — Clássico",
+      "character_id": "ng-initial-185",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/186/1.png",
+      "name": "Shee — Shippuden",
+      "character_id": "ng-initial-186",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/187/1.png",
+      "name": "Tsume Inuzuka — Clássico",
+      "character_id": "ng-initial-187",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/188/1.png",
+      "name": "Udon — Clássico",
+      "character_id": "ng-initial-188",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/189/1.png",
+      "name": "Ao — Shippuden",
+      "character_id": "ng-initial-189",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/190/1.png",
+      "name": "Akatsuchi — Shippuden",
+      "character_id": "ng-initial-190",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/191/5.png",
+      "name": "Choujuurou — Shippuden",
+      "character_id": "ng-initial-191",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/192/1.png",
+      "name": "Torune Aburame — Shippuden",
+      "character_id": "ng-initial-192",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/193/1.png",
+      "name": "Kinkaku — Shippuden",
+      "character_id": "ng-initial-193",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/194/1.png",
+      "name": "Ginkaku — Shippuden",
+      "character_id": "ng-initial-194",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/195/2.png",
+      "name": "Pakura — Shippuden",
+      "character_id": "ng-initial-195",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/196/4.png",
+      "name": "Oboro — Clássico",
+      "character_id": "ng-initial-196",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/197/3.png",
+      "name": "Mubi — Clássico",
+      "character_id": "ng-initial-197",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/198/1.png",
+      "name": "Kagari — Clássico",
+      "character_id": "ng-initial-198",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/199/1.png",
+      "name": "Baiu — Clássico",
+      "character_id": "ng-initial-199",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/200/3.png",
+      "name": "Midare — Clássico",
+      "character_id": "ng-initial-200",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/201/3.png",
+      "name": "Yoroi Akado — Clássico",
+      "character_id": "ng-initial-201",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/202/1.png",
+      "name": "Misumi Tsurugi — Clássico",
+      "character_id": "ng-initial-202",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/203/2.png",
+      "name": "Fuu — Shippuden",
+      "character_id": "ng-initial-203",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/207/4.png",
+      "name": "Fuguki Suikazan — Edo Tensei",
+      "character_id": "ng-initial-207",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/209/2.png",
+      "name": "Mangetsu Hoozuki — Edo Tensei",
+      "character_id": "ng-initial-209",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/210/2.png",
+      "name": "Muta Aburame — Shippuden",
+      "character_id": "ng-initial-210",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/211/2.png",
+      "name": "Ensui Nara — Shippuden",
+      "character_id": "ng-initial-211",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/212/1.png",
+      "name": "Izuna Uchiha — Shippuden",
+      "character_id": "ng-initial-212",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/213/1.png",
+      "name": "Maki — Shippuden",
+      "character_id": "ng-initial-213",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/214/1.png",
+      "name": "Nidaime Mizukage — Edo Tensei",
+      "character_id": "ng-initial-214",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/215/1.png",
+      "name": "Sandaime Raikage — Edo Tensei",
+      "character_id": "ng-initial-215",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/216/5.png",
+      "name": "Muu — Edo Tensei",
+      "character_id": "ng-initial-216",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/217/2.png",
+      "name": "Roushi — Shippuden",
+      "character_id": "ng-initial-217",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images//logado/profile-4x4/218/6.png",
+      "name": "Han — Shippuden",
+      "character_id": "ng-initial-218",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/219/4.png",
+      "name": "Gari — Edo Tensei",
+      "character_id": "ng-initial-219",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/220/10.png",
+      "name": "Shisui Uchiha — Shippuden",
+      "character_id": "ng-initial-220",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/222/2.png",
+      "name": "Yota — Shippuden",
+      "character_id": "ng-initial-222",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/223/1.png",
+      "name": "Mabui — Shippuden",
+      "character_id": "ng-initial-223",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/224/4.png",
+      "name": "Kagami Uchiha — Shippuden",
+      "character_id": "ng-initial-224",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/225/1.png",
+      "name": "Fukai — Shippuden",
+      "character_id": "ng-initial-225",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/226/4.png",
+      "name": "Mifune — Shippuden",
+      "character_id": "ng-initial-226",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/227/2.png",
+      "name": "Shin — Shippuden",
+      "character_id": "ng-initial-227",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/228/1.png",
+      "name": "Toroi — Edo Tensei",
+      "character_id": "ng-initial-228",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/229/1.png",
+      "name": "Atsui — Shippuden",
+      "character_id": "ng-initial-229",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/230/1.png",
+      "name": "Yukimaru — Shippuden",
+      "character_id": "ng-initial-230",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/231/1.png",
+      "name": "Mikoto Uchiha — Clássico",
+      "character_id": "ng-initial-231",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/232/1.png",
+      "name": "Kizashi Haruno — Shippuden",
+      "character_id": "ng-initial-232",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/233/3.png",
+      "name": "Kitsuchi — Shippuden",
+      "character_id": "ng-initial-233",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/234/2.png",
+      "name": "Toneri Ootsutsuki — Shippuden",
+      "character_id": "ng-initial-234",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/235/1.png",
+      "name": "Boruto Uzumaki — Boruto",
+      "character_id": "ng-initial-235",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/236/11.png",
+      "name": "Sarada Uchiha — Boruto",
+      "character_id": "ng-initial-236",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/237/9.png",
+      "name": "Mitsuki — Boruto",
+      "character_id": "ng-initial-237",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/238/2.png",
+      "name": "Kaguya Ootsutsuki — Shippuden",
+      "character_id": "ng-initial-238",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/239/3.png",
+      "name": "Mito Uzumaki — Shippuden",
+      "character_id": "ng-initial-239",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/240/3.png",
+      "name": "Shira — Shippuden",
+      "character_id": "ng-initial-240",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/241/1.png",
+      "name": "Dotou Kazahana — Clássico",
+      "character_id": "ng-initial-241",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/242/1.png",
+      "name": "Nadare Rouga — Clássico",
+      "character_id": "ng-initial-242",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/243/1.png",
+      "name": "Fubuki Kakuyoku — Clássico",
+      "character_id": "ng-initial-243",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/244/1.png",
+      "name": "Mizore Fuyukuma — Clássico",
+      "character_id": "ng-initial-244",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/245/2.png",
+      "name": "Inojin Yamanaka — Boruto",
+      "character_id": "ng-initial-245",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/246/4.png",
+      "name": "Shikadai Nara — Boruto",
+      "character_id": "ng-initial-246",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/247/1.png",
+      "name": "Chouchou Akimichi — Boruto",
+      "character_id": "ng-initial-247",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/248/1.png",
+      "name": "Metal Lee — Boruto",
+      "character_id": "ng-initial-248",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/249/3.png",
+      "name": "Himawari Uzumaki — Boruto",
+      "character_id": "ng-initial-249",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/250/1.png",
+      "name": "Mirai Sarutobi — Boruto",
+      "character_id": "ng-initial-250",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/251/3.png",
+      "name": "Shinki — Boruto",
+      "character_id": "ng-initial-251",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/252/1.png",
+      "name": "Yodo — Boruto",
+      "character_id": "ng-initial-252",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/253/1.png",
+      "name": "Araya — Boruto",
+      "character_id": "ng-initial-253",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/254/1.png",
+      "name": "Yurui — Boruto",
+      "character_id": "ng-initial-254",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/255/1.png",
+      "name": "Tarui — Boruto",
+      "character_id": "ng-initial-255",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/256/1.png",
+      "name": "Toroi — Boruto",
+      "character_id": "ng-initial-256",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/257/3.png",
+      "name": "Momoshiki — Boruto",
+      "character_id": "ng-initial-257",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/258/2.png",
+      "name": "Kinshiki Ootsutsuki — Boruto",
+      "character_id": "ng-initial-258",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/259/3.png",
+      "name": "Ashura Ootsutsuki — Shippuden",
+      "character_id": "ng-initial-259",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/260/1.png",
+      "name": "Indra Ootsutsuki — Shippuden",
+      "character_id": "ng-initial-260",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/261/1.png",
+      "name": "Iwabee Yuino — Boruto",
+      "character_id": "ng-initial-261",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/262/3.png",
+      "name": "Juzo Biwa — Shippuden",
+      "character_id": "ng-initial-262",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/263/1.png",
+      "name": "Kagura Karatachi — Boruto",
+      "character_id": "ng-initial-263",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/264/2.png",
+      "name": "Maito Dai — Shippuden",
+      "character_id": "ng-initial-264",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/265/5.png",
+      "name": "Sumire — Boruto",
+      "character_id": "ng-initial-265",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/3/1.png",
+      "name": "Rock Lee — Clássico",
+      "character_id": "ng-initial-3",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/4/14.png",
+      "name": "Sabaku no Gaara — Clássico",
+      "character_id": "ng-initial-4",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/43/1.png",
+      "name": "Zabuza Momochi — Clássico",
+      "character_id": "ng-initial-43",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/44/1.png",
+      "name": "Haku — Clássico",
+      "character_id": "ng-initial-44",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/46/6.png",
+      "name": "Kankurou — Clássico",
+      "character_id": "ng-initial-46",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/47/1.png",
+      "name": "Temari — Clássico",
+      "character_id": "ng-initial-47",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/50/1.png",
+      "name": "Suzumebachi Kamizuru — Clássico",
+      "character_id": "ng-initial-50",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/51/2.png",
+      "name": "Yugito Nii — Shippuden",
+      "character_id": "ng-initial-51",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/52/3.png",
+      "name": "Deidara — Shippuden",
+      "character_id": "ng-initial-52",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/53/1.png",
+      "name": "Akasuna no Sasori — Shippuden",
+      "character_id": "ng-initial-53",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/54/1.png",
+      "name": "Kisame Hoshigaki — Shippuden",
+      "character_id": "ng-initial-54",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/55/1.png",
+      "name": "Itachi Uchiha — Shippuden",
+      "character_id": "ng-initial-55",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/56/10.png",
+      "name": "Tenten — Clássico",
+      "character_id": "ng-initial-56",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/57/1.png",
+      "name": "Neji Hyuuga — Clássico",
+      "character_id": "ng-initial-57",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/58/2.png",
+      "name": "Shino Aburame — Clássico",
+      "character_id": "ng-initial-58",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/59/1.png",
+      "name": "Ino Yamanaka — Clássico",
+      "character_id": "ng-initial-59",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/61/17.png",
+      "name": "Maito Gai — Clássico",
+      "character_id": "ng-initial-61",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/62/2.png",
+      "name": "Shikamaru Nara — Clássico",
+      "character_id": "ng-initial-62",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/63/9.png",
+      "name": "Jiraiya — Clássico",
+      "character_id": "ng-initial-63",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/64/1.png",
+      "name": "Zaku Abumi — Clássico",
+      "character_id": "ng-initial-64",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/65/4.png",
+      "name": "Baki — Clássico",
+      "character_id": "ng-initial-65",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/66/1.png",
+      "name": "Ebisu — Clássico",
+      "character_id": "ng-initial-66",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/67/1.png",
+      "name": "Hayate Gekkou — Clássico",
+      "character_id": "ng-initial-67",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/69/13.png",
+      "name": "Hinata Hyuuga — Clássico",
+      "character_id": "ng-initial-69",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/70/2.png",
+      "name": "Jiroubou — Clássico",
+      "character_id": "ng-initial-70",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/71/3.png",
+      "name": "Kimimaro Kaguya — Clássico",
+      "character_id": "ng-initial-71",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/72/1.png",
+      "name": "Kidoumaru — Clássico",
+      "character_id": "ng-initial-72",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/73/4.png",
+      "name": "Konohamaru Sarutobi — Clássico",
+      "character_id": "ng-initial-73",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/74/1.png",
+      "name": "Dosu Kinuta — Clássico",
+      "character_id": "ng-initial-74",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/75/1.png",
+      "name": "Tobirama Senju — Shippuden",
+      "character_id": "ng-initial-75",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/76/2.png",
+      "name": "Orochimaru — Clássico",
+      "character_id": "ng-initial-76",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/77/1.png",
+      "name": "Sakon e Ukon — Clássico",
+      "character_id": "ng-initial-77",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/78/6.png",
+      "name": "Hashirama Senju — Clássico",
+      "character_id": "ng-initial-78",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/79/1.png",
+      "name": "Asuma Sarutobi — Clássico",
+      "character_id": "ng-initial-79",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/80/1.png",
+      "name": "Genma Shiranui — Clássico",
+      "character_id": "ng-initial-80",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/81/1.png",
+      "name": "Shizune — Clássico",
+      "character_id": "ng-initial-81",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/819/1.png",
+      "name": "Koyuki Kazahana — Clássico",
+      "character_id": "ng-initial-819",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/84/30.png",
+      "name": "Minato Namikaze — Clássico",
+      "character_id": "ng-initial-84",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/85/1.png",
+      "name": "Zetsu — Shippuden",
+      "character_id": "ng-initial-85",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/86/4.png",
+      "name": "Ibiki Morino — Clássico",
+      "character_id": "ng-initial-86",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/87/7.png",
+      "name": "Anko Mitarashi — Clássico",
+      "character_id": "ng-initial-87",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/88/10.png",
+      "name": "Tayuya — Clássico",
+      "character_id": "ng-initial-88",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/89/4.png",
+      "name": "Tsuchi Kin — Clássico",
+      "character_id": "ng-initial-89",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/475/6.png",
+      "name": "Obito Uchiha — Tobi",
+      "character_id": "ng-initial-90",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/90/3.png",
+      "name": "Obito Uchiha — Shippuden",
+      "character_id": "ng-initial-90",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/91/1.png",
+      "name": "Kurenai Yuuhi — Clássico",
+      "character_id": "ng-initial-91",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/94/2.png",
+      "name": "Chouji Akimichi — Clássico",
+      "character_id": "ng-initial-94",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/95/1.png",
+      "name": "Kiba Inuzuka — Clássico",
+      "character_id": "ng-initial-95",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/98/10.png",
+      "name": "Iruka Umino — Clássico",
+      "character_id": "ng-initial-98",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    },
+    {
+      "id": "https://narutogame.com.br/assets/images/logado/profile/99/11.png",
+      "name": "Sai — Shippuden",
+      "character_id": "ng-initial-99",
+      "is_base": true,
+      "evolution_target_id": null,
+      "evolution_req_level": 0
+    }
+  ]
+}

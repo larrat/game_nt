@@ -260,3 +260,53 @@
   .kuro-create-v5 :is(button,a) { transition: none !important; }
   .kuro-create-v5 :is(button,a):hover { transform: none !important; }
 }
+
+/* Equal starting-budget comparison, including zero-valued attributes. */
+.kuro-create-v5__attribute-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px; margin-bottom: 10px;
+}
+.kuro-create-v5__attribute-header h3 { margin: 0; }
+.kuro-create-v5__attribute-budget {
+  display: inline-flex; align-items: center; min-height: 30px;
+  color: #f4d395; border: 1px solid rgba(239,200,132,.37);
+  border-radius: 999px; background: rgba(239,200,132,.08);
+  padding: 5px 11px; font: 700 12px/1.4 'JetBrains Mono',monospace;
+}
+.kuro-create-v5__attribute-description {
+  margin: 0 0 14px; color: var(--create-muted);
+  line-height: 1.55; font-size: 12px;
+}
+.kuro-create-v5__attribute-bars { display: grid; gap: 9px; }
+.kuro-create-v5__attribute-row {
+  display: grid; grid-template-columns: minmax(96px,1fr) minmax(70px,2fr) 28px;
+  align-items: center; gap: 10px; color: var(--create-copy);
+}
+.kuro-create-v5__attribute-row > span {
+  min-width: 0; overflow-wrap: anywhere; font-size: 12px;
+}
+.kuro-create-v5__attribute-row > strong {
+  color: var(--create-gold); text-align: right;
+  font: 700 13px/1.2 'JetBrains Mono',monospace;
+}
+.kuro-create-v5__attribute-row progress {
+  appearance: none; -webkit-appearance: none;
+  display: block; width: 100%; height: 12px;
+  overflow: hidden; border: 1px solid rgba(239,200,132,.21);
+  border-radius: 999px; background: #303641;
+}
+.kuro-create-v5__attribute-row progress::-webkit-progress-bar { background: #303641; }
+.kuro-create-v5__attribute-row progress::-webkit-progress-value {
+  background: linear-gradient(90deg,#c07d40,#efc884);
+  border-radius: 999px;
+}
+.kuro-create-v5__attribute-row progress::-moz-progress-bar {
+  background: linear-gradient(90deg,#c07d40,#efc884);
+  border-radius: 999px;
+}
+@media(max-width:420px) {
+  .kuro-create-v5__attribute-row {
+    grid-template-columns: minmax(90px,1.1fr) minmax(50px,1.5fr) 24px;
+    gap: 7px;
+  }
+}

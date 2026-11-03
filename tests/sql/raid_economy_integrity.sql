@@ -160,6 +160,29 @@ BEGIN
    RAISE EXCEPTION 'VIP changed B balance'; END IF;
 END $vip$;
 
+-- No-credit VIP requests must be denied without mutating attributes or ledger.
+DO $vip_insufficient$
+DECLARE v jsonb; previous_forca integer;
+BEGIN
+ PERFORM set_config('request.jwt.claim.sub',
+  '11111111-1111-4111-8111-111111111111',false);
+ UPDATE public.players SET vip_coins=0 WHERE id=100; -- synthetic fixture only
+ SELECT forca INTO previous_forca FROM public.players WHERE id=100;
+ v:=public.vip_reset_talento(100,'forca');
+ IF COALESCE((v->>'success')::boolean,false) IS TRUE
+   OR (SELECT forca FROM public.players WHERE id=100)<>previous_forca
+   OR (SELECT count(*) FROM app_private.vip_point_respec_ledger WHERE player_id=100)<>1
+   THEN RAISE EXCEPTION 'Insufficient VIP credits still mutated economy'; END IF;
+END $vip_insufficient$;
+
+-- Privileged economy ledgers must remain invisible to the authenticated role.
+DO $private_ledgers$
+BEGIN
+ IF has_table_privilege('authenticated','app_private.raid_runs','SELECT')
+ OR has_table_privilege('authenticated','app_private.vip_point_respec_ledger','SELECT') THEN
+   RAISE EXCEPTION 'Private economy ledger was exposed'; END IF;
+END $private_ledgers$;
+
 DO $art$
 BEGIN
  IF (SELECT count(*) FROM content_reference.art_rights_reviews

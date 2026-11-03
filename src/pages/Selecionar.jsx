@@ -141,7 +141,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
         <PageHeader 
           eyebrow="Início da Jornada"
           title="Selecione seu Personagem"
-          subtitle="Escolha seu herói e entre no mundo shinobi."
+          subtitle="Escolha um dos seus ninjas ou crie uma nova jornada. Até três personagens por conta."
         />
       </div>
 
@@ -158,6 +158,36 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
         </div>
       ) : (
         <div className="kuro-character-select__stage" aria-live="polite">
+
+        <div className="kuro-character-select__slots" role="group" aria-label="Seus personagens">
+          {characters.map((saved, index) => (
+            <button key={saved.id} type="button"
+              className={'kuro-character-select__slot' + (currentIndex === index ? ' is-current' : '')}
+              aria-pressed={currentIndex === index}
+              aria-label={'Selecionar ' + saved.name + ', nível ' + getCharacterLevel(saved.level)}
+              disabled={joining !== null || loading}
+              onClick={() => setCurrentIndex(index)}>
+              <span className="kuro-character-select__slot-portrait">
+                <CharacterPortrait src={saved.avatar} alt="" loading={index === currentIndex ? 'eager' : 'lazy'} />
+              </span>
+              <span className="kuro-character-select__slot-info">
+                <strong>{saved.name}</strong>
+                <small>Nível {getCharacterLevel(saved.level)} · {saved.rank || 'Estudante'}</small>
+              </span>
+              <span className="kuro-character-select__slot-no" aria-hidden="true">0{index + 1}</span>
+            </button>
+          ))}
+          {characters.length < 3 && (
+            <button type="button" className="kuro-character-select__slot is-create"
+              onClick={() => navigate('/criar')} disabled={joining !== null || loading}>
+              <span className="kuro-character-select__slot-add" aria-hidden="true">+</span>
+              <span className="kuro-character-select__slot-info">
+                <strong>Criar novo ninja</strong>
+                <small>{3 - characters.length} {3 - characters.length === 1 ? 'vaga disponível' : 'vagas disponíveis'}</small>
+              </span>
+            </button>
+          )}
+        </div>
         <div className="kuro-character-select__counter">
           <span>PERSONAGEM {currentIndex + 1} / {characters.length}</span>
           <span>{char.rank || 'Estudante da Academia'}</span>

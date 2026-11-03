@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { VILLAGES } from '../constants';
 import { useToast } from '../context/ToastContext';
 import { calculateHP, calculateChakra, calculateStamina } from '../utils/engine';
 import PageHeader from '../components/PageHeader';
+import GameAction from '../components/ui/GameAction';
 import CharacterPortrait from '../components/CharacterPortrait';
 import '../styles/character-selection.css';
 import '../styles/auth-polish-v4.css';
@@ -18,6 +19,17 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   const [loadError, setLoadError] = useState('');
   const [retryVersion, setRetryVersion] = useState(0);
   const [joining, setJoining] = useState(null);
+  const [pendingDelete, setPendingDelete] = useState(null);
+  const [deleteConfirmation, setDeleteConfirmation] = useState('');
+  const [deleting, setDeleting] = useState(false);
+  const deletingRef = useRef(false);
+  const dialogRef = useRef(null);
+
+  useEffect(() => {
+    if (pendingDelete && dialogRef.current && !dialogRef.current.open) {
+      dialogRef.current.showModal();
+    }
+  }, [pendingDelete]);
   const reduceMotion = useReducedMotion();
   const navigate = useNavigate();
   const { addToast } = useToast();
@@ -51,7 +63,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
   }, [session?.user?.id, retryVersion]);
 
   const handleSelect = async (char) => {
-    if (joining !== null) return;
+    if (joining !== null || deletingRef.current || pendingDelete) return;
     setJoining(char.id);
     try {
       if (updatePlayer) {
@@ -77,17 +89,28 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
     await supabase.auth.signOut();
   };
 
+  const openDeleteDialog = (char) => {
+    if (loading || joining !== null || deletingRef.current) return;
+    setDeleteConfirmation('');
+    setPendingDelete(char);
+  };
+
+  const closeDeleteDialog = () => {
+    if (deletingRef.current) return;
+    dialogRef.current?.close();
+    setPendingDelete(null);
+    setDeleteConfirmation('');
+  };
+
   const handleDelete = async (char) => {
-    if (loading || joining !== null) return;
-    const confirmation = window.prompt(
-      `Esta ação é irreversível e apagará o progresso, itens e histórico de ${char.name}. Para confirmar, digite exatamente: ${char.name}`
-    );
-    if (confirmation === null) return;
+    if (loading || joining !== null || deletingRef.current || pendingDelete?.id !== char.id) return;
+    const confirmation = deleteConfirmation;
     if (confirmation !== char.name) {
-      addToast('O nome digitado não corresponde ao personagem. Nada foi excluído.', 'error');
+      addToast('Digite o nome exato do personagem para confirmar.', 'error');
       return;
     }
-    setLoading(true);
+    deletingRef.current = true;
+    setDeleting(true);
     try {
       const { data, error } = await supabase.rpc('excluir_personagem', {
         p_player_id: char.id,
@@ -100,10 +123,14 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
       const updated = characters.filter(c => c.id !== char.id);
       setCharacters(updated);
       setCurrentIndex(index => Math.min(index, Math.max(0, updated.length - 1)));
+      dialogRef.current?.close();
+      setPendingDelete(null);
+      setDeleteConfirmation('');
     } catch (error) {
       addToast('Não foi possível remover o personagem: ' + (error?.message || 'Tente novamente.'), 'error');
     } finally {
-      setLoading(false);
+      deletingRef.current = false;
+      setDeleting(false);
     }
   };
 
@@ -262,7 +289,7 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
               <button type="button" className="selection-btn-play" disabled={joining !== null || loading} onClick={() => handleSelect(char)}>
                 {joining === char.id ? 'Entrando...' : 'Entrar no mundo ninja'} <span aria-hidden="true">↗</span>
               </button>
-              <button type="button" className="selection-btn-delete" disabled={joining !== null || loading} onClick={() => handleDelete(char)}>
+              <button type="button" className="selection-btn-delete" disabled={joining !== null || loading} onClick={() => openDeleteDialog(char)}>
                 Remover personagem
               </button>
             </div>
@@ -270,6 +297,38 @@ export default function Selecionar({ session, setPlayerState, updatePlayer }) {
         </motion.div>
         </AnimatePresence>
         </div>
+      )}
+
+      {pendingDelete && (
+        <dialog ref={dialogRef} className="kuro-character-select__delete-dialog"
+          aria-labelledby="kuro-character-delete-title"
+          aria-describedby="kuro-character-delete-description"
+          onCancel={event => {
+            if (deletingRef.current) event.preventDefault();
+            else closeDeleteDialog();
+          }}>
+          <span className="kuro-character-select__delete-kicker">AÇÃO IRREVERSÍVEL</span>
+          <h2 id="kuro-character-delete-title">Excluir {pendingDelete.name}?</h2>
+          <p id="kuro-character-delete-description">
+            Esta ação apaga o progresso, os itens e o histórico deste ninja.
+            Os demais personagens da conta serão preservados.
+          </p>
+          <label htmlFor="kuro-character-delete-confirmation">
+            Para confirmar, digite <strong>{pendingDelete.name}</strong>
+          </label>
+          <input id="kuro-character-delete-confirmation" className="input" type="text"
+            autoComplete="off" spellCheck={false} autoFocus value={deleteConfirmation}
+            onChange={event => setDeleteConfirmation(event.target.value)}
+            disabled={deleting} />
+          <div className="kuro-character-select__delete-actions">
+            <GameAction tone="quiet" onClick={closeDeleteDialog} disabled={deleting}>Cancelar</GameAction>
+            <GameAction tone="danger" loading={deleting}
+              disabled={deleteConfirmation !== pendingDelete.name}
+              onClick={() => handleDelete(pendingDelete)}>
+              {deleting ? 'Excluindo…' : 'Excluir definitivamente'}
+            </GameAction>
+          </div>
+        </dialog>
       )}
 
     </div>

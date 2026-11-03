@@ -44,8 +44,10 @@ async function createTestCharacter(client, label) {
     throw new Error('Staging character or village seed missing');
   }
   const base = chars.data[0].id;
-  const avatar = await client.from('avatars').select('id').eq('character_id',base).limit(1);
+  const avatar = await client.from('avatars').select('id')
+    .eq('character_id',base).eq('is_base',true).limit(1);
   if (avatar.error) throw avatar.error;
+  if (!avatar.data?.length) throw new Error('Staging character has no valid base avatar');
   const suffix = Date.now().toString(36);
   const { data, error } = await client.rpc('criar_personagem', {
     p_name:'QATest'+label+suffix,
@@ -82,13 +84,23 @@ async function main() {
   const afterB=await b.from('players').select('ryous,stamina,vip_coins,pontos_atributos').eq('id',oneB.id).single();
   assert.deepEqual(afterB.data,beforeB.data,'B resources must remain unchanged');
 
+  // New characters start with zero unspent points. Test the expected refusal
+  // rather than assuming a fresh account can pay for a training action.
   const mine=await a.rpc('treinar_atributos',{
     p_player_id:oneA.id,p_atributo:'forca',p_quantidade:1
   });
-  assert.ok(!mine.error && mine.data?.success,'Official training must work in staging');
   const trained=await a.from('players').select('forca,pontos_atributos').eq('id',oneA.id).single();
-  assert.ok(trained.data.forca>oneA.forca);
-  assert.equal(trained.data.pontos_atributos,oneA.pontos_atributos-1);
+  if (trained.error) throw trained.error;
+  if (oneA.pontos_atributos > 0) {
+    assert.ok(!mine.error && mine.data?.success,'Eligible training must work in staging');
+    assert.equal(trained.data.forca,oneA.forca+1);
+    assert.equal(trained.data.pontos_atributos,oneA.pontos_atributos-1);
+  } else {
+    assert.ok(mine.error || mine.data?.success===false,
+      'Training with zero available points must be refused');
+    assert.equal(trained.data.forca,oneA.forca);
+    assert.equal(trained.data.pontos_atributos,oneA.pontos_atributos);
+  }
 
   // Negative tests for pre-release features: no charge without server enablement.
   const startRaid=await a.rpc('iniciar_raid_verificada',{p_player_id:oneA.id,p_fight_count:3});
@@ -102,7 +114,7 @@ async function main() {
   assert.equal(remain.data.vip_coins,oneA.vip_coins);
   const ranking=await a.rpc('listar_perfis_ninja',{p_limit:50});
   assert.equal(ranking.error,null,'Public projection ranking must continue working');
-  console.log('STAGING PASS: independent A/B auth, private RLS, forbidden cross-account training, valid own training, gated Raids/VIP, ranking');
+  console.log('STAGING PASS: independent A/B auth, private RLS, forbidden cross-account training, own training/insufficient-points gate, gated Raids/VIP, ranking');
   console.log('NOT TESTED: email delivery, real PvE win, raid completion, VIP debit; these require staging setup and deliberate feature enablement.');
   await a.auth.signOut();await b.auth.signOut();
 }

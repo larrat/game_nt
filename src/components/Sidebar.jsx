@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { MOTION_TIMING } from '../utils/motionPresets';
 import { playHoverSound, playClickSound } from '../utils/audioEngine';
 import SidebarIcon from './SidebarIcon';
+import CharacterPortrait from './CharacterPortrait';
 import { SCREEN_NAV, filterScreenNavigation, findScreenGroup } from '../utils/screenNavigation';
 
 const QUICK_LINKS = [
@@ -54,7 +55,7 @@ export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
       {player && (
         <div className="kuro-rpg-sidebar__player" aria-label="Personagem selecionado">
           <div className="kuro-rpg-sidebar__portrait">
-            {player.avatar?.startsWith('/') ? <img src={player.avatar} alt="" /> : <span aria-hidden="true">忍</span>}
+            <CharacterPortrait src={player.avatar} alt="" loading="eager" />
           </div>
           <div className="kuro-rpg-sidebar__player-text">
             <strong title={player.name}>{player.name}</strong>

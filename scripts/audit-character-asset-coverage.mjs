@@ -5,7 +5,7 @@
  * Does not fetch remote images, write SQL, mutate player avatars or publish art.
  */
 import { existsSync, readFileSync, statSync } from 'node:fs';
-import { resolve, relative, sep } from 'node:path';
+import { resolve, sep } from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';

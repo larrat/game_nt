@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1,
+  "description": "Only approved local source files may be listed here. Empty by default; reference photos are never automatically republished.",
+  "entries": []
+}

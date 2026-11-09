@@ -1,0 +1,82 @@
+{
+  "importedAt": "2026-11-09",
+  "origin": "Sete arquivos fornecidos pelo usuário; originais preservados fora do repositório.",
+  "accountContext": {
+    "character": "SubZero",
+    "graduation": "Jounin",
+    "level": 28,
+    "village": "Folha",
+    "observedAt": "2026-11-09"
+  },
+  "stats": {
+    "jutsus": 41,
+    "matrixRecords": 99,
+    "screenSections": 99,
+    "deepEntries": 90,
+    "tooltipOccurrences": 569,
+    "academyCards": 124,
+    "achievementTabStates": 19,
+    "battleSnapshots": 14
+  },
+  "files": [
+    {
+      "file": "catalogos-e-evidencias.json",
+      "sourceBytes": 489132,
+      "sourceSha256": "fef3de5b5547a5aea3fd610d30e84150bbb6a38afeffe532667a901b239765c3",
+      "storedBytes": 489132,
+      "storedSha256": "fef3de5b5547a5aea3fd610d30e84150bbb6a38afeffe532667a901b239765c3",
+      "transformations": []
+    },
+    {
+      "file": "combate-evidencias.json",
+      "sourceBytes": 66933,
+      "sourceSha256": "cdef4abc103b9eb7501f86a38a34450eb3b1fe2f4c137322b821cf98e960bf05",
+      "storedBytes": 59890,
+      "storedSha256": "7f6d3e8c5dfc5e568990b944d64acce8c9aa86f84793e5ff60fb1534e49cc02a",
+      "transformations": [
+        "Removido chat de terceiros a partir do marcador de chat do primeiro snapshot; mantidos os 14 registros e estados de combate.",
+        "JSON reformatado com indentação de dois espaços."
+      ]
+    },
+    {
+      "file": "COMBATE.md",
+      "sourceBytes": 3347,
+      "sourceSha256": "ff14205326140fc24879cf37009d818e6f395c5011bc4d23337371fb01f5ec2d",
+      "storedBytes": 3347,
+      "storedSha256": "ff14205326140fc24879cf37009d818e6f395c5011bc4d23337371fb01f5ec2d",
+      "transformations": []
+    },
+    {
+      "file": "jutsus-subzero.csv",
+      "sourceBytes": 11517,
+      "sourceSha256": "0715f33a2017473befa05da537375a7ce23da09734360650f3f093d63455ff03",
+      "storedBytes": 11517,
+      "storedSha256": "0715f33a2017473befa05da537375a7ce23da09734360650f3f093d63455ff03",
+      "transformations": []
+    },
+    {
+      "file": "matriz-telas.csv",
+      "sourceBytes": 10793,
+      "sourceSha256": "835a7381b226a4f7d0bef35d800153cc7832273741769e5ebaf05dc31eb6b4ee",
+      "storedBytes": 10793,
+      "storedSha256": "835a7381b226a4f7d0bef35d800153cc7832273741769e5ebaf05dc31eb6b4ee",
+      "transformations": []
+    },
+    {
+      "file": "naruto-game-telas.md",
+      "sourceBytes": 1005332,
+      "sourceSha256": "eb35ab89deecc75d291fd9105f3c7fd6dff3dba6286bb7f3b8e8e92f06f50375",
+      "storedBytes": 1005332,
+      "storedSha256": "eb35ab89deecc75d291fd9105f3c7fd6dff3dba6286bb7f3b8e8e92f06f50375",
+      "transformations": []
+    },
+    {
+      "file": "RELATORIO.md",
+      "sourceBytes": 28889,
+      "sourceSha256": "96b0932302d6eab53d550abc8fb7631516c41ecbba2625379b6c14965e4ea27f",
+      "storedBytes": 28889,
+      "storedSha256": "96b0932302d6eab53d550abc8fb7631516c41ecbba2625379b6c14965e4ea27f",
+      "transformations": []
+    }
+  ]
+}

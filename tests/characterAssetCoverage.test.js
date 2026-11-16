@@ -23,12 +23,12 @@ test('real local portrait URLs remain safe and are served from the repository', 
   const report = await auditCharacterAssets(snapshot);
   assert.equal(report.localAvatarIds, 31);
   assert.equal(report.externalAvatarIds, 191);
-  assert.equal(report.externalAvatarIdsWithVerifiedLocalCopy, 3);
-  assert.equal(report.displayLocalAvatarIds, 34);
-  assert.equal(report.displayRemoteAvatarIds, 188);
-  assert.equal(report.basePortraitsLocal, 7);
-  assert.equal(report.basePortraitsRemote, 181);
-  assert.equal(report.mirrorChecks.length, 3);
+  assert.equal(report.externalAvatarIdsWithVerifiedLocalCopy, 97);
+  assert.equal(report.displayLocalAvatarIds, 128);
+  assert.equal(report.displayRemoteAvatarIds, 94);
+  assert.equal(report.basePortraitsLocal, 94);
+  assert.equal(report.basePortraitsRemote, 94);
+  assert.equal(report.mirrorChecks.length, 97);
   assert.ok(report.mirrorChecks.every(x => x.matched), 'provenance copies must have equal SHA256');
   assert.deepEqual(report.missingLocalFiles, [], 'a local avatar must never point at an absent file');
   assert.deepEqual(report.issues, [], 'canonical catalog should contain no invalid local references');

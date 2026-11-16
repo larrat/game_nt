@@ -10,6 +10,7 @@ import {
   getStartingAttributeTotal, getStartingClassProfile
 } from '../utils/startingClassProfiles';
 import CharacterPortrait from '../components/CharacterPortrait';
+import { hasLocalCharacterPortrait } from '../utils/localCharacterPortrait';
 import { filterCharacterCatalog, paginateCharacterCatalog, isStartingAvatar, chooseStartingAvatar } from '../utils/characterCatalog';
 import { canCreateCharacter, MAX_CHARACTERS_PER_ACCOUNT, validateCharacterName } from '../utils/characterCreationRules';
 import '../styles/character-creation.css';
@@ -57,9 +58,11 @@ export default function Criar({ session, setPlayerState }) {
 
         if (catalogResult.error) throw catalogResult.error;
         if (avatarResult.error) throw avatarResult.error;
-        const eligibleAvatars = (avatarResult.data || []).filter(avatar => avatar.id && avatar.character_id && avatar.is_base === true);
+        const eligibleAvatars = (avatarResult.data || []).filter(avatar =>
+          avatar.id && avatar.character_id && avatar.is_base === true && hasLocalCharacterPortrait(avatar.id)
+        );
         const available = (catalogResult.data || []).filter(item =>
-          item.id && item.base_avatar_url &&
+          item.id && item.base_avatar_url && hasLocalCharacterPortrait(item.base_avatar_url) &&
           eligibleAvatars.some(avatar => avatar.character_id === item.id)
         );
         if (!available.length) throw new Error('Nenhum personagem inicial está disponível.');

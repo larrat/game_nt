@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { resolveLocalCharacterPortrait } from '../utils/localCharacterPortrait';
+import { hasLocalCharacterPortrait, resolveLocalCharacterPortrait } from '../utils/localCharacterPortrait';
 import '../styles/character-portraits.css';
 
-// Accept local paths and HTTPS media URLs. All other schemes fall back safely.
+// Aceita apenas caminhos locais (/images/...) ou IDs de catálogo que resolvem
+// para nossas imagens locais em public/images/. Nenhuma URL externa (https:) é carregada.
 export function isSupportedPortraitSource(src) {
-  return typeof src === 'string' &&
-    (/^\/(?!\/)/.test(src) || /^https:\/\/[^\s/]+\/[^\s]*$/i.test(src));
+  return hasLocalCharacterPortrait(src);
 }
 
 export default function CharacterPortrait({
@@ -14,10 +14,8 @@ export default function CharacterPortrait({
   const [failedIndex, setFailedIndex] = useState(0);
   useEffect(() => setFailedIndex(0), [src]);
 
-  // Keep the source URL as fallback if an existing local copy cannot be loaded.
-  // The remote URL remains the stable avatar ID in Supabase.
   const localSource = resolveLocalCharacterPortrait(src);
-  const candidates = localSource !== src ? [localSource, src] : [src];
+  const candidates = hasLocalCharacterPortrait(localSource) ? [localSource] : [];
   const activeSource = candidates[failedIndex];
 
   if (isSupportedPortraitSource(activeSource)) {

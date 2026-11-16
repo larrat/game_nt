@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CharacterPortrait from './CharacterPortrait';
+import { hasLocalCharacterPortrait } from '../utils/localCharacterPortrait';
 import { supabase } from '../supabaseClient';
 import '../styles/main.css';
 import { useToast } from '../context/ToastContext';
@@ -108,7 +109,7 @@ export default function AvatarModal({ isOpen, onClose, player, updatePlayer }) {
   };
 
   const unlocked = Array.isArray(player.unlocked_avatars) ? player.unlocked_avatars : [];
-  const availableAvatars = allAvatars.filter(av => av.is_base || unlocked.includes(av.id));
+  const availableAvatars = allAvatars.filter(av => (av.is_base || unlocked.includes(av.id)) && hasLocalCharacterPortrait(av.id));
 
   return (
     <div className="avatar-overlay" onClick={onClose}>

@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../context/ToastContext';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
+import CharacterPortrait from '../components/CharacterPortrait';
 import GameAction from '../components/ui/GameAction';
 import SidebarIcon from '../components/SidebarIcon';
 import '../styles/world-services-v4.css';
@@ -98,7 +99,7 @@ export default function Templo({ player, updatePlayer }) {
               {/* Personagem Atual */}
               <div className="flex-col items-center gap-4">
                 <div className="w-[140px] h-[140px] rounded-full overflow-hidden border-2 border-line-solid">
-                  <img src={player.avatar} alt="Current" className="w-full h-full object-cover" />
+                  <CharacterPortrait src={player.avatar} alt="Current" className="w-full h-full object-cover" />
                 </div>
                 <div className="muted mono text-sm">FORMA ATUAL</div>
               </div>
@@ -111,7 +112,7 @@ export default function Templo({ player, updatePlayer }) {
               {/* Próxima Evolução */}
               <div className="flex-col items-center gap-4">
                 <div className="w-[180px] h-[180px] rounded-full overflow-hidden border-3 border-gold shadow-gold-lg">
-                  <img src={evolution.nextId} alt="Next" className="w-full h-full object-cover" />
+                  <CharacterPortrait src={evolution.nextId} alt="Next" className="w-full h-full object-cover" />
                 </div>
                 <div className="gold mono">{evolution.nextName}</div>
               </div>

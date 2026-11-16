@@ -176,12 +176,32 @@ function App() {
     }
 
     if (dbPlayer) {
-      const { data: invData, error: invError } = await supabase
-        .from('player_inventory')
-        .select('*, items(*)')
-        .eq('player_id', dbPlayer.id)
-        .eq('is_equipped', true);
-        
+      const hasLearnedJutsus = Array.isArray(dbPlayer.jutsus_learned) && dbPlayer.jutsus_learned.length > 0;
+      const jutsuIds = hasLearnedJutsus
+        ? dbPlayer.jutsus_learned.map(j => typeof j === 'string' ? j : j.id)
+        : [];
+
+      const [invRes, consRes, jutsuRes] = await Promise.all([
+        supabase
+          .from('player_inventory')
+          .select('*, items(*)')
+          .eq('player_id', dbPlayer.id)
+          .eq('is_equipped', true),
+        supabase
+          .from('player_consumables')
+          .select('*, consumables(*)')
+          .eq('player_id', dbPlayer.id)
+          .gt('quantity', 0),
+        hasLearnedJutsus
+          ? supabase
+              .from('jutsus')
+              .select('*')
+              .in('id', jutsuIds)
+              .eq('is_active', true)
+          : Promise.resolve({ data: null, error: null })
+      ]);
+
+      const { data: invData, error: invError } = invRes;
       if (invError) console.error('Erro ao buscar inventário:', invError);
 
       const equippedItems = invData
@@ -200,25 +220,14 @@ function App() {
             })
         : [];
 
-      const { data: consData, error: consError } = await supabase
-        .from('player_consumables')
-        .select('*, consumables(*)')
-        .eq('player_id', dbPlayer.id)
-        .gt('quantity', 0);
-        
+      const { data: consData, error: consError } = consRes;
       if (consError) console.error('Erro ao buscar consumíveis:', consError);
 
       const playerConsumables = consData ? consData.map(c => ({ ...c.consumables, quantity: c.quantity, pc_id: c.id })) : [];
 
       let activeJutsus = [];
-      if (dbPlayer.jutsus_learned && dbPlayer.jutsus_learned.length > 0) {
-        const jutsuIds = dbPlayer.jutsus_learned.map(j => typeof j === 'string' ? j : j.id);
-        const { data: jutsuData, error: jutsuError } = await supabase
-          .from('jutsus')
-          .select('*')
-          .in('id', jutsuIds)
-          .eq('is_active', true);
-          
+      if (hasLearnedJutsus) {
+        const { data: jutsuData, error: jutsuError } = jutsuRes;
         if (jutsuError) console.error('Erro ao buscar jutsus:', jutsuError);
 
         if (jutsuData) {

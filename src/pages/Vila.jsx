@@ -117,6 +117,17 @@ export default function Vila({ player, updatePlayer }) {
   const buildingPercent = dbBuilding ? Math.min(100, (Number(dbBuilding.current_donations) / Number(dbBuilding.next_level_cost)) * 100) : 0;
   const isDamaged = dbBuilding ? dbBuilding.level < 0 : false;
 
+  useEffect(() => {
+    if (!selectedBuildingInfo || selectedBuildingInfo.isGate) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedBuildingKey(null);
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [selectedBuildingInfo]);
+
   if (!player) return null;
 
   return (

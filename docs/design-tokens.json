@@ -1,0 +1,64 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "name": "Kurokage Design System v4",
+  "description": "Tokens visuais oficiais extraídos de src/styles/main.css e src/utils/motionTokens.js (TailwindCSS v4 + CSS Custom Properties).",
+  "color": {
+    "surface": {
+      "ink": { "value": "#080a0f", "cssVar": "--ink", "tailwind": "bg-ink" },
+      "ink-soft": { "value": "#0e1118", "cssVar": "--ink-soft", "tailwind": "bg-ink-soft" },
+      "ink-raised": { "value": "#141820", "cssVar": "--ink-raised", "tailwind": "bg-ink-raised" },
+      "ink-card": { "value": "#12151d", "cssVar": "--ink-card", "tailwind": "bg-ink-card" }
+    },
+    "accent": {
+      "seal": { "value": "#b3232d", "cssVar": "--seal", "tailwind": "bg-seal / text-seal / border-seal" },
+      "seal-bright": { "value": "#e0363f", "cssVar": "--seal-bright", "tailwind": "text-seal-bright / border-seal-bright" },
+      "seal-glow": { "value": "rgba(224, 54, 63, 0.25)", "cssVar": "--seal-glow", "tailwind": "bg-seal-glow" },
+      "gold": { "value": "#d4a22a", "cssVar": "--gold", "tailwind": "text-gold / border-gold" },
+      "gold-dim": { "value": "rgba(212, 162, 42, 0.15)", "cssVar": "--gold-dim", "tailwind": "bg-gold-dim" },
+      "gold-glow": { "value": "rgba(212, 162, 42, 0.3)", "cssVar": "--gold-glow", "tailwind": "bg-gold-glow" }
+    },
+    "text": {
+      "paper": { "value": "#e8e2d6", "cssVar": "--paper", "tailwind": "text-paper" },
+      "muted": { "value": "#6b6860", "cssVar": "--muted", "tailwind": "text-muted" },
+      "muted-bright": { "value": "#9a9590", "cssVar": "--muted-bright", "tailwind": "text-muted-bright" }
+    },
+    "border": {
+      "line": { "value": "#1e2130", "cssVar": "--line", "tailwind": "border-line" },
+      "line-bright": { "value": "#2a2f42", "cssVar": "--line-bright", "tailwind": "border-line-bright" }
+    },
+    "semantic": {
+      "blue": { "value": "#4b9eff", "cssVar": "--blue", "tailwind": "text-blue" },
+      "green": { "value": "#4cce80", "cssVar": "--green", "tailwind": "text-green" },
+      "danger": { "value": "#e0363f", "cssVar": "--danger", "tailwind": "text-danger / border-danger" },
+      "success": { "value": "#4cce80", "cssVar": "--success", "tailwind": "text-success / border-success" }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "display": { "value": "'Shippori Mincho', serif", "tailwind": "font-shippori" },
+      "sans": { "value": "'Inter', sans-serif", "tailwind": "font-inter" },
+      "mono": { "value": "'JetBrains Mono', monospace", "tailwind": "font-mono" }
+    },
+    "scale": {
+      "page-title": { "fontSize": "28px", "fontWeight": 600, "fontFamily": "display" },
+      "section-title": { "fontSize": "18px", "fontWeight": 600, "fontFamily": "display" },
+      "card-title": { "fontSize": "16px", "fontWeight": 600, "fontFamily": "display" },
+      "body": { "fontSize": "14px", "fontWeight": 400, "fontFamily": "sans" },
+      "caption": { "fontSize": "12px", "fontWeight": 500, "fontFamily": "mono" }
+    }
+  },
+  "radius": {
+    "sm": { "value": "4px", "cssVar": "--border-radius-sm" },
+    "md": { "value": "8px", "cssVar": "--border-radius" },
+    "lg": { "value": "12px" }
+  },
+  "motion": {
+    "duration": {
+      "instant": 0.08,
+      "fast": 0.14,
+      "normal": 0.22,
+      "toast": 0.20,
+      "slow": 0.45
+    }
+  }
+}

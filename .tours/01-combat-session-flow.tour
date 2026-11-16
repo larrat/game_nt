@@ -1,0 +1,48 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "01 — Fluxo Autoritativo de Combate e Resolução de Turnos",
+  "description": "Walkthrough arquitetural mostrando como o Kurokage valida sessões de combate no Supabase, previne cliques duplos/race conditions e separa a matemática pura em combatResolution.js.",
+  "steps": [
+    {
+      "directory": "src/pages",
+      "title": "Camada de Telas do Jogo",
+      "description": "**Situação:** Todas as telas de gameplay vivem em `src/pages/`.\n**Mecanismo:** `Combate.jsx` orquestra o estado da arena, timers e RPCs no Supabase, enquanto delega cálculos puros para `src/utils/combatResolution.js`.\n**Implicação:** Mantém a árvore React enxuta e testável sem depender de DOM para validar fórmulas."
+    },
+    {
+      "file": "src/utils/combatResolution.js",
+      "line": 22,
+      "title": "Imutabilidade de Bônus de Clã e Portões",
+      "description": "**Situação:** Funções puras `getClanBonus` e `getPortaoBoost`.\n**Mecanismo:** Clonam o objeto base antes de aplicar bônus de Hyuga, Uchiha ou Nara e validam a janela de 30 minutos dos 8 Portões.\n**Gotcha:** Nunca mutar `player.clan_bonus` in-place para evitar efeitos colaterais entre renders."
+    },
+    {
+      "file": "src/pages/Combate.jsx",
+      "line": 84,
+      "title": "Trava Síncrona de Turno e Limpeza de Timers",
+      "description": "**Situação:** Refs `turnActionInFlightRef` e `timeoutRefs` com helper `scheduleTimeout`.\n**Mecanismo:** `turnActionInFlightRef` bloqueia cliques duplos síncronos antes do próximo ciclo de render do React, e `scheduleTimeout` garante `clearTimeout` no unmount.\n**Gotcha:** Usar apenas `useState(isPlayerTurn)` permitiria disparos concorrentes de RPC em cliques rápidos."
+    },
+    {
+      "file": "src/pages/Combate.jsx",
+      "line": 168,
+      "title": "Inicialização e Recuperação de Sessão Autoritativa",
+      "description": "**Situação:** `useEffect` que chama `iniciar_combate_sessao` ou `iniciar_exame_chunin`.\n**Mecanismo:** O servidor cria ou retoma a sessão (`resumed_session`), devolvendo o HP/Chakra real do oponente e do jogador.\n**Implicação:** Impede que o cliente fabrique recompensas sem uma sessão válida no banco."
+    },
+    {
+      "file": "src/pages/Combate.jsx",
+      "line": 343,
+      "title": "Auto-Battle Consciente de Cooldown e Desconto de Selo",
+      "description": "**Situação:** Efeito do modo automático (`autoBattle`).\n**Mecanismo:** Filtra jutsus usando `getJutsuCombatStats` (`!stats.isOnCooldown && playerCP >= stats.cost`).\n**Gotcha:** Filtrar apenas por `jutsu.chakraCost` ignorava recargas ativas e descontos de Selos."
+    },
+    {
+      "file": "src/pages/Combate.jsx",
+      "line": 379,
+      "title": "Liquidação de Vitória no Servidor (finalizar_combate_sessao)",
+      "description": "**Situação:** Handler `handleWin`.\n**Mecanismo:** Chama `finalizar_combate_sessao` e exige `session_settled === true` antes de conceder XP, Ryous, drops ou avanço de missão.\n**Implicação:** Encontros sem sessão verificada jamais alteram progresso permanente."
+    },
+    {
+      "file": "src/components/CombatFighterCard.jsx",
+      "line": 19,
+      "title": "Card do Lutador com Tabular Numerals",
+      "description": "**Situação:** Componente visual `CombatFighterCard` e barras `StatBar`.\n**Mecanismo:** Renderiza retrato, badges de status e barras de HP/Chakra/Stamina com `tabular-nums` e transições explícitas.\n**Próximo Passo:** Veja o Tour 02 para entender como `updatePlayer` sincroniza o estado global após a luta."
+    }
+  ]
+}

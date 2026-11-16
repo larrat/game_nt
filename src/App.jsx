@@ -16,6 +16,7 @@ import { ToastProvider } from './context/ToastContext';
 import Sidebar from './components/Sidebar';
 import MissionManager from './components/MissionManager';
 import TopBar from './components/TopBar';
+import ScreenSubNav from './components/ScreenSubNav';
 import RouteErrorBoundary from './components/RouteErrorBoundary';
 
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
@@ -110,7 +111,7 @@ const MainLayout = ({ children, playerState, updatePlayer }) => {
           mobileNavOpen={mobileNavOpen}
           onMenuClick={() => setMobileNavOpen(open => !open)}
         />
-        <main ref={contentRef} className="main">{children}</main>
+        <main ref={contentRef} className="main"><ScreenSubNav />{children}</main>
       </div>
     </div>
   );

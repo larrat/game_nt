@@ -6,7 +6,7 @@ import { MOTION_TIMING } from '../utils/motionPresets';
 import { playHoverSound, playClickSound } from '../utils/audioEngine';
 import SidebarIcon from './SidebarIcon';
 import CharacterPortrait from './CharacterPortrait';
-import { SCREEN_NAV, filterScreenNavigation, findScreenGroup } from '../utils/screenNavigation';
+import { SCREEN_NAV, filterScreenNavigation, findScreenGroup, findScreenHub } from '../utils/screenNavigation';
 
 const QUICK_LINKS = [
   { to: '/dashboard', title: 'Painel', icon: 'dashboard' },
@@ -26,6 +26,7 @@ export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
   const [audioOn, setAudioOn] = useState(() => Boolean(window.kurokageAudioEnabled));
   const visibleGroups = filterScreenNavigation(searchQuery);
   const searching = Boolean(searchQuery.trim());
+  const currentHub = findScreenHub(location.pathname);
 
   useEffect(() => {
     window.kurokageAudioEnabled = audioOn;
@@ -102,6 +103,7 @@ export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
         {visibleGroups.map(group => {
           const open = searching || Boolean(expanded[group.id]);
           const isCurrent = activeGroup === group.id;
+          const displayItems = searching ? group.items : group.items.filter(item => !item.isSubTab);
           return (
             <section className="navgroup kuro-rpg-sidebar__group" key={group.id}>
               <h2 className="kuro-rpg-sidebar__heading">
@@ -119,7 +121,7 @@ export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
                     <span className={'label' + (group.id === 'premium' ? ' text-gold' : '')}>{group.group}</span>
                   </span>
                   <span className="kuro-rpg-sidebar-v3__group-meta" aria-hidden="true">
-                    <span className="kuro-rpg-sidebar-v3__count">{group.items.length}</span>
+                    <span className="kuro-rpg-sidebar-v3__count">{displayItems.length}</span>
                     <motion.span
                       className="kuro-rpg-sidebar-v3__chevron"
                       animate={{ rotate: open ? 90 : 0 }}
@@ -141,22 +143,30 @@ export default function Sidebar({ player, isMobileOpen = false, onNavigate }) {
                 style={{ pointerEvents: open ? 'auto' : 'none' }}
               >
                 <div className="kuro-rpg-sidebar-v3__link-stack">
-                  {group.items.map(item => (
-                    <NavLink
-                      key={item.to}
-                      to={item.to}
-                      onClick={handleLinkClick}
-                      onMouseEnter={playHoverSound}
-                      className={({ isActive }) =>
-                        'navitem' + (isActive ? ' active' : '') + (group.id === 'premium' ? ' premium' : '')
-                      }
-                    >
-                      <span className="kuro-rpg-sidebar__link-icon" aria-hidden="true">
-                        <SidebarIcon name={item.icon} size={18} />
-                      </span>
-                      <span>{item.label}</span>
-                    </NavLink>
-                  ))}
+                  {displayItems.map(item => {
+                    const isHubActive = !searching && Boolean(item.tabCount && item.hubId && currentHub?.id === item.hubId);
+                    return (
+                      <NavLink
+                        key={item.to}
+                        to={item.to}
+                        onClick={handleLinkClick}
+                        onMouseEnter={playHoverSound}
+                        className={({ isActive }) =>
+                          'navitem' + ((isActive || isHubActive) ? ' active' : '') + (group.id === 'premium' ? ' premium' : '')
+                        }
+                      >
+                        <span className="kuro-rpg-sidebar__link-icon" aria-hidden="true">
+                          <SidebarIcon name={item.icon} size={18} />
+                        </span>
+                        <span className="flex-1">{item.label}</span>
+                        {item.tabCount > 1 && !searching && (
+                          <span className="ml-auto rounded px-1.5 py-0.5 text-[10px] font-mono text-gold/80 bg-gold/10 border border-gold/25">
+                            {item.tabCount} abas
+                          </span>
+                        )}
+                      </NavLink>
+                    );
+                  })}
                 </div>
               </motion.div>
             </section>

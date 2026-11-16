@@ -9,6 +9,11 @@ import {
   getSafeMotionVariants,
   getStaggerVariants
 } from '../src/utils/motionTokens.js';
+import {
+  SCREEN_TAB_HUBS,
+  findScreenHub,
+  getPrimaryScreenNavigation
+} from '../src/utils/screenNavigation.js';
 
 const read = (relPath) => readFileSync(new URL('../' + relPath, import.meta.url), 'utf8');
 
@@ -79,5 +84,34 @@ test('Design tokens and CodeTours reference existing files and valid line number
         assert.ok(step.line >= 1 && step.line <= totalLines, `Invalid line ${step.line} in ${step.file}`);
       }
     }
+  }
+});
+
+test('Unified screen tab hubs, streamlined sidebar navigation, and domain page folders are consistent', () => {
+  assert.equal(SCREEN_TAB_HUBS.length, 7);
+  assert.equal(findScreenHub('/tecnicas')?.id, 'jutsus');
+  assert.equal(findScreenHub('/aprimorar-jutsus')?.id, 'jutsus');
+  assert.equal(findScreenHub('/graduacoes')?.id, 'carreira');
+  assert.equal(findScreenHub('/exame')?.id, 'carreira');
+  assert.equal(findScreenHub('/dojo')?.id, 'dojo');
+  assert.equal(findScreenHub('/adversarios')?.id, 'dojo');
+  assert.equal(findScreenHub('/historico')?.id, 'dojo');
+  assert.equal(findScreenHub('/equipamentos')?.id, 'arsenal');
+  assert.equal(findScreenHub('/ferreiro')?.id, 'arsenal');
+  assert.equal(findScreenHub('/hospital')?.id, 'servicos');
+  assert.equal(findScreenHub('/ichiraku')?.id, 'servicos');
+  assert.equal(findScreenHub('/clas')?.id, 'poderes');
+  assert.equal(findScreenHub('/templo')?.id, 'poderes');
+
+  const primaryGroups = getPrimaryScreenNavigation();
+  const primaryCount = primaryGroups.reduce((sum, g) => sum + g.items.length, 0);
+  assert.equal(primaryCount, 16);
+
+  const subNav = read('src/components/ScreenSubNav.jsx');
+  assert.ok(subNav.includes('role="tablist"'));
+  assert.ok(!subNav.includes('style={{'));
+
+  for (const domain of ['auth', 'central', 'personagem', 'academia', 'combate', 'vila', 'premium']) {
+    assert.ok(existsSync(new URL(`../src/pages/${domain}/index.js`, import.meta.url)), `Missing domain index: ${domain}`);
   }
 });

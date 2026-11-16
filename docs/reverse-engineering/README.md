@@ -1,3 +1,5 @@
+> **Importação de 09/11/2026:** [dossiê SubZero Jounin nível 28](coleta-2026-11-09/README.md), com sete documentos fornecidos, catálogo de 41 jutsus, matriz de 99 estados e evidências de combate. O índice da coleta explica os limites e a origem dos dados.
+
 > **Acervo atualizado:** [coleta completa de 30/10/2026](coleta-2026-10-30/README.md), incluindo personagens, clãs, jutsus, mídias, progresso até nível 5 e duelo NPC. Abaixo permanece o dossiê inicial para contexto histórico.
 
 # Dossiê de engenharia reversa — Naruto Game x Kurokage

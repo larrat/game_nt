@@ -44,9 +44,8 @@ export default function Ferreiro({ player, updatePlayer }) {
       addToast("Erro: " + error.message, "error");
     } else if (data && data.success) {
       addToast(data.message, "success");
-      updatePlayer(player.id);
-      loadInventory();
       setSelectedItem(null);
+      await Promise.all([updatePlayer(player.id), loadInventory()]);
     } else if (data) {
       addToast(data.message, "error");
     }

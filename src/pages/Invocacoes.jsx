@@ -21,33 +21,25 @@ export default function Invocacoes({ player, updatePlayer }) {
 
   const loadData = async () => {
     setLoading(true);
-    
-    // Buscar todos os mascotes
-    const { data: allSummons, error: err1 } = await supabase
-      .from('summons')
-      .select('*')
-      .order('req_level', { ascending: true });
-      
-    if (err1) {
-      console.error(err1);
-      setLoading(false);
-      return;
-    }
-    
-    // Buscar contratos do jogador
-    const { data: mySummons, error: err2 } = await supabase
-      .from('player_summons')
-      .select('*, summons(*)')
-      .eq('player_id', player.id);
-      
-    if (err2) {
-      console.error(err2);
+    const [summonsRes, mySummonsRes] = await Promise.all([
+      supabase
+        .from('summons')
+        .select('*')
+        .order('req_level', { ascending: true }),
+      supabase
+        .from('player_summons')
+        .select('*, summons(*)')
+        .eq('player_id', player.id)
+    ]);
+
+    if (summonsRes.error || mySummonsRes.error) {
+      addToast('Erro ao consultar invocações: ' + (summonsRes.error?.message || mySummonsRes.error?.message), 'error');
       setLoading(false);
       return;
     }
 
-    setSummons(allSummons || []);
-    setPlayerSummons(mySummons || []);
+    setSummons(summonsRes.data || []);
+    setPlayerSummons(mySummonsRes.data || []);
     setLoading(false);
   };
 

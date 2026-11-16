@@ -6,6 +6,7 @@ import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import SidebarIcon from '../components/SidebarIcon';
 import GameAction from '../components/ui/GameAction';
+import DojoPreparation from '../components/DojoPreparation';
 import '../styles/dojo-v4.css';
 import { useToast } from '../context/ToastContext';
 
@@ -280,6 +281,8 @@ export default function Dojo({ player, updatePlayer }) {
         <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="zap" size={15} /> STAMINA</span><strong>{player.stamina ?? calculateStamina(player)}</strong><small>Recurso para incursões</small></div>
         <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="activity" size={15} /> ESTADO</span><strong>{loadingId ? 'Em atividade' : 'Disponível'}</strong><small>{loadingId ? 'Aguarde a ação atual' : 'Arena liberada'}</small></div>
       </section>
+
+      <DojoPreparation player={player} />
 
       <div className="kuro-dojo-v4__section-heading">
         <div><span className="kuro-dojo-v4__eyebrow">SELEÇÃO DE TREINAMENTO</span><h2>Escolha seu confronto</h2></div>

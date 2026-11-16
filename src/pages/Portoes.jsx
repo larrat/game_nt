@@ -13,7 +13,10 @@ const PORTOES = [
     id: 1,
     nome: '1º Portão — Abertura',
     kanji: '開門',
-    color: '#4ade80',
+    textClass: 'text-[#4ade80]',
+    bgClass: 'bg-[#4ade80]',
+    borderClass: 'border-[#4ade80]/35',
+    innerBorderClass: 'border-[#4ade80]/20',
     boost: { atk: 0.05, desc: '+5% de Ataque' },
     hpCusto: 0.05,
     desc: 'O primeiro passo além dos limites físicos. Libera o bloqueio básico do chakra no cérebro, aumentando levemente o poder de ataque.',
@@ -23,7 +26,10 @@ const PORTOES = [
     id: 2,
     nome: '2º Portão — Cura',
     kanji: '休門',
-    color: '#22d3ee',
+    textClass: 'text-[#22d3ee]',
+    bgClass: 'bg-[#22d3ee]',
+    borderClass: 'border-[#22d3ee]/35',
+    innerBorderClass: 'border-[#22d3ee]/20',
     boost: { atk: 0.10, desc: '+10% de Ataque' },
     hpCusto: 0.10,
     desc: 'O fluxo de chakra é intensificado. A pele enrojece levemente com o esforço e o corpo atinge um novo patamar.',
@@ -33,7 +39,10 @@ const PORTOES = [
     id: 3,
     nome: '3º Portão — Vida',
     kanji: '生門',
-    color: '#facc15',
+    textClass: 'text-[#facc15]',
+    bgClass: 'bg-[#facc15]',
+    borderClass: 'border-[#facc15]/35',
+    innerBorderClass: 'border-[#facc15]/20',
     boost: { atk: 0.20, desc: '+20% de Ataque' },
     hpCusto: 0.20,
     desc: 'O coração acelera além do normal. Músculos se expandem com poder bruto à custa da integridade do corpo.',
@@ -43,7 +52,10 @@ const PORTOES = [
     id: 4,
     nome: '4º Portão — Dano',
     kanji: '傷門',
-    color: '#f97316',
+    textClass: 'text-[#f97316]',
+    bgClass: 'bg-[#f97316]',
+    borderClass: 'border-[#f97316]/35',
+    innerBorderClass: 'border-[#f97316]/20',
     boost: { atk: 0.35, desc: '+35% de Ataque' },
     hpCusto: 0.35,
     desc: 'O sangue começa a transpirar pelos poros. O limite do corpo humano começa a ser ultrapassado.',
@@ -53,7 +65,10 @@ const PORTOES = [
     id: 5,
     nome: '5º Portão — Fechamento',
     kanji: '杜門',
-    color: '#ef4444',
+    textClass: 'text-[#ef4444]',
+    bgClass: 'bg-[#ef4444]',
+    borderClass: 'border-[#ef4444]/35',
+    innerBorderClass: 'border-[#ef4444]/20',
     boost: { atk: 0.50, desc: '+50% de Ataque' },
     hpCusto: 0.50,
     desc: 'O corpo opera a 50% além do limite. A força é sobrehumana, mas os ossos começam a trincar.',
@@ -63,7 +78,10 @@ const PORTOES = [
     id: 6,
     nome: '6º Portão — Visão',
     kanji: '景門',
-    color: '#c084fc',
+    textClass: 'text-[#c084fc]',
+    bgClass: 'bg-[#c084fc]',
+    borderClass: 'border-[#c084fc]/35',
+    innerBorderClass: 'border-[#c084fc]/20',
     boost: { atk: 0.70, desc: '+70% de Ataque' },
     hpCusto: 0.65,
     desc: 'Os vasos sanguíneos explodem na pele. A visão além do normal é atingida — o preço é severo.',
@@ -73,7 +91,10 @@ const PORTOES = [
     id: 7,
     nome: '7º Portão — Maravilha',
     kanji: '驚門',
-    color: '#f43f5e',
+    textClass: 'text-[#f43f5e]',
+    bgClass: 'bg-[#f43f5e]',
+    borderClass: 'border-[#f43f5e]/35',
+    innerBorderClass: 'border-[#f43f5e]/20',
     boost: { atk: 1.00, desc: '+100% de Ataque' },
     hpCusto: 0.80,
     desc: 'O suor se torna vapor. O poder duplica. Porém, o corpo começa a se destruir em tempo real.',
@@ -83,7 +104,10 @@ const PORTOES = [
     id: 8,
     nome: '8º Portão — Morte',
     kanji: '死門',
-    color: '#b91c1c',
+    textClass: 'text-[#b91c1c]',
+    bgClass: 'bg-[#b91c1c]',
+    borderClass: 'border-[#b91c1c]/35',
+    innerBorderClass: 'border-[#b91c1c]/20',
     boost: { atk: 2.00, desc: '+200% de Ataque' },
     hpCusto: 1.00,
     desc: 'O portal proibido. Poder absoluto por um instante — ao custo da própria vida. Após abrir o 8º Portão, você desmaíará inevitavelmente.',
@@ -97,15 +121,12 @@ export default function Portoes({ player, updatePlayer }) {
   const [activePortao, setActivePortao] = useState(null);
   const [cooldownLeft, setCooldownLeft] = useState(0);
 
-  // Early return removido (movido para o final dos hooks)
-
   const maxHP = calculateHP(player || {});
   const baseAtk = calculateAtkTaiBuk(player || {});
 
-  // Verifica cooldown (usa campo portoes_used_at no player)
   useEffect(() => {
     if (!player?.portoes_used_at) return;
-    const COOLDOWN_MS = 30 * 60 * 1000; // 30 minutos
+    const COOLDOWN_MS = 30 * 60 * 1000;
     const usedAt = new Date(player.portoes_used_at).getTime();
     const interval = setInterval(() => {
       const diff = COOLDOWN_MS - (Date.now() - usedAt);
@@ -116,11 +137,10 @@ export default function Portoes({ player, updatePlayer }) {
         setCooldownLeft(Math.ceil(diff / 1000));
       }
     }, 1000);
-    // Define imediatamente
     const diff = COOLDOWN_MS - (Date.now() - usedAt);
     setCooldownLeft(diff > 0 ? Math.ceil(diff / 1000) : 0);
     return () => clearInterval(interval);
-  }, [player.portoes_used_at]);
+  }, [player?.portoes_used_at]);
 
   const formatCooldown = (secs) => {
     const m = Math.floor(secs / 60).toString().padStart(2, '0');
@@ -181,34 +201,32 @@ export default function Portoes({ player, updatePlayer }) {
         subtitle="Abra os portões do corpo para liberar poder além dos limites humanos — à custa da sua própria vida."
       />
 
-      {/* Status atual */}
       <div className="card mb-8 border-line-solid">
         <div className="flex-between flex-wrap gap-6 items-center">
           <div className="flex-col gap-3 flex-1-300">
             <div className="flex-between text-xs">
               <span className="muted uppercase mono tracking-wider">Saúde Atual</span>
-              <span className={`mono ${hpPercent > 50 ? 'text-success' : hpPercent > 25 ? 'text-yellow-500' : 'text-danger'}`}>
+              <span className={`mono tabular-nums ${hpPercent > 50 ? 'text-success' : hpPercent > 25 ? 'text-yellow-500' : 'text-danger'}`}>
                 {currentHP} / {maxHP}
               </span>
             </div>
             <div className="progress-track h-3">
-              <div className="progress-fill red transition-all duration-500" style={{ width: `${hpPercent}%` }} />
+              <div className="progress-fill red transition-[width] duration-500" style={{ width: `${hpPercent}%` }} />
             </div>
           </div>
           <div className="flex-col items-end gap-1">
             <div className="muted mono text-xs uppercase">Ataque Base</div>
-            <div className="gold mono text-3xl">{baseAtk}</div>
+            <div className="gold mono text-3xl tabular-nums">{baseAtk}</div>
           </div>
           {cooldownLeft > 0 && (
             <div className="card bg-danger-alpha-08 border-line-solid border-danger-alpha-30 px-6 py-3 text-center">
               <div className="muted mono text-xs uppercase mb-1">Recarga dos Portões</div>
-              <div className="danger mono text-xl font-bold">{formatCooldown(cooldownLeft)}</div>
+              <div className="danger mono text-xl font-bold tabular-nums">{formatCooldown(cooldownLeft)}</div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Aviso */}
       <div className="card bg-danger-alpha-05 border-line-dashed border-danger-alpha-40 mb-8">
         <p className="muted text-sm leading-relaxed">
           ⚠️ <strong className="paper">Atenção:</strong> Cada portão consome uma porcentagem de seu HP máximo. Se o HP chegar a zero, você desmaíará.
@@ -217,7 +235,6 @@ export default function Portoes({ player, updatePlayer }) {
         </p>
       </div>
 
-      {/* Grid dos 8 portões */}
       <div className="kuro-challenges-v4__grid">
         {PORTOES.map((portao) => {
           const isUnlocked = player.level >= portao.reqLevel;
@@ -228,29 +245,21 @@ export default function Portoes({ player, updatePlayer }) {
           return (
             <div
               key={portao.id}
-              className="kuro-challenges-v4__card"
+              className={`kuro-challenges-v4__card relative overflow-hidden border transition-[opacity,border-color] duration-300 ${isUnlocked ? `${portao.borderClass} opacity-100` : 'border-line opacity-50'}`}
               aria-disabled={!isUnlocked}
-              style={{
-                border: `1px solid ${isUnlocked ? portao.color + '55' : 'var(--line)'}`,
-                opacity: isUnlocked ? 1 : 0.5,
-                position: 'relative',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease',
-              }}
             >
-              {/* Linha decorativa no topo */}
-              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: isUnlocked ? portao.color : 'var(--line)' }} />
+              <div className={`absolute top-0 left-0 right-0 h-1 ${isUnlocked ? portao.bgClass : 'bg-line'}`} />
 
               <div className="flex-between mb-3 items-start">
                 <div>
-                  <div className="mono text-3xl leading-none mb-1" style={{ color: portao.color }}>
+                  <div className={`mono text-3xl leading-none mb-1 ${portao.textClass}`}>
                     {portao.kanji}
                   </div>
                   <div className="paper font-semibold text-sm">{portao.nome}</div>
                 </div>
                 <div className="text-right">
                   <div className="muted mono text-xs uppercase mb-1">Req. Nível</div>
-                  <div className="mono text-lg font-bold" style={{ color: isUnlocked ? 'var(--gold)' : 'var(--danger)' }}>
+                  <div className={`mono text-lg font-bold tabular-nums ${isUnlocked ? 'text-gold' : 'text-danger'}`}>
                     {portao.reqLevel}
                   </div>
                 </div>
@@ -261,13 +270,13 @@ export default function Portoes({ player, updatePlayer }) {
               </p>
 
               <div className="grid-2 gap-2 mb-4">
-                <div className="bg-ink-raised p-2 rounded-md text-center" style={{ border: `1px solid ${portao.color}33` }}>
+                <div className={`bg-ink-raised p-2 rounded-md text-center border ${portao.innerBorderClass}`}>
                   <div className="muted mono text-xs uppercase mb-1">Ataque c/ Boost</div>
-                  <div className="mono text-md font-bold" style={{ color: portao.color }}>{atkComBoost}</div>
+                  <div className={`mono text-md font-bold tabular-nums ${portao.textClass}`}>{atkComBoost}</div>
                 </div>
                 <div className="bg-ink-raised p-2 rounded-md text-center border-line-solid border-danger-alpha-20">
                   <div className="muted mono text-xs uppercase mb-1">Custo de HP</div>
-                  <div className="mono danger text-md font-bold">-{hpCusto}</div>
+                  <div className="mono danger text-md font-bold tabular-nums">-{hpCusto}</div>
                 </div>
               </div>
 

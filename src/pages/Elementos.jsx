@@ -7,12 +7,20 @@ import SidebarIcon from '../components/SidebarIcon';
 import '../styles/academy-progression-v4.css';
 import { useToast } from '../context/ToastContext';
 
-const ELEMENT_POS = {
-  'Katon': { top: '20px', left: '160px' },
-  'Futon': { top: '116px', left: '293px' },
-  'Raiton': { top: '274px', left: '242px' },
-  'Doton': { top: '274px', left: '78px' },
-  'Suiton': { top: '116px', left: '27px' }
+const ELEMENT_POS_CLASSES = {
+  Katon: 'top-[20px] left-[160px]',
+  Futon: 'top-[116px] left-[293px]',
+  Raiton: 'top-[274px] left-[242px]',
+  Doton: 'top-[274px] left-[78px]',
+  Suiton: 'top-[116px] left-[27px]'
+};
+
+const ELEMENT_THEME_CLASSES = {
+  Katon: { text: 'text-[#ef4444]', border: 'border-[#ef4444]' },
+  Futon: { text: 'text-[#22c55e]', border: 'border-[#22c55e]' },
+  Raiton: { text: 'text-[#facc15]', border: 'border-[#facc15]' },
+  Doton: { text: 'text-[#a16207]', border: 'border-[#a16207]' },
+  Suiton: { text: 'text-[#3b82f6]', border: 'border-[#3b82f6]' }
 };
 
 export default function Elementos({ player, updatePlayer }) {
@@ -22,7 +30,6 @@ export default function Elementos({ player, updatePlayer }) {
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
 
-  // early return movido
   useEffect(() => {
     async function fetchElements() {
       const { data } = await supabase.from('elements').select('*');
@@ -33,7 +40,8 @@ export default function Elementos({ player, updatePlayer }) {
           color: e.color_hex,
           name: e.name,
           desc: e.description,
-          pos: ELEMENT_POS[e.name_id] || { top: '50%', left: '50%' },
+          posClass: ELEMENT_POS_CLASSES[e.name_id] || 'top-1/2 left-1/2',
+          theme: ELEMENT_THEME_CLASSES[e.name_id] || { text: 'text-gold', border: 'border-gold' },
           strong_against: e.strong_against,
           weak_against: e.weak_against
         }));
@@ -43,10 +51,8 @@ export default function Elementos({ player, updatePlayer }) {
     fetchElements();
   }, []);
 
-  // early return movido
   if (!player) return null;
 
-  // Helpers para checar rank
   const rankVal = (r) => {
     if (!r) return 0;
     const rl = r.toLowerCase();
@@ -59,7 +65,6 @@ export default function Elementos({ player, updatePlayer }) {
     return 0;
   };
 
-  // Lógica de Requerimentos
   const isLevel5 = player.level >= 5;
   const isGenin = rankVal(player.rank) >= 1;
   const isLevel15 = player.level >= 15;
@@ -100,10 +105,9 @@ export default function Elementos({ player, updatePlayer }) {
     }
   };
 
-
   return (
     <div className="page kuro-elements-v4 flex-col min-h-screen">
-      <PageHeader eyebrow='Naturezas de Chakra' title='Elementos' subtitle='Descubra e domine sua natureza de chakra elementar.' />
+      <PageHeader eyebrow="Naturezas de Chakra" title="Elementos" subtitle="Descubra e domine sua natureza de chakra elementar." />
 
       <div className="element-summary">
         <div className="summary-tile">
@@ -112,7 +116,7 @@ export default function Elementos({ player, updatePlayer }) {
         </div>
         <div className="summary-tile">
           <div className="label">Requisito</div>
-          <div className="value">{isLevel5 ? 'Level liberado' : `Level ${player.level}/5`}</div>
+          <div className="value tabular-nums">{isLevel5 ? 'Level liberado' : `Level ${player.level}/5`}</div>
         </div>
         <div className="summary-tile">
           <div className="label">Graduação</div>
@@ -121,32 +125,28 @@ export default function Elementos({ player, updatePlayer }) {
       </div>
 
       <div className="element-layout">
-        
-        {/* ÁREA DO CÍRCULO ELEMENTAL */}
         <div className="card element-stage kuro-ui-card">
           <div className="element-wheel-container">
-            {/* SVG para desenhar as linhas de vantagem (Estrela) */}
             <svg className="element-wheel-svg">
-              <line x1="160" y1="20" x2="293" y2="116" className={hoveredElement?.id === 'Katon' ? 'advantage-line' : hoveredElement?.id === 'Futon' ? 'disadvantage-line' : ''} /> {/* Fogo -> Vento */}
-              <line x1="293" y1="116" x2="242" y2="274" className={hoveredElement?.id === 'Futon' ? 'advantage-line' : hoveredElement?.id === 'Raiton' ? 'disadvantage-line' : ''} /> {/* Vento -> Raio */}
-              <line x1="242" y1="274" x2="78" y2="274" className={hoveredElement?.id === 'Raiton' ? 'advantage-line' : hoveredElement?.id === 'Doton' ? 'disadvantage-line' : ''} /> {/* Raio -> Terra */}
-              <line x1="78" y1="274" x2="27" y2="116" className={hoveredElement?.id === 'Doton' ? 'advantage-line' : hoveredElement?.id === 'Suiton' ? 'disadvantage-line' : ''} /> {/* Terra -> Água */}
-              <line x1="27" y1="116" x2="160" y2="20" className={hoveredElement?.id === 'Suiton' ? 'advantage-line' : hoveredElement?.id === 'Katon' ? 'disadvantage-line' : ''} /> {/* Água -> Fogo */}
+              <line x1="160" y1="20" x2="293" y2="116" className={hoveredElement?.id === 'Katon' ? 'advantage-line' : hoveredElement?.id === 'Futon' ? 'disadvantage-line' : ''} />
+              <line x1="293" y1="116" x2="242" y2="274" className={hoveredElement?.id === 'Futon' ? 'advantage-line' : hoveredElement?.id === 'Raiton' ? 'disadvantage-line' : ''} />
+              <line x1="242" y1="274" x2="78" y2="274" className={hoveredElement?.id === 'Raiton' ? 'advantage-line' : hoveredElement?.id === 'Doton' ? 'disadvantage-line' : ''} />
+              <line x1="78" y1="274" x2="27" y2="116" className={hoveredElement?.id === 'Doton' ? 'advantage-line' : hoveredElement?.id === 'Suiton' ? 'disadvantage-line' : ''} />
+              <line x1="27" y1="116" x2="160" y2="20" className={hoveredElement?.id === 'Suiton' ? 'advantage-line' : hoveredElement?.id === 'Katon' ? 'disadvantage-line' : ''} />
             </svg>
 
-            {/* Centro */}
             <div className="element-wheel-center flex-col gap-1 items-center justify-center">
               {currentElement ? (
                 <div className="flex gap-3 items-center">
                   <div className="flex-col items-center">
-                    <div className="current-el" style={{ color: currentElement.color, fontSize: currentElement2 ? '24px' : '32px' }}>
+                    <div className={`current-el ${currentElement.theme.text} ${currentElement2 ? 'text-2xl' : 'text-[32px]'}`}>
                       {currentElement.icon}
                     </div>
                     <div className="current-label text-[10px]">Primário</div>
                   </div>
                   {currentElement2 && (
                     <div className="flex-col items-center">
-                      <div className="current-el" style={{ color: currentElement2.color, fontSize: '24px' }}>
+                      <div className={`current-el ${currentElement2.theme.text} text-2xl`}>
                         {currentElement2.icon}
                       </div>
                       <div className="current-label text-[10px]">Secundário</div>
@@ -158,15 +158,13 @@ export default function Elementos({ player, updatePlayer }) {
               )}
             </div>
 
-            {/* Nós (Elementos) */}
             {elementsData.map(el => {
               const isSelected = player.element === el.id || player.element2 === el.id;
               const isHovered = hoveredElement?.id === el.id;
-              
-              // Define Vantagens e Desvantagens dinâmicas
-              let nodeClass = `element-node node-${el.id.toLowerCase()}`;
+
+              let nodeClass = `element-node node-${el.id.toLowerCase()} ${el.posClass} ${el.theme.text} cursor-pointer`;
               if (isSelected || isHovered) nodeClass += ' active';
-              
+
               if (hoveredElement) {
                 if (hoveredElement.strong_against === el.id) nodeClass += ' advantage';
                 if (hoveredElement.weak_against === el.id) nodeClass += ' disadvantage';
@@ -184,7 +182,6 @@ export default function Elementos({ player, updatePlayer }) {
                   onFocus={() => setHoveredElement(el)}
                   onBlur={() => setHoveredElement(null)}
                   onClick={() => setSelectedNode(el)}
-                  style={{ color: el.color, top: el.pos.top, left: el.pos.left, cursor: 'pointer' }}
                 >
                   {el.icon}
                   <span className="el-label">{el.name.split(' ')[0]}</span>
@@ -194,15 +191,13 @@ export default function Elementos({ player, updatePlayer }) {
           </div>
         </div>
 
-        {/* TOOLTIP FIXA NA DIREITA (INFORMAÇÕES) */}
         <div className="element-side">
-          
           <div className="card kuro-ui-card">
             <h3 className="card-title gold border-b-0 pb-0 mb-2"><SidebarIcon name="sparkles" size={19} /> Seus Elementos</h3>
             {currentElement ? (
               <div className="flex-col gap-sm mt-4">
                 <div className="flex-row">
-                  <div className="flex-row" style={{ width: '48px', height: '48px', borderRadius: '50%', border: `2px solid ${currentElement.color}`, justifyContent: 'center', fontSize: '24px' }}>
+                  <div className={`flex-row w-12 h-12 rounded-full border-2 ${currentElement.theme.border} justify-center text-2xl`}>
                     {currentElement.icon}
                   </div>
                   <div>
@@ -212,7 +207,7 @@ export default function Elementos({ player, updatePlayer }) {
                 </div>
                 {currentElement2 && (
                   <div className="flex-row mt-2">
-                    <div className="flex-row" style={{ width: '48px', height: '48px', borderRadius: '50%', border: `2px solid ${currentElement2.color}`, justifyContent: 'center', fontSize: '24px' }}>
+                    <div className={`flex-row w-12 h-12 rounded-full border-2 ${currentElement2.theme.border} justify-center text-2xl`}>
                       {currentElement2.icon}
                     </div>
                     <div>
@@ -228,9 +223,9 @@ export default function Elementos({ player, updatePlayer }) {
           </div>
 
           {displayElement && (
-            <div className="card kuro-ui-card kuro-elements-v4__detail" style={{ background: 'var(--ink-raised)', borderColor: displayElement.color, position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '-20px', right: '-20px', fontSize: '120px', opacity: 0.05, pointerEvents: 'none', color: displayElement.color }}>{displayElement.icon}</div>
-              <h3 className="page-title" style={{ color: displayElement.color, marginBottom: '16px', fontSize: '20px' }}>{displayElement.name}</h3>
+            <div className={`card kuro-ui-card kuro-elements-v4__detail bg-ink-raised border ${displayElement.theme.border} relative overflow-hidden`}>
+              <div className={`absolute -top-5 -right-5 text-[120px] opacity-5 pointer-events-none ${displayElement.theme.text}`}>{displayElement.icon}</div>
+              <h3 className={`page-title mb-4 text-xl ${displayElement.theme.text}`}>{displayElement.name}</h3>
               <p className="paper text-[13px] leading-relaxed mb-6">
                 {displayElement.desc}
               </p>
@@ -240,16 +235,16 @@ export default function Elementos({ player, updatePlayer }) {
                 <div className="mono flex-col gap-1 text-xs">
                   {(!player.element) ? (
                     <>
-                      <div style={{ color: isLevel5 ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Nível 5</div>
-                      <div style={{ color: isGenin ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Genin</div>
+                      <div className={isLevel5 ? 'text-green' : 'text-seal-bright'}>• Ser Nível 5</div>
+                      <div className={isGenin ? 'text-green' : 'text-seal-bright'}>• Ser Genin</div>
                     </>
                   ) : (!player.element2) ? (
                     <>
-                      <div style={{ color: isLevel15 ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Nível 15</div>
-                      <div style={{ color: isChunin ? 'var(--green)' : 'var(--seal-bright)' }}>• Ser Chunin</div>
+                      <div className={isLevel15 ? 'text-green' : 'text-seal-bright'}>• Ser Nível 15</div>
+                      <div className={isChunin ? 'text-green' : 'text-seal-bright'}>• Ser Chunin</div>
                     </>
                   ) : (
-                    <div style={{ color: 'var(--green)' }}>Você já aprendeu o máximo de elementos disponíveis.</div>
+                    <div className="text-green">Você já aprendeu o máximo de elementos disponíveis.</div>
                   )}
                 </div>
               </div>
@@ -272,9 +267,7 @@ export default function Elementos({ player, updatePlayer }) {
               )}
             </div>
           )}
-
         </div>
-
       </div>
     </div>
   );

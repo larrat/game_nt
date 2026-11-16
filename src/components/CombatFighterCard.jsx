@@ -17,19 +17,22 @@ import {
 } from '../utils/engine';
 
 function StatBar({ label, current, max, percent, color, alignRight }) {
+  const labelColorClass = color === '#ef4444' ? 'text-red-500' : color === '#4b9eff' ? 'text-[#4b9eff]' : 'text-amber-500';
+  const fillClass = color === '#ef4444' ? 'red' : color === '#4b9eff' ? 'blue' : 'yellow';
+
   return (
     <div className="mb-2">
       <div
         className={`flex-between paper text-xs mb-1 ${alignRight ? 'flex-row-reverse' : 'flex-row'}`}
       >
-        <span className="font-semibold" style={{ color }}>{label}</span>
-        <span className="mono opacity-85 text-xs">{current}/{max}</span>
+        <span className={`font-semibold ${labelColorClass}`}>{label}</span>
+        <span className="mono opacity-85 text-xs tabular-nums">{current}/{max}</span>
       </div>
       <div
         className={`progress-track h-2 flex ${alignRight ? 'justify-end' : 'justify-start'}`}
       >
         <div
-          className={`progress-fill ${color === '#ef4444' ? 'red' : color === '#4b9eff' ? 'blue' : 'yellow'}`}
+          className={`progress-fill ${fillClass}`}
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -63,7 +66,6 @@ export default function CombatFighterCard({
   const alignRight = side === 'right';
   const isImg = isSupportedPortraitSource(portrait);
 
-  // Generate Stats Summary
   const statsList = fighterObj ? [
     { label: 'Ataque (Tai / Buk)', val: calculateAtkTaiBuk(fighterObj) },
     { label: 'Ataque (Nin / Gen)', val: calculateAtkNinGen(fighterObj) },
@@ -88,22 +90,20 @@ export default function CombatFighterCard({
       className={`combat-fighter-v2 ${shake ? 'damage-flash' : ''} ${isMirror ? 'enemy-mirror' : ''}`}
       style={bgStyle}
     >
-      {/* Top Icons Bar — renderizado dentro do card no topo */}
       {fighterObj && (
-        <div className={`flex ${alignRight ? 'flex-row-reverse' : 'flex-row'} gap-2 px-3 pt-2 z-20`} style={{ position: 'relative' }}>
-          
+        <div className={`relative flex ${alignRight ? 'flex-row-reverse' : 'flex-row'} gap-2 px-3 pt-2 z-20`}>
           {/* Stats Tooltip */}
-          <div className="relative group/stats cursor-help" style={{ zIndex: 30 }}>
-            <div className="bg-ink p-1 rounded border border-line text-sm hover:bg-black-alpha-60 transition-colors" style={{ lineHeight: 1 }}>
+          <div className="relative z-30 group/stats cursor-help">
+            <div className="bg-ink p-1 rounded border border-line text-sm leading-none hover:bg-black-alpha-60 transition-colors duration-150">
               📊
             </div>
-            <div className={`absolute top-full mt-1 ${alignRight ? 'right-0' : 'left-0'} w-64 bg-black-alpha-95 border border-line-bright p-3 rounded-md text-xs opacity-0 invisible group-hover/stats:opacity-100 group-hover/stats:visible transition-all shadow-lg`} style={{ zIndex: 9999, pointerEvents: 'none' }}>
+            <div className={`absolute top-full mt-1 ${alignRight ? 'right-0' : 'left-0'} z-9999 pointer-events-none w-64 bg-black-alpha-95 border border-line-bright p-3 rounded-md text-xs opacity-0 invisible group-hover/stats:opacity-100 group-hover/stats:visible transition-[opacity,visibility] duration-150 shadow-lg`}>
               <h4 className="text-gold font-bold mb-2 pb-1 border-b border-line-solid text-left">Resumo dos Atributos</h4>
               <div className="flex-col gap-1">
                 {statsList.map((s, i) => (
                   <div key={i} className="flex-between text-muted text-left">
                     <span>{s.label}:</span>
-                    <span className="mono text-white">{s.val}</span>
+                    <span className="mono text-white tabular-nums">{s.val}</span>
                   </div>
                 ))}
               </div>
@@ -112,17 +112,17 @@ export default function CombatFighterCard({
 
           {/* Clan Tooltip */}
           {clan && (
-            <div className="relative group/clan cursor-help" style={{ zIndex: 30 }}>
-              <div className="bg-ink p-1 rounded border border-line text-sm hover:bg-black-alpha-60 transition-colors" style={{ lineHeight: 1 }}>
+            <div className="relative z-30 group/clan cursor-help">
+              <div className="bg-ink p-1 rounded border border-line text-sm leading-none hover:bg-black-alpha-60 transition-colors duration-150">
                 🧬
               </div>
-              <div className={`absolute top-full mt-1 ${alignRight ? 'right-0' : 'left-0'} w-56 bg-black-alpha-95 border border-line-bright p-3 rounded-md text-xs opacity-0 invisible group-hover/clan:opacity-100 group-hover/clan:visible transition-all shadow-lg`} style={{ zIndex: 9999, pointerEvents: 'none' }}>
+              <div className={`absolute top-full mt-1 ${alignRight ? 'right-0' : 'left-0'} z-9999 pointer-events-none w-56 bg-black-alpha-95 border border-line-bright p-3 rounded-md text-xs opacity-0 invisible group-hover/clan:opacity-100 group-hover/clan:visible transition-[opacity,visibility] duration-150 shadow-lg`}>
                 <h4 className="text-gold font-bold mb-2 pb-1 border-b border-line-solid text-left">{clan} Lvl. {fighterObj.clan_lvl || 0}</h4>
                 <div className="flex-col gap-1 text-muted text-left">
                   {Object.entries(customStatsInfo).map(([stat, val]) => (
                     <div key={stat} className="flex-between capitalize">
                       <span>{stat}:</span>
-                      <span className="text-green">+{val * (fighterObj.clan_lvl || 0)}</span>
+                      <span className="text-green tabular-nums">+{val * (fighterObj.clan_lvl || 0)}</span>
                     </div>
                   ))}
                   {clanBonusDesc && (
@@ -133,7 +133,6 @@ export default function CombatFighterCard({
               </div>
             </div>
           )}
-
         </div>
       )}
 
@@ -144,11 +143,11 @@ export default function CombatFighterCard({
       <div className="combat-portrait-wrap relative">
         {clan && (
           <div className={`absolute top-2 ${alignRight ? 'right-2' : 'left-2'} z-10 opacity-50`}>
-            <img 
-              src={`/images/clan_${clan.toLowerCase()}.jpg`} 
-              alt={clan} 
+            <img
+              src={`/images/clan_${clan.toLowerCase()}.jpg`}
+              alt={clan}
               className="w-8 h-8 rounded-md border border-line-solid object-cover grayscale opacity-70 mix-blend-screen shadow-lg"
-              onError={(e) => { e.target.style.display = 'none'; }}
+              onError={(e) => { e.currentTarget.classList.add('hidden'); }}
             />
           </div>
         )}
@@ -166,7 +165,7 @@ export default function CombatFighterCard({
           >
             {isMirror && '⚠️ '}{name}
           </h3>
-          <div className="mono muted text-xs">
+          <div className="mono muted text-xs tabular-nums">
             Lvl. {level}{subtitle ? ` · ${subtitle}` : ''}
           </div>
         </div>

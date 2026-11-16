@@ -9,10 +9,6 @@ import SidebarIcon from '../components/SidebarIcon';
 import '../styles/core-flows-v4.css';
 import { createPlayerShadow } from '../utils/opponentRoster';
 
-// =============================================
-// CONFIGURAÇÃO DO GRID DA VILA
-// Cada tile tem um tipo: 'empty', 'building', 'path', 'portal'
-// =============================================
 const VILLAGE_GRID = [
   ['empty', 'empty',    'portal_in', 'empty',    'empty',    'empty'],
   ['empty', 'kage',     'empty',     'empty',     'hospital', 'empty'],
@@ -24,158 +20,84 @@ const VILLAGE_GRID = [
 ];
 
 const BUILDING_CONFIG = {
-  kage:        { icon: '🏛️',  label: 'Gabinete do Kage', color: '#f59e0b', bgImage: '/images/imgi_106_map_yellow2.png', route: null,       desc: 'Missões Rank-S e administração da Vila.' },
-  hospital:    { icon: '🏥',  label: 'Hospital',           color: '#ef4444', bgImage: '/images/imgi_105_map_red2.png', route: '/hospital', desc: 'Recupere seu HP e cure debuffs.' },
-  dojo:        { icon: '⚔️',  label: 'Academia (Dojo)',    color: '#4b9eff', bgImage: '/images/imgi_104_map_green2.png', route: '/dojo',     desc: 'Treine com NPCs e ganhe XP.' },
-  ichiraku:    { icon: '🍜',  label: 'Restaurante Ichiraku',color: '#f97316', bgImage: '/images/imgi_100_map_orange2.png', route: '/ichiraku', desc: 'Recupere sua Stamina com ramen.' },
-  blacksmith:  { icon: '🔨',  label: 'Ferreiro',           color: '#a78bfa', bgImage: '/images/imgi_103_map_gray.png', route: '/ferreiro', desc: 'Forje e melhore seus equipamentos.' },
-  historia:    { icon: '📜',  label: 'Escritório do Hokage',color: '#fbbf24', bgImage: '/images/imgi_106_map_yellow2.png', route: '/historia', desc: 'Aventure-se pelas Sagas.' },
-  gates:       { icon: '⛩️',  label: 'Portões da Vila',    color: '#6b7280', bgImage: '/images/imgi_103_map_gray.png', route: 'world',     desc: 'Saia para o Mapa Mundi e visite outras Vilas.' },
-  portal_in:   { icon: '🌐',  label: 'Portão de Invasão',  color: '#ef4444', bgImage: '/images/imgi_105_map_red2.png', route: '/evento',   desc: 'Alerta! World Boss activo.' },
+  kage:       { icon: '🏛️', label: 'Gabinete do Kage',     textClass: 'text-[#f59e0b]', borderClass: 'border-[#f59e0b]', bgClass: "bg-[url('/images/imgi_106_map_yellow2.png')]", route: null,        desc: 'Missões Rank-S e administração da Vila.' },
+  hospital:   { icon: '🏥', label: 'Hospital',             textClass: 'text-[#ef4444]', borderClass: 'border-[#ef4444]', bgClass: "bg-[url('/images/imgi_105_map_red2.png')]",    route: '/hospital', desc: 'Recupere seu HP e cure debuffs.' },
+  dojo:       { icon: '⚔️', label: 'Academia (Dojo)',      textClass: 'text-[#4b9eff]', borderClass: 'border-[#4b9eff]', bgClass: "bg-[url('/images/imgi_104_map_green2.png')]",  route: '/dojo',     desc: 'Treine com NPCs e ganhe XP.' },
+  ichiraku:   { icon: '🍜', label: 'Restaurante Ichiraku', textClass: 'text-[#f97316]', borderClass: 'border-[#f97316]', bgClass: "bg-[url('/images/imgi_100_map_orange2.png')]", route: '/ichiraku', desc: 'Recupere sua Stamina com ramen.' },
+  blacksmith: { icon: '🔨', label: 'Ferreiro',             textClass: 'text-[#a78bfa]', borderClass: 'border-[#a78bfa]', bgClass: "bg-[url('/images/imgi_103_map_gray.png')]",    route: '/ferreiro', desc: 'Forje e melhore seus equipamentos.' },
+  historia:   { icon: '📜', label: 'Escritório do Hokage', textClass: 'text-[#fbbf24]', borderClass: 'border-[#fbbf24]', bgClass: "bg-[url('/images/imgi_106_map_yellow2.png')]", route: '/historia', desc: 'Aventure-se pelas Sagas.' },
+  gates:      { icon: '⛩️', label: 'Portões da Vila',      textClass: 'text-[#9ca3af]', borderClass: 'border-[#6b7280]', bgClass: "bg-[url('/images/imgi_103_map_gray.png')]",    route: 'world',     desc: 'Saia para o Mapa Mundi e visite outras Vilas.' },
+  portal_in:  { icon: '🌐', label: 'Portão de Invasão',    textClass: 'text-[#ef4444]', borderClass: 'border-[#ef4444]', bgClass: "bg-[url('/images/imgi_105_map_red2.png')]",    route: '/evento',   desc: 'Alerta! World Boss activo.' },
 };
 
-const TILE_TERRAIN = {
-  empty: { bg: 'rgba(15, 30, 15, 0.5)', border: 'rgba(30, 60, 30, 0.3)', bgImage: null },
-  path:  { bg: 'rgba(180, 140, 70, 0.25)', border: 'rgba(200, 160, 80, 0.4)', bgImage: null },
-  player:{ bg: 'rgba(180, 140, 70, 0.25)', border: 'rgba(200, 160, 80, 0.4)', bgImage: '/images/imgi_99_map_blue2.png' },
+const TILE_TERRAIN_CLASS = {
+  empty:  'bg-[#0f1e0f]/50 border border-[#1e3c1e]/30',
+  path:   'bg-[#b48c46]/25 border border-[#c8a050]/40',
+  player: "bg-[url('/images/imgi_99_map_blue2.png')] bg-center bg-contain bg-no-repeat bg-transparent border-0",
 };
 
 const TRAVEL_COST = 100;
 
-// =============================================
-// TILE COMPONENT
-// =============================================
 function VillageTile({ type, onClick, isHovered, onHover, onLeave, playerAnimating }) {
   const building = BUILDING_CONFIG[type];
   const isPlayer = type === 'player';
-  const terrain = TILE_TERRAIN[type] || TILE_TERRAIN['empty'];
   const isPath = type === 'path';
-
-  const baseBg = building ? building.bgImage : terrain.bgImage;
+  const terrainClass = building
+    ? `${building.bgClass} bg-center bg-contain bg-no-repeat bg-transparent border-0`
+    : (TILE_TERRAIN_CLASS[type] || TILE_TERRAIN_CLASS.empty);
 
   const TileElement = building ? 'button' : 'div';
   return (
     <TileElement
       type={building ? 'button' : undefined}
-      className={'kuro-map-v4__tile' + (building ? ' is-building' : '')}
+      className={`kuro-map-v4__tile ${building ? 'is-building cursor-pointer' : 'cursor-default'} relative aspect-square rounded flex flex-col items-center justify-center transition-[transform,box-shadow] duration-150 ease-out overflow-visible ${terrainClass} ${isHovered && building ? 'scale-105 z-10 shadow-lg' : 'scale-100 z-1'}`}
       aria-label={building ? `Explorar ${building.label}` : undefined}
       onClick={building ? onClick : undefined}
       onMouseEnter={building ? onHover : undefined}
       onMouseLeave={building ? onLeave : undefined}
-      style={{
-        position: 'relative',
-        aspectRatio: '1',
-        background: baseBg ? `url(${baseBg}) center/contain no-repeat` : terrain.bg,
-        backgroundColor: baseBg ? 'transparent' : terrain.bg,
-        border: baseBg ? 'none' : `1px solid ${isHovered && building ? building.color : terrain.border}`,
-        borderRadius: '4px',
-        cursor: building ? 'pointer' : 'default',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        transition: 'all 0.18s ease',
-        transform: isHovered && building ? 'scale(1.06)' : 'scale(1)',
-        boxShadow: isHovered && building ? `0 0 18px ${building.color}55` : 'none',
-        overflow: 'visible',
-        zIndex: isHovered ? 10 : 1,
-      }}
     >
-      {/* Texture overlay for path/player tiles */}
       {isPath && (
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: 'repeating-linear-gradient(45deg, rgba(200,160,80,0.1) 0px, rgba(200,160,80,0.1) 2px, transparent 2px, transparent 8px)',
-          borderRadius: '3px',
-        }} />
+        <div className="absolute inset-0 rounded-[3px] bg-[repeating-linear-gradient(45deg,rgba(200,160,80,0.1)_0px,rgba(200,160,80,0.1)_2px,transparent_2px,transparent_8px)]" />
       )}
 
-      {/* Building icon */}
       {building && (
         <>
-          <div style={{
-            fontSize: '28px',
-            lineHeight: 1,
-            filter: `drop-shadow(0 0 6px ${building.color})`,
-            transition: 'transform 0.15s',
-            transform: isHovered ? 'translateY(-2px)' : 'none',
-          }}>
+          <div className={`text-[28px] leading-none transition-transform duration-150 ${isHovered ? '-translate-y-0.5' : ''}`}>
             {building.icon}
           </div>
-          <div style={{
-            fontSize: '9px',
-            color: isHovered ? building.color : 'rgba(255,255,255,0.55)',
-            fontWeight: 'bold',
-            marginTop: '4px',
-            textAlign: 'center',
-            lineHeight: 1.1,
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            maxWidth: '90%',
-          }}>
+          <div className={`text-[9px] font-bold mt-1 text-center leading-tight uppercase tracking-[0.5px] max-w-[90%] ${isHovered ? building.textClass : 'text-white/55'}`}>
             {building.label.split(' ')[0]}
           </div>
 
-          {/* Level badge */}
           {isHovered && (
-            <div style={{
-              position: 'absolute',
-              bottom: '-28px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              whiteSpace: 'nowrap',
-              background: 'rgba(10,12,18,0.97)',
-              border: `1px solid ${building.color}`,
-              borderRadius: '4px',
-              padding: '3px 8px',
-              fontSize: '10px',
-              color: building.color,
-              fontWeight: 'bold',
-              zIndex: 20,
-              pointerEvents: 'none',
-            }}>
+            <div className={`absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap bg-[#0a0c12]/97 border ${building.borderClass} rounded px-2 py-[3px] text-[10px] ${building.textClass} font-bold z-20 pointer-events-none`}>
               {building.label}
             </div>
           )}
         </>
       )}
 
-      {/* Player marker */}
       {isPlayer && (
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '2px',
-        }}>
-          <div style={{
-            fontSize: '24px',
-            filter: 'drop-shadow(0 0 8px rgba(212,162,42,0.9))',
-            animation: playerAnimating ? 'bounce 0.5s ease infinite alternate' : 'none',
-          }}>🥷</div>
-          <div style={{
-            fontSize: '8px',
-            color: '#d4a22a',
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-          }}>Você</div>
+        <div className="flex flex-col items-center gap-0.5">
+          <div className={`text-2xl drop-shadow-[0_0_8px_rgba(212,162,42,0.9)] ${playerAnimating ? 'animate-bounce' : ''}`}>
+            🥷
+          </div>
+          <div className="text-[8px] text-[#d4a22a] font-bold uppercase tracking-[0.5px]">
+            Você
+          </div>
         </div>
       )}
     </TileElement>
   );
 }
 
-// =============================================
-// MAIN COMPONENT
-// =============================================
 export default function Mapa({ player, updatePlayer }) {
   const navigate = useNavigate();
   const { addToast } = useToast();
   const gameConfig = useGameConfig();
 
-  const [viewMode, setViewMode] = useState('village'); // 'village' | 'world'
-  const [hoveredTile, setHoveredTile] = useState(null); // key in BUILDING_CONFIG
+  const [viewMode, setViewMode] = useState('village');
+  const [hoveredTile, setHoveredTile] = useState(null);
   const [selectedBuilding, setSelectedBuilding] = useState(null);
   const [loadingId, setLoadingId] = useState(null);
   const [confirmTarget, setConfirmTarget] = useState(null);
@@ -304,8 +226,7 @@ export default function Mapa({ player, updatePlayer }) {
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     const dist = Math.sqrt(Math.pow(x - playerX, 2) + Math.pow(y - playerY, 2));
     setPlayerX(x); setPlayerY(y); setIsWalking(true);
-    // Encontros aleatórios devem usar um NPC real autorizado pelo servidor
-    // no contexto de mapa, com ID numérico e vínculo ao catálogo.
+
     const canonicalPool = npcs.filter(npc =>
       Number.isSafeInteger(Number(npc.id)) &&
       Number(npc.id) > 0 &&
@@ -330,72 +251,32 @@ export default function Mapa({ player, updatePlayer }) {
 
   const visibleNpcs = npcs.filter(n => !hideStory || !n.is_story_mode);
 
-  // ========================
-  // RENDER: VILLAGE MODE
-  // ========================
   if (viewMode === 'village') {
     const selectedBldg = selectedBuilding ? BUILDING_CONFIG[selectedBuilding] : null;
 
     return (
       <div className="kuro-map-v4 kuro-map-v4--village" aria-label="Mapa interativo da vila">
-        {/* Background image from the new assets */}
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 0,
-          backgroundImage: "url('/images/imgi_67_mapbase.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }} />
-        {/* Dark overlay to make the grid pop out */}
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 0,
-          background: 'rgba(0, 0, 0, 0.45)',
-        }} />
+        <div className="absolute inset-0 z-0 bg-[url('/images/imgi_67_mapbase.jpg')] bg-cover bg-center" />
+        <div className="absolute inset-0 z-0 bg-black/45" />
 
-        {/* Top info bar */}
-        <div className="kuro-map-v4__topbar" style={{
-          position: 'absolute', top: 0, left: 0, right: 0, zIndex: 20,
-          background: 'rgba(0,0,0,0.75)',
-          backdropFilter: 'blur(8px)',
-          borderBottom: '1px solid rgba(212,162,42,0.25)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '10px 20px',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ fontSize: '18px' }}>{villages[currentLoc]?.icon || '🏯'}</span>
+        <div className="kuro-map-v4__topbar absolute top-0 left-0 right-0 z-20 bg-black/75 backdrop-blur-md border-b border-[#d4a22a]/25 flex items-center justify-between px-5 py-2.5">
+          <div className="flex items-center gap-3">
+            <span className="text-lg">{villages[currentLoc]?.icon || '🏯'}</span>
             <div>
-              <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '1px' }}>Localização Atual</div>
-              <div style={{ color: '#d4a22a', fontWeight: 'bold', fontSize: '15px' }}>
+              <div className="text-white/45 text-[10px] uppercase tracking-[1px]">Localização Atual</div>
+              <div className="text-[#d4a22a] font-bold text-[15px]">
                 Vila de {villages[currentLoc]?.name || 'Konoha'}
               </div>
             </div>
           </div>
-          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-            <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px' }}>Clique num edifício para interagir</div>
+          <div className="flex gap-2 items-center">
+            <div className="text-white/50 text-xs">Clique num edifício para interagir</div>
             <GameAction tone="quiet" className="kuro-map-v4__nav-action" onClick={() => setViewMode('world')} aria-label="Abrir mapa mundi"><SidebarIcon name="map" size={16} /> Mapa Mundi</GameAction>
           </div>
         </div>
 
-        {/* The tile grid */}
-        <div style={{
-          position: 'absolute',
-          top: '60px', bottom: 0,
-          left: 0, right: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '20px',
-          zIndex: 1,
-        }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(${VILLAGE_GRID[0].length}, 1fr)`,
-            gridTemplateRows: `repeat(${VILLAGE_GRID.length}, 1fr)`,
-            gap: '5px',
-            width: 'min(90vh, 95vw)',
-            aspectRatio: `${VILLAGE_GRID[0].length} / ${VILLAGE_GRID.length}`,
-          }}>
+        <div className="absolute top-[60px] bottom-0 left-0 right-0 flex items-center justify-center p-5 z-1">
+          <div className="grid grid-cols-6 grid-rows-7 gap-[5px] w-[min(90vh,95vw)] aspect-[6/7]">
             {VILLAGE_GRID.map((row, rowIdx) =>
               row.map((type, colIdx) => {
                 const key = `${rowIdx}-${colIdx}`;
@@ -415,29 +296,17 @@ export default function Mapa({ player, updatePlayer }) {
           </div>
         </div>
 
-        {/* Building info panel (side panel) */}
         {selectedBldg && (
-          <div className="map-panel kuro-map-v4__detail" style={{
-            position: 'absolute',
-            right: '20px',
-            top: '80px',
-            width: '300px',
-            background: 'rgba(8,12,18,0.97)',
-            border: `1px solid ${selectedBldg.color}`,
-            borderRadius: '12px',
-            padding: '24px',
-            zIndex: 30,
-            boxShadow: `0 0 40px ${selectedBldg.color}33`,
-          }}>
-            <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-              <div style={{ fontSize: '48px', marginBottom: '8px', filter: `drop-shadow(0 0 12px ${selectedBldg.color})` }}>
+          <div className={`map-panel kuro-map-v4__detail absolute right-5 top-20 w-[300px] bg-[#080c12]/97 border ${selectedBldg.borderClass} rounded-xl p-6 z-30 shadow-2xl`}>
+            <div className="text-center mb-4">
+              <div className="text-5xl mb-2">
                 {selectedBldg.icon}
               </div>
-              <h3 style={{ color: selectedBldg.color, fontSize: '18px', fontWeight: 'bold', margin: 0 }}>
+              <h3 className={`text-lg font-bold m-0 ${selectedBldg.textClass}`}>
                 {selectedBldg.label}
               </h3>
             </div>
-            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '13px', textAlign: 'center', marginBottom: '20px', lineHeight: 1.5 }}>
+            <p className="text-white/60 text-[13px] text-center mb-5 leading-relaxed">
               {selectedBldg.desc}
             </p>
             {selectedBldg.route && selectedBldg.route !== 'world' && (
@@ -447,20 +316,11 @@ export default function Mapa({ player, updatePlayer }) {
           </div>
         )}
 
-        {/* Legend bottom-left */}
-        <div className="kuro-map-v4__legend" style={{
-          position: 'absolute',
-          bottom: '16px',
-          left: '16px',
-          zIndex: 20,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '4px',
-        }}>
+        <div className="kuro-map-v4__legend absolute bottom-4 left-4 z-20 flex flex-col gap-1">
           {Object.entries(BUILDING_CONFIG).slice(0, 4).map(([key, b]) => (
-            <div key={key} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontSize: '14px' }}>{b.icon}</span>
-              <span style={{ color: b.color, fontSize: '10px', fontWeight: 'bold' }}>{b.label}</span>
+            <div key={key} className="flex items-center gap-1.5">
+              <span className="text-sm">{b.icon}</span>
+              <span className={`text-[10px] font-bold ${b.textClass}`}>{b.label}</span>
             </div>
           ))}
         </div>
@@ -468,216 +328,150 @@ export default function Mapa({ player, updatePlayer }) {
     );
   }
 
-  // ========================
-  // RENDER: WORLD MAP MODE
-  // ========================
   return (
     <div className="kuro-map-v4 kuro-map-v4--world" onClick={handleMapClick} aria-label="Mapa mundi ninja">
+      <div className="absolute inset-0 bg-[url('/images/mapa.png')] bg-cover bg-center z-0" />
+      <div className="absolute inset-0 bg-black/30 z-1" />
 
-      {/* Map background */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: "url('/images/mapa.png')",
-        backgroundSize: 'cover', backgroundPosition: 'center',
-        zIndex: 0,
-      }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', zIndex: 1 }} />
-
-      {/* Village tiles on the world map */}
-      {Object.entries(villages).map(([vId, v]) => v.x != null && (
-        <button
-          type="button"
-          key={vId}
-          className="village-node kuro-map-v4__village-node"
-          aria-label={currentLoc === parseInt(vId) ? `Voltar à vila de ${v.name}` : `Selecionar viagem para a vila de ${v.name}`}
-          style={{
-            position: 'absolute', zIndex: 6,
-            left: `${v.x}%`, top: `${v.y}%`,
-            transform: 'translate(-50%, -50%)',
-            display: 'flex', flexDirection: 'column', alignItems: 'center',
-            cursor: currentLoc !== parseInt(vId) ? 'pointer' : 'default',
-          }}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (currentLoc !== parseInt(vId)) setConfirmTarget(parseInt(vId));
-            else { setViewMode('village'); }
-          }}
-        >
-          <div style={{
-            width: '52px', height: '52px',
-            borderRadius: '8px',
-            border: `2px solid ${currentLoc === parseInt(vId) ? '#d4a22a' : 'rgba(255,255,255,0.3)'}`,
-            background: currentLoc === parseInt(vId) ? 'rgba(212,162,42,0.15)' : 'rgba(0,0,0,0.7)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '26px',
-            boxShadow: currentLoc === parseInt(vId) ? '0 0 20px rgba(212,162,42,0.5)' : '0 2px 8px rgba(0,0,0,0.8)',
-            transition: 'all 0.2s',
-          }}>
-            {v.icon || '🏯'}
-          </div>
-          <div style={{
-            background: currentLoc === parseInt(vId) ? 'rgba(212,162,42,0.9)' : 'rgba(0,0,0,0.8)',
-            border: `1px solid ${currentLoc === parseInt(vId) ? '#d4a22a' : 'rgba(255,255,255,0.25)'}`,
-            color: currentLoc === parseInt(vId) ? '#000' : '#fff',
-            fontSize: '10px', fontWeight: 'bold',
-            padding: '3px 8px', borderRadius: '4px', marginTop: '4px',
-            whiteSpace: 'nowrap',
-          }}>
-            {currentLoc === parseInt(vId) ? '📍 ' : ''}{v.name}
-          </div>
-          {currentLoc === parseInt(vId) && (
-            <div style={{ color: 'rgba(212,162,42,0.7)', fontSize: '9px', marginTop: '2px' }}>
-              (clique para voltar)
+      {Object.entries(villages).map(([vId, v]) => {
+        if (v.x == null) return null;
+        const isCurrent = currentLoc === parseInt(vId, 10);
+        return (
+          <button
+            type="button"
+            key={vId}
+            className={`village-node kuro-map-v4__village-node absolute z-6 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center ${isCurrent ? 'cursor-default' : 'cursor-pointer'}`}
+            aria-label={isCurrent ? `Voltar à vila de ${v.name}` : `Selecionar viagem para a vila de ${v.name}`}
+            style={{ left: `${v.x}%`, top: `${v.y}%` }}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (!isCurrent) setConfirmTarget(parseInt(vId, 10));
+              else setViewMode('village');
+            }}
+          >
+            <div className={`w-[52px] h-[52px] rounded-lg border-2 flex items-center justify-center text-[26px] transition-[transform,border-color,background-color] duration-200 ${isCurrent ? 'border-[#d4a22a] bg-[#d4a22a]/15 shadow-[0_0_20px_rgba(212,162,42,0.5)]' : 'border-white/30 bg-black/70 shadow-[0_2px_8px_rgba(0,0,0,0.8)] hover:scale-105'}`}>
+              {v.icon || '🏯'}
             </div>
-          )}
-        </button>
-      ))}
+            <div className={`border text-[10px] font-bold px-2 py-[3px] rounded mt-1 whitespace-nowrap ${isCurrent ? 'bg-[#d4a22a]/90 border-[#d4a22a] text-black' : 'bg-black/80 border-white/25 text-white'}`}>
+              {isCurrent ? '📍 ' : ''}{v.name}
+            </div>
+            {isCurrent && (
+              <div className="text-[#d4a22a]/70 text-[9px] mt-0.5">
+                (clique para voltar)
+              </div>
+            )}
+          </button>
+        );
+      })}
 
-      {/* NPC markers */}
-      {visibleNpcs.slice(0, 30).map(npc => (
-        <button
-          type="button"
-          key={npc.id}
-          className="npc-node kuro-map-v4__npc-node"
-          style={{
-            position: 'absolute', zIndex: 7,
-            left: `${npc.x}%`, top: `${npc.y}%`,
-            transform: 'translate(-50%, -50%)',
-            cursor: 'pointer',
-            display: 'flex', flexDirection: 'column', alignItems: 'center',
-            padding: 0, border: 'none', background: 'transparent'
-          }}
-          onClick={(e) => { e.stopPropagation(); attackNpc(npc); }}
-          title={`${npc.name} - Lv. ${npc.level}`}
-          aria-label={`Combater ${npc.name}, nível ${npc.level}`}
-        >
-          <span style={{
-            filter: `drop-shadow(0 0 4px ${npc.is_bingo_book ? '#ef4444' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? 'gold' : '#fff'})`,
-          }}>
-            <NpcPortrait npc={npc} size={34} decorative />
-          </span>
-        </button>
-      ))}
+      {visibleNpcs.slice(0, 30).map(npc => {
+        const glowClass = npc.is_bingo_book
+          ? 'drop-shadow-[0_0_4px_#ef4444]'
+          : npc.is_ghost
+            ? 'drop-shadow-[0_0_4px_#ab47bc]'
+            : npc.is_story_mode
+              ? 'drop-shadow-[0_0_4px_gold]'
+              : 'drop-shadow-[0_0_4px_#fff]';
+        return (
+          <button
+            type="button"
+            key={npc.id}
+            className="npc-node kuro-map-v4__npc-node absolute z-7 -translate-x-1/2 -translate-y-1/2 cursor-pointer flex flex-col items-center p-0 border-0 bg-transparent transition-transform duration-150 hover:scale-110"
+            style={{ left: `${npc.x}%`, top: `${npc.y}%` }}
+            onClick={(e) => { e.stopPropagation(); attackNpc(npc); }}
+            title={`${npc.name} - Lv. ${npc.level}`}
+            aria-label={`Combater ${npc.name}, nível ${npc.level}`}
+          >
+            <span className={glowClass}>
+              <NpcPortrait npc={npc} size={34} decorative />
+            </span>
+          </button>
+        );
+      })}
 
-      {/* Player marker on world map */}
-      <div style={{
-        position: 'absolute', zIndex: 8,
-        left: `${playerX}%`, top: `${playerY}%`,
-        transform: 'translate(-50%, -100%)',
-        transition: 'left 1s ease-in-out, top 1s ease-in-out',
-        display: 'flex', flexDirection: 'column', alignItems: 'center',
-        pointerEvents: 'none',
-      }}>
-        <div style={{ fontSize: '28px', filter: 'drop-shadow(0 0 8px gold)', animation: isWalking ? 'shake 0.4s infinite' : 'none' }}>
+      <div
+        className="absolute z-8 -translate-x-1/2 -translate-y-full transition-[left,top] duration-1000 ease-in-out flex flex-col items-center pointer-events-none"
+        style={{ left: `${playerX}%`, top: `${playerY}%` }}
+      >
+        <div className={`text-[28px] drop-shadow-[0_0_8px_gold] ${isWalking ? 'animate-bounce' : ''}`}>
           🥷
         </div>
-        <div style={{ background: 'rgba(0,0,0,0.8)', borderRadius: '3px', padding: '1px 6px', fontSize: '9px', color: '#d4a22a', fontWeight: 'bold' }}>
+        <div className="bg-black/80 rounded-[3px] px-1.5 py-[1px] text-[9px] text-[#d4a22a] font-bold">
           Você
         </div>
       </div>
 
-      {/* TOP LEFT: Location + back button */}
-      <div className="map-panel kuro-map-v4__location" style={{ position: 'absolute', top: '16px', left: '16px', zIndex: 10 }}>
-        <div style={{
-          background: 'rgba(8,12,18,0.92)',
-          backdropFilter: 'blur(8px)',
-          border: '1px solid rgba(212,162,42,0.3)',
-          borderRadius: '10px',
-          padding: '12px 16px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '8px',
-          minWidth: '200px',
-        }}>
-          <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+      <div className="map-panel kuro-map-v4__location absolute top-4 left-4 z-10">
+        <div className="bg-[#080c12]/92 backdrop-blur-md border border-[#d4a22a]/30 rounded-[10px] px-4 py-3 flex flex-col gap-2 min-w-[200px]">
+          <div className="text-white/40 text-[9px] uppercase tracking-[1.5px]">
             Mapa Mundi
           </div>
-          <div style={{ color: '#d4a22a', fontWeight: 'bold', fontSize: '14px' }}>
+          <div className="text-[#d4a22a] font-bold text-sm">
             {villages[currentLoc]?.icon} Vila de {villages[currentLoc]?.name}
           </div>
           <GameAction tone="quiet" className="kuro-map-v4__nav-action" onClick={() => setViewMode('village')}><SidebarIcon name="arrowLeft" size={16} /> Voltar à Vila</GameAction>
         </div>
       </div>
 
-      {/* RIGHT PANEL: Travel confirm + Threat radar */}
-      <div className="map-panel kuro-map-v4__radar-panel" style={{
-        position: 'absolute', top: '16px', right: '16px',
-        zIndex: 10, width: '280px',
-        display: 'flex', flexDirection: 'column', gap: '12px',
-        maxHeight: 'calc(100vh - 32px)',
-      }}>
-
-        {/* Travel confirm */}
+      <div className="map-panel kuro-map-v4__radar-panel absolute top-4 right-4 z-10 w-[280px] flex flex-col gap-3 max-h-[calc(100vh-32px)]">
         {confirmTarget && (
-          <div style={{
-            background: 'rgba(8,12,18,0.97)',
-            backdropFilter: 'blur(8px)',
-            border: '2px solid #d4a22a',
-            borderRadius: '10px',
-            padding: '20px',
-          }}>
-            <h3 style={{ color: '#d4a22a', marginBottom: '10px', fontSize: '15px' }}>⛺ Confirmar Viagem</h3>
-            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '13px', marginBottom: '16px' }}>
-              Ir para a Vila de <strong style={{ color: '#fff' }}>{villages[confirmTarget]?.name}</strong>?
+          <div className="bg-[#080c12]/97 backdrop-blur-md border-2 border-[#d4a22a] rounded-[10px] p-5">
+            <h3 className="text-[#d4a22a] mb-2.5 text-[15px]">⛺ Confirmar Viagem</h3>
+            <p className="text-white/70 text-[13px] mb-4">
+              Ir para a Vila de <strong className="text-white">{villages[confirmTarget]?.name}</strong>?
               <br />
-              <span style={{ color: '#f59e0b', fontSize: '12px' }}>Custo: 100 Ryous</span>
+              <span className="text-[#f59e0b] text-xs tabular-nums">Custo: 100 Ryous</span>
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div className="flex flex-col gap-2">
               <GameAction tone="gold" className="kuro-map-v4__panel-action" onClick={handleTravel} loading={loadingId !== null}>{loadingId ? 'Viajando…' : 'Confirmar viagem'}</GameAction>
               <GameAction tone="quiet" className="kuro-map-v4__panel-action" onClick={() => setConfirmTarget(null)}>Cancelar</GameAction>
             </div>
           </div>
         )}
 
-        {/* Threat radar */}
-        <div style={{
-          background: 'rgba(8,12,18,0.88)',
-          backdropFilter: 'blur(8px)',
-          border: '1px solid rgba(239,68,68,0.25)',
-          borderRadius: '10px',
-          padding: '16px',
-          flex: 1,
-          overflowY: 'auto',
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-            <h3 style={{ color: '#ef4444', margin: 0, fontSize: '13px' }}>📡 Radar de Ameaças</h3>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer', fontSize: '11px' }}>
+        <div className="bg-[#080c12]/88 backdrop-blur-md border border-[#ef4444]/25 rounded-[10px] p-4 flex-1 overflow-y-auto">
+          <div className="flex justify-between items-center mb-3">
+            <h3 className="text-[#ef4444] m-0 text-[13px]">📡 Radar de Ameaças</h3>
+            <label className="flex items-center gap-1 cursor-pointer text-[11px]">
               <input type="checkbox" checked={hideStory} onChange={(e) => setHideStory(e.target.checked)} />
-              <span style={{ color: 'rgba(255,255,255,0.4)' }}>Ocultar Sagas</span>
+              <span className="text-white/40">Ocultar Sagas</span>
             </label>
           </div>
 
           {loadingMap ? (
-            <div style={{ color: 'rgba(255,255,255,0.4)', textAlign: 'center', padding: '20px', fontSize: '12px' }}>
+            <div className="text-white/40 text-center p-5 text-xs">
               Escaneando...
             </div>
           ) : visibleNpcs.length === 0 ? (
-            <div style={{ color: 'rgba(255,255,255,0.4)', textAlign: 'center', padding: '20px', fontSize: '12px' }}>
+            <div className="text-white/40 text-center p-5 text-xs">
               O mapa está seguro... por enquanto.
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              {visibleNpcs.slice(0, 12).map(npc => (
-                <div
-                  key={npc.id}
-                  style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    padding: '8px 10px',
-                    background: 'rgba(255,255,255,0.04)',
-                    borderRadius: '6px',
-                    borderLeft: `3px solid ${npc.is_bingo_book ? '#ef4444' : npc.is_ghost ? '#ab47bc' : npc.is_story_mode ? '#d4a22a' : '#6b7280'}`,
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <NpcPortrait npc={npc} size={30} decorative />
-                    <div>
-                      <div style={{ color: '#fff', fontWeight: 'bold', fontSize: '11px' }}>{npc.name}</div>
-                      <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '10px' }}>Nv. {npc.level}</div>
+            <div className="flex flex-col gap-1.5">
+              {visibleNpcs.slice(0, 12).map(npc => {
+                const borderLeftClass = npc.is_bingo_book
+                  ? 'border-l-[#ef4444]'
+                  : npc.is_ghost
+                    ? 'border-l-[#ab47bc]'
+                    : npc.is_story_mode
+                      ? 'border-l-[#d4a22a]'
+                      : 'border-l-[#6b7280]';
+                return (
+                  <div
+                    key={npc.id}
+                    className={`flex items-center justify-between px-2.5 py-2 bg-white/[0.04] rounded-md border-l-3 ${borderLeftClass}`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <NpcPortrait npc={npc} size={30} decorative />
+                      <div>
+                        <div className="text-white font-bold text-[11px]">{npc.name}</div>
+                        <div className="text-white/40 text-[10px] tabular-nums">Nv. {npc.level}</div>
+                      </div>
                     </div>
+                    <GameAction tone="danger" size="small" onClick={() => attackNpc(npc)}>Atacar</GameAction>
                   </div>
-                  <GameAction tone="danger" size="small" onClick={() => attackNpc(npc)}>Atacar</GameAction>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>

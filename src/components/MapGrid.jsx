@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const GRID_SIZE = 20;
 
-export default function MapGrid({ 
-  playerX, 
-  playerY, 
-  onMove, 
-  villages, 
-  npcs, 
-  currentLoc,
+export default function MapGrid({
+  playerX,
+  playerY,
+  onMove,
+  villages,
+  npcs,
   onEnterVillage,
   onAttackNpc
 }) {
-  
   const renderGrid = () => {
     const tiles = [];
     for (let y = 0; y < GRID_SIZE; y++) {
       for (let x = 0; x < GRID_SIZE; x++) {
         const isPlayerHere = playerX === x && playerY === y;
-        
+
         const villageId = Object.keys(villages).find(vId => {
-          const vx = (parseInt(vId) * 5) % GRID_SIZE;
-          const vy = (parseInt(vId) * 3) % GRID_SIZE;
+          const vx = (parseInt(vId, 10) * 5) % GRID_SIZE;
+          const vy = (parseInt(vId, 10) * 3) % GRID_SIZE;
           return vx === x && vy === y;
         });
         const village = villageId ? villages[villageId] : null;
@@ -33,26 +31,15 @@ export default function MapGrid({
         });
 
         tiles.push(
-          <div 
-            key={`${x}-${y}`} 
+          <div
+            key={`${x}-${y}`}
             onClick={() => onMove(x, y)}
-            style={{
-              width: '100%',
-              paddingBottom: '100%',
-              backgroundColor: '#1c1c22',
-              border: '1px solid rgba(255, 255, 255, 0.02)',
-              position: 'relative',
-              cursor: 'pointer',
-              transition: 'background-color 0.2s',
-            }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(212, 162, 42, 0.2)'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#1c1c22'}
+            className="w-full pb-[100%] bg-[#1c1c22] hover:bg-gold/20 border border-white/[0.02] relative cursor-pointer transition-colors duration-200"
           >
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              
+            <div className="absolute inset-0 flex items-center justify-center">
               {village && (
-                <div 
-                  style={{ fontSize: '24px', filter: 'drop-shadow(0 0 5px ' + village.color + ')', zIndex: 1 }}
+                <div
+                  className="text-2xl z-1 drop-shadow-[0_0_5px_rgba(212,162,42,0.85)]"
                   title={`Vila da ${village.name}`}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -65,8 +52,8 @@ export default function MapGrid({
               )}
 
               {npc && !isPlayerHere && (
-                <div 
-                  style={{ fontSize: '20px', zIndex: 2, cursor: 'crosshair' }}
+                <div
+                  className="text-xl z-2 cursor-crosshair"
                   title={npc.name}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -79,11 +66,10 @@ export default function MapGrid({
               )}
 
               {isPlayerHere && (
-                <div style={{ fontSize: '24px', zIndex: 3, filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))' }}>
+                <div className="text-2xl z-3 drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
                   🥷
                 </div>
               )}
-
             </div>
           </div>
         );
@@ -93,26 +79,13 @@ export default function MapGrid({
   };
 
   return (
-    <div style={{ 
-      width: '100%', 
-      maxWidth: '600px', 
-      margin: '0 auto', 
-      background: '#0a0a0c', 
-      border: '2px solid var(--gold)', 
-      borderRadius: '8px', 
-      overflow: 'hidden',
-      boxShadow: '0 0 20px rgba(0,0,0,0.8)'
-    }}>
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`, 
-        gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)` 
-      }}>
+    <div className="w-full max-w-[600px] mx-auto bg-[#0a0a0c] border-2 border-gold rounded-lg overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+      <div className="grid grid-cols-20 grid-rows-20">
         {renderGrid()}
       </div>
-      
-      <div style={{ padding: '16px', textAlign: 'center', borderTop: '1px solid var(--line)', background: 'var(--ink)' }}>
-        <p className="muted" style={{ fontSize: '12px', margin: 0 }}>Coord: X: {playerX}, Y: {playerY}</p>
+
+      <div className="p-4 text-center border-t border-line bg-ink">
+        <p className="muted text-xs m-0 tabular-nums">Coord: X: {playerX}, Y: {playerY}</p>
       </div>
     </div>
   );

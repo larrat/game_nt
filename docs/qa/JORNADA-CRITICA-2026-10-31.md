@@ -57,6 +57,17 @@ O teste executa as páginas reais em Chromium, com respostas inteiramente fictí
 
 O teste intercepta as requisições do navegador; nenhuma API precisa rodar na porta 54399. A homologação em staging continua separada.
 
+## Integração SQL local com PostgreSQL descartável
+
+Esta verificação executa as funções originais das migrations de criação, treino, combate e recompensa sobre um esquema mínimo com dados fictícios. O personagem ganha pontos pelo primeiro combate, treina e conclui outro duelo. A repetição da confirmação não altera XP, ryous, vitórias nem o registro do segundo duelo; o teste confere os valores após fechar e reabrir o banco.
+
+```sh
+npm install --no-save --package-lock=false @electric-sql/pglite@0.3.15
+node tests/sql/dojo_journey.mjs
+```
+
+O PostgreSQL roda localmente pelo PGlite em um diretório temporário criado pelo teste. Não usa URL, credencial ou banco externo. O esquema de teste não representa o conjunto inteiro de migrations nem verifica Auth, PostgREST ou políticas de leitura. A homologação em staging continua pendente.
+
 ## Modelo único de evidência
 
 Registrar `ID do teste | commit | ambiente | cenário | estado anterior (sem PII) | ação | resposta do servidor | estado posterior | resultado | bug/PR`.

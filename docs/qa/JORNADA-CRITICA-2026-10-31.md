@@ -1,6 +1,6 @@
 # Matriz de QA — Primeiro percurso completo do Kurokage
 
-**Status:** planejado, **não executado**. Usar staging quando possível; criar duas contas descartáveis A e B e e-mails sob controle da equipe. Não usar personagens reais, credenciais no repositório ou dados pessoais em prints.
+**Status da homologação:** pendente. Executar apenas em staging separado, com duas contas descartáveis A e B e e-mails sob controle da equipe. Não usar personagens reais, credenciais no repositório ou dados pessoais em prints.
 
 ## Preparação e gates
 
@@ -30,6 +30,43 @@
 | PROG-01 | A completa requisitos de graduação e recarrega todas as telas | Nível/rank/atributos/XP persistem sem divergência inexplicada | Motor e RPCs |
 | UX-01 | Executar principais cenários a 320/390/768/1440px | Sem overflow, foco visível, uso por teclado/toque, modais e menus corretos | UI kit |
 | UX-02 | Reduzir movimento no SO e usar leitor de tela nos botões críticos | Sem animação obrigatória; nomes/estados acessíveis | Motion |
+
+## Roteiro mínimo de homologação: criação, treino e Dojo
+
+1. Confirme o projeto Supabase e o deploy de staging, a versão das migrations e um oponente oficial adequado ao nível do personagem. Se só houver produção, **pare antes de autenticar ou fazer mutações**.
+2. Crie um personagem na conta descartável. A ficha começa com zero pontos livres: em Treino, o botão deve ficar indisponível. Obtenha um ponto pela progressão normal ou use uma conta de QA já preparada com um ponto. Antes de treinar, anote atributo e saldo; treine uma vez e confirme o ganho informado e o débito de um ponto.
+3. Abra o Dojo. Compare vida, chakra e stamina com o Status e, se houver recurso parcial, confira a diferença até o máximo projetado. Teste as rotas de preparação e a disposição do painel em desktop e celular. O painel não altera elegibilidade nem regras de combate.
+4. Em **Buscar combate real**, escolha um cenário de vitória reproduzível. Anote XP, ryous e vitórias no Dojo antes da luta. Após a confirmação do servidor, registre o incremento, atualize a página, selecione novamente o mesmo personagem e confirme que os totais não mudaram de novo. Não registre a homologação se a vitória não foi confirmada, os dados não persistiram ou houve incremento repetido.
+
+## Regressão local no navegador (base simulada)
+
+O teste executa as páginas reais em Chromium, com respostas inteiramente fictícias e tráfego bloqueado fora dos endereços locais. Verifica criação, bloqueio sem pontos, treino com um ponto de teste, combate e apenas um pedido de recompensa, releitura de XP/ryous/vitórias e layout do Dojo a 1440 e 390 px. **Isso não comprova regras, autenticação, persistência ou idempotência do servidor real.**
+
+1. Instale as dependências do jogo com `npm ci`. Em um ambiente Python isolado, instale `playwright` e o Chromium com `python -m playwright install chromium --only-shell`.
+2. Inicie a aplicação local com credenciais fictícias (não use chaves do projeto):
+
+   ```sh
+   VITE_SUPABASE_URL=http://127.0.0.1:54399 VITE_SUPABASE_ANON_KEY=local-fixture-only \
+     npm run dev -- --host 127.0.0.1 --port 5179 --strictPort
+   ```
+3. Em outro terminal, na raiz do repositório, rode:
+
+   ```sh
+   python tests/browser/critical_journey.py
+   ```
+
+O teste intercepta as requisições do navegador; nenhuma API precisa rodar na porta 54399. A homologação em staging continua separada.
+
+## Integração SQL local com PostgreSQL descartável
+
+Esta verificação executa as funções originais das migrations de criação, treino, combate e recompensa sobre um esquema mínimo com dados fictícios. O personagem ganha pontos pelo primeiro combate, treina e conclui outro duelo. A repetição da confirmação não altera XP, ryous, vitórias nem o registro do segundo duelo; o teste confere os valores após fechar e reabrir o banco.
+
+```sh
+npm install --no-save --package-lock=false @electric-sql/pglite@0.3.15
+node tests/sql/dojo_journey.mjs
+```
+
+O PostgreSQL roda localmente pelo PGlite em um diretório temporário criado pelo teste. Não usa URL, credencial ou banco externo. O esquema de teste não representa o conjunto inteiro de migrations nem verifica Auth, PostgREST ou políticas de leitura. A homologação em staging continua pendente.
 
 ## Modelo único de evidência
 

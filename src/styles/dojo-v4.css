@@ -88,6 +88,19 @@
 .kuro-dojo-v4__note > svg { flex-shrink: 0; color: var(--kuro-gold); margin-top: 2px; }
 .kuro-dojo-v4__note button { display: inline-flex; gap: 3px; align-items: baseline; background: transparent; border: 0; color: var(--kuro-gold); font-weight: 700; text-decoration: underline; cursor: pointer; }
 .kuro-dojo-v4__archive-action { display: inline-flex; align-items: center; gap: 7px; }
+
+.kuro-dojo-v4__preparation {
+  margin: 0 0 32px;
+  padding: clamp(14px,2.5vw,26px);
+  border: 1px solid var(--kuro-line);
+  border-radius: var(--kuro-radius);
+  background: var(--kuro-surface);
+}
+.kuro-dojo-v4__resources { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--kuro-gap); }
+.kuro-dojo-v4__resources .kuro-dojo-v4__metric span { text-transform: uppercase; }
+.kuro-dojo-v4__resource-bar { display: block; width: 100%; height: 8px; margin: 9px 0 7px; accent-color: var(--kuro-gold); }
+.kuro-dojo-v4__preparation-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.kuro-dojo-v4__preparation-caption { margin: 12px 0 0; color: var(--kuro-muted); font-size: 12px; }
 @media (max-width: 980px) {
   .kuro-dojo-v4__overview { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
@@ -97,7 +110,7 @@
   .kuro-dojo-v4__hero-actions button { width: 100%; }
   .kuro-dojo-v4__overview { gap: 9px; margin: 13px 0 25px; }
   .kuro-dojo-v4__metric { padding: 13px 12px; }
-  .kuro-dojo-v4__grid { grid-template-columns: minmax(0,1fr); }
+  .kuro-dojo-v4__grid, .kuro-dojo-v4__resources { grid-template-columns: minmax(0,1fr); }
   .kuro-dojo-v4__section-heading { display: block; }
   .kuro-dojo-v4__section-heading > p { margin-top: 8px; }
   .kuro-dojo-v4__card-number { font-size: 8px; }

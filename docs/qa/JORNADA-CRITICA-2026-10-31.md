@@ -38,6 +38,25 @@
 3. Abra o Dojo. Compare vida, chakra e stamina com o Status e, se houver recurso parcial, confira a diferença até o máximo projetado. Teste as rotas de preparação e a disposição do painel em desktop e celular. O painel não altera elegibilidade nem regras de combate.
 4. Em **Buscar combate real**, escolha um cenário de vitória reproduzível. Anote XP, ryous e vitórias no Dojo antes da luta. Após a confirmação do servidor, registre o incremento, atualize a página, selecione novamente o mesmo personagem e confirme que os totais não mudaram de novo. Não registre a homologação se a vitória não foi confirmada, os dados não persistiram ou houve incremento repetido.
 
+## Regressão local no navegador (base simulada)
+
+O teste executa as páginas reais em Chromium, com respostas inteiramente fictícias e tráfego bloqueado fora dos endereços locais. Verifica criação, bloqueio sem pontos, treino com um ponto de teste, combate e apenas um pedido de recompensa, releitura de XP/ryous/vitórias e layout do Dojo a 1440 e 390 px. **Isso não comprova regras, autenticação, persistência ou idempotência do servidor real.**
+
+1. Instale as dependências do jogo com `npm ci`. Em um ambiente Python isolado, instale `playwright` e o Chromium com `python -m playwright install chromium --only-shell`.
+2. Inicie a aplicação local com credenciais fictícias (não use chaves do projeto):
+
+   ```sh
+   VITE_SUPABASE_URL=http://127.0.0.1:54399 VITE_SUPABASE_ANON_KEY=local-fixture-only \
+     npm run dev -- --host 127.0.0.1 --port 5179 --strictPort
+   ```
+3. Em outro terminal, na raiz do repositório, rode:
+
+   ```sh
+   python tests/browser/critical_journey.py
+   ```
+
+O teste intercepta as requisições do navegador; nenhuma API precisa rodar na porta 54399. A homologação em staging continua separada.
+
 ## Modelo único de evidência
 
 Registrar `ID do teste | commit | ambiente | cenário | estado anterior (sem PII) | ação | resposta do servidor | estado posterior | resultado | bug/PR`.

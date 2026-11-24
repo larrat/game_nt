@@ -1,6 +1,6 @@
 # Matriz de QA — Primeiro percurso completo do Kurokage
 
-**Status:** planejado, **não executado**. Usar staging quando possível; criar duas contas descartáveis A e B e e-mails sob controle da equipe. Não usar personagens reais, credenciais no repositório ou dados pessoais em prints.
+**Status da homologação:** pendente. Executar apenas em staging separado, com duas contas descartáveis A e B e e-mails sob controle da equipe. Não usar personagens reais, credenciais no repositório ou dados pessoais em prints.
 
 ## Preparação e gates
 
@@ -30,6 +30,13 @@
 | PROG-01 | A completa requisitos de graduação e recarrega todas as telas | Nível/rank/atributos/XP persistem sem divergência inexplicada | Motor e RPCs |
 | UX-01 | Executar principais cenários a 320/390/768/1440px | Sem overflow, foco visível, uso por teclado/toque, modais e menus corretos | UI kit |
 | UX-02 | Reduzir movimento no SO e usar leitor de tela nos botões críticos | Sem animação obrigatória; nomes/estados acessíveis | Motion |
+
+## Roteiro mínimo de homologação: criação, treino e Dojo
+
+1. Confirme o projeto Supabase e o deploy de staging, a versão das migrations e um oponente oficial adequado ao nível do personagem. Se só houver produção, **pare antes de autenticar ou fazer mutações**.
+2. Crie um personagem na conta descartável. A ficha começa com zero pontos livres: em Treino, o botão deve ficar indisponível. Obtenha um ponto pela progressão normal ou use uma conta de QA já preparada com um ponto. Antes de treinar, anote atributo e saldo; treine uma vez e confirme o ganho informado e o débito de um ponto.
+3. Abra o Dojo. Compare vida, chakra e stamina com o Status e, se houver recurso parcial, confira a diferença até o máximo projetado. Teste as rotas de preparação e a disposição do painel em desktop e celular. O painel não altera elegibilidade nem regras de combate.
+4. Em **Buscar combate real**, escolha um cenário de vitória reproduzível. Anote XP, ryous e vitórias no Dojo antes da luta. Após a confirmação do servidor, registre o incremento, atualize a página, selecione novamente o mesmo personagem e confirme que os totais não mudaram de novo. Não registre a homologação se a vitória não foi confirmada, os dados não persistiram ou houve incremento repetido.
 
 ## Modelo único de evidência
 

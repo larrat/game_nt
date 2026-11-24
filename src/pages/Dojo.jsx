@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-import { calculateHP, calculateChakra, calculateStamina, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules } from '../utils/engine';
+import { calculateHP, calculateChakra, calculateAtkTaiBuk, calculateDefTaiBuk, getPvPMatchRules } from '../utils/engine';
 import '../styles/main.css';
 import PageHeader from '../components/PageHeader';
 import SidebarIcon from '../components/SidebarIcon';
 import GameAction from '../components/ui/GameAction';
+import DojoPreparation from '../components/DojoPreparation';
+import { getDojoPreparation } from '../utils/dojoPreparation';
 import '../styles/dojo-v4.css';
 import { useToast } from '../context/ToastContext';
 
@@ -244,6 +246,7 @@ export default function Dojo({ player, updatePlayer }) {
   };
 
   const isAkatsuki = player.village_id === 8;
+  const preparation = getDojoPreparation(player);
 
 
   return (
@@ -277,9 +280,11 @@ export default function Dojo({ player, updatePlayer }) {
       <section className="kuro-dojo-v4__overview" aria-label="Informações atuais do personagem">
         <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="target" size={15} /> NÍVEL</span><strong>{player.level}</strong><small>Poder atual do ninja</small></div>
         <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="shield" size={15} /> GRADUAÇÃO</span><strong>{player.rank || 'Estudante'}</strong><small>Patente do personagem</small></div>
-        <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="zap" size={15} /> STAMINA</span><strong>{player.stamina ?? calculateStamina(player)}</strong><small>Recurso para incursões</small></div>
+        <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="scroll" size={15} /> TÉCNICAS</span><strong>{preparation.techniqueCount ?? "—"}</strong><small>Técnicas carregadas no arsenal</small></div>
         <div className="kuro-dojo-v4__metric"><span><SidebarIcon name="activity" size={15} /> ESTADO</span><strong>{loadingId ? 'Em atividade' : 'Disponível'}</strong><small>{loadingId ? 'Aguarde a ação atual' : 'Arena liberada'}</small></div>
       </section>
+
+      <DojoPreparation preparation={preparation} />
 
       <div className="kuro-dojo-v4__section-heading">
         <div><span className="kuro-dojo-v4__eyebrow">SELEÇÃO DE TREINAMENTO</span><h2>Escolha seu confronto</h2></div>
